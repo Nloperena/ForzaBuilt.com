@@ -79,7 +79,61 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Top Placeholder Components */}
+      <div className="w-full h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+        <div className="text-center space-y-8">
+          <h1 className="text-6xl font-bold text-slate-800">Welcome to HyperCloud</h1>
+          <p className="text-xl text-slate-600 max-w-2xl">The future of distributed computing is here</p>
+          <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold">
+            Get Started
+          </Button>
+        </div>
+      </div>
+
+      <div className="w-full h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center">
+        <div className="max-w-4xl mx-auto px-8 text-center space-y-8">
+          <h2 className="text-5xl font-bold text-slate-800">Why Choose HyperCloud?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-4">
+              <div className="w-16 h-16 bg-blue-500 rounded-full mx-auto flex items-center justify-center">
+                <span className="text-white text-2xl">⚡</span>
+              </div>
+              <h3 className="text-xl font-semibold">Lightning Fast</h3>
+              <p className="text-slate-600">Deploy in seconds, not hours</p>
+            </div>
+            <div className="space-y-4">
+              <div className="w-16 h-16 bg-green-500 rounded-full mx-auto flex items-center justify-center">
+                <span className="text-white text-2xl">💰</span>
+              </div>
+              <h3 className="text-xl font-semibold">Cost Effective</h3>
+              <p className="text-slate-600">Pay only for what you use</p>
+            </div>
+            <div className="space-y-4">
+              <div className="w-16 h-16 bg-purple-500 rounded-full mx-auto flex items-center justify-center">
+                <span className="text-white text-2xl">🔒</span>
+              </div>
+              <h3 className="text-xl font-semibold">Secure</h3>
+              <p className="text-slate-600">Enterprise-grade security</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center">
+        <div className="max-w-4xl mx-auto px-8 text-center space-y-8">
+          <h2 className="text-5xl font-bold text-slate-800">Trusted by Industry Leaders</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {['TechCorp', 'DataFlow', 'CloudBase', 'AILabs'].map((company, i) => (
+              <div key={i} className="bg-white/50 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <div className="w-12 h-12 bg-slate-200 rounded-lg mx-auto mb-4"></div>
+                <p className="font-semibold text-slate-700">{company}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content - Existing Card Stack */}
       <div className="relative">
         {cards.map((card, index) => {
           const cardHeight = window.innerHeight;
@@ -305,8 +359,70 @@ const Index = () => {
         })}
       </div>
 
+      {/* Bottom Placeholder Components */}
+      <div className="w-full h-screen bg-gradient-to-br from-orange-50 to-red-100 flex items-center justify-center">
+        <div className="max-w-4xl mx-auto px-8 text-center space-y-8">
+          <h2 className="text-5xl font-bold text-slate-800">Ready to Get Started?</h2>
+          <p className="text-xl text-slate-600">Join thousands of developers already using HyperCloud</p>
+          <div className="flex flex-col md:flex-row gap-4 justify-center">
+            <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold">
+              Start Free Trial
+            </Button>
+            <Button variant="outline" className="border-2 border-slate-300 px-8 py-4 rounded-xl text-lg font-semibold">
+              Schedule Demo
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full h-screen bg-gradient-to-br from-slate-50 to-gray-100 flex items-center justify-center">
+        <div className="max-w-6xl mx-auto px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-slate-800">Product</h3>
+              <ul className="space-y-2 text-slate-600">
+                <li>Compute</li>
+                <li>Inference</li>
+                <li>Storage</li>
+                <li>Networking</li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-slate-800">Solutions</h3>
+              <ul className="space-y-2 text-slate-600">
+                <li>AI/ML Training</li>
+                <li>Model Serving</li>
+                <li>Data Processing</li>
+                <li>Research</li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-slate-800">Company</h3>
+              <ul className="space-y-2 text-slate-600">
+                <li>About</li>
+                <li>Careers</li>
+                <li>Blog</li>
+                <li>Contact</li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-slate-800">Support</h3>
+              <ul className="space-y-2 text-slate-600">
+                <li>Documentation</li>
+                <li>Help Center</li>
+                <li>Community</li>
+                <li>Status</li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-16 pt-8 border-t border-slate-200 text-center">
+            <p className="text-slate-500">© 2024 HyperCloud. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+
       {/* Spacer to allow scrolling */}
-      <div style={{ height: `${cards.length * window.innerHeight}px` }} />
+      <div style={{ height: `${(cards.length + 6) * window.innerHeight}px` }} />
     </div>
   );
 };
