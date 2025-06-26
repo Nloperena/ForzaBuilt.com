@@ -60,6 +60,9 @@ const Index = () => {
     }
   ];
 
+  // Calculate where the cards section starts (after the 3 placeholder components)
+  const cardsStartOffset = 3 * window.innerHeight;
+
   return (
     <div className="relative">
       {/* Header */}
@@ -133,11 +136,11 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Main Content - Existing Card Stack */}
+      {/* Main Content - Card Stack */}
       <div className="relative">
         {cards.map((card, index) => {
           const cardHeight = window.innerHeight;
-          const cardStart = index * cardHeight;
+          const cardStart = cardsStartOffset + (index * cardHeight);
           const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / cardHeight));
           const nextCardProgress = Math.max(0, Math.min(1, (scrollY - cardStart - cardHeight) / cardHeight));
           
@@ -151,7 +154,7 @@ const Index = () => {
               key={card.id}
               className="sticky top-0 w-full h-screen flex items-center justify-center"
               style={{
-                zIndex: index + 1,
+                zIndex: 40 + index,
               }}
             >
               <div 
@@ -165,6 +168,7 @@ const Index = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
                     {/* Left Panel */}
                     <div className="p-8 lg:p-16 bg-gradient-to-br from-slate-50 to-slate-100 flex items-center">
+                      
                       {card.id === 'compute' && (
                         <div className="space-y-8 w-full">
                           {/* Technologies */}
@@ -422,7 +426,7 @@ const Index = () => {
       </div>
 
       {/* Spacer to allow scrolling */}
-      <div style={{ height: `${(cards.length + 6) * window.innerHeight}px` }} />
+      <div style={{ height: `${(cards.length + 5) * window.innerHeight}px` }} />
     </div>
   );
 };
