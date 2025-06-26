@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -98,7 +97,7 @@ const Index = () => {
               key={card.id}
               className="sticky top-0 w-full h-screen flex items-center justify-center"
               style={{
-                zIndex: cards.length - index,
+                zIndex: index + 1,
               }}
             >
               <div 
