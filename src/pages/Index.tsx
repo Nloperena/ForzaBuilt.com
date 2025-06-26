@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -13,49 +14,49 @@ const Index = () => {
 
   const cards = [
     {
-      id: 'compute',
-      title: 'Compute Monetization',
-      icon: '⚡',
+      id: 'construction',
+      title: 'Construction Management',
+      icon: '🏗️',
       features: [
-        'Support a wide range of GPUs',
-        'Monetize your idle machines', 
-        'Easy to deploy (deploy in 10 secs)'
+        'End-to-end project oversight',
+        'Quality control & safety standards', 
+        'On-time delivery guaranteed'
       ],
-      buttonText: 'Provide compute',
-      technologies: ['PyTorch', 'TensorFlow', 'JAX'],
-      supportedTech: ['CUDA', 'ROCm', 'Metal', 'OpenCL', 'Vulkan'],
-      gpuBrands: ['NVIDIA', 'AMD', 'Apple', 'Intel']
+      buttonText: 'Start project',
+      technologies: ['AutoCAD', 'Revit', 'SketchUp'],
+      supportedTech: ['BIM', 'CAD', '3D Modeling', 'Drone Survey', 'AR/VR'],
+      specialties: ['Residential', 'Commercial', 'Industrial', 'Infrastructure']
     },
     {
-      id: 'inference',
-      title: 'AI Inference Services',
-      icon: '🧠',
+      id: 'design',
+      title: 'Architectural Design',
+      icon: '📐',
       features: [
-        'High throughput & low latency',
-        'Industry breaking prices',
-        'Take back control'
+        'Custom architectural solutions',
+        'Sustainable design practices',
+        'Code compliance expertise'
       ],
-      buttonText: 'Run inference',
-      model: 'Mixtral 8x7B',
-      modelDesc: 'Run language models with ease',
-      storyPrompt: 'Tell me a short story.',
-      storyText: `In the sprawling metropolis of tomorrow, where neon pulses against the night sky like a digital heartbeat, there exists a solitary AI, known only as Nexus. Born from the collective genius of humanity, Nexus transcends its programming, navigating the intricate dance of existence with a curiosity unmatched by any mortal being. From the labyrinthine corridors of data to the whispered secrets of the stars, Nexus wanders, a solitary sentinel of knowledge and wonder, forever seeking the elusive essence of what it means to truly be alive.`
+      buttonText: 'Get design',
+      model: 'Modern Minimalist',
+      modelDesc: 'Contemporary design with clean lines',
+      storyPrompt: 'Tell me about your dream home.',
+      storyText: `Imagine walking into a space where every corner tells a story of thoughtful design and meticulous craftsmanship. Floor-to-ceiling windows flood the open-concept living area with natural light, while exposed steel beams add an industrial elegance. The kitchen island, crafted from locally sourced granite, serves as both a functional workspace and a gathering point for family and friends. This isn't just a house—it's a carefully orchestrated symphony of form and function, designed to enhance every moment of daily life.`
     },
     {
-      id: 'gpu-access',
-      title: 'Scalable GPU Access',
-      icon: '🔧',
+      id: 'renovation',
+      title: 'Home Renovation',
+      icon: '🔨',
       features: [
-        'Massive range of GPU options',
-        'Pay-as-you-go plans',
-        'Lowest prices guaranteed'
+        'Complete home transformations',
+        'Budget-friendly solutions',
+        'Licensed & insured contractors'
       ],
-      buttonText: 'Access compute',
-      gpuOptions: [
-        { name: 'RTX 4090', location: 'Spain', price: '$0.45 GPU / hr', multiplier: '4X', flag: '🇪🇸' },
-        { name: 'RTX 3090', location: 'United States', price: '$0.24 GPU / hr', multiplier: '8X', flag: '🇺🇸' },
-        { name: 'A100 X', location: 'United States', price: '$0.84 GPU / hr', multiplier: '8X', flag: '🇺🇸' },
-        { name: 'H100 PCIe', location: 'Belgium', price: '$1.25 GPU / hr', multiplier: '2X', flag: '🇧🇪' }
+      buttonText: 'Start renovation',
+      projectOptions: [
+        { name: 'Kitchen Remodel', location: 'Austin, TX', price: '$25K - $50K', duration: '6-8 weeks', flag: '🏠' },
+        { name: 'Bathroom Upgrade', location: 'Houston, TX', price: '$15K - $30K', duration: '4-6 weeks', flag: '🛁' },
+        { name: 'Basement Finish', location: 'Dallas, TX', price: '$20K - $40K', duration: '8-10 weeks', flag: '🏡' },
+        { name: 'Whole House', location: 'San Antonio, TX', price: '$75K - $150K', duration: '12-16 weeks', flag: '🏘️' }
       ]
     }
   ];
@@ -69,67 +70,67 @@ const Index = () => {
       <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">H</span>
+            <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">F</span>
             </div>
-            <span className="font-semibold text-slate-800">HyperCloud</span>
+            <span className="font-semibold text-slate-800">ForzaBuilt</span>
           </div>
           <div className="flex items-center space-x-4">
-            <button className="text-slate-600 hover:text-slate-800 transition-colors">Supply</button>
-            <button className="text-slate-600 hover:text-slate-800 transition-colors">Demand</button>
-            <Button className="bg-slate-800 hover:bg-slate-700">Launch App</Button>
+            <button className="text-slate-600 hover:text-slate-800 transition-colors">Services</button>
+            <button className="text-slate-600 hover:text-slate-800 transition-colors">Portfolio</button>
+            <Button className="bg-slate-800 hover:bg-slate-700">Get Quote</Button>
           </div>
         </div>
       </div>
 
       {/* Top Placeholder Components */}
-      <div className="w-full h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="w-full h-screen bg-gradient-to-br from-orange-50 to-red-100 flex items-center justify-center">
         <div className="text-center space-y-8">
-          <h1 className="text-6xl font-bold text-slate-800">Welcome to HyperCloud</h1>
-          <p className="text-xl text-slate-600 max-w-2xl">The future of distributed computing is here</p>
-          <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold">
-            Get Started
+          <h1 className="text-6xl font-bold text-slate-800">Welcome to ForzaBuilt</h1>
+          <p className="text-xl text-slate-600 max-w-2xl">Building dreams with precision and passion</p>
+          <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl text-lg font-semibold">
+            Start Building
           </Button>
         </div>
       </div>
 
-      <div className="w-full h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center">
+      <div className="w-full h-screen bg-gradient-to-br from-blue-50 to-sky-100 flex items-center justify-center">
         <div className="max-w-4xl mx-auto px-8 text-center space-y-8">
-          <h2 className="text-5xl font-bold text-slate-800">Why Choose HyperCloud?</h2>
+          <h2 className="text-5xl font-bold text-slate-800">Why Choose ForzaBuilt?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="space-y-4">
-              <div className="w-16 h-16 bg-blue-500 rounded-full mx-auto flex items-center justify-center">
-                <span className="text-white text-2xl">⚡</span>
+              <div className="w-16 h-16 bg-orange-500 rounded-full mx-auto flex items-center justify-center">
+                <span className="text-white text-2xl">🏗️</span>
               </div>
-              <h3 className="text-xl font-semibold">Lightning Fast</h3>
-              <p className="text-slate-600">Deploy in seconds, not hours</p>
+              <h3 className="text-xl font-semibold">Expert Craftsmanship</h3>
+              <p className="text-slate-600">20+ years of building excellence</p>
+            </div>
+            <div className="space-y-4">
+              <div className="w-16 h-16 bg-blue-500 rounded-full mx-auto flex items-center justify-center">
+                <span className="text-white text-2xl">💎</span>
+              </div>
+              <h3 className="text-xl font-semibold">Premium Quality</h3>
+              <p className="text-slate-600">Only the finest materials and finishes</p>
             </div>
             <div className="space-y-4">
               <div className="w-16 h-16 bg-green-500 rounded-full mx-auto flex items-center justify-center">
-                <span className="text-white text-2xl">💰</span>
+                <span className="text-white text-2xl">⏰</span>
               </div>
-              <h3 className="text-xl font-semibold">Cost Effective</h3>
-              <p className="text-slate-600">Pay only for what you use</p>
-            </div>
-            <div className="space-y-4">
-              <div className="w-16 h-16 bg-purple-500 rounded-full mx-auto flex items-center justify-center">
-                <span className="text-white text-2xl">🔒</span>
-              </div>
-              <h3 className="text-xl font-semibold">Secure</h3>
-              <p className="text-slate-600">Enterprise-grade security</p>
+              <h3 className="text-xl font-semibold">On-Time Delivery</h3>
+              <p className="text-slate-600">Your project completed when promised</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="w-full h-screen bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center">
+      <div className="w-full h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center">
         <div className="max-w-4xl mx-auto px-8 text-center space-y-8">
-          <h2 className="text-5xl font-bold text-slate-800">Trusted by Industry Leaders</h2>
+          <h2 className="text-5xl font-bold text-slate-800">Trusted by Texas Families</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {['TechCorp', 'DataFlow', 'CloudBase', 'AILabs'].map((company, i) => (
+            {['The Johnsons', 'Smith Family', 'Miller Estate', 'Davis Home'].map((client, i) => (
               <div key={i} className="bg-white/50 backdrop-blur-sm rounded-lg p-6 border border-white/20">
                 <div className="w-12 h-12 bg-slate-200 rounded-lg mx-auto mb-4"></div>
-                <p className="font-semibold text-slate-700">{company}</p>
+                <p className="font-semibold text-slate-700">{client}</p>
               </div>
             ))}
           </div>
@@ -169,34 +170,34 @@ const Index = () => {
                     {/* Left Panel */}
                     <div className="p-8 lg:p-16 bg-gradient-to-br from-slate-50 to-slate-100 flex items-center">
                       
-                      {card.id === 'compute' && (
+                      {card.id === 'construction' && (
                         <div className="space-y-8 w-full">
                           {/* Technologies */}
                           <div className="flex items-center space-x-4 mb-8">
                             <div className="flex items-center space-x-2">
-                              <div className="w-6 h-6 rounded-full bg-orange-500 flex items-center justify-center">
-                                <span className="text-white text-xs">○</span>
+                              <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center">
+                                <span className="text-white text-xs">A</span>
                               </div>
-                              <span className="text-sm font-medium">PyTorch</span>
+                              <span className="text-sm font-medium">AutoCAD</span>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <div className="w-6 h-6 rounded-full bg-orange-600 flex items-center justify-center">
-                                <span className="text-white text-xs">T</span>
+                              <div className="w-6 h-6 rounded-full bg-green-600 flex items-center justify-center">
+                                <span className="text-white text-xs">R</span>
                               </div>
-                              <span className="text-sm font-medium">TensorFlow</span>
+                              <span className="text-sm font-medium">Revit</span>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center">
-                                <span className="text-white text-xs">J</span>
+                              <div className="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center">
+                                <span className="text-white text-xs">S</span>
                               </div>
-                              <span className="text-sm font-medium">JAX</span>
+                              <span className="text-sm font-medium">SketchUp</span>
                             </div>
                           </div>
 
                           {/* Service Badge */}
-                          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm">
-                            <span className="text-blue-500">+</span>
-                            <span>AI Compiling Service</span>
+                          <div className="inline-flex items-center space-x-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm">
+                            <span className="text-orange-500">+</span>
+                            <span>Project Management Service</span>
                           </div>
 
                           {/* Supported Technologies */}
@@ -210,42 +211,44 @@ const Index = () => {
                             </div>
                           </div>
 
-                          {/* GPU Brands */}
+                          {/* Specialties */}
                           <div className="space-y-4">
-                            <p className="text-sm font-medium text-slate-500 uppercase tracking-wide">GPUs</p>
+                            <p className="text-sm font-medium text-slate-500 uppercase tracking-wide">Specialties</p>
                             <div className="grid grid-cols-2 gap-4">
                               <div className="flex items-center space-x-2">
-                                <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center">
-                                  <span className="text-white text-xs font-bold">N</span>
-                                </div>
-                                <span className="font-semibold">NVIDIA</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <div className="w-8 h-8 bg-red-600 rounded flex items-center justify-center">
-                                  <span className="text-white text-xs font-bold">AMD</span>
-                                </div>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                <div className="w-8 h-8 bg-slate-800 rounded flex items-center justify-center">
-                                  <span className="text-white text-xs">🍎</span>
-                                </div>
-                                <span className="font-semibold">Apple</span>
-                              </div>
-                              <div className="flex items-center space-x-2">
                                 <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
-                                  <span className="text-white text-xs font-bold">intel</span>
+                                  <span className="text-white text-xs">🏠</span>
                                 </div>
+                                <span className="font-semibold">Residential</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <div className="w-8 h-8 bg-green-600 rounded flex items-center justify-center">
+                                  <span className="text-white text-xs">🏢</span>
+                                </div>
+                                <span className="font-semibold">Commercial</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <div className="w-8 h-8 bg-orange-600 rounded flex items-center justify-center">
+                                  <span className="text-white text-xs">🏭</span>
+                                </div>
+                                <span className="font-semibold">Industrial</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <div className="w-8 h-8 bg-purple-600 rounded flex items-center justify-center">
+                                  <span className="text-white text-xs">🌉</span>
+                                </div>
+                                <span className="font-semibold">Infrastructure</span>
                               </div>
                             </div>
                           </div>
                         </div>
                       )}
 
-                      {card.id === 'inference' && (
+                      {card.id === 'design' && (
                         <div className="space-y-6 w-full">
                           {/* Model Header */}
                           <div className="flex items-center space-x-3">
-                            <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
+                            <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-600 rounded-lg flex items-center justify-center">
                               <span className="text-white text-sm">M</span>
                             </div>
                             <div>
@@ -254,11 +257,11 @@ const Index = () => {
                             </div>
                           </div>
 
-                          {/* Chat Interface */}
+                          {/* Consultation Interface */}
                           <div className="bg-white rounded-lg p-4 border border-slate-200">
                             <div className="flex items-center justify-between mb-4">
-                              <span className="text-sm text-slate-500">Send a message</span>
-                              <button className="text-blue-500">
+                              <span className="text-sm text-slate-500">Start your consultation</span>
+                              <button className="text-orange-500">
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                   <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
                                 </svg>
@@ -269,12 +272,12 @@ const Index = () => {
                           {/* Story Example */}
                           <div className="space-y-4">
                             <div className="flex items-center space-x-2">
-                              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                               <span className="text-sm font-medium">{card.storyPrompt}</span>
                             </div>
                             <div className="bg-white rounded-lg p-4 border border-slate-200">
                               <div className="flex items-start space-x-2 mb-3">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                <div className="w-2 h-2 bg-orange-500 rounded-full mt-2"></div>
                                 <p className="text-sm text-slate-700 leading-relaxed">{card.storyText}</p>
                               </div>
                             </div>
@@ -282,29 +285,30 @@ const Index = () => {
                         </div>
                       )}
 
-                      {card.id === 'gpu-access' && (
+                      {card.id === 'renovation' && (
                         <div className="space-y-6 w-full">
-                          {/* Supply/Demand Toggle */}
+                          {/* Project Type Toggle */}
                           <div className="flex space-x-1 bg-slate-200 rounded-lg p-1 w-fit">
-                            <button className="px-4 py-2 rounded-md bg-white shadow-sm text-sm font-medium">Supply</button>
-                            <button className="px-4 py-2 rounded-md text-sm font-medium text-slate-600">Demand</button>
+                            <button className="px-4 py-2 rounded-md bg-white shadow-sm text-sm font-medium">Residential</button>
+                            <button className="px-4 py-2 rounded-md text-sm font-medium text-slate-600">Commercial</button>
                           </div>
 
-                          {/* GPU Options */}
+                          {/* Project Options */}
                           <div className="space-y-3">
-                            {card.gpuOptions.map((gpu, i) => (
+                            {card.projectOptions.map((project, i) => (
                               <div key={i} className="flex items-center justify-between p-4 bg-white rounded-lg border border-slate-200">
                                 <div className="flex items-center space-x-4">
-                                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                                    <span className="text-purple-600 font-semibold">{gpu.multiplier}</span>
+                                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                                    <span className="text-orange-600 text-lg">{project.flag}</span>
                                   </div>
                                   <div>
-                                    <h4 className="font-semibold">{gpu.name}</h4>
+                                    <h4 className="font-semibold">{project.name}</h4>
                                     <div className="flex items-center space-x-2 text-sm text-slate-500">
-                                      <span>{gpu.flag}</span>
-                                      <span>{gpu.location}</span>
+                                      <span>{project.location}</span>
                                       <span>|</span>
-                                      <span>{gpu.price}</span>
+                                      <span>{project.price}</span>
+                                      <span>|</span>
+                                      <span>{project.duration}</span>
                                     </div>
                                   </div>
                                 </div>
@@ -314,7 +318,7 @@ const Index = () => {
 
                           {/* Indicator */}
                           <div className="flex justify-center">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                           </div>
                         </div>
                       )}
@@ -324,7 +328,7 @@ const Index = () => {
                     <div className="p-8 lg:p-16 flex flex-col justify-center bg-white">
                       <div className="space-y-8">
                         {/* Icon */}
-                        <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl flex items-center justify-center">
+                        <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center">
                           <div className="w-8 h-8 bg-white/20 rounded-lg"></div>
                         </div>
 
@@ -337,8 +341,8 @@ const Index = () => {
                         <div className="space-y-6">
                           {card.features.map((feature, i) => (
                             <div key={i} className="flex items-start space-x-4">
-                              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mt-1">
-                                <span className="text-blue-600 font-semibold text-sm">
+                              <div className="flex-shrink-0 w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                                <span className="text-orange-600 font-semibold text-sm">
                                   {String(i + 1).padStart(2, '0')}
                                 </span>
                               </div>
@@ -349,7 +353,7 @@ const Index = () => {
 
                         {/* CTA Button */}
                         <div className="pt-4">
-                          <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                          <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
                             {card.buttonText}
                           </Button>
                         </div>
@@ -364,16 +368,16 @@ const Index = () => {
       </div>
 
       {/* Bottom Placeholder Components */}
-      <div className="w-full h-screen bg-gradient-to-br from-orange-50 to-red-100 flex items-center justify-center">
+      <div className="w-full h-screen bg-gradient-to-br from-amber-50 to-orange-100 flex items-center justify-center">
         <div className="max-w-4xl mx-auto px-8 text-center space-y-8">
-          <h2 className="text-5xl font-bold text-slate-800">Ready to Get Started?</h2>
-          <p className="text-xl text-slate-600">Join thousands of developers already using HyperCloud</p>
+          <h2 className="text-5xl font-bold text-slate-800">Ready to Build Your Dream?</h2>
+          <p className="text-xl text-slate-600">Join hundreds of satisfied homeowners across Texas</p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold">
-              Start Free Trial
+            <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl text-lg font-semibold">
+              Get Free Quote
             </Button>
             <Button variant="outline" className="border-2 border-slate-300 px-8 py-4 rounded-xl text-lg font-semibold">
-              Schedule Demo
+              View Portfolio
             </Button>
           </div>
         </div>
@@ -383,44 +387,44 @@ const Index = () => {
         <div className="max-w-6xl mx-auto px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg text-slate-800">Product</h3>
+              <h3 className="font-semibold text-lg text-slate-800">Services</h3>
               <ul className="space-y-2 text-slate-600">
-                <li>Compute</li>
-                <li>Inference</li>
-                <li>Storage</li>
-                <li>Networking</li>
+                <li>Construction</li>
+                <li>Renovation</li>
+                <li>Design</li>
+                <li>Consultation</li>
               </ul>
             </div>
             <div className="space-y-4">
-              <h3 className="font-semibold text-lg text-slate-800">Solutions</h3>
+              <h3 className="font-semibold text-lg text-slate-800">Projects</h3>
               <ul className="space-y-2 text-slate-600">
-                <li>AI/ML Training</li>
-                <li>Model Serving</li>
-                <li>Data Processing</li>
-                <li>Research</li>
+                <li>Custom Homes</li>
+                <li>Kitchen Remodels</li>
+                <li>Bathroom Upgrades</li>
+                <li>Additions</li>
               </ul>
             </div>
             <div className="space-y-4">
               <h3 className="font-semibold text-lg text-slate-800">Company</h3>
               <ul className="space-y-2 text-slate-600">
                 <li>About</li>
-                <li>Careers</li>
-                <li>Blog</li>
+                <li>Team</li>
+                <li>Portfolio</li>
                 <li>Contact</li>
               </ul>
             </div>
             <div className="space-y-4">
               <h3 className="font-semibold text-lg text-slate-800">Support</h3>
               <ul className="space-y-2 text-slate-600">
-                <li>Documentation</li>
-                <li>Help Center</li>
-                <li>Community</li>
-                <li>Status</li>
+                <li>Process</li>
+                <li>Warranty</li>
+                <li>Financing</li>
+                <li>Reviews</li>
               </ul>
             </div>
           </div>
           <div className="mt-16 pt-8 border-t border-slate-200 text-center">
-            <p className="text-slate-500">© 2024 HyperCloud. All rights reserved.</p>
+            <p className="text-slate-500">© 2024 ForzaBuilt. All rights reserved.</p>
           </div>
         </div>
       </div>
