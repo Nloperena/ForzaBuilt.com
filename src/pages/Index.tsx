@@ -62,7 +62,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+    <div className="relative">
       {/* Header */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -81,30 +81,39 @@ const Index = () => {
       </div>
 
       {/* Main Content */}
-      <div className="pt-20 relative">
+      <div className="relative">
         {cards.map((card, index) => {
-          const offset = Math.max(0, scrollY - index * 400);
-          const scale = Math.max(0.85, 1 - offset * 0.0003);
-          const translateY = offset * 0.5;
-          const opacity = Math.max(0.3, 1 - offset * 0.002);
-
+          const cardHeight = window.innerHeight;
+          const cardStart = index * cardHeight;
+          const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / cardHeight));
+          const nextCardProgress = Math.max(0, Math.min(1, (scrollY - cardStart - cardHeight) / cardHeight));
+          
+          // Calculate transforms
+          const currentScale = 1 - progress * 0.05;
+          const currentTranslateY = progress * -50;
+          const isVisible = scrollY >= cardStart - cardHeight && scrollY < cardStart + cardHeight * 2;
+          
           return (
             <div
               key={card.id}
-              className="sticky top-20 mb-8"
+              className="sticky top-0 w-full h-screen flex items-center justify-center"
               style={{
-                transform: `translateY(${translateY}px) scale(${scale})`,
-                opacity,
                 zIndex: cards.length - index,
               }}
             >
-              <div className="max-w-7xl mx-auto px-6">
-                <Card className="bg-white/90 backdrop-blur-lg border-slate-200 shadow-2xl overflow-hidden">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+              <div 
+                className="w-full h-full"
+                style={{
+                  transform: `translateY(${currentTranslateY}px) scale(${currentScale})`,
+                  opacity: isVisible ? 1 - nextCardProgress : 0,
+                }}
+              >
+                <Card className="w-full h-full bg-white/95 backdrop-blur-lg border-slate-200 shadow-2xl overflow-hidden rounded-none">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
                     {/* Left Panel */}
-                    <div className="p-8 lg:p-12 bg-gradient-to-br from-slate-50 to-slate-100">
+                    <div className="p-8 lg:p-16 bg-gradient-to-br from-slate-50 to-slate-100 flex items-center">
                       {card.id === 'compute' && (
-                        <div className="space-y-8">
+                        <div className="space-y-8 w-full">
                           {/* Technologies */}
                           <div className="flex items-center space-x-4 mb-8">
                             <div className="flex items-center space-x-2">
@@ -176,7 +185,7 @@ const Index = () => {
                       )}
 
                       {card.id === 'inference' && (
-                        <div className="space-y-6">
+                        <div className="space-y-6 w-full">
                           {/* Model Header */}
                           <div className="flex items-center space-x-3">
                             <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
@@ -217,7 +226,7 @@ const Index = () => {
                       )}
 
                       {card.id === 'gpu-access' && (
-                        <div className="space-y-6">
+                        <div className="space-y-6 w-full">
                           {/* Supply/Demand Toggle */}
                           <div className="flex space-x-1 bg-slate-200 rounded-lg p-1 w-fit">
                             <button className="px-4 py-2 rounded-md bg-white shadow-sm text-sm font-medium">Supply</button>
@@ -255,7 +264,7 @@ const Index = () => {
                     </div>
 
                     {/* Right Panel */}
-                    <div className="p-8 lg:p-12 flex flex-col justify-center bg-white">
+                    <div className="p-8 lg:p-16 flex flex-col justify-center bg-white">
                       <div className="space-y-8">
                         {/* Icon */}
                         <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl flex items-center justify-center">
@@ -263,7 +272,7 @@ const Index = () => {
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-4xl font-bold text-slate-800 leading-tight">
+                        <h2 className="text-5xl font-bold text-slate-800 leading-tight">
                           {card.title}
                         </h2>
 
@@ -276,7 +285,7 @@ const Index = () => {
                                   {String(i + 1).padStart(2, '0')}
                                 </span>
                               </div>
-                              <p className="text-lg text-slate-600 leading-relaxed">{feature}</p>
+                              <p className="text-xl text-slate-600 leading-relaxed">{feature}</p>
                             </div>
                           ))}
                         </div>
@@ -297,8 +306,8 @@ const Index = () => {
         })}
       </div>
 
-      {/* Footer Spacer */}
-      <div className="h-96"></div>
+      {/* Spacer to allow scrolling */}
+      <div style={{ height: `${cards.length * window.innerHeight}px` }} />
     </div>
   );
 };
