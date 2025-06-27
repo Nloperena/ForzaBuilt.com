@@ -14,12 +14,13 @@ const Index = () => {
       
       {/* Top Placeholder Components */}
       <HeroSection />
+      <ServiceCardStack />
       <WhyChooseSection />
       <TrustedBySection />
 
       {/* Main Content - Card Stacks */}
       <ServiceCardStack />
-      <ServiceCardStack />
+      
 
       {/* Bottom Placeholder Components */}
       <CallToActionSection />
