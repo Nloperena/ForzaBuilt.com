@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import WhyChooseSection from '@/components/WhyChooseSection';
@@ -8,12 +7,6 @@ import CallToActionSection from '@/components/CallToActionSection';
 import FooterSection from '@/components/FooterSection';
 
 const Index = () => {
-  const cards = [
-    { id: 'construction' },
-    { id: 'design' },
-    { id: 'renovation' }
-  ];
-
   return (
     <div className="relative">
       <Header />
@@ -31,7 +24,7 @@ const Index = () => {
       <FooterSection />
 
       {/* Spacer to allow scrolling */}
-      <div style={{ height: `${(cards.length + 5) * window.innerHeight}px` }} />
+      <div style={{ height: `${(3 + 5) * window.innerHeight}px` }} />
     </div>
   );
 };
