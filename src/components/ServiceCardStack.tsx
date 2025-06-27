@@ -1,14 +1,37 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import ServiceCard from './ServiceCard';
 
 const ServiceCardStack = () => {
   const [scrollY, setScrollY] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerTop, setContainerTop] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Calculate the container's position when component mounts or window resizes
+    const updateContainerPosition = () => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setContainerTop(rect.top + window.scrollY);
+      }
+    };
+
+    updateContainerPosition();
+    window.addEventListener('resize', updateContainerPosition);
+    
+    // Use a small delay to ensure all elements are rendered
+    const timer = setTimeout(updateContainerPosition, 100);
+
+    return () => {
+      window.removeEventListener('resize', updateContainerPosition);
+      clearTimeout(timer);
+    };
   }, []);
 
   const cards = [
@@ -60,14 +83,11 @@ const ServiceCardStack = () => {
     }
   ];
 
-  // Calculate where the cards section starts (after the 3 placeholder components)
-  const cardsStartOffset = 3 * window.innerHeight;
-
   return (
-    <div className="relative">
+    <div ref={containerRef} className="relative">
       {cards.map((card, index) => {
         const cardHeight = window.innerHeight;
-        const cardStart = cardsStartOffset + (index * cardHeight);
+        const cardStart = containerTop + (index * cardHeight);
         const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / cardHeight));
         const nextCardProgress = Math.max(0, Math.min(1, (scrollY - cardStart - cardHeight) / cardHeight));
         
@@ -92,6 +112,9 @@ const ServiceCardStack = () => {
           </div>
         );
       })}
+      
+      {/* Spacer to allow proper scrolling for this stack */}
+      <div style={{ height: `${cards.length * window.innerHeight}px` }} />
     </div>
   );
 };

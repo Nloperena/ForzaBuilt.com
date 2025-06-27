@@ -1,3 +1,4 @@
+
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import WhyChooseSection from '@/components/WhyChooseSection';
@@ -16,16 +17,13 @@ const Index = () => {
       <WhyChooseSection />
       <TrustedBySection />
 
-      {/* Main Content - Card Stack */}
+      {/* Main Content - Card Stacks */}
       <ServiceCardStack />
       <ServiceCardStack />
 
       {/* Bottom Placeholder Components */}
       <CallToActionSection />
       <FooterSection />
-
-      {/* Spacer to allow scrolling */}
-      <div style={{ height: `${(3 + 5) * window.innerHeight}px` }} />
     </div>
   );
 };
