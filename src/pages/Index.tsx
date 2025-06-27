@@ -18,6 +18,7 @@ const Index = () => {
 
       {/* Main Content - Card Stack */}
       <ServiceCardStack />
+      <ServiceCardStack />
 
       {/* Bottom Placeholder Components */}
       <CallToActionSection />
