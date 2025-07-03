@@ -1,73 +1,113 @@
-# Welcome to your Lovable project
+# ForzaBuilt.com
 
-## Project info
+A modern, interactive website for Forza Built showcasing their innovative adhesive solutions for transportation, marine, construction, industrial, foam, composites, and insulation industries.
 
-**URL**: https://lovable.dev/projects/2147d622-0e09-4640-a6e1-a0a1d5418f61
+## Features
 
-## How can I edit this code?
+- **X-Ray Scroll Effects**: Interactive scroll-driven reveal animations
+- **Interactive Building Map**: Clickable SVG overlay with product selection modals
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Modern UI**: Built with React, TypeScript, and shadcn/ui components
+- **Smooth Animations**: Framer Motion powered transitions and effects
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: Tailwind CSS, shadcn/ui components
+- **Animations**: Framer Motion
+- **Build Tool**: Vite
+- **Package Manager**: npm/bun
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2147d622-0e09-4640-a6e1-a0a1d5418f61) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v18 or higher)
+- npm or bun
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ForzaBuilt.com.git
+cd ForzaBuilt.com
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies:
+```bash
+npm install
+# or
+bun install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Start the development server:
+```bash
+npm run dev
+# or
+bun dev
+```
 
-**Use GitHub Codespaces**
+4. Open your browser and navigate to `http://localhost:5173`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/          # React components
+│   ├── ui/             # shadcn/ui components
+│   ├── cards/          # Card components
+│   └── ...             # Other components
+├── pages/              # Page components
+├── data/               # Static data and content
+├── types/              # TypeScript type definitions
+├── hooks/              # Custom React hooks
+├── contexts/           # React contexts
+├── lib/                # Utility functions
+└── assets/             # Images and static assets
+```
 
-This project is built with:
+## Key Components
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **XRayWipe**: Main scroll-driven X-Ray effect component
+- **InteractiveBuildingMap**: SVG-based interactive product selection
+- **ApplicationsModal**: Product information modal system
+- **ServiceCardStack**: Stackable service cards with animations
 
-## How can I deploy this project?
+## Development
 
-Simply open [Lovable](https://lovable.dev/projects/2147d622-0e09-4640-a6e1-a0a1d5418f61) and click on Share -> Publish.
+### Available Scripts
 
-## Can I connect a custom domain to my Lovable project?
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
 
-Yes, you can!
+### Code Style
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This project uses:
+- TypeScript for type safety
+- ESLint for code linting
+- Prettier for code formatting
+- Tailwind CSS for styling
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Deployment
+
+The project can be deployed to any static hosting service:
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Deploy the `dist` folder to your hosting service
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+This project is proprietary to Forza Built.
