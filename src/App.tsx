@@ -12,7 +12,13 @@ import Products from './pages/Products';
 import Auth from './pages/Auth';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import Approach from './pages/Approach';
+import Tools from './pages/Tools';
+import ProductSelector from './pages/tools/ProductSelector';
+import SealantCalculator from './pages/tools/SealantCalculator';
+import Compatibility from './pages/tools/Compatibility';
 import IndustryPage from './pages/industries/[industry]';
+import ProductCategoryPage from './pages/products/[productCategory]';
 
 const queryClient = new QueryClient();
 
@@ -31,7 +37,13 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
+            <Route path="/approach" element={<Approach />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/tools/product-selector" element={<ProductSelector />} />
+            <Route path="/tools/sealant-calculator" element={<SealantCalculator />} />
+            <Route path="/tools/compatibility" element={<Compatibility />} />
             <Route path="/industries/:industry" element={<IndustryPage />} />
+            <Route path="/products/:productCategory" element={<ProductCategoryPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
