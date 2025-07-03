@@ -101,3 +101,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .py-20-custom {
+    padding-top: 25rem;
+    padding-bottom: 5rem;
+  }
+}

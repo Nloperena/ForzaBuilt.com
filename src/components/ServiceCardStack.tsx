@@ -1,4 +1,3 @@
-
 /**
  * ServiceCardStack Component
  * 
@@ -19,74 +18,47 @@
  * - Uses StackSpacer component for scroll height management
  */
 
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import CardStackItem from './cards/CardStackItem';
 import StackSpacer from './cards/StackSpacer';
 import { useScrollCalculator } from '../hooks/useScrollCalculator';
-import { ServiceCardStackProps, ServiceCardData } from '../types/ServiceCard';
+import { ServiceCardData } from '../types/ServiceCard';
 
-const ServiceCardStack = ({ cards: propCards, className = '' }: ServiceCardStackProps) => {
+const ServiceCardStack: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  /**
-   * Default card data - serves as placeholder content and fallback
-   * In a CMS implementation, this would be replaced by data from the CMS
-   * Each card represents a different service offering with unique content structure
-   */
-  const defaultCards: ServiceCardData[] = [
+  const cards: ServiceCardData[] = [
     {
-      // Construction Management Card
-      id: 'construction',
-      title: 'Construction Management',
-      icon: '🏗️',
+      id: 'marine-yacht',
+      title: 'Marine Yacht Solutions',
+      icon: '🚢',
       features: [
-        'End-to-end project oversight',
-        'Quality control & safety standards', 
-        'On-time delivery guaranteed'
+        'Ensure boat and yacht structural integrity, watertight sealing, and surface bonding over the long haul',
+        'Precisely match our marine customers\' specific and demanding product requirements',
+        'Provide cutting-edge chemistries and technologies that over-deliver for mission-critical manufacturing and design requirements',
+        'Deliver a wide array of applications',
+        'Achieve unparalleled levels of process efficiency and performance'
       ],
-      buttonText: 'Start project',
-      technologies: ['AutoCAD', 'Revit', 'SketchUp'],
-      supportedTech: ['BIM', 'CAD', '3D Modeling', 'Drone Survey', 'AR/VR'],
-      specialties: ['Residential', 'Commercial', 'Industrial', 'Infrastructure']
+      buttonText: 'Learn More',
+      storyText: 'Forza stands above the competition by offering unparalleled custom-formulated line of marine solutions that ensure boat and yacht structural integrity, watertight sealing, and surface bonding over the long haul.',
+      imageUrl: 'https://forzabuilt.com/wp-content/uploads/2023/05/marine-yacht.png'
     },
     {
-      // Architectural Design Card
-      id: 'design',
-      title: 'Architectural Design',
-      icon: '📐',
+      id: 'marine-pontoon',
+      title: 'Marine Pontoon Solutions',
+      icon: '🛥️',
       features: [
-        'Custom architectural solutions',
-        'Sustainable design practices',
-        'Code compliance expertise'
+        'Full R&D formulations lab for custom solutions',
+        'Rugged enough for the most demanding marine needs',
+        'Simple and intuitive for today\'s manufacturing environment',
+        'Committed to exceeding marine customers\' expectations',
+        'Tailor-made solutions for pontoon applications'
       ],
-      buttonText: 'Get design',
-      model: 'Modern Minimalist',
-      modelDesc: 'Contemporary design with clean lines',
-      storyPrompt: 'Tell me about your dream home.',
-      storyText: `Imagine walking into a space where every corner tells a story of thoughtful design and meticulous craftsmanship. Floor-to-ceiling windows flood the open-concept living area with natural light, while exposed steel beams add an industrial elegance. The kitchen island, crafted from locally sourced granite, serves as both a functional workspace and a gathering point for family and friends. This isn't just a house—it's a carefully orchestrated symphony of form and function, designed to enhance every moment of daily life.`
-    },
-    {
-      // Home Renovation Card
-      id: 'renovation',
-      title: 'Home Renovation',
-      icon: '🔨',
-      features: [
-        'Complete home transformations',
-        'Budget-friendly solutions',
-        'Licensed & insured contractors'
-      ],
-      buttonText: 'Start renovation',
-      projectOptions: [
-        { name: 'Kitchen Remodel', location: 'Austin, TX', price: '$25K - $50K', duration: '6-8 weeks', flag: '🏠' },
-        { name: 'Bathroom Upgrade', location: 'Houston, TX', price: '$15K - $30K', duration: '4-6 weeks', flag: '🛁' },
-        { name: 'Basement Finish', location: 'Dallas, TX', price: '$20K - $40K', duration: '8-10 weeks', flag: '🏡' },
-        { name: 'Whole House', location: 'San Antonio, TX', price: '$75K - $150K', duration: '12-16 weeks', flag: '🏘️' }
-      ]
+      buttonText: 'Learn More',
+      storyText: 'With a full R&D formulations lab at our disposal, we\'re able to deliver tailor-made marine solutions that are rugged enough to meet the most demanding needs of the Marine industry while remaining simple and intuitive for today\'s manufacturing environment.',
+      imageUrl: 'https://forzabuilt.com/wp-content/uploads/2023/05/marine-pontoon.png'
     }
   ];
-
-  // Use provided cards or fall back to default cards
-  const cards = propCards || defaultCards;
 
   // Use the scroll calculator hook for all scroll-related logic
   const { getCardProgress } = useScrollCalculator({
@@ -94,13 +66,18 @@ const ServiceCardStack = ({ cards: propCards, className = '' }: ServiceCardStack
     containerRef
   });
 
-  /**
-   * Render the card stack
-   * Each card is wrapped in a CardStackItem component that handles
-   * positioning, animations, and styling
-   */
   return (
-    <div ref={containerRef} className={`relative ${className}`}>
+    <div ref={containerRef} className="relative w-full px-4 py-16 bg-gradient-to-r from-[#1b3764] to-[#147974]">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-white mb-4">
+          Marine Solutions
+        </h2>
+        <p className="text-xl text-white/90 max-w-3xl mx-auto">
+          Custom-formulated solutions for the marine industry, ensuring structural integrity and performance in demanding environments.
+        </p>
+      </div>
+      
+      <div className="relative">
       {cards.map((card, index) => {
         const { progress, nextCardProgress, isVisible } = getCardProgress(index);
         
@@ -118,6 +95,7 @@ const ServiceCardStack = ({ cards: propCards, className = '' }: ServiceCardStack
       
       {/* Spacer element for scroll height */}
       <StackSpacer cardCount={cards.length} />
+      </div>
     </div>
   );
 };

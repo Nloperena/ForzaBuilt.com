@@ -89,7 +89,18 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+			},
+			fontFamily: {
+				'inter': ['Inter', 'sans-serif'],
+				'kallisto': ['kallisto', 'sans-serif']
+			},
+			fontWeight: {
+				'extrabold': '800',
+				'heavy': '900',
+			},
+			maxWidth: {
+				'6xl': '135rem',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

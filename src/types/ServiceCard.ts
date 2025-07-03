@@ -1,4 +1,3 @@
-
 /**
  * TypeScript interfaces for ServiceCard component and related data structures
  * 
@@ -22,6 +21,7 @@ export interface ServiceCardData {
   icon: string;                  // Emoji or icon for the service
   features: string[];            // Array of key features/benefits
   buttonText: string;            // Text for the call-to-action button
+  imageUrl?: string;             // Optional image URL for the card
   
   // Optional fields for construction management cards
   technologies?: string[];       // Array of technology names (AutoCAD, Revit, etc.)
@@ -49,4 +49,5 @@ export interface ServiceCardProps {
   card: ServiceCardData;         // Card data to display
   transform: string;             // CSS transform string for animations
   opacity: number;               // Opacity value for fade effects
+  blur?: number;                 // Blur amount for cards underneath
 }

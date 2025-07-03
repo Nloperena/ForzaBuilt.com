@@ -1,4 +1,3 @@
-
 /**
  * CardStackItem Component
  * 
@@ -51,18 +50,27 @@ const CardStackItem = ({
    */
   const opacity = isVisible ? 1 - nextCardProgress : 0;
 
+  /**
+   * Blur Calculation
+   * Cards underneath get blurred based on their position
+   */
+  const blurAmount = Math.max(0, (1 - opacity) * 10); // Blur up to 10px when card is fading out
+
   return (
     <div
-      className="sticky top-0 w-full h-screen flex items-center justify-center"
+      className="sticky top-0 w-full h-screen flex items-center justify-center px-4"
       style={{
         zIndex: 40 + index, // Each subsequent card has higher z-index
       }}
     >
-      <ServiceCard
-        card={card}
-        transform={transformString}
-        opacity={opacity}
-      />
+      <div className="w-full max-w-none">
+        <ServiceCard
+          card={card}
+          transform={transformString}
+          opacity={opacity}
+          blur={blurAmount}
+        />
+      </div>
     </div>
   );
 };

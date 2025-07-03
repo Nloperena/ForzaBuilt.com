@@ -1,11 +1,20 @@
 import Header from '@/components/Header';
-import HeroSection from '@/components/HeroSection';
-import WhyChooseSection from '@/components/WhyChooseSection';
-import TrustedBySection from '@/components/TrustedBySection';
+import HeroOverlay from '@/components/HeroOverlay';
+import HeroVideoSection from '@/components/HeroVideoSection';
+import { IndustriesCarouselSection } from '@/components/IndustriesCarouselSection';
+import ProductsSection from '@/components/ProductsSection';
+import StickyBackgroundSection from '@/components/StickyBackgroundSection';
+import ScrollSections from '@/components/ScrollSections';
+import XRayWipe from '@/components/XRayWipe';
+import InteractiveBuildingMap from '@/components/InteractiveBuildingMap';
 import ServiceCardStack from '@/components/ServiceCardStack';
-import CallToActionSection from '@/components/CallToActionSection';
-import FooterSection from '@/components/FooterSection';
 import { ServiceCardData } from '@/types/ServiceCard';
+import MadeInAmerica from '@/components/MadeInAmerica';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import FaqSection from '@/components/FaqSection';
+import NewsletterSection from '@/components/NewsletterSection';
+import Footer from '@/components/Footer';
+import ProductChemistriesSection from '@/components/ProductChemistriesSection';
 
 const Index = () => {
   /**
@@ -53,24 +62,60 @@ const Index = () => {
       <Header />
       
       {/* Hero section */}
-      <HeroSection />
+      <HeroOverlay />
       
+      {/* Hero Video Section */}
+      <HeroVideoSection />
+      
+      {/* Industries Section */}
+      <IndustriesCarouselSection />
+      
+      {/* Products Section */}
+      <ProductsSection />
+      
+      {/* Sticky Background Section */}
+      <StickyBackgroundSection />
+      
+      {/* Scroll Sections with Chemistry Molecule */}
+      <ScrollSections />
+
+      {/* Our Chemistries Section */}
+      <ProductChemistriesSection />
+
+      {/* XRay Wipe Section - Before and After Comparison */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <XRayWipe
+            beforeSrc="https://images.ctfassets.net/hdznx4p7ef81/1AmgiwUCYVKuHYBzr0zVfi/d5ccc0c8a64e211d9cd50d656c64dbee/Boat-Pre-X-Ray__2_.png"
+            afterContent={
+              <div className="w-full h-full">
+                <InteractiveBuildingMap />
+              </div>
+            }
+            altBefore="Construction site before completion"
+            height={700}
+            wipeDirection="btt"
+          />
+        </div>
+      </section>
+
       {/* First service card stack with default data */}
       <ServiceCardStack />
+
+      {/* Made in America Section */}
+      <MadeInAmerica />
       
-      {/* Other sections */}
-      <WhyChooseSection />
-      <TrustedBySection />
-
-      {/* Second service card stack with custom data */}
-      <ServiceCardStack 
-        cards={sampleCards} 
-        className="bg-gradient-to-b from-slate-50 to-white"
-      />
-
-      {/* Footer sections */}
-      <CallToActionSection />
-      <FooterSection />
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+      
+      {/* FAQ Section */}
+      <FaqSection />
+      
+      {/* Newsletter Section */}
+      <NewsletterSection />
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
