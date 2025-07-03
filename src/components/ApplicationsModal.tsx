@@ -44,11 +44,11 @@ const ApplicationsModal: React.FC<ApplicationsModalProps> = ({ isVisible, onClos
 
             {/* Content */}
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-extrabold mb-6 font-kallisto">
+              <h3 className="text-4xl md:text-5xl font-extrabold mb-3 font-kallisto">
                 Explore Applications
               </h3>
-              <p className="text-xl md:text-2xl mb-8 font-semibold">
-                Hover over highlighted areas to discover solutions
+              <p className="text-xl md:text-2xl mb-6 font-semibold">
+                Hover over blue areas or continue scrolling to see our industry applications
               </p>
               <div className="flex justify-center">
                 <button

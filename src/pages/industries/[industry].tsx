@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { industries } from '../../data/industries';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProductChemistriesSection from '../../components/ProductChemistriesSection';
 import ServiceCardStack from '../../components/ServiceCardStack';
@@ -80,6 +81,7 @@ const IndustryPage = () => {
 
   return (
     <div className="bg-[#1b3764] min-h-screen flex flex-col">
+      <Header />
       {/* Hero Banner */}
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden z-10">
         <video

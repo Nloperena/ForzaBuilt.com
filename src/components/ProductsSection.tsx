@@ -72,7 +72,7 @@ const ProductsSection = () => {
 
   return (
     <section className="py-16 bg-[#1b3764] text-white">
-      <div className="w-full px-4 max-w-6xl mx-auto">
+      <div className="w-full px-4 max-w-[1200px] mx-auto">
         <div className="text-center">
           <SplitText
             text="Our Products"

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { User, LogOut } from 'lucide-react';
+import forzaLogo from '@/assets/images/forza-logo-full.png';
 
 // Data for navigation and search
 import { products as productsData } from '@/data/products';
@@ -13,8 +14,8 @@ import { productCategories } from '@/data/productCategories';
 const navigation = [
   { name: 'Products', href: '/products' },
   { name: 'Industries', href: '/industries' },
+  { name: 'Approach', href: '/approach' },
   { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
   { name: 'Tools', href: '/tools' },
 ];
 
@@ -138,9 +139,9 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center">
             <img 
-              src="https://forzabuilt.com/wp-content/uploads/2022/12/Forza-Corporate-Masterbrand-horizontal-Positive.webp" 
-              alt="Forza Logo" 
-              className="h-8 w-auto filter brightness-0 invert"
+              src={forzaLogo}
+              alt="Forza Logo"
+              className="h-10 w-auto"
             />
           </Link>
           
@@ -259,7 +260,7 @@ const Header = () => {
               </>
             )}
 
-            <div className="container mx-auto px-6 h-72 relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <div className="container mx-auto px-6 h-56 relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
               <AnimatePresence initial={false} custom={slideDirection}>
                 <motion.div
                   key={activeOverlayContent}
@@ -287,8 +288,7 @@ const Header = () => {
                           <div className="w-24 h-24 flex items-center justify-center mb-4">
                             <img src={industry.logo} alt={`${industry.title} Logo`} className="max-w-full max-h-full object-contain"/>
                           </div>
-                          <h3 className="text-xl font-semibold">{industry.title}</h3>
-                          <p className="text-xs mt-1 text-white/80">{industry.description}</p>
+                          <h3 className="text-xl font-semibold font-kallisto">{industry.title}</h3>
                         </Link>
                       ))}
                     </div>
@@ -296,23 +296,17 @@ const Header = () => {
                   {activeOverlayContent === 'products' && (
                     <div className="flex flex-row items-center justify-center space-x-8 text-center" onMouseLeave={() => setHoveredVideoUrl(null)}>
                       {productsData.map(product => {
-                        if (product.name === 'RuggedRed') {
-                          return (
-                            <a
-                              key={product.name}
-                              href={product.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex flex-col items-center w-48 text-white hover:text-[#F2611D] transition-colors duration-300 group"
-                              onMouseEnter={() => setHoveredVideoUrl('https://videos.ctfassets.net/hdznx4p7ef81/4bBm5VZIdxCP0jstaQKLB6/405885ebcbeb8e443ba0887395e5d1c2/Firefighter_Spray_Wipe_1.mp4?q=70&fm=mp4&w=1280')}
-                            >
-                              <div className="w-40 h-24 flex items-center justify-center">
-                                <img src={product.hoverImage} alt={`${product.name} Logo`} className="max-w-full max-h-full object-contain"/>
-                              </div>
-                            </a>
-                          );
+                        let heading = '';
+                        if (product.name === 'Bond') {
+                          heading = 'INDUSTRIAL ADHESIVES';
+                        } else if (product.name === 'Seal') {
+                          heading = 'INDUSTRIAL SEALANTS';
+                        } else if (product.name === 'Tape') {
+                          heading = 'INDUSTRIAL TAPES';
+                        } else if (product.name === 'RuggedRed') {
+                          heading = 'INDUSTRIAL CLEANING';
                         }
-                        
+                        const words = heading.split(' ');
                         return (
                           <Link
                             key={product.name}
@@ -323,6 +317,11 @@ const Header = () => {
                             <div className="w-40 h-24 flex items-center justify-center">
                               <img src={product.hoverImage} alt={`${product.name} Logo`} className="max-w-full max-h-full object-contain"/>
                             </div>
+                            <h3 className="text-xl font-semibold text-center font-kallisto">
+                              {words.map((word, index) => (
+                                <div key={index}>{word}</div>
+                              ))}
+                            </h3>
                           </Link>
                         );
                       })}

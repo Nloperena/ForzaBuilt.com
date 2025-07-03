@@ -1,10 +1,12 @@
 import React from 'react';
+import Header from '../components/Header';
 import IndustriesSectionAlt from '../components/IndustriesSectionAlt';
 import Footer from '../components/Footer';
 
 const Industries = () => {
   return (
     <div className="bg-[#1b3764] min-h-screen">
+      <Header />
       <IndustriesSectionAlt />
       {/* Placeholder for more detailed industry content */}
       <section className="py-20 bg-white text-[#1b3764]">

@@ -261,6 +261,41 @@ const XRayWipe: React.FC<XRayWipeProps> = ({
           After
         </motion.div>
       </div>
+
+      {/* Progress bar for SVG selections - fixed at bottom of viewport */}
+      <motion.div 
+        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 w-96 h-3 bg-gray-200/80 backdrop-blur-sm rounded-full overflow-hidden z-50"
+        style={{
+          opacity: useTransform(wipeProgress, [0, 50, 100, 440, 460], [0, 1, 1, 1, 0])
+        }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.3 }}
+      >
+        {/* Progress fill */}
+        <motion.div
+          className="h-full bg-gradient-to-r from-blue-600 to-orange-500 rounded-full transition-all duration-300"
+          style={{
+            width: useTransform(wipeProgress, [100, 460], ['0%', '100%'])
+          }}
+        />
+        
+        {/* Progress text */}
+        <motion.div 
+          className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm whitespace-nowrap"
+          style={{
+            opacity: useTransform(wipeProgress, [100, 120, 440, 460], [0, 1, 1, 0])
+          }}
+        >
+          <motion.span>
+            {useTransform(wipeProgress, (value) => {
+              if (value < 100) return 'X-Ray Complete';
+              const selectionProgress = ((value - 100) / 360) * 100;
+              return `Product Selection: ${Math.round(selectionProgress)}%`;
+            })}
+          </motion.span>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

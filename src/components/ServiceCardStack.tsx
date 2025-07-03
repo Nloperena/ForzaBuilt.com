@@ -69,10 +69,10 @@ const ServiceCardStack: React.FC = () => {
   return (
     <div ref={containerRef} className="relative w-full px-4 py-16 bg-gradient-to-r from-[#1b3764] to-[#147974]">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-white mb-4">
+        <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-3 font-kallisto">
           Marine Solutions
         </h2>
-        <p className="text-xl text-white/90 max-w-3xl mx-auto">
+        <p className="text-xl text-white/90 max-w-3xl mx-auto font-light">
           Custom-formulated solutions for the marine industry, ensuring structural integrity and performance in demanding environments.
         </p>
       </div>

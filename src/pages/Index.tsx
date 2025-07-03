@@ -83,24 +83,10 @@ const Index = () => {
       <ProductChemistriesSection />
 
       {/* XRay Wipe Section - Before and After Comparison */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <XRayWipe
-            beforeSrc="https://images.ctfassets.net/hdznx4p7ef81/1AmgiwUCYVKuHYBzr0zVfi/d5ccc0c8a64e211d9cd50d656c64dbee/Boat-Pre-X-Ray__2_.png"
-            afterContent={
-              <div className="w-full h-full">
-                <InteractiveBuildingMap />
-              </div>
-            }
-            altBefore="Construction site before completion"
-            height={700}
-            wipeDirection="btt"
-          />
-        </div>
-      </section>
+      
 
       {/* First service card stack with default data */}
-      <ServiceCardStack />
+    
 
       {/* Made in America Section */}
       <MadeInAmerica />
