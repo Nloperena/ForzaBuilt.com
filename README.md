@@ -4,11 +4,13 @@ A modern, interactive website for Forza Built showcasing their innovative adhesi
 
 ## Features
 
-- **X-Ray Scroll Effects**: Interactive scroll-driven reveal animations
-- **Interactive Building Map**: Clickable SVG overlay with product selection modals
+- **X-Ray Scroll Effects**: Interactive scroll-driven reveal animations with hover functionality
+- **Interactive Building Map**: SVG-based product selection with modal popups and scroll-driven highlighting
+- **Industry-Specific Pages**: Dynamic pages for each industry with custom content and product grids
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
 - **Modern UI**: Built with React, TypeScript, and shadcn/ui components
 - **Smooth Animations**: Framer Motion powered transitions and effects
+- **Product Showcase**: Featured products sections with external links to product pages
 
 ## Technologies Used
 
@@ -17,6 +19,7 @@ A modern, interactive website for Forza Built showcasing their innovative adhesi
 - **Animations**: Framer Motion
 - **Build Tool**: Vite
 - **Package Manager**: npm/bun
+- **Routing**: React Router DOM
 
 ## Getting Started
 
@@ -29,8 +32,8 @@ A modern, interactive website for Forza Built showcasing their innovative adhesi
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/ForzaBuilt.com.git
-cd ForzaBuilt.com
+git clone https://github.com/Nloperena/ForzaBuilt.com.git
+cd ForzaBuilt.com/Website rebuild
 ```
 
 2. Install dependencies:
@@ -58,6 +61,8 @@ src/
 │   ├── cards/          # Card components
 │   └── ...             # Other components
 ├── pages/              # Page components
+│   ├── industries/     # Industry-specific pages
+│   └── products/       # Product category pages
 ├── data/               # Static data and content
 ├── types/              # TypeScript type definitions
 ├── hooks/              # Custom React hooks
@@ -68,10 +73,21 @@ src/
 
 ## Key Components
 
-- **XRayWipe**: Main scroll-driven X-Ray effect component
-- **InteractiveBuildingMap**: SVG-based interactive product selection
+- **XRayWipe**: Main scroll-driven X-Ray effect component with before/after comparison
+- **InteractiveBuildingMap**: SVG-based interactive product selection with hover and scroll functionality
 - **ApplicationsModal**: Product information modal system
-- **ServiceCardStack**: Stackable service cards with animations
+- **ServiceCardStack**: Stackable service cards with scroll animations
+- **ProductChemistriesSection**: Dynamic product chemistry showcase
+- **Header/Footer**: Consistent navigation and branding
+
+## Pages
+
+- **Home**: Main landing page with hero sections and service overview
+- **Industries**: Industry overview with interactive cards
+- **Industry Pages**: Dynamic pages for each industry (Marine, Construction, Industrial, etc.)
+- **Products**: Product category pages
+- **About**: Company information
+- **Contact**: Contact form and information
 
 ## Development
 
@@ -89,6 +105,7 @@ This project uses:
 - ESLint for code linting
 - Prettier for code formatting
 - Tailwind CSS for styling
+- Kallisto font for branding
 
 ## Deployment
 
