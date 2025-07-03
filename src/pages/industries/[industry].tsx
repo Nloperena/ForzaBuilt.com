@@ -69,6 +69,94 @@ const IndustryPage = () => {
     setIsModalVisible(opacity > 0);
   };
 
+  const industryProducts = [
+    {
+      name: 'TAC-734G – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-734G-NEW.png',
+      url: 'https://forzabuilt.com/product/tac-734g-web-spray-high-tack-infusion-molding-adhesive/'
+    },
+    {
+      name: 'TAC-735R – MIST SPRAY NO HAPS INFUSION MOLDING ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-735R-NEW-1024x1024.png',
+      url: 'https://forzabuilt.com/product/tac-735r-mist-spray-no-haps-infusion-molding-adhesive/'
+    },
+    {
+      name: 'TAC-738R – WEB SPRAY ZERO VOC INFUSION MOLDING ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-738R-NEW.png',
+      url: 'https://forzabuilt.com/product/tac-738r-web-spray-zero-voc-infusion-molding-adhesive/'
+    },
+    {
+      name: 'TAC-739R – MIST SPRAY INFUSION MOLDING ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-739R-NEW-1024x1024.png',
+      url: 'https://forzabuilt.com/product/tac-739r-mist-spray-infusion-molding-adhesive/'
+    },
+    {
+      name: 'MC722 – WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2023/06/MC722-single-5-1024x1024.png',
+      url: 'https://forzabuilt.com/product/mc722-web-spray-contact-adhesive-for-infusion-molding/'
+    },
+    {
+      name: 'MC723 – WEB SPRAY CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New-1024x1024.png',
+      url: 'https://forzabuilt.com/product/mc723-web-spray-ca-compliant-multi-purpose-contact-adhesive/'
+    },
+    {
+      name: 'MC724 – WEB SPRAY PRESSURE SENSITIVE ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/10/MC724-bundle-1024x1024.png',
+      url: 'https://forzabuilt.com/product/web-spray-pressure-sensitive-adhesive/'
+    },
+    {
+      name: 'MC737 – WEB SPRAY STYRENE SAFE PRESSURE SENSITIVE ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/A_FORZA_MC737_Canister22L-NEW1-1024x1024.png',
+      url: 'https://forzabuilt.com/product/mc737-web-spray-styrene-safe-pressure-sensitive-adhesive/'
+    },
+    {
+      name: 'MC741 – CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2025/01/canister-mockup-MC741-1024x1024.png',
+      url: 'https://forzabuilt.com/product/mc741-ca-compliant-multi-purpose-contact-adhesive/'
+    },
+    {
+      name: 'M-OS764 – ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/AP749_M-OS764_Sausage_NEW-1024x1024.png',
+      url: 'https://forzabuilt.com/product/m-os764-non-hazardous-moisture-cure-structural-adhesive/'
+    },
+    {
+      name: 'M-OA755 – HIGH-STRENGTH SINGLE-PART HYBRID POLYMER ADHESIVE/SEALANT',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-OA755-New.png',
+      url: 'https://forzabuilt.com/product/m-oa755-high-strength-single-part-hybrid-performance-polymer/'
+    },
+    {
+      name: 'M-R420 – EPOXY QUICK-SET TWO-PART ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-R420-NEW.png',
+      url: 'https://forzabuilt.com/product/m-r420-epoxy-quick-set-two-part-adhesive/'
+    },
+    {
+      name: 'M-R445 – TWO-PART EPOXY ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2025/03/M-R445-.png',
+      url: 'https://forzabuilt.com/product/m-r445-two-part-modified-epoxy-adhesive/'
+    },
+    {
+      name: 'M-OSA783 – ADHESIVE PRIMER & PROMOTER',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-OSA783-NEW.png',
+      url: 'https://forzabuilt.com/product/m-osa783-adhesive-primer-and-promoter/'
+    },
+    {
+      name: 'M-S750 – TAPE PRIMER AND ADHESION PROMOTER',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/12/M-S750.png',
+      url: 'https://forzabuilt.com/product/m-s750-tape-primer-and-adhesion-promoter/'
+    },
+    {
+      name: 'M-C280 – NEOPRENE CONTACT ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-C280-NEW.png',
+      url: 'https://forzabuilt.com/product/m-c280-neoprene-contact-adhesive/'
+    },
+    {
+      name: 'M-C285 – PREMIUM HIGH TEMP NEOPRENE CONTACT ADHESIVE',
+      image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-C285-NEW.png',
+      url: 'https://forzabuilt.com/product/m-c285-premium-high-temp-neoprene-contact-adhesive/'
+    }
+  ];
+
   if (!industryData) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#1b3764] text-white">
@@ -156,14 +244,28 @@ const IndustryPage = () => {
       </section>
 
       {/* Marine Products Grid */}
-      {industryData.title === 'MARINE' && industryData.products && (
-        <MarineProductsGrid products={industryData.products} />
-      )}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-extrabold text-[#1b3764] mb-12 text-center font-kallisto">Featured Products</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+            {industryProducts.map((product, idx) => (
+              <div key={idx} className="bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col items-center justify-center p-6 transition-transform duration-300 hover:scale-105 text-center">
+                <a href={product.url} target="_blank" rel="noopener noreferrer" className="block w-full h-full flex flex-col items-center justify-center">
+                  <img src={product.image} alt={product.name} className="w-full h-48 object-contain mb-4" />
+                  <div className="text-lg font-bold text-[#1b3764] mb-2 text-center font-kallisto">{product.name}</div>
+                  <button className="mt-2 bg-[#F2611D] hover:bg-[#F2611D]/90 text-white font-bold rounded-full px-6 py-2 text-base shadow transition-colors">More Info</button>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Chemistries Section */}
       <ProductChemistriesSection />
 
-      
+    
+
       {industryData.title === 'MARINE' && <MarineBrochureSection />}
     </div>
   );

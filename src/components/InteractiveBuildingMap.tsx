@@ -245,9 +245,23 @@ const InteractiveBuildingMap: React.FC<InteractiveBuildingMapProps> = ({ scrollP
     };
   }, [activeArea]);
 
-  const activeAreaData = mapAreas.find(area => area.id === activeArea);
-  console.log('Active area:', activeArea);
-  console.log('Active area data:', activeAreaData);
+  // Determine which area is currently selected (hover takes priority)
+  const selectedAreaId = hoveredArea ?? activeArea;
+  const selectedAreaData = mapAreas.find(area => area.id === selectedAreaId);
+
+  // Calculate modal position for hovered or active area
+  useEffect(() => {
+    let areaData = null;
+    if (hoveredArea) {
+      areaData = mapAreas.find(area => area.id === hoveredArea);
+    } else if (activeArea) {
+      areaData = mapAreas.find(area => area.id === activeArea);
+    }
+    if (areaData) {
+      const position = calculateAreaCenter(areaData.points);
+      setStableModalPosition(position);
+    }
+  }, [hoveredArea, activeArea, mapAreas]);
 
   return (
     <div className="w-full h-full relative bg-white">
@@ -270,7 +284,7 @@ const InteractiveBuildingMap: React.FC<InteractiveBuildingMapProps> = ({ scrollP
             key={area.id}
             points={area.points}
             className={`cursor-pointer transition-all duration-300 ${
-              activeArea === area.id 
+              selectedAreaId === area.id 
                 ? 'fill-orange-500/80 stroke-white stroke-2' 
                 : hoveredArea === area.id
                 ? 'fill-orange-400/60 stroke-orange-500/80 stroke-1'
@@ -284,7 +298,7 @@ const InteractiveBuildingMap: React.FC<InteractiveBuildingMapProps> = ({ scrollP
       </svg>
 
       {/* Modal - positioned relative to selected area */}
-      {activeAreaData && (
+      {selectedAreaData && (
         <div 
           className="absolute z-50 bg-white border-4 border-blue-600 p-6 rounded-lg shadow-2xl max-w-md animate-[bounce_0.6s_ease-out] modal-content"
           style={{
@@ -305,20 +319,20 @@ const InteractiveBuildingMap: React.FC<InteractiveBuildingMapProps> = ({ scrollP
           <div className="flex items-start space-x-4">
             <div className="flex-shrink-0">
               <img 
-                src={activeAreaData.productImage} 
-                alt={activeAreaData.productName}
+                src={selectedAreaData.productImage} 
+                alt={selectedAreaData.productName}
                 className="w-20 h-20 object-contain"
               />
             </div>
             <div className="flex-1">
               <h3 className="font-bold text-xl text-blue-600 mb-2">
-                {activeAreaData.title}
+                {selectedAreaData.title}
               </h3>
               <p className="text-sm text-gray-600 mb-3">
-                {activeAreaData.description}
+                {selectedAreaData.description}
               </p>
               <a 
-                href={activeAreaData.productLink}
+                href={selectedAreaData.productLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-orange-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-orange-600 transition-colors"

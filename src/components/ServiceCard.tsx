@@ -35,7 +35,6 @@ const ServiceCard = ({ card, transform, opacity, blur = 0 }: ServiceCardProps) =
           <div className="space-y-3 md:space-y-4 w-full h-full flex flex-col justify-center">
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 bg-white/20 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm md:text-base font-medium backdrop-blur-sm">
-              <span className="text-white text-lg md:text-xl">{card.icon}</span>
               <span>Marine Solutions</span>
             </div>
             
@@ -63,7 +62,7 @@ const ServiceCard = ({ card, transform, opacity, blur = 0 }: ServiceCardProps) =
             
             {/* CTA Button */}
             <div className="pt-1 md:pt-2">
-              <button className="bg-white hover:bg-white/90 text-[#1b3764] px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-colors text-sm md:text-base shadow-md hover:shadow-lg transform hover:scale-105">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 md:px-6 md:py-3 rounded-lg font-semibold transition-colors text-sm md:text-base shadow-md hover:shadow-lg transform hover:scale-105">
                 {card.buttonText}
               </button>
             </div>
