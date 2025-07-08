@@ -1,13 +1,20 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { getIndustryColors } from '../styles/brandStandards';
 
 interface ApplicationsModalProps {
   isVisible: boolean;
   onClose: () => void;
   opacity?: number;
+  industry?: string;
 }
 
-const ApplicationsModal: React.FC<ApplicationsModalProps> = ({ isVisible, onClose, opacity = 1 }) => {
+const ApplicationsModal: React.FC<ApplicationsModalProps> = ({ isVisible, onClose, opacity = 1, industry }) => {
+  // Get the industry color (primary) or fallback to default
+  const forzaBlue = '#1b3764';
+  const industryColor = industry ? getIndustryColors(industry).primary : '#147974';
+  const gradient = `linear-gradient(to right, ${forzaBlue}, ${industryColor})`;
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -28,7 +35,8 @@ const ApplicationsModal: React.FC<ApplicationsModalProps> = ({ isVisible, onClos
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative bg-gradient-to-r from-[#1b3764] to-[#147974] text-white p-8 rounded-2xl shadow-2xl max-w-4xl w-full mx-4"
+            className="relative text-white p-8 rounded-2xl shadow-2xl max-w-4xl w-full mx-4"
+            style={{ background: gradient }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}

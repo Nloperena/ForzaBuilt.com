@@ -1,0 +1,156 @@
+/* Forza Brand Standards CSS */
+/* Apply brand colors and typography globally */
+
+:root {
+  /* Primary Colors */
+  --forza-regal-blue: #09668D;
+  --forza-blaze-orange: #F16022;
+  
+  /* Secondary Colors */
+  --forza-blue-velvet: #1B3764;
+  --forza-rusty-nail: #D35127;
+  --forza-slate-grey: #BFBFBF;
+  --forza-iron-grey: #F16022;
+  --forza-jet-black: #000000;
+  
+  /* Typography */
+  --forza-font-heading: 'Kallisto', sans-serif;
+  --forza-font-body: 'Poppins', sans-serif;
+  --forza-font-subhead: 'Poppins', sans-serif;
+  --forza-font-product: 'Kallisto', sans-serif;
+  
+  /* Font Weights */
+  --forza-weight-heavy: 900;
+  --forza-weight-regular: 400;
+  --forza-weight-bold: 700;
+  
+  /* Line Heights */
+  --forza-line-height-heading: 1.1;
+  --forza-line-height-body: 1.6;
+  --forza-line-height-subhead: 1.3;
+  --forza-line-height-product: 1.1;
+}
+
+/* Global typography styles */
+.forza-heading {
+  font-family: var(--forza-font-heading);
+  font-weight: var(--forza-weight-heavy);
+  line-height: var(--forza-line-height-heading);
+}
+
+.forza-body {
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-regular);
+  line-height: var(--forza-line-height-body);
+}
+
+.forza-subhead {
+  font-family: var(--forza-font-subhead);
+  font-weight: var(--forza-weight-bold);
+  line-height: var(--forza-line-height-subhead);
+}
+
+.forza-product {
+  font-family: var(--forza-font-product);
+  font-weight: var(--forza-weight-heavy);
+  line-height: var(--forza-line-height-product);
+}
+
+/* Brand color utility classes */
+.forza-primary {
+  color: var(--forza-regal-blue);
+}
+
+.forza-primary-bg {
+  background-color: var(--forza-regal-blue);
+}
+
+.forza-accent {
+  color: var(--forza-blaze-orange);
+}
+
+.forza-accent-bg {
+  background-color: var(--forza-blaze-orange);
+}
+
+.forza-secondary {
+  color: var(--forza-blue-velvet);
+}
+
+.forza-secondary-bg {
+  background-color: var(--forza-blue-velvet);
+}
+
+/* Button styles using brand colors */
+.forza-btn-primary {
+  background-color: var(--forza-blaze-orange);
+  color: white;
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-bold);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.forza-btn-primary:hover {
+  background-color: var(--forza-rusty-nail);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(242, 97, 35, 0.3);
+}
+
+.forza-btn-secondary {
+  background-color: var(--forza-regal-blue);
+  color: white;
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-bold);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.forza-btn-secondary:hover {
+  background-color: var(--forza-blue-velvet);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(9, 102, 141, 0.3);
+}
+
+/* Card styles using brand colors */
+.forza-card {
+  background: linear-gradient(135deg, var(--forza-regal-blue) 0%, var(--forza-blue-velvet) 100%);
+  color: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(9, 102, 141, 0.2);
+  transition: all 0.3s ease;
+}
+
+.forza-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(9, 102, 141, 0.3);
+}
+
+/* Gradient backgrounds */
+.forza-gradient-primary {
+  background: linear-gradient(135deg, var(--forza-regal-blue) 0%, var(--forza-blue-velvet) 100%);
+}
+
+.forza-gradient-accent {
+  background: linear-gradient(135deg, var(--forza-blaze-orange) 0%, var(--forza-rusty-nail) 100%);
+}
+
+/* Text gradients */
+.forza-text-gradient-primary {
+  background: linear-gradient(135deg, var(--forza-regal-blue) 0%, var(--forza-blue-velvet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.forza-text-gradient-accent {
+  background: linear-gradient(135deg, var(--forza-blaze-orange) 0%, var(--forza-rusty-nail) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+} 

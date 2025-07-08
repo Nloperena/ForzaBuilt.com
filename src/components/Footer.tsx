@@ -3,7 +3,7 @@ import NewsletterSignup from './NewsletterSignup';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1b3764] text-white py-8 px-4">
+    <footer className="bg-[var(--forza-blue-velvet)] text-white py-8 px-4">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
         {/* Left: Logo and Info */}
         <div className="flex-1 flex flex-col gap-4 min-w-[250px]">
@@ -13,7 +13,7 @@ const Footer = () => {
             </div>
             <div>
               <span className="text-4xl font-extrabold font-sans font-kallisto">Forza</span>
-              <div className="text-orange-500 text-xs font-bold tracking-widest mt-1">OUR TEAM. OUR SCIENCE. YOUR FORCE.</div>
+              <div className="text-[var(--forza-blaze-orange)] text-xs font-bold tracking-widest mt-1">OUR TEAM. OUR SCIENCE. YOUR FORCE.</div>
             </div>
           </div>
           <div className="flex items-center gap-4 mt-2">
@@ -27,14 +27,14 @@ const Footer = () => {
         {/* Center: Address and Contact */}
         <div className="flex-1 min-w-[250px]">
           <div className="mb-4">
-            <span className="text-orange-500 font-extrabold font-kallisto">HQ</span><br />
+            <span className="text-[var(--forza-blaze-orange)] font-extrabold font-kallisto">HQ</span><br />
             <span className="font-extrabold font-kallisto">Forza</span><br />
             3211 Nebraska Ave,<br />
             Suite 300<br />
             Council Bluffs, Iowa 51501
           </div>
           <div>
-            <span className="text-orange-500 font-extrabold font-kallisto">CONTACT</span><br />
+            <span className="text-[var(--forza-blaze-orange)] font-extrabold font-kallisto">CONTACT</span><br />
             O. 402.731.9300<br />
             <a href="mailto:support@forzabuilt.com" className="underline text-white">support@forzabuilt.com</a><br />
             <span>Mon – Fri | 8:00 AM – 4:30 PM CST</span>
@@ -43,7 +43,7 @@ const Footer = () => {
         {/* Right: Optimization, Newsletter */}
         <div className="flex-1 min-w-[250px] flex flex-col gap-4">
           <div>
-            <span className="text-orange-500 font-extrabold font-kallisto">OPTIMIZATION INQUIRIES</span><br />
+            <span className="text-[var(--forza-blaze-orange)] font-extrabold font-kallisto">OPTIMIZATION INQUIRIES</span><br />
             <span>Interested in working with us?</span><br />
             <a href="mailto:sales@forzabuilt.com" className="font-bold underline text-white">sales@forzabuilt.com</a>
           </div>
