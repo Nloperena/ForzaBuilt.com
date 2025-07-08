@@ -172,7 +172,7 @@ export const industries: Industry[] = [
   },
   {
     title: "FOAM",
-    videoUrl: "https://forzabuilt.com/wp-content/uploads/2024/09/forzaTRuck2-Compressed.mp4", // Placeholder URL
+    videoUrl: "https://video-previews.elements.envatousercontent.com/461cf7cd-2cb8-419b-9558-707280ce813c/watermarked_preview/watermarked_preview.mp4",
     description: "Advanced bonding solutions for foam applications",
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Foam-Icon.png",
     color: "#1b3764", // Default blue color
