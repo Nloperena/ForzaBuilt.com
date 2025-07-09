@@ -29,12 +29,27 @@ export const useHeaderState = () => {
   // Video state
   const [hoveredVideoUrl, setHoveredVideoUrl] = useState<string | null>(null);
 
+  // Scroll state
+  const [isScrolled, setIsScrolled] = useState(false);
+
   // Refs
   const headerRef = useRef<HTMLDivElement>(null);
   const productsRef = useRef<HTMLDivElement>(null);
   const industriesRef = useRef<HTMLDivElement>(null);
   const toolsRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  // Scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // Change background when scrolled past 100px (adjust as needed)
+      setIsScrolled(scrollTop > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Update video URL when overlay content changes
   useEffect(() => {
@@ -119,6 +134,7 @@ export const useHeaderState = () => {
     slideDirection,
     mobileMenuOpen,
     hoveredVideoUrl,
+    isScrolled,
     navigation,
     
     // Refs

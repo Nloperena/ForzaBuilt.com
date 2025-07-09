@@ -2,6 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+/* X-Ray Component Styles */
+.hotspot-active {
+  fill: rgba(59, 130, 246, 0.6);
+  stroke: rgba(59, 130, 246, 0.8);
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.hotspot-default {
+  fill: rgba(59, 130, 246, 0.2);
+  stroke: rgba(59, 130, 246, 0.4);
+  stroke-width: 1;
+  transition: all 0.3s ease;
+}
+
+/* Custom hotspot colors for different industries */
+.hotspot-active.construction {
+  fill: rgba(245, 101, 101, 0.6);
+  stroke: rgba(245, 101, 101, 0.8);
+}
+
+.hotspot-active.marine {
+  fill: rgba(20, 121, 116, 0.6);
+  stroke: rgba(20, 121, 116, 0.8);
+}
+
+.hotspot-active.transportation {
+  fill: rgba(34, 197, 94, 0.6);
+  stroke: rgba(34, 197, 94, 0.8);
+}
+
+.hotspot-active.industrial {
+  fill: rgba(147, 51, 234, 0.6);
+  stroke: rgba(147, 51, 234, 0.8);
+}
+
+.hotspot-active.foam {
+  fill: rgba(236, 72, 153, 0.6);
+  stroke: rgba(236, 72, 153, 0.8);
+}
+
+.hotspot-active.composites {
+  fill: rgba(59, 130, 246, 0.6);
+  stroke: rgba(59, 130, 246, 0.8);
+}
+
+.hotspot-active.insulation {
+  fill: rgba(245, 158, 11, 0.6);
+  stroke: rgba(245, 158, 11, 0.8);
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 /* Import Forza brand standards */
 @import './styles/brandStandards.css';
 

@@ -6,15 +6,19 @@ import Footer from '../../components/Footer';
 import ProductChemistriesSection from '../../components/ProductChemistriesSection';
 import DynamicIndustryCards from '../../components/StackableCards/DynamicIndustryCards';
 import DynamicProductsSection from '../../components/DynamicProductsSection';
-import ModularXRayWipe from '../../components/ModularXRayWipe';
-import InteractiveBuildingMap from '../../components/InteractiveBuildingMap';
 import MarineProductsGrid from '../../components/MarineProductsGrid';
 import IndustryBrochureSection from '../../components/IndustryBrochureSection';
-import ApplicationsModal from '../../components/ApplicationsModal';
 import ConstructionProductSelection from '../../components/ConstructionProductSelection';
 import { allProducts } from '../../data/productsData';
 import { motion } from 'framer-motion';
-import { getSVGOverlayForIndustry } from '../../components/CustomSVGOverlays';
+import XRayExplorer from '../../components/XRayExplorer';
+import { CONSTRUCTION_DATA } from '../../data/construction';
+import { MARINE_DATA } from '../../data/marine';
+import { TRANSPORTATION_DATA } from '../../data/transportation';
+import { INDUSTRIAL_DATA } from '../../data/industrial';
+import { FOAM_DATA } from '../../data/foam';
+import { COMPOSITES_DATA } from '../../data/composites';
+import { INSULATION_DATA } from '../../data/insulation';
 
 const IndustryPage = () => {
   const { industry } = useParams();
@@ -24,10 +28,25 @@ const IndustryPage = () => {
 
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [hasReached100, setHasReached100] = useState(false);
-  const [hasBeenManuallyClosed, setHasBeenManuallyClosed] = useState(false);
-  const [modalOpacity, setModalOpacity] = useState(0);
-  const [xrayProgress, setXrayProgress] = useState(0);
+
+  // Helper function to get X-Ray data for the current industry
+  const getXRayDataForIndustry = (industryTitle: string) => {
+    const industryLower = industryTitle.toLowerCase();
+    switch (industryLower) {
+      case 'construction':
+        return CONSTRUCTION_DATA;
+      case 'marine':
+        return MARINE_DATA;
+      case 'transportation':
+        return TRANSPORTATION_DATA;
+      case 'composites':
+        return COMPOSITES_DATA;
+      case 'insulation':
+        return INSULATION_DATA;
+      default:
+        return null;
+    }
+  };
 
   useEffect(() => {
     if (expandedIndex === null) return;
@@ -41,37 +60,7 @@ const IndustryPage = () => {
     return () => document.removeEventListener('mousedown', handleClick);
   }, [expandedIndex]);
 
-  // Handle X-Ray progress changes
-  const handleXRayProgress = (progress: number) => {
-    // Track X-Ray progress for InteractiveBuildingMap
-    setXrayProgress(progress);
-    
-    // Track when we reach 100%
-    if (progress >= 100) {
-      setHasReached100(true);
-    }
-    
-    // Reset manual close flag when we reach 100% and then go back below 75%
-    if (hasReached100 && progress < 75) {
-      setHasBeenManuallyClosed(false);
-    }
-    
-    // Calculate modal opacity based on progress
-    let opacity = 0;
-    if (progress >= 70 && progress <= 110 && !hasBeenManuallyClosed) {
-      // Extended fade in from 70% to 80%, stay at full opacity from 80% to 90%, extended fade out from 90% to 110%
-      if (progress <= 80) {
-        opacity = (progress - 70) / 10; // 0 to 1 from 70% to 80%
-      } else if (progress <= 90) {
-        opacity = 1; // Full opacity from 80% to 90%
-      } else {
-        opacity = 1 - ((progress - 90) / 20); // 1 to 0 from 90% to 110%
-      }
-    }
-    
-    setModalOpacity(opacity);
-    setIsModalVisible(opacity > 0);
-  };
+
 
   if (!industryData) {
     return (
@@ -117,46 +106,55 @@ const IndustryPage = () => {
         </div>
       </div>
 
-      {/* XRay Wipe Section - Before and After Comparison
-      <section className="py-20-custom bg-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <ModularXRayWipe
-            industry={industryData.title}
-            customSVG={React.createElement(getSVGOverlayForIndustry(industryData.title))}
-            onProgressChange={handleXRayProgress}
-            fallbackAfterContent={
-              <div className="w-full h-full">
-                <InteractiveBuildingMap scrollProgress={xrayProgress} />
-              </div>
-            }
-          />
-        </div>
-      </section> */}
+      {/* Dynamic Industry Headings Section */}
+      {industryData.pageHeadline && (
+        <section className="bg-white text-[#1b3764] py-16">
+          <div className="w-full px-4 max-w-[1600px] mx-auto">
+            <motion.h3 
+              className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-8 text-center leading-tight font-kallisto text-[#1b3764]"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              {industryData.pageHeadline}
+            </motion.h3>
+            {industryData.supportingText && (
+              <motion.div 
+                className="max-w-4xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              >
+                <div className="whitespace-pre-line">
+                  {industryData.supportingText}
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </section>
+      )}
 
-      {/* About Section */}
-      <section className="bg-white text-[#1b3764] flex-1">
-        <div className="w-full px-4 max-w-[1600px] mx-auto">
-          {industryData.pageHeadline && (
-            <h3 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-12 text-center leading-tight font-kallisto text-[#1b3764]">{industryData.pageHeadline}</h3>
-          )}
-        </div>
-      </section>
+      {/* X-Ray Explorer Section - For All Industries */}
+      {getXRayDataForIndustry(industryData.title) && 
+        getXRayDataForIndustry(industryData.title)!.xrays.map((xray, index) => (
+          <XRayExplorer 
+            key={xray.id}
+            industry={getXRayDataForIndustry(industryData.title)!} 
+            xrayIndex={index} 
+          />
+        ))
+      }
+
+
 
       {/* Stackable Cards Section */}
       <DynamicIndustryCards />
 
       {/* Scroll Stack Cards Section */}
 
-      {/* Applications Modal */}
-      <ApplicationsModal 
-        isVisible={isModalVisible} 
-        onClose={() => {
-          setIsModalVisible(false);
-          setHasBeenManuallyClosed(true);
-        }}
-        opacity={modalOpacity}
-        industry={industryData.title}
-      />
+
 
       {/* Dynamic Products Section */}
       <DynamicProductsSection 

@@ -184,6 +184,91 @@ export const xrayConfigs: Record<string, XRayConfig> = {
     wipeDirection: 'ltr',
     height: 600,
     showInteractiveElements: true
+  },
+
+  // Transportation Industry
+  'transportation': {
+    preXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/transportation-pre-xray.png",
+    postXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/transportation-post-xray.png",
+    altPreXray: "Transportation infrastructure before reinforcement",
+    altPostXray: "Transportation infrastructure with Forza reinforcement",
+    customLabels: {
+      before: "Before Reinforcement",
+      after: "With Forza Reinforcement",
+      scrollInstruction: "Scroll to reveal reinforcement",
+      completeText: "Reinforcement Complete!"
+    },
+    wipeDirection: 'ltr',
+    height: 700,
+    showInteractiveElements: true
+  },
+
+  // Industrial Industry
+  'industrial': {
+    preXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/industrial-pre-xray.png",
+    postXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/industrial-post-xray.png",
+    altPreXray: "Industrial facility before optimization",
+    altPostXray: "Industrial facility with Forza optimization",
+    customLabels: {
+      before: "Before Optimization",
+      after: "With Forza Solutions",
+      scrollInstruction: "Scroll to reveal solutions",
+      completeText: "Optimization Complete!"
+    },
+    wipeDirection: 'ttb',
+    height: 650,
+    showInteractiveElements: true
+  },
+
+  // Foam Industry
+  'foam': {
+    preXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/foam-pre-xray.png",
+    postXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/foam-post-xray.png",
+    altPreXray: "Foam products before bonding",
+    altPostXray: "Foam products with Forza bonding",
+    customLabels: {
+      before: "Before Bonding",
+      after: "With Forza Bonding",
+      scrollInstruction: "Scroll to reveal bonding",
+      completeText: "Bonding Complete!"
+    },
+    wipeDirection: 'btt',
+    height: 600,
+    showInteractiveElements: true
+  },
+
+  // Composites Industry
+  'composites': {
+    preXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/composites-pre-xray.png",
+    postXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/composites-post-xray.png",
+    altPreXray: "Composite materials before assembly",
+    altPostXray: "Composite materials with Forza assembly",
+    customLabels: {
+      before: "Before Assembly",
+      after: "With Forza Assembly",
+      scrollInstruction: "Scroll to reveal assembly",
+      completeText: "Assembly Complete!"
+    },
+    wipeDirection: 'rtl',
+    height: 700,
+    showInteractiveElements: true
+  },
+
+  // Insulation Industry
+  'insulation': {
+    preXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/insulation-pre-xray.png",
+    postXrayImage: "https://images.ctfassets.net/hdznx4p7ef81/insulation-post-xray.png",
+    altPreXray: "Insulation system before installation",
+    altPostXray: "Insulation system with Forza installation",
+    customLabels: {
+      before: "Before Installation",
+      after: "With Forza Installation",
+      scrollInstruction: "Scroll to reveal installation",
+      completeText: "Installation Complete!"
+    },
+    wipeDirection: 'ttb',
+    height: 650,
+    showInteractiveElements: true
   }
 };
 

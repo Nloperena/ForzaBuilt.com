@@ -57,14 +57,6 @@ const ModularXRayWipe: React.FC<ModularXRayWipeProps> = ({
       wipeDirection={config.wipeDirection}
       className={className}
       onProgressChange={onProgressChange}
-      customSVG={customSVG}
-      preXrayImage={preImage}
-      postXrayImage={postImage}
-      altPreXray={config.altPreXray}
-      altPostXray={config.altPostXray}
-      industry={industry}
-      showInteractiveElements={config.showInteractiveElements}
-      customLabels={config.customLabels}
     />
   );
 };

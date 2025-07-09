@@ -550,6 +550,210 @@ export const GenericSVGOverlay: React.FC = () => (
   </svg>
 );
 
+// Transportation Industry SVG Overlay
+export const TransportationSVGOverlay: React.FC = () => (
+  <svg
+    className="absolute inset-0 w-full h-full pointer-events-none"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+  >
+    {/* Transportation-specific interactive elements */}
+    <rect
+      x="20"
+      y="30"
+      width="60"
+      height="40"
+      fill="rgba(255, 165, 0, 0.3)"
+      stroke="rgba(255, 165, 0, 0.8)"
+      strokeWidth="0.5"
+    />
+    <circle
+      cx="30"
+      cy="70"
+      r="3"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="70"
+      cy="70"
+      r="3"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <rect
+      x="35"
+      y="75"
+      width="30"
+      height="5"
+      fill="rgba(255, 255, 255, 0.3)"
+      stroke="rgba(255, 255, 255, 0.8)"
+      strokeWidth="0.5"
+    />
+  </svg>
+);
+
+// Industrial Industry SVG Overlay
+export const IndustrialSVGOverlay: React.FC = () => (
+  <svg
+    className="absolute inset-0 w-full h-full pointer-events-none"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+  >
+    {/* Industrial-specific interactive elements */}
+    <rect
+      x="25"
+      y="25"
+      width="50"
+      height="50"
+      fill="rgba(128, 128, 128, 0.3)"
+      stroke="rgba(128, 128, 128, 0.8)"
+      strokeWidth="0.5"
+    />
+    <circle
+      cx="40"
+      cy="40"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="60"
+      cy="40"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="50"
+      cy="60"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+  </svg>
+);
+
+// Foam Industry SVG Overlay
+export const FoamSVGOverlay: React.FC = () => (
+  <svg
+    className="absolute inset-0 w-full h-full pointer-events-none"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+  >
+    {/* Foam-specific interactive elements */}
+    <ellipse
+      cx="50"
+      cy="50"
+      rx="25"
+      ry="20"
+      fill="rgba(255, 255, 255, 0.3)"
+      stroke="rgba(255, 255, 255, 0.8)"
+      strokeWidth="0.5"
+    />
+    <circle
+      cx="40"
+      cy="45"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="60"
+      cy="45"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="50"
+      cy="55"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+  </svg>
+);
+
+// Composites Industry SVG Overlay
+export const CompositesSVGOverlay: React.FC = () => (
+  <svg
+    className="absolute inset-0 w-full h-full pointer-events-none"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+  >
+    {/* Composites-specific interactive elements */}
+    <polygon
+      points="30,30 70,30 70,70 30,70"
+      fill="rgba(0, 150, 255, 0.3)"
+      stroke="rgba(0, 150, 255, 0.8)"
+      strokeWidth="0.5"
+    />
+    <circle
+      cx="40"
+      cy="40"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="60"
+      cy="40"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="50"
+      cy="60"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+  </svg>
+);
+
+// Insulation Industry SVG Overlay
+export const InsulationSVGOverlay: React.FC = () => (
+  <svg
+    className="absolute inset-0 w-full h-full pointer-events-none"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+  >
+    {/* Insulation-specific interactive elements */}
+    <rect
+      x="20"
+      y="20"
+      width="60"
+      height="60"
+      fill="rgba(255, 255, 0, 0.3)"
+      stroke="rgba(255, 255, 0, 0.8)"
+      strokeWidth="0.5"
+    />
+    <circle
+      cx="35"
+      cy="35"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="65"
+      cy="35"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+    <circle
+      cx="50"
+      cy="65"
+      r="2"
+      fill="rgba(255, 255, 255, 0.8)"
+      className="animate-pulse"
+    />
+  </svg>
+);
+
 // Helper function to get the appropriate SVG overlay for an industry
 export const getSVGOverlayForIndustry = (industry: string): React.FC => {
   const normalizedIndustry = industry.toLowerCase().replace(/\s+/g, '-');
@@ -559,6 +763,16 @@ export const getSVGOverlayForIndustry = (industry: string): React.FC => {
       return MarineSVGOverlay;
     case 'construction':
       return ConstructionSVGOverlay;
+    case 'transportation':
+      return TransportationSVGOverlay;
+    case 'industrial':
+      return IndustrialSVGOverlay;
+    case 'foam':
+      return FoamSVGOverlay;
+    case 'composites':
+      return CompositesSVGOverlay;
+    case 'insulation':
+      return InsulationSVGOverlay;
     case 'automotive':
       return AutomotiveSVGOverlay;
     case 'aerospace':

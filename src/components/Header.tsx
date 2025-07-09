@@ -19,6 +19,7 @@ const Header = () => {
     slideDirection,
     mobileMenuOpen,
     hoveredVideoUrl,
+    isScrolled,
     navigation,
     
     // Refs
@@ -37,7 +38,14 @@ const Header = () => {
   } = useHeaderState();
 
   return (
-    <header ref={headerRef} className="fixed top-0 w-full z-50 bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-70">
+    <header 
+      ref={headerRef} 
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-[#1b3764]/90 backdrop-blur-md shadow-lg' 
+          : 'bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-70'
+      }`}
+    >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Logo />
