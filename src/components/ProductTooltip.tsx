@@ -31,7 +31,7 @@ const ProductTooltip: React.FC<ProductTooltipProps> = ({
         initial={{ y: 20, scale: 0.9 }}
         animate={{ y: 0, scale: 1 }}
         exit={{ y: 20, scale: 0.9 }}
-        transition={{ type: "spring", duration: 0.3 }}
+        transition={{ duration: 0 }}
       >
         <div className="overflow-hidden shadow-xl border-2 bg-white/95 backdrop-blur-sm rounded-lg group">
           <div className="relative w-full aspect-[4/3]">

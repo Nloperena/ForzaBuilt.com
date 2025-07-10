@@ -36,6 +36,7 @@ export const useScrollCalculator = ({
 }: UseScrollCalculatorProps): ScrollCalculatorReturn => {
   const [scrollY, setScrollY] = useState(0);
   const [containerTop, setContainerTop] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   /**
    * Scroll Event Handler
@@ -64,17 +65,27 @@ export const useScrollCalculator = ({
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
         setContainerTop(rect.top + window.scrollY);
+        setIsInitialized(true);
       }
     };
 
+    // Initial position calculation
     updateContainerPosition();
+    
+    // Add event listeners
     window.addEventListener('resize', updateContainerPosition);
     
-    const timer = setTimeout(updateContainerPosition, 100);
+    // Multiple delayed updates to handle image loading
+    const timers = [
+      setTimeout(updateContainerPosition, 100),
+      setTimeout(updateContainerPosition, 500),
+      setTimeout(updateContainerPosition, 1000),
+      setTimeout(updateContainerPosition, 2000)
+    ];
 
     return () => {
       window.removeEventListener('resize', updateContainerPosition);
-      clearTimeout(timer);
+      timers.forEach(timer => clearTimeout(timer));
     };
   }, [containerRef, cardCount]);
 
@@ -83,6 +94,11 @@ export const useScrollCalculator = ({
    * Calculates animation progress for a specific card based on scroll position
    */
   const getCardProgress = (cardIndex: number) => {
+    // Don't calculate progress until container is properly positioned
+    if (!isInitialized) {
+      return { progress: 0, nextCardProgress: 0, isVisible: false };
+    }
+
     const cardHeight = window.innerHeight;
     const cardStart = containerTop + (cardIndex * cardHeight);
     

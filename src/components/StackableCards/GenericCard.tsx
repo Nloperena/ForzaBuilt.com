@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { getIndustryColors, typography } from '@/styles/brandStandards';
 
@@ -35,6 +35,15 @@ const GenericCard: React.FC<GenericCardProps> = ({
   opacity, 
   blur = 0 
 }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
+  // Reset image loading state when card changes
+  useEffect(() => {
+    setImageLoaded(false);
+    setImageError(false);
+  }, [card.id]);
+
   const getThemeStyles = () => {
     const industryColors = getIndustryColors(card.theme || 'industrial');
     
@@ -167,19 +176,42 @@ const GenericCard: React.FC<GenericCardProps> = ({
 
   const renderImage = () => {
     if (!card.imageUrl) return null;
-    console.log('Rendering image for card:', card.title, card.imageUrl);
+    
     return (
-      <div className="flex items-center justify-center h-full">
+      <div className="flex items-center justify-center h-full relative">
+        {/* Loading state */}
+        {!imageLoaded && !imageError && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+          </div>
+        )}
+        
+        {/* Error state */}
+        {imageError && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-white/70 text-center">
+              <div className="text-4xl mb-2">📷</div>
+              <div className="text-sm">Image unavailable</div>
+            </div>
+          </div>
+        )}
+        
+        {/* Image */}
         <img 
           src={card.imageUrl} 
           alt={card.title}
-          className="object-contain max-h-full max-w-full w-auto h-auto rounded-xl"
+          className={`object-contain max-h-full max-w-full w-auto h-auto rounded-xl transition-opacity duration-300 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{ 
             display: 'block', 
             margin: '0 auto',
             maxHeight: 'calc(100vh - 4rem)',
             width: 'auto'
           }}
+          onLoad={() => setImageLoaded(true)}
+          onError={() => setImageError(true)}
+          loading="eager"
         />
       </div>
     );

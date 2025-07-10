@@ -49,6 +49,7 @@ const DynamicIndustryCards: React.FC<DynamicIndustryCardsProps> = ({
 
   return (
     <IndustryStackableCards
+      key={industryKey} // Force complete re-render when industry changes
       industry={industryKey}
       title={customTitle}
       subtitle={customSubtitle}

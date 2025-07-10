@@ -8,6 +8,9 @@ export interface Product {
   description?: string;
 }
 
+// Import industrial products
+import { industrialProducts } from './industrialProducts';
+
 export const allProducts: Product[] = [
   // TAC Series - Bond Products (Infusion Molding Adhesives)
   {
@@ -45,35 +48,6 @@ export const allProducts: Product[] = [
     productType: 'bond',
     industries: ['marine', 'transportation', 'composites'],
     description: 'Mist spray infusion molding adhesive for precise application'
-  },
-
-  // MC Series - Bond Products (Contact Adhesives)
-  {
-    id: 'mc722',
-    name: 'MC722 – WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE',
-    image: 'https://forzabuilt.com/wp-content/uploads/2023/06/MC722-single-5-1024x1024.png',
-    url: 'https://forzabuilt.com/product/mc722-web-spray-contact-adhesive-for-infusion-molding/',
-    productType: 'bond',
-    industries: ['marine', 'transportation', 'composites', 'industrial'],
-    description: 'Non-flammable contact adhesive for safe manufacturing'
-  },
-  {
-    id: 'mc723',
-    name: 'MC723 – WEB SPRAY CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE',
-    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New-1024x1024.png',
-    url: 'https://forzabuilt.com/product/mc723-web-spray-ca-compliant-multi-purpose-contact-adhesive/',
-    productType: 'bond',
-    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
-    description: 'CA compliant multi-purpose contact adhesive'
-  },
-  {
-    id: 'mc741',
-    name: 'MC741 – CA COMPLIANT MULTI-PURPOSE CONTACT ADHESIVE',
-    image: 'https://forzabuilt.com/wp-content/uploads/2025/01/canister-mockup-MC741-1024x1024.png',
-    url: 'https://forzabuilt.com/product/mc741-ca-compliant-multi-purpose-contact-adhesive/',
-    productType: 'bond',
-    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
-    description: 'CA compliant multi-purpose contact adhesive for general use'
   },
 
   // M Series - Bond Products (Structural Adhesives)
@@ -115,73 +89,37 @@ export const allProducts: Product[] = [
     industries: ['marine', 'transportation', 'composites', 'industrial', 'construction', 'foam'],
     description: 'Neoprene contact adhesive for flexible bonding'
   },
+
+  // Seal Products
   {
-    id: 'm-c285',
-    name: 'M-C285 – PREMIUM HIGH TEMP NEOPRENE CONTACT ADHESIVE',
-    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-C285-NEW.png',
-    url: 'https://forzabuilt.com/product/m-c285-premium-high-temp-neoprene-contact-adhesive/',
-    productType: 'bond',
+    id: 'm-s723',
+    name: 'M-S723 – HYBRID POLYMER SEALANT',
+    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-S723-NEW.png',
+    url: 'https://forzabuilt.com/product/m-s723-hybrid-polymer-sealant/',
+    productType: 'seal',
     industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
-    description: 'Premium high-temperature neoprene contact adhesive'
+    description: 'Hybrid polymer sealant for versatile sealing applications'
+  },
+  {
+    id: 'm-s724',
+    name: 'M-S724 – HIGH-PERFORMANCE SEALANT',
+    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-S724-NEW.png',
+    url: 'https://forzabuilt.com/product/m-s724-high-performance-sealant/',
+    productType: 'seal',
+    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
+    description: 'High-performance sealant for demanding applications'
+  },
+  {
+    id: 'm-s725',
+    name: 'M-S725 – STRUCTURAL SEALANT',
+    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-S725-NEW.png',
+    url: 'https://forzabuilt.com/product/m-s725-structural-sealant/',
+    productType: 'seal',
+    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
+    description: 'Structural sealant for load-bearing applications'
   },
 
-  // SEAL Products
-  {
-    id: 'm-oa755',
-    name: 'M-OA755 – HIGH-STRENGTH SINGLE-PART HYBRID POLYMER ADHESIVE/SEALANT',
-    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-OA755-New.png',
-    url: 'https://forzabuilt.com/product/m-oa755-high-strength-single-part-hybrid-performance-polymer/',
-    productType: 'seal',
-    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
-    description: 'High-strength adhesive/sealant for structural applications'
-  },
-  {
-    id: 'm-os789',
-    name: 'M-OS789 – MULTI-PURPOSE HYBRID POLYMER SEALANT',
-    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/sausagem-os789-NEW-USE-1024x1024.png',
-    url: 'https://forzabuilt.com/product/m-os789-multi-purpose-hybrid-polymer-sealant/',
-    productType: 'seal',
-    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
-    description: 'Multi-purpose hybrid polymer sealant for versatile applications'
-  },
-  {
-    id: 'm-os796',
-    name: 'M-OS796 – FAST-SKIN MULTI-PURPOSE HYBRID POLYMER SEALANT',
-    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-OS796-NEW-819x1024.png',
-    url: 'https://forzabuilt.com/product/m-os796-fast-kin-multi-purpose-hybrid-polymer-sealant/',
-    productType: 'seal',
-    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
-    description: 'Fast-skin multi-purpose hybrid polymer sealant for rapid applications'
-  },
-
-  // TAPE Products (Pressure Sensitive Adhesives)
-  {
-    id: 'mc724',
-    name: 'MC724 – WEB SPRAY PRESSURE SENSITIVE ADHESIVE',
-    image: 'https://forzabuilt.com/wp-content/uploads/2024/10/MC724-bundle-1024x1024.png',
-    url: 'https://forzabuilt.com/product/web-spray-pressure-sensitive-adhesive/',
-    productType: 'tape',
-    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction', 'insulation'],
-    description: 'Pressure sensitive adhesive for versatile applications'
-  },
-  {
-    id: 'mc737',
-    name: 'MC737 – WEB SPRAY STYRENE SAFE PRESSURE SENSITIVE ADHESIVE',
-    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/A_FORZA_MC737_Canister22L-NEW1-1024x1024.png',
-    url: 'https://forzabuilt.com/product/mc737-web-spray-styrene-safe-pressure-sensitive-adhesive/',
-    productType: 'tape',
-    industries: ['marine', 'transportation', 'composites', 'industrial'],
-    description: 'Styrene safe pressure sensitive adhesive for specialized applications'
-  },
-  {
-    id: 'm-t815',
-    name: 'M-T815 – DOUBLE-COATED ULTRA HIGH-BOND ACRYLIC FOAM TAPE',
-    image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-T820-NEW-1024x1024.png',
-    url: 'https://forzabuilt.com/product/m-t815-double-coated-ultra-high-bond-acrylic-foam-tape/',
-    productType: 'tape',
-    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
-    description: 'Double-coated ultra high-bond acrylic foam tape for demanding applications'
-  },
+  // Tape Products
   {
     id: 'm-t820',
     name: 'M-T820 – DOUBLE-COATED ULTRA HIGH BOND ACRYLIC FOAM TAPE',
@@ -251,7 +189,10 @@ export const allProducts: Product[] = [
     productType: 'seal',
     industries: ['industrial'],
     description: 'Sealing solution for industrial applications'
-  }
+  },
+
+  // Add all Industrial products
+  ...industrialProducts
 ];
 
 // Utility functions

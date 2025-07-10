@@ -167,7 +167,8 @@ export const cssVariables = {
 
 // Utility functions
 export const getIndustryColors = (industry: string) => {
-  return industryColors[industry as keyof typeof industryColors] || industryColors.industrial;
+  const industryLower = industry.toLowerCase();
+  return industryColors[industryLower as keyof typeof industryColors] || industryColors.industrial;
 };
 
 export const getProductColors = (product: string) => {
@@ -178,10 +179,8 @@ export const getProductColors = (product: string) => {
 export const getIndustryGradient = (industry: string) => {
   const industryColor = getIndustryColors(industry);
   const mainBlue = brandColors.secondary.blueVelvet.hex; // #1b3764 - Forza blue
-  
-  // Create gradient with main blue appearing much sooner and dominating more of the gradient
-  // Blue starts at 0% and has strong presence throughout
-  return `${mainBlue} 0%, ${mainBlue} 40%, ${industryColor.primary} 80%, ${industryColor.primary} 100%`;
+  // Flipped: 70% blue, 30% industry color at the end
+  return `${mainBlue} 0%, ${mainBlue} 70%, ${industryColor.primary} 100%`;
 };
 
 // Alternative gradient with more subtle transition
@@ -193,20 +192,30 @@ export const getIndustryGradientSubtle = (industry: string) => {
   return `${mainBlue} 0%, ${mainBlue} 50%, ${industryColor.primary} 85%, ${industryColor.primary} 100%`;
 };
 
+// Helper function to convert hex to RGB
+const hexToRgb = (hex: string) => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? 
+    `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})` : 
+    hex;
+};
+
 // Gradient function for brochure sections - emphasizes industry color
 export const getIndustryBrochureGradient = (industry: string) => {
   const industryColor = getIndustryColors(industry);
-  const mainBlue = brandColors.secondary.blueVelvet.hex; // #1b3764 - Forza blue
+  const mainBlue = hexToRgb(brandColors.secondary.blueVelvet.hex); // #1b3764 -> rgb(27, 55, 100)
+  const industryColorRgb = hexToRgb(industryColor.primary);
   
   // Debug logging
   console.log('getIndustryBrochureGradient Debug:', {
     industry,
     industryColor,
     mainBlue,
-    result: `${mainBlue} 0%, ${mainBlue} 20%, ${industryColor.primary} 60%, ${industryColor.primary} 100%`
+    industryColorRgb,
+    result: `${mainBlue} 0%, ${mainBlue} 20%, ${industryColorRgb} 60%, ${industryColorRgb} 100%`
   });
   
-  // Create gradient with industry color being more prominent
-  // Industry color starts earlier and has more presence
-  return `${mainBlue} 0%, ${mainBlue} 20%, ${industryColor.primary} 60%, ${industryColor.primary} 100%`;
+  // Create gradient with blue background and industry color as the accent
+  // Blue starts at 0% and transitions to industry color at 60%
+  return `${mainBlue} 0%, ${mainBlue} 20%, ${industryColorRgb} 60%, ${industryColorRgb} 100%`;
 }; 
