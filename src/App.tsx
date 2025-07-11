@@ -19,6 +19,8 @@ import SealantCalculator from './pages/tools/SealantCalculator';
 import Compatibility from './pages/tools/Compatibility';
 import IndustryPage from './pages/industries/[industry]';
 import ProductCategoryPage from './pages/products/[productCategory]';
+import IndustrialDatasheetPage from './pages/IndustrialDatasheetPage';
+import DatasheetDemo from './pages/DatasheetDemo';
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,9 @@ const App = () => (
             <Route path="/tools/compatibility" element={<Compatibility />} />
             <Route path="/industries/:industry" element={<IndustryPage />} />
             <Route path="/products/:productCategory" element={<ProductCategoryPage />} />
+            {/* Datasheet Routes */}
+            <Route path="/industrial-datasheet" element={<IndustrialDatasheetPage />} />
+            <Route path="/datasheet-demo" element={<DatasheetDemo />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

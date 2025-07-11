@@ -13,12 +13,13 @@ const ProductSelector = () => {
   const [environmentalFactors, setEnvironmentalFactors] = useState<string[]>([]);
 
   const industries = [
-    'Construction',
-    'Manufacturing',
-    'Automotive',
-    'Aerospace',
+    'Transportation',
     'Marine',
-    'Electronics'
+    'Construction',
+    'Industrial',
+    'Foam',
+    'Composites',
+    'Insulation'
   ];
 
   const applications = [

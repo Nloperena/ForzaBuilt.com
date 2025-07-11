@@ -9,7 +9,7 @@ export interface Product {
 }
 
 // Import industrial products
-import { industrialProducts } from './industrialProducts';
+import { INDUSTRIAL_PRODUCTS } from './industrialProducts';
 
 export const allProducts: Product[] = [
   // TAC Series - Bond Products (Infusion Molding Adhesives)
@@ -192,7 +192,15 @@ export const allProducts: Product[] = [
   },
 
   // Add all Industrial products
-  ...industrialProducts
+  ...INDUSTRIAL_PRODUCTS.map(product => ({
+    id: product.id,
+    name: product.name,
+    image: product.image,
+    url: product.url,
+    productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
+    industries: product.industry,
+    description: product.description
+  }))
 ];
 
 // Utility functions

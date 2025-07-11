@@ -19,6 +19,8 @@ import { INDUSTRIAL_DATA } from '../../data/industrial';
 import { FOAM_DATA } from '../../data/foam';
 import { COMPOSITES_DATA } from '../../data/composites';
 import { INSULATION_DATA } from '../../data/insulation';
+import { industrialDatasheet, getProductsByIndustry } from '../../data/industrialDatasheet';
+import { INDUSTRIAL_PRODUCTS } from '../../data/industrialProducts';
 
 const IndustryPage = () => {
   const { industry } = useParams();
@@ -46,6 +48,44 @@ const IndustryPage = () => {
       default:
         return null;
     }
+  };
+
+  // Helper function to convert datasheet products to component format
+  const convertDatasheetToProducts = (industryName: string) => {
+    const industryLower = industryName.toLowerCase();
+    
+    // Use dedicated industrial products for industrial industry
+    if (industryLower === 'industrial') {
+      return INDUSTRIAL_PRODUCTS.map(product => ({
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        url: product.url,
+        productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
+        industries: product.industry,
+        description: product.description
+      }));
+    }
+    
+    const datasheetProducts = getProductsByIndustry(industryLower);
+    
+    // If no datasheet products found, fall back to allProducts for that industry
+    if (datasheetProducts.length === 0) {
+      const fallbackProducts = allProducts.filter(product => 
+        product.industries.includes(industryLower)
+      );
+      return fallbackProducts;
+    }
+    
+    return datasheetProducts.map(product => ({
+      id: product.id,
+      name: product.name,
+      image: product.image,
+      url: product.url,
+      productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
+      industries: product.industry,
+      description: product.description
+    }));
   };
 
   useEffect(() => {
@@ -157,10 +197,12 @@ const IndustryPage = () => {
 
 
       {/* Dynamic Products Section */}
-      <DynamicProductsSection 
-        industry={industryData.title}
-        products={allProducts}
-      />
+      {convertDatasheetToProducts(industryData.title).length > 0 && (
+        <DynamicProductsSection 
+          industry={industryData.title}
+          products={convertDatasheetToProducts(industryData.title)}
+        />
+      )}
 
       {/* Chemistries Section */}
       <ProductChemistriesSection />

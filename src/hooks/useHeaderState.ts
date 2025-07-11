@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { products as productsData } from '@/data/products';
 import { industries as industriesData } from '@/data/industries';
+import { tools as toolsData } from '@/data/tools';
 
 const navigation = [
   { name: 'Products', href: '/products' },
@@ -57,6 +58,8 @@ export const useHeaderState = () => {
       setHoveredVideoUrl(industriesData[0].videoUrl);
     } else if (activeOverlayContent === 'products' && productsData.length > 0) {
       setHoveredVideoUrl(productsData[0].videoUrl);
+    } else if (activeOverlayContent === 'tools' && toolsData.length > 0) {
+      setHoveredVideoUrl(toolsData[0].videoUrl);
     } else {
       setHoveredVideoUrl(null);
     }

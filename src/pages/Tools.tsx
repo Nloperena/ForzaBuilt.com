@@ -2,71 +2,121 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { motion } from 'framer-motion';
 
 const Tools = () => {
-  const tools = [
-    {
-      name: 'Product Selector',
-      description: 'Find the perfect product for your specific application and requirements.',
-      href: '/tools/product-selector',
-      icon: '🔍'
-    },
-    {
-      name: 'Sealant Calculator',
-      description: 'Calculate the exact amount of sealant needed for your project.',
-      href: '/tools/sealant-calculator',
-      icon: '🧮'
-    },
-    {
-      name: 'Product Compatibility Tool',
-      description: 'Check compatibility between different products and materials.',
-      href: '/tools/compatibility',
-      icon: '🔗'
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-24 pb-16">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Professional Tools
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Access our suite of professional tools designed to help you make informed decisions 
-            and optimize your projects with Forza products.
+    <div className="min-h-screen bg-gradient-to-br from-[#09668D]/5 to-[#1B3764]/10">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 bg-gradient-to-br from-[#09668D] to-[#1B3764] relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="flex justify-center mb-8">
+              <img 
+                src="/src/assets/images/Forza-lion-logo.png" 
+                alt="ForzaBuilt Lion Logo" 
+                className="w-60 h-60 object-contain"
+              />
+            </div>
+            
+            <h1 className="text-6xl md:text-7xl font-kallisto font-black text-white mb-6 leading-tight">
+              Professional Tools
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto font-poppins leading-relaxed">
+              Access our comprehensive product datasheet with detailed technical specifications 
+              for all ForzaBuilt adhesive, sealant, and tape products.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Product Datasheet Tool Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="group"
+            >
+              <Card className="hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 overflow-hidden bg-white/95 backdrop-blur-sm">
+                <CardHeader className="text-center pb-6">
+                  <div className="relative">
+                    {/* Gradient Background for Icon */}
+                    <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#09668D] to-[#1B3764] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 relative overflow-hidden">
+                      <img 
+                        src="/src/assets/images/Forza-lion-logo.png" 
+                        alt="ForzaBuilt Lion Logo"
+                        className="w-32 h-32 object-contain"
+                      />
+                    </div>
+                    
+                    {/* Decorative Line */}
+                    <div className="w-24 h-1 bg-gradient-to-r from-[#F16022] to-[#D35127] mx-auto mb-4"></div>
+                  </div>
+                  
+                  <CardTitle className="text-4xl font-kallisto font-black text-[#1B3764] mb-4 leading-tight">
+                    Products Datasheet
+                  </CardTitle>
+                  
+                  <CardDescription className="text-xl text-gray-600 font-poppins leading-relaxed max-w-2xl mx-auto">
+                    Comprehensive technical specifications for all ForzaBuilt industrial adhesive, 
+                    sealant, and tape products. Find detailed information about performance, 
+                    applications, and specifications.
+                  </CardDescription>
+                </CardHeader>
+                
+                <CardContent className="text-center pt-0">
+                  <Link to="/industrial-datasheet">
+                    <Button className="w-full bg-gradient-to-r from-[#F16022] to-[#D35127] hover:from-[#D35127] hover:to-[#F16022] text-white font-bold text-xl py-8 px-12 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0">
+                      Launch Products Datasheet
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-16 bg-gradient-to-r from-[#09668D] to-[#1B3764]">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-kallisto font-black text-white mb-6">
+            Need Expert Guidance?
+          </h2>
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-poppins">
+            Our technical team is ready to help you find the perfect solution for your project.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/contact">
+              <Button className="bg-gradient-to-r from-[#F16022] to-[#D35127] hover:from-[#D35127] hover:to-[#F16022] text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                Contact Our Team
+              </Button>
+            </Link>
+            <Link to="/">
+              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#1B3764] font-bold text-lg py-4 px-8 rounded-xl transition-all duration-300">
+                Back to Home
+              </Button>
+            </Link>
+          </div>
         </div>
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {tools.map((tool) => (
-            <Card key={tool.name} className="hover:shadow-xl transition-shadow duration-300">
-              <CardHeader className="text-center">
-                <div className="text-4xl mb-4">{tool.icon}</div>
-                <CardTitle className="text-2xl">{tool.name}</CardTitle>
-                <CardDescription className="text-base">
-                  {tool.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Link to={tool.href}>
-                  <Button className="w-full bg-[#F2611D] hover:bg-[#F2611D]/80">
-                    Launch Tool
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        <div className="text-center mt-16">
-          <Link to="/">
-            <Button variant="outline" className="text-lg px-8 py-3">
-              ← Back to Home
-            </Button>
-          </Link>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 };

@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { products as productsData } from '@/data/products';
 import { industries as industriesData } from '@/data/industries';
+import { tools as toolsData } from '@/data/tools';
 import { AnimatePresence } from 'framer-motion';
+import { FileText } from 'lucide-react';
 
 interface OverlayContentProps {
   activeContent: string | null;
@@ -70,8 +72,25 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
   );
 
   const renderToolsContent = () => (
-    <div>
-      <h3 className="text-white text-2xl">Tools</h3>
+    <div className="flex flex-row items-start justify-center space-x-12 text-center" onMouseLeave={() => onVideoUrlChange(null)}>
+      {toolsData.map(tool => (
+        <Link
+          key={tool.name}
+          to={tool.href}
+          className="flex flex-col items-center w-36 text-white hover:text-[#F2611D] transition-colors duration-300 group"
+          onMouseEnter={() => onVideoUrlChange(tool.videoUrl)}
+        >
+          <div className="w-24 h-24 flex items-center justify-center mb-4">
+            <div 
+              className="w-24 h-24 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: tool.color }}
+            >
+              <FileText className="w-12 h-12 text-white" />
+            </div>
+          </div>
+          <h3 className="text-xl font-semibold font-kallisto">{tool.title}</h3>
+        </Link>
+      ))}
     </div>
   );
 

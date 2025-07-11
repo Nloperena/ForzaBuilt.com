@@ -3,7 +3,7 @@ import NewsletterSignup from './NewsletterSignup';
 
 const Footer = () => {
   return (
-    <footer className="bg-[var(--forza-blue-velvet)] text-white py-8 px-4">
+    <footer className="bg-[#1B3764] text-white py-8 px-4">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
         {/* Left: Logo and Info */}
         <div className="flex-1 flex flex-col gap-4 min-w-[250px]">

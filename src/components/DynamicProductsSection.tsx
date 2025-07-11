@@ -18,9 +18,24 @@ interface DynamicProductsSectionProps {
 }
 
 const productTypes = [
-  { id: 'bond', label: 'BOND', color: '#F16022' },
-  { id: 'seal', label: 'SEAL', color: '#ffd600' },
-  { id: 'tape', label: 'TAPE', color: '#e53935' }
+  { 
+    id: 'bond', 
+    label: 'BOND', 
+    color: '#F16022',
+    logo: 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg'
+  },
+  { 
+    id: 'seal', 
+    label: 'SEAL', 
+    color: '#ffd600',
+    logo: 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg'
+  },
+  { 
+    id: 'tape', 
+    label: 'TAPE', 
+    color: '#e53935',
+    logo: 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg'
+  }
 ];
 
 const DynamicProductsSection: React.FC<DynamicProductsSectionProps> = ({
@@ -45,6 +60,22 @@ const DynamicProductsSection: React.FC<DynamicProductsSectionProps> = ({
       product.productType === type.id
     )
   );
+
+  // Group products by type for section display
+  const groupedProducts = {
+    bond: products.filter(product => 
+      product.industries.includes(industry.toLowerCase()) && 
+      product.productType === 'bond'
+    ),
+    seal: products.filter(product => 
+      product.industries.includes(industry.toLowerCase()) && 
+      product.productType === 'seal'
+    ),
+    tape: products.filter(product => 
+      product.industries.includes(industry.toLowerCase()) && 
+      product.productType === 'tape'
+    )
+  };
 
   // Get banner and title based on selected product type
   const getBannerAndTitle = () => {
@@ -77,14 +108,15 @@ const DynamicProductsSection: React.FC<DynamicProductsSectionProps> = ({
   return (
     <section className={`py-20 bg-[#1b3764] ${className}`}>
       <div className="max-w-7xl mx-auto px-4">
-        {/* Header Section with Banner */}
+        {/* Header Section with Favicon */}
         <div className="text-center mb-16">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
-            
-            
-            <div className="flex-1">
-              {/* Spacer for balance */}
-            </div>
+          {/* Favicon at the top */}
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/favicon.svg" 
+              alt="ForzaBuilt Logo" 
+              className="w-16 h-16"
+            />
           </div>
           
           <h2 className="text-6xl md:text-7xl font-extrabold text-white mb-4 font-kallisto">
@@ -94,14 +126,6 @@ const DynamicProductsSection: React.FC<DynamicProductsSectionProps> = ({
             Comprehensive adhesive and bonding solutions designed specifically for {industry.toLowerCase()} applications
           </p>
         </div>
-
-        <div className="flex-1">
-              <img 
-                src={banner}
-                alt={`Forza ${selectedProductType === 'all' ? 'Bond' : selectedProductType.charAt(0).toUpperCase() + selectedProductType.slice(1)} Product Banner`}
-                className="max-w-md mx-auto my-8"
-              />
-            </div>
 
         {/* Product Type Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -134,50 +158,139 @@ const DynamicProductsSection: React.FC<DynamicProductsSectionProps> = ({
           ))}
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {filteredProducts.map((product, idx) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col items-center justify-center p-6 transition-all duration-300 hover:scale-105 hover:shadow-xl text-center group"
-            >
-              <a 
-                href={product.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="block w-full h-full flex flex-col items-center justify-center"
-              >
-                <div className="relative w-full h-48 mb-4 flex items-center justify-center">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110" 
-                  />
-                </div>
-                
-                <div className="flex-1 flex flex-col justify-between">
-                  <div className="mb-4">
-                    <div className="text-lg font-bold text-[#1b3764] mb-2 text-center font-kallisto leading-tight">
-                      {product.name}
+        {/* Products Display */}
+        {selectedProductType === 'all' ? (
+          // Show all products grouped by type with section headers
+          <div className="space-y-16">
+            {Object.entries(groupedProducts).map(([type, typeProducts]) => {
+              if (typeProducts.length === 0) return null;
+              
+              const productType = productTypes.find(pt => pt.id === type);
+              if (!productType) return null;
+              
+              return (
+                <div key={type} className="space-y-8">
+                  {/* Section Header with Logo */}
+                  <div className="text-center">
+                    <div className="flex justify-center mb-4">
+                      <img 
+                        src={productType.logo} 
+                        alt={`${productType.label} Logo`} 
+                        className="h-16 w-auto"
+                      />
                     </div>
-                    {product.description && (
-                      <p className="text-sm text-gray-600 text-center">
-                        {product.description}
-                      </p>
-                    )}
+                    <h3 className="text-3xl font-bold text-white mb-2 font-kallisto">
+                      {productType.label} SOLUTIONS
+                    </h3>
+                    <div className="w-24 h-1 bg-white mx-auto"></div>
                   </div>
                   
-                  <button className="mt-auto bg-[#F2611D] hover:bg-[#F2611D]/90 text-white font-bold rounded-full px-6 py-2 text-sm shadow transition-colors">
-                    MORE INFO
-                  </button>
+                  {/* Products Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {typeProducts.map((product, idx) => (
+                      <motion.div
+                        key={product.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: idx * 0.1 }}
+                        className="bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col items-center justify-center p-6 transition-all duration-300 hover:scale-105 hover:shadow-xl text-center group"
+                      >
+                        <a 
+                          href={product.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="block w-full h-full flex flex-col items-center justify-center"
+                        >
+                          <div className="relative w-full h-48 mb-4 flex items-center justify-center">
+                            <img 
+                              src={product.image} 
+                              alt={product.name} 
+                              className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110" 
+                            />
+                          </div>
+                          
+                          <div className="flex-1 flex flex-col justify-between">
+                            <div className="mb-4">
+                              <div className="text-lg font-bold text-[#1b3764] mb-2 text-center font-kallisto leading-tight">
+                                {product.name}
+                              </div>
+                              {product.description && (
+                                <p className="text-sm text-gray-600 text-center">
+                                  {product.description}
+                                </p>
+                              )}
+                            </div>
+                            
+                            <button className="mt-auto bg-[#F2611D] hover:bg-[#F2611D]/90 text-white font-bold rounded-full px-6 py-2 text-sm shadow transition-colors">
+                              MORE INFO
+                            </button>
+                          </div>
+                        </a>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-              </a>
-            </motion.div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        ) : (
+          // Show filtered products for specific type
+          <div>
+            {/* Selected Type Banner */}
+            <div className="text-center mb-8">
+              <img 
+                src={banner}
+                alt={`Forza ${selectedProductType.charAt(0).toUpperCase() + selectedProductType.slice(1)} Product Banner`}
+                className="max-w-md mx-auto"
+              />
+            </div>
+            
+            {/* Products Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {filteredProducts.map((product, idx) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-col items-center justify-center p-6 transition-all duration-300 hover:scale-105 hover:shadow-xl text-center group"
+                >
+                  <a 
+                    href={product.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="block w-full h-full flex flex-col items-center justify-center"
+                  >
+                    <div className="relative w-full h-48 mb-4 flex items-center justify-center">
+                      <img 
+                        src={product.image} 
+                        alt={product.name} 
+                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110" 
+                      />
+                    </div>
+                    
+                    <div className="flex-1 flex flex-col justify-between">
+                      <div className="mb-4">
+                        <div className="text-lg font-bold text-[#1b3764] mb-2 text-center font-kallisto leading-tight">
+                          {product.name}
+                        </div>
+                        {product.description && (
+                          <p className="text-sm text-gray-600 text-center">
+                            {product.description}
+                          </p>
+                        )}
+                      </div>
+                      
+                      <button className="mt-auto bg-[#F2611D] hover:bg-[#F2611D]/90 text-white font-bold rounded-full px-6 py-2 text-sm shadow transition-colors">
+                        MORE INFO
+                      </button>
+                    </div>
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* No Products Message */}
         {filteredProducts.length === 0 && (
