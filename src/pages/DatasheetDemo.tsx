@@ -19,7 +19,7 @@ import {
 const DatasheetDemo: React.FC = () => {
   const handleNavigateToDatasheet = () => {
     // In a real app, this would navigate to the datasheet page
-    window.open('/industrial-datasheet', '_blank');
+            window.open('/product-datasheets', '_blank');
   };
 
   const handleDownloadDatasheet = () => {

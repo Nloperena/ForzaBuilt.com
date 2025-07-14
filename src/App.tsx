@@ -21,6 +21,9 @@ import IndustryPage from './pages/industries/[industry]';
 import ProductCategoryPage from './pages/products/[productCategory]';
 import IndustrialDatasheetPage from './pages/IndustrialDatasheetPage';
 import DatasheetDemo from './pages/DatasheetDemo';
+import IndustryReview from './pages/IndustryReview';
+import IndustrySummary from './pages/IndustrySummary';
+import ProductDatasheetsPage from './pages/ProductDatasheetsPage';
 
 const queryClient = new QueryClient();
 
@@ -42,13 +45,17 @@ const App = () => (
             <Route path="/approach" element={<Approach />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/tools/product-selector" element={<ProductSelector />} />
+            <Route path="/tools/product-datasheets" element={<ProductDatasheetsPage />} />
             <Route path="/tools/sealant-calculator" element={<SealantCalculator />} />
             <Route path="/tools/compatibility" element={<Compatibility />} />
             <Route path="/industries/:industry" element={<IndustryPage />} />
             <Route path="/products/:productCategory" element={<ProductCategoryPage />} />
             {/* Datasheet Routes */}
-            <Route path="/industrial-datasheet" element={<IndustrialDatasheetPage />} />
             <Route path="/datasheet-demo" element={<DatasheetDemo />} />
+            {/* Review Routes */}
+            <Route path="/industry-review" element={<IndustryReview />} />
+            <Route path="/industry-summary" element={<IndustrySummary />} />
+            <Route path="/product-datasheets" element={<ProductDatasheetsPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

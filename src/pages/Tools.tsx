@@ -80,7 +80,7 @@ const Tools = () => {
                 </CardHeader>
                 
                 <CardContent className="text-center pt-0">
-                  <Link to="/industrial-datasheet">
+                  <Link to="/product-datasheets">
                     <Button className="w-full bg-gradient-to-r from-[#F16022] to-[#D35127] hover:from-[#D35127] hover:to-[#F16022] text-white font-bold text-xl py-8 px-12 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0">
                       Launch Products Datasheet
                     </Button>
