@@ -195,10 +195,10 @@ const ProductDatasheetView: React.FC = () => {
             <Button
               variant={category === 'ALL' ? 'default' : 'outline'}
               onClick={() => setCategory('ALL')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 category === 'ALL' 
-                  ? 'bg-gradient-to-r from-[#09668D] to-[#1B3764] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#09668D]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               All ({industrialDatasheet.length})
@@ -206,10 +206,10 @@ const ProductDatasheetView: React.FC = () => {
             <Button
               variant={category === 'BOND' ? 'default' : 'outline'}
               onClick={() => setCategory('BOND')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 category === 'BOND' 
-                  ? 'bg-gradient-to-r from-[#F16022] to-[#D35127] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#F16022]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               Bond ({dynamicCounts.byCategory.BOND || 0})
@@ -217,10 +217,10 @@ const ProductDatasheetView: React.FC = () => {
             <Button
               variant={category === 'SEAL' ? 'default' : 'outline'}
               onClick={() => setCategory('SEAL')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 category === 'SEAL' 
-                  ? 'bg-gradient-to-r from-[#ffd600] to-[#f4c430] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#ffd600]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               Seal ({dynamicCounts.byCategory.SEAL || 0})
@@ -228,10 +228,10 @@ const ProductDatasheetView: React.FC = () => {
             <Button
               variant={category === 'TAPE' ? 'default' : 'outline'}
               onClick={() => setCategory('TAPE')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 category === 'TAPE' 
-                  ? 'bg-gradient-to-r from-[#d1181f] to-[#b3141a] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#d1181f]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               Tape ({dynamicCounts.byCategory.TAPE || 0})
@@ -246,6 +246,11 @@ const ProductDatasheetView: React.FC = () => {
             <Button
               variant={industry === 'ALL' ? 'default' : 'outline'}
               onClick={() => setIndustry('ALL')}
+              className={`px-6 py-3 rounded-full font-bold ${
+                industry === 'ALL' 
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
+              }`}
             >
               All
             </Button>
@@ -254,7 +259,11 @@ const ProductDatasheetView: React.FC = () => {
                 key={ind}
                 variant={industry === ind ? 'default' : 'outline'}
                 onClick={() => setIndustry(ind)}
-                className="flex items-center gap-2"
+                className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold ${
+                  industry === ind 
+                    ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                    : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
+                }`}
               >
                 {getIndustryLogo(ind) ? (
                   <img 

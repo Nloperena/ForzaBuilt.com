@@ -228,10 +228,10 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
             <Button
               variant={selectedCategory === 'ALL' ? 'default' : 'outline'}
               onClick={() => setSelectedCategory('ALL')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 selectedCategory === 'ALL' 
-                  ? 'bg-gradient-to-r from-[#09668D] to-[#1B3764] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#09668D]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               All Categories ({industrialDatasheet.length})
@@ -239,10 +239,10 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
             <Button
               variant={selectedCategory === 'BOND' ? 'default' : 'outline'}
               onClick={() => setSelectedCategory('BOND')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 selectedCategory === 'BOND' 
-                  ? 'bg-gradient-to-r from-[#F16022] to-[#D35127] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#F16022]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               Bond ({categoryCounts.BOND || 0})
@@ -250,10 +250,10 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
             <Button
               variant={selectedCategory === 'SEAL' ? 'default' : 'outline'}
               onClick={() => setSelectedCategory('SEAL')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 selectedCategory === 'SEAL' 
-                  ? 'bg-gradient-to-r from-[#ffd600] to-[#f4c430] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#ffd600]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               Seal ({categoryCounts.SEAL || 0})
@@ -261,10 +261,10 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
             <Button
               variant={selectedCategory === 'TAPE' ? 'default' : 'outline'}
               onClick={() => setSelectedCategory('TAPE')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 selectedCategory === 'TAPE' 
-                  ? 'bg-gradient-to-r from-[#00a651] to-[#008f45] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#00a651]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               Tape ({categoryCounts.TAPE || 0})
@@ -280,10 +280,10 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
               variant={selectedIndustry === 'ALL' ? 'default' : 'outline'}
               size="lg"
               onClick={() => setSelectedIndustry('ALL')}
-              className={`px-6 py-3 rounded-xl font-bold ${
+              className={`px-6 py-3 rounded-full font-bold ${
                 selectedIndustry === 'ALL' 
-                  ? 'bg-gradient-to-r from-[#09668D] to-[#1B3764] text-white border-0' 
-                  : 'border-2 border-gray-300 hover:border-[#09668D]'
+                  ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                  : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
               }`}
             >
               All Industries
@@ -294,10 +294,10 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
                 variant={selectedIndustry === industry ? 'default' : 'outline'}
                 size="lg"
                 onClick={() => setSelectedIndustry(industry)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold ${
+                className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold ${
                   selectedIndustry === industry 
-                    ? 'bg-gradient-to-r from-[#09668D] to-[#1B3764] text-white border-0' 
-                    : 'border-2 border-gray-300 hover:border-[#09668D]'
+                    ? 'bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border-0' 
+                    : 'border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white'
                 }`}
               >
                 {getIndustryIcon(industry)}
@@ -315,7 +315,7 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
           <Button 
             variant="outline" 
             onClick={handlePrint}
-            className="border-2 border-gray-300 hover:border-[#09668D] px-6 py-3 rounded-xl font-bold"
+            className="border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white rounded-full px-6 py-3 font-bold transition-all duration-300"
           >
             <Printer className="h-5 w-5 mr-2" />
             Print
@@ -323,7 +323,7 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
           <Button 
             variant="outline" 
             onClick={handleDownload}
-            className="border-2 border-gray-300 hover:border-[#09668D] px-6 py-3 rounded-xl font-bold"
+            className="border-2 border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white rounded-full px-6 py-3 font-bold transition-all duration-300"
           >
             <Download className="h-5 w-5 mr-2" />
             Download

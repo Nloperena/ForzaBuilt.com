@@ -27,9 +27,8 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
   onMouseEnter,
   onMouseLeave,
 }) => {
-  // Indices: 0 = ADHESIVES, 1 = SEALANTS, 2 = INDUSTRIAL CLEANING, 3 = TAPES
-  // Desired order: 0, 1, 3, 2
-  const renderOrder = [0, 1, 3, 2];
+  // Order: Bond (0), Seal (1), Tape (2), Rugged Red (3)
+  const renderOrder = [0, 1, 2, 3];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">

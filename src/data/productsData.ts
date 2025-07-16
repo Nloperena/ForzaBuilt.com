@@ -198,7 +198,7 @@ export const allProducts: Product[] = [
     image: product.image,
     url: product.url,
     productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
-    industries: product.industry,
+    industries: Array.isArray(product.industry) ? product.industry : [product.industry],
     description: product.description
   }))
 ];

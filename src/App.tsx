@@ -19,11 +19,13 @@ import SealantCalculator from './pages/tools/SealantCalculator';
 import Compatibility from './pages/tools/Compatibility';
 import IndustryPage from './pages/industries/[industry]';
 import ProductCategoryPage from './pages/products/[productCategory]';
+import ProductDetailPage from './pages/products/[productId]';
 import IndustrialDatasheetPage from './pages/IndustrialDatasheetPage';
 import DatasheetDemo from './pages/DatasheetDemo';
 import IndustryReview from './pages/IndustryReview';
 import IndustrySummary from './pages/IndustrySummary';
 import ProductDatasheetsPage from './pages/ProductDatasheetsPage';
+import ProductIndex from './pages/ProductIndex';
 
 const queryClient = new QueryClient();
 
@@ -38,7 +40,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/industries" element={<Industries />} />
-            <Route path="/products" element={<Products />} />
+            <Route path="/products" element={<ProductIndex />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
@@ -50,12 +52,15 @@ const App = () => (
             <Route path="/tools/compatibility" element={<Compatibility />} />
             <Route path="/industries/:industry" element={<IndustryPage />} />
             <Route path="/products/:productCategory" element={<ProductCategoryPage />} />
+            <Route path="/product/:productId" element={<ProductDetailPage />} />
+            <Route path="/products/:productCategory/:productId" element={<ProductDetailPage />} />
             {/* Datasheet Routes */}
             <Route path="/datasheet-demo" element={<DatasheetDemo />} />
             {/* Review Routes */}
             <Route path="/industry-review" element={<IndustryReview />} />
             <Route path="/industry-summary" element={<IndustrySummary />} />
             <Route path="/product-datasheets" element={<ProductDatasheetsPage />} />
+            <Route path="/products/all" element={<ProductIndex />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

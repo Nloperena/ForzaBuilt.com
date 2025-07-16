@@ -52,7 +52,9 @@ function getTitleFontSize(title: string) {
 
 export const IndustriesCarouselSection = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const backgroundVideoRef = useRef<HTMLVideoElement>(null);
   const [startIdx, setStartIdx] = useState(0);
+  const [currentBackgroundVideo, setCurrentBackgroundVideo] = useState<string>('');
   // Only industry cards for mapping
   const allCards: Industry[] = [...industries];
   const total = allCards.length;
@@ -86,8 +88,37 @@ export const IndustriesCarouselSection = () => {
   const numPages = total - CARDS_VISIBLE + 1;
   const currentPage = startIdx;
 
+  // Update background video when carousel position changes
+  React.useEffect(() => {
+    const centerCardIndex = Math.floor(startIdx + CARDS_VISIBLE / 2);
+    const centerCard = allCards[centerCardIndex];
+    if (centerCard && centerCard.videoUrl !== currentBackgroundVideo) {
+      setCurrentBackgroundVideo(centerCard.videoUrl);
+      if (backgroundVideoRef.current) {
+        backgroundVideoRef.current.src = centerCard.videoUrl;
+        backgroundVideoRef.current.load();
+        backgroundVideoRef.current.play();
+      }
+    }
+  }, [startIdx, currentBackgroundVideo, allCards]);
+
   return (
-    <section className="relative py-20 bg-[#1b3764] w-full overflow-hidden">
+    <section className="relative py-20 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #1b3764 0%, #2a4a7a 50%, #1b3764 100%)' }}>
+      {/* Dynamic background video container */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <video
+          ref={backgroundVideoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-20 transition-opacity duration-1000"
+          style={{ filter: 'brightness(0.3) contrast(1.2)' }}
+        >
+          <source src={currentBackgroundVideo || allCards[0]?.videoUrl || ''} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
+      </div>
       <div className="absolute -top-[61%] -right-[85%] w-[150%] h-[100vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#F2611D] via-[#F2611D]/90 to-transparent blur-[60px] pointer-events-none" />
       <div
         className="relative z-10 w-full flex justify-center"

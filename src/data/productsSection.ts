@@ -17,36 +17,36 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    title: "ADHESIVES",
-    fullTitle: "INDUSTRIAL ADHESIVES",
+    title: "BOND",
+    fullTitle: "FORZA BOND",
     image: canisterSystem,
     hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg",
     color: "#f16022",
-    slug: "adhesives"
+    slug: "bond"
   },
   {
-    title: "SEALANTS",
-    fullTitle: "INDUSTRIAL SEALANTS",
+    title: "SEAL",
+    fullTitle: "FORZA SEAL",
     image: os2Cartridge,
     hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg",
     color: "#faaf40",
-    slug: "sealants"
+    slug: "seal"
   },
   {
-    title: "INDUSTRIAL CLEANING",
-    fullTitle: "INDUSTRIAL CLEANING",
+    title: "TAPE",
+    fullTitle: "FORZA TAPE",
+    image: tapeHeroic,
+    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg",
+    color: "#d1181f",
+    slug: "tape"
+  },
+  {
+    title: "RUGGED RED",
+    fullTitle: "RUGGED RED",
     image: rrHandSpraying,
     hoverImage: "https://ruggedred.com/images/RRMascot+Type-smaller.png",
     color: "#e53935",
     external: true,
     link: "https://ruggedred.com/"
-  },
-  {
-    title: "TAPES",
-    fullTitle: "INDUSTRIAL TAPES",
-    image: tapeHeroic,
-    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg",
-    color: "#d1181f",
-    slug: "tapes"
   }
 ]; 
