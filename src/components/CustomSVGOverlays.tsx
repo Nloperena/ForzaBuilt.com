@@ -3,30 +3,88 @@ import React, { useState } from 'react';
 // Marine Industry SVG Overlay
 export const MarineSVGOverlay: React.FC = () => (
   <svg
-    className="absolute inset-0 w-full h-full pointer-events-none"
-    viewBox="0 0 100 100"
-    preserveAspectRatio="none"
+    className="absolute inset-0 w-full h-full pointer-events-auto"
+    viewBox="0 0 3840 2160"
+    preserveAspectRatio="xMidYMid meet"
   >
-    {/* Marine-specific interactive elements */}
-    <circle
-      cx="30"
-      cy="40"
-      r="2"
-      fill="rgba(255, 255, 255, 0.8)"
-      className="animate-pulse"
+    {/* Marine-specific interactive elements - Adjusted to match new boat image */}
+    {/* Smaller, more precise hotspots that match the actual boat components */}
+    <polygon 
+      id="seating" 
+      points="1200,800 1400,800 1400,900 1200,900" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
     />
-    <circle
-      cx="70"
-      cy="60"
-      r="2"
-      fill="rgba(255, 255, 255, 0.8)"
-      className="animate-pulse"
+    <polygon 
+      id="counters" 
+      points="1600,600 1800,600 1800,700 1600,700" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
     />
-    <path
-      d="M20 80 L80 80 L80 85 L20 85 Z"
-      fill="rgba(0, 150, 255, 0.3)"
-      stroke="rgba(0, 150, 255, 0.8)"
-      strokeWidth="0.5"
+    <polygon 
+      id="headliner" 
+      points="2000,400 2200,400 2200,500 2000,500" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
+    />
+    <polygon 
+      id="bonding-skirt" 
+      points="1400,1000 1600,1000 1600,1100 1400,1100" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
+    />
+    <polygon 
+      id="general-mounting" 
+      points="1800,800 2000,800 2000,900 1800,900" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
+    />
+    <polygon 
+      id="interior-cabinets" 
+      points="1600,1200 1800,1200 1800,1300 1600,1300" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
+    />
+    <polygon 
+      id="external-seating" 
+      points="2200,600 2400,600 2400,700 2200,700" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
+    />
+    <polygon 
+      id="bonding-mount1" 
+      points="2600,400 2800,400 2800,500 2600,500" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
+    />
+    <polygon 
+      id="bonding-mount2" 
+      points="2800,600 3000,600 3000,700 2800,700" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
+    />
+    <polygon 
+      id="carpeting" 
+      points="800,1400 1000,1400 1000,1500 800,1500" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
+    />
+    <polygon 
+      id="lower-bow" 
+      points="1000,1600 1200,1600 1200,1700 1000,1700" 
+      fill="#09668d" 
+      opacity=".6"
+      className="cursor-pointer hover:opacity-80 transition-opacity duration-200"
     />
   </svg>
 );

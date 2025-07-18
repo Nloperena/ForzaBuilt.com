@@ -15,8 +15,11 @@ import FaqSection from '@/components/FaqSection';
 import NewsletterSection from '@/components/NewsletterSection';
 import Footer from '@/components/Footer';
 import ProductChemistriesSection from '@/components/ProductChemistriesSection';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
+  const isMobile = useIsMobile();
+  
   /**
    * Sample card data for demonstration
    * In a real CMS implementation, this would come from:
@@ -76,8 +79,8 @@ const Index = () => {
       {/* Sticky Background Section */}
       <StickyBackgroundSection />
       
-      {/* Scroll Sections with Chemistry Molecule */}
-      <ScrollSections />
+      {/* Scroll Sections with Chemistry Molecule - Desktop Only */}
+      {!isMobile && <ScrollSections />}
 
       {/* Our Chemistries Section */}
       <ProductChemistriesSection />

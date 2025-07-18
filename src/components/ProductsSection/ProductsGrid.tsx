@@ -31,7 +31,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
   const renderOrder = [0, 1, 2, 3];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+    <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 lg:gap-8">
       {renderOrder.map((i) => {
         const product = products[i];
         const index = i;

@@ -47,22 +47,22 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-20 bg-[#1b3764] relative overflow-hidden" style={{ backgroundImage: "url('/assets/images/abstract-background-pattern.svg')", backgroundRepeat: 'repeat' }}>
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-6xl font-extrabold text-white text-center mb-14 tracking-tight font-kallisto">What Our Clients Say</h2>
+    <section className="py-12 md:py-20 bg-[#1b3764] relative overflow-hidden" style={{ backgroundImage: "url('/assets/images/abstract-background-pattern.svg')", backgroundRepeat: 'repeat' }}>
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold text-white text-center mb-6 md:mb-8 lg:mb-14 tracking-tight font-kallisto">What Our Clients Say</h2>
         <div className="relative">
           <div 
-            className={`rounded-2xl flex flex-col items-center p-6 md:p-12 gap-10 transition-all duration-500 ease-in-out ${
+            className={`rounded-xl md:rounded-2xl flex flex-col items-center p-4 md:p-6 lg:p-12 gap-6 md:gap-10 transition-all duration-500 ease-in-out ${
               isExpanded ? 'md:flex-col' : 'md:flex-row'
             }`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             {/* Video Container */}
-            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-xl transition-all duration-500 ease-in-out ${
+            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl transition-all duration-500 ease-in-out ${
               isExpanded 
-                ? 'w-full max-w-4xl aspect-video' 
-                : 'w-full max-w-sm md:max-w-md lg:max-w-lg aspect-[9/16]'
+                ? 'w-full max-w-3xl md:max-w-4xl aspect-video' 
+                : 'w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg aspect-[9/16]'
             }`}>
               <div className="relative w-full h-full rounded-xl overflow-hidden shadow-2xl">
                 <video
@@ -79,7 +79,7 @@ const TestimonialsSection = () => {
                 />
                 {!isPlaying && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer" onClick={handleVideoClick}>
-                    <svg className="w-20 h-20 text-white/90 hover:text-white transition" fill="currentColor" viewBox="0 0 64 64">
+                    <svg className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 text-white/90 hover:text-white transition" fill="currentColor" viewBox="0 0 64 64">
                       <circle cx="32" cy="32" r="32" fill="black" fillOpacity="0.4" />
                       <polygon points="26,20 50,32 26,44" fill="white" />
                     </svg>
@@ -99,16 +99,16 @@ const TestimonialsSection = () => {
             <div className={`flex-1 flex flex-col items-center text-center transition-all duration-500 ease-in-out ${
               isExpanded ? 'w-full' : 'w-full md:w-auto'
             }`}>
-              <div className="text-4xl font-extrabold text-white mb-2 leading-tight font-kallisto">
+              <div className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-2 leading-tight font-kallisto">
                 Alex Johnson
               </div>
-              <div className="font-normal text-lg text-white/80 mb-4">
+              <div className="font-normal text-base md:text-lg text-white/80 mb-3 md:mb-4">
                 Marine Engineering
               </div>
               {!isExpanded && (
-                <div className="flex items-center justify-center mb-4">
+                <div className="flex items-center justify-center mb-3 md:mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-9 h-9 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <svg key={i} className="w-6 h-6 md:w-8 md:h-8 lg:w-9 lg:h-9 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"/>
                     </svg>
                   ))}

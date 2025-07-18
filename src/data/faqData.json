@@ -1,18 +1,26 @@
 [
   {
-    "question": "This is a common question people ask",
-    "answer": "This is the answer to the common question."
+    "question": "What makes Forza adhesives different from competitors?",
+    "answer": "Forza adhesives are manufactured right here in the USA using advanced chemistry and precision engineering. Our products offer superior bonding strength, faster cure times, and exceptional durability across extreme temperatures and harsh environments. We also provide comprehensive technical support and custom solutions tailored to your specific application needs."
   },
   {
-    "question": "This is a common question people ask",
-    "answer": "This is the answer to the common question."
+    "question": "How do I choose the right adhesive for my application?",
+    "answer": "The best adhesive depends on your substrates, environmental conditions, and performance requirements. Consider factors like temperature range, chemical exposure, load requirements, and cure time. Our technical team can help you select the optimal solution - just contact us with your specific application details and we'll recommend the perfect product."
   },
   {
-    "question": "This is a common question people ask",
-    "answer": "This is the answer to the common question."
+    "question": "What industries do you serve?",
+    "answer": "We serve a wide range of industries including automotive, aerospace, marine, construction, electronics, and industrial manufacturing. Our products are trusted by leading companies for critical bonding applications where reliability and performance are non-negotiable. From assembly lines to offshore platforms, our adhesives deliver consistent results."
   },
   {
-    "question": "This is a common question people ask",
-    "answer": "This is the answer to the common question."
+    "question": "Do you offer technical support and training?",
+    "answer": "Absolutely! Our team of technical experts provides comprehensive support including application guidance, troubleshooting, and on-site training. We offer product demonstrations, safety training, and can help optimize your bonding processes for maximum efficiency and quality. Contact us to schedule a consultation or training session."
+  },
+  {
+    "question": "What are your lead times and minimum order quantities?",
+    "answer": "We pride ourselves on fast delivery with most orders shipping within 24-48 hours. While we don't have strict minimums, we recommend ordering enough for your project to ensure consistency. For large orders or custom formulations, we can work with you on volume pricing and extended payment terms."
+  },
+  {
+    "question": "Are your products environmentally compliant?",
+    "answer": "Yes, our products meet or exceed environmental regulations including VOC compliance, REACH, and other industry standards. We offer both solvent-based and water-based formulations to meet your environmental requirements. All our products are thoroughly tested for safety and compliance before reaching your facility."
   }
 ] 

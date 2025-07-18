@@ -23,7 +23,7 @@ export const industries: Industry[] = [
     videoUrl: "https://forzabuilt.com/wp-content/uploads/2024/09/forzaTRuck2-Compressed.mp4",
     description: "Innovative adhesive solutions for the transportation industry",
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Transportation-Icon-2.png",
-    color: "#1b3764", // Default blue color
+    color: "#b83d35", // Transportation red color from brand standards
   },
   {
     title: "MARINE",
@@ -161,34 +161,34 @@ export const industries: Industry[] = [
     videoUrl: "https://forzabuilt.com/wp-content/uploads/2025/02/Final-Construction-Page-Banner-Video-1.mp4",
     description: "High-performance adhesives for construction needs",
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Construction-Icon.png",
-    color: "#1b3764", // Default blue color
+    color: "#fec770", // Construction yellow color from brand standards
   },
   {
     title: "INDUSTRIAL",
     videoUrl: "https://forzabuilt.com/wp-content/uploads/2025/02/Final-Industrial-Page-Banner-Video.mp4",
     description: "Industrial-grade adhesive solutions for manufacturing",
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Industrial-Icon.png",
-    color: "#1b3764", // Default blue color
+    color: "#f16a26", // Industrial orange color from brand standards
   },
   {
     title: "FOAM",
     videoUrl: "https://video-previews.elements.envatousercontent.com/461cf7cd-2cb8-419b-9558-707280ce813c/watermarked_preview/watermarked_preview.mp4",
     description: "Advanced bonding solutions for foam applications",
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Foam-Icon.png",
-    color: "#1b3764", // Default blue color
+    color: "#7a6fb0", // Foam purple color from brand standards
   },
   {
     title: "COMPOSITES",
     videoUrl: "https://forzabuilt.com/wp-content/uploads/2024/09/ForzaTurbineLoop-Compressed.mp4#t=0,100",
     description: "Specialized adhesives for composite materials",
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Composite-Icon.png",
-    color: "#1b3764", // Default blue color
+    color: "#c7c8c9", // Composites grey color from brand standards
   },
   {
     title: "INSULATION",
     videoUrl: "https://forzabuilt.com/wp-content/uploads/2025/02/Final-Forza-Insulation-Header-Video.mp4#t=0,100",
     description: "High-performance bonding solutions for insulation materials",
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Insulation-Icon.png",
-    color: "#1b3764", // Default blue color
+    color: "#d0157d", // Insulation pink color from brand standards
   }
 ]; 

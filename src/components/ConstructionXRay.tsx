@@ -170,7 +170,7 @@ const ConstructionXRay: React.FC<ConstructionXRayProps> = ({
         >
           <div className="w-full h-full bg-gradient-to-br from-orange-600/90 to-blue-600/90 flex items-center justify-center">
             <div className="text-center text-white p-8 max-w-4xl">
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 font-kallisto">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-6 font-kallisto">
                 Construction Solutions
               </h2>
               <p className="text-lg md:text-xl mb-8 leading-relaxed">

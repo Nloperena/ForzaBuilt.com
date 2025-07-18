@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, easeInOut } from 'framer-motion';
 import { IndustryData, XRayComponent, Hotspot } from '../types/xray';
 import ProductTooltip from './ProductTooltip';
+import { MarineSVGOverlay } from './CustomSVGOverlays';
 
 interface XRayExplorerProps {
   industry: IndustryData;
@@ -83,23 +84,37 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
 
   // Calculate tooltip position based on active hotspot
   const getTooltipPosition = (hotspot: Hotspot) => {
-    // Calculate center point of polygon
-    const centerX = hotspot.points.reduce((sum, point, i) => 
-      i % 2 === 0 ? sum + point : sum, 0) / (hotspot.points.length / 2);
-    const centerY = hotspot.points.reduce((sum, point, i) => 
-      i % 2 === 1 ? sum + point : sum, 0) / (hotspot.points.length / 2);
+    let percentX, percentY;
     
-    const percentX = (centerX / xrayComponent.width) * 100;
-    const percentY = (centerY / xrayComponent.height) * 100;
-    
-    // Bias towards lower positions - if hotspot is in upper half, move tooltip down
-    let adjustedY = percentY;
-    if (percentY < 50) {
-      // If hotspot is in upper half, position tooltip below it
-      adjustedY = percentY + 15; // Move down by 15%
+    if (industry.id === 'marine') {
+      // Custom positioning for marine SVG elements
+      const hotspotIndex = xrayComponent.hotspots.findIndex(h => h.id === hotspot.id);
+      const marinePositions = [
+        { x: 37.5, y: 60.5 }, // Hull Reinforcement - moved down
+        { x: 46.5, y: 67.5 }, // Deck Hardware - moved down
+        { x: 64.5, y: 60.0 }, // Cabin Window - moved down
+      ];
+      const position = marinePositions[hotspotIndex] || { x: 50, y: 65 };
+      percentX = position.x;
+      percentY = position.y;
+    } else {
+      // Calculate center point of polygon
+      const centerX = hotspot.points.reduce((sum, point, i) => 
+        i % 2 === 0 ? sum + point : sum, 0) / (hotspot.points.length / 2);
+      const centerY = hotspot.points.reduce((sum, point, i) => 
+        i % 2 === 1 ? sum + point : sum, 0) / (hotspot.points.length / 2);
+      
+      percentX = (centerX / xrayComponent.width) * 100;
+      percentY = (centerY / xrayComponent.height) * 100;
+      
+      // Bias towards lower positions - if hotspot is in upper half, move tooltip down
+      if (percentY < 50) {
+        // If hotspot is in upper half, position tooltip below it
+        percentY = percentY + 15; // Move down by 15%
+      }
     }
     
-    return { x: percentX, y: adjustedY };
+    return { x: percentX, y: percentY };
   };
 
   return (
@@ -171,6 +186,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               className="absolute inset-0"
               style={{ opacity: hotspotsOpacity }}
             >
+              {/* SVG Hotspot Overlay - Use polygon hotspots for all industries including marine */}
               <svg
                 viewBox={`0 0 ${xrayComponent.width} ${xrayComponent.height}`}
                 className="absolute inset-0 w-full h-full pointer-events-none"
@@ -211,14 +227,29 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                 const isActive = index === activeHotspotIndex.get();
                 if (!isActive) return null;
 
-                // Calculate center point of polygon for label placement
-                const centerX = hotspot.points.reduce((sum, point, i) => 
-                  i % 2 === 0 ? sum + point : sum, 0) / (hotspot.points.length / 2);
-                const centerY = hotspot.points.reduce((sum, point, i) => 
-                  i % 2 === 1 ? sum + point : sum, 0) / (hotspot.points.length / 2);
+                // For marine industry, use custom positioning based on SVG elements
+                let percentX, percentY;
                 
-                const percentX = (centerX / xrayComponent.width) * 100;
-                const percentY = (centerY / xrayComponent.height) * 100;
+                if (industry.id === 'marine') {
+                  // Custom positioning for marine SVG elements
+                  const marinePositions = [
+                    { x: 37.5, y: 45.5 }, // Hull Reinforcement
+                    { x: 46.5, y: 42.5 }, // Deck Hardware
+                    { x: 64.5, y: 35.0 }, // Cabin Window
+                  ];
+                  const position = marinePositions[index] || { x: 50, y: 50 };
+                  percentX = position.x;
+                  percentY = position.y;
+                } else {
+                  // Calculate center point of polygon for label placement
+                  const centerX = hotspot.points.reduce((sum, point, i) => 
+                    i % 2 === 0 ? sum + point : sum, 0) / (hotspot.points.length / 2);
+                  const centerY = hotspot.points.reduce((sum, point, i) => 
+                    i % 2 === 1 ? sum + point : sum, 0) / (hotspot.points.length / 2);
+                  
+                  percentX = (centerX / xrayComponent.width) * 100;
+                  percentY = (centerY / xrayComponent.height) * 100;
+                }
 
                 return (
                   <motion.div

@@ -11,9 +11,10 @@ interface SearchResult {
 
 interface SearchBarProps {
   className?: string;
+  mobile?: boolean;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ className = '' }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false }) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
@@ -59,14 +60,20 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '' }) => {
     }
   };
 
+  const baseClasses = mobile 
+    ? "py-1 px-2 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-1 focus:ring-[#F2611D] text-xs transition-all duration-300"
+    : "py-2 px-4 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] transition-all duration-300 ease-in-out";
+
+  const widthClasses = mobile
+    ? "w-20 sm:w-24"
+    : isSearchFocused ? 'w-64' : 'w-40';
+
   return (
     <div className={`relative ${className}`}>
       <input
         type="text"
-        placeholder={isSearchFocused ? "Search for products and industries..." : "Search..."}
-        className={`py-2 px-4 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] transition-all duration-300 ease-in-out ${
-          isSearchFocused ? 'w-64' : 'w-40'
-        }`}
+        placeholder={mobile ? "Search..." : (isSearchFocused ? "Search for products and industries..." : "Search...")}
+        className={`${baseClasses} ${widthClasses}`}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onFocus={() => setIsSearchFocused(true)}

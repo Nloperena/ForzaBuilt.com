@@ -46,11 +46,15 @@ const Header = () => {
           : 'bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-70'
       }`}
     >
-      <nav className="container mx-auto px-6 py-4">
+      <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <Logo />
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Logo className="h-8 w-auto sm:h-10" />
+          </div>
           
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <NavigationItem
                 key={item.name}
@@ -58,7 +62,7 @@ const Header = () => {
                 isOverlayOpen={isOverlayOpen}
                 activeOverlayContent={activeOverlayContent}
                 onMouseEnter={handleNavHover}
-                    onMouseLeave={handleNavLeave}
+                onMouseLeave={handleNavLeave}
                 onClick={handleNavClick}
               />
             ))}
@@ -72,11 +76,22 @@ const Header = () => {
             <AuthSection onSignOut={handleSignOut} />
           </div>
 
-          <div className="md:hidden flex items-center">
+          {/* Mobile Navigation - Simplified and Clean */}
+          <div className="lg:hidden flex items-center space-x-3">
+            {/* Mobile Contact Button */}
+            <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium">
+              <Link to="/contact">Contact</Link>
+            </Button>
+
+            {/* Mobile Auth */}
+            <AuthSection onSignOut={handleSignOut} mobile={true} />
+
+            {/* Mobile Menu Toggle */}
             <button 
               type="button" 
-              className="text-white focus:outline-none" 
+              className="text-white hover:text-gray-200 transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20" 
               onClick={openMobileMenu}
+              aria-label="Open mobile menu"
             >
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />

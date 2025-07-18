@@ -36,30 +36,30 @@ const ChemistryCard: React.FC<ChemistryCardProps> = ({
     >
       {/* Front of the card */}
       <motion.div
-        className="absolute w-full h-full flex flex-col items-center justify-center bg-white text-[#1b3764] rounded-2xl backface-hidden p-4 text-center"
+        className="absolute w-full h-full flex flex-col items-center justify-center bg-white text-[#1b3764] rounded-2xl backface-hidden p-3 md:p-4 text-center"
         animate={{ opacity: isFlipped ? 0 : 1 }}
         transition={{ duration: 0.5 }}
         style={{ pointerEvents: 'none' }}
       >
-        <div className="text-6xl mb-4">{icon}</div>
-        <h3 className="text-2xl font-bold font-montserrat uppercase">{title}</h3>
+        <div className="text-4xl md:text-6xl mb-2 md:mb-4">{icon}</div>
+        <h3 className="text-lg md:text-2xl font-bold font-montserrat uppercase">{title}</h3>
       </motion.div>
 
       {/* Back of the card */}
       <motion.div
-        className="absolute w-full h-full flex flex-col items-center justify-center bg-[#1b3764] text-white rounded-2xl backface-hidden p-4 text-center"
+        className="absolute w-full h-full flex flex-col items-center justify-center bg-[#1b3764] text-white rounded-2xl backface-hidden p-3 md:p-4 text-center"
         initial={{ rotateY: 180 }}
         animate={{ rotateY: isFlipped ? 0 : 180, opacity: isFlipped ? 1 : 0 }}
         transition={{ duration: 0.5 }}
         style={{ pointerEvents: 'none' }}
       >
         <div style={{ transform: 'scaleX(-1)' }}>
-          <h3 className="text-2xl font-bold font-montserrat uppercase mb-2">{title}</h3>
+          <h3 className="text-lg md:text-2xl font-bold font-montserrat uppercase mb-2">{title}</h3>
           {description && (
-            <p className="text-base font-light">{description}</p>
+            <p className="text-sm md:text-base font-light">{description}</p>
           )}
           {!description && (
-            <p className="text-base font-light">More information about {title} will go here.</p>
+            <p className="text-sm md:text-base font-light">More information about {title} will go here.</p>
           )}
         </div>
       </motion.div>

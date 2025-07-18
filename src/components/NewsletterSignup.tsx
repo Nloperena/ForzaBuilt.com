@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Mail, User, Phone, Building, Send } from 'lucide-react';
 
 interface FormData {
   email: string;
@@ -89,99 +90,132 @@ const NewsletterSignup = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto mt-16 flex gap-8 items-start">
-      {/* Disclaimer Text */}
-      <div className="w-1/3 p-6 bg-white/5 rounded-lg backdrop-blur-sm">
-        <h3 className="text-xl font-bold text-white mb-4">Newsletter Signup</h3>
-        <p className="text-white/80 text-sm leading-relaxed">
-          Stay updated with the latest industry insights, product innovations, and technical solutions from Forza Built.
-        </p>
-      </div>
-
-      {/* Form */}
-      <div className="w-2/3 p-6 bg-white/10 rounded-lg backdrop-blur-sm">
-        <h3 className="text-2xl font-bold text-white mb-4">Stay Updated</h3>
-        <p className="text-white/80 mb-6">
-          Subscribe to our newsletter for the latest industry insights and updates.
-        </p>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-4">
-            <div>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Full Name *"
-                className={`w-full px-4 py-2 rounded-lg bg-white/5 border ${
-                  errors.name ? 'border-red-400' : 'border-white/20'
-                } text-white placeholder-white/50 focus:outline-none focus:border-white/40`}
-              />
-              {errors.name && (
-                <p className="text-red-400 text-sm mt-1">{errors.name}</p>
-              )}
+    <div className="w-full max-w-5xl mx-auto">
+      <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl border border-white/20 shadow-2xl overflow-hidden">
+        <div className="p-6 md:p-8 lg:p-10">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* Left Side - Info */}
+            <div className="space-y-6">
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="p-3 bg-white/10 rounded-full">
+                  <Mail className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold text-white">Join Our Community</h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-[#F2611D] rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-white/90 text-sm md:text-base">
+                    Exclusive access to industry insights and technical solutions
+                  </p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-[#F2611D] rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-white/90 text-sm md:text-base">
+                    Early access to new product launches and innovations
+                  </p>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <div className="w-2 h-2 bg-[#F2611D] rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-white/90 text-sm md:text-base">
+                    Expert tips and best practices for your applications
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address *"
-                className={`w-full px-4 py-2 rounded-lg bg-white/5 border ${
-                  errors.email ? 'border-red-400' : 'border-white/20'
-                } text-white placeholder-white/50 focus:outline-none focus:border-white/40`}
-              />
-              {errors.email && (
-                <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-              )}
-            </div>
+            {/* Right Side - Form */}
+            <div className="space-y-6">
+              <h4 className="text-xl md:text-2xl font-semibold text-white mb-4">Get Started Today</h4>
+              
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Full Name *"
+                    className={`w-full pl-10 pr-4 py-3 md:py-4 rounded-lg bg-white/10 border text-base backdrop-blur-sm ${
+                      errors.name ? 'border-red-400' : 'border-white/20'
+                    } text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/20 transition-all`}
+                  />
+                  {errors.name && (
+                    <p className="text-red-400 text-xs md:text-sm mt-1">{errors.name}</p>
+                  )}
+                </div>
 
-            <div>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Phone Number *"
-                className={`w-full px-4 py-2 rounded-lg bg-white/5 border ${
-                  errors.phone ? 'border-red-400' : 'border-white/20'
-                } text-white placeholder-white/50 focus:outline-none focus:border-white/40`}
-              />
-              {errors.phone && (
-                <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
-              )}
-            </div>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email Address *"
+                    className={`w-full pl-10 pr-4 py-3 md:py-4 rounded-lg bg-white/10 border text-base backdrop-blur-sm ${
+                      errors.email ? 'border-red-400' : 'border-white/20'
+                    } text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/20 transition-all`}
+                  />
+                  {errors.email && (
+                    <p className="text-red-400 text-xs md:text-sm mt-1">{errors.email}</p>
+                  )}
+                </div>
 
-            <div>
-              <input
-                type="text"
-                name="company"
-                value={formData.company}
-                onChange={handleChange}
-                placeholder="Company Name (Optional)"
-                className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-white/40"
-              />
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Phone Number *"
+                    className={`w-full pl-10 pr-4 py-3 md:py-4 rounded-lg bg-white/10 border text-base backdrop-blur-sm ${
+                      errors.phone ? 'border-red-400' : 'border-white/20'
+                    } text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/20 transition-all`}
+                  />
+                  {errors.phone && (
+                    <p className="text-red-400 text-xs md:text-sm mt-1">{errors.phone}</p>
+                  )}
+                </div>
+
+                <div className="relative">
+                  <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/50" />
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Company Name (Optional)"
+                    className="w-full pl-10 pr-4 py-3 md:py-4 rounded-lg bg-white/10 border border-white/20 text-base text-white placeholder-white/50 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/20 transition-all backdrop-blur-sm"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full bg-gradient-to-r from-[#F2611D] to-[#F2611D]/90 text-white rounded-lg font-semibold text-base py-3 md:py-4 hover:from-[#F2611D]/90 hover:to-[#F2611D] transition-all duration-200 disabled:opacity-50 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
+                >
+                  <Send className="w-5 h-5" />
+                  <span>{status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}</span>
+                </button>
+                
+                {status === 'success' && (
+                  <div className="bg-green-500/20 border border-green-400/30 rounded-lg p-4">
+                    <p className="text-green-400 text-sm text-center">Thank you for subscribing! We'll be in touch soon.</p>
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="bg-red-500/20 border border-red-400/30 rounded-lg p-4">
+                    <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>
+                  </div>
+                )}
+              </form>
             </div>
           </div>
-
-          <button
-            type="submit"
-            disabled={status === 'loading'}
-            className="w-full px-6 py-3 bg-white text-[#1b3764] rounded-lg font-semibold hover:bg-white/90 transition-colors disabled:opacity-50"
-          >
-            {status === 'loading' ? 'Subscribing...' : 'Subscribe Now'}
-          </button>
-          
-          {status === 'success' && (
-            <p className="text-green-400 text-sm text-center">Thank you for subscribing! We'll be in touch soon.</p>
-          )}
-          {status === 'error' && (
-            <p className="text-red-400 text-sm text-center">Something went wrong. Please try again.</p>
-          )}
-        </form>
+        </div>
       </div>
     </div>
   );

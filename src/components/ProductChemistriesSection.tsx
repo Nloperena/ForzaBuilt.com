@@ -25,10 +25,10 @@ const ProductChemistriesSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-[#1b3764] text-white relative">
-      <div className="w-full px-4 max-w-7xl mx-auto z-10 relative">
-        <h2 className="text-5xl font-extrabold mb-8 text-center font-kallisto">Product Chemistries</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="py-12 md:py-20 bg-[#1b3764] text-white relative">
+      <div className="w-full px-4 md:px-6 max-w-7xl mx-auto z-10 relative">
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-6 md:mb-8 text-center font-kallisto">Product Chemistries</h2>
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {chemistryCategories.map((category, index) => (
             <div key={index} className="aspect-square">
               <ChemistryCard title={category.name} icon={category.icon} description={category.description} />
