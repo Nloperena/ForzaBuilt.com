@@ -11,9 +11,13 @@ import IndustryBrochureSection from '../../components/IndustryBrochureSection';
 import ConstructionProductSelection from '../../components/ConstructionProductSelection';
 import { allProducts } from '../../data/productsData';
 import { motion } from 'framer-motion';
-import XRayExplorer from '../../components/XRayExplorer';
+// Use the shared, more advanced X-Ray component
+// @ts-ignore -- resolved via relative path outside tsconfig base
+import XRayExplorer from '../../../../stickyxrayeffect/src/components/XRayExplorer';
 import { CONSTRUCTION_DATA } from '../../data/construction';
-import { MARINE_DATA } from '../../data/marine';
+// Marine data with full SVG overlay & hotspots from shared project
+// @ts-ignore - external path outside TS base
+import { MARINE_DATA as STICKY_MARINE_DATA } from '../../../../stickyxrayeffect/src/data/industries/marine';
 import { TRANSPORTATION_DATA } from '../../data/transportation';
 import { INDUSTRIAL_DATA } from '../../data/industrial';
 import { FOAM_DATA } from '../../data/foam';
@@ -38,7 +42,7 @@ const IndustryPage = () => {
       case 'construction':
         return CONSTRUCTION_DATA;
       case 'marine':
-        return MARINE_DATA;
+        return STICKY_MARINE_DATA;
       case 'transportation':
         return TRANSPORTATION_DATA;
       case 'composites':
@@ -62,7 +66,7 @@ const IndustryPage = () => {
         image: product.image,
         url: product.url,
         productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
-        industries: product.industry,
+        industries: Array.isArray(product.industry) ? product.industry : [product.industry],
         description: product.description
       }));
     }
@@ -83,7 +87,7 @@ const IndustryPage = () => {
       image: product.image,
       url: product.url,
       productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
-      industries: product.industry,
+      industries: Array.isArray(product.industry) ? product.industry : [product.industry],
       description: product.description
     }));
   };
