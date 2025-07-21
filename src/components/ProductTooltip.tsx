@@ -1,111 +1,155 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { X, ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
-interface ProductTooltipProps {
-  product: {
-    sku: string;
-    name: string;
-    blurb: string;
-    url: string;
-    thumb: string;
+interface HotspotTooltipProps {
+  hotspot: {
+    product?: {
+      sku: string;
+      name: string;
+      blurb: string;
+      url: string;
+      thumb: string;
+    };
+    experience?: {
+      title: string;
+      description: string;
+      icon: string;
+    };
   };
   isPinned?: boolean;
   onClose?: () => void;
 }
 
-const ProductTooltip: React.FC<ProductTooltipProps> = ({ 
-  product, 
+const HotspotTooltip: React.FC<HotspotTooltipProps> = ({ 
+  hotspot, 
   isPinned = false, 
   onClose 
 }) => {
+  // Check if this is a product or experience hotspot
+  const isProduct = hotspot.product;
+  const isExperience = hotspot.experience;
+
   return (
     <AnimatePresence>
       <motion.div
         className={`
           absolute z-50 pointer-events-auto
           ${isPinned 
-            ? 'bottom-4 right-4 left-4 md:left-auto md:w-72' 
-            : 'bottom-4 right-4 w-64 hidden md:block'
+            ? 'bottom-4 right-4 left-4 md:left-auto md:w-96' 
+            : 'bottom-4 right-4 w-80 hidden md:block'
           }
         `}
-        initial={{ y: 20, scale: 0.9 }}
-        animate={{ y: 0, scale: 1 }}
-        exit={{ y: 20, scale: 0.9 }}
-        transition={{ duration: 0 }}
+        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.9 }}
+        transition={{ type: "spring", duration: 0.3 }}
       >
-        <div className="overflow-hidden shadow-xl border-2 bg-white/95 backdrop-blur-sm rounded-lg group">
-          <div className="relative w-full aspect-[4/3]">
-            {/* Background Image */}
-            <img 
-              src={product.thumb}
-              alt={product.name}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
-            />
-            
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            
-            {/* Close Button for Pinned State */}
-            {isPinned && onClose && (
-              <button
-                onClick={onClose}
-                className="absolute top-1.5 right-1.5 h-5 w-5 p-0 bg-black/20 hover:bg-black/40 text-white border border-white/20 backdrop-blur-sm z-10 rounded-full flex items-center justify-center"
-                aria-label="Close product details"
-              >
-                <svg className="h-2.5 w-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            )}
-            
-            {/* Content Overlay */}
-            <div className="absolute inset-0 p-3 flex flex-col justify-end text-white">
-              <div className="space-y-1">
-                <h3 className="font-semibold text-base leading-tight line-clamp-2">
-                  {product.name}
-                </h3>
-                
-                <p className="text-xs text-white/60">
-                  SKU: {product.sku}
-                </p>
-                
-                <div className="flex gap-1.5 mt-2">
-                  <a 
-                    href={product.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-white/20 hover:bg-white/30 text-white border border-white/30 backdrop-blur-sm rounded px-2 py-1.5 text-xs font-medium text-center flex items-center justify-center gap-1 transition-colors"
-                  >
-                    View Product
-                    <svg className="h-2.5 w-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
+        <Card className="overflow-hidden shadow-xl border-2 bg-card/95 backdrop-blur-sm group">
+          {isProduct && (
+            <div className="bg-blue-900">
+              <AspectRatio ratio={16/9}>
+                <img 
+                  src={hotspot.product!.thumb}
+                  alt={hotspot.product!.name}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </AspectRatio>
+            </div>
+          )}
+          
+          {/* Close Button for Pinned State */}
+          {isPinned && onClose && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="absolute top-2 right-2 h-6 w-6 p-0 bg-black/20 hover:bg-black/40 text-white border-white/20 backdrop-blur-sm z-10"
+              aria-label="Close details"
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          )}
+
+          {/* Content section */}
+          <div className="p-4 bg-background">
+            <div className="space-y-2">
+              {isProduct && (
+                <>
+                  <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-foreground">
+                    {hotspot.product!.name}
+                  </h3>
                   
-                  {!isPinned && (
-                    <button 
-                      onClick={() => {/* Add to favorites logic */}}
-                      className="bg-white/20 hover:bg-white/30 text-white border border-white/30 backdrop-blur-sm rounded px-2 py-1.5 text-xs font-medium transition-colors"
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {hotspot.product!.blurb}
+                  </p>
+                  
+                  <p className="text-xs text-muted-foreground/80">
+                    SKU: {hotspot.product!.sku}
+                  </p>
+                  
+                  <div className="flex gap-2 pt-2">
+                    <Button 
+                      asChild 
+                      size="sm" 
+                      className="flex-1"
                     >
-                      Save
-                    </button>
-                  )}
-                </div>
-              </div>
+                      <a 
+                        href={hotspot.product!.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-2"
+                      >
+                        View Product
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    </Button>
+                    
+                    {!isPinned && (
+                      <Button 
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {/* Add to favorites logic */}}
+                        className="px-3"
+                      >
+                        Save
+                      </Button>
+                    )}
+                  </div>
+                </>
+              )}
+
+              {isExperience && (
+                <>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">{hotspot.experience!.icon}</span>
+                    <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-foreground">
+                      {hotspot.experience!.title}
+                    </h3>
+                  </div>
+                  
+                  <p className="text-sm text-muted-foreground line-clamp-3">
+                    {hotspot.experience!.description}
+                  </p>
+                </>
+              )}
             </div>
           </div>
-        </div>
+        </Card>
         
         {/* Mobile-specific tap instruction */}
         {!isPinned && (
           <motion.p
-            className="md:hidden text-xs text-gray-600 text-center mt-2 px-2"
+            className="md:hidden text-xs text-muted-foreground text-center mt-2 px-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Tap the highlighted area to pin this product card
+            Tap the highlighted area to pin this {isProduct ? 'product card' : 'information'}
           </motion.p>
         )}
       </motion.div>
@@ -113,4 +157,4 @@ const ProductTooltip: React.FC<ProductTooltipProps> = ({
   );
 };
 
-export default ProductTooltip; 
+export default HotspotTooltip;

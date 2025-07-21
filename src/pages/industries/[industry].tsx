@@ -9,6 +9,7 @@ import DynamicProductsSection from '../../components/DynamicProductsSection';
 import MarineProductsGrid from '../../components/MarineProductsGrid';
 import IndustryBrochureSection from '../../components/IndustryBrochureSection';
 import ConstructionProductSelection from '../../components/ConstructionProductSelection';
+import XRayExplorer from '../../components/XRayExplorer';
 import { allProducts } from '../../data/productsData';
 import { motion } from 'framer-motion';
 import { CONSTRUCTION_DATA } from '../../data/construction';
@@ -17,6 +18,7 @@ import { INDUSTRIAL_DATA } from '../../data/industrial';
 import { FOAM_DATA } from '../../data/foam';
 import { COMPOSITES_DATA } from '../../data/composites';
 import { INSULATION_DATA } from '../../data/insulation';
+import { MARINE_DATA } from '../../data/industries/marine';
 import { industrialDatasheet, getProductsByIndustry } from '../../data/industrialDatasheet';
 import { INDUSTRIAL_PRODUCTS } from '../../data/industrialProducts';
 
@@ -161,6 +163,18 @@ const IndustryPage = () => {
 
       {/* Stackable Cards Section */}
       <DynamicIndustryCards />
+
+      {/* X-Ray Explorer Section - Only for Marine */}
+      {industryData.title.toLowerCase() === 'marine' && (
+        <>
+          <section className="bg-white">
+            <XRayExplorer industry={MARINE_DATA} xrayIndex={0} />
+          </section>
+          <section className="bg-white">
+            <XRayExplorer industry={MARINE_DATA} xrayIndex={1} />
+          </section>
+        </>
+      )}
 
       {/* Scroll Stack Cards Section */}
 

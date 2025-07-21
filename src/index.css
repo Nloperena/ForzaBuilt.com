@@ -169,4 +169,17 @@
     padding-top: 25rem;
     padding-bottom: 5rem;
   }
+  
+  /* X-Ray Hotspot Styles */
+  .hotspot-default { 
+    @apply fill-[hsl(var(--primary)/.4)] stroke-transparent transition-all duration-300; 
+  }
+  
+  .hotspot-active { 
+    @apply fill-[hsl(var(--primary)/.7)] stroke-[hsl(var(--primary))] stroke-2 cursor-pointer; 
+  }
+  
+  .hotspot-active:hover {
+    @apply fill-[hsl(var(--primary)/.8)] brightness-110;
+  }
 }

@@ -24,7 +24,7 @@ export interface XRayComponent {
   id: string;                // 'xray-1', 'xray-2', etc.
   preSrc: string;            // before image
   postSrc: string;           // after (X-ray) image — same W×H
-  svgOverlay?: string;       // Optional SVG overlay
+  svgOverlay?: string;       // optional SVG overlay file path
   width: number;             // original pixel width  (needed for normalising points)
   height: number;            // original pixel height
   hotspots: Hotspot[];       // parsed from the legacy SVG + hover code
@@ -34,4 +34,4 @@ export interface XRayComponent {
 export interface IndustryData {
   id: string;                // 'marine'
   xrays: XRayComponent[];    // 0-2 X-ray components per industry
-} 
+}
