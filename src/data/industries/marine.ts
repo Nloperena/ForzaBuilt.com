@@ -1,12 +1,13 @@
-import { IndustryData } from '@/types/industry';
+import { IndustryData } from '@/types/xray';
 
 export const MARINE_DATA: IndustryData = {
   id: 'marine',
   xrays: [
     {
       id: 'marine-xray-1',
-      preSrc: '',
-      postSrc: 'https://images.ctfassets.net/hdznx4p7ef81/1kmvtrPRhchlnM3OMmLUZz/98dcbd7d34a19c38503536a8022e1e38/Boat-Pre-X-Ray2-transparent-2.png',
+      preSrc: 'https://images.ctfassets.net/hdznx4p7ef81/6ouZLSgoHcLk2OWbaLla5o/5a0b49f23638ef42ae95237477fa2ad3/Marine_Boat.png',
+      postSrc: 'https://images.ctfassets.net/hdznx4p7ef81/5pUlDcvSsLIMeyC4HXQaK1/5acbb21568d484ffa5aa00506d499613/Marine_Exploded_Boat_Graphic.png',
+      svgOverlay: 'https://images.ctfassets.net/hdznx4p7ef81/3AnnMH4nZ6bapCk1KD7tJX/9471824ab4cf34934524887a1659a138/Marine_Pontoon_SVG.svg',
       width: 3840,
       height: 2160,
       hotspots: [
@@ -47,13 +48,14 @@ export const MARINE_DATA: IndustryData = {
     },
     {
       id: 'marine-xray-2',
-      preSrc: 'https://images.ctfassets.net/hdznx4p7ef81/7DHVVY1zO3K85ydN1XxDxD/5f0ef656b0edf182f43e0b6f91d685b6/Pontoon_Boat_Exploded_Graphic.jpg',
-      postSrc: 'https://images.ctfassets.net/hdznx4p7ef81/7DHVVY1zO3K85ydN1XxDxD/7473912e21a0ee3aa0204d45f1737a5d/Pontoon_Boat.png',
+      preSrc: 'https://images.ctfassets.net/hdznx4p7ef81/6HWrpaU0ZzK2cBIqSHXXZS/1daedcc2cdfb0d366c5a8db29b592dcf/Pontoon_Boat__1_.png',
+      postSrc: 'https://images.ctfassets.net/hdznx4p7ef81/4pfvji0pqdNa39baRHeeDc/ecaa4157a51a62008a83f270467cbea1/Pontoon_Boat_Exploded_Graphic__1_.jpg',
+      svgOverlay: 'https://images.ctfassets.net/hdznx4p7ef81/3AnnMH4nZ6bapCk1KD7tJX/9471824ab4cf34934524887a1659a138/Marine_Pontoon_SVG.svg',
       width: 3840,
       height: 2160,
       hotspots: [
         {
-          id: '1-1-dup',
+          id: 'pontoon-1-1',
           points: [768,432, 1152,432, 1152,648, 768,648],
           product: {
             sku: 'MA1001',
@@ -64,7 +66,7 @@ export const MARINE_DATA: IndustryData = {
           },
         },
         {
-          id: '1-2-dup', 
+          id: 'pontoon-1-2', 
           points: [1536,540, 1920,540, 1920,756, 1536,756],
           product: {
             sku: 'MA1002',
@@ -75,7 +77,7 @@ export const MARINE_DATA: IndustryData = {
           },
         },
         {
-          id: '1-3-dup',
+          id: 'pontoon-1-3',
           points: [2304,648, 2688,648, 2688,864, 2304,864],
           product: {
             sku: 'MA1003',

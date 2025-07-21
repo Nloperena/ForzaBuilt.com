@@ -11,13 +11,7 @@ import IndustryBrochureSection from '../../components/IndustryBrochureSection';
 import ConstructionProductSelection from '../../components/ConstructionProductSelection';
 import { allProducts } from '../../data/productsData';
 import { motion } from 'framer-motion';
-// Use the shared, more advanced X-Ray component
-// @ts-ignore -- resolved via relative path outside tsconfig base
-import XRayExplorer from '../../../../stickyxrayeffect/src/components/XRayExplorer';
 import { CONSTRUCTION_DATA } from '../../data/construction';
-// Marine data with full SVG overlay & hotspots from shared project
-// @ts-ignore - external path outside TS base
-import { MARINE_DATA as STICKY_MARINE_DATA } from '../../../../stickyxrayeffect/src/data/industries/marine';
 import { TRANSPORTATION_DATA } from '../../data/transportation';
 import { INDUSTRIAL_DATA } from '../../data/industrial';
 import { FOAM_DATA } from '../../data/foam';
@@ -35,24 +29,7 @@ const IndustryPage = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  // Helper function to get X-Ray data for the current industry
-  const getXRayDataForIndustry = (industryTitle: string) => {
-    const industryLower = industryTitle.toLowerCase();
-    switch (industryLower) {
-      case 'construction':
-        return CONSTRUCTION_DATA;
-      case 'marine':
-        return STICKY_MARINE_DATA;
-      case 'transportation':
-        return TRANSPORTATION_DATA;
-      case 'composites':
-        return COMPOSITES_DATA;
-      case 'insulation':
-        return INSULATION_DATA;
-      default:
-        return null;
-    }
-  };
+
 
   // Helper function to convert datasheet products to component format
   const convertDatasheetToProducts = (industryName: string) => {
@@ -179,17 +156,6 @@ const IndustryPage = () => {
           </div>
         </section>
       )}
-
-      {/* X-Ray Explorer Section - For All Industries */}
-      {getXRayDataForIndustry(industryData.title) && 
-        getXRayDataForIndustry(industryData.title)!.xrays.map((xray, index) => (
-          <XRayExplorer 
-            key={xray.id}
-            industry={getXRayDataForIndustry(industryData.title)!} 
-            xrayIndex={index} 
-          />
-        ))
-      }
 
 
 
