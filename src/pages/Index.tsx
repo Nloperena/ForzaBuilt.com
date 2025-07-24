@@ -5,7 +5,7 @@ import { IndustriesCarouselSection } from '@/components/IndustriesCarouselSectio
 import ProductsSection from '@/components/ProductsSection';
 import StickyBackgroundSection from '@/components/StickyBackgroundSection';
 import ScrollSections from '@/components/ScrollSections';
-import XRayWipe from '@/components/XRayWipe';
+
 import InteractiveBuildingMap from '@/components/InteractiveBuildingMap';
 import ServiceCardStack from '@/components/ServiceCardStack';
 import { ServiceCardData } from '@/types/ServiceCard';
@@ -85,8 +85,7 @@ const Index = () => {
       {/* Our Chemistries Section */}
       <ProductChemistriesSection />
 
-      {/* XRay Wipe Section - Before and After Comparison */}
-      
+
 
       {/* First service card stack with default data */}
     

@@ -1,6 +1,8 @@
-import { IndustryData } from '@/types/industry';
-
-export const FOAM_DATA: IndustryData = {
+export const FOAM_DATA = {
   id: 'foam',
-  xrays: [], // No X-Ray components for this industry
+  title: 'Foam',
+  description: 'Specialized foam bonding and sealing solutions',
+  videoUrl: 'https://images.ctfassets.net/hdznx4p7ef81/foam-product-normal.png',
+  logo: '🧽',
+  color: '#7a6fb0',
 };

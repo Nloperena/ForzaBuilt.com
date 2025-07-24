@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, MotionValue, useTransform } from 'framer-motion';
-import { XRayComponent, Hotspot } from '@/types/industry';
+import { XRayComponent, Hotspot } from '../types/xray';
 import HotspotTooltip from './ProductTooltip';
 
 interface SvgHotspotOverlayProps {
@@ -110,6 +110,10 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
         className="w-full h-full"
         viewBox={viewBox}
         xmlns="http://www.w3.org/2000/svg"
+        style={{
+          border: '2px solid rgba(255,255,255,0.8)',
+          borderRadius: '4px'
+        }}
       >
 
         {xray.hotspots.map((hotspot, index) => {
@@ -131,14 +135,20 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
               {svgPolygon.tagName === 'polygon' ? (
                 <motion.polygon
                   points={points}
-                  fill="hsl(var(--primary))"
-                  stroke="hsl(var(--primary-foreground))"
+                  fill="rgba(245,108,35,0.79)"
+                  stroke="rgba(255,255,255,0.1)"
                   strokeWidth="1"
                   className="cursor-pointer"
+                  style={{
+                    filter: isHighlight ? 
+                      'drop-shadow(0 0 8px rgba(8,96,143,0.8)) drop-shadow(0 0 12px rgba(8,96,143,0.6)) brightness(1.3)' : 
+                      'none',
+                    outline: 'none'
+                  }}
                   initial={{ opacity: 0, transform: 'scale(0.8)' }}
                   animate={{
-                    opacity: isActive ? (isHighlight ? 0.6 : 0.25) : 0,
-                    transform: isActive ? (isHighlight ? 'scale(1.05)' : 'scale(1)') : 'scale(0.8)',
+                    opacity: isActive ? (isHighlight ? 1.0 : 0.65) : 0,
+                    transform: isActive ? (isHighlight ? 'scale(1.1)' : 'scale(1)') : 'scale(0.8)',
                   }}
                   transition={{
                     duration: 0.3,
@@ -160,14 +170,20 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
               ) : (
                 <motion.path
                   d={points}
-                  fill="hsl(var(--primary))"
-                  stroke="hsl(var(--primary-foreground))"
+                  fill="rgba(245,108,35,0.79)"
+                  stroke="rgba(255,255,255,0.1)"
                   strokeWidth="1"
                   className="cursor-pointer"
+                  style={{
+                    filter: isHighlight ? 
+                      'drop-shadow(0 0 8px rgba(8,96,143,0.8)) drop-shadow(0 0 12px rgba(8,96,143,0.6)) brightness(1.3)' : 
+                      'none',
+                    outline: 'none'
+                  }}
                   initial={{ opacity: 0, transform: 'scale(0.8)' }}
                   animate={{
-                    opacity: isActive ? (isHighlight ? 0.6 : 0.25) : 0,
-                    transform: isActive ? (isHighlight ? 'scale(1.05)' : 'scale(1)') : 'scale(0.8)',
+                    opacity: isActive ? (isHighlight ? 1.0 : 0.65) : 0,
+                    transform: isActive ? (isHighlight ? 'scale(1.1)' : 'scale(1)') : 'scale(0.8)',
                   }}
                   transition={{
                     duration: 0.3,
@@ -240,4 +256,4 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
   );
 };
 
-export default SvgHotspotOverlay;
+export default SvgHotspotOverlay; 

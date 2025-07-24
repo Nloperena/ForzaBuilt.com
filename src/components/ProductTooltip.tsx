@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Button } from './ui/button';
+import { Card } from './ui/card';
+import { AspectRatio } from './ui/aspect-ratio';
 
 interface HotspotTooltipProps {
   hotspot: {

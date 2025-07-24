@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import { IndustryData, XRayComponent, Hotspot } from '@/types/industry';
+import { IndustryData, XRayComponent, Hotspot } from '../types/xray';
 import ProductTooltip from './ProductTooltip';
 import SvgHotspotOverlay from './SvgHotspotOverlay';
 
@@ -182,7 +182,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                           onClick={() => isActive && setActiveHotspot(hotspot)}
                           tabIndex={isActive ? 0 : -1}
                           role="button"
-                          aria-label={`${hotspot.product.name} - ${hotspot.product.blurb}`}
+                          aria-label={hotspot.product ? `${hotspot.product.name} - ${hotspot.product.blurb}` : `${hotspot.experience?.title || 'hotspot'} - ${hotspot.experience?.description || ''}`}
                         />
                       );
                     })}
@@ -238,7 +238,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                       }}
                     >
                       <ProductTooltip 
-                        product={activeHotspot.product}
+                        hotspot={activeHotspot}
                         isPinned={false}
                       />
                     </div>
@@ -307,4 +307,4 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
   );
 };
 
-export default XRayExplorer;
+export default XRayExplorer; 

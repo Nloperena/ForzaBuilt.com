@@ -73,7 +73,7 @@ src/
 
 ## Key Components
 
-- **XRayWipe**: Main scroll-driven X-Ray effect component with before/after comparison
+
 - **InteractiveBuildingMap**: SVG-based interactive product selection with hover and scroll functionality
 - **ApplicationsModal**: Product information modal system
 - **ServiceCardStack**: Stackable service cards with scroll animations
