@@ -50,7 +50,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Logo className="h-8 w-auto sm:h-10" />
+            <Logo className="h-6 w-auto sm:h-8 md:h-10" />
           </div>
           
           {/* Desktop Navigation */}
@@ -77,9 +77,9 @@ const Header = () => {
           </div>
 
           {/* Mobile Navigation - Simplified and Clean */}
-          <div className="lg:hidden flex items-center space-x-3">
+          <div className="lg:hidden flex items-center space-x-2 sm:space-x-3">
             {/* Mobile Contact Button */}
-            <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium">
+            <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-2 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-medium">
               <Link to="/contact">Contact</Link>
             </Button>
 
@@ -89,11 +89,11 @@ const Header = () => {
             {/* Mobile Menu Toggle */}
             <button 
               type="button" 
-              className="text-white hover:text-gray-200 transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20" 
+              className="text-white hover:text-gray-200 transition-colors duration-200 p-1 sm:p-2 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20" 
               onClick={openMobileMenu}
               aria-label="Open mobile menu"
             >
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
               </svg>
             </button>

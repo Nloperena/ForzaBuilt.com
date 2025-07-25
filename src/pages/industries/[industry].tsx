@@ -9,9 +9,12 @@ import DynamicProductsSection from '../../components/DynamicProductsSection';
 import MarineProductsGrid from '../../components/MarineProductsGrid';
 import IndustryBrochureSection from '../../components/IndustryBrochureSection';
 import ConstructionProductSelection from '../../components/ConstructionProductSelection';
-import XRayExplorer from '../../components/XRayExplorer';
+import XRayExplorer from '../../components/xray/XRayExplorer';
 import { MARINE_DATA } from '../../data/industries/marine';
+import { CONSTRUCTION_DATA } from '../../data/industries/construction';
+import { TRANSPORTATION_DATA } from '../../data/industries/transportation';
 import { COMPOSITES_DATA } from '../../data/industries/composites';
+import { INSULATION_DATA } from '../../data/industries/insulation';
 
 import { allProducts } from '../../data/productsData';
 import { motion } from 'framer-motion';
@@ -96,7 +99,7 @@ const IndustryPage = () => {
     <div className="bg-[#1b3764] min-h-screen flex flex-col">
       <Header />
       {/* Hero Banner */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden z-10">
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden z-10">
         <video
           key={industryData.videoUrl}
           autoPlay
@@ -111,14 +114,14 @@ const IndustryPage = () => {
 
       {/* Title Overlap Container */}
       <div className="relative z-40 flex justify-center -mt-20">
-        <div className="w-full px-10 py-4 bg-white text-center relative flex items-center justify-center">
-          <h1 className="text-9xl md:text-11xl font-extrabold font-kallisto flex items-center" style={{ color: industryData.color || '#1b3764', marginTop: '-5rem' }}>
-            {industryData.title.toUpperCase()}
+        <div className="w-full px-4 sm:px-6 md:px-10 py-4 bg-white text-center relative flex items-center justify-center">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-11xl font-extrabold font-kallisto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4" style={{ color: industryData.color || '#1b3764', marginTop: '-2rem sm:-3rem md:-4rem lg:-5rem' }}>
+            <span className="leading-tight">{industryData.title.toUpperCase()}</span>
             {industryData.logo && (
               <img
                 src={industryData.logo}
                 alt={industryData.title + ' logo'}
-                className="inline-block align-middle ml-2 h-64 w-auto object-contain"
+                className="inline-block align-middle h-16 sm:h-24 md:h-32 lg:h-48 xl:h-64 w-auto object-contain"
                 loading="lazy"
               />
             )}
@@ -128,26 +131,64 @@ const IndustryPage = () => {
 
       {/* Dynamic Industry Headings Section */}
       {industryData.pageHeadline && (
-        <section className="bg-white text-[#1b3764] py-16">
-          <div className="w-full px-4 max-w-[1600px] mx-auto">
-            <motion.h3 
-              className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-8 text-center leading-tight font-kallisto text-[#1b3764]"
+        <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16">
+          <div className="w-full px-4 sm:px-6 max-w-[1600px] mx-auto">
+            <motion.div 
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4 sm:mb-6 md:mb-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              {industryData.pageHeadline}
-            </motion.h3>
+              {/* Industry Icon */}
+              {industryData.title.toLowerCase() === 'marine' && (
+                <img 
+                  src="/src/assets/SVG/Marine SVG 1.svg"
+                  alt="Marine Industry Icon"
+                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
+                />
+              )}
+              {industryData.title.toLowerCase() === 'construction' && (
+                <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-[#1b3764]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              )}
+              {industryData.title.toLowerCase() === 'transportation' && (
+                <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-[#1b3764]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 16.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                  <path d="M16 16.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                  <path d="M7 16V4H5v12h2zm10 0V4h-2v12h2z"/>
+                  <path d="M7 16V4H5v12h2zm10 0V4h-2v12h2z"/>
+                </svg>
+              )}
+              {industryData.title.toLowerCase() === 'composites' && (
+                <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-[#1b3764]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              )}
+              {industryData.title.toLowerCase() === 'insulation' && (
+                <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-[#1b3764]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              )}
+              <h3 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-center leading-tight font-kallisto text-[#1b3764]"
+              >
+                {industryData.pageHeadline}
+              </h3>
+            </motion.div>
             {industryData.supportingText && (
               <motion.div 
-                className="max-w-4xl mx-auto text-lg md:text-xl text-gray-700 leading-relaxed"
+                className="max-w-4xl mx-auto text-base sm:text-lg md:text-xl text-gray-900 leading-relaxed px-4 sm:px-6 md:px-8"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
               >
-                <div className="whitespace-pre-line">
+                <div className="whitespace-pre-line font-semibold text-center">
                   {industryData.supportingText}
                 </div>
               </motion.div>
@@ -156,9 +197,7 @@ const IndustryPage = () => {
         </section>
       )}
 
-
-
-      {/* X-Ray Explorer Section - Marine */}
+      {/* X-Ray Explorer Sections */}
       {industryData.title.toLowerCase() === 'marine' && (
         <>
           <section className="bg-white">
@@ -170,11 +209,43 @@ const IndustryPage = () => {
         </>
       )}
 
-      {/* X-Ray Explorer Section - Composites */}
+      {industryData.title.toLowerCase() === 'construction' && (
+        <>
+          <section className="bg-white">
+            <XRayExplorer industry={CONSTRUCTION_DATA} xrayIndex={0} />
+          </section>
+          <section className="bg-white">
+            <XRayExplorer industry={CONSTRUCTION_DATA} xrayIndex={1} />
+          </section>
+        </>
+      )}
+
+      {industryData.title.toLowerCase() === 'transportation' && (
+        <>
+          <section className="bg-white">
+            <XRayExplorer industry={TRANSPORTATION_DATA} xrayIndex={0} />
+          </section>
+          <section className="bg-white">
+            <XRayExplorer industry={TRANSPORTATION_DATA} xrayIndex={1} />
+          </section>
+        </>
+      )}
+
       {industryData.title.toLowerCase() === 'composites' && (
         <section className="bg-white">
           <XRayExplorer industry={COMPOSITES_DATA} xrayIndex={0} />
         </section>
+      )}
+
+      {industryData.title.toLowerCase() === 'insulation' && (
+        <>
+          <section className="bg-white">
+            <XRayExplorer industry={INSULATION_DATA} xrayIndex={0} />
+          </section>
+          <section className="bg-white">
+            <XRayExplorer industry={INSULATION_DATA} xrayIndex={1} />
+          </section>
+        </>
       )}
 
       {/* Stackable Cards Section */}

@@ -182,4 +182,14 @@
   .hotspot-active:hover {
     @apply fill-[hsl(var(--primary)/.8)] brightness-110;
   }
+  
+  /* X-Ray Utility Classes */
+  .dvh-100 { 
+    height: 100dvh; 
+  }
+  
+  .scroll-smooth-mobile {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
 }

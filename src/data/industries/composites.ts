@@ -1,4 +1,4 @@
-import { IndustryData } from '../../types/xray';
+import { IndustryData } from '../../types/industry';
 
 export const COMPOSITES_DATA: IndustryData = {
   id: 'composites',
