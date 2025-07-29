@@ -179,48 +179,48 @@ export const industrialCards: GenericCardData[] = [
 ];
 
 // Foam Industry Cards
-export const foamCards: GenericCardData[] = [
-  {
-    id: 'foam-manufacturing',
-    title: 'Foam Manufacturing Solutions',
-    subtitle: 'Complete line of foam-optimized adhesive solutions',
-    description: 'Forza has a complete line of foam-optimized adhesive solutions. Our range of chemistries and performance-enhancing technologies deliver superior adhesive, sealing, and bonding outcomes for foam-related applications.',
-    features: [
-      'Mattress Manufacturing',
-      'Seating & Upholstery',
-      'General Foam Manufacturing',
-      'Foam Packaging',
-      'Numerous other applications'
-    ],
-    buttonText: 'Explore Solutions',
-    buttonLink: '/foam/manufacturing',
-    imageUrl: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Foam-2-scaled.jpeg',
-    icon: '🧽',
-    badge: 'Foam Solutions',
-    theme: 'foam',
-    layout: 'default'
-  },
-  {
-    id: 'foam-bonding-technologies',
-    title: 'Advanced Bonding Technologies',
-    subtitle: 'Long-lasting foam bonding to many surfaces',
-    description: 'With a full R&D formulations lab at our disposal, a global vendor network, and US-based manufacturing and packaging, we\'re able to deliver tailor-made solutions that are rugged enough and specialized enough to meet the most demanding and specific needs of the numerous Foam manufacturing situations, while remaining simple and intuitive for today\'s manufacturing environments.',
-    features: [
-      'Foam to Foam bonding',
-      'Wood to Foam bonding',
-      'Fabric to Foam bonding',
-      'Plastic to Foam bonding',
-      'Metal to Foam bonding'
-    ],
-    buttonText: 'Learn More',
-    buttonLink: '/foam/bonding-technologies',
-    imageUrl: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Foam-Products-2-scaled.jpeg',
-    icon: '🧽',
-    badge: 'Foam Solutions',
-    theme: 'foam',
-    layout: 'reversed'
-  }
-];
+// export const foamCards: GenericCardData[] = [
+//   {
+//     id: 'foam-manufacturing',
+//     title: 'Foam Manufacturing Solutions',
+//     subtitle: 'Complete line of foam-optimized adhesive solutions',
+//     description: 'Forza has a complete line of foam-optimized adhesive solutions. Our range of chemistries and performance-enhancing technologies deliver superior adhesive, sealing, and bonding outcomes for foam-related applications.',
+//     features: [
+//       'Mattress Manufacturing',
+//       'Seating & Upholstery',
+//       'General Foam Manufacturing',
+//       'Foam Packaging',
+//       'Numerous other applications'
+//     ],
+//     buttonText: 'Explore Solutions',
+//     buttonLink: '/foam/manufacturing',
+//     imageUrl: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Foam-2-scaled.jpeg',
+//     icon: '🧽',
+//     badge: 'Foam Solutions',
+//     theme: 'foam',
+//     layout: 'default'
+//   },
+//   {
+//     id: 'foam-bonding-technologies',
+//     title: 'Advanced Bonding Technologies',
+//     subtitle: 'Long-lasting foam bonding to many surfaces',
+//     description: 'With a full R&D formulations lab at our disposal, a global vendor network, and US-based manufacturing and packaging, we\'re able to deliver tailor-made solutions that are rugged enough and specialized enough to meet the most demanding and specific needs of the numerous Foam manufacturing situations, while remaining simple and intuitive for today\'s manufacturing environments.',
+//     features: [
+//       'Foam to Foam bonding',
+//       'Wood to Foam bonding',
+//       'Fabric to Foam bonding',
+//       'Plastic to Foam bonding',
+//       'Metal to Foam bonding'
+//     ],
+//     buttonText: 'Learn More',
+//     buttonLink: '/foam/bonding-technologies',
+//     imageUrl: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Foam-Products-2-scaled.jpeg',
+//     icon: '🧽',
+//     badge: 'Foam Solutions',
+//     theme: 'foam',
+//     layout: 'reversed'
+//   }
+// ];
 
 // Composites Industry Cards
 export const compositesCards: GenericCardData[] = [
@@ -324,8 +324,8 @@ export const getCardsByIndustry = (industry: string): GenericCardData[] => {
       return constructionCards;
     case 'industrial':
       return industrialCards;
-    case 'foam':
-      return foamCards;
+    // case 'foam':
+    //   return foamCards;
     case 'composites':
       return compositesCards;
     case 'insulation':

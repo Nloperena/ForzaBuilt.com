@@ -28,7 +28,7 @@ const DynamicIndustryCards: React.FC<DynamicIndustryCardsProps> = ({
       'MARINE': 'marine',
       'CONSTRUCTION': 'construction',
       'INDUSTRIAL': 'industrial',
-      'FOAM': 'foam',
+      // 'FOAM': 'foam',
       'COMPOSITES': 'composites',
       'INSULATION': 'insulation'
     };

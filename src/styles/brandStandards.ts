@@ -114,11 +114,11 @@ export const industryColors = {
     secondary: '#c7c8c9',
     accent: brandColors.primary.blazeOrange.hex
   },
-  foam: {
-    primary: '#7a6fb0', // Corrected typo
-    secondary: '#7a6fb0',
-    accent: brandColors.primary.blazeOrange.hex
-  }
+  // foam: {
+  //   primary: '#7a6fb0', // Corrected typo
+  //   secondary: '#7a6fb0',
+  //   accent: brandColors.primary.blazeOrange.hex
+  // }
 };
 
 // Product-specific colors

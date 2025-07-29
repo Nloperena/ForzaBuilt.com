@@ -35,8 +35,8 @@ const industryColor = (industry: string) => {
       return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // Blue top, Transportation red bottom
     case 'construction':
       return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // Blue top, Construction yellow bottom
-    case 'foam':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // Blue top, Foam purple bottom
+    // case 'foam':
+    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // Blue top, Foam purple bottom
     case 'composites':
       return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // Blue top, Composites gray bottom
     case 'insulation':

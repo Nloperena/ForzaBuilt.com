@@ -10,7 +10,7 @@ const OFFICIAL_INDUSTRIES = [
   'marine', 
   'construction',
   'industrial',
-  'foam',
+  // 'foam',
   'composites',
   'insulation',
 ];

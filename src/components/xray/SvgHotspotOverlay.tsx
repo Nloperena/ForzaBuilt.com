@@ -24,7 +24,7 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
   const reducedMotion = useReducedMotion();
   const triggerHaptic = useHapticFeedback();
 
-  // Calculate active hotspot index based on scroll progress with fluid transitions
+  // Calculate active hotspot index based on scroll progress - synced with XRayExplorer
   const activeIndex = useTransform(progress, (value) => {
     const totalHotspots = xray.hotspots.length;
     if (totalHotspots === 0) return -1;
@@ -38,22 +38,11 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
     
     const adjustedProgress = (value - startProgress) / (endProgress - startProgress);
     
-    // Create smooth segments with buffer zones
+    // Create segments based on actual hotspot count (matching XRayExplorer calculation)
     const segmentSize = 1 / totalHotspots;
-    const bufferSize = segmentSize * 0.3; // 30% of each segment is buffer
-    const activeSize = segmentSize * 0.7; // 70% of each segment is active
-    
-    // Calculate which segment we're in
     const currentSegment = Math.floor(adjustedProgress / segmentSize);
-    const segmentProgress = (adjustedProgress % segmentSize) / segmentSize;
     
-    // If we're in the buffer zone (first 30% of segment), show previous hotspot
-    // If we're in active zone (last 70% of segment), show current hotspot
-    if (segmentProgress < 0.3 && currentSegment > 0) {
-      return currentSegment - 1;
-    } else {
-      return Math.min(currentSegment, totalHotspots - 1);
-    }
+    return Math.min(currentSegment, totalHotspots - 1);
   });
 
   // Transform for showing all SVG paths (different from active selection)
@@ -280,8 +269,8 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
         })}
       </svg>
 
-      {/* Product Tooltip */}
-      {(() => {
+      {/* Product Tooltip - Only show on non-mobile devices since mobile uses fixed display below X-Ray */}
+      {!isMobile && (() => {
         // Determine which hotspot should drive the tooltip
         const tooltipHotspot = pinnedHotspot || hoveredHotspot || (activeHotspotIndex >= 0 ? xray.hotspots[activeHotspotIndex] : null);
         return tooltipHotspot ? (

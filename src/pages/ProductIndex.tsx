@@ -198,9 +198,9 @@ const ProductIndex: React.FC = () => {
                 {[
                   { id: 'marine', name: 'Marine', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Marine-Icon.png' },
                   { id: 'industrial', name: 'Industrial', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Industrial-Icon.png' },
-                  { id: 'transportation', name: 'Transportation', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Transportation-Icon.png' },
+                  { id: 'transportation', name: 'Transportation', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Transportation-Icon-2.png' },
                   { id: 'construction', name: 'Construction', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Construction-Icon.png' },
-                  { id: 'foam', name: 'Foam', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Foam-Icon.png' },
+                  // { id: 'foam', name: 'Foam', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Foam-Icon.png' },
                   { id: 'composites', name: 'Composites', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Composites-Icon.png' },
                   { id: 'insulation', name: 'Insulation', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Insulation-Icon.png' }
                 ].map((industry, idx) => (

@@ -6,7 +6,7 @@ import {
 } from '@/data/stackableCardsData';
 
 interface IndustryStackableCardsProps {
-  industry: 'marine' | 'transportation' | 'construction' | 'industrial' | 'foam' | 'composites' | 'insulation';
+  industry: 'marine' | 'transportation' | 'construction' | 'industrial' | /* 'foam' | */ 'composites' | 'insulation';
   title?: string;
   subtitle?: string;
   onCardClick?: (cardId: string) => void;
@@ -27,7 +27,7 @@ const IndustryStackableCards: React.FC<IndustryStackableCardsProps> = ({
     transportation: 'Transportation Solutions',
     construction: 'Construction Solutions',
     industrial: 'Industrial Solutions',
-    foam: 'Foam Solutions',
+    // foam: 'Foam Solutions',
     composites: 'Composite Solutions',
     insulation: 'Insulation Solutions'
   };
@@ -37,7 +37,7 @@ const IndustryStackableCards: React.FC<IndustryStackableCardsProps> = ({
     transportation: 'Heavy-duty adhesive solutions designed for the demanding requirements of commercial transportation.',
     construction: 'Comprehensive construction solutions that ensure quality, safety, and efficiency in every project.',
     industrial: 'Advanced adhesive and bonding solutions designed specifically for industrial manufacturing applications.',
-    foam: 'Advanced bonding solutions designed specifically for foam materials, ensuring strong adhesion without compromising foam properties.',
+    // foam: 'Advanced bonding solutions designed specifically for foam materials, ensuring strong adhesion without compromising foam properties.',
     composites: 'Specialized adhesive and bonding solutions that meet the rigorous requirements of composite material manufacturing.',
     insulation: 'High-performance bonding solutions for insulation materials, ensuring energy efficiency and long-term performance.'
   };
@@ -70,9 +70,9 @@ export const IndustrialStackableCards: React.FC<{ onCardClick?: (cardId: string)
   <IndustryStackableCards industry="industrial" onCardClick={onCardClick} />
 );
 
-export const FoamStackableCards: React.FC<{ onCardClick?: (cardId: string) => void }> = ({ onCardClick }) => (
-  <IndustryStackableCards industry="foam" onCardClick={onCardClick} />
-);
+// export const FoamStackableCards: React.FC<{ onCardClick?: (cardId: string) => void }> = ({ onCardClick }) => (
+//   <IndustryStackableCards industry="foam" onCardClick={onCardClick} />
+// );
 
 export const CompositesStackableCards: React.FC<{ onCardClick?: (cardId: string) => void }> = ({ onCardClick }) => (
   <IndustryStackableCards industry="composites" onCardClick={onCardClick} />

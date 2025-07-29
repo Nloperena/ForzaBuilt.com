@@ -39,7 +39,7 @@ export function useReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = React.useState<boolean>(false)
 
   React.useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
     const onChange = () => {
       setPrefersReducedMotion(mediaQuery.matches)
     }

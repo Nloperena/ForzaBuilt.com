@@ -109,8 +109,8 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
         return <Car className="h-4 w-4" />;
       case 'construction':
         return <Building className="h-4 w-4" />;
-      case 'foam':
-        return <Package className="h-4 w-4" />;
+      // case 'foam':
+      //   return <Package className="h-4 w-4" />;
       case 'composites':
         return <Layers className="h-4 w-4" />;
       case 'insulation':

@@ -5,6 +5,7 @@ import ProductTooltip from './ProductTooltip';
 import SvgHotspotOverlay from './SvgHotspotOverlay';
 import { CoordinateDebugger } from './CoordinateDebugger';
 import { typography } from '../../styles/brandStandards';
+import { useIsMobile } from '../../hooks/use-mobile';
 
 interface XRayExplorerProps {
   industry: IndustryData;
@@ -21,6 +22,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
   const [isDebugMode, setIsDebugMode] = useState(false);
   const [debugCoordinates, setDebugCoordinates] = useState<Array<{ x: number; y: number; id: string }>>([]);
+  const isMobile = useIsMobile();
   
   // Get the specific X-Ray component
   const xrayComponent = industry.xrays[xrayIndex];
@@ -67,12 +69,11 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
   const activeHotspotIndex = useTransform(hotspotProgress, (value) => {
     if (xrayComponent.hotspots.length === 0) return -1;
     
-    // Add +1 to create a delay step after final hotspot
-    const totalSteps = xrayComponent.hotspots.length + 1;
-    const segmentSize = 1 / totalSteps;
+    // Create smooth segments based on actual hotspot count
+    const segmentSize = 1 / xrayComponent.hotspots.length;
     const currentSegment = Math.floor(value / segmentSize);
     
-    // Clamp to valid hotspot range (last step is delay, so show last hotspot)
+    // Clamp to valid hotspot range
     return Math.min(Math.max(currentSegment, 0), xrayComponent.hotspots.length - 1);
   });
 
@@ -162,6 +163,42 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               Watch as we reveal the internal structure and highlight key application areas.
             </p>
           </motion.div>
+          
+          {/* Mobile Product Display Area - Above the X-Ray images */}
+          {isMobile && (
+            <motion.div 
+              className="w-full mb-6"
+              style={{ opacity: hotspotsOpacity }}
+            >
+              {activeHotspot && (
+                <motion.div
+                  key={activeHotspot.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ProductTooltip 
+                    hotspot={activeHotspot}
+                    isPinned={false}
+                    isMobileFixed={true}
+                  />
+                </motion.div>
+              )}
+              
+              {!activeHotspot && (
+                <motion.div
+                  className="text-center py-4 bg-muted/30 rounded-lg border border-border"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  <p className="text-muted-foreground text-sm">
+                    Scroll to explore products and features
+                  </p>
+                </motion.div>
+              )}
+            </motion.div>
+          )}
           
           {/* Debug Coordinate Finder */}
           {isDebugMode && (
@@ -332,7 +369,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                       lineHeight: typography.subheads.lineHeight
                     }}
                   >
-                    Step {Math.min(xrayComponent.hotspots.length, Math.max(1, Math.ceil(activeHotspotIndex.get() + 1)))} of {xrayComponent.hotspots.length}
+                    Step {Math.max(1, activeHotspotIndex.get() + 1)} of {xrayComponent.hotspots.length}
                   </span>
                 </div>
                 <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
@@ -341,7 +378,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                     style={{
                       scaleX: useTransform(
                         hotspotProgress,
-                        [0, xrayComponent.hotspots.length / (xrayComponent.hotspots.length + 1)],
+                        [0, 1],
                         [0, 1]
                       ),
                       transformOrigin: "left"

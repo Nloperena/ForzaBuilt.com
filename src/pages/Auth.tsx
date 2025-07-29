@@ -133,7 +133,7 @@ const Auth = () => {
       
       <div 
         ref={containerRef}
-        className="flex-1 flex items-center justify-center bg-gradient-to-br from-[#1b3764] to-[#147974] relative overflow-hidden pt-24 pb-16"
+        className="flex-1 flex items-center justify-center bg-gradient-to-br from-[#1b3764] via-[#1b3764] to-[#F2611D] relative overflow-hidden pt-24 pb-16"
         onMouseMove={handleMouseMove}
       >
         <div className="relative z-10 w-full max-w-md px-6">

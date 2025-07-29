@@ -12,7 +12,6 @@ interface NavigationItemProps {
   onMouseEnter: (content: string) => void;
   onMouseLeave: () => void;
   onClick: (content: string) => void;
-  mobile?: boolean;
 }
 
 const NavigationItem: React.FC<NavigationItemProps> = ({
@@ -22,27 +21,11 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   onMouseEnter,
   onMouseLeave,
   onClick,
-  mobile = false,
 }) => {
   const location = useLocation();
   const hasDropdown = ['Industries', 'Products', 'Tools'].includes(item.name);
   const isActive = (isOverlayOpen && activeOverlayContent === item.name.toLowerCase()) || 
                    location.pathname.startsWith(item.href);
-
-  if (mobile) {
-    return (
-      <Link
-        to={item.href}
-        className={`text-white text-xs sm:text-sm font-medium transition-colors hover:text-[#F2611D] whitespace-nowrap ${
-          location.pathname === item.href 
-            ? 'text-[#F2611D]' 
-            : 'text-white'
-        }`}
-      >
-        {item.name}
-      </Link>
-    );
-  }
 
   if (hasDropdown) {
     return (

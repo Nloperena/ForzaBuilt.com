@@ -7,7 +7,7 @@ import {
   TransportationStackableCards,
   ConstructionStackableCards,
   IndustrialStackableCards,
-  FoamStackableCards,
+  // FoamStackableCards,
   CompositesStackableCards,
   InsulationStackableCards
 } from '../components/StackableCards/IndustryStackableCards';
@@ -58,12 +58,12 @@ const StackableCardsDemo = () => {
             >
               Industrial
             </Link>
-            <Link 
+            {/* <Link 
               to="#foam" 
-              className="bg-orange-600 text-white p-4 rounded-lg text-center hover:bg-orange-700 transition-colors"
+              className="bg-purple-600 text-white p-4 rounded-lg text-center hover:bg-purple-700 transition-colors"
             >
               Foam
-            </Link>
+            </Link> */}
             <Link 
               to="#composites" 
               className="bg-purple-600 text-white p-4 rounded-lg text-center hover:bg-purple-700 transition-colors"
@@ -101,9 +101,9 @@ const StackableCardsDemo = () => {
       </section>
 
       {/* Foam Section */}
-      <section id="foam" className="py-8">
+      {/* <section id="foam" className="py-8">
         <FoamStackableCards onCardClick={handleCardClick} />
-      </section>
+      </section> */}
 
       {/* Composites Section */}
       <section id="composites" className="py-8">

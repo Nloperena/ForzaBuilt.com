@@ -6,7 +6,7 @@ const OFFICIAL_INDUSTRIES = [
   'marine', 
   'construction',
   'industrial',
-  'foam',
+  // 'foam',
   'composites',
   'insulation',
 ];
@@ -38,18 +38,15 @@ export const analyzeIndustryAssignments = (): IndustryAnalysis[] => {
     } else if (currentIndustries === 'construction') {
       suggestedPrimary = 'construction';
       reasoning = 'Construction applications detected';
-    } else if (currentIndustries === 'foam') {
-      suggestedPrimary = 'foam';
-      reasoning = 'Foam-specific applications detected';
+    } else if (currentIndustries === 'industrial') {
+      suggestedPrimary = 'industrial';
+      reasoning = 'Industrial manufacturing applications detected';
     } else if (currentIndustries === 'composites') {
       suggestedPrimary = 'composites';
       reasoning = 'Composite material applications detected';
     } else if (currentIndustries === 'insulation') {
       suggestedPrimary = 'insulation';
       reasoning = 'Insulation applications detected';
-    } else if (currentIndustries === 'industrial') {
-      suggestedPrimary = 'industrial';
-      reasoning = 'General industrial applications';
     } else {
       suggestedPrimary = 'industrial';
       reasoning = 'Default to industrial for general use';

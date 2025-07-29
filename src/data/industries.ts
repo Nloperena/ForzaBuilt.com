@@ -170,13 +170,13 @@ export const industries: Industry[] = [
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Industrial-Icon.png",
     color: "#f16a26", // Industrial orange color from brand standards
   },
-  {
-    title: "FOAM",
-    videoUrl: "https://video-previews.elements.envatousercontent.com/461cf7cd-2cb8-419b-9558-707280ce813c/watermarked_preview/watermarked_preview.mp4",
-    description: "Advanced bonding solutions for foam applications",
-    logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Foam-Icon.png",
-    color: "#7a6fb0", // Foam purple color from brand standards
-  },
+  // {
+  //   title: "FOAM",
+  //   videoUrl: "https://video-previews.elements.envatousercontent.com/461cf7cd-2cb8-419b-9558-707280ce813c/watermarked_preview/watermarked_preview.mp4",
+  //   description: "Advanced bonding solutions for foam applications",
+  //   logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Foam-Icon.png",
+  //   color: "#7a6fb0", // Foam purple color from brand standards
+  // },
   {
     title: "COMPOSITES",
     videoUrl: "https://forzabuilt.com/wp-content/uploads/2024/09/ForzaTurbineLoop-Compressed.mp4#t=0,100",

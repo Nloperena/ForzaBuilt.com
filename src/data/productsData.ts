@@ -86,7 +86,7 @@ export const allProducts: Product[] = [
     image: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-C280-NEW.png',
     url: 'https://forzabuilt.com/product/m-c280-neoprene-contact-adhesive/',
     productType: 'bond',
-    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction', 'foam'],
+    industries: ['marine', 'transportation', 'composites', 'industrial', 'construction'],
     description: 'Neoprene contact adhesive for flexible bonding'
   },
 
@@ -132,24 +132,24 @@ export const allProducts: Product[] = [
 
   // Industry-Specific Products
   // Foam Products
-  {
-    id: 'foam-bond-1',
-    name: 'FOAM BONDING ADHESIVE',
-    image: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Foam-2-scaled.jpeg',
-    url: 'https://forzabuilt.com/product/foam-bonding-adhesive/',
-    productType: 'bond',
-    industries: ['foam'],
-    description: 'Specialized adhesive for foam bonding applications'
-  },
-  {
-    id: 'foam-seal-1',
-    name: 'FOAM SEALING SOLUTION',
-    image: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Foam-1-scaled.jpeg',
-    url: 'https://forzabuilt.com/product/foam-sealing-solution/',
-    productType: 'seal',
-    industries: ['foam'],
-    description: 'Sealing solution for foam applications'
-  },
+  // {
+  //   id: 'foam-bond-1',
+  //   name: 'FOAM BONDING ADHESIVE',
+  //   image: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Foam-2-scaled.jpeg',
+  //   url: 'https://forzabuilt.com/product/foam-bonding-adhesive/',
+  //   productType: 'bond',
+  //   industries: ['foam'],
+  //   description: 'Specialized adhesive for foam bonding applications'
+  // },
+  // {
+  //   id: 'foam-seal-1',
+  //   name: 'FOAM SEALING SOLUTION',
+  //   image: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Foam-1-scaled.jpeg',
+  //   url: 'https://forzabuilt.com/product/foam-sealing-solution/',
+  //   productType: 'seal',
+  //   industries: ['foam'],
+  //   description: 'Sealing solution for foam applications'
+  // },
 
   // Insulation Products
   {

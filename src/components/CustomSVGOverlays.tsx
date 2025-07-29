@@ -825,8 +825,8 @@ export const getSVGOverlayForIndustry = (industry: string): React.FC => {
       return TransportationSVGOverlay;
     case 'industrial':
       return IndustrialSVGOverlay;
-    case 'foam':
-      return FoamSVGOverlay;
+    // case 'foam':
+    //   return FoamSVGOverlay;
     case 'composites':
       return CompositesSVGOverlay;
     case 'insulation':

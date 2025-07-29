@@ -3,7 +3,7 @@ import { getIndustryColors } from '@/styles/brandStandards';
 import { getBackgroundGradientByIndustry } from '@/data/stackableCardsData';
 
 const BrandColorsTest: React.FC = () => {
-  const industries = ['marine', 'transportation', 'construction', 'industrial', 'foam', 'composites', 'insulation'];
+  const industries = ['marine', 'transportation', 'construction', 'industrial', /* 'foam', */ 'composites', 'insulation'];
 
   return (
     <div className="p-8 space-y-8">

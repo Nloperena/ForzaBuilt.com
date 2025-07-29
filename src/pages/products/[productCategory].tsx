@@ -76,12 +76,12 @@ const getIndustryBenefits = (industry: string) => {
         { title: 'High Strength', subtitle: 'Structural' },
         { title: 'Durable', subtitle: 'Long-lasting' }
       ];
-    case 'foam':
-      return [
-        { title: 'Lightweight', subtitle: 'Easy Install' },
-        { title: 'Insulating', subtitle: 'Energy Efficient' },
-        { title: 'Flexible', subtitle: 'Adaptable' }
-      ];
+    // case 'foam':
+    //   return [
+    //     { title: 'Lightweight', subtitle: 'Easy Install' },
+    //     { title: 'Insulating', subtitle: 'Energy Efficient' },
+    //     { title: 'Flexible', subtitle: 'Adaptable' }
+    //   ];
     case 'composites':
       return [
         { title: 'High Strength', subtitle: 'Structural' },
@@ -132,8 +132,8 @@ const industryColor = (industry: string) => {
       return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // Blue top, Transportation red bottom
     case 'construction':
       return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // Blue top, Construction yellow bottom
-    case 'foam':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // Blue top, Foam purple bottom
+    // case 'foam':
+    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // Blue top, Foam purple bottom
     case 'composites':
       return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // Blue top, Composites gray bottom
     case 'insulation':

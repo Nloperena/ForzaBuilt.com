@@ -6,7 +6,7 @@ import {
   TransportationStackableCards,
   ConstructionStackableCards,
   IndustrialStackableCards,
-  FoamStackableCards,
+  // FoamStackableCards,
   CompositesStackableCards,
   InsulationStackableCards
 } from '../components/StackableCards/IndustryStackableCards';
@@ -41,10 +41,10 @@ const GradientTestPage: React.FC = () => {
           <IndustrialStackableCards onCardClick={handleCardClick} />
         </section>
 
-        <section className="py-8">
+        {/* <section className="py-8">
           <h2 className="text-2xl font-bold text-center mb-4">Foam Gradient Test</h2>
           <FoamStackableCards onCardClick={handleCardClick} />
-        </section>
+        </section> */}
 
         <section className="py-8">
           <h2 className="text-2xl font-bold text-center mb-4">Composites Gradient Test</h2>
