@@ -89,10 +89,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               damping: 30,
               mass: 0.8
             }}
-            className="fixed inset-y-0 right-0 w-80 z-50 bg-[#1b3764] border-l border-gray-200/20 shadow-2xl rounded-bl-2xl"
+            className="fixed inset-y-0 right-0 w-80 z-50 bg-[#1b3764] border-l border-gray-200/20 shadow-2xl rounded-bl-2xl drop-shadow-2xl"
+            style={{
+              backgroundColor: '#1b3764',
+              boxShadow: '0 0 50px rgba(0, 0, 0, 0.8), 0 0 100px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.1)'
+            }}
           >
             {/* Header */}
-            <div className="flex justify-between items-center p-6 border-b border-white/10">
+            <div className="flex justify-between items-center p-6 border-b border-white/10 bg-[#1b3764]">
               {activeSubmenu ? (
                 <button 
                   onClick={handleBackToMain}
@@ -104,11 +108,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <span className="text-sm font-medium">Back</span>
                 </button>
               ) : (
-                <Link to="/" onClick={onClose} className="flex items-center justify-center flex-1">
+                <Link to="/" onClick={onClose} className="flex items-center justify-start flex-1">
                   <img 
                     src="/src/assets/images/Forza-lion-logo.png" 
                     alt="Forza Built" 
-                    className="h-16 w-auto"
+                    className="h-16 w-auto sm:h-20 md:h-24"
                   />
                 </Link>
               )}
@@ -147,11 +151,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                           {hasDropdown(item.name) ? (
                             <button
                               onClick={() => handleSubmenuToggle(item.name)}
-                              className="w-full flex items-center justify-between py-4 px-4 rounded-2xl text-base font-medium text-[#1b3764] hover:bg-gray-50 hover:text-[#1b3764]/80 transition-all duration-200 group bg-white shadow-sm"
+                              className="w-full flex items-center justify-between py-4 px-4 rounded-2xl text-base font-medium text-white hover:bg-white/10 hover:text-white/80 transition-all duration-200 group"
                             >
                               <span>{item.name}</span>
                               <svg 
-                                className="h-4 w-4 transition-transform duration-200 text-gray-400 group-hover:text-gray-600" 
+                                className="h-4 w-4 transition-transform duration-200 text-white/60 group-hover:text-white" 
                                 fill="none" 
                                 viewBox="0 0 24 24" 
                                 stroke="currentColor"
@@ -163,7 +167,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                             <Link
                               to={item.href}
                               onClick={onClose}
-                              className="block py-4 px-4 rounded-2xl text-base font-medium text-[#1b3764] hover:bg-gray-50 hover:text-[#1b3764]/80 transition-all duration-200 bg-white shadow-sm"
+                              className="block py-4 px-4 rounded-2xl text-base font-medium text-white hover:bg-white/10 hover:text-white/80 transition-all duration-200"
                             >
                               {item.name}
                             </Link>
@@ -192,7 +196,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                           <Link
                             to={subItem.href}
                             onClick={onClose}
-                            className="block py-3 px-4 rounded-xl text-sm font-medium text-[#1b3764] hover:bg-gray-50 hover:text-[#1b3764]/80 transition-all duration-200 bg-white shadow-sm"
+                            className="block py-3 px-4 rounded-xl text-sm font-medium text-white hover:bg-white/10 hover:text-white/80 transition-all duration-200"
                           >
                             {subItem.name}
                           </Link>
@@ -233,7 +237,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   </Button>
                 </div>
               ) : (
-                <Button asChild variant="outline" className="w-full border-2 border-white text-white hover:bg-white hover:text-[#1b3764] rounded-2xl text-base font-medium py-4 transition-all duration-200">
+                <Button asChild variant="outline" className="w-full border-2 border-white text-[#1b3764] bg-white hover:bg-white/90 hover:text-[#1b3764] rounded-2xl text-base font-medium py-4 transition-all duration-200">
                   <Link to="/auth" onClick={onClose}>Sign In</Link>
                 </Button>
               )}

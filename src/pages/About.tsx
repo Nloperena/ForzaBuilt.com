@@ -40,8 +40,8 @@ const About = () => {
         {/* Forza / Made in America Section */}
         <section className="pt-8 pb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto px-4">
-            <div className="bg-white text-[#1b3764] rounded-lg shadow-lg p-8 flex flex-col items-center text-center aspect-square">
-              <img src="https://forzabuilt.com/wp-content/uploads/2022/12/Forza-Corporate-Wordmark-Positive.png" alt="Forza Logo" className="w-3/4 mb-4 object-contain" />
+            <div className="bg-white text-[#1b3764] rounded-lg shadow-lg p-6 flex flex-col items-center justify-center text-center aspect-square">
+              <img src="https://forzabuilt.com/wp-content/uploads/2022/12/Forza-Corporate-Wordmark-Positive.png" alt="Forza Logo" className="w-1/2 mb-2 object-contain" />
               <h3 className="text-3xl font-extrabold mb-2 font-kallisto">Forza</h3>
               <p className="text-base font-bold mb-2">noun / italian for "force" / forza/</p>
               <p className="text-base mb-4">Strength, Power, Force</p>

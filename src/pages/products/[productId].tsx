@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { industrialDatasheet } from '@/data/industrialDatasheet';
 import { industries as industriesData } from '@/data/industries';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
+import { getProduct, getRelatedProducts } from '@/utils/products';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -52,16 +52,14 @@ const ProductDetailPage: React.FC = () => {
 
   // Find the product
   const product = useMemo(() => {
-    return industrialDatasheet.find(p => p.id === productId);
+    return getProduct(productId);
   }, [productId]);
 
   // Get related products from the same industry
   const relatedProducts = useMemo(() => {
     if (!product) return [];
-    return industrialDatasheet
-      .filter(p => p.industry === product.industry && p.id !== product.id)
-      .slice(0, 4);
-  }, [product]);
+    return getRelatedProducts(productId, 4);
+  }, [productId]);
 
   if (!product) {
     return (

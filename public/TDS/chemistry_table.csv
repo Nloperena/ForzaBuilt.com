@@ -1,0 +1,152 @@
+Product ID,Product Name,Product Code,Product Type,Category,Chemistry Type,Confidence Level,Reasoning,SDS Files,TDS Files
+1. Industrial_81-0389,81-0389,81-0389,General,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_A1000,A1000,A1000,Adhesive,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_A450,A450,A450,Adhesive,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_A465,A465,A465,Adhesive,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_A729,A729,A729,Adhesive,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_C110,C110,C110,Coating,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_C130,C130,C130,Coating,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_C331,C331,C331,Coating,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_C805,C805,C805,Coating,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_C830,C830,C830,Coating,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_C835,C835,C835,Coating,1. Industrial,Unknown,Low,N/A,1,2
+1. Industrial_CA1000,CA1000,CA1000,Construction Adhesive,1. Industrial,Unknown,Low,N/A,2,2
+1. Industrial_CA1500,CA1500,CA1500,Construction Adhesive,1. Industrial,Unknown,Low,N/A,1,1
+1. Industrial_CA2400,CA2400,CA2400,Construction Adhesive,1. Industrial,Unknown,Low,N/A,1,1
+1. Industrial_H103,H103,H103,Hot Melt,1. Industrial,Solvent Based,Medium,Hot melt products typically use solvent-based technology,1,2
+1. Industrial_H117,H117,H117,Hot Melt,1. Industrial,Solvent Based,Medium,Hot melt products typically use solvent-based technology,1,2
+1. Industrial_H158,H158,H158,Hot Melt,1. Industrial,Solvent Based,Medium,Hot melt products typically use solvent-based technology,1,2
+1. Industrial_H163,H163,H163,Hot Melt,1. Industrial,Solvent Based,Medium,Hot melt products typically use solvent-based technology,1,2
+1. Industrial_H164,H164,H164,Hot Melt,1. Industrial,Solvent Based,Medium,Hot melt products typically use solvent-based technology,1,2
+1. Industrial_H167,H167,H167,Hot Melt,1. Industrial,Solvent Based,Medium,Hot melt products typically use solvent-based technology,1,2
+1. Industrial_H176,H176,H176,Hot Melt,1. Industrial,Solvent Based,Medium,Hot melt products typically use solvent-based technology,1,2
+1. Industrial_IC932,IC932,IC932,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+1. Industrial_IC933,IC933,IC933,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,3,2
+1. Industrial_IC934,IC934,IC934,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+1. Industrial_IC936,IC936,IC936,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,3,2
+1. Industrial_IC946,IC946,IC946,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+1. Industrial_IC947,IC947,IC947,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+1. Industrial_IC951,IC951,IC951,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+1. Industrial_IC952,IC952,IC952,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+1. Industrial_IC955,IC955NF,IC955,Industrial Canister,1. Industrial,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+1. Industrial_OA12,OA12,OA12,Oil Adhesive,1. Industrial,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,1,2
+1. Industrial_OA13,OA13,OA13,Oil Adhesive,1. Industrial,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,1,2
+1. Industrial_OA23,OA23,OA23,Oil Adhesive,1. Industrial,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,1,2
+1. Industrial_OA28,OA28,OA28,Oil Adhesive,1. Industrial,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,0,2
+1. Industrial_OA29,OA29,OA29,Oil Adhesive,1. Industrial,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,0,2
+1. Industrial_OA4,OA4,OA4,Oil Adhesive,1. Industrial,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,0,2
+1. Industrial_OS10,OS10,OS10,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+1. Industrial_OS2,OS2,OS2,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,2,4
+1. Industrial_OS20,OS20,OS20,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+1. Industrial_OS24,OS24,OS24,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+1. Industrial_OS25,OS25,OS25,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+1. Industrial_OS35,OS35,OS35,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,2,2
+1. Industrial_OS37,OS37,OS37,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,2,2
+1. Industrial_OS61,OS61,OS61,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+1. Industrial_OSA,OSA,OSA,Oil Seal,1. Industrial,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+1. Industrial_R160,R160,R160,Resin,1. Industrial,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+1. Industrial_R190,R190,R190,Resin,1. Industrial,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+1. Industrial_R221,R221,R221,Resin,1. Industrial,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+1. Industrial_R519,R519,R519,Resin,1. Industrial,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+1. Industrial_T205,T205,T205,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T215,T215,T215,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T220,T220,T220,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T305,T305,T305,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T310,T310,T310,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T449,T449,T449,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T464,T464,T464,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T465,T465,T465,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T532,T532,T532,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T710,T710,T710,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_T715,T715,T715,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+1. Industrial_TA56,TA56,TA56,Tape,1. Industrial,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,0
+1. Industrial_W700,W700,W700,Waterproofing,1. Industrial,Unknown,Low,N/A,1,2
+2. Marine_Environmental Data Sheets,Environmental Data Sheets,Environmental Data Sheets,General,2. Marine,Unknown,Low,N/A,0,0
+2. Marine_C280,M-C280 (C130),C280,Coating,2. Marine,Unknown,Low,N/A,1,2
+2. Marine_C283,M-C283 (C331),C283,Coating,2. Marine,Unknown,Low,N/A,1,1
+2. Marine_C285,M-C285 (81-0389),C285,Coating,2. Marine,Unknown,Low,N/A,2,1
+2. Marine_OA755,M-OA755 (OA4),OA755,Oil Adhesive,2. Marine,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,1,2
+2. Marine_OS764,M-OS764 (OS24),OS764,Oil Seal,2. Marine,Silicone,Medium,Oil seal products often use silicone chemistry,2,2
+2. Marine_OS789,M-OS789 (OS2),OS789,Oil Seal,2. Marine,Silicone,Medium,Oil seal products often use silicone chemistry,2,2
+2. Marine_OS796,M-OS796 (OS16),OS796,Oil Seal,2. Marine,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+2. Marine_OSA783,M-OSA783 (OSA),OSA783,Oil Seal,2. Marine,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+2. Marine_R420,M-R420 (R160),R420,Resin,2. Marine,Epoxy,Medium,Resin products often use epoxy chemistry,5,1
+2. Marine_R445,M-R445 (R221),R445,Resin,2. Marine,Epoxy,Medium,Resin products often use epoxy chemistry,2,1
+2. Marine_R478,M-R478 (R519),R478,Resin,2. Marine,Epoxy,Medium,Resin products often use epoxy chemistry,4,2
+2. Marine_T815,M-T815 (T215),T815,Tape,2. Marine,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+2. Marine_T820,M-T820 (T220),T820,Tape,2. Marine,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+2. Marine_MC722,MC722 (IC932),MC722,Industrial Canister,2. Marine,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+2. Marine_MC723,MC723 (IC933),MC723,Industrial Canister,2. Marine,Epoxy,Low,Industrial canister products may use various chemistries,3,2
+2. Marine_MC724,MC724 (IC934),MC724,Industrial Canister,2. Marine,Epoxy,Low,Industrial canister products may use various chemistries,2,1
+2. Marine_MC736,MC736 (IC946),MC736,Industrial Canister,2. Marine,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+2. Marine_MC737,MC737 (IC947),MC737,Industrial Canister,2. Marine,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+2. Marine_MC739,MC739,MC739,Coating,2. Marine,Unknown,Low,N/A,2,2
+2. Marine_MC741,MC741 (IC951),MC741,Industrial Canister,2. Marine,Epoxy,Low,Industrial canister products may use various chemistries,8,3
+3. Transportation_C222,T-C222 (C130),C222,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,1
+3. Transportation_C225,T-C225 (C331),C225,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,1
+3. Transportation_C485,T-C485 (81-0389),C485,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,1
+3. Transportation_OA152,T-OA152 (OS24),OA152,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,1
+3. Transportation_OA156,T-OA156 (OA4),OA156,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+3. Transportation_OA177,T-OA177(OA13),OA177,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,1
+3. Transportation_OS151,T-OS151 (OS2),OS151,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,2,1
+3. Transportation_OS164,T-OS164 (OS35),OS164,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,1
+3. Transportation_OSA155,T-OSA155 (OSA),OSA155,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,1
+3. Transportation_R679,T-R679 (R221),R679,Resin,3. Transportation,Epoxy,Medium,Resin products often use epoxy chemistry,2,1
+3. Transportation_R785,T-R785 (R519),R785,Resin,3. Transportation,Epoxy,Medium,Resin products often use epoxy chemistry,0,1
+3. Transportation_S596,T-S596 (S228),S596,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,1
+3. Transportation_T1420,T-T1420,T1420,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,1
+3. Transportation_T415,T-T415 (T215),T415,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,1
+3. Transportation_T420,T-T420 (T220),T420,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,1
+3. Transportation_T430,T-T430,T430,Tape,3. Transportation,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,1
+3. Transportation_TC452,TC452 (IC932),TC452,Industrial Canister,3. Transportation,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+3. Transportation_TC453,TC453 (IC933),TC453,Industrial Canister,3. Transportation,Epoxy,Low,Industrial canister products may use various chemistries,4,2
+3. Transportation_TC454,TC454 (IC934),TC454,Industrial Canister,3. Transportation,Epoxy,Low,Industrial canister products may use various chemistries,2,1
+3. Transportation_TC456,TC456 (IC936),TC456,Industrial Canister,3. Transportation,Epoxy,Low,Industrial canister products may use various chemistries,1,1
+3. Transportation_TC466,TC466 (IC946),TC466,Industrial Canister,3. Transportation,Epoxy,Low,Industrial canister products may use various chemistries,2,1
+3. Transportation_TC467,TC467 (IC947),TC467,Industrial Canister,3. Transportation,Epoxy,Low,Industrial canister products may use various chemistries,1,1
+3. Transportation_TC471,TC471 - ONHOLD,TC471,Hot Melt,3. Transportation,Solvent Based,Medium,Hot melt products typically use solvent-based technology,0,1
+4. Composites_TAC-734G,TAC-734G,TAC-734G,Tape,4. Composites,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,4,2
+4. Composites_TAC-735,TAC-735,TAC-735,Tape,4. Composites,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,4,3
+4. Composites_TAC-738R,TAC-738R,TAC-738R,Resin,4. Composites,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+4. Composites_TAC-739R,TAC-739R,TAC-739R,Resin,4. Composites,Epoxy,Medium,Resin products often use epoxy chemistry,2,3
+4. Composites_TAC-OS75,TAC-OS75,TAC-OS75,Tape,4. Composites,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,1,2
+4. Composites_TAC850,TAC850 Series,TAC850,Tape,4. Composites,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,4,2
+6. Insulation_R-A2000 (A1000),R-A2000 (A1000),R-A2000 (A1000),Resin,6. Insulation,Epoxy,Medium,Resin products often use epoxy chemistry,1,2
+6. Insulation_R-C661 (C331),R-C661 (C331),R-C661 (C331),Resin,6. Insulation,Epoxy,Medium,Resin products often use epoxy chemistry,1,2
+6. Insulation_R-OS8 (OS2),R-OS8 (OS2),R-OS8 (OS2),Resin,6. Insulation,Epoxy,Medium,Resin products often use epoxy chemistry,1,2
+6. Insulation_R-OS84 (OS35),R-OS84 (OS35),R-OS84 (OS35),Resin,6. Insulation,Epoxy,Medium,Resin products often use epoxy chemistry,1,2
+6. Insulation_R-R820 (R160),R-R820 (R160),R-R820 (R160),Resin,6. Insulation,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+6. Insulation_R-T600 (T305),R-T600 (T305),R-T600 (T305),Resin,6. Insulation,Epoxy,Medium,Resin products often use epoxy chemistry,0,2
+6. Insulation_R-T620 (T310),R-T620 (T310),R-T620 (T310),Resin,6. Insulation,Epoxy,Medium,Resin products often use epoxy chemistry,0,2
+6. Insulation_R-T860 (T715),R-T860 (T715),R-T860 (T715),Resin,6. Insulation,Epoxy,Medium,Resin products often use epoxy chemistry,0,2
+6. Insulation_RC826,RC826 (IC936),RC826,Industrial Canister,6. Insulation,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+6. Insulation_RC862,RC862 (IC932),RC862,Industrial Canister,6. Insulation,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+6. Insulation_RC863,RC863 (IC933),RC863,Industrial Canister,6. Insulation,Epoxy,Low,Industrial canister products may use various chemistries,3,2
+6. Insulation_RC864,RC864 (IC934),RC864,Industrial Canister,6. Insulation,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+6. Insulation_RC886,RC886 (IC946),RC886,Industrial Canister,6. Insulation,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+6. Insulation_RC887,RC887 (IC947),RC887,Industrial Canister,6. Insulation,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+7. Construction_C360,C-C360 (C130),C360,Coating,7. Construction,Unknown,Low,N/A,1,2
+7. Construction_C551,C-C551 (C331),C551,Coating,7. Construction,Unknown,Low,N/A,1,2
+7. Construction_OA5,C-OA5 (OA4),OA5,Oil Adhesive,7. Construction,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,0,2
+7. Construction_OA52,C-OA52 (OA12),OA52,Oil Adhesive,7. Construction,Modified Silane (MS Polymer/ Hybrid Polymer),Medium,Oil adhesive products often use hybrid polymer technology,1,2
+7. Construction_OA98,C-OA98 (OS24),OA98,Oil Seal,7. Construction,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+7. Construction_OS55,C-OS55 (OS35),OS55,Oil Seal,7. Construction,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+7. Construction_OS9,C-OS9 (OS2),OS9,Oil Seal,7. Construction,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+7. Construction_OSA,C-OSA (OSA),OSA,Oil Seal,7. Construction,Silicone,Medium,Oil seal products often use silicone chemistry,1,2
+7. Construction_R329,C-R329 (R519),R329,Resin,7. Construction,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+7. Construction_R552,C-R552 (R221),R552,Resin,7. Construction,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+7. Construction_R560,C-R560 (R160),R560,Resin,7. Construction,Epoxy,Medium,Resin products often use epoxy chemistry,2,2
+7. Construction_T500,C-T500 (T305),T500,Tape,7. Construction,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+7. Construction_T5100,C-T5100 (T715),T5100,Tape,7. Construction,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+7. Construction_T550,C-T550 (T205),T550,Tape,7. Construction,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+7. Construction_T553,C-T553 (T215),T553,Tape,7. Construction,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+7. Construction_T557,C-T557 (T220),T557,Tape,7. Construction,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+7. Construction_T564,C-T564 (T532),T564,Tape,7. Construction,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+7. Construction_T731,C-T731 (T465),T731,Tape,7. Construction,Acrylic (incl. PSA),Medium,Classified as tape - likely pressure-sensitive adhesive,0,2
+7. Construction_W6106,C-W6106 (W700),W6106,Coating,7. Construction,Unknown,Low,N/A,0,1
+7. Construction_CC501,CC501 (IC946),CC501,Industrial Canister,7. Construction,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+7. Construction_CC503,CC503 (IC936),CC503,Industrial Canister,7. Construction,Epoxy,Low,Industrial canister products may use various chemistries,2,0
+7. Construction_CC507,CC507 (IC947),CC507,Industrial Canister,7. Construction,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+7. Construction_CC513,CC513 (IC932),CC513,Industrial Canister,7. Construction,Epoxy,Low,Industrial canister products may use various chemistries,1,2
+7. Construction_CC515,CC515 (IC934),CC515,Industrial Canister,7. Construction,Epoxy,Low,Industrial canister products may use various chemistries,2,2
+7. Construction_CC519,CC519 (IC933),CC519,Industrial Canister,7. Construction,Epoxy,Low,Industrial canister products may use various chemistries,3,2

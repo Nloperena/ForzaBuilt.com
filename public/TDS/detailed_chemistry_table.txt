@@ -1,0 +1,1402 @@
+========================================================================================================================
+DETAILED PRODUCT CHEMISTRY CLASSIFICATION TABLE
+========================================================================================================================
+
+
+📁 1. Industrial
+--------------------------------------------------------------------------------
+
+Product: 81-0389
+  ID: 1. Industrial_81-0389
+  Code: 81-0389
+  Type: General
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: A1000
+  ID: 1. Industrial_A1000
+  Code: A1000
+  Type: Adhesive
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: A450
+  ID: 1. Industrial_A450
+  Code: A450
+  Type: Adhesive
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: A465
+  ID: 1. Industrial_A465
+  Code: A465
+  Type: Adhesive
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: A729
+  ID: 1. Industrial_A729
+  Code: A729
+  Type: Adhesive
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: C110
+  ID: 1. Industrial_C110
+  Code: C110
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: C130
+  ID: 1. Industrial_C130
+  Code: C130
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: C331
+  ID: 1. Industrial_C331
+  Code: C331
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: C805
+  ID: 1. Industrial_C805
+  Code: C805
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: C830
+  ID: 1. Industrial_C830
+  Code: C830
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: C835
+  ID: 1. Industrial_C835
+  Code: C835
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: CA1000
+  ID: 1. Industrial_CA1000
+  Code: CA1000
+  Type: Construction Adhesive
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 2 SDS, 2 TDS
+
+Product: CA1500
+  ID: 1. Industrial_CA1500
+  Code: CA1500
+  Type: Construction Adhesive
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 1 TDS
+
+Product: CA2400
+  ID: 1. Industrial_CA2400
+  Code: CA2400
+  Type: Construction Adhesive
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 1 TDS
+
+Product: H103
+  ID: 1. Industrial_H103
+  Code: H103
+  Type: Hot Melt
+  Chemistry: Solvent Based
+  Confidence: Medium
+  Reasoning: Hot melt products typically use solvent-based technology
+  Files: 1 SDS, 2 TDS
+
+Product: H117
+  ID: 1. Industrial_H117
+  Code: H117
+  Type: Hot Melt
+  Chemistry: Solvent Based
+  Confidence: Medium
+  Reasoning: Hot melt products typically use solvent-based technology
+  Files: 1 SDS, 2 TDS
+
+Product: H158
+  ID: 1. Industrial_H158
+  Code: H158
+  Type: Hot Melt
+  Chemistry: Solvent Based
+  Confidence: Medium
+  Reasoning: Hot melt products typically use solvent-based technology
+  Files: 1 SDS, 2 TDS
+
+Product: H163
+  ID: 1. Industrial_H163
+  Code: H163
+  Type: Hot Melt
+  Chemistry: Solvent Based
+  Confidence: Medium
+  Reasoning: Hot melt products typically use solvent-based technology
+  Files: 1 SDS, 2 TDS
+
+Product: H164
+  ID: 1. Industrial_H164
+  Code: H164
+  Type: Hot Melt
+  Chemistry: Solvent Based
+  Confidence: Medium
+  Reasoning: Hot melt products typically use solvent-based technology
+  Files: 1 SDS, 2 TDS
+
+Product: H167
+  ID: 1. Industrial_H167
+  Code: H167
+  Type: Hot Melt
+  Chemistry: Solvent Based
+  Confidence: Medium
+  Reasoning: Hot melt products typically use solvent-based technology
+  Files: 1 SDS, 2 TDS
+
+Product: H176
+  ID: 1. Industrial_H176
+  Code: H176
+  Type: Hot Melt
+  Chemistry: Solvent Based
+  Confidence: Medium
+  Reasoning: Hot melt products typically use solvent-based technology
+  Files: 1 SDS, 2 TDS
+
+Product: IC932
+  ID: 1. Industrial_IC932
+  Code: IC932
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: IC933
+  ID: 1. Industrial_IC933
+  Code: IC933
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 3 SDS, 2 TDS
+
+Product: IC934
+  ID: 1. Industrial_IC934
+  Code: IC934
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: IC936
+  ID: 1. Industrial_IC936
+  Code: IC936
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 3 SDS, 2 TDS
+
+Product: IC946
+  ID: 1. Industrial_IC946
+  Code: IC946
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: IC947
+  ID: 1. Industrial_IC947
+  Code: IC947
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: IC951
+  ID: 1. Industrial_IC951
+  Code: IC951
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: IC952
+  ID: 1. Industrial_IC952
+  Code: IC952
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: IC955NF
+  ID: 1. Industrial_IC955
+  Code: IC955
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: OA12
+  ID: 1. Industrial_OA12
+  Code: OA12
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 1 SDS, 2 TDS
+
+Product: OA13
+  ID: 1. Industrial_OA13
+  Code: OA13
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 1 SDS, 2 TDS
+
+Product: OA23
+  ID: 1. Industrial_OA23
+  Code: OA23
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 1 SDS, 2 TDS
+
+Product: OA28
+  ID: 1. Industrial_OA28
+  Code: OA28
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 0 SDS, 2 TDS
+
+Product: OA29
+  ID: 1. Industrial_OA29
+  Code: OA29
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 0 SDS, 2 TDS
+
+Product: OA4
+  ID: 1. Industrial_OA4
+  Code: OA4
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 0 SDS, 2 TDS
+
+Product: OS10
+  ID: 1. Industrial_OS10
+  Code: OS10
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: OS2
+  ID: 1. Industrial_OS2
+  Code: OS2
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 2 SDS, 4 TDS
+
+Product: OS20
+  ID: 1. Industrial_OS20
+  Code: OS20
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: OS24
+  ID: 1. Industrial_OS24
+  Code: OS24
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: OS25
+  ID: 1. Industrial_OS25
+  Code: OS25
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: OS35
+  ID: 1. Industrial_OS35
+  Code: OS35
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: OS37
+  ID: 1. Industrial_OS37
+  Code: OS37
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: OS61
+  ID: 1. Industrial_OS61
+  Code: OS61
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: OSA
+  ID: 1. Industrial_OSA
+  Code: OSA
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: R160
+  ID: 1. Industrial_R160
+  Code: R160
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: R190
+  ID: 1. Industrial_R190
+  Code: R190
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: R221
+  ID: 1. Industrial_R221
+  Code: R221
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: R519
+  ID: 1. Industrial_R519
+  Code: R519
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: T205
+  ID: 1. Industrial_T205
+  Code: T205
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T215
+  ID: 1. Industrial_T215
+  Code: T215
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T220
+  ID: 1. Industrial_T220
+  Code: T220
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T305
+  ID: 1. Industrial_T305
+  Code: T305
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T310
+  ID: 1. Industrial_T310
+  Code: T310
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T449
+  ID: 1. Industrial_T449
+  Code: T449
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T464
+  ID: 1. Industrial_T464
+  Code: T464
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T465
+  ID: 1. Industrial_T465
+  Code: T465
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T532
+  ID: 1. Industrial_T532
+  Code: T532
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T710
+  ID: 1. Industrial_T710
+  Code: T710
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T715
+  ID: 1. Industrial_T715
+  Code: T715
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: TA56
+  ID: 1. Industrial_TA56
+  Code: TA56
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 0 TDS
+
+Product: W700
+  ID: 1. Industrial_W700
+  Code: W700
+  Type: Waterproofing
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+
+📁 2. Marine
+--------------------------------------------------------------------------------
+
+Product: Environmental Data Sheets
+  ID: 2. Marine_Environmental Data Sheets
+  Code: Environmental Data Sheets
+  Type: General
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 0 SDS, 0 TDS
+
+Product: M-C280 (C130)
+  ID: 2. Marine_C280
+  Code: C280
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: M-C283 (C331)
+  ID: 2. Marine_C283
+  Code: C283
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 1 TDS
+
+Product: M-C285 (81-0389)
+  ID: 2. Marine_C285
+  Code: C285
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 2 SDS, 1 TDS
+
+Product: M-OA755 (OA4)
+  ID: 2. Marine_OA755
+  Code: OA755
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 1 SDS, 2 TDS
+
+Product: M-OS764 (OS24)
+  ID: 2. Marine_OS764
+  Code: OS764
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: M-OS789 (OS2)
+  ID: 2. Marine_OS789
+  Code: OS789
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: M-OS796 (OS16)
+  ID: 2. Marine_OS796
+  Code: OS796
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: M-OSA783 (OSA)
+  ID: 2. Marine_OSA783
+  Code: OSA783
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: M-R420 (R160)
+  ID: 2. Marine_R420
+  Code: R420
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 5 SDS, 1 TDS
+
+Product: M-R445 (R221)
+  ID: 2. Marine_R445
+  Code: R445
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 1 TDS
+
+Product: M-R478 (R519)
+  ID: 2. Marine_R478
+  Code: R478
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 4 SDS, 2 TDS
+
+Product: M-T815 (T215)
+  ID: 2. Marine_T815
+  Code: T815
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: M-T820 (T220)
+  ID: 2. Marine_T820
+  Code: T820
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: MC722 (IC932)
+  ID: 2. Marine_MC722
+  Code: MC722
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: MC723 (IC933)
+  ID: 2. Marine_MC723
+  Code: MC723
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 3 SDS, 2 TDS
+
+Product: MC724 (IC934)
+  ID: 2. Marine_MC724
+  Code: MC724
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 1 TDS
+
+Product: MC736 (IC946)
+  ID: 2. Marine_MC736
+  Code: MC736
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: MC737 (IC947)
+  ID: 2. Marine_MC737
+  Code: MC737
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: MC739
+  ID: 2. Marine_MC739
+  Code: MC739
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 2 SDS, 2 TDS
+
+Product: MC741 (IC951)
+  ID: 2. Marine_MC741
+  Code: MC741
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 8 SDS, 3 TDS
+
+
+📁 3. Transportation
+--------------------------------------------------------------------------------
+
+Product: T-C222 (C130)
+  ID: 3. Transportation_C222
+  Code: C222
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 1 TDS
+
+Product: T-C225 (C331)
+  ID: 3. Transportation_C225
+  Code: C225
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 1 TDS
+
+Product: T-C485 (81-0389)
+  ID: 3. Transportation_C485
+  Code: C485
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 1 TDS
+
+Product: T-OA152 (OS24)
+  ID: 3. Transportation_OA152
+  Code: OA152
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 1 TDS
+
+Product: T-OA156 (OA4)
+  ID: 3. Transportation_OA156
+  Code: OA156
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: T-OA177(OA13)
+  ID: 3. Transportation_OA177
+  Code: OA177
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 1 TDS
+
+Product: T-OS151 (OS2)
+  ID: 3. Transportation_OS151
+  Code: OS151
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 2 SDS, 1 TDS
+
+Product: T-OS164 (OS35)
+  ID: 3. Transportation_OS164
+  Code: OS164
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 1 TDS
+
+Product: T-OSA155 (OSA)
+  ID: 3. Transportation_OSA155
+  Code: OSA155
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 1 TDS
+
+Product: T-R679 (R221)
+  ID: 3. Transportation_R679
+  Code: R679
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 1 TDS
+
+Product: T-R785 (R519)
+  ID: 3. Transportation_R785
+  Code: R785
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 0 SDS, 1 TDS
+
+Product: T-S596 (S228)
+  ID: 3. Transportation_S596
+  Code: S596
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 1 TDS
+
+Product: T-T1420
+  ID: 3. Transportation_T1420
+  Code: T1420
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 1 TDS
+
+Product: T-T415 (T215)
+  ID: 3. Transportation_T415
+  Code: T415
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 1 TDS
+
+Product: T-T420 (T220)
+  ID: 3. Transportation_T420
+  Code: T420
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 1 TDS
+
+Product: T-T430
+  ID: 3. Transportation_T430
+  Code: T430
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 1 TDS
+
+Product: TC452 (IC932)
+  ID: 3. Transportation_TC452
+  Code: TC452
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: TC453 (IC933)
+  ID: 3. Transportation_TC453
+  Code: TC453
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 4 SDS, 2 TDS
+
+Product: TC454 (IC934)
+  ID: 3. Transportation_TC454
+  Code: TC454
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 1 TDS
+
+Product: TC456 (IC936)
+  ID: 3. Transportation_TC456
+  Code: TC456
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 1 TDS
+
+Product: TC466 (IC946)
+  ID: 3. Transportation_TC466
+  Code: TC466
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 1 TDS
+
+Product: TC467 (IC947)
+  ID: 3. Transportation_TC467
+  Code: TC467
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 1 TDS
+
+Product: TC471 - ONHOLD
+  ID: 3. Transportation_TC471
+  Code: TC471
+  Type: Hot Melt
+  Chemistry: Solvent Based
+  Confidence: Medium
+  Reasoning: Hot melt products typically use solvent-based technology
+  Files: 0 SDS, 1 TDS
+
+
+📁 4. Composites
+--------------------------------------------------------------------------------
+
+Product: TAC-734G
+  ID: 4. Composites_TAC-734G
+  Code: TAC-734G
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 4 SDS, 2 TDS
+
+Product: TAC-735
+  ID: 4. Composites_TAC-735
+  Code: TAC-735
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 4 SDS, 3 TDS
+
+Product: TAC-738R
+  ID: 4. Composites_TAC-738R
+  Code: TAC-738R
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: TAC-739R
+  ID: 4. Composites_TAC-739R
+  Code: TAC-739R
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 3 TDS
+
+Product: TAC-OS75
+  ID: 4. Composites_TAC-OS75
+  Code: TAC-OS75
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 1 SDS, 2 TDS
+
+Product: TAC850 Series
+  ID: 4. Composites_TAC850
+  Code: TAC850
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 4 SDS, 2 TDS
+
+
+📁 6. Insulation
+--------------------------------------------------------------------------------
+
+Product: R-A2000 (A1000)
+  ID: 6. Insulation_R-A2000 (A1000)
+  Code: R-A2000 (A1000)
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: R-C661 (C331)
+  ID: 6. Insulation_R-C661 (C331)
+  Code: R-C661 (C331)
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: R-OS8 (OS2)
+  ID: 6. Insulation_R-OS8 (OS2)
+  Code: R-OS8 (OS2)
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: R-OS84 (OS35)
+  ID: 6. Insulation_R-OS84 (OS35)
+  Code: R-OS84 (OS35)
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: R-R820 (R160)
+  ID: 6. Insulation_R-R820 (R160)
+  Code: R-R820 (R160)
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: R-T600 (T305)
+  ID: 6. Insulation_R-T600 (T305)
+  Code: R-T600 (T305)
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 0 SDS, 2 TDS
+
+Product: R-T620 (T310)
+  ID: 6. Insulation_R-T620 (T310)
+  Code: R-T620 (T310)
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 0 SDS, 2 TDS
+
+Product: R-T860 (T715)
+  ID: 6. Insulation_R-T860 (T715)
+  Code: R-T860 (T715)
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 0 SDS, 2 TDS
+
+Product: RC826 (IC936)
+  ID: 6. Insulation_RC826
+  Code: RC826
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: RC862 (IC932)
+  ID: 6. Insulation_RC862
+  Code: RC862
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: RC863 (IC933)
+  ID: 6. Insulation_RC863
+  Code: RC863
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 3 SDS, 2 TDS
+
+Product: RC864 (IC934)
+  ID: 6. Insulation_RC864
+  Code: RC864
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: RC886 (IC946)
+  ID: 6. Insulation_RC886
+  Code: RC886
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: RC887 (IC947)
+  ID: 6. Insulation_RC887
+  Code: RC887
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+
+📁 7. Construction
+--------------------------------------------------------------------------------
+
+Product: C-C360 (C130)
+  ID: 7. Construction_C360
+  Code: C360
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: C-C551 (C331)
+  ID: 7. Construction_C551
+  Code: C551
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 1 SDS, 2 TDS
+
+Product: C-OA5 (OA4)
+  ID: 7. Construction_OA5
+  Code: OA5
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 0 SDS, 2 TDS
+
+Product: C-OA52 (OA12)
+  ID: 7. Construction_OA52
+  Code: OA52
+  Type: Oil Adhesive
+  Chemistry: Modified Silane (MS Polymer/ Hybrid Polymer)
+  Confidence: Medium
+  Reasoning: Oil adhesive products often use hybrid polymer technology
+  Files: 1 SDS, 2 TDS
+
+Product: C-OA98 (OS24)
+  ID: 7. Construction_OA98
+  Code: OA98
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: C-OS55 (OS35)
+  ID: 7. Construction_OS55
+  Code: OS55
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: C-OS9 (OS2)
+  ID: 7. Construction_OS9
+  Code: OS9
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: C-OSA (OSA)
+  ID: 7. Construction_OSA
+  Code: OSA
+  Type: Oil Seal
+  Chemistry: Silicone
+  Confidence: Medium
+  Reasoning: Oil seal products often use silicone chemistry
+  Files: 1 SDS, 2 TDS
+
+Product: C-R329 (R519)
+  ID: 7. Construction_R329
+  Code: R329
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: C-R552 (R221)
+  ID: 7. Construction_R552
+  Code: R552
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: C-R560 (R160)
+  ID: 7. Construction_R560
+  Code: R560
+  Type: Resin
+  Chemistry: Epoxy
+  Confidence: Medium
+  Reasoning: Resin products often use epoxy chemistry
+  Files: 2 SDS, 2 TDS
+
+Product: C-T500 (T305)
+  ID: 7. Construction_T500
+  Code: T500
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: C-T5100 (T715)
+  ID: 7. Construction_T5100
+  Code: T5100
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: C-T550 (T205)
+  ID: 7. Construction_T550
+  Code: T550
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: C-T553 (T215)
+  ID: 7. Construction_T553
+  Code: T553
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: C-T557 (T220)
+  ID: 7. Construction_T557
+  Code: T557
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: C-T564 (T532)
+  ID: 7. Construction_T564
+  Code: T564
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: C-T731 (T465)
+  ID: 7. Construction_T731
+  Code: T731
+  Type: Tape
+  Chemistry: Acrylic (incl. PSA)
+  Confidence: Medium
+  Reasoning: Classified as tape - likely pressure-sensitive adhesive
+  Files: 0 SDS, 2 TDS
+
+Product: C-W6106 (W700)
+  ID: 7. Construction_W6106
+  Code: W6106
+  Type: Coating
+  Chemistry: Unknown
+  Confidence: Low
+  Reasoning: N/A
+  Files: 0 SDS, 1 TDS
+
+Product: CC501 (IC946)
+  ID: 7. Construction_CC501
+  Code: CC501
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: CC503 (IC936)
+  ID: 7. Construction_CC503
+  Code: CC503
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 0 TDS
+
+Product: CC507 (IC947)
+  ID: 7. Construction_CC507
+  Code: CC507
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: CC513 (IC932)
+  ID: 7. Construction_CC513
+  Code: CC513
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 1 SDS, 2 TDS
+
+Product: CC515 (IC934)
+  ID: 7. Construction_CC515
+  Code: CC515
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 2 SDS, 2 TDS
+
+Product: CC519 (IC933)
+  ID: 7. Construction_CC519
+  Code: CC519
+  Type: Industrial Canister
+  Chemistry: Epoxy
+  Confidence: Low
+  Reasoning: Industrial canister products may use various chemistries
+  Files: 3 SDS, 2 TDS
+
+========================================================================================================================
+SUMMARY
+========================================================================================================================
+
+Chemistry Breakdown:
+  Unknown: 23 products (15.2%)
+  Solvent Based: 8 products (5.3%)
+  Epoxy: 55 products (36.4%)
+  Modified Silane (MS Polymer/ Hybrid Polymer): 9 products (6.0%)
+  Silicone: 17 products (11.3%)
+  Acrylic (incl. PSA): 39 products (25.8%)
+
+Confidence Levels:
+  Low: 56 products (37.1%)
+  Medium: 95 products (62.9%)

@@ -1,0 +1,178 @@
+====================================================================================================
+PRODUCTS BY CHEMISTRY TYPE
+====================================================================================================
+
+🧪 Epoxy (55 products)
+------------------------------------------------------------
+
+  • IC932 (Industrial Canister) - 1. Industrial - Low confidence
+  • IC933 (Industrial Canister) - 1. Industrial - Low confidence
+  • IC934 (Industrial Canister) - 1. Industrial - Low confidence
+  • IC936 (Industrial Canister) - 1. Industrial - Low confidence
+  • IC946 (Industrial Canister) - 1. Industrial - Low confidence
+  • IC947 (Industrial Canister) - 1. Industrial - Low confidence
+  • IC951 (Industrial Canister) - 1. Industrial - Low confidence
+  • IC952 (Industrial Canister) - 1. Industrial - Low confidence
+  • IC955NF (Industrial Canister) - 1. Industrial - Low confidence
+  • R160 (Resin) - 1. Industrial - Medium confidence
+  • R190 (Resin) - 1. Industrial - Medium confidence
+  • R221 (Resin) - 1. Industrial - Medium confidence
+  • R519 (Resin) - 1. Industrial - Medium confidence
+  • M-R420 (R160) (Resin) - 2. Marine - Medium confidence
+  • M-R445 (R221) (Resin) - 2. Marine - Medium confidence
+  • M-R478 (R519) (Resin) - 2. Marine - Medium confidence
+  • MC722 (IC932) (Industrial Canister) - 2. Marine - Low confidence
+  • MC723 (IC933) (Industrial Canister) - 2. Marine - Low confidence
+  • MC724 (IC934) (Industrial Canister) - 2. Marine - Low confidence
+  • MC736 (IC946) (Industrial Canister) - 2. Marine - Low confidence
+  • MC737 (IC947) (Industrial Canister) - 2. Marine - Low confidence
+  • MC741 (IC951) (Industrial Canister) - 2. Marine - Low confidence
+  • T-R679 (R221) (Resin) - 3. Transportation - Medium confidence
+  • T-R785 (R519) (Resin) - 3. Transportation - Medium confidence
+  • TC452 (IC932) (Industrial Canister) - 3. Transportation - Low confidence
+  • TC453 (IC933) (Industrial Canister) - 3. Transportation - Low confidence
+  • TC454 (IC934) (Industrial Canister) - 3. Transportation - Low confidence
+  • TC456 (IC936) (Industrial Canister) - 3. Transportation - Low confidence
+  • TC466 (IC946) (Industrial Canister) - 3. Transportation - Low confidence
+  • TC467 (IC947) (Industrial Canister) - 3. Transportation - Low confidence
+  • TAC-738R (Resin) - 4. Composites - Medium confidence
+  • TAC-739R (Resin) - 4. Composites - Medium confidence
+  • R-A2000 (A1000) (Resin) - 6. Insulation - Medium confidence
+  • R-C661 (C331) (Resin) - 6. Insulation - Medium confidence
+  • R-OS8 (OS2) (Resin) - 6. Insulation - Medium confidence
+  • R-OS84 (OS35) (Resin) - 6. Insulation - Medium confidence
+  • R-R820 (R160) (Resin) - 6. Insulation - Medium confidence
+  • R-T600 (T305) (Resin) - 6. Insulation - Medium confidence
+  • R-T620 (T310) (Resin) - 6. Insulation - Medium confidence
+  • R-T860 (T715) (Resin) - 6. Insulation - Medium confidence
+  • RC826 (IC936) (Industrial Canister) - 6. Insulation - Low confidence
+  • RC862 (IC932) (Industrial Canister) - 6. Insulation - Low confidence
+  • RC863 (IC933) (Industrial Canister) - 6. Insulation - Low confidence
+  • RC864 (IC934) (Industrial Canister) - 6. Insulation - Low confidence
+  • RC886 (IC946) (Industrial Canister) - 6. Insulation - Low confidence
+  • RC887 (IC947) (Industrial Canister) - 6. Insulation - Low confidence
+  • C-R329 (R519) (Resin) - 7. Construction - Medium confidence
+  • C-R552 (R221) (Resin) - 7. Construction - Medium confidence
+  • C-R560 (R160) (Resin) - 7. Construction - Medium confidence
+  • CC501 (IC946) (Industrial Canister) - 7. Construction - Low confidence
+  • CC503 (IC936) (Industrial Canister) - 7. Construction - Low confidence
+  • CC507 (IC947) (Industrial Canister) - 7. Construction - Low confidence
+  • CC513 (IC932) (Industrial Canister) - 7. Construction - Low confidence
+  • CC515 (IC934) (Industrial Canister) - 7. Construction - Low confidence
+  • CC519 (IC933) (Industrial Canister) - 7. Construction - Low confidence
+
+🧪 Acrylic (incl. PSA) (39 products)
+------------------------------------------------------------
+
+  • T205 (Tape) - 1. Industrial - Medium confidence
+  • T215 (Tape) - 1. Industrial - Medium confidence
+  • T220 (Tape) - 1. Industrial - Medium confidence
+  • T305 (Tape) - 1. Industrial - Medium confidence
+  • T310 (Tape) - 1. Industrial - Medium confidence
+  • T449 (Tape) - 1. Industrial - Medium confidence
+  • T464 (Tape) - 1. Industrial - Medium confidence
+  • T465 (Tape) - 1. Industrial - Medium confidence
+  • T532 (Tape) - 1. Industrial - Medium confidence
+  • T710 (Tape) - 1. Industrial - Medium confidence
+  • T715 (Tape) - 1. Industrial - Medium confidence
+  • TA56 (Tape) - 1. Industrial - Medium confidence
+  • M-T815 (T215) (Tape) - 2. Marine - Medium confidence
+  • M-T820 (T220) (Tape) - 2. Marine - Medium confidence
+  • T-C222 (C130) (Tape) - 3. Transportation - Medium confidence
+  • T-C225 (C331) (Tape) - 3. Transportation - Medium confidence
+  • T-C485 (81-0389) (Tape) - 3. Transportation - Medium confidence
+  • T-OA152 (OS24) (Tape) - 3. Transportation - Medium confidence
+  • T-OA156 (OA4) (Tape) - 3. Transportation - Medium confidence
+  • T-OA177(OA13) (Tape) - 3. Transportation - Medium confidence
+  • T-OS151 (OS2) (Tape) - 3. Transportation - Medium confidence
+  • T-OS164 (OS35) (Tape) - 3. Transportation - Medium confidence
+  • T-OSA155 (OSA) (Tape) - 3. Transportation - Medium confidence
+  • T-S596 (S228) (Tape) - 3. Transportation - Medium confidence
+  • T-T1420 (Tape) - 3. Transportation - Medium confidence
+  • T-T415 (T215) (Tape) - 3. Transportation - Medium confidence
+  • T-T420 (T220) (Tape) - 3. Transportation - Medium confidence
+  • T-T430 (Tape) - 3. Transportation - Medium confidence
+  • TAC-734G (Tape) - 4. Composites - Medium confidence
+  • TAC-735 (Tape) - 4. Composites - Medium confidence
+  • TAC-OS75 (Tape) - 4. Composites - Medium confidence
+  • TAC850 Series (Tape) - 4. Composites - Medium confidence
+  • C-T500 (T305) (Tape) - 7. Construction - Medium confidence
+  • C-T5100 (T715) (Tape) - 7. Construction - Medium confidence
+  • C-T550 (T205) (Tape) - 7. Construction - Medium confidence
+  • C-T553 (T215) (Tape) - 7. Construction - Medium confidence
+  • C-T557 (T220) (Tape) - 7. Construction - Medium confidence
+  • C-T564 (T532) (Tape) - 7. Construction - Medium confidence
+  • C-T731 (T465) (Tape) - 7. Construction - Medium confidence
+
+🧪 Unknown (23 products)
+------------------------------------------------------------
+
+  • 81-0389 (General) - 1. Industrial - Low confidence
+  • A1000 (Adhesive) - 1. Industrial - Low confidence
+  • A450 (Adhesive) - 1. Industrial - Low confidence
+  • A465 (Adhesive) - 1. Industrial - Low confidence
+  • A729 (Adhesive) - 1. Industrial - Low confidence
+  • C110 (Coating) - 1. Industrial - Low confidence
+  • C130 (Coating) - 1. Industrial - Low confidence
+  • C331 (Coating) - 1. Industrial - Low confidence
+  • C805 (Coating) - 1. Industrial - Low confidence
+  • C830 (Coating) - 1. Industrial - Low confidence
+  • C835 (Coating) - 1. Industrial - Low confidence
+  • CA1000 (Construction Adhesive) - 1. Industrial - Low confidence
+  • CA1500 (Construction Adhesive) - 1. Industrial - Low confidence
+  • CA2400 (Construction Adhesive) - 1. Industrial - Low confidence
+  • W700 (Waterproofing) - 1. Industrial - Low confidence
+  • Environmental Data Sheets (General) - 2. Marine - Low confidence
+  • M-C280 (C130) (Coating) - 2. Marine - Low confidence
+  • M-C283 (C331) (Coating) - 2. Marine - Low confidence
+  • M-C285 (81-0389) (Coating) - 2. Marine - Low confidence
+  • MC739 (Coating) - 2. Marine - Low confidence
+  • C-C360 (C130) (Coating) - 7. Construction - Low confidence
+  • C-C551 (C331) (Coating) - 7. Construction - Low confidence
+  • C-W6106 (W700) (Coating) - 7. Construction - Low confidence
+
+🧪 Silicone (17 products)
+------------------------------------------------------------
+
+  • OS10 (Oil Seal) - 1. Industrial - Medium confidence
+  • OS2 (Oil Seal) - 1. Industrial - Medium confidence
+  • OS20 (Oil Seal) - 1. Industrial - Medium confidence
+  • OS24 (Oil Seal) - 1. Industrial - Medium confidence
+  • OS25 (Oil Seal) - 1. Industrial - Medium confidence
+  • OS35 (Oil Seal) - 1. Industrial - Medium confidence
+  • OS37 (Oil Seal) - 1. Industrial - Medium confidence
+  • OS61 (Oil Seal) - 1. Industrial - Medium confidence
+  • OSA (Oil Seal) - 1. Industrial - Medium confidence
+  • M-OS764 (OS24) (Oil Seal) - 2. Marine - Medium confidence
+  • M-OS789 (OS2) (Oil Seal) - 2. Marine - Medium confidence
+  • M-OS796 (OS16) (Oil Seal) - 2. Marine - Medium confidence
+  • M-OSA783 (OSA) (Oil Seal) - 2. Marine - Medium confidence
+  • C-OA98 (OS24) (Oil Seal) - 7. Construction - Medium confidence
+  • C-OS55 (OS35) (Oil Seal) - 7. Construction - Medium confidence
+  • C-OS9 (OS2) (Oil Seal) - 7. Construction - Medium confidence
+  • C-OSA (OSA) (Oil Seal) - 7. Construction - Medium confidence
+
+🧪 Modified Silane (MS Polymer/ Hybrid Polymer) (9 products)
+------------------------------------------------------------
+
+  • OA12 (Oil Adhesive) - 1. Industrial - Medium confidence
+  • OA13 (Oil Adhesive) - 1. Industrial - Medium confidence
+  • OA23 (Oil Adhesive) - 1. Industrial - Medium confidence
+  • OA28 (Oil Adhesive) - 1. Industrial - Medium confidence
+  • OA29 (Oil Adhesive) - 1. Industrial - Medium confidence
+  • OA4 (Oil Adhesive) - 1. Industrial - Medium confidence
+  • M-OA755 (OA4) (Oil Adhesive) - 2. Marine - Medium confidence
+  • C-OA5 (OA4) (Oil Adhesive) - 7. Construction - Medium confidence
+  • C-OA52 (OA12) (Oil Adhesive) - 7. Construction - Medium confidence
+
+🧪 Solvent Based (8 products)
+------------------------------------------------------------
+
+  • H103 (Hot Melt) - 1. Industrial - Medium confidence
+  • H117 (Hot Melt) - 1. Industrial - Medium confidence
+  • H158 (Hot Melt) - 1. Industrial - Medium confidence
+  • H163 (Hot Melt) - 1. Industrial - Medium confidence
+  • H164 (Hot Melt) - 1. Industrial - Medium confidence
+  • H167 (Hot Melt) - 1. Industrial - Medium confidence
+  • H176 (Hot Melt) - 1. Industrial - Medium confidence
+  • TC471 - ONHOLD (Hot Melt) - 3. Transportation - Medium confidence

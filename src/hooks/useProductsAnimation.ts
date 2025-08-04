@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export const useProductsAnimation = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
   const [breatheValue, setBreatheValue] = useState(0);
   
   // Make the breathing animation half as fast
@@ -13,7 +13,7 @@ export const useProductsAnimation = () => {
       setBreatheValue(value);
       animationFrame = requestAnimationFrame(animate);
     };
-    if (hoveredIndex !== null) {
+    if (hoveredIndex >= 0) {
       animate();
     }
     return () => {
@@ -28,7 +28,7 @@ export const useProductsAnimation = () => {
   };
 
   const handleMouseLeave = () => {
-    setHoveredIndex(null);
+    setHoveredIndex(-1);
   };
 
   return {

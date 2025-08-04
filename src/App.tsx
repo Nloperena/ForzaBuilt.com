@@ -26,6 +26,7 @@ import IndustryReview from './pages/IndustryReview';
 import IndustrySummary from './pages/IndustrySummary';
 import ProductDatasheetsPage from './pages/ProductDatasheetsPage';
 import ProductIndex from './pages/ProductIndex';
+import ChemistriesPage from './pages/chemistries';
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/industries" element={<Industries />} />
             <Route path="/products" element={<ProductIndex />} />
+            <Route path="/chemistries" element={<ChemistriesPage />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />

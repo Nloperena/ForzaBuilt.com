@@ -8,9 +8,9 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Anchor, Factory, Car, Building, Package, Layers, Snowflake } from 'lucide-react';
-import { industrialDatasheet } from '@/data/industrialDatasheet';
 import { industries as industriesData } from '@/data/industries';
 import { products as productsData } from '@/data/products';
+import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -153,9 +153,7 @@ const ProductCategoryPage: React.FC = () => {
 
   // Get products for this category
   const categoryProducts = useMemo(() => {
-    return industrialDatasheet.filter(product => 
-      product.category.toUpperCase() === productCategory?.toUpperCase()
-    );
+    return byProductLine(productCategory as 'bond' | 'seal' | 'tape');
   }, [productCategory]);
 
   // Get unique industries for this category
@@ -473,8 +471,8 @@ const ProductCategoryPage: React.FC = () => {
                   onClick={() => setSortBy('name')}
                   className={`px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold text-sm md:text-base ${
                     sortBy === 'name' 
-                      ? 'bg-gradient-to-r from-[#09668D] to-[#1B3764] text-white border-0' 
-                      : 'border-2 border-gray-300 hover:border-[#09668D]'
+                      ? 'bg-gradient-to-r from-[#1B3764] to-[#F16022] text-white border-0' 
+                      : 'border-2 border-gray-300 hover:border-[#F16022]'
                   }`}
                 >
                   Name
@@ -484,8 +482,8 @@ const ProductCategoryPage: React.FC = () => {
                   onClick={() => setSortBy('industry')}
                   className={`px-4 md:px-6 py-2 md:py-3 rounded-xl font-bold text-sm md:text-base ${
                     sortBy === 'industry' 
-                      ? 'bg-gradient-to-r from-[#09668D] to-[#1B3764] text-white border-0' 
-                      : 'border-2 border-gray-300 hover:border-[#09668D]'
+                      ? 'bg-gradient-to-r from-[#1B3764] to-[#F16022] text-white border-0' 
+                      : 'border-2 border-gray-300 hover:border-[#F16022]'
                   }`}
                 >
                   Industry

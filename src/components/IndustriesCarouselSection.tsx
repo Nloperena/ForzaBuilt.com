@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { industries } from '@/data/industries';
@@ -37,13 +38,13 @@ const cardVariants = {
 };
 
 // Card dimensions with landscape optimization
-const CARD_WIDTH_SM = 140; // Mobile
-const CARD_WIDTH_MD = 160; // Tablet
-const CARD_WIDTH_LG = 360; // Desktop - 3x larger
-const CARD_WIDTH_XL = 480; // Large desktop - 3x larger
-const CARD_WIDTH_LANDSCAPE = 540; // Landscape - 3x larger cards
-const CARD_GAP = 8; // Default gap
-const CARD_GAP_LANDSCAPE = 24; // Landscape - more spacing
+const CARD_WIDTH_SM = 400; // Mobile - much larger to show fewer cards
+const CARD_WIDTH_MD = 450; // Tablet - larger for better touch interaction
+const CARD_WIDTH_LG = 520; // Desktop - larger for better viewing
+const CARD_WIDTH_XL = 680; // Large desktop - larger for better proportions
+const CARD_WIDTH_LANDSCAPE = 800; // Landscape - larger for better viewing
+const CARD_GAP = 20; // Default gap - increased for better spacing
+const CARD_GAP_LANDSCAPE = 48; // Landscape - increased spacing
 
 // Helper to get dynamic font size for card titles
 function getTitleFontSize(title: string) {
@@ -58,20 +59,29 @@ function getTitleFontSize(title: string) {
 
 // Memoized text components to prevent re-animation
 const MemoizedHeading = React.memo(() => (
-  <SplitText
-    key="industries-heading"
-    text="Better Built Bonds for All Industries"
-    className="text-lg sm:text-2xl md:text-4xl lg:text-6xl xl:text-8xl font-extrabold text-white mb-2 sm:mb-4 whitespace-normal sm:whitespace-nowrap font-kallisto"
-    splitType="words"
-    delay={50}
-  />
+  <div className="text-center">
+    <SplitText
+      key="industries-heading-line1"
+      text="Better Built Bonds"
+      className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-tight break-words block"
+      splitType="words"
+      delay={50}
+    />
+    <SplitText
+      key="industries-heading-line2"
+      text="for All Industries"
+      className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-tight break-words block"
+      splitType="words"
+      delay={50}
+    />
+  </div>
 ));
 
 const MemoizedSubheading = React.memo(() => (
   <SplitText
     key="industries-subheading"
     text="At Forza, we're your trusted scientists and mentors - delivering innovative adhesive solutions that secure your success"
-    className="text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl text-white max-w-4xl mx-auto"
+    className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white max-w-3xl sm:max-w-4xl mx-auto"
     splitType="words"
     delay={10}
     duration={0.4}
@@ -80,9 +90,7 @@ const MemoizedSubheading = React.memo(() => (
 
 export const IndustriesCarouselSection = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const backgroundVideoRef = useRef<HTMLVideoElement>(null);
   const [startIdx, setStartIdx] = useState(0);
-  const [currentBackgroundVideo, setCurrentBackgroundVideo] = useState<string>('');
   const [videosLoaded, setVideosLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   
@@ -97,12 +105,12 @@ export const IndustriesCarouselSection = () => {
   const getVisibleCards = () => {
     if (typeof window !== 'undefined') {
       if (isLandscape) return landscapeVisibleCards; // Landscape: fewer but larger cards
-      if (window.innerWidth < 640) return 2; // Mobile: 2 cards
+      if (window.innerWidth < 640) return 1; // Mobile: 1 card for maximum size
       if (window.innerWidth < 1024) return 2; // Tablet: 2 cards (larger cards)
-      if (window.innerWidth < 1280) return 2; // Small desktop: 2 cards (3x larger cards)
-      return 3; // Large desktop: 3 cards (3x larger cards)
+      if (window.innerWidth < 1280) return 2; // Small desktop: 2 cards (larger cards)
+      return 3; // Large desktop: 3 cards (larger cards)
     }
-    return 2; // Default
+    return 1; // Default to 1 for mobile
   };
   
   const CARDS_VISIBLE = getVisibleCards();
@@ -184,37 +192,10 @@ export const IndustriesCarouselSection = () => {
     }
   }, [isMobile]);
 
-  // Update background video when carousel position changes
-  React.useEffect(() => {
-    const centerCardIndex = Math.floor(startIdx + CARDS_VISIBLE / 2);
-    const centerCard = allCards[centerCardIndex];
-    if (centerCard && centerCard.videoUrl !== currentBackgroundVideo) {
-      setCurrentBackgroundVideo(centerCard.videoUrl);
-      if (backgroundVideoRef.current) {
-        backgroundVideoRef.current.src = centerCard.videoUrl;
-        backgroundVideoRef.current.load();
-        backgroundVideoRef.current.play();
-      }
-    }
-  }, [startIdx, currentBackgroundVideo, allCards]);
-
   return (
-    <section className="relative py-16 sm:py-24 md:py-32 lg:py-40 xl:py-48 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #1b3764 0%, #2a4a7a 50%, #1b3764 100%)' }}>
-      {/* Dynamic background video container */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <video
-          ref={backgroundVideoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-20 transition-opacity duration-1000"
-          style={{ filter: 'brightness(0.3) contrast(1.2)' }}
-        >
-          <source src={currentBackgroundVideo || allCards[0]?.videoUrl || ''} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
-      </div>
+    <section className="relative py-20 sm:py-28 md:py-36 lg:py-44 xl:py-52 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #1b3764 0%, #1b3764 70%, #F2611D 100%)' }}>
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
       <div className="absolute -top-[61%] -right-[85%] w-[150%] h-[100vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#F2611D] via-[#F2611D]/90 to-transparent blur-[60px] pointer-events-none" />
       <div
         className="relative z-10 w-full flex justify-center"
@@ -229,7 +210,7 @@ export const IndustriesCarouselSection = () => {
           </div>
           
           {/* Carousel Container */}
-          <div className="w-full max-w-full overflow-hidden px-4 sm:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 lg:py-16 xl:py-20">
+          <div className="w-full max-w-full overflow-hidden px-6 sm:px-10 lg:px-16 xl:px-20 py-12 sm:py-16 lg:py-20 xl:py-24">
             <div
               className="relative"
               style={{ 
@@ -292,7 +273,7 @@ export const IndustriesCarouselSection = () => {
                             alt={item.title + ' logo'}
                             className="absolute right-0 z-20 transform transition-all duration-150 pointer-events-none"
                             style={{ 
-                              height: isLandscape ? '180px' : (window.innerWidth < 640 ? '40px' : window.innerWidth < 1024 ? '60px' : window.innerWidth < 1280 ? '150px' : '180px'), 
+                              height: isLandscape ? '280px' : (window.innerWidth < 640 ? '80px' : window.innerWidth < 1024 ? '120px' : window.innerWidth < 1280 ? '240px' : '280px'), 
                               width: 'auto', 
                               bottom: '0px', 
                               filter: 'drop-shadow(0px 0px 0px rgba(242, 97, 29, 0))' 
@@ -306,18 +287,26 @@ export const IndustriesCarouselSection = () => {
                           <motion.div
                             className={`absolute bottom-0 left-0 right-0 bg-white rounded-b-[0.375rem] sm:rounded-b-[0.5rem] md:rounded-b-[0.75rem] lg:rounded-b-[1rem] xl:rounded-b-[1.5rem] flex items-center pointer-events-none ${
                               isLandscape 
-                                ? 'h-[120px] px-12' 
-                                : 'h-[24px] sm:h-[32px] md:h-[40px] lg:h-[96px] xl:h-[120px] px-1 sm:px-2 md:px-3 lg:px-8 xl:px-12'
+                                ? 'h-[180px] px-20' 
+                                : 'h-[48px] sm:h-[56px] md:h-[64px] lg:h-[140px] xl:h-[180px] px-3 sm:px-4 md:px-5 lg:px-12 xl:px-20'
                             }`}
                             variants={childItemVariants}
                             initial="hidden"
                             animate="visible"
                           >
                             <motion.h3
-                              className="font-black font-kallisto drop-shadow-2xl text-left w-full"
+                              className="font-black font-kallisto drop-shadow-2xl text-left w-full leading-tight"
                               style={{
                                 color: item.color || '#1b3764',
-                                fontSize: isLandscape ? '2rem' : (window.innerWidth < 640 ? getTitleFontSize(item.title) : window.innerWidth < 1024 ? '1rem' : window.innerWidth < 1280 ? '1.75rem' : '2rem'),
+                                fontSize: isLandscape 
+                                  ? '3rem' 
+                                  : (window.innerWidth < 640 
+                                      ? getTitleFontSize(item.title) 
+                                      : window.innerWidth < 1024 
+                                        ? '1.25rem' 
+                                        : window.innerWidth < 1280 
+                                          ? '2rem' 
+                                          : '3rem'),
                                 lineHeight: 1.1,
                               }}
                               variants={childItemVariants}
@@ -337,8 +326,8 @@ export const IndustriesCarouselSection = () => {
                   size="large"
                   className={`bg-white shadow-2xl rounded-[0.375rem] sm:rounded-[0.5rem] md:rounded-[0.75rem] lg:rounded-[1rem] xl:rounded-[1.5rem] border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-110 aspect-[3/4] flex flex-col justify-center items-center flex-shrink-0 ${
                     isLandscape 
-                      ? 'w-[540px]' 
-                      : 'w-[120px] sm:w-[140px] md:w-[180px] lg:w-[360px] xl:w-[480px]'
+                      ? 'w-[800px]' 
+                      : 'w-[400px] sm:w-[450px] md:w-[450px] lg:w-[520px] xl:w-[680px]'
                   }`}
                 />
               </div>
@@ -382,4 +371,285 @@ export const IndustriesCarouselSection = () => {
       </div>
     </section>
   );
-}; 
+};
+
+
+export const IndustriesCarouselSectionV2 = () => {
+  const allCards: Industry[] = [...industries];
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredCard(index);
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].play();
+    }
+  };
+
+  const handleMouseLeave = (index: number) => {
+    setHoveredCard(null);
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].pause();
+      videoRefs.current[index].currentTime = 0;
+    }
+  };
+
+  return (
+    <section className="relative py-20 sm:py-28 md:py-36 lg:py-44 xl:py-52 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #1b3764 0%, #1b3764 70%, #F2611D 100%)' }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
+      <div className="absolute -top-[61%] -right-[85%] w-[150%] h-[100vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#F2611D] via-[#F2611D]/90 to-transparent blur-[60px] pointer-events-none" />
+      
+      <div className="relative z-10 w-full px-4 sm:px-6 md:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <div className="text-center mb-12 md:mb-16 lg:mb-20">
+            <MemoizedHeading />
+            <MemoizedSubheading />
+          </div>
+
+          <div className="w-full">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8">
+              {allCards.map((item, idx) => (
+                <Link 
+                  key={item.title}
+                  to={`/industries/${item.title.toLowerCase().replace(/ /g, '-')}`}
+                  className="block w-full sm:w-[48%] md:w-[48%] lg:w-[31%] xl:w-[23%] flex-shrink-0"
+                  onMouseEnter={() => handleMouseEnter(idx)}
+                  onMouseLeave={() => handleMouseLeave(idx)}
+                >
+                  <Card className="bg-white shadow-2xl rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] group cursor-pointer w-full">
+                    <div className="relative w-full h-full overflow-hidden">
+                      <motion.video
+                        ref={(el) => (videoRefs.current[idx] = el)}
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                        preload="auto"
+                      >
+                        <source src={item.videoUrl} type="video/mp4" />
+                      </motion.video>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
+                      <motion.img
+                        src={item.logo}
+                        alt={item.title + ' logo'}
+                        className="absolute right-2 bottom-12 sm:right-4 sm:bottom-16 md:bottom-20 lg:bottom-24 z-20 transform transition-all duration-150 pointer-events-none w-1/3 sm:w-1/4"
+                        whileHover={{ rotate: 5, scale: 1.1, filter: 'drop-shadow(0px 0px 25px rgba(242, 97, 29, 1))' }}
+                      />
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 bg-white p-3 sm:p-4 md:p-5 flex items-center pointer-events-none"
+                      >
+                        <motion.h3
+                          className="font-black font-kallisto text-base sm:text-lg md:text-xl lg:text-2xl text-left w-full leading-tight"
+                          style={{ color: item.color || '#1b3764' }}
+                        >
+                          {item.title}
+                        </motion.h3>
+                      </motion.div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+              <div className="w-full sm:w-[48%] md:w-[48%] lg:w-[31%] xl:w-[23%] flex-shrink-0">
+                <IndustriesCtaCard size="large" className="w-full h-full" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+
+export const IndustriesCarouselSectionV3 = () => {
+  const allCards: Industry[] = [...industries];
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredCard(index);
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].play();
+    }
+  };
+
+  const handleMouseLeave = (index: number) => {
+    setHoveredCard(null);
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].pause();
+      videoRefs.current[index].currentTime = 0;
+    }
+  };
+
+  return (
+    <section className="relative py-20 sm:py-28 md:py-36 lg:py-44 xl:py-52 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #1b3764 0%, #1b3764 70%, #F2611D 100%)' }}>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
+      <div className="absolute -top-[61%] -right-[85%] w-[150%] h-[100vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#F2611D] via-[#F2611D]/90 to-transparent blur-[60px] pointer-events-none" />
+      
+      <div className="relative z-10 w-full px-4 sm:px-6 md:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <div className="text-center mb-12 md:mb-16 lg:mb-20">
+            <MemoizedHeading />
+            <MemoizedSubheading />
+          </div>
+
+          <div className="w-full">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8">
+              {allCards.map((item, idx) => (
+                <Link 
+                  key={item.title}
+                  to={`/industries/${item.title.toLowerCase().replace(/ /g, '-')}`}
+                  className="block w-full sm:w-[48%] md:w-[48%] lg:w-[31%] xl:w-[23%] flex-shrink-0"
+                  onMouseEnter={() => handleMouseEnter(idx)}
+                  onMouseLeave={() => handleMouseLeave(idx)}
+                >
+                  <Card className="bg-white shadow-2xl rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] group cursor-pointer w-full">
+                    <div className="relative w-full h-full overflow-hidden">
+                      <motion.video
+                        ref={(el) => (videoRefs.current[idx] = el)}
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                        preload="auto"
+                      >
+                        <source src={item.videoUrl} type="video/mp4" />
+                      </motion.video>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
+                      
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 bg-white p-3 sm:p-4 md:p-5 flex items-center justify-between pointer-events-none"
+                      >
+                        <motion.h3
+                          className="font-black font-kallisto text-left leading-tight"
+                          style={{ 
+                            color: item.color || '#1b3764',
+                            fontSize: 'clamp(0.75rem, 3vw, 1.5rem)'
+                          }}
+                        >
+                          {item.title}
+                        </motion.h3>
+                        <motion.img
+                          src={item.logo}
+                          alt={item.title + ' logo'}
+                          className="w-1/4 h-auto"
+                          whileHover={{ rotate: 5, scale: 1.1 }}
+                        />
+                      </motion.div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+              <div className="w-full sm:w-[48%] md:w-[48%] lg:w-[31%] xl:w-[23%] flex-shrink-0">
+                <IndustriesCtaCard size="large" className="w-full h-full" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const IndustriesCarouselSectionV4 = () => {
+  const allCards: Industry[] = [...industries];
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredCard(index);
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].play();
+    }
+  };
+
+  const handleMouseLeave = (index: number) => {
+    setHoveredCard(null);
+    if (videoRefs.current[index]) {
+      videoRefs.current[index].pause();
+      videoRefs.current[index].currentTime = 0;
+    }
+  };
+
+  return (
+    <section className="relative py-8 sm:py-12 md:py-20 lg:py-28 xl:py-36 w-full overflow-hidden bg-[#1b3764]">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
+
+      <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 xl:mb-20">
+            <MemoizedHeading />
+            <MemoizedSubheading />
+          </div>
+
+          <div className="w-full overflow-hidden">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-8 xl:gap-10 max-w-full">
+              {allCards.map((item, idx) => (
+                <Link
+                  key={item.title}
+                  to={`/industries/${item.title.toLowerCase().replace(/ /g, '-')}`}
+                  className="block w-[48%] sm:w-[48%] md:w-[45%] lg:w-[32%] xl:w-[24%] 2xl:w-[22%] flex-shrink-0"
+                  onMouseEnter={() => handleMouseEnter(idx)}
+                  onMouseLeave={() => handleMouseLeave(idx)}
+                >
+                  <Card className="bg-white shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] group cursor-pointer w-full">
+                    <div className="relative w-full h-full overflow-hidden">
+                      <motion.video
+                        ref={(el) => (videoRefs.current[idx] = el)}
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                        preload="auto"
+                      >
+                        <source src={item.videoUrl} type="video/mp4" />
+                      </motion.video>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
+                      
+                      {/* Logo absolutely positioned at bottom right */}
+                      <motion.div
+                        className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 pointer-events-none z-20"
+                      >
+                        <motion.img
+                          src={item.logo}
+                          alt={item.title + ' logo'}
+                          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32"
+                                                      style={{
+                              width: 'clamp(3rem, 5vw, 8rem)',
+                              height: 'clamp(3rem, 5vw, 8rem)'
+                            }}
+                          whileHover={{ rotate: 5, scale: 1.1, filter: 'drop-shadow(0px 0px 25px rgba(242, 97, 29, 1))' }}
+                        />
+                      </motion.div>
+                      
+                      {/* White bar at bottom with text only */}
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 bg-white p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none"
+                        style={{ zIndex: 10 }}
+                      >
+                        <div className="flex items-center justify-between gap-1">
+                          <motion.h3
+                            className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
+                            style={{
+                              color: item.color || '#1b3764',
+                              fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
+                            }}
+                          >
+                            {item.title}
+                          </motion.h3>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+              <div className="w-[48%] sm:w-[48%] md:w-[45%] lg:w-[32%] xl:w-[24%] 2xl:w-[22%] flex-shrink-0">
+                <IndustriesCtaCard size="large" className="w-full h-full" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};

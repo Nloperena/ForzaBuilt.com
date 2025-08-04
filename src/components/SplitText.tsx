@@ -17,6 +17,7 @@ export interface SplitTextProps {
   threshold?: number;
   rootMargin?: string;
   textAlign?: React.CSSProperties["textAlign"];
+  as?: keyof JSX.IntrinsicElements;
 }
 
 const SplitText: React.FC<SplitTextProps> = ({
@@ -31,8 +32,9 @@ const SplitText: React.FC<SplitTextProps> = ({
   threshold = 0.1,
   rootMargin = "-100px",
   textAlign = "center",
+  as = "p",
 }) => {
-  const ref = useRef<HTMLParagraphElement>(null);
+  const ref = useRef<any>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -109,17 +111,20 @@ const SplitText: React.FC<SplitTextProps> = ({
     rootMargin,
   ]);
 
+  const Component = as as any;
+
   return (
-    <p
+    <Component
       ref={ref}
       className={`split-parent overflow-hidden inline-block whitespace-normal ${className}`}
       style={{
         textAlign,
         wordWrap: "break-word",
       }}
+      aria-label={text}
     >
       {text}
-    </p>
+    </Component>
   );
 };
 

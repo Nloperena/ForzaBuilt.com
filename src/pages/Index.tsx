@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import HeroOverlay from '@/components/HeroOverlay';
 import HeroVideoSection from '@/components/HeroVideoSection';
-import { IndustriesCarouselSection } from '@/components/IndustriesCarouselSection';
+import { IndustriesCarouselSectionV4 as IndustriesCarouselSection } from '@/components/IndustriesCarouselSection';
 import ProductsSection from '@/components/ProductsSection';
 import StickyBackgroundSection from '@/components/StickyBackgroundSection';
 import ScrollSections from '@/components/ScrollSections';
@@ -9,7 +9,7 @@ import ScrollSections from '@/components/ScrollSections';
 import InteractiveBuildingMap from '@/components/InteractiveBuildingMap';
 import ServiceCardStack from '@/components/ServiceCardStack';
 import { ServiceCardData } from '@/types/ServiceCard';
-import MadeInAmerica from '@/components/MadeInAmerica';
+import StickyBackgroundSectionV2 from '@/components/StickyBackgroundSectionV2';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FaqSection from '@/components/FaqSection';
 import NewsletterSection from '@/components/NewsletterSection';
@@ -91,7 +91,7 @@ const Index = () => {
     
 
       {/* Made in America Section */}
-      <MadeInAmerica />
+      <StickyBackgroundSectionV2 />
       
       {/* Testimonials Section */}
       <TestimonialsSection />

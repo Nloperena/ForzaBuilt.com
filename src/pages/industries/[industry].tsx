@@ -19,8 +19,8 @@ import { INSULATION_DATA } from '../../data/industries/insulation';
 import { allProducts } from '../../data/productsData';
 import { motion } from 'framer-motion';
 
-import { industrialDatasheet, getProductsByIndustry } from '../../data/industrialDatasheet';
 import { INDUSTRIAL_PRODUCTS } from '../../data/industrialProducts';
+import { byIndustry } from '@/utils/products';
 
 const IndustryPage = () => {
   const { industry } = useParams();
@@ -50,7 +50,7 @@ const IndustryPage = () => {
       }));
     }
     
-    const datasheetProducts = getProductsByIndustry(industryLower);
+    const datasheetProducts = byIndustry(industryLower);
     
     // If no datasheet products found, fall back to allProducts for that industry
     if (datasheetProducts.length === 0) {
@@ -63,7 +63,7 @@ const IndustryPage = () => {
     return datasheetProducts.map(product => ({
       id: product.id,
       name: product.name,
-      image: product.image,
+      image: product.mainImage || product.image,
       url: product.url,
       productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
       industries: Array.isArray(product.industry) ? product.industry : [product.industry],

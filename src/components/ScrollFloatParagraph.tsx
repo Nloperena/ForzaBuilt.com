@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, ReactNode, RefObject } from "react";
+import React, { useEffect, useRef, useMemo, ReactNode, RefObject } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,11 +9,12 @@ interface ScrollFloatParagraphProps {
   scrollContainerRef?: RefObject<HTMLElement>;
   containerClassName?: string;
   textClassName?: string;
-  animationDuration?: number;
-  ease?: string;
-  scrollStart?: string;
-  scrollEnd?: string;
-  stagger?: number;
+  enableBlur?: boolean;
+  baseOpacity?: number;
+  baseRotation?: number;
+  blurStrength?: number;
+  rotationEnd?: string;
+  wordAnimationEnd?: string;
 }
 
 const ScrollFloatParagraph: React.FC<ScrollFloatParagraphProps> = ({
@@ -21,99 +22,131 @@ const ScrollFloatParagraph: React.FC<ScrollFloatParagraphProps> = ({
   scrollContainerRef,
   containerClassName = "",
   textClassName = "",
-  animationDuration = 1,
-  ease = "back.inOut(2)",
-  scrollStart = "top bottom-=300px",
-  scrollEnd = "center center",
-  stagger = 0.02
+  enableBlur = true,
+  baseOpacity = 0.1,
+  baseRotation = 3,
+  blurStrength = 4,
+  rotationEnd = "center center",
+  wordAnimationEnd = "center center"
 }) => {
   const containerRef = useRef<HTMLParagraphElement>(null);
-  const animationsRef = useRef<{ float?: gsap.core.Tween }>({});
 
   const splitText = useMemo(() => {
     const text = typeof children === "string" ? children : "";
-    return text.split("").map((char, index) => (
-      <span 
-        className="inline-block char-span" 
-        key={index}
-        style={{ 
-          whiteSpace: char === " " ? "pre" : "normal",
-          willChange: "opacity, transform"
-        }}
-      >
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ));
-  }, [children]);
+    return text.split(/(\s+)/).map((word, index) => {
+      if (word.match(/^\s+$/)) return word;
+      return (
+        <span 
+          className="inline-block word" 
+          key={index}
+          style={{
+            opacity: baseOpacity,
+            filter: enableBlur ? `blur(${blurStrength}px)` : 'none',
+            willChange: 'opacity, filter, transform'
+          }}
+        >
+          {word}
+        </span>
+      );
+    });
+  }, [children, baseOpacity, enableBlur, blurStrength]);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    const scroller =
-      scrollContainerRef && scrollContainerRef.current
-        ? scrollContainerRef.current
-        : window;
+    requestAnimationFrame(() => {
+      const wordElements = el.querySelectorAll<HTMLElement>(".word");
 
-    const charElements = el.querySelectorAll(".char-span");
+      const scroller =
+        scrollContainerRef && scrollContainerRef.current
+          ? scrollContainerRef.current
+          : window;
 
-    gsap.set(charElements, {
-      opacity: 0,
-      yPercent: 120,
-      scaleY: 2.3,
-      scaleX: 0.7,
-      transformOrigin: "50% 0%"
-    });
+      gsap.fromTo(
+        el,
+        { 
+          transformOrigin: "0% 50%",
+          rotate: baseRotation 
+        },
+        {
+          ease: "none",
+          rotate: 0,
+          scrollTrigger: {
+            trigger: el,
+            scroller,
+            start: "top bottom-=100px",
+            end: rotationEnd,
+            scrub: 1,
+          },
+        }
+      );
 
-    animationsRef.current.float = gsap.to(charElements, {
-      duration: animationDuration,
-      ease: ease,
-      opacity: 1,
-      yPercent: 0,
-      scaleY: 1,
-      scaleX: 1,
-      stagger: stagger,
-      scrollTrigger: {
-        trigger: el,
-        scroller,
-        start: scrollStart,
-        end: scrollEnd,
-        scrub: true,
-        refreshPriority: 1
-      },
+      gsap.fromTo(
+        wordElements,
+        { opacity: baseOpacity },
+        {
+          ease: "none",
+          opacity: 1,
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: el,
+            scroller,
+            start: "top bottom-=200px",
+            end: wordAnimationEnd,
+            scrub: 1,
+          },
+        }
+      );
+
+      if (enableBlur) {
+        gsap.fromTo(
+          wordElements,
+          { filter: `blur(${blurStrength}px)` },
+          {
+            ease: "none",
+            filter: "blur(0px)",
+            stagger: 0.05,
+            scrollTrigger: {
+              trigger: el,
+              scroller,
+              start: "top bottom-=200px",
+              end: wordAnimationEnd,
+              scrub: 1,
+            },
+          }
+        );
+      }
     });
 
     return () => {
-      if (animationsRef.current.float) {
-        animationsRef.current.float.kill();
-      }
-      
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.trigger === el) {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.vars.trigger === el) {
           trigger.kill();
         }
       });
     };
   }, [
     scrollContainerRef,
-    animationDuration,
-    ease,
-    scrollStart,
-    scrollEnd,
-    stagger
+    enableBlur,
+    baseRotation,
+    baseOpacity,
+    rotationEnd,
+    wordAnimationEnd,
+    blurStrength,
   ]);
 
   return (
-    <p
-      ref={containerRef}
-      className={`overflow-visible text-white ${containerClassName}`}
+    <p 
+      ref={containerRef} 
+      className={`my-5 ${containerClassName}`}
+      style={{
+        transformOrigin: "0% 50%",
+        transform: `rotate(${baseRotation}deg)`
+      }}
     >
       <span
-        className={`inline-block text-lg leading-relaxed ${textClassName}`}
-        style={{ 
-          wordBreak: "keep-all",
-          willChange: "transform"
-        }}
+        className={`text-[clamp(1rem,2vw,1.125rem)] leading-[1.6] font-normal ${textClassName}`}
       >
         {splitText}
       </span>

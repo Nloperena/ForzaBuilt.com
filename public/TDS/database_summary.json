@@ -1,0 +1,48 @@
+{
+  "total_products": 151,
+  "total_categories": 6,
+  "category_breakdown": {
+    "1. Industrial": {
+      "product_count": 62,
+      "file_count": 185
+    },
+    "2. Marine": {
+      "product_count": 21,
+      "file_count": 81
+    },
+    "3. Transportation": {
+      "product_count": 23,
+      "file_count": 49
+    },
+    "4. Composites": {
+      "product_count": 6,
+      "file_count": 31
+    },
+    "6. Insulation": {
+      "product_count": 14,
+      "file_count": 45
+    },
+    "7. Construction": {
+      "product_count": 25,
+      "file_count": 74
+    }
+  },
+  "file_type_breakdown": {
+    "sds": 185,
+    "tds": 273,
+    "other": 7
+  },
+  "product_types": {
+    "General": 2,
+    "Adhesive": 4,
+    "Coating": 13,
+    "Construction Adhesive": 3,
+    "Hot Melt": 8,
+    "Industrial Canister": 33,
+    "Oil Adhesive": 9,
+    "Oil Seal": 17,
+    "Resin": 22,
+    "Tape": 39,
+    "Waterproofing": 1
+  }
+}

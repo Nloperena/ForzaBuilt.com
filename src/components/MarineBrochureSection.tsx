@@ -9,7 +9,7 @@ const MarineBrochureSection: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <section className="w-full bg-gradient-to-r from-[#1b3764] to-[#147974] py-20 px-4 flex-1">
+      <section className="w-full bg-gradient-to-r from-[#1b3764] to-[#137875] py-20 px-4 flex-1">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
           {/* Left: Brochure Image */}
           <div className="flex-shrink-0 w-full md:w-1/2 flex justify-center">

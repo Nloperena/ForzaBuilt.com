@@ -179,7 +179,7 @@ export const getProductColors = (product: string) => {
 export const getIndustryGradient = (industry: string) => {
   const industryColor = getIndustryColors(industry);
   const mainBlue = brandColors.secondary.blueVelvet.hex; // #1b3764 - Forza blue
-  // Flipped: 70% blue, 30% industry color at the end
+  // 30% industry color, 70% Forza blue
   return `${mainBlue} 0%, ${mainBlue} 70%, ${industryColor.primary} 100%`;
 };
 
@@ -188,8 +188,8 @@ export const getIndustryGradientSubtle = (industry: string) => {
   const industryColor = getIndustryColors(industry);
   const mainBlue = brandColors.secondary.blueVelvet.hex; // #1b3764 - Forza blue
   
-  // More subtle gradient with blue having dominant presence
-  return `${mainBlue} 0%, ${mainBlue} 50%, ${industryColor.primary} 85%, ${industryColor.primary} 100%`;
+  // 30% industry color, 70% Forza blue with subtle transition
+  return `${mainBlue} 0%, ${mainBlue} 70%, ${industryColor.primary} 100%`;
 };
 
 // Helper function to convert hex to RGB
@@ -215,7 +215,7 @@ export const getIndustryBrochureGradient = (industry: string) => {
     result: `${mainBlue} 0%, ${mainBlue} 20%, ${industryColorRgb} 60%, ${industryColorRgb} 100%`
   });
   
-  // Create gradient with blue background and industry color as the accent
-  // Blue starts at 0% and transitions to industry color at 60%
-  return `${mainBlue} 0%, ${mainBlue} 20%, ${industryColorRgb} 60%, ${industryColorRgb} 100%`;
+  // Create gradient with 30% industry color, 70% Forza blue
+  // Blue starts at 0% and transitions to industry color at 70%
+  return `${mainBlue} 0%, ${mainBlue} 70%, ${industryColorRgb} 100%`;
 }; 

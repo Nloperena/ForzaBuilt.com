@@ -118,7 +118,7 @@
 
 /* Card styles using brand colors */
 .forza-card {
-  background: linear-gradient(135deg, var(--forza-regal-blue) 0%, var(--forza-blue-velvet) 100%);
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blaze-orange) 100%);
   color: white;
   border-radius: 1rem;
   padding: 1.5rem;
@@ -133,7 +133,7 @@
 
 /* Gradient backgrounds */
 .forza-gradient-primary {
-  background: linear-gradient(135deg, var(--forza-regal-blue) 0%, var(--forza-blue-velvet) 100%);
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blaze-orange) 100%);
 }
 
 .forza-gradient-accent {
@@ -142,7 +142,7 @@
 
 /* Text gradients */
 .forza-text-gradient-primary {
-  background: linear-gradient(135deg, var(--forza-regal-blue) 0%, var(--forza-blue-velvet) 100%);
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blaze-orange) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

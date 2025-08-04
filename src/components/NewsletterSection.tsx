@@ -3,7 +3,7 @@ import NewsletterSignup from './NewsletterSignup';
 
 const NewsletterSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-[#1b3764] via-[#234072] to-[#1b3764] relative overflow-hidden">
+    <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-[#1b3764] to-[#F2611D] relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -13,12 +13,12 @@ const NewsletterSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight font-kallisto">
+      <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-extrabold text-white mb-4 sm:mb-5 md:mb-6 tracking-tight font-kallisto">
             Stay Connected
           </h2>
-          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed">
             Get the latest industry insights, product innovations, and technical solutions delivered directly to your inbox.
           </p>
         </div>

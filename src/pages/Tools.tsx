@@ -8,11 +8,11 @@ import { motion } from 'framer-motion';
 
 const Tools = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#09668D]/5 to-[#1B3764]/10">
+    <div className="min-h-screen bg-gradient-to-br from-[#1B3764]/10 to-[#F16022]/5">
       <Header />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#09668D] to-[#1B3764] relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-[#1B3764] to-[#F16022] relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -56,7 +56,7 @@ const Tools = () => {
                 <CardHeader className="text-center pb-6">
                   <div className="relative">
                     {/* Gradient Background for Icon */}
-                    <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#09668D] to-[#1B3764] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 relative overflow-hidden">
+                    <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#1B3764] to-[#F16022] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 relative overflow-hidden">
                       <img 
                         src="/src/assets/images/Forza-lion-logo.png" 
                         alt="ForzaBuilt Lion Logo"
@@ -93,7 +93,7 @@ const Tools = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 bg-gradient-to-r from-[#09668D] to-[#1B3764]">
+      <section className="py-16 bg-gradient-to-r from-[#1B3764] to-[#F16022]">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-kallisto font-black text-white mb-6">
             Need Expert Guidance?
