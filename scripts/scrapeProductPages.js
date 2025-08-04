@@ -4,7 +4,75 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 // Import the product data
-const { industrialDatasheet } = require('../src/data/industrialDatasheet.ts');
+const ts = require('typescript');
+
+// Load industrialDatasheet from TypeScript source without needing ts-node
+const industrialTsPath = path.join(__dirname, '../src/data/industrialDatasheet.ts');
+const industrialSource = fs.readFileSync(industrialTsPath, 'utf8');
+const compiled = ts.transpileModule(industrialSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2019 },
+});
+const industrialExports = {};
+new Function('exports', 'require', 'module', '__filename', '__dirname', compiled.outputText)(
+  industrialExports,
+  require,
+  { exports: industrialExports },
+  industrialTsPath,
+  path.dirname(industrialTsPath)
+);
+const { industrialDatasheet } = industrialExports;
+
+/* ──────────────────────────────────────────────────────────────
+ * Utility – grab the main/hero image that WooCommerce stores in
+ * its product gallery.  Falls back to the old selector if none
+ * are found.
+ * ──────────────────────────────────────────────────────────── */
+function extractMainImage($) {
+  const candidates = [
+    '.woocommerce-product-gallery__image img',         // gallery wrapper
+    '.woocommerce-product-gallery__wrapper img',
+    'img.wp-post-image',                               // featured img
+    '.product img',
+    '.entry-content img'                               // last-resort
+  ];
+
+  for (const sel of candidates) {
+    const $img = $(sel).first();
+    if (!$img.length) continue;
+
+    // pick the highest-resolution URL that exists
+    const src =
+      $img.attr('data-large_image') ||
+      $img.attr('data-src') ||
+      ($img.attr('srcset') ? $img.attr('srcset').split(',')[0].trim().split(' ')[0] : null) ||
+      $img.attr('src');
+
+    if (src) return src;
+  }
+  return '';
+}
+
+// Helper to extract main WooCommerce image
+function extractMainImage($) {
+  const selectors = [
+    '.woocommerce-product-gallery__image img',
+    '.woocommerce-product-gallery__wrapper img',
+    'img.wp-post-image',
+    '.product img',
+    '.entry-content img'
+  ];
+  for (const sel of selectors) {
+    const img = $(sel).first();
+    if (!img.length) continue;
+    const src =
+      img.attr('data-large_image') ||
+      img.attr('data-src') ||
+      (img.attr('srcset') ? img.attr('srcset').split(',')[0].trim().split(' ')[0] : null) ||
+      img.attr('src');
+    if (src) return src;
+  }
+  return '';
+}
 
 // Function to scrape a product page
 async function scrapeProductPage(url, productId) {
@@ -40,7 +108,7 @@ async function scrapeProductPage(url, productId) {
       
       // Images
       images: [],
-      mainImage: $('.entry-content img').first().attr('src') || '',
+      mainImage: extractMainImage($),
       
       // Meta data
       meta: {
@@ -50,11 +118,24 @@ async function scrapeProductPage(url, productId) {
     };
 
     // Extract all images
-    $('.entry-content img').each((i, el) => {
-      const src = $(el).attr('src');
-      if (src) {
+    const addImage = (src) => {
+      if (src && !productData.images.includes(src)) {
         productData.images.push(src);
       }
+    };
+
+    // WooCommerce gallery (full-size & thumbnail URLs)
+    $('.woocommerce-product-gallery__image img').each((_, el) => {
+      addImage(
+        $(el).attr('data-large_image') ||
+        $(el).attr('data-src') ||
+        $(el).attr('src')
+      );
+    });
+
+    // Any additional images that appear in the page content
+    $('.entry-content img').each((_, el) => {
+      addImage($(el).attr('src'));
     });
 
     // Try to extract structured content
