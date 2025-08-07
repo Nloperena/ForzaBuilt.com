@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { products as productsData } from '@/data/products';
+import { getProducts } from '@/utils/products';
 import { industries as industriesData } from '@/data/industries';
 
 interface NavigationOverlayProps {
@@ -20,24 +20,44 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
   onClose,
   onContentChange,
 }) => {
+  const productsData = getProducts();
+  
   const renderContent = () => {
     switch (activeContent) {
       case 'products':
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {productsData.map((product) => (
-              <Link
-                key={product.name}
-                to={`/products/${product.name.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
-                onClick={onClose}
-              >
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
-                  {product.name}
-                </h3>
-                <p className="text-white/80 text-sm">{product.description}</p>
-              </Link>
-            ))}
+            {/* Show main product categories instead of individual products */}
+            <Link
+              to="/products/bond"
+              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
+              onClick={onClose}
+            >
+              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
+                Industrial Adhesives
+              </h3>
+              <p className="text-white/80 text-sm">High-performance bonding solutions for demanding industrial applications</p>
+            </Link>
+            <Link
+              to="/products/seal"
+              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
+              onClick={onClose}
+            >
+              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
+                Sealants & Gaskets
+              </h3>
+              <p className="text-white/80 text-sm">Advanced sealing solutions for leak prevention and environmental protection</p>
+            </Link>
+            <Link
+              to="/products/tape"
+              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
+              onClick={onClose}
+            >
+              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
+                Industrial Tapes
+              </h3>
+              <p className="text-white/80 text-sm">Specialized tapes for industrial applications and high-performance needs</p>
+            </Link>
           </div>
         );
 

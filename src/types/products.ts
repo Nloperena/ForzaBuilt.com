@@ -1,10 +1,23 @@
-export interface Product {
-  id: number;
+export type Product = {
+  id: string;
   name: string;
-  description: string;
-  image: string;
-  link: string;
-  color: string;
-  hoverImage: string;
-  videoUrl: string;
-} 
+  shortName?: string;
+  description?: string;
+  category: "BOND" | "SEAL" | "TAPE";
+  industry: string[];
+  productType?: string;
+  chemistry?: string;
+  technicalData?: Record<string, string>;
+  applications?: string;
+  benefits?: string[];
+  sizes?: string[];
+  imageUrl?: string;
+  pdfLinks?: string[];
+  standardTdsLink?: string;
+  hasTdsLink?: boolean;
+  searchKeywords?: string[];
+  isActive?: boolean;
+  createdAt: string;
+  updatedAt: string;
+  version?: number;
+}; 

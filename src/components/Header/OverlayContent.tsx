@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { products as productsData } from '@/data/products';
+import { getProducts } from '@/utils/products';
 import { industries as industriesData } from '@/data/industries';
 import { tools as toolsData } from '@/data/tools';
 import { AnimatePresence } from 'framer-motion';
@@ -18,6 +18,8 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
   slideDirection,
   onVideoUrlChange,
 }) => {
+  const productsData = getProducts();
+  
   const renderIndustriesContent = () => (
     <div className="flex flex-row items-start justify-center space-x-12 text-center" onMouseLeave={() => onVideoUrlChange(null)}>
       {industriesData.map(industry => (
@@ -38,36 +40,46 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
 
   const renderProductsContent = () => (
     <div className="flex flex-row items-center justify-center space-x-8 text-center" onMouseLeave={() => onVideoUrlChange(null)}>
-      {productsData.map(product => {
-        let heading = '';
-        if (product.name === 'Bond') {
-          heading = 'INDUSTRIAL ADHESIVES';
-        } else if (product.name === 'Seal') {
-          heading = 'INDUSTRIAL SEALANTS';
-        } else if (product.name === 'Tape') {
-          heading = 'INDUSTRIAL TAPES';
-        } else if (product.name === 'RuggedRed') {
-          heading = 'INDUSTRIAL CLEANING';
-        }
-        const words = heading.split(' ');
-        return (
-          <Link
-            key={product.name}
-            to={`/products/${product.name.toLowerCase()}`}
-            className="flex flex-col items-center w-48 text-white hover:text-[#F2611D] transition-colors duration-300 group"
-            onMouseEnter={() => onVideoUrlChange(product.videoUrl)}
-          >
-            <div className="w-40 h-24 flex items-center justify-center">
-              <img src={product.hoverImage} alt={`${product.name} Logo`} className="max-w-full max-h-full object-contain"/>
-            </div>
-            <h3 className="text-xl font-semibold text-center font-kallisto">
-              {words.map((word, index) => (
-                <div key={index}>{word}</div>
-              ))}
-            </h3>
-          </Link>
-        );
-      })}
+      {/* Show main product categories instead of individual products */}
+      <Link
+        to="/products/bond"
+        className="flex flex-col items-center w-48 text-white hover:text-[#F2611D] transition-colors duration-300 group"
+        onMouseEnter={() => onVideoUrlChange('https://forzabuilt.com/wp-content/uploads/2024/02/Automotive-v2.mp4')}
+      >
+        <div className="w-40 h-24 flex items-center justify-center">
+          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg" alt="Industrial Adhesives Logo" className="max-w-full max-h-full object-contain"/>
+        </div>
+        <h3 className="text-xl font-semibold text-center font-kallisto">
+          <div>INDUSTRIAL</div>
+          <div>ADHESIVES</div>
+        </h3>
+      </Link>
+      <Link
+        to="/products/seal"
+        className="flex flex-col items-center w-48 text-white hover:text-[#F2611D] transition-colors duration-300 group"
+        onMouseEnter={() => onVideoUrlChange('https://forzabuilt.com/wp-content/uploads/2024/02/Manufacturing-v2.mp4')}
+      >
+        <div className="w-40 h-24 flex items-center justify-center">
+          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg" alt="Sealants & Gaskets Logo" className="max-w-full max-h-full object-contain"/>
+        </div>
+        <h3 className="text-xl font-semibold text-center font-kallisto">
+          <div>INDUSTRIAL</div>
+          <div>SEALANTS</div>
+        </h3>
+      </Link>
+      <Link
+        to="/products/tape"
+        className="flex flex-col items-center w-48 text-white hover:text-[#F2611D] transition-colors duration-300 group"
+        onMouseEnter={() => onVideoUrlChange('https://forzabuilt.com/wp-content/uploads/2024/02/Construction-v2.mp4')}
+      >
+        <div className="w-40 h-24 flex items-center justify-center">
+          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg" alt="Industrial Tapes Logo" className="max-w-full max-h-full object-contain"/>
+        </div>
+        <h3 className="text-xl font-semibold text-center font-kallisto">
+          <div>INDUSTRIAL</div>
+          <div>TAPES</div>
+        </h3>
+      </Link>
     </div>
   );
 

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { products, byChemistry } from '@/utils/products';
+import { getProducts } from '@/utils/products';
 import { chemistryDefinitions } from '@/data/chemistry-summary.json';
 
 export default function ChemistriesPage() {
   const [selectedChemistry, setSelectedChemistry] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'name' | 'confidence' | 'productType' | 'category'>('name');
 
+  const products = getProducts();
+
   // Get unique chemistry types including "Tape"
-  const chemistryTypes = Array.from(new Set(products.map(p => p.chemistry).filter(Boolean))).sort();
+  const chemistryTypes = Array.from(new Set(products.map(p => p.chemistry).filter(Boolean))).sort() as string[];
 
   // Get products by chemistry
   const getProductsByChemistry = (chemistry: string) => {
@@ -27,7 +29,7 @@ export default function ChemistriesPage() {
     
     chemistryProducts.forEach(product => {
       // Check if product mentions other chemistries in its description or details
-      const productText = `${product.title} ${product.description || ''} ${product.chemistryDetails?.technical || ''}`.toLowerCase();
+      const productText = `${product.name} ${product.description || ''}`.toLowerCase();
       
       chemistryTypes.forEach(otherChemistry => {
         if (otherChemistry !== chemistry) {
@@ -66,11 +68,10 @@ export default function ChemistriesPage() {
     return [...productList].sort((a, b) => {
       switch (sortBy) {
         case 'name':
-          return a.title.localeCompare(b.title);
+          return a.name.localeCompare(b.name);
         case 'confidence':
-          const confidenceOrder = { 'High': 3, 'Medium': 2, 'Low': 1, 'None': 0 };
-          return (confidenceOrder[b.chemistryConfidence as keyof typeof confidenceOrder] || 0) - 
-                 (confidenceOrder[a.chemistryConfidence as keyof typeof confidenceOrder] || 0);
+          // Remove confidence sorting as it's not available in the Product type
+          return 0;
         case 'productType':
           return (a.productType || '').localeCompare(b.productType || '');
         case 'category':
@@ -237,11 +238,11 @@ export default function ChemistriesPage() {
                   className="block bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200"
                 >
                   {/* Product Image */}
-                  {product.mainImage && (
+                  {product.imageUrl && (
                     <div className="mb-3 bg-blue-100 rounded-lg p-4 flex items-center justify-center">
                       <img
-                        src={product.mainImage}
-                        alt={product.title}
+                        src={product.imageUrl}
+                        alt={product.name}
                         className="max-w-full max-h-32 object-contain"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
@@ -252,13 +253,11 @@ export default function ChemistriesPage() {
                   )}
                   
                   <div className="flex items-start justify-between mb-2">
-                    <h4 className="font-medium text-gray-900 text-sm">{product.title}</h4>
+                    <h4 className="font-medium text-gray-900 text-sm">{product.name}</h4>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      product.chemistryConfidence === 'High' ? 'bg-green-100 text-green-800' :
-                      product.chemistryConfidence === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
                       'bg-gray-100 text-gray-800'
                     }`}>
-                      {product.chemistryConfidence}
+                      Active
                     </span>
                   </div>
                   
@@ -341,8 +340,6 @@ export default function ChemistriesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {chemistryTypes.map((chemistry) => {
               const chemistryProducts = getProductsByChemistry(chemistry);
-              const highConfidence = chemistryProducts.filter(p => p.chemistryConfidence === 'High').length;
-              const mediumConfidence = chemistryProducts.filter(p => p.chemistryConfidence === 'Medium').length;
               const relatedCount = chemistryRelationships[chemistry]?.length || 0;
               
               return (
@@ -354,14 +351,6 @@ export default function ChemistriesPage() {
                   <p className="text-sm text-gray-600 mb-3">products</p>
                   
                   <div className="space-y-1">
-                    <div className="flex justify-between text-xs">
-                      <span className="text-green-600">High confidence:</span>
-                      <span className="font-medium">{highConfidence}</span>
-                    </div>
-                    <div className="flex justify-between text-xs">
-                      <span className="text-yellow-600">Medium confidence:</span>
-                      <span className="font-medium">{mediumConfidence}</span>
-                    </div>
                     <div className="flex justify-between text-xs">
                       <span className="text-blue-600">Related chemistries:</span>
                       <span className="font-medium">{relatedCount}</span>

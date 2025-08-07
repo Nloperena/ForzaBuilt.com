@@ -522,10 +522,18 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
                   <Button 
                     variant="outline" 
                     className="w-full border-2 border-[#09668D] text-[#09668D] hover:bg-[#09668D] hover:text-white"
-                    onClick={() => window.open(product.url, '_blank')}
+                    onClick={() => {
+                      // Use standardTdsLink if available, otherwise fall back to url
+                      const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
+                      if (tdsLink) {
+                        window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
+                      } else {
+                        alert("The datasheet for this product is not available yet.");
+                      }
+                    }}
                   >
                     <Info className="h-4 w-4 mr-2" />
-                    More Information
+                    View Datasheet
                   </Button>
                 </div>
               </CardContent>

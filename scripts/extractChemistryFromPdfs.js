@@ -16,47 +16,58 @@ const mergedPath = path.join(root, 'src', 'data', 'productsMerged.json');
 const chemistryKeywords = {
   'Acrylic (incl. PSA)': [
     'acrylic', 'acrylate', 'psa', 'pressure sensitive', 'adhesive', 'acrylic polymer', 'acrylic resin',
-    'free radical polymerization', 'pressure sensitive adhesive', 'psa adhesive', 'acrylic adhesive'
+    'free radical polymerization', 'pressure sensitive adhesive', 'psa adhesive', 'acrylic adhesive',
+    'durable', 'uv resistance', 'weather resistance', 'flexible'
   ],
   'Epoxy': [
     'epoxy', 'epoxies', 'amine', 'hardener', 'catalyst', 'resin', 'thermosetting resin',
-    'chemical crosslinking', 'covalent bonds', 'epoxy resin', 'amine hardener', 'epoxy adhesive'
+    'chemical crosslinking', 'covalent bonds', 'epoxy resin', 'amine hardener', 'epoxy adhesive',
+    'high strength', 'durability', 'chemical resistance', 'rigid'
   ],
   'Modified Epoxies': [
     'modified epoxy', 'flexibility modifiers', 'epoxy blend', 'flexible epoxy', 'modified resin',
-    'flexible epoxy', 'epoxy modifier'
+    'flexible epoxy', 'epoxy modifier', 'combines epoxy strength', 'improved flexibility'
   ],
   'Modified Silane (MS Polymer/ Hybrid Polymer)': [
     'modified silane', 'ms polymer', 'hybrid polymer', 'silyl', 'silane-terminated', 'polyether',
-    'polyurethane blends', 'chemically bonds', 'cures with moisture', 'ms polymer hybrid', 'ms polymer'
+    'polyurethane blends', 'chemically bonds', 'cures with moisture', 'ms polymer hybrid', 'ms polymer',
+    'no off-gassing', 'paintable', 'flexibility strength weatherability'
   ],
   'Cyanoacrylates': [
     'cyanoacrylate', 'super glue', 'instant adhesive', 'ca', 'anionic polymerization',
-    'rapid polymerization', 'instant bond', 'super glue class', 'cyanoacrylate adhesive'
+    'rapid polymerization', 'instant bond', 'super glue class', 'cyanoacrylate adhesive',
+    'fast cure', 'seconds', 'high strength', 'thin bond lines', 'brittle'
   ],
   'Polyurethane (PU)': [
     'polyurethane', 'urethane', 'pu', 'isocyanate', 'polyol', 'flexible polymer',
-    'one-part', 'two-part', 'isocyanate reaction', 'polyurethane adhesive'
+    'one-part', 'two-part', 'isocyanate reaction', 'polyurethane adhesive',
+    'strong elastic', 'handles movement', 'resists weather moisture'
   ],
   'Solvent Based': [
     'solvent', 'organic solvent', 'volatile', 'evaporation', 'solvent dissolved',
-    'solvent evaporates', 'organic solvent based', 'solvent based'
+    'solvent evaporates', 'organic solvent based', 'solvent based',
+    'fast drying', 'good initial tack', 'old school tech'
   ],
   'Water Based': [
     'water based', 'aqueous', 'emulsion', 'latex', 'waterborne', 'water emulsion',
-    'latex polymer', 'eco-friendly', 'low voc', 'waterborne adhesive'
+    'latex polymer', 'eco-friendly', 'low voc', 'waterborne adhesive',
+    'low voc', 'safe', 'repositionable until dry', 'limited water resistance'
   ],
   'Silicone': [
     'silicone', 'silicon', 'polysiloxane', 'silane', 'elastomeric', 'polysiloxane base',
-    'cures via moisture', 'flexible rubber', 'elastomeric sealant', 'silicone sealant'
+    'cures via moisture', 'flexible rubber', 'elastomeric sealant', 'silicone sealant',
+    'extreme temperature stability', 'remains flexible', 'uv chemical weather resistant'
   ],
   'Methacrylate/MMA': [
     'methacrylate', 'mma', 'acrylic-based', 'fast-cure', 'free radical mechanism',
-    'structural bonds', 'impact resistance', 'fast fixture', 'methacrylate adhesive'
+    'structural bonds', 'impact resistance', 'fast fixture', 'methacrylate adhesive',
+    'strong impact resistance', 'bonds plastics composites', 'fast fixture'
   ],
   'Hot Melt': [
     'hot melt', 'thermoplastic', 'melt', 'heat activated', 'hot melt adhesive',
-    'thermoplastic adhesive', 'hot melt'
+    'thermoplastic adhesive', 'hot melt', 'eva', 'polyolefin', 'polyamide', 'pur',
+    'applied molten form', 'bonds via cooling', 'instant bond', 'no mixing curing',
+    'no vocs', 'fast setting', 'adjustable open working time'
   ]
 };
 
@@ -66,67 +77,78 @@ const chemistryDefinitions = {
     technical: 'Made from acrylic polymers/resins. Bonds via free radical polymerization. Often pressure-sensitive (PSA).',
     summary: 'Durable, Good UV/weather resistance, Flexible',
     bestUsedFor: 'Metal, glass, plastics, rubber, High/low temp tolerant, Moisture, UV resistant, Quick handling & fast strength',
-    exampleUses: 'Construction, labeling, automotive, tape, electronic assembly, medical devices, advertising'
+    exampleUses: 'Construction, labeling, automotive, tape, electronic assembly, medical devices, advertising',
+    forzaProducts: ['ForzaTAPE T215', 'ForzaTAPE T220', 'ForzaTAPE T446']
   },
   'Epoxy': {
     technical: 'Thermosetting resin with amine/acid hardener. Chemical crosslinking during cure. Very strong covalent bonds.',
     summary: 'High strength & durability, Excellent Chemical resistance, Rigid',
     bestUsedFor: 'Metals, composites, concrete, wood, some plastics, High/low temp, Minimal flex, Slow to moderate cure time',
-    exampleUses: 'Aerospace, automotive, electronics, Construction, marine, electrical potting'
+    exampleUses: 'Aerospace, automotive, electronics, Construction, marine, electrical potting',
+    forzaProducts: ['ForzaBOND R160']
   },
   'Modified Epoxies': {
     technical: 'Epoxy resin blended with flexibility modifiers or fillers.',
     summary: 'Combines Epoxy strength with improved flexibility or speed',
     bestUsedFor: 'Metal, composites needing more flexibility or peel strength',
-    exampleUses: 'automotive, Construction, Flexible joints, pumpable Epoxy coatings'
+    exampleUses: 'automotive, Construction, Flexible joints, pumpable Epoxy coatings',
+    forzaProducts: ['ForzaBOND R221', 'ForzaBOND R220']
   },
   'Modified Silane (MS Polymer/ Hybrid Polymer)': {
     technical: 'Silane-terminated polyether or polyurethane blends. Chemically Bonds to many substrates. Cures with moisture.',
-    summary: 'Blends flexibility, strength, & weatherability, Paintable',
+    summary: 'Blends flexibility, strength, & weatherability, No off-gassing, Paintable',
     bestUsedFor: 'Wide range: glass, Metal, plastics, concrete, composites, Alt for silicone or PU, Exterior and interior use',
-    exampleUses: 'Construction, marine, automotive, panel bonding, structural sealing'
+    exampleUses: 'Construction, marine, automotive, panel bonding, structural sealing',
+    forzaProducts: ['ForzaSEAL OS2', 'ForzaSEAL OS61', 'ForzaBOND OA4', 'ForzaBOND OS24']
   },
   'Cyanoacrylates': {
     technical: "'Super glue' class. Rapid anionic polymerization with water/moisture. Forms rigid, strong bonds quickly.",
-    summary: 'fast cure (seconds), High strength, thin bond lines, Brittle',
-    bestUsedFor: 'plastics, Metal, rubber, ceramics, skin, Small parts, instant Bonds, low temp, low flex',
-    exampleUses: 'electronics, medical (wound closure), Quick repairs, model assembly'
+    summary: 'Fast cure (seconds), High strength, thin bond lines, Brittle',
+    bestUsedFor: 'Plastics, metal, rubber, ceramics, skin, Small parts, instant Bonds, low temp, low flex',
+    exampleUses: 'electronics, medical (wound closure), Quick repairs, model assembly',
+    forzaProducts: ['ForzaBOND CA1000', 'ForzaBOND CA1500']
   },
   'Polyurethane (PU)': {
     technical: 'Isocyanate and polyol reaction. Forms flexible, durable polymers. One- & two-part options.',
-    summary: 'strong, elastic, Handles movement, Resists weather & Moisture',
-    bestUsedFor: 'many substrates: wood, concrete, plastics, Metal, glass, High/low temp, Good for flex joints',
-    exampleUses: 'Construction, wood/flooring, automotive, insulation, panel lamination, packaging'
+    summary: 'Strong & Elastic, Handles movement, Resists weather & Moisture',
+    bestUsedFor: 'Wide Range: wood, concrete, plastics, metal, glass, High/low temp, Good for flex joints',
+    exampleUses: 'Construction, wood/flooring, automotive, insulation, panel lamination, packaging',
+    forzaProducts: ['ForzaBOND PF27']
   },
   'Solvent Based': {
     technical: 'polymers dissolved in solvent. Forms film as solvent evaporates. Wide range of chemistries.',
-    summary: 'fast dry, Good initial tack, Old school tech',
-    bestUsedFor: 'Porous and non-Porous, Flexible and Rigid Bonds, Faster handling time',
-    exampleUses: 'Shoes, upholstery, signage, arts/crafts, automotive interior trim'
+    summary: 'Fast drying, Good initial tack, Old school tech',
+    bestUsedFor: 'Porous and non-porous, Flexible and Rigid Bonds, Faster handling time',
+    exampleUses: 'Shoes, upholstery, signage, arts/crafts, automotive interior trim',
+    forzaProducts: ['ForzaBOND IC932', 'ForzaBOND IC933', 'ForzaBOND IC934']
   },
   'Water Based': {
     technical: 'Emulsion or latex of polymer in water. Dries/Cures as water evaporates. Eco-friendly alternatives.',
-    summary: 'low VOC, safe, Repositionable until dry, Limited water resistance',
+    summary: 'Low VOC, safe, Repositionable until dry, Limited water resistance',
     bestUsedFor: 'Paper, textiles, wood, foam, Porous substrates, Not for constant wet/freeze-thaw',
-    exampleUses: 'packaging, bookbinding, furniture, textile lamination, label adhesives'
+    exampleUses: 'packaging, bookbinding, furniture, textile lamination, label adhesives',
+    forzaProducts: ['ForzaBOND IC955NF', 'ForzaBOND A1000', 'ForzaBOND A465']
   },
   'Silicone': {
     technical: 'Polysiloxane base. Cures via Moisture to form Flexible rubber. Remains elastomeric.',
-    summary: 'Extreme temp stability, Remains Flexible, UV, Chemical, weather resistant',
+    summary: 'Extreme temperature stability, Remains flexible, UV, Chemical, Weather-resistant',
     bestUsedFor: 'Glass, metal, ceramic, plastic, stone, Joint sealing (expansion/contraction), High temp, wet environments',
-    exampleUses: 'Construction sealants, electronics, glazing, kitchens/baths, automotive'
+    exampleUses: 'Construction sealants, electronics, glazing, kitchens/baths, automotive',
+    forzaProducts: ['ForzaSEAL OS35']
   },
   'Methacrylate/MMA': {
     technical: 'acrylic-based, fast-cure adhesives. Cures via free radical mechanism. structural Bonds, some flexibility.',
-    summary: 'strong, impact resistance, Bonds plastics/composites, fast fixture',
-    bestUsedFor: 'bonding fiberglass, plastics (thermoplastics), composite parts, Metals',
-    exampleUses: 'marine, transportation, sign making, automotive panel bonding'
+    summary: 'Strong, impact resistance, Bonds plastics/composites, Fast fixture',
+    bestUsedFor: 'Bonding fiberglass, plastics (thermoplastics), composite parts, Metals',
+    exampleUses: 'marine, transportation, sign making, automotive panel bonding',
+    forzaProducts: ['ForzaBOND 519', 'ForzaBOND R525']
   },
   'Hot Melt': {
-    technical: 'Thermoplastic adhesives that melt when heated and solidify when cooled.',
-    summary: 'Fast setting, Strong initial bond, Heat activated',
-    bestUsedFor: 'Packaging, woodworking, bookbinding, assembly, Heat-sensitive applications',
-    exampleUses: 'Packaging, furniture assembly, bookbinding, product assembly'
+    technical: '100% thermoplastic polymers (EVA, polyolefin, polyamide, PUR). Applied in molten form, bonds via cooling. Instant bond, no mixing or curing. No VOCs. Fast setting, adjustable open/working time. Pressure or non-pressure sensitive options.',
+    summary: 'Fast setting, Strong initial bond, Heat activated, No VOCs',
+    bestUsedFor: 'Ideal for high-speed production lines, Cardboard, paper, wood, foam, some plastics, non-wovens, glass, Packaging: carton, tray, case, box sealing, Bookbinding, woodworking, furniture, textiles, Filters, electronics, hygiene products (diapers), Not for high-heat applications or structural bonds',
+    exampleUses: 'Packaging, furniture assembly, bookbinding, product assembly',
+    forzaProducts: ['Call for Quote']
   }
 };
 

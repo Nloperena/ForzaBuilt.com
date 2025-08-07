@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@font-face {
+  font-family: 'kallisto';
+  src: url('/fonts/kallisto.woff2') format('woff2'),
+       url('/fonts/kallisto.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'kallisto';
+  src: url('/fonts/kallisto-bold.woff2') format('woff2'),
+       url('/fonts/kallisto-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'kallisto';
+  src: url('/fonts/kallisto-heavy.woff2') format('woff2'),
+       url('/fonts/kallisto-heavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
 /* X-Ray Component Styles */
 .hotspot-active {
   fill: rgba(59, 130, 246, 0.6);
@@ -97,20 +124,22 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Forza Brand Colors */
+    --forza-regal-blue: #09668D;
+    --forza-blaze-orange: #F16022;
+    --forza-blue-velvet: #1B3764;
+    --forza-rusty-nail: #D35127;
+    --forza-slate-grey: #BFBFBF;
+    --forza-iron-grey: #F16022;
+    --forza-jet-black: #000000;
   }
 
   .dark {
@@ -141,12 +170,13 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
     --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 240 5.9% 10%;
     --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
@@ -156,16 +186,96 @@
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Forza Brand Typography Classes */
+.font-kallisto {
+  font-family: 'kallisto', sans-serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-heavy {
+  font-weight: 900;
+}
+
+/* Forza Brand Color Classes */
+.text-forza-primary {
+  color: var(--forza-regal-blue);
+}
+
+.text-forza-accent {
+  color: var(--forza-blaze-orange);
+}
+
+.text-forza-secondary {
+  color: var(--forza-blue-velvet);
+}
+
+.bg-forza-primary {
+  background-color: var(--forza-regal-blue);
+}
+
+.bg-forza-accent {
+  background-color: var(--forza-blaze-orange);
+}
+
+.bg-forza-secondary {
+  background-color: var(--forza-blue-velvet);
+}
+
+.border-forza-primary {
+  border-color: var(--forza-regal-blue);
+}
+
+.border-forza-accent {
+  border-color: var(--forza-blaze-orange);
+}
+
+/* Gradient Classes */
+.bg-forza-gradient-primary {
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blaze-orange) 100%);
+}
+
+.bg-forza-gradient-accent {
+  background: linear-gradient(135deg, var(--forza-blaze-orange) 0%, var(--forza-rusty-nail) 100%);
+}
+
+/* Button Hover Effects */
+.hover-forza-primary:hover {
+  background-color: var(--forza-regal-blue);
+  color: white;
+}
+
+.hover-forza-accent:hover {
+  background-color: var(--forza-blaze-orange);
+  color: white;
 }
 
 @layer utilities {
   .py-20-custom {
     padding-top: 25rem;
     padding-bottom: 5rem;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
+  /* Chemistry icons - mask to white */
+  .chemistry-icon {
+    filter: brightness(0) invert(1);
   }
   
   /* X-Ray Hotspot Styles */

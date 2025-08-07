@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { products } from '@/utils/products';
+import { getProducts } from '@/utils/products';
 import { chemistryDefinitions } from '@/data/chemistry-summary.json';
 
 export default function ChemistriesPage() {
   const [selectedChemistry, setSelectedChemistry] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'name' | 'confidence' | 'productType' | 'category'>('name');
 
-  // Get unique chemistry types
-  const chemistryTypes = Array.from(
-    new Set(products.map(p => p.chemistry).filter(Boolean))
-  ).sort();
+  const products = getProducts();
 
   // Get products by chemistry - ensure strict matching to avoid products appearing in multiple categories
   const getProductsByChemistry = (chemistry: string) => {

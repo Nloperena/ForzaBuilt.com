@@ -35,27 +35,27 @@ const categoryColor = (cat: string) => {
   }
 };
 
-// Industry colors using vertical gradients with more industry color at bottom
+// Industry colors using gradients with 70% blue and 30% industry color
 const industryColor = (industry: string) => {
   const industryLower = industry.toLowerCase();
   const brandBlue = '#1b3764'; // Forza brand blue
   
-  // Use vertical gradients with more industry color at the bottom
+  // Use gradients with 70% blue and 30% industry color
   switch (industryLower) {
     case 'marine':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#137875]`; // Blue top, Marine teal bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#137875]`; // 70% blue, 30% Marine teal
     case 'industrial':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#f16a26]`; // Blue top, Industrial orange bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#f16a26]`; // 70% blue, 30% Industrial orange
     case 'transportation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // Blue top, Transportation red bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // 70% blue, 30% Transportation red
     case 'construction':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // Blue top, Construction yellow bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // 70% blue, 30% Construction yellow
     // case 'foam':
-    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // Blue top, Foam purple bottom
+    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // 70% blue, 30% Foam purple
     case 'composites':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // Blue top, Composites gray bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // 70% blue, 30% Composites gray
     case 'insulation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#d0157d]`; // Blue top, Insulation pink bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#d0157d]`; // 70% blue, 30% Insulation pink
     default:
       return `from-[${brandBlue}] to-[${brandBlue}]`; // Default blue
   }
@@ -558,7 +558,15 @@ const ProductDatasheetView: React.FC = () => {
                     </div>
                   </div>
                   <Button
-                    onClick={() => window.open(selectedProduct.url, '_blank')}
+                    onClick={() => {
+                      // Use standardTdsLink if available, otherwise fall back to url
+                      const tdsLink = selectedProduct.standardTdsLink || selectedProduct.pdfLinks?.[0];
+                      if (tdsLink) {
+                        window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
+                      } else {
+                        alert("The datasheet for this product is not available yet.");
+                      }
+                    }}
                     className="bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30"
                   >
                     <ExternalLink className="h-4 w-4 mr-2" />

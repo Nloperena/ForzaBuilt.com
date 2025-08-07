@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -27,49 +28,76 @@ import IndustrySummary from './pages/IndustrySummary';
 import ProductDatasheetsPage from './pages/ProductDatasheetsPage';
 import ProductIndex from './pages/ProductIndex';
 import ChemistriesPage from './pages/chemistries';
+import PdfViewer from './pages/PdfViewer';
+import Dashboard from './pages/Dashboard';
+
+import { initializeProducts } from "@/utils/products";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/industries" element={<Industries />} />
-            <Route path="/products" element={<ProductIndex />} />
-            <Route path="/chemistries" element={<ChemistriesPage />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/approach" element={<Approach />} />
-            <Route path="/tools" element={<Tools />} />
-            <Route path="/tools/product-selector" element={<ProductSelector />} />
-            <Route path="/tools/product-datasheets" element={<ProductDatasheetsPage />} />
-            <Route path="/tools/sealant-calculator" element={<SealantCalculator />} />
-            <Route path="/tools/compatibility" element={<Compatibility />} />
-            <Route path="/industries/:industry" element={<IndustryPage />} />
-            <Route path="/products/:productCategory" element={<ProductCategoryPage />} />
-            <Route path="/product/:productId" element={<ProductDetailPage />} />
-            <Route path="/products/:productCategory/:productId" element={<ProductDetailPage />} />
-            {/* Datasheet Routes */}
-            <Route path="/datasheet-demo" element={<DatasheetDemo />} />
-            {/* Review Routes */}
-            <Route path="/industry-review" element={<IndustryReview />} />
-            <Route path="/industry-summary" element={<IndustrySummary />} />
-            <Route path="/product-datasheets" element={<ProductDatasheetsPage />} />
-            <Route path="/products/all" element={<ProductIndex />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </AuthProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  const [productsLoaded, setProductsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        await initializeProducts();
+        setProductsLoaded(true);
+      } catch (error) {
+        console.error("Failed to load products:", error);
+        // Handle error, e.g., show an error message to the user
+      }
+    };
+    loadProducts();
+  }, []);
+
+  if (!productsLoaded) {
+    return <div>Loading products...</div>; // Simple loading indicator
+  }
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/industries" element={<Industries />} />
+              <Route path="/products" element={<ProductIndex />} />
+              <Route path="/chemistries" element={<ChemistriesPage />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/approach" element={<Approach />} />
+              <Route path="/tools" element={<Tools />} />
+              <Route path="/tools/product-selector" element={<ProductSelector />} />
+              <Route path="/tools/product-datasheets" element={<ProductDatasheetsPage />} />
+              <Route path="/tools/sealant-calculator" element={<SealantCalculator />} />
+              <Route path="/tools/compatibility" element={<Compatibility />} />
+              <Route path="/industries/:industry" element={<IndustryPage />} />
+              <Route path="/products/:productCategory" element={<ProductCategoryPage />} />
+              <Route path="/product/:productId" element={<ProductDetailPage />} />
+              <Route path="/products/:productCategory/:productId" element={<ProductDetailPage />} />
+              {/* Datasheet Routes */}
+              <Route path="/datasheet-demo" element={<DatasheetDemo />} />
+              {/* Review Routes */}
+              <Route path="/industry-review" element={<IndustryReview />} />
+              <Route path="/industry-summary" element={<IndustrySummary />} />
+              <Route path="/product-datasheets" element={<ProductDatasheetsPage />} />
+              <Route path="/products/all" element={<ProductIndex />} />
+              <Route path="/pdf-viewer/:pdfPath" element={<PdfViewer />} />
+              <Route path="/admin/dashboard" element={<Dashboard />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

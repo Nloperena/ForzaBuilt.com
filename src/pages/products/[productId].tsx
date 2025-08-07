@@ -1,7 +1,7 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, ArrowLeft, Download, Share2, BookOpen, Settings, Zap, MapPin } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Download, Share2, BookOpen, Settings, Zap, MapPin, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,34 +13,38 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 // Helper to get industry logo from navbar data
-const getIndustryLogo = (industry: string) => {
+const getIndustryLogo = (industry: string | string[]) => {
+  // Handle both string and array inputs - use first industry if array
+  const industryStr = Array.isArray(industry) ? industry[0] || '' : industry;
   const industryData = industriesData.find(ind => 
-    ind.title.toLowerCase() === industry.toLowerCase()
+    ind.title.toLowerCase() === industryStr.toLowerCase()
   );
   return industryData?.logo || null;
 };
 
-// Industry colors using vertical gradients with more industry color at bottom
-const industryColor = (industry: string) => {
-  const industryLower = industry.toLowerCase();
+// Industry colors using gradients with 70% blue and 30% industry color
+const industryColor = (industry: string | string[]) => {
+  // Handle both string and array inputs - use first industry if array
+  const industryStr = Array.isArray(industry) ? industry[0] || '' : industry;
+  const industryLower = industryStr.toLowerCase();
   const brandBlue = '#1b3764'; // Forza brand blue
   
-  // Use vertical gradients with more industry color at the bottom
+  // Use gradients with 70% blue and 30% industry color
   switch (industryLower) {
     case 'marine':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#137875]`; // Blue top, Marine teal bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#137875]`; // 70% blue, 30% Marine teal
     case 'industrial':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#f16a26]`; // Blue top, Industrial orange bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#f16a26]`; // 70% blue, 30% Industrial orange
     case 'transportation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // Blue top, Transportation red bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // 70% blue, 30% Transportation red
     case 'construction':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // Blue top, Construction yellow bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // 70% blue, 30% Construction yellow
     // case 'foam':
-    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // Blue top, Foam purple bottom
+    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // 70% blue, 30% Foam purple
     case 'composites':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // Blue top, Composites gray bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // 70% blue, 30% Composites gray
     case 'insulation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#d0157d]`; // Blue top, Insulation pink bottom
+      return `from-[${brandBlue}] via-[${brandBlue}] to-[#d0157d]`; // 70% blue, 30% Insulation pink
     default:
       return `from-[${brandBlue}] to-[${brandBlue}]`; // Default blue
   }
@@ -49,6 +53,93 @@ const industryColor = (industry: string) => {
 const ProductDetailPage: React.FC = () => {
   const { productId, productCategory } = useParams<{ productId: string; productCategory?: string }>();
   const [activeTab, setActiveTab] = useState('overview');
+  const tabsListRef = useRef<HTMLDivElement>(null);
+
+  // Function to scroll to the active tab
+  const scrollToActiveTab = useCallback(() => {
+    if (tabsListRef.current) {
+      // Find all tab elements
+      const tabElements = tabsListRef.current.querySelectorAll('[role="tab"]');
+      const tabValues = ['overview', 'applications', 'benefits', 'technical', 'sizing'];
+      const currentIndex = tabValues.indexOf(activeTab);
+      
+      // Get the active tab element
+      const activeTabElement = tabElements[currentIndex] as HTMLElement;
+      
+      if (activeTabElement) {
+        // Calculate position to center the active tab
+        const tabsListRect = tabsListRef.current.getBoundingClientRect();
+        const activeTabRect = activeTabElement.getBoundingClientRect();
+        
+        const scrollLeft = activeTabElement.offsetLeft - 
+                          (tabsListRect.width / 2) + 
+                          (activeTabRect.width / 2);
+        
+        // Smooth scroll to the active tab
+        tabsListRef.current.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [activeTab]);
+
+  // Scroll to active tab when it changes
+  useEffect(() => {
+    scrollToActiveTab();
+  }, [activeTab, scrollToActiveTab]);
+  
+  // Ensure the tabs are properly positioned on initial load
+  useEffect(() => {
+    // Wait for the DOM to be fully rendered
+    const timer = setTimeout(() => {
+      scrollToActiveTab();
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, [scrollToActiveTab]);
+  
+  // Add touch swipe interaction for mobile
+  useEffect(() => {
+    const tabsElement = tabsListRef.current;
+    if (!tabsElement) return;
+    
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+    
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    };
+    
+    const handleSwipe = () => {
+      const swipeDistance = touchEndX - touchStartX;
+      if (Math.abs(swipeDistance) < 50) return; // Minimum swipe distance
+      
+      const tabValues = ['overview', 'applications', 'benefits', 'technical', 'sizing'];
+      const currentIndex = tabValues.indexOf(activeTab);
+      
+      if (swipeDistance > 0 && currentIndex > 0) {
+        // Swipe right - go to previous tab
+        setActiveTab(tabValues[currentIndex - 1]);
+      } else if (swipeDistance < 0 && currentIndex < tabValues.length - 1) {
+        // Swipe left - go to next tab
+        setActiveTab(tabValues[currentIndex + 1]);
+      }
+    };
+    
+    tabsElement.addEventListener('touchstart', handleTouchStart);
+    tabsElement.addEventListener('touchend', handleTouchEnd);
+    
+    return () => {
+      tabsElement.removeEventListener('touchstart', handleTouchStart);
+      tabsElement.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [activeTab, setActiveTab]);
 
   // Find the product
   const product = useMemo(() => {
@@ -110,17 +201,8 @@ const ProductDetailPage: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="relative rounded-3xl overflow-hidden shadow-2xl"
             >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-cover opacity-20"
-                />
-                {/* Industry Color Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-b ${industryColor(product.industry)} opacity-90`}></div>
-              </div>
-
+              {/* Industry Color Gradient Background */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${industryColor(product.industry)} opacity-95`}></div>
               {/* Content */}
               <div className="relative p-8 md:p-12 text-white">
                 <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -128,10 +210,10 @@ const ProductDetailPage: React.FC = () => {
                   <div>
                     {/* Badges */}
                     <div className="flex gap-3 mb-6">
-                      <Badge className={`bg-white/20 backdrop-blur-sm text-white border border-white/30`}>
+                      <Badge className="bg-[#F2611D] text-white border-0 px-4 py-2">
                         {product.category}
                       </Badge>
-                      <Badge className={`bg-white/20 backdrop-blur-sm text-white border border-white/30 flex items-center gap-1`}>
+                      <Badge className="bg-white/20 backdrop-blur-sm text-white border border-white/30 flex items-center gap-1 px-4 py-2">
                         {getIndustryLogo(product.industry) ? (
                           <img 
                             src={getIndustryLogo(product.industry)} 
@@ -145,14 +227,14 @@ const ProductDetailPage: React.FC = () => {
                       </Badge>
                     </div>
 
-                    {/* Product Name */}
-                    <h1 className="text-4xl md:text-5xl font-kallisto font-black mb-4 leading-tight" 
+                    {/* Product ID */}
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-kallisto font-black mb-4 leading-tight text-white" 
                         style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                      {product.name}
+                      {product.id.toUpperCase()}
                     </h1>
 
                     {/* Description */}
-                    <p className="text-xl text-gray-300 mb-8 leading-relaxed" 
+                    <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl" 
                        style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
                       {product.description}
                     </p>
@@ -160,15 +242,24 @@ const ProductDetailPage: React.FC = () => {
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-4">
                       <Button 
-                        onClick={() => window.open(product.url, '_blank')}
-                        className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl"
+                        onClick={() => {
+                          // Use standardTdsLink if available, otherwise fall back to pdfLinks
+                          const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
+                          if (tdsLink) {
+                            // Navigate to PDF viewer with encoded path
+                            window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
+                          } else {
+                            alert("The datasheet for this product is not available yet.");
+                          }
+                        }}
+                        className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       >
                         <Download className="h-4 w-4 mr-2" />
-                        Download Datasheet
+                        View Datasheet
                       </Button>
                       <Button 
                         variant="outline"
-                        className="border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white rounded-full px-8 py-6 text-xl transition-all duration-300"
+                        className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 py-6 text-xl transition-all duration-300"
                       >
                         <Share2 className="h-4 w-4 mr-2" />
                         Share Product
@@ -179,16 +270,16 @@ const ProductDetailPage: React.FC = () => {
                   {/* Product Image */}
                   <div className="flex justify-center lg:justify-end">
                     <div className="relative">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-2xl">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
                         <img 
-                          src={product.image} 
+                          src={product.imageUrl || product.image} 
                           alt={product.name}
                           className="w-full max-w-md h-auto object-contain"
                         />
                       </div>
-                      {/* Floating Product ID */}
-                      <div className="absolute -bottom-4 -right-4 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 border border-white/30">
-                        <span className="text-white font-bold text-sm">ID: {product.id.toUpperCase()}</span>
+                      {/* Floating Product Name */}
+                      <div className="absolute -bottom-4 -right-4 bg-[#F2611D] backdrop-blur-sm rounded-full px-4 py-2 border border-white/30 max-w-xs shadow-lg">
+                        <span className="text-white font-bold text-xs leading-tight">{product.name}</span>
                       </div>
                     </div>
                   </div>
@@ -199,84 +290,141 @@ const ProductDetailPage: React.FC = () => {
 
           {/* Product Details Tabs */}
           <section className="mb-12">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-1">
-                <TabsTrigger 
-                  value="overview" 
-                  className="data-[state=active]:bg-white/20 data-[state=active]:text-white rounded-xl"
-                >
-                  <BookOpen className="h-4 w-4 mr-2" />
-                  Overview
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="specifications" 
-                  className="data-[state=active]:bg-white/20 data-[state=active]:text-white rounded-xl"
-                >
-                  <Settings className="h-4 w-4 mr-2" />
-                  Specifications
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="applications" 
-                  className="data-[state=active]:bg-white/20 data-[state=active]:text-white rounded-xl"
-                >
-                  <MapPin className="h-4 w-4 mr-2" />
-                  Applications
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="benefits" 
-                  className="data-[state=active]:bg-white/20 data-[state=active]:text-white rounded-xl"
-                >
-                  <Zap className="h-4 w-4 mr-2" />
-                  Benefits & Usage
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="technical" 
-                  className="data-[state=active]:bg-white/20 data-[state=active]:text-white rounded-xl"
-                >
-                  <Zap className="h-4 w-4 mr-2" />
-                  Technical Data
-                </TabsTrigger>
-              </TabsList>
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full relative">
+              <div className="relative">
+                {/* Scroll indicators */}
+                <div className="absolute left-0 top-0 bottom-0 w-10 bg-gradient-to-r from-[#1B3764] to-transparent pointer-events-none z-10 md:hidden flex items-center justify-start pl-1.5">
+                  <div className="animate-pulse bg-white/10 rounded-full p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                      <path d="m15 18-6-6 6-6"></path>
+                    </svg>
+                  </div>
+                </div>
+                <div className="absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[#1B3764] to-transparent pointer-events-none z-10 md:hidden flex items-center justify-end pr-1.5">
+                  <div className="animate-pulse bg-white/10 rounded-full p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                      <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                  </div>
+                </div>
+                
+                {/* Carousel dots for mobile */}
+                <div className="absolute -bottom-6 left-0 right-0 flex justify-center gap-1 md:hidden">
+                  <div className={`h-1.5 w-1.5 rounded-full ${activeTab === 'overview' ? 'bg-[#F16022]' : 'bg-white/30'}`}></div>
+                  <div className={`h-1.5 w-1.5 rounded-full ${activeTab === 'applications' ? 'bg-[#F16022]' : 'bg-white/30'}`}></div>
+                  <div className={`h-1.5 w-1.5 rounded-full ${activeTab === 'benefits' ? 'bg-[#F16022]' : 'bg-white/30'}`}></div>
+                  <div className={`h-1.5 w-1.5 rounded-full ${activeTab === 'technical' ? 'bg-[#F16022]' : 'bg-white/30'}`}></div>
+                  <div className={`h-1.5 w-1.5 rounded-full ${activeTab === 'sizing' ? 'bg-[#F16022]' : 'bg-white/30'}`}></div>
+                </div>
+                
+                <div className="flex justify-center mb-8">
+                  <TabsList className="flex bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 gap-1">
+                    <TabsTrigger 
+                      value="overview" 
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#F16022] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                    >
+                      <BookOpen className="h-4 w-4" />
+                      <span>Overview</span>
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="applications" 
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#F16022] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      <span>Applications</span>
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="benefits" 
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#F16022] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                    >
+                      <Zap className="h-4 w-4" />
+                      <span>Benefits</span>
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="technical" 
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#F16022] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                    >
+                      <Settings className="h-4 w-4" />
+                      <span>Technical</span>
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="sizing" 
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#F16022] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                    >
+                      <Package className="h-4 w-4" />
+                      <span>Sizing</span>
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
+              </div>
 
-              <div className="mt-8">
+              <div className="mt-8 md:mt-8">
                 <TabsContent value="overview" className="space-y-6">
                   <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
-                    <CardHeader>
-                      <CardTitle className="text-white text-2xl font-kallisto font-bold" 
+                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                      <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                         Product Overview
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6">
+                    <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
                       <p className="text-white/90 text-lg leading-relaxed" 
                          style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
                         {product.description}
                       </p>
                       
-                      {/* Key Features */}
-                      {product.specifications && (
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-4" 
-                              style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
-                            Key Features
-                          </h3>
-                          <div className="grid md:grid-cols-2 gap-4">
-                            {Object.entries(product.specifications).map(([key, value]) => {
-                              if (typeof value === 'string' && key !== 'type') {
-                                return (
-                                  <div key={key} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                                    <div className="font-semibold text-white mb-1 capitalize">
-                                      {key.replace(/([A-Z])/g, ' $1').trim()}
-                                    </div>
-                                    <div className="text-white/80">{value}</div>
-                                  </div>
-                                );
-                              }
-                              return null;
-                            })}
+                      {/* Chemistry */}
+                      <div>
+                        <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4" 
+                            style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
+                          Chemistry
+                        </h3>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 flex items-center">
+                            <div className="mr-4">
+                              {product.chemistry === 'MS' && (
+                                <img src="/src/assets/images/Chemistry Icons/MS icon.svg" alt="MS Chemistry" className="w-16 h-16 chemistry-icon" />
+                              )}
+                              {product.chemistry === 'Silicone' && (
+                                <img src="/src/assets/images/Chemistry Icons/Silicone icon.svg" alt="Silicone Chemistry" className="w-16 h-16 chemistry-icon" />
+                              )}
+                              {product.chemistry === 'Epoxy' && (
+                                <img src="/src/assets/images/Chemistry Icons/Epoxy icon.svg" alt="Epoxy Chemistry" className="w-16 h-16 chemistry-icon" />
+                              )}
+                              {product.chemistry === 'Water Base' && (
+                                <img src="/src/assets/images/Chemistry Icons/Waterbase icon.svg" alt="Water Base Chemistry" className="w-16 h-16 chemistry-icon" />
+                              )}
+                              {(!product.chemistry || !['MS', 'Silicone', 'Epoxy', 'Water Base'].includes(product.chemistry)) && (
+                                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                                  <span className="text-white font-bold text-2xl">{product.chemistry ? product.chemistry.charAt(0) : '?'}</span>
+                                </div>
+                              )}
+                            </div>
+                            <div>
+                              <div className="font-semibold text-white mb-1">
+                                {product.chemistry || 'Chemistry Type'}
+                              </div>
+                              <div className="text-white/80">
+                                {product.chemistryDetails?.technical || 'Specialized chemistry for optimal performance in various applications.'}
+                              </div>
+                            </div>
                           </div>
+                          
+                          {product.specifications && Object.entries(product.specifications).map(([key, value]) => {
+                            if (typeof value === 'string' && key !== 'type' && key === 'viscosity') {
+                              return (
+                                <div key={key} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                  <div className="font-semibold text-white mb-1 capitalize">
+                                    {key.replace(/([A-Z])/g, ' $1').trim()}
+                                  </div>
+                                  <div className="text-white/80">{value}</div>
+                                </div>
+                              );
+                            }
+                            return null;
+                          })}
                         </div>
-                      )}
+                      </div>
 
                       {/* Applications & Features */}
                       {product.specifications?.applications && (
@@ -366,196 +514,20 @@ const ProductDetailPage: React.FC = () => {
                   </Card>
                 </TabsContent>
 
-                <TabsContent value="specifications" className="space-y-6">
-                  <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
-                    <CardHeader>
-                      <CardTitle className="text-white text-2xl font-kallisto font-bold" 
-                                 style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
-                        Product Specifications
-                      </CardTitle>
-                    </CardHeader>
-                                         <CardContent>
-                       {product.specifications ? (
-                         <div className="space-y-6">
-                           {/* Basic Specifications */}
-                           <div>
-                             <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                               Basic Specifications
-                             </h4>
-                             <div className="space-y-3">
-                               {product.specifications.type && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Type:</span>
-                                   <span className="text-white/80">{product.specifications.type}</span>
-                                 </div>
-                               )}
-                               {product.specifications.viscosity && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Viscosity:</span>
-                                   <span className="text-white/80">{product.specifications.viscosity}</span>
-                                 </div>
-                               )}
-                               {product.specifications.solids && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Solids:</span>
-                                   <span className="text-white/80">{product.specifications.solids}</span>
-                                 </div>
-                               )}
-                               {product.specifications.flashPoint && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Flash Point:</span>
-                                   <span className="text-white/80">{product.specifications.flashPoint}</span>
-                                 </div>
-                               )}
-                               {product.specifications.potLife && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Pot Life:</span>
-                                   <span className="text-white/80">{product.specifications.potLife}</span>
-                                 </div>
-                               )}
-                               {product.specifications.cureTime && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Cure Time:</span>
-                                   <span className="text-white/80">{product.specifications.cureTime}</span>
-                                 </div>
-                               )}
-                               {product.specifications.temperatureRange && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Temperature Range:</span>
-                                   <span className="text-white/80">{product.specifications.temperatureRange}</span>
-                                 </div>
-                               )}
-                             </div>
-                           </div>
 
-                           {/* Tape-specific specifications */}
-                           {(product.specifications.thickness || product.specifications.width || product.specifications.length) && (
-                             <div>
-                               <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                                 Physical Dimensions
-                               </h4>
-                               <div className="space-y-3">
-                                 {product.specifications.thickness && (
-                                   <div className="flex justify-between py-3 border-b border-white/10">
-                                     <span className="font-semibold text-white">Thickness:</span>
-                                     <span className="text-white/80">{product.specifications.thickness}</span>
-                                   </div>
-                                 )}
-                                 {product.specifications.width && (
-                                   <div className="flex justify-between py-3 border-b border-white/10">
-                                     <span className="font-semibold text-white">Width:</span>
-                                     <span className="text-white/80">{product.specifications.width}</span>
-                                   </div>
-                                 )}
-                                 {product.specifications.length && (
-                                   <div className="flex justify-between py-3 border-b border-white/10">
-                                     <span className="font-semibold text-white">Length:</span>
-                                     <span className="text-white/80">{product.specifications.length}</span>
-                                   </div>
-                                 )}
-                               </div>
-                             </div>
-                           )}
-
-                           {/* Substrates */}
-                           {product.specifications.substrates && (
-                             <div>
-                               <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                                 Compatible Substrates
-                               </h4>
-                               <div className="flex flex-wrap gap-2">
-                                 {product.specifications.substrates.map((substrate, index) => (
-                                   <Badge key={index} className="bg-white/10 backdrop-blur-sm text-white border border-white/20">
-                                     {substrate}
-                                   </Badge>
-                                 ))}
-                               </div>
-                             </div>
-                           )}
-
-                           {/* Applications */}
-                           {product.specifications.applications && (
-                             <div>
-                               <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                                 Applications
-                               </h4>
-                               <div className="flex flex-wrap gap-2">
-                                 {product.specifications.applications.map((app, index) => (
-                                   <Badge key={index} className="bg-white/20 backdrop-blur-sm text-white border border-white/30">
-                                     {app}
-                                   </Badge>
-                                 ))}
-                               </div>
-                             </div>
-                           )}
-
-                           {/* Features */}
-                           {product.specifications.features && (
-                             <div>
-                               <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                                 Features
-                               </h4>
-                               <div className="flex flex-wrap gap-2">
-                                 {product.specifications.features.map((feature, index) => (
-                                   <Badge key={index} variant="outline" className="border-white/30 text-white">
-                                     {feature}
-                                   </Badge>
-                                 ))}
-                               </div>
-                             </div>
-                           )}
-
-                           {/* Certifications */}
-                           {product.specifications.certifications && (
-                             <div>
-                               <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                                 Certifications
-                               </h4>
-                               <div className="flex flex-wrap gap-2">
-                                 {product.specifications.certifications.map((cert, index) => (
-                                   <Badge key={index} className="bg-green-500/20 backdrop-blur-sm text-green-300 border border-green-300/30">
-                                     {cert}
-                                   </Badge>
-                                 ))}
-                               </div>
-                             </div>
-                           )}
-
-                           {/* Packaging */}
-                           {product.specifications.packaging && (
-                             <div>
-                               <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                                 Available Packaging
-                               </h4>
-                               <div className="flex flex-wrap gap-2">
-                                 {product.specifications.packaging.map((pkg, index) => (
-                                   <Badge key={index} className="bg-blue-500/20 backdrop-blur-sm text-blue-300 border border-blue-300/30">
-                                     {pkg}
-                                   </Badge>
-                                 ))}
-                               </div>
-                             </div>
-                           )}
-                         </div>
-                       ) : (
-                         <p className="text-white/70">No specifications available for this product.</p>
-                       )}
-                     </CardContent>
-                  </Card>
-                </TabsContent>
 
                 <TabsContent value="applications" className="space-y-6">
                   <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
-                    <CardHeader>
-                      <CardTitle className="text-white text-2xl font-kallisto font-bold" 
+                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                      <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                         Applications & Uses
                       </CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="px-4 md:px-6 py-3 md:py-4">
                                              <div className="grid md:grid-cols-2 gap-6">
                          <div>
-                           <h3 className="text-lg font-semibold text-white mb-3" 
+                           <h3 className="text-base md:text-lg font-semibold text-white mb-2 md:mb-3" 
                                style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
                              Primary Applications
                            </h3>
@@ -590,28 +562,28 @@ const ProductDetailPage: React.FC = () => {
                            )}
                          </div>
                          <div>
-                           <h3 className="text-lg font-semibold text-white mb-3" 
+                           <h3 className="text-base md:text-lg font-semibold text-white mb-2 md:mb-3" 
                                style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
                              Industry Focus
                            </h3>
                            <div className="flex items-center gap-2 mb-4">
                              {getIndustryLogo(product.industry) ? (
-                               <img 
-                                 src={getIndustryLogo(product.industry)} 
-                                 alt={`${product.industry} icon`}
-                                 className="h-8 w-8 object-contain"
-                               />
+                                                             <img 
+                                src={getIndustryLogo(product.industry)} 
+                                alt={`${Array.isArray(product.industry) ? product.industry[0] || '' : product.industry} icon`}
+                                className="h-8 w-8 md:h-10 md:w-10 object-contain"
+                              />
                              ) : (
-                               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                                 <span className="text-white font-bold">{product.industry.charAt(0).toUpperCase()}</span>
-                               </div>
-                             )}
-                             <span className="text-white font-semibold capitalize">{product.industry}</span>
-                           </div>
-                           <p className="text-white/80">
-                             Specifically engineered for {product.industry.toLowerCase()} applications, 
-                             this product delivers optimal performance in demanding environments.
-                           </p>
+                                                              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                                <span className="text-white font-bold">{Array.isArray(product.industry) ? product.industry[0]?.charAt(0).toUpperCase() || '' : product.industry.charAt(0).toUpperCase()}</span>
+                              </div>
+                            )}
+                            <span className="text-white font-semibold capitalize">{Array.isArray(product.industry) ? product.industry[0] || '' : product.industry}</span>
+                          </div>
+                          <p className="text-white/80">
+                            Specifically engineered for {Array.isArray(product.industry) ? product.industry[0]?.toLowerCase() || '' : product.industry.toLowerCase()} applications, 
+                            this product delivers optimal performance in demanding environments.
+                          </p>
                            
                            {/* Compatible Substrates */}
                            {product.specifications?.substrates && (
@@ -636,13 +608,13 @@ const ProductDetailPage: React.FC = () => {
 
                 <TabsContent value="benefits" className="space-y-6">
                   <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
-                    <CardHeader>
-                      <CardTitle className="text-white text-2xl font-kallisto font-bold" 
+                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                      <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                         Benefits & Usage
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6">
+                    <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
                       {/* Benefits */}
                       {product.benefits && product.benefits.length > 0 && (
                         <div>
@@ -739,13 +711,13 @@ const ProductDetailPage: React.FC = () => {
 
                 <TabsContent value="technical" className="space-y-6">
                   <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
-                    <CardHeader>
-                      <CardTitle className="text-white text-2xl font-kallisto font-bold" 
+                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                      <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                         Technical Data
                       </CardTitle>
                     </CardHeader>
-                                         <CardContent>
+                                         <CardContent className="px-4 md:px-6 py-3 md:py-4">
                        {product.technicalData ? (
                          <div className="space-y-6">
                            {/* Physical Properties */}
@@ -843,6 +815,44 @@ const ProductDetailPage: React.FC = () => {
                      </CardContent>
                   </Card>
                 </TabsContent>
+
+                <TabsContent value="sizing" className="space-y-6">
+                  <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
+                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                      <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
+                                 style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
+                        Available Sizes
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
+                      {/* Sizes */}
+                      {product.sizes && product.sizes.length > 0 ? (
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-4" 
+                              style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
+                            Available Packaging Options
+                          </h3>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            {product.sizes.map((size, index) => (
+                              <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                                <div className="flex items-center gap-3">
+                                  <Package className="h-5 w-5 text-blue-300" />
+                                  <span className="text-white/90 font-medium">{size}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="text-center py-8">
+                          <Package className="h-16 w-16 text-white/30 mx-auto mb-4" />
+                          <p className="text-white/70 text-lg">No sizing information available for this product.</p>
+                          <p className="text-white/50 text-sm mt-2">Contact us for custom sizing options.</p>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </TabsContent>
               </div>
             </Tabs>
           </section>
@@ -872,7 +882,7 @@ const ProductDetailPage: React.FC = () => {
                         {/* Background Image */}
                         <div className="absolute inset-0">
                           <img 
-                            src={relatedProduct.image} 
+                            src={relatedProduct.imageUrl || relatedProduct.image} 
                             alt={relatedProduct.name}
                             className="w-full h-full object-cover opacity-100 transition-transform duration-700 group-hover:scale-110"
                           />
@@ -916,7 +926,7 @@ const ProductDetailPage: React.FC = () => {
           {/* Call to Action */}
           <section className="text-center">
             <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
                 <h2 className="text-3xl font-kallisto font-bold text-white" 
                     style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                   Ready to Get Started?
@@ -927,11 +937,20 @@ const ProductDetailPage: React.FC = () => {
                 </p>
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Button 
-                    onClick={() => window.open(product.url, '_blank')}
+                    onClick={() => {
+                      // Use standardTdsLink if available, otherwise fall back to pdfLinks
+                      const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
+                      if (tdsLink) {
+                        // Navigate to PDF viewer with encoded path
+                        window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
+                      } else {
+                        alert("The datasheet for this product is not available yet.");
+                      }
+                    }}
                     className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl"
                   >
                     <Download className="h-4 w-4 mr-2" />
-                    Download Full Datasheet
+                    View Full Datasheet
                   </Button>
                   <Link to="/contact">
                     <Button 

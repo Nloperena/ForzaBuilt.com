@@ -5,56 +5,75 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { industrialDatasheet } from '@/data/industrialDatasheet';
-import { products as productsData } from '@/data/products';
+import { getProducts } from '@/utils/products';
 import { brandColors, typography } from '@/styles/brandStandards';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 // Helper to get product category logo
 const getProductCategoryLogo = (category: string) => {
-  const productData = productsData.find(prod => 
-    prod.name.toLowerCase() === category.toLowerCase()
+  const products = getProducts();
+  const productData = products.find(prod => 
+    prod.category?.toLowerCase() === category.toLowerCase()
   );
-  return productData?.hoverImage || null;
+  return productData?.imageUrl || null;
 };
 
-// Product category data
-const productCategories = [
-  {
-    id: 'bond',
-    name: 'BOND',
-    title: 'Industrial Adhesives',
-    description: 'High-performance bonding solutions for demanding industrial applications.',
-    gradient: 'from-[#F16022] via-[#D35127] to-[#1B3764]',
-    color: '#f16022'
-  },
-  {
-    id: 'seal',
-    name: 'SEAL',
-    title: 'Sealants & Gaskets',
-    description: 'Advanced sealing solutions for leak prevention and environmental protection.',
-    gradient: 'from-[#faaf40] via-[#f4c430] to-[#1B3764]',
-    color: '#faaf40'
-  },
-  {
-    id: 'tape',
-    name: 'TAPE',
-    title: 'Industrial Tapes',
-    description: 'Specialized tapes for industrial applications and high-performance needs.',
-    gradient: 'from-[#d1181f] via-[#b3141a] to-[#1B3764]',
-    color: '#d1181f'
-  },
-  {
-    id: 'ruggedred',
-    name: 'RuggedRed',
-    title: 'Extreme Performance',
-    description: 'Built for extreme conditions with unmatched strength and resilience.',
-    gradient: 'from-[#e53935] via-[#c62828] to-[#1B3764]',
-    color: '#e53935'
-  }
-];
+// Product category data - dynamically generated from actual product data
+const getProductCategories = () => {
+  const products = getProducts();
+  
+  // Get unique categories from the product database
+  const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
+  
+  return categories.map(category => {
+    const categoryProducts = products.filter(p => p.category === category);
+    const sampleProduct = categoryProducts[0];
+    
+    // Define category-specific data
+    const categoryConfig = {
+      'BOND': {
+        title: 'Industrial Adhesives',
+        description: 'High-performance bonding solutions for demanding industrial applications.',
+        gradient: 'from-[#F16022] via-[#D35127] to-[#1B3764]',
+        color: '#f16022'
+      },
+      'SEAL': {
+        title: 'Sealants & Gaskets',
+        description: 'Advanced sealing solutions for leak prevention and environmental protection.',
+        gradient: 'from-[#faaf40] via-[#f4c430] to-[#1B3764]',
+        color: '#faaf40'
+      },
+      'TAPE': {
+        title: 'Industrial Tapes',
+        description: 'Specialized tapes for industrial applications and high-performance needs.',
+        gradient: 'from-[#d1181f] via-[#b3141a] to-[#1B3764]',
+        color: '#d1181f'
+      }
+    };
+    
+    const config = categoryConfig[category as keyof typeof categoryConfig] || {
+      title: category,
+      description: `${category} products for industrial applications.`,
+      gradient: 'from-[#1B3764] via-[#09668D] to-[#1B3764]',
+      color: '#1B3764'
+    };
+    
+    return {
+      id: category.toLowerCase(),
+      name: category,
+      title: config.title,
+      description: config.description,
+      gradient: config.gradient,
+      color: config.color,
+      productCount: categoryProducts.length
+    };
+  });
+};
 
 const ProductIndex: React.FC = () => {
+  const productCategories = getProductCategories();
+  
   return (
     <div className="min-h-screen bg-[#1b3764] flex flex-col">
       <Header />

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { products as productsData } from '@/data/products';
+import { getProducts } from '@/utils/products';
 import { industries as industriesData } from '@/data/industries';
 import { tools as toolsData } from '@/data/tools';
 
@@ -16,6 +16,7 @@ const navigation = [
 export const useHeaderState = () => {
   const navigate = useNavigate();
   const { signOut } = useAuth();
+  const productsData = getProducts();
 
   // Overlay state
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -57,7 +58,8 @@ export const useHeaderState = () => {
     if (activeOverlayContent === 'industries' && industriesData.length > 0) {
       setHoveredVideoUrl(industriesData[0].videoUrl);
     } else if (activeOverlayContent === 'products' && productsData.length > 0) {
-      setHoveredVideoUrl(productsData[0].videoUrl);
+      // For now, use a default video URL since Product type doesn't have videoUrl
+      setHoveredVideoUrl('/src/assets/videos/default-product.mp4');
     } else if (activeOverlayContent === 'tools' && toolsData.length > 0) {
       setHoveredVideoUrl(toolsData[0].videoUrl);
     } else {

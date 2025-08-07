@@ -1,0 +1,1982 @@
+[
+  {
+    "product_id": "1. Industrial_81-0389",
+    "product_name": "81-0389",
+    "product_code": "81-0389",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_A1000",
+    "product_name": "A1000",
+    "product_code": "A1000",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'A' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_A450",
+    "product_name": "A450",
+    "product_code": "A450",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'A' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_A465",
+    "product_name": "A465",
+    "product_code": "A465",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'A' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_A729",
+    "product_name": "A729",
+    "product_code": "A729",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'A' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_C110",
+    "product_name": "C110",
+    "product_code": "C110",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_C130",
+    "product_name": "C130",
+    "product_code": "C130",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_C331",
+    "product_name": "C331",
+    "product_code": "C331",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_C805",
+    "product_name": "C805",
+    "product_code": "C805",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_C830",
+    "product_name": "C830",
+    "product_code": "C830",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_C835",
+    "product_name": "C835",
+    "product_code": "C835",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_CA1000",
+    "product_name": "CA1000",
+    "product_code": "CA1000",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_CA1500",
+    "product_name": "CA1500",
+    "product_code": "CA1500",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_CA2400",
+    "product_name": "CA2400",
+    "product_code": "CA2400",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_H103",
+    "product_name": "H103",
+    "product_code": "H103",
+    "category": "1. Industrial",
+    "chemistry_type": "Solvent Based",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'H' suggests Solvent Based; Product name pattern 'H' suggests HotMelt",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_H117",
+    "product_name": "H117",
+    "product_code": "H117",
+    "category": "1. Industrial",
+    "chemistry_type": "Solvent Based",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'H' suggests Solvent Based; Product name pattern 'H' suggests HotMelt",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_H158",
+    "product_name": "H158",
+    "product_code": "H158",
+    "category": "1. Industrial",
+    "chemistry_type": "Solvent Based",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'H' suggests Solvent Based; Product name pattern 'H' suggests HotMelt",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_H163",
+    "product_name": "H163",
+    "product_code": "H163",
+    "category": "1. Industrial",
+    "chemistry_type": "Solvent Based",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'H' suggests Solvent Based; Product name pattern 'H' suggests HotMelt",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_H164",
+    "product_name": "H164",
+    "product_code": "H164",
+    "category": "1. Industrial",
+    "chemistry_type": "Solvent Based",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'H' suggests Solvent Based; Product name pattern 'H' suggests HotMelt",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_H167",
+    "product_name": "H167",
+    "product_code": "H167",
+    "category": "1. Industrial",
+    "chemistry_type": "Solvent Based",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'H' suggests Solvent Based; Product name pattern 'H' suggests HotMelt",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_H176",
+    "product_name": "H176",
+    "product_code": "H176",
+    "category": "1. Industrial",
+    "chemistry_type": "Solvent Based",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'H' suggests Solvent Based; Product name pattern 'H' suggests HotMelt",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC932",
+    "product_name": "IC932",
+    "product_code": "IC932",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC933",
+    "product_name": "IC933",
+    "product_code": "IC933",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC934",
+    "product_name": "IC934",
+    "product_code": "IC934",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC936",
+    "product_name": "IC936",
+    "product_code": "IC936",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC946",
+    "product_name": "IC946",
+    "product_code": "IC946",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC947",
+    "product_name": "IC947",
+    "product_code": "IC947",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC951",
+    "product_name": "IC951",
+    "product_code": "IC951",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC952",
+    "product_name": "IC952",
+    "product_code": "IC952",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_IC955NF",
+    "product_name": "IC955NF",
+    "product_code": "IC955NF",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'IC' suggests Epoxy",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OA12",
+    "product_name": "OA12",
+    "product_code": "OA12",
+    "category": "1. Industrial",
+    "chemistry_type": "Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OA' suggests Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OA13",
+    "product_name": "OA13",
+    "product_code": "OA13",
+    "category": "1. Industrial",
+    "chemistry_type": "Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OA' suggests Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OA23",
+    "product_name": "OA23",
+    "product_code": "OA23",
+    "category": "1. Industrial",
+    "chemistry_type": "Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OA' suggests Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OA28",
+    "product_name": "OA28",
+    "product_code": "OA28",
+    "category": "1. Industrial",
+    "chemistry_type": "Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OA' suggests Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OA29",
+    "product_name": "OA29",
+    "product_code": "OA29",
+    "category": "1. Industrial",
+    "chemistry_type": "Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OA' suggests Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OA4",
+    "product_name": "OA4",
+    "product_code": "OA4",
+    "category": "1. Industrial",
+    "chemistry_type": "Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OA' suggests Modified Silane (MS Polymer/ Hybrid Polymer)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OS10",
+    "product_name": "OS10",
+    "product_code": "OS10",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OS2",
+    "product_name": "OS2",
+    "product_code": "OS2",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OS20",
+    "product_name": "OS20",
+    "product_code": "OS20",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OS24",
+    "product_name": "OS24",
+    "product_code": "OS24",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OS25",
+    "product_name": "OS25",
+    "product_code": "OS25",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OS35",
+    "product_name": "OS35",
+    "product_code": "OS35",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OS37",
+    "product_name": "OS37",
+    "product_code": "OS37",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OS61",
+    "product_name": "OS61",
+    "product_code": "OS61",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_OSA",
+    "product_name": "OSA",
+    "product_code": "OSA",
+    "category": "1. Industrial",
+    "chemistry_type": "Silicone",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'OS' suggests Silicone",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_R160",
+    "product_name": "R160",
+    "product_code": "R160",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_R190",
+    "product_name": "R190",
+    "product_code": "R190",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_R221",
+    "product_name": "R221",
+    "product_code": "R221",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_R519",
+    "product_name": "R519",
+    "product_code": "R519",
+    "category": "1. Industrial",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T205",
+    "product_name": "T205",
+    "product_code": "T205",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T215",
+    "product_name": "T215",
+    "product_code": "T215",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T220",
+    "product_name": "T220",
+    "product_code": "T220",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T305",
+    "product_name": "T305",
+    "product_code": "T305",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T310",
+    "product_name": "T310",
+    "product_code": "T310",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T449",
+    "product_name": "T449",
+    "product_code": "T449",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T464",
+    "product_name": "T464",
+    "product_code": "T464",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T465",
+    "product_name": "T465",
+    "product_code": "T465",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T532",
+    "product_name": "T532",
+    "product_code": "T532",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T710",
+    "product_name": "T710",
+    "product_code": "T710",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_T715",
+    "product_name": "T715",
+    "product_code": "T715",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "1. Industrial_TA56",
+    "product_name": "TA56",
+    "product_code": "TA56",
+    "category": "1. Industrial",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "High",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA); Product name pattern 'TA' suggests Acrylic (incl. PSA)",
+    "score": 10
+  },
+  {
+    "product_id": "1. Industrial_W700",
+    "product_name": "W700",
+    "product_code": "W700",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_mc739",
+    "product_name": "mc739",
+    "product_code": "mc739",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_os55",
+    "product_name": "os55",
+    "product_code": "os55",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "1. Industrial_t500",
+    "product_name": "t500",
+    "product_code": "t500",
+    "category": "1. Industrial",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_Environmental Data Sheets",
+    "product_name": "Environmental Data Sheets",
+    "product_code": "Environmental Data Sheets",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-C280 (C130)",
+    "product_name": "M-C280 (C130)",
+    "product_code": "M-C280 (C130)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-C283 (C331)",
+    "product_name": "M-C283 (C331)",
+    "product_code": "M-C283 (C331)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-C285 (81-0389)",
+    "product_name": "M-C285 (81-0389)",
+    "product_code": "M-C285 (81-0389)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-OA755 (OA4)",
+    "product_name": "M-OA755 (OA4)",
+    "product_code": "M-OA755 (OA4)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-OS764 (OS24)",
+    "product_name": "M-OS764 (OS24)",
+    "product_code": "M-OS764 (OS24)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-OS789 (OS2)",
+    "product_name": "M-OS789 (OS2)",
+    "product_code": "M-OS789 (OS2)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-OS796 (OS16)",
+    "product_name": "M-OS796 (OS16)",
+    "product_code": "M-OS796 (OS16)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-OSA783 (OSA)",
+    "product_name": "M-OSA783 (OSA)",
+    "product_code": "M-OSA783 (OSA)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-R420 (R160)",
+    "product_name": "M-R420 (R160)",
+    "product_code": "M-R420 (R160)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-R445 (R221)",
+    "product_name": "M-R445 (R221)",
+    "product_code": "M-R445 (R221)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-R478 (R519)",
+    "product_name": "M-R478 (R519)",
+    "product_code": "M-R478 (R519)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-T815 (T215)",
+    "product_name": "M-T815 (T215)",
+    "product_code": "M-T815 (T215)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_M-T820 (T220)",
+    "product_name": "M-T820 (T220)",
+    "product_code": "M-T820 (T220)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_MC722 (IC932)",
+    "product_name": "MC722 (IC932)",
+    "product_code": "MC722 (IC932)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_MC723 (IC933)",
+    "product_name": "MC723 (IC933)",
+    "product_code": "MC723 (IC933)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_MC724 (IC934)",
+    "product_name": "MC724 (IC934)",
+    "product_code": "MC724 (IC934)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_MC736 (IC946)",
+    "product_name": "MC736 (IC946)",
+    "product_code": "MC736 (IC946)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_MC737 (IC947)",
+    "product_name": "MC737 (IC947)",
+    "product_code": "MC737 (IC947)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_MC739",
+    "product_name": "MC739",
+    "product_code": "MC739",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_MC741 (IC951)",
+    "product_name": "MC741 (IC951)",
+    "product_code": "MC741 (IC951)",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_mc722",
+    "product_name": "mc722",
+    "product_code": "mc722",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_mc723",
+    "product_name": "mc723",
+    "product_code": "mc723",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_mc724",
+    "product_name": "mc724",
+    "product_code": "mc724",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_mc737",
+    "product_name": "mc737",
+    "product_code": "mc737",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "2. Marine_mc741",
+    "product_name": "mc741",
+    "product_code": "mc741",
+    "category": "2. Marine",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "3. Transportation_T-C222 (C130)",
+    "product_name": "T-C222 (C130)",
+    "product_code": "T-C222 (C130)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-C225 (C331)",
+    "product_name": "T-C225 (C331)",
+    "product_code": "T-C225 (C331)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-C485 (81-0389)",
+    "product_name": "T-C485 (81-0389)",
+    "product_code": "T-C485 (81-0389)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-OA152 (OS24)",
+    "product_name": "T-OA152 (OS24)",
+    "product_code": "T-OA152 (OS24)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-OA156 (OA4)",
+    "product_name": "T-OA156 (OA4)",
+    "product_code": "T-OA156 (OA4)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-OA177(OA13)",
+    "product_name": "T-OA177(OA13)",
+    "product_code": "T-OA177(OA13)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-OS151 (OS2)",
+    "product_name": "T-OS151 (OS2)",
+    "product_code": "T-OS151 (OS2)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-OS164 (OS35)",
+    "product_name": "T-OS164 (OS35)",
+    "product_code": "T-OS164 (OS35)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-OSA155 (OSA)",
+    "product_name": "T-OSA155 (OSA)",
+    "product_code": "T-OSA155 (OSA)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-R679 (R221)",
+    "product_name": "T-R679 (R221)",
+    "product_code": "T-R679 (R221)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-R785 (R519)",
+    "product_name": "T-R785 (R519)",
+    "product_code": "T-R785 (R519)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-S596 (S228)",
+    "product_name": "T-S596 (S228)",
+    "product_code": "T-S596 (S228)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-T1420",
+    "product_name": "T-T1420",
+    "product_code": "T-T1420",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-T415 (T215)",
+    "product_name": "T-T415 (T215)",
+    "product_code": "T-T415 (T215)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-T420 (T220)",
+    "product_name": "T-T420 (T220)",
+    "product_code": "T-T420 (T220)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_T-T430",
+    "product_name": "T-T430",
+    "product_code": "T-T430",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_TC452 (IC932)",
+    "product_name": "TC452 (IC932)",
+    "product_code": "TC452 (IC932)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_TC453 (IC933)",
+    "product_name": "TC453 (IC933)",
+    "product_code": "TC453 (IC933)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_TC454 (IC934)",
+    "product_name": "TC454 (IC934)",
+    "product_code": "TC454 (IC934)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_TC456 (IC936)",
+    "product_name": "TC456 (IC936)",
+    "product_code": "TC456 (IC936)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_TC466 (IC946)",
+    "product_name": "TC466 (IC946)",
+    "product_code": "TC466 (IC946)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_TC467 (IC947)",
+    "product_name": "TC467 (IC947)",
+    "product_code": "TC467 (IC947)",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_TC471 - ONHOLD",
+    "product_name": "TC471 - ONHOLD",
+    "product_code": "TC471 - ONHOLD",
+    "category": "3. Transportation",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA)",
+    "score": 5
+  },
+  {
+    "product_id": "3. Transportation_tc452",
+    "product_name": "tc452",
+    "product_code": "tc452",
+    "category": "3. Transportation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "3. Transportation_tc453",
+    "product_name": "tc453",
+    "product_code": "tc453",
+    "category": "3. Transportation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "3. Transportation_tc454",
+    "product_name": "tc454",
+    "product_code": "tc454",
+    "category": "3. Transportation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "3. Transportation_tc456",
+    "product_name": "tc456",
+    "product_code": "tc456",
+    "category": "3. Transportation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "3. Transportation_tc466",
+    "product_name": "tc466",
+    "product_code": "tc466",
+    "category": "3. Transportation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "3. Transportation_tc467",
+    "product_name": "tc467",
+    "product_code": "tc467",
+    "category": "3. Transportation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "4. Composites_TAC-734G",
+    "product_name": "TAC-734G",
+    "product_code": "TAC-734G",
+    "category": "4. Composites",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "High",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA); Product name pattern 'TA' suggests Acrylic (incl. PSA)",
+    "score": 10
+  },
+  {
+    "product_id": "4. Composites_TAC-735",
+    "product_name": "TAC-735",
+    "product_code": "TAC-735",
+    "category": "4. Composites",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "High",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA); Product name pattern 'TA' suggests Acrylic (incl. PSA)",
+    "score": 10
+  },
+  {
+    "product_id": "4. Composites_TAC-738R",
+    "product_name": "TAC-738R",
+    "product_code": "TAC-738R",
+    "category": "4. Composites",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "High",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA); Product name pattern 'TA' suggests Acrylic (incl. PSA)",
+    "score": 10
+  },
+  {
+    "product_id": "4. Composites_TAC-739R",
+    "product_name": "TAC-739R",
+    "product_code": "TAC-739R",
+    "category": "4. Composites",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "High",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA); Product name pattern 'TA' suggests Acrylic (incl. PSA)",
+    "score": 10
+  },
+  {
+    "product_id": "4. Composites_TAC-OS75",
+    "product_name": "TAC-OS75",
+    "product_code": "TAC-OS75",
+    "category": "4. Composites",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "High",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA); Product name pattern 'TA' suggests Acrylic (incl. PSA)",
+    "score": 10
+  },
+  {
+    "product_id": "4. Composites_TAC850 Series",
+    "product_name": "TAC850 Series",
+    "product_code": "TAC850 Series",
+    "category": "4. Composites",
+    "chemistry_type": "Acrylic (incl. PSA)",
+    "confidence": "High",
+    "reasoning": "Product name pattern 'T' suggests Acrylic (incl. PSA); Product name pattern 'TA' suggests Acrylic (incl. PSA)",
+    "score": 10
+  },
+  {
+    "product_id": "4. Composites_tac850",
+    "product_name": "tac850",
+    "product_code": "tac850",
+    "category": "4. Composites",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "6. Insulation_R-A2000 (A1000)",
+    "product_name": "R-A2000 (A1000)",
+    "product_code": "R-A2000 (A1000)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_R-C661 (C331)",
+    "product_name": "R-C661 (C331)",
+    "product_code": "R-C661 (C331)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_R-OS8 (OS2)",
+    "product_name": "R-OS8 (OS2)",
+    "product_code": "R-OS8 (OS2)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_R-OS84 (OS35)",
+    "product_name": "R-OS84 (OS35)",
+    "product_code": "R-OS84 (OS35)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_R-R820 (R160)",
+    "product_name": "R-R820 (R160)",
+    "product_code": "R-R820 (R160)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_R-T600 (T305)",
+    "product_name": "R-T600 (T305)",
+    "product_code": "R-T600 (T305)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_R-T620 (T310)",
+    "product_name": "R-T620 (T310)",
+    "product_code": "R-T620 (T310)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_R-T860 (T715)",
+    "product_name": "R-T860 (T715)",
+    "product_code": "R-T860 (T715)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_RC826 (IC936)",
+    "product_name": "RC826 (IC936)",
+    "product_code": "RC826 (IC936)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_RC862 (IC932)",
+    "product_name": "RC862 (IC932)",
+    "product_code": "RC862 (IC932)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_RC863 (IC933)",
+    "product_name": "RC863 (IC933)",
+    "product_code": "RC863 (IC933)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_RC864 (IC934)",
+    "product_name": "RC864 (IC934)",
+    "product_code": "RC864 (IC934)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_RC886 (IC946)",
+    "product_name": "RC886 (IC946)",
+    "product_code": "RC886 (IC946)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_RC887 (IC947)",
+    "product_name": "RC887 (IC947)",
+    "product_code": "RC887 (IC947)",
+    "category": "6. Insulation",
+    "chemistry_type": "Epoxy",
+    "confidence": "Medium",
+    "reasoning": "Product name pattern 'R' suggests Epoxy; Product name pattern 'R' suggests Modified Epoxies",
+    "score": 5
+  },
+  {
+    "product_id": "6. Insulation_rc826",
+    "product_name": "rc826",
+    "product_code": "rc826",
+    "category": "6. Insulation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "6. Insulation_rc862",
+    "product_name": "rc862",
+    "product_code": "rc862",
+    "category": "6. Insulation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "6. Insulation_rc863",
+    "product_name": "rc863",
+    "product_code": "rc863",
+    "category": "6. Insulation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "6. Insulation_rc864",
+    "product_name": "rc864",
+    "product_code": "rc864",
+    "category": "6. Insulation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "6. Insulation_rc886",
+    "product_name": "rc886",
+    "product_code": "rc886",
+    "category": "6. Insulation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "6. Insulation_rc887",
+    "product_name": "rc887",
+    "product_code": "rc887",
+    "category": "6. Insulation",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-C360 (C130)",
+    "product_name": "C-C360 (C130)",
+    "product_code": "C-C360 (C130)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-C551 (C331)",
+    "product_name": "C-C551 (C331)",
+    "product_code": "C-C551 (C331)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-OA5 (OA4)",
+    "product_name": "C-OA5 (OA4)",
+    "product_code": "C-OA5 (OA4)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-OA52 (OA12)",
+    "product_name": "C-OA52 (OA12)",
+    "product_code": "C-OA52 (OA12)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-OA98 (OS24)",
+    "product_name": "C-OA98 (OS24)",
+    "product_code": "C-OA98 (OS24)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-OS55 (OS35)",
+    "product_name": "C-OS55 (OS35)",
+    "product_code": "C-OS55 (OS35)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-OS9 (OS2)",
+    "product_name": "C-OS9 (OS2)",
+    "product_code": "C-OS9 (OS2)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-OSA (OSA)",
+    "product_name": "C-OSA (OSA)",
+    "product_code": "C-OSA (OSA)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-R329 (R519)",
+    "product_name": "C-R329 (R519)",
+    "product_code": "C-R329 (R519)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-R552 (R221)",
+    "product_name": "C-R552 (R221)",
+    "product_code": "C-R552 (R221)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-R560 (R160)",
+    "product_name": "C-R560 (R160)",
+    "product_code": "C-R560 (R160)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-T500 (T305)",
+    "product_name": "C-T500 (T305)",
+    "product_code": "C-T500 (T305)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-T5100 (T715)",
+    "product_name": "C-T5100 (T715)",
+    "product_code": "C-T5100 (T715)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-T550 (T205)",
+    "product_name": "C-T550 (T205)",
+    "product_code": "C-T550 (T205)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-T553 (T215)",
+    "product_name": "C-T553 (T215)",
+    "product_code": "C-T553 (T215)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-T557 (T220)",
+    "product_name": "C-T557 (T220)",
+    "product_code": "C-T557 (T220)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-T564 (T532)",
+    "product_name": "C-T564 (T532)",
+    "product_code": "C-T564 (T532)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-T731 (T465)",
+    "product_name": "C-T731 (T465)",
+    "product_code": "C-T731 (T465)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_C-W6106 (W700)",
+    "product_name": "C-W6106 (W700)",
+    "product_code": "C-W6106 (W700)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_CC501 (IC946)",
+    "product_name": "CC501 (IC946)",
+    "product_code": "CC501 (IC946)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_CC503 (IC936)",
+    "product_name": "CC503 (IC936)",
+    "product_code": "CC503 (IC936)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_CC507 (IC947)",
+    "product_name": "CC507 (IC947)",
+    "product_code": "CC507 (IC947)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_CC513 (IC932)",
+    "product_name": "CC513 (IC932)",
+    "product_code": "CC513 (IC932)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_CC515 (IC934)",
+    "product_name": "CC515 (IC934)",
+    "product_code": "CC515 (IC934)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_CC519 (IC933)",
+    "product_name": "CC519 (IC933)",
+    "product_code": "CC519 (IC933)",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_ca1000",
+    "product_name": "ca1000",
+    "product_code": "ca1000",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_ca1500",
+    "product_name": "ca1500",
+    "product_code": "ca1500",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_ca2400",
+    "product_name": "ca2400",
+    "product_code": "ca2400",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_cc501",
+    "product_name": "cc501",
+    "product_code": "cc501",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_cc507",
+    "product_name": "cc507",
+    "product_code": "cc507",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_cc513",
+    "product_name": "cc513",
+    "product_code": "cc513",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_cc515",
+    "product_name": "cc515",
+    "product_code": "cc515",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_cc519",
+    "product_name": "cc519",
+    "product_code": "cc519",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_ic932",
+    "product_name": "ic932",
+    "product_code": "ic932",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_ic947",
+    "product_name": "ic947",
+    "product_code": "ic947",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_oa12",
+    "product_name": "oa12",
+    "product_code": "oa12",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_oa13",
+    "product_name": "oa13",
+    "product_code": "oa13",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_oa23",
+    "product_name": "oa23",
+    "product_code": "oa23",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_os10",
+    "product_name": "os10",
+    "product_code": "os10",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_os2",
+    "product_name": "os2",
+    "product_code": "os2",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_os20",
+    "product_name": "os20",
+    "product_code": "os20",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_os25",
+    "product_name": "os25",
+    "product_code": "os25",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_os35",
+    "product_name": "os35",
+    "product_code": "os35",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_os37",
+    "product_name": "os37",
+    "product_code": "os37",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_os61",
+    "product_name": "os61",
+    "product_code": "os61",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_t215",
+    "product_name": "t215",
+    "product_code": "t215",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_t220",
+    "product_name": "t220",
+    "product_code": "t220",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_t305",
+    "product_name": "t305",
+    "product_code": "t305",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_t464",
+    "product_name": "t464",
+    "product_code": "t464",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_t600",
+    "product_name": "t600",
+    "product_code": "t600",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  },
+  {
+    "product_id": "7. Construction_t715",
+    "product_name": "t715",
+    "product_code": "t715",
+    "category": "7. Construction",
+    "chemistry_type": "Unknown",
+    "confidence": "Low",
+    "reasoning": "No chemistry indicators found in product files",
+    "score": 0
+  }
+]
