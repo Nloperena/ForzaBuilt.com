@@ -259,7 +259,7 @@ const ProductDetailPage: React.FC = () => {
                       </Button>
                       <Button 
                         variant="outline"
-                        className="border-white/30 text-white hover:bg-white/10 rounded-full px-8 py-6 text-xl transition-all duration-300"
+                        className="border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white rounded-full px-8 py-6 text-xl transition-all duration-300"
                       >
                         <Share2 className="h-4 w-4 mr-2" />
                         Share Product
