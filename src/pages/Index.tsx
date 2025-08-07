@@ -16,6 +16,7 @@ import NewsletterSection from '@/components/NewsletterSection';
 import Footer from '@/components/Footer';
 import ProductChemistriesSection from '@/components/ProductChemistriesSection';
 import { useIsMobile } from '@/hooks/use-mobile';
+import DynamicMetaTags from '@/components/DynamicMetaTags';
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -62,6 +63,12 @@ const Index = () => {
 
   return (
     <div className="relative">
+      <DynamicMetaTags
+        title="ForzaBuilt - Industrial Adhesives, Sealants, Tapes & Cleaning Solutions"
+        description="ForzaBuilt delivers premium industrial solutions across transportation, marine, construction, and manufacturing. Expert adhesives, sealants, tapes, and cleaning products for demanding applications."
+        url="/"
+        type="website"
+      />
       <Header />
       
       {/* Hero section */}

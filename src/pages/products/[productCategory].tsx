@@ -22,6 +22,7 @@ const CHEMISTRY_ICONS = {
 };
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import DynamicMetaTags from '@/components/DynamicMetaTags';
 
 // Helper to get industry logo from navbar data
 const getIndustryLogo = (industry: string | string[]) => {
@@ -260,6 +261,12 @@ const ProductCategoryPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#1b3764] flex flex-col">
+      <DynamicMetaTags
+        title={`${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Products`}
+        description={`Discover our premium ${productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.`}
+        url={`/products/${productCategory}`}
+        type="website"
+      />
       <Header />
       <main className="flex-1 pt-16 md:pt-20 pb-10">
         <div className="max-w-screen-2xl mx-auto px-4 md:px-6">

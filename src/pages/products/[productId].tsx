@@ -11,6 +11,7 @@ import { brandColors, productColors, industryColors, typography } from '@/styles
 import { getProduct, getRelatedProducts } from '@/utils/products';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import DynamicMetaTags from '@/components/DynamicMetaTags';
 
 // Helper to get industry logo from navbar data
 const getIndustryLogo = (industry: string | string[]) => {
@@ -175,6 +176,16 @@ const ProductDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#1b3764] flex flex-col">
+      <DynamicMetaTags
+        title={product.name}
+        description={product.description}
+        url={`/products/${productCategory || product.category.toLowerCase()}/${productId}`}
+        type="product"
+        productName={product.name}
+        productCategory={product.category}
+        productChemistry={product.chemistry}
+        image={product.imageUrl || '/forza-logo-full.png'}
+      />
       <Header />
       <main className="flex-1 pt-20 pb-10">
         <div className="max-w-screen-2xl mx-auto px-4">
