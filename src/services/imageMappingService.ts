@@ -142,12 +142,21 @@ export class ImageMappingService {
    */
   static async validateAndGetImage(imageUrl: string, productId: string): Promise<string> {
     try {
-      const response = await fetch(imageUrl, { method: 'HEAD' });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+      
+      const response = await fetch(imageUrl, { 
+        method: 'HEAD',
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
       if (response.ok) {
         return imageUrl;
       }
     } catch {
-      // Image doesn't exist, use fallback
+      // Image doesn't exist or request timed out, use fallback
     }
     
     return this.getImageForProduct(productId);

@@ -49,23 +49,15 @@ export type ProductsData = {
 };
 
 // Constants
-const PRODUCTS_DATA_URL = '/src/data/productsSimplified.json';
+const PRODUCTS_DATA_URL = '/productsSimplified.json';
 
 // Service functions
 export async function getAllProducts(): Promise<Product[]> {
   const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
   const products = data.products || [];
   
-  // Fix image URLs for all products
-  for (const product of products) {
-    if (product.imageUrl) {
-      const validImageUrl = await ImageMappingService.validateAndGetImage(product.imageUrl, product.id);
-      if (validImageUrl !== product.imageUrl) {
-        product.imageUrl = validImageUrl;
-      }
-    }
-  }
-  
+  // Skip image validation for now to improve loading performance
+  // Images will be validated on-demand when needed
   return products;
 }
 
@@ -73,14 +65,7 @@ export async function getProductById(id: string): Promise<Product | null> {
   const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
   const product = data.products.find(p => p.id === id) || null;
   
-  if (product && product.imageUrl) {
-    // Validate and fix the image URL if it doesn't exist
-    const validImageUrl = await ImageMappingService.validateAndGetImage(product.imageUrl, product.id);
-    if (validImageUrl !== product.imageUrl) {
-      product.imageUrl = validImageUrl;
-    }
-  }
-  
+  // Skip image validation for now to improve loading performance
   return product;
 }
 
