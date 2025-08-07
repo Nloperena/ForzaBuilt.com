@@ -13,11 +13,13 @@ import { industries as industriesData } from '@/data/industries';
 import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 
-// Import chemistry icons
-import EpoxyIcon from '@/assets/images/Chemistry Icons/Epoxy icon.svg';
-import SiliconeIcon from '@/assets/images/Chemistry Icons/Silicone icon.svg';
-import MSIcon from '@/assets/images/Chemistry Icons/MS icon.svg';
-import WaterbaseIcon from '@/assets/images/Chemistry Icons/Waterbase icon.svg';
+// Chemistry icon paths
+const CHEMISTRY_ICONS = {
+  epoxy: '/chemistry-icons/Epoxy icon.svg',
+  silicone: '/chemistry-icons/Silicone icon.svg',
+  ms: '/chemistry-icons/MS icon.svg',
+  waterbase: '/chemistry-icons/Waterbase icon.svg'
+};
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -105,13 +107,13 @@ const getChemistryIcon = (chemistry: string) => {
   
   const chemistryLower = chemistry.toLowerCase();
   if (chemistryLower.includes('epoxy')) {
-    return EpoxyIcon;
+    return CHEMISTRY_ICONS.epoxy;
   } else if (chemistryLower.includes('silicone')) {
-    return SiliconeIcon;
+    return CHEMISTRY_ICONS.silicone;
   } else if (chemistryLower.includes('ms') || chemistryLower.includes('hybrid')) {
-    return MSIcon;
+    return CHEMISTRY_ICONS.ms;
   } else if (chemistryLower.includes('water')) {
-    return WaterbaseIcon;
+    return CHEMISTRY_ICONS.waterbase;
   }
   return null;
 };

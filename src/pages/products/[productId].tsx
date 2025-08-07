@@ -385,18 +385,18 @@ const ProductDetailPage: React.FC = () => {
                         <div className="grid md:grid-cols-2 gap-4">
                           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 flex items-center">
                             <div className="mr-4">
-                              {product.chemistry === 'MS' && (
-                                <img src="/src/assets/images/Chemistry Icons/MS icon.svg" alt="MS Chemistry" className="w-16 h-16 chemistry-icon" />
-                              )}
-                              {product.chemistry === 'Silicone' && (
-                                <img src="/src/assets/images/Chemistry Icons/Silicone icon.svg" alt="Silicone Chemistry" className="w-16 h-16 chemistry-icon" />
-                              )}
-                              {product.chemistry === 'Epoxy' && (
-                                <img src="/src/assets/images/Chemistry Icons/Epoxy icon.svg" alt="Epoxy Chemistry" className="w-16 h-16 chemistry-icon" />
-                              )}
-                              {product.chemistry === 'Water Base' && (
-                                <img src="/src/assets/images/Chemistry Icons/Waterbase icon.svg" alt="Water Base Chemistry" className="w-16 h-16 chemistry-icon" />
-                              )}
+                                              {product.chemistry === 'MS' && (
+                  <img src="/chemistry-icons/MS icon.svg" alt="MS Chemistry" className="w-16 h-16 chemistry-icon" />
+                )}
+                {product.chemistry === 'Silicone' && (
+                  <img src="/chemistry-icons/Silicone icon.svg" alt="Silicone Chemistry" className="w-16 h-16 chemistry-icon" />
+                )}
+                {product.chemistry === 'Epoxy' && (
+                  <img src="/chemistry-icons/Epoxy icon.svg" alt="Epoxy Chemistry" className="w-16 h-16 chemistry-icon" />
+                )}
+                {product.chemistry === 'Water Base' && (
+                  <img src="/chemistry-icons/Waterbase icon.svg" alt="Water Base Chemistry" className="w-16 h-16 chemistry-icon" />
+                )}
                               {(!product.chemistry || !['MS', 'Silicone', 'Epoxy', 'Water Base'].includes(product.chemistry)) && (
                                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                                   <span className="text-white font-bold text-2xl">{product.chemistry ? product.chemistry.charAt(0) : '?'}</span>

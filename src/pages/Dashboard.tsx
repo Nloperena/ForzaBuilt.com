@@ -5,7 +5,7 @@ import ProductDetail from "@/components/dashboard/ProductDetail";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Search, Plus } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import DashboardStats from "@/components/dashboard/DashboardStats";
+
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 
 export default function Dashboard() {
@@ -55,10 +55,7 @@ export default function Dashboard() {
           </>
         ) : (
           <>
-            {/* Stats Cards */}
-            <div className="grid gap-6 mb-8 md:grid-cols-3">
-              <DashboardStats />
-            </div>
+
             
             {/* Main Dashboard Content */}
             <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">

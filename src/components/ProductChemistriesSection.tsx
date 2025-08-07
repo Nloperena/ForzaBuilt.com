@@ -1,31 +1,34 @@
 import React from 'react';
 import ChemistryCard from './ChemistryCard';
-import MSIcon from '../assets/images/Chemistry Icons/MS icon.svg';
-import SiliconeIcon from '../assets/images/Chemistry Icons/Silicone icon.svg';
-import EpoxyIcon from '../assets/images/Chemistry Icons/Epoxy icon.svg';
-import WaterbaseIcon from '../assets/images/Chemistry Icons/Waterbase icon.svg';
+// Chemistry icon paths
+const CHEMISTRY_ICONS = {
+  epoxy: '/chemistry-icons/Epoxy icon.svg',
+  silicone: '/chemistry-icons/Silicone icon.svg',
+  ms: '/chemistry-icons/MS icon.svg',
+  waterbase: '/chemistry-icons/Waterbase icon.svg'
+};
 
 const ProductChemistriesSection = () => {
   // Define static chemistry categories for the flip-box section
   const chemistryCategories = [
     {
       name: 'MS',
-      icon: <img src={MSIcon} alt="MS Chemistry" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44" />,
+      icon: <img src={CHEMISTRY_ICONS.ms} alt="MS Chemistry" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44" />,
       description: 'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetuer Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet,'
     },
     {
       name: 'Silicone',
-      icon: <img src={SiliconeIcon} alt="Silicone Chemistry" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44" />,
+      icon: <img src={CHEMISTRY_ICONS.silicone} alt="Silicone Chemistry" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44" />,
       description: 'More information about Silicone will go here.'
     },
     {
       name: 'Epoxy',
-      icon: <img src={EpoxyIcon} alt="Epoxy Chemistry" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44" />,
+      icon: <img src={CHEMISTRY_ICONS.epoxy} alt="Epoxy Chemistry" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44" />,
       description: 'More information about Epoxy will go here.'
     },
     {
       name: 'Water Base',
-      icon: <img src={WaterbaseIcon} alt="Water Base Chemistry" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44" />,
+      icon: <img src={CHEMISTRY_ICONS.waterbase} alt="Water Base Chemistry" className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44" />,
       description: 'More information about Water Base will go here.'
     },
   ];
