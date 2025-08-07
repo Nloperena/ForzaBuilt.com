@@ -671,7 +671,7 @@ export default function ProductDetail({ productId, onProductDeleted, onProductSa
                     <Input
                       value={product.standardTdsLink || ''}
                       onChange={e => handleInputChange('standardTdsLink', e.target.value)}
-                      placeholder="/TDS/Category/Product/TDS/filename.pdf"
+                      placeholder="https://example.com/datasheet.pdf (TDS files temporarily unavailable)"
                     />
                   </div>
                   
@@ -692,7 +692,7 @@ export default function ProductDetail({ productId, onProductDeleted, onProductSa
                             </DialogDescription>
                           </DialogHeader>
                           <div className="py-4">
-                            <Input placeholder="/TDS/path/to/document.pdf" />
+                            <Input placeholder="https://example.com/document.pdf (TDS files temporarily unavailable)" />
                           </div>
                           <DialogFooter>
                             <Button variant="outline">Browse Files</Button>

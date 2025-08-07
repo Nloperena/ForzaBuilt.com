@@ -523,9 +523,13 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
                     variant="outline" 
                     className="w-full border-2 border-[#09668D] text-[#09668D] hover:bg-[#09668D] hover:text-white"
                     onClick={() => {
-                      // Use standardTdsLink if available, otherwise fall back to url
+                      // Check if TDS files are available
                       const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                      if (tdsLink) {
+                      if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                        // TDS files are temporarily unavailable
+                        alert("Technical Data Sheets are temporarily unavailable. Please contact us for product information.");
+                      } else if (tdsLink) {
+                        // External link or other PDF
                         window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
                       } else {
                         alert("The datasheet for this product is not available yet.");

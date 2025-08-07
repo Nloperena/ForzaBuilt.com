@@ -763,9 +763,17 @@ const ProductCategoryPage: React.FC = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          // Use standardTdsLink if available, otherwise fall back to url
+                          // Check if TDS files are available
                           const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                          if (tdsLink) {
+                          if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                            // TDS files are temporarily unavailable
+                            toast({
+                              title: "TDS Temporarily Unavailable",
+                              description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
+                              variant: "destructive",
+                            });
+                          } else if (tdsLink) {
+                            // External link or other PDF
                             window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
                           } else {
                             toast({
@@ -798,9 +806,17 @@ const ProductCategoryPage: React.FC = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          // Use standardTdsLink if available, otherwise fall back to url
+                          // Check if TDS files are available
                           const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                          if (tdsLink) {
+                          if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                            // TDS files are temporarily unavailable
+                            toast({
+                              title: "TDS Temporarily Unavailable",
+                              description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
+                              variant: "destructive",
+                            });
+                          } else if (tdsLink) {
+                            // External link or other PDF
                             window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
                           } else {
                             toast({

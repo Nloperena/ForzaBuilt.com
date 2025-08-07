@@ -40,6 +40,29 @@ const PdfViewer: React.FC = () => {
     );
   }
 
+  // Check if this is a TDS file that's no longer available
+  if (decodedPdfUrl.startsWith('/TDS/')) {
+    return (
+      <div className="min-h-screen bg-[#1b3764] flex flex-col">
+        <Header />
+        <main className="flex-1 pt-20 pb-10">
+          <div className="max-w-screen-2xl mx-auto px-4 text-center">
+            <h1 className="text-4xl font-kallisto font-black text-white mb-4">TDS Temporarily Unavailable</h1>
+            <p className="text-gray-300 mb-8">Technical Data Sheets are temporarily unavailable. Please contact us for product information.</p>
+            <Button 
+              onClick={() => navigate(-1)}
+              className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Go Back
+            </Button>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#1b3764] flex flex-col">
       <Header />

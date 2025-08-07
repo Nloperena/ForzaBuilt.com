@@ -243,10 +243,13 @@ const ProductDetailPage: React.FC = () => {
                     <div className="flex flex-wrap gap-4">
                       <Button 
                         onClick={() => {
-                          // Use standardTdsLink if available, otherwise fall back to pdfLinks
+                          // Check if TDS files are available
                           const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                          if (tdsLink) {
-                            // Navigate to PDF viewer with encoded path
+                          if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                            // TDS files are temporarily unavailable
+                            alert("Technical Data Sheets are temporarily unavailable. Please contact us for product information.");
+                          } else if (tdsLink) {
+                            // External link or other PDF
                             window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
                           } else {
                             alert("The datasheet for this product is not available yet.");
@@ -938,10 +941,13 @@ const ProductDetailPage: React.FC = () => {
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Button 
                     onClick={() => {
-                      // Use standardTdsLink if available, otherwise fall back to pdfLinks
+                      // Check if TDS files are available
                       const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                      if (tdsLink) {
-                        // Navigate to PDF viewer with encoded path
+                      if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                        // TDS files are temporarily unavailable
+                        alert("Technical Data Sheets are temporarily unavailable. Please contact us for product information.");
+                      } else if (tdsLink) {
+                        // External link or other PDF
                         window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
                       } else {
                         alert("The datasheet for this product is not available yet.");

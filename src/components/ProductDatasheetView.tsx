@@ -559,9 +559,13 @@ const ProductDatasheetView: React.FC = () => {
                   </div>
                   <Button
                     onClick={() => {
-                      // Use standardTdsLink if available, otherwise fall back to url
+                      // Check if TDS files are available
                       const tdsLink = selectedProduct.standardTdsLink || selectedProduct.pdfLinks?.[0];
-                      if (tdsLink) {
+                      if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                        // TDS files are temporarily unavailable
+                        alert("Technical Data Sheets are temporarily unavailable. Please contact us for product information.");
+                      } else if (tdsLink) {
+                        // External link or other PDF
                         window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
                       } else {
                         alert("The datasheet for this product is not available yet.");

@@ -19,4 +19,27 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Optimize chunk size
+    chunkSizeWarningLimit: 1000,
+    // Enable source maps for debugging (disable in production)
+    sourcemap: mode === 'development',
+    // Minify CSS
+    cssMinify: true,
+    // Target modern browsers for smaller bundles
+    target: 'esnext',
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'framer-motion',
+      'react-router-dom',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-tabs',
+    ],
+  },
+  // Asset handling
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg', '**/*.webp'],
 }));
