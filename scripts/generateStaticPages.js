@@ -84,6 +84,7 @@ productsData.products.forEach(product => {
     // Generate meta tags
     const title = `${product.name} - ForzaBuilt`;
     const description = product.description || 'Premium industrial solution from ForzaBuilt';
+    // Use product image if available, otherwise fall back to logo
     const image = product.imageUrl ? `https://forzabuilt.com${product.imageUrl}` : 'https://forzabuilt.com/forza-logo-full.png';
     const url = `https://forzabuilt.com/products/${category}/${productId}`;
     const redirectUrl = `/products/${category}/${productId}`;
