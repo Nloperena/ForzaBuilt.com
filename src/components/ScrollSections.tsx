@@ -7,7 +7,7 @@ import ScrollFloatParagraph from './ScrollFloatParagraph';
 const ScrollSections = () => {
   return (
     <div className="relative min-h-[600vh] bg-[#1b3764]">
-      <ChemistryMoleculeV2 strokeWidth={4} />
+      <ChemistryMoleculeV2 strokeWidth={8} moleculeColor="#00aaff" />
       
       <div className="relative z-20 bg-transparent">
         <section className="min-h-screen grid grid-cols-12 items-center">

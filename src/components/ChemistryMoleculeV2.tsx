@@ -3,11 +3,13 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 interface ChemistryMoleculeV2Props {
   className?: string;
   strokeWidth?: number;
+  moleculeColor?: string; // New configurable color prop
 }
 
 const ChemistryMoleculeV2: React.FC<ChemistryMoleculeV2Props> = ({ 
   className = '', 
-  strokeWidth = 3
+  strokeWidth = 3,
+  moleculeColor = '#09668d' // Default to brand blue
 }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [svgContent, setSvgContent] = useState<string>('');
@@ -73,7 +75,10 @@ const ChemistryMoleculeV2: React.FC<ChemistryMoleculeV2Props> = ({
           let processedContent = innerContent
             .replace(/stroke-width="[^"]*"/g, `stroke-width="${strokeWidth}"`)
             .replace(/stroke-linecap="[^"]*"/g, 'stroke-linecap="round"')
-            .replace(/stroke-linejoin="[^"]*"/g, 'stroke-linejoin="round"');
+            .replace(/stroke-linejoin="[^"]*"/g, 'stroke-linejoin="round"')
+            .replace(/fill="[^"]*"/g, `fill="${moleculeColor}"`)
+            .replace(/stroke="[^"]*"/g, `stroke="${moleculeColor}"`)
+            .replace(/fill="none"/g, 'fill="none"');
           
           setSvgContent(processedContent);
         } else {
@@ -85,11 +90,11 @@ const ChemistryMoleculeV2: React.FC<ChemistryMoleculeV2Props> = ({
         console.error('Failed to fetch SVG:', error);
         setSvgContent(`
           <g>
-            <circle cx="100" cy="100" r="20" fill="#09668d" stroke="#09668d" stroke-width="${strokeWidth}"/>
-            <circle cx="200" cy="150" r="15" fill="#09668d" stroke="#09668d" stroke-width="${strokeWidth}"/>
-            <circle cx="300" cy="200" r="25" fill="#09668d" stroke="#09668d" stroke-width="${strokeWidth}"/>
-            <path d="M100,100 L200,150 L300,200" stroke="#09668d" stroke-width="${strokeWidth}" fill="none"/>
-            <path d="M150,50 L250,100 L350,150" stroke="#09668d" stroke-width="${strokeWidth}" fill="none"/>
+            <circle cx="100" cy="100" r="20" fill="${moleculeColor}" stroke="${moleculeColor}" stroke-width="${strokeWidth}"/>
+            <circle cx="200" cy="150" r="15" fill="${moleculeColor}" stroke="${moleculeColor}" stroke-width="${strokeWidth}"/>
+            <circle cx="300" cy="200" r="25" fill="${moleculeColor}" stroke="${moleculeColor}" stroke-width="${strokeWidth}"/>
+            <path d="M100,100 L200,150 L300,200" stroke="${moleculeColor}" stroke-width="${strokeWidth}" fill="none"/>
+            <path d="M150,50 L250,100 L350,150" stroke="${moleculeColor}" stroke-width="${strokeWidth}" fill="none"/>
           </g>
         `);
         setIsLoading(false);
@@ -106,7 +111,7 @@ const ChemistryMoleculeV2: React.FC<ChemistryMoleculeV2Props> = ({
     return (
       <div ref={containerRef} className={`absolute top-0 left-0 w-full h-full z-10 pointer-events-none ${className}`}>
         <div className="flex items-center justify-center h-full">
-          <div className="animate-pulse text-[#09668d]">Loading...</div>
+          <div className="animate-pulse text-white">Loading...</div>
         </div>
       </div>
     );
@@ -129,9 +134,9 @@ const ChemistryMoleculeV2: React.FC<ChemistryMoleculeV2Props> = ({
       >
         <defs>
           <linearGradient id="moleculeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#09668d" stopOpacity="1" />
-            <stop offset="85%" stopColor="#09668d" stopOpacity="1" />
-            <stop offset="100%" stopColor="#09668d" stopOpacity="0" />
+            <stop offset="0%" stopColor={moleculeColor} stopOpacity="1" />
+            <stop offset="80%" stopColor={moleculeColor} stopOpacity="1" />
+            <stop offset="100%" stopColor={moleculeColor} stopOpacity="0" />
           </linearGradient>
           <mask id="scrollMaskMolecule">
             <rect width="1627" height="3192" fill="black" />
@@ -145,18 +150,32 @@ const ChemistryMoleculeV2: React.FC<ChemistryMoleculeV2Props> = ({
           </mask>
         </defs>
         
-        <g
+                <g
           mask="url(#scrollMaskMolecule)"
           style={{
-            filter: 'drop-shadow(0 0 4px rgba(9, 102, 141, 0.8)) drop-shadow(0 0 12px rgba(9, 102, 141, 0.6))'
+            filter: `brightness(0) invert(1) hue-rotate(200deg) saturate(2) brightness(1.5) drop-shadow(0 0 8px ${moleculeColor}FF) drop-shadow(0 0 20px ${moleculeColor}CC) drop-shadow(0 0 32px ${moleculeColor}99)`
           }}
-          dangerouslySetInnerHTML={{ 
-            __html: svgContent
-              .replace(/#3b82f6/g, '#09668d')
-              .replace(/#1e40af/g, '#09668d')
-              .replace(/#6366f1/g, '#09668d')
-              .replace(/#4f46e5/g, '#09668d')
-          }}
+                      dangerouslySetInnerHTML={{ 
+              __html: svgContent
+                .replace(/#3b82f6/g, moleculeColor)
+                .replace(/#1e40af/g, moleculeColor)
+                .replace(/#6366f1/g, moleculeColor)
+                .replace(/#4f46e5/g, moleculeColor)
+                .replace(/#09668d/g, moleculeColor)
+                .replace(/#1b3764/g, moleculeColor)
+                .replace(/#ffffff/g, moleculeColor)
+                .replace(/white/g, moleculeColor)
+                .replace(/#000000/g, moleculeColor)
+                .replace(/#333333/g, moleculeColor)
+                .replace(/#666666/g, moleculeColor)
+                .replace(/#999999/g, moleculeColor)
+                .replace(/#cccccc/g, moleculeColor)
+                .replace(/#e5e5e5/g, moleculeColor)
+                .replace(/#f5f5f5/g, moleculeColor)
+                .replace(/black/g, moleculeColor)
+                .replace(/gray/g, moleculeColor)
+                .replace(/grey/g, moleculeColor)
+            }}
         />
       </svg>
     </div>
