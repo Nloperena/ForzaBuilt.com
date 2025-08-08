@@ -16,20 +16,34 @@ const TestimonialsSection = () => {
         setIsPlaying(false);
         videoRef.current.muted = true;
       } else {
-        // Start playing with audio
+        // Start playing with audio and expand to fullscreen
         videoRef.current.muted = false;
         videoRef.current.play();
         setIsPlaying(true);
+        setIsFullscreen(true);
       }
     }
   };
 
   const handleVideoExpand = () => {
     setIsFullscreen(true);
+    // If video is not playing, start it
+    if (!isPlaying && videoRef.current) {
+      videoRef.current.muted = false;
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
   };
 
   const handleCloseFullscreen = () => {
     setIsFullscreen(false);
+    // Reset playing state when closing fullscreen
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      videoRef.current.muted = true;
+      setIsPlaying(false);
+    }
   };
 
   // Handle escape key to close fullscreen
