@@ -150,13 +150,9 @@ const IndustriesSectionAlt = () => {
           </div>
         </div>
 
-        {/* Desktop: Grid layout with landscape optimization */}
+        {/* Desktop: Grid layout with 2 columns */}
         <div className="hidden md:block w-full flex flex-col items-center">
-          <div className={`grid gap-8 lg:gap-12 w-full max-w-7xl mb-20 mx-auto py-8 sm:py-12 lg:py-16 ${
-            isLandscape 
-              ? 'grid-cols-2 gap-12 lg:gap-16' // Landscape: 2 columns with more spacing
-              : 'grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12'
-          }`}>
+          <div className="grid grid-cols-2 gap-8 lg:gap-12 w-full max-w-7xl mb-20 mx-auto py-8 sm:py-12 lg:py-16">
             {industriesArr.map((industry: Industry, index: number) => (
               <motion.div
                 key={industry.title}
@@ -172,11 +168,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className={`bg-white shadow-2xl rounded-[1rem] sm:rounded-[2rem] border border-gray-200 overflow-hidden aspect-square transition-all duration-300 hover:scale-105 group cursor-pointer w-full h-full ${
-                      isLandscape 
-                        ? 'min-h-[600px]' // Landscape: 3x taller cards
-                        : 'min-h-[320px] lg:min-h-[500px] xl:min-h-[600px]'
-                    }`}
+                    className="bg-white shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] group cursor-pointer w-full"
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
                     }}
@@ -199,50 +191,45 @@ const IndustriesSectionAlt = () => {
                         <source src={industry.videoUrl} type="video/mp4" />
                       </motion.video>
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
-                      <motion.img
-                        src={industry.logo}
-                        alt={industry.title + ' logo'}
-                        className={`absolute right-0 z-20 transform transition-all duration-150 pointer-events-none w-auto bottom-0 ${
-                          isLandscape ? 'h-[300px]' : 'h-[150px] lg:h-[250px] xl:h-[300px]'
-                        }`}
-                        style={{ filter: 'drop-shadow(0px 0px 0px rgba(242, 97, 29, 0))' }}
-                        variants={childItemVariants}
-                        initial="hidden"
-                        animate="visible"
-                        whileHover={{ rotate: 5, scale: 1.1, filter: 'drop-shadow(0px 0px 25px rgba(242, 97, 29, 1))', transition: { duration: 0.15, ease: [0.42, 0, 0.58, 1] } }}
-                        transition={{ duration: 0.15, ease: [0.42, 0, 0.58, 1] }}
-                      />
+                      {/* Logo absolutely positioned at bottom right */}
                       <motion.div
-                        className={`absolute bottom-0 left-0 right-0 bg-white rounded-b-[1rem] sm:rounded-b-[2rem] flex items-center pointer-events-none ${
-                          isLandscape ? 'h-[150px] px-20' : 'h-[72px] px-8 lg:h-[120px] lg:px-16 xl:h-[150px] xl:px-20'
-                        }`}
-                        variants={childItemVariants}
-                        initial="hidden"
-                        animate="visible"
+                        className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 pointer-events-none z-20"
                       >
-                        <motion.h3
-                          className={`font-black font-kallisto drop-shadow-2xl text-left w-full ${
-                            isLandscape ? 'text-4xl lg:text-5xl' : 'text-xl lg:text-3xl xl:text-4xl'
-                          }`}
+                        <motion.img
+                          src={industry.logo}
+                          alt={industry.title + ' logo'}
+                          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32"
                           style={{
-                            color: industry.color || '#1b3764',
-                            lineHeight: 1.1,
+                            width: 'clamp(3rem, 5vw, 8rem)',
+                            height: 'clamp(3rem, 5vw, 8rem)'
                           }}
-                          variants={childItemVariants}
-                          initial="hidden"
-                          animate="visible"
-                        >
-                          {industry.title}
-                        </motion.h3>
+                          whileHover={{ rotate: 5, scale: 1.1, filter: 'drop-shadow(0px 0px 25px rgba(242, 97, 29, 1))' }}
+                        />
+                      </motion.div>
+                      
+                      {/* White bar at bottom with text only */}
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 bg-white p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none"
+                        style={{ zIndex: 10 }}
+                      >
+                        <div className="flex items-center justify-between gap-1">
+                          <motion.h3
+                            className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
+                            style={{
+                              color: industry.color || '#1b3764',
+                              fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
+                            }}
+                          >
+                            {industry.title}
+                          </motion.h3>
+                        </div>
                       </motion.div>
                     </div>
                   </Card>
                 </Link>
               </motion.div>
             ))}
-            <IndustriesCtaCard size="large" className={`bg-white shadow-2xl rounded-[1rem] sm:rounded-[2rem] border border-gray-200 overflow-hidden aspect-square transition-all duration-300 hover:scale-110 flex flex-col justify-center items-center ${
-              isLandscape ? 'min-h-[600px]' : 'min-h-[320px] lg:min-h-[500px] xl:min-h-[600px]'
-            }`} />
+            <IndustriesCtaCard size="large" className="w-full h-full" />
           </div>
         </div>
       </div>
