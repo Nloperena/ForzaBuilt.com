@@ -38,7 +38,7 @@ const IndustriesSectionAlt = () => {
   return (
     <section className="py-16 sm:py-24 md:py-32 lg:py-40 xl:py-48 bg-[#1b3764] w-full">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20">
-        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-32">
+        <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
           <div className="max-w-6xl mx-auto space-y-8">
             <h2 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-none break-words">
               Better Built Bonds for All Industries
@@ -51,7 +51,7 @@ const IndustriesSectionAlt = () => {
         
         {/* Mobile: Single column list layout */}
         <div className="block md:hidden">
-          <div className="space-y-4">
+          <div className="space-y-2">
             {industriesArr.map((industry: Industry, index: number) => (
               <motion.div
                 key={industry.title}
@@ -152,7 +152,7 @@ const IndustriesSectionAlt = () => {
 
         {/* Desktop: Grid layout with 2 columns */}
         <div className="hidden md:block w-full flex flex-col items-center">
-          <div className="grid grid-cols-2 gap-8 lg:gap-12 w-full max-w-7xl mb-20 mx-auto py-8 sm:py-12 lg:py-16">
+          <div className="grid grid-cols-2 gap-6 lg:gap-8 w-full max-w-7xl mb-8 mx-auto py-4 sm:py-6 lg:py-8">
             {industriesArr.map((industry: Industry, index: number) => (
               <motion.div
                 key={industry.title}
