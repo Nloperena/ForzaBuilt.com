@@ -59,17 +59,21 @@ export const IndustriesCtaCard: React.FC<IndustriesCtaCardProps> = ({ className,
         <div className="absolute inset-0 bg-gradient-to-br from-[#F2611D]/10 to-[#1b3764]/20 pointer-events-none"></div>
         
         {/* Content container */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center p-3 sm:p-4 md:p-6 lg:p-8 text-center">
+        <div className={`absolute inset-0 flex flex-col justify-center items-center text-center ${
+          isLandscape 
+            ? 'p-2 sm:p-3 md:p-4 lg:p-6' 
+            : 'p-3 sm:p-4 md:p-6 lg:p-8'
+        }`}>
           <h3 className={`font-black font-kallisto drop-shadow-2xl text-center w-full mb-2 sm:mb-3 md:mb-4 lg:mb-6 text-white ${
             isLandscape 
-              ? 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl' 
+              ? 'text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl' 
               : 'text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl'
           }`}>
             Don't see your industry?
           </h3>
           <p className={`font-light max-w-xs mx-auto text-center w-full mb-3 sm:mb-4 md:mb-6 lg:mb-8 text-white/90 ${
             isLandscape 
-              ? 'text-xs sm:text-sm md:text-base lg:text-lg' 
+              ? 'text-xs sm:text-xs md:text-sm lg:text-base' 
               : 'text-xs sm:text-sm md:text-base lg:text-lg'
           }`}>
             We can still provide purpose built solutions for your projects.
@@ -78,7 +82,7 @@ export const IndustriesCtaCard: React.FC<IndustriesCtaCardProps> = ({ className,
             asChild
             className={`bg-[#F2611D] text-white hover:bg-[#F2611D]/90 font-bold rounded-full shadow-lg transition-colors ${
               isLandscape 
-                ? 'px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base lg:text-lg' 
+                ? 'px-2 sm:px-3 md:px-4 lg:px-6 py-1 sm:py-2 md:py-3 text-xs sm:text-xs md:text-sm lg:text-base' 
                 : 'px-2 sm:px-3 md:px-4 lg:px-6 py-1 sm:py-2 md:py-3 text-xs sm:text-sm md:text-base'
             }`}
           >
@@ -87,8 +91,16 @@ export const IndustriesCtaCard: React.FC<IndustriesCtaCardProps> = ({ className,
         </div>
         
         {/* Bottom text container like other cards */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white rounded-b-[0.375rem] sm:rounded-b-[0.5rem] md:rounded-b-[0.75rem] lg:rounded-b-[1rem] xl:rounded-b-[1.5rem] h-[24px] sm:h-[32px] md:h-[40px] lg:h-[60px] xl:h-[72px] flex items-center px-2 sm:px-4 md:px-6 lg:px-8 pointer-events-none">
-          <h3 className="font-black font-kallisto drop-shadow-2xl text-left w-full text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl" style={{ color: '#F2611D' }}>
+        <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-b-[0.375rem] sm:rounded-b-[0.5rem] md:rounded-b-[0.75rem] lg:rounded-b-[1rem] xl:rounded-b-[1.5rem] flex items-center pointer-events-none ${
+          isLandscape 
+            ? 'h-[20px] sm:h-[24px] md:h-[28px] lg:h-[32px] px-1 sm:px-2 md:px-3 lg:px-4' 
+            : 'h-[24px] sm:h-[32px] md:h-[40px] lg:h-[60px] xl:h-[72px] px-2 sm:px-4 md:px-6 lg:px-8'
+        }`}>
+          <h3 className={`font-black font-kallisto drop-shadow-2xl text-left w-full ${
+            isLandscape 
+              ? 'text-xs sm:text-xs md:text-sm lg:text-sm' 
+              : 'text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl'
+          }`} style={{ color: '#F2611D' }}>
             Contact Us
           </h3>
         </div>

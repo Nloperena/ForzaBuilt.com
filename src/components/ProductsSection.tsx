@@ -16,7 +16,7 @@ const products = [
     image: CanisterSystemImage,
     hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg",
     color: "#f16022",
-    slug: "adhesives"
+    slug: "bond"
   },
   {
     title: "SEALANTS",
@@ -24,7 +24,7 @@ const products = [
     image: OS2CartridgeHeroImage,
     hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg",
     color: "#faaf40",
-    slug: "sealants"
+    slug: "seal"
   },
   {
     title: "INDUSTRIAL CLEANING",
@@ -41,7 +41,7 @@ const products = [
     image: TapeHeroicImage,
     hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg",
     color: "#d1181f",
-    slug: "tapes"
+    slug: "tape"
   }
 ];
 
@@ -74,7 +74,7 @@ const ProductsSection = () => {
         <div className="text-center">
           <SplitText
             text="Our Products"
-            className="text-2xl sm:text-5xl md:text-7xl font-extrabold text-white mb-4 font-kallisto leading-none"
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block"
             splitType="words"
             delay={50}
           />

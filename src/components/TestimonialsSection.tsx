@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
+import { useLandscapeValues } from '@/hooks/use-landscape';
 
 const TestimonialsSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { isLandscape } = useLandscapeValues();
 
   const handleVideoClick = () => {
     if (videoRef.current) {
@@ -29,13 +31,29 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-[#1b3764] relative overflow-hidden" style={{ backgroundImage: "url('/assets/images/abstract-background-pattern.svg')", backgroundRepeat: 'repeat' }}>
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-extrabold text-white text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12 tracking-tight font-kallisto">What Our Clients Say</h2>
+    <section className={`bg-[#1b3764] relative overflow-hidden ${
+      isLandscape 
+        ? 'py-4 sm:py-6 md:py-8 lg:py-10' 
+        : 'py-6 sm:py-8 md:py-10 lg:py-12'
+    }`} style={{ backgroundImage: "url('/assets/images/abstract-background-pattern.svg')", backgroundRepeat: 'repeat' }}>
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
+                    <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-extrabold text-white text-center tracking-tight font-kallisto ${
+            isLandscape 
+              ? 'mb-2 sm:mb-3 md:mb-4 lg:mb-6' 
+              : 'mb-4 sm:mb-6 md:mb-8 lg:mb-10'
+          }`}>What Our Clients Say</h2>
         <div className="relative">
-          <div className="rounded-lg sm:rounded-xl md:rounded-2xl flex flex-col md:flex-row items-center p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+          <div className={`rounded-lg sm:rounded-xl md:rounded-2xl flex items-center p-3 sm:p-4 md:p-6 lg:p-8 gap-4 sm:gap-6 md:gap-8 lg:gap-10 ${
+            isLandscape 
+              ? 'flex-col' 
+              : 'flex-col md:flex-row'
+          }`}>
             {/* Video Container */}
-            <div className="flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg aspect-[9/16]">
+            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl w-full ${
+              isLandscape 
+                ? 'max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
+                : 'max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
+            }`}>
               <div className="relative w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-xl md:shadow-2xl">
                 <video
                   ref={videoRef}
@@ -66,16 +84,24 @@ const TestimonialsSection = () => {
             </div>
 
             {/* Text Content */}
-            <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+            <div className={`flex-1 flex flex-col ${
+              isLandscape 
+                ? 'items-center text-center' 
+                : 'items-center md:items-start text-center md:text-left'
+            }`}>
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-white mb-1 sm:mb-2 leading-tight font-kallisto">
                 Alex Johnson
               </div>
               <div className="font-normal text-sm sm:text-base md:text-lg text-white/80 mb-2 sm:mb-3 md:mb-4">
                 Marine Engineering
               </div>
-              <div className="flex items-center justify-center md:justify-start mb-2 sm:mb-3 md:mb-4">
+              <div className={`flex items-center mb-2 sm:mb-3 md:mb-4 ${
+                isLandscape 
+                  ? 'justify-center' 
+                  : 'justify-center md:justify-start'
+              }`}>
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8 xl:w-9 xl:h-9 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"/>
                   </svg>
                 ))}
