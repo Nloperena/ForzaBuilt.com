@@ -3,6 +3,7 @@ import { useLandscapeValues } from '@/hooks/use-landscape';
 
 const TestimonialsSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { isLandscape } = useLandscapeValues();
 
@@ -22,6 +23,34 @@ const TestimonialsSection = () => {
       }
     }
   };
+
+  const handleVideoExpand = () => {
+    setIsFullscreen(true);
+  };
+
+  const handleCloseFullscreen = () => {
+    setIsFullscreen(false);
+  };
+
+  // Handle escape key to close fullscreen
+  React.useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false);
+      }
+    };
+
+    if (isFullscreen) {
+      document.addEventListener('keydown', handleEscape);
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFullscreen]);
 
   const handleVideoEnded = () => {
     setIsPlaying(false);
@@ -43,16 +72,16 @@ const TestimonialsSection = () => {
               : 'mb-4 sm:mb-6 md:mb-8 lg:mb-10'
           }`}>What Our Clients Say</h2>
         <div className="relative">
-          <div className={`rounded-lg sm:rounded-xl md:rounded-2xl flex items-start p-3 sm:p-4 md:p-6 lg:p-8 gap-4 sm:gap-6 md:gap-8 lg:gap-10 ${
+          <div className={`rounded-lg sm:rounded-xl md:rounded-2xl flex items-center p-3 sm:p-4 md:p-6 lg:p-8 gap-4 sm:gap-6 md:gap-8 lg:gap-10 ${
             isLandscape 
               ? 'flex-col' 
-              : 'flex-row'
+              : 'flex-col md:flex-row'
           }`}>
-            {/* Video Container - Left Side */}
-            <div className={`flex-shrink-0 flex items-start justify-center overflow-hidden rounded-lg md:rounded-xl ${
+            {/* Video Container */}
+            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl w-full ${
               isLandscape 
-                ? 'w-full max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
-                : 'w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px] xl:w-[280px] aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
+                ? 'max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
+                : 'max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
             }`}>
               <div className="relative w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-xl md:shadow-2xl">
                 <video
@@ -80,16 +109,26 @@ const TestimonialsSection = () => {
                     </svg>
                   </div>
                 )}
+                {/* Expand button */}
+                <button
+                  onClick={handleVideoExpand}
+                  className="absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 bg-black/50 hover:bg-black/70 rounded-full p-1 sm:p-1.5 md:p-2 transition-colors"
+                  title="Expand video"
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                  </svg>
+                </button>
               </div>
             </div>
 
-            {/* Text Content - Right Side */}
-            <div className={`flex-1 flex flex-col justify-start ${
+            {/* Text Content */}
+            <div className={`flex-1 flex flex-col ${
               isLandscape 
                 ? 'items-center text-center' 
-                : 'items-start text-left'
+                : 'items-center md:items-start text-center md:text-left'
             }`}>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-white mb-1 sm:mb-2 leading-tight font-kallisto pt-2 sm:pt-3 md:pt-4">
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-white mb-1 sm:mb-2 leading-tight font-kallisto">
                 Alex Johnson
               </div>
               <div className="font-normal text-sm sm:text-base md:text-lg text-white/80 mb-2 sm:mb-3 md:mb-4">
@@ -98,7 +137,7 @@ const TestimonialsSection = () => {
               <div className={`flex items-center mb-2 sm:mb-3 md:mb-4 ${
                 isLandscape 
                   ? 'justify-center' 
-                  : 'justify-start'
+                  : 'justify-center md:justify-start'
               }`}>
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -113,6 +152,38 @@ const TestimonialsSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Fullscreen Modal */}
+      {isFullscreen && (
+        <div 
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={handleCloseFullscreen}
+        >
+          <div 
+            className="relative w-full h-full max-w-4xl max-h-[80vh] flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              src="https://videos.ctfassets.net/hdznx4p7ef81/4CqNHu0mxSPaW4l6HQPphS/256d6e3db7569a19f1b33f8e1a57da9c/Sequence_01_2.mp4"
+              className="w-full h-full object-contain rounded-lg"
+              controls
+              autoPlay
+              muted={false}
+              loop
+              playsInline
+            />
+            <button
+              onClick={handleCloseFullscreen}
+              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
+              title="Close video"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
