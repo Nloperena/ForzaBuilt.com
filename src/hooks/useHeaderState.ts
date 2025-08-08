@@ -8,6 +8,7 @@ import { tools as toolsData } from '@/data/tools';
 const navigation = [
   { name: 'Products', href: '/products' },
   { name: 'Industries', href: '/industries' },
+  { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ];
 
@@ -65,17 +66,30 @@ export const useHeaderState = () => {
     }
   }, [activeOverlayContent]);
 
+  const closeOverlay = useCallback(() => {
+    setAnimationDirection('up');
+    setIsOverlayOpen(false);
+    setActiveOverlayContent(null);
+  }, []);
+
   const handleNavClick = useCallback((content: string) => {
     const navItem = navigation.find(item => item.name.toLowerCase() === content);
     if (navItem) {
+      // Close overlay before navigation
+      closeOverlay();
       navigate(navItem.href);
     }
-  }, [navigate]);
+  }, [navigate, closeOverlay]);
 
   const handleNavHover = useCallback((content: string) => {
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
       setHoverTimeout(null);
+    }
+
+    // Don't show overlay for blog (direct navigation)
+    if (content === 'blog') {
+      return;
     }
 
     if (isOverlayOpen && activeOverlayContent === content) {
@@ -108,12 +122,6 @@ export const useHeaderState = () => {
       setHoverTimeout(null);
     }
   }, [hoverTimeout]);
-
-  const closeOverlay = useCallback(() => {
-    setAnimationDirection('up');
-    setIsOverlayOpen(false);
-    setActiveOverlayContent(null);
-  }, []);
 
   const handleSignOut = useCallback(async () => {
     await signOut();

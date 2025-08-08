@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2025-08-08T19:53:18.643Z",
+  "totalPosts": 20,
+  "categories": [
+    "Application Tips",
+    "Technical Analysis",
+    "Research & Development",
+    "Project Ideas",
+    "Industrial Applications",
+    "Manufacturing",
+    "Equipment & Systems",
+    "Regulations & Compliance",
+    "Technical Guides",
+    "Product Spotlight"
+  ],
+  "dateRange": {
+    "earliest": "2023-11-20",
+    "latest": "2024-01-20"
+  },
+  "sitemapUrl": "https://forzabuilt.com/blog-sitemap.xml",
+  "filesGenerated": [
+    "public/blog-sitemap.xml",
+    "src/data/blogStructuredData.json",
+    "src/data/blogMetaTags.json",
+    "public/robots.txt"
+  ]
+}

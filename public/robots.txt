@@ -1,21 +1,10 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemaps
 Sitemap: https://forzabuilt.com/sitemap.xml
+Sitemap: https://forzabuilt.com/sitemap-index.xml
+Sitemap: https://forzabuilt.com/blog-sitemap.xml
 
-# Disallow admin and private areas
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /api/
-Disallow: /_next/
-Disallow: /static-pages/
-
-# Allow important pages
-Allow: /products/
-Allow: /industries/
-Allow: /about/
-Allow: /contact/
-
-# Crawl delay (optional)
+# Crawl delay
 Crawl-delay: 1

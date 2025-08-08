@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | ForzaBuilt Learning Center</title>
+    <meta name="description" content="Discover expert insights, technical guides, and industry knowledge about adhesives and industrial applications from ForzaBuilt.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1b3764',
+                        accent: '#F2611D'
+                    },
+                    fontFamily: {
+                        'kallisto': ['Kallisto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .font-kallisto { font-family: 'Kallisto', 'Inter', sans-serif; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-primary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-bold font-kallisto">ForzaBuilt</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="/" class="hover:text-accent transition-colors">Home</a>
+                    <a href="/products" class="hover:text-accent transition-colors">Products</a>
+                    <a href="/industries" class="hover:text-accent transition-colors">Industries</a>
+                    <a href="/blog" class="hover:text-accent transition-colors">Blog</a>
+                    <a href="/contact" class="hover:text-accent transition-colors">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 sm:py-24 md:py-32 lg:py-40 xl:py-48 bg-primary">
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/60 to-primary/80"></div>
+        <div class="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-20">
+            <div class="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
+                <div class="max-w-6xl mx-auto space-y-8">
+                    <h1 class="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-none break-words">
+                        LEARNING CENTER
+                    </h1>
+                    <p class="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
+                        Products, Tips, Tutorials, and More!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Posts -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Recent Articles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                        <img src="/products/C150-CA-COMPLIANT-HIGH-SOLIDS-CONTACT-ADHESIVE-1024x1024.png" alt="Mastering Application: Best Practices for Using Contact Adhesives in Manufacturing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-medium text-accent uppercase tracking-wide bg-accent/10 px-2 py-1 rounded-full">
+                                Application Tips
+                            </span>
+                            <span class="text-xs text-gray-500">
+                                1/14/2024
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-accent transition-colors">
+                            Mastering Application: Best Practices for Using Contact Adhesives in Manufacturing
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            Key Takeaways Surface Preparation: Cleaning and prepping surfaces is fundamental for a strong adhesive bond, removing contaminants that can weaken the bond. Even Application: Proper spray techniques ensure uniform coverage and optimal bonding performance. Curing Time: Understanding the difference between drying and curing is crucial for manufacturing efficiency.
+                        </p>
+                        <div class="flex items-center justify-center">
+                            <a href="/blog/mastering-application-contact-adhesives.html" class="inline-flex items-center text-accent font-medium text-sm hover:text-accent/80 transition-colors group-hover:translate-x-1">
+                                Read Full Article
+                                <svg class="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                        <img src="/products/C331-Blue-55-Gallon.png" alt="Strength and Durability Unveiled: Analyzing Contact Adhesives in Industrial Applications" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-medium text-accent uppercase tracking-wide bg-accent/10 px-2 py-1 rounded-full">
+                                Technical Analysis
+                            </span>
+                            <span class="text-xs text-gray-500">
+                                1/9/2024
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-accent transition-colors">
+                            Strength and Durability Unveiled: Analyzing Contact Adhesives in Industrial Applications
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            Key Takeaways Chemical Composition: The blend of polymers, resins, and solvents in contact adhesives is key for performance. Durability Testing: Comprehensive testing methods ensure reliability in industrial environments. Industrial Standards: Meeting specific requirements for various manufacturing applications.
+                        </p>
+                        <div class="flex items-center justify-center">
+                            <a href="/blog/strength-durability-contact-adhesives.html" class="inline-flex items-center text-accent font-medium text-sm hover:text-accent/80 transition-colors group-hover:translate-x-1">
+                                Read Full Article
+                                <svg class="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                        <img src="/products/T350-Thermal-Break-Tape.png" alt="Comparative Analysis: How Contact Adhesives Stand Up Against Traditional Glues in Weather Resistance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-medium text-accent uppercase tracking-wide bg-accent/10 px-2 py-1 rounded-full">
+                                Research & Development
+                            </span>
+                            <span class="text-xs text-gray-500">
+                                1/4/2024
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-accent transition-colors">
+                            Comparative Analysis: How Contact Adhesives Stand Up Against Traditional Glues in Weather Resistance
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            Key Takeaways Flexibility: Contact adhesives offer superior flexibility, important for weather resistance. Environmental Factors: Understanding how temperature and humidity affect adhesive performance. Comparative Testing: Systematic evaluation of different adhesive types in various conditions.
+                        </p>
+                        <div class="flex items-center justify-center">
+                            <a href="/blog/weather-resistance-comparison.html" class="inline-flex items-center text-accent font-medium text-sm hover:text-accent/80 transition-colors group-hover:translate-x-1">
+                                Read Full Article
+                                <svg class="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                        <img src="/products/FRP-Rollable-Adhesive-v2-1024x1024.png" alt="Unveiling the Potential: Advanced Projects You Can Tackle with Contact Adhesives" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-medium text-accent uppercase tracking-wide bg-accent/10 px-2 py-1 rounded-full">
+                                Project Ideas
+                            </span>
+                            <span class="text-xs text-gray-500">
+                                12/19/2023
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-accent transition-colors">
+                            Unveiling the Potential: Advanced Projects You Can Tackle with Contact Adhesives
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            Key Takeaways Instant Bonding: Contact adhesives create a permanent bond instantly, ideal for a variety of materials. Advanced Applications: From automotive to aerospace, contact adhesives enable complex projects. Creative Solutions: Innovative uses in manufacturing and DIY applications.
+                        </p>
+                        <div class="flex items-center justify-center">
+                            <a href="/blog/advanced-projects-contact-adhesives.html" class="inline-flex items-center text-accent font-medium text-sm hover:text-accent/80 transition-colors group-hover:translate-x-1">
+                                Read Full Article
+                                <svg class="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                        <img src="/products/C130-Clear-55-Gallon-1024x1024.png" alt="The Critical Role of Contact Adhesives in Industrial Success" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-medium text-accent uppercase tracking-wide bg-accent/10 px-2 py-1 rounded-full">
+                                Industrial Applications
+                            </span>
+                            <span class="text-xs text-gray-500">
+                                12/14/2023
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-accent transition-colors">
+                            The Critical Role of Contact Adhesives in Industrial Success
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            Key Takeaways Instant Bonding: Contact adhesives enable immediate bonding, important for time-sensitive industrial processes. Chemical Resistance: Superior resistance to industrial chemicals and environmental factors. Cost Efficiency: Significant cost savings compared to traditional fastening methods.
+                        </p>
+                        <div class="flex items-center justify-center">
+                            <a href="/blog/critical-role-industrial-success.html" class="inline-flex items-center text-accent font-medium text-sm hover:text-accent/80 transition-colors group-hover:translate-x-1">
+                                Read Full Article
+                                <svg class="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
+                    <div class="aspect-[16/9] bg-gray-200 overflow-hidden">
+                        <img src="/products/Bundle-TC453_Forza.png" alt="How Adhesives Impact Your Manufacturing – Productivity and Efficiency" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-medium text-accent uppercase tracking-wide bg-accent/10 px-2 py-1 rounded-full">
+                                Manufacturing
+                            </span>
+                            <span class="text-xs text-gray-500">
+                                12/9/2023
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-accent transition-colors">
+                            How Adhesives Impact Your Manufacturing – Productivity and Efficiency
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+                            The Evolution of Fastening in Trailer Manufacturing Traditional fastening methods, such as bolts, nuts, rivets, and welding, have been the backbone of manufacturing for decades. However, the landscape is rapidly changing as industries recognize the limitations of these conventional approaches.
+                        </p>
+                        <div class="flex items-center justify-center">
+                            <a href="/blog/adhesives-impact-manufacturing.html" class="inline-flex items-center text-accent font-medium text-sm hover:text-accent/80 transition-colors group-hover:translate-x-1">
+                                Read Full Article
+                                <svg class="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+            </div>
+            <div class="text-center mt-12">
+                <a href="/blog" class="inline-flex items-center px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent/80 transition-colors">
+                    View All Articles
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">ForzaBuilt</h3>
+                    <p class="text-gray-300">Innovative adhesive solutions for industrial applications.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="/products/bond" class="hover:text-white">Bond</a></li>
+                        <li><a href="/products/seal" class="hover:text-white">Seal</a></li>
+                        <li><a href="/products/tape" class="hover:text-white">Tape</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Industries</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="/industries/construction" class="hover:text-white">Construction</a></li>
+                        <li><a href="/industries/marine" class="hover:text-white">Marine</a></li>
+                        <li><a href="/industries/transportation" class="hover:text-white">Transportation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="/contact" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="/blog" class="hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 ForzaBuilt. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
