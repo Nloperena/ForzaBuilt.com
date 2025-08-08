@@ -80,41 +80,7 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
           </div>
         );
 
-      case 'tools':
-        return (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link
-              to="/tools/product-selector"
-              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
-              onClick={onClose}
-            >
-              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
-                Product Selector
-              </h3>
-              <p className="text-white/80 text-sm">Find the perfect product for your application</p>
-            </Link>
-            <Link
-              to="/tools/sealant-calculator"
-              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
-              onClick={onClose}
-            >
-              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
-                Sealant Calculator
-              </h3>
-              <p className="text-white/80 text-sm">Calculate sealant requirements for your project</p>
-            </Link>
-            <Link
-              to="/tools/compatibility"
-              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
-              onClick={onClose}
-            >
-              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
-                Compatibility Checker
-              </h3>
-              <p className="text-white/80 text-sm">Check product compatibility</p>
-            </Link>
-          </div>
-        );
+
 
       default:
         return null;

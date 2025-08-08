@@ -49,20 +49,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
           { name: 'Composites', href: '/industries/composites' },
           { name: 'Insulation', href: '/industries/insulation' },
         ];
-      case 'Tools':
-        return [
-          { name: 'All Tools', href: '/tools' },
-          { name: 'Product Finder', href: '/tools/product-finder' },
-          { name: 'Technical Support', href: '/tools/technical-support' },
-          { name: 'Resources', href: '/tools/resources' },
-        ];
+
       default:
         return [];
     }
   };
 
   const hasDropdown = (itemName: string) => {
-    return ['Products', 'Industries', 'Tools'].includes(itemName);
+    return ['Products', 'Industries'].includes(itemName);
   };
 
   return (

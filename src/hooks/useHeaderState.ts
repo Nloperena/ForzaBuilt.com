@@ -8,9 +8,7 @@ import { tools as toolsData } from '@/data/tools';
 const navigation = [
   { name: 'Products', href: '/products' },
   { name: 'Industries', href: '/industries' },
-  { name: 'Approach', href: '/approach' },
   { name: 'About', href: '/about' },
-  { name: 'Tools', href: '/tools' },
 ];
 
 export const useHeaderState = () => {

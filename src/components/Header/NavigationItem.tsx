@@ -23,7 +23,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   onClick,
 }) => {
   const location = useLocation();
-  const hasDropdown = ['Industries', 'Products', 'Tools'].includes(item.name);
+  const hasDropdown = ['Industries', 'Products'].includes(item.name);
   const isActive = (isOverlayOpen && activeOverlayContent === item.name.toLowerCase()) || 
                    location.pathname.startsWith(item.href);
 
