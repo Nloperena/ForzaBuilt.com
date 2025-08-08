@@ -8,7 +8,7 @@ const TestimonialsSection = () => {
   const { isLandscape } = useLandscapeValues();
 
   const handleVideoClick = () => {
-    if (videoRef.current && !isFullscreen) {
+    if (videoRef.current) {
       if (isPlaying) {
         // If already playing, pause and reset
         videoRef.current.pause();
@@ -16,17 +16,15 @@ const TestimonialsSection = () => {
         setIsPlaying(false);
         videoRef.current.muted = true;
       } else {
-        // Start playing with audio and expand to fullscreen
+        // Start playing with audio
         videoRef.current.muted = false;
         videoRef.current.play();
         setIsPlaying(true);
-        setIsFullscreen(true);
       }
     }
   };
 
   const handleVideoExpand = () => {
-    setIsFullscreen(true);
     // If video is not playing, start it
     if (!isPlaying && videoRef.current) {
       videoRef.current.muted = false;
@@ -36,28 +34,41 @@ const TestimonialsSection = () => {
   };
 
   const handleCloseFullscreen = () => {
-    setIsFullscreen(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      setIsPlaying(false);
+      videoRef.current.muted = true;
+    }
   };
 
-  // Handle escape key to close fullscreen
+  // Handle escape key and click outside to close playing video
   React.useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isFullscreen) {
-        setIsFullscreen(false);
+      if (event.key === 'Escape' && isPlaying) {
+        handleCloseFullscreen();
       }
     };
 
-    if (isFullscreen) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isPlaying && videoRef.current && !videoRef.current.contains(event.target as Node)) {
+        handleCloseFullscreen();
+      }
+    };
+
+    if (isPlaying) {
       document.addEventListener('keydown', handleEscape);
-      // Prevent body scroll when modal is open
+      document.addEventListener('mousedown', handleClickOutside);
+      // Prevent body scroll when video is playing
       document.body.style.overflow = 'hidden';
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('mousedown', handleClickOutside);
       document.body.style.overflow = 'unset';
     };
-  }, [isFullscreen]);
+  }, [isPlaying]);
 
   const handleVideoEnded = () => {
     setIsPlaying(false);
@@ -85,46 +96,40 @@ const TestimonialsSection = () => {
               : 'flex-col md:flex-row'
           }`}>
             {/* Video Container */}
-            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl w-full transition-all duration-500 ${
-              isFullscreen 
-                ? 'fixed inset-0 z-50 bg-black/95 max-w-none aspect-auto' 
-                : isLandscape 
-                  ? 'max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
-                  : 'max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
-            }`}>
+            <div 
+              className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl w-full transition-all duration-500 ${
+                isPlaying 
+                  ? 'max-w-none aspect-video' 
+                  : isLandscape 
+                    ? 'max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
+                    : 'max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
+              }`}
+              onClick={(e) => e.stopPropagation()}
+            >
               <div className={`relative w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-xl md:shadow-2xl ${
-                isFullscreen ? 'rounded-none shadow-none' : ''
+                isPlaying ? 'rounded-none shadow-none' : ''
               }`}>
                 <video
                   ref={videoRef}
                   src="https://videos.ctfassets.net/hdznx4p7ef81/4CqNHu0mxSPaW4l6HQPphS/256d6e3db7569a19f1b33f8e1a57da9c/Sequence_01_2.mp4"
                   className={`w-full h-full object-cover object-center cursor-pointer transition-all duration-500 ${
-                    isFullscreen ? 'object-contain' : ''
+                    isPlaying ? 'object-contain' : ''
                   }`}
-                  muted={!isFullscreen}
+                  muted={!isPlaying}
                   loop
                   playsInline
-                  controls={isFullscreen}
+                  controls={isPlaying}
                   onClick={handleVideoClick}
                   onEnded={handleVideoEnded}
                 />
-                {!isFullscreen && (
+                {!isPlaying && (
                   <>
-                    {!isPlaying && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer" onClick={handleVideoClick}>
-                        <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 text-white/90 hover:text-white transition" fill="currentColor" viewBox="0 0 64 64">
-                          <circle cx="32" cy="32" r="32" fill="black" fillOpacity="0.4" />
-                          <polygon points="26,20 50,32 26,44" fill="white" />
-                        </svg>
-                      </div>
-                    )}
-                    {isPlaying && (
-                      <div className="absolute top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 bg-black/50 rounded-full p-1 sm:p-1.5 md:p-2">
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                      </div>
-                    )}
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer" onClick={handleVideoClick}>
+                      <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 text-white/90 hover:text-white transition" fill="currentColor" viewBox="0 0 64 64">
+                        <circle cx="32" cy="32" r="32" fill="black" fillOpacity="0.4" />
+                        <polygon points="26,20 50,32 26,44" fill="white" />
+                      </svg>
+                    </div>
                     {/* Expand button */}
                     <button
                       onClick={handleVideoExpand}
@@ -137,8 +142,8 @@ const TestimonialsSection = () => {
                     </button>
                   </>
                 )}
-                {/* Close button for fullscreen */}
-                {isFullscreen && (
+                {/* Close button for playing state */}
+                {isPlaying && (
                   <button
                     onClick={handleCloseFullscreen}
                     className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors z-10"
