@@ -84,8 +84,8 @@ const Blog = () => {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   selectedCategory === category
-                    ? 'bg-[#F2611D] text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-[#F2611D] text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md'
                 }`}
               >
                 {category === 'all' ? 'All Posts' : category}
@@ -106,12 +106,12 @@ const Blog = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post) => (
-                <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <article key={post.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                   <div className="aspect-[16/9] bg-gray-200 overflow-hidden">
                     <img 
                       src={post.image} 
                       alt={post.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                       onError={(e) => {
                         e.currentTarget.src = '/img/placeholder.svg';
                       }}
@@ -119,14 +119,14 @@ const Blog = () => {
                   </div>
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-medium text-[#F2611D] uppercase tracking-wide">
+                      <span className="text-xs font-medium text-[#F2611D] uppercase tracking-wide bg-[#F2611D]/10 px-2 py-1 rounded-full">
                         {post.category}
                       </span>
                       <span className="text-xs text-gray-500">
                         {new Date(post.date).toLocaleDateString()}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#F2611D] transition-colors">
                       {post.title}
                     </h3>
                     <p className="text-gray-600 text-sm mb-4 line-clamp-3">
@@ -149,10 +149,10 @@ const Blog = () => {
                       href={post.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center text-[#F2611D] font-medium text-sm hover:text-[#F2611D]/80 transition-colors"
+                      className="inline-flex items-center text-[#F2611D] font-medium text-sm hover:text-[#F2611D]/80 transition-colors group-hover:translate-x-1"
                     >
                       Read More
-                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </a>
