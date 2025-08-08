@@ -8,7 +8,7 @@ const TestimonialsSection = () => {
   const { isLandscape } = useLandscapeValues();
 
   const handleVideoClick = () => {
-    if (videoRef.current) {
+    if (videoRef.current && !isFullscreen) {
       if (isPlaying) {
         // If already playing, pause and reset
         videoRef.current.pause();
@@ -37,13 +37,6 @@ const TestimonialsSection = () => {
 
   const handleCloseFullscreen = () => {
     setIsFullscreen(false);
-    // Reset playing state when closing fullscreen
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-      videoRef.current.muted = true;
-      setIsPlaying(false);
-    }
   };
 
   // Handle escape key to close fullscreen
@@ -92,47 +85,70 @@ const TestimonialsSection = () => {
               : 'flex-col md:flex-row'
           }`}>
             {/* Video Container */}
-            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl w-full ${
-              isLandscape 
-                ? 'max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
-                : 'max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
+            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl w-full transition-all duration-500 ${
+              isFullscreen 
+                ? 'fixed inset-0 z-50 bg-black/95 max-w-none aspect-auto' 
+                : isLandscape 
+                  ? 'max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
+                  : 'max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
             }`}>
-              <div className="relative w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-xl md:shadow-2xl">
+              <div className={`relative w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-xl md:shadow-2xl ${
+                isFullscreen ? 'rounded-none shadow-none' : ''
+              }`}>
                 <video
                   ref={videoRef}
                   src="https://videos.ctfassets.net/hdznx4p7ef81/4CqNHu0mxSPaW4l6HQPphS/256d6e3db7569a19f1b33f8e1a57da9c/Sequence_01_2.mp4"
-                  className="w-full h-full object-cover object-center cursor-pointer transition-all duration-500"
-                  muted
+                  className={`w-full h-full object-cover object-center cursor-pointer transition-all duration-500 ${
+                    isFullscreen ? 'object-contain' : ''
+                  }`}
+                  muted={!isFullscreen}
                   loop
                   playsInline
+                  controls={isFullscreen}
                   onClick={handleVideoClick}
                   onEnded={handleVideoEnded}
                 />
-                {!isPlaying && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer" onClick={handleVideoClick}>
-                    <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 text-white/90 hover:text-white transition" fill="currentColor" viewBox="0 0 64 64">
-                      <circle cx="32" cy="32" r="32" fill="black" fillOpacity="0.4" />
-                      <polygon points="26,20 50,32 26,44" fill="white" />
-                    </svg>
-                  </div>
+                {!isFullscreen && (
+                  <>
+                    {!isPlaying && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer" onClick={handleVideoClick}>
+                        <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 text-white/90 hover:text-white transition" fill="currentColor" viewBox="0 0 64 64">
+                          <circle cx="32" cy="32" r="32" fill="black" fillOpacity="0.4" />
+                          <polygon points="26,20 50,32 26,44" fill="white" />
+                        </svg>
+                      </div>
+                    )}
+                    {isPlaying && (
+                      <div className="absolute top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 bg-black/50 rounded-full p-1 sm:p-1.5 md:p-2">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                      </div>
+                    )}
+                    {/* Expand button */}
+                    <button
+                      onClick={handleVideoExpand}
+                      className="absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 bg-black/50 hover:bg-black/70 rounded-full p-1 sm:p-1.5 md:p-2 transition-colors"
+                      title="Expand video"
+                    >
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                      </svg>
+                    </button>
+                  </>
                 )}
-                {isPlaying && (
-                  <div className="absolute top-2 sm:top-3 md:top-4 right-2 sm:right-3 md:right-4 bg-black/50 rounded-full p-1 sm:p-1.5 md:p-2">
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                {/* Close button for fullscreen */}
+                {isFullscreen && (
+                  <button
+                    onClick={handleCloseFullscreen}
+                    className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors z-10"
+                    title="Close video"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                  </div>
+                  </button>
                 )}
-                {/* Expand button */}
-                <button
-                  onClick={handleVideoExpand}
-                  className="absolute top-2 sm:top-3 md:top-4 left-2 sm:left-3 md:left-4 bg-black/50 hover:bg-black/70 rounded-full p-1 sm:p-1.5 md:p-2 transition-colors"
-                  title="Expand video"
-                >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                  </svg>
-                </button>
               </div>
             </div>
 
@@ -167,37 +183,7 @@ const TestimonialsSection = () => {
         </div>
       </div>
 
-      {/* Fullscreen Modal */}
-      {isFullscreen && (
-        <div 
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={handleCloseFullscreen}
-        >
-          <div 
-            className="relative w-full h-full max-w-4xl max-h-[80vh] flex items-center justify-center"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <video
-              src="https://videos.ctfassets.net/hdznx4p7ef81/4CqNHu0mxSPaW4l6HQPphS/256d6e3db7569a19f1b33f8e1a57da9c/Sequence_01_2.mp4"
-              className="w-full h-full object-contain rounded-lg"
-              controls
-              autoPlay
-              muted={false}
-              loop
-              playsInline
-            />
-            <button
-              onClick={handleCloseFullscreen}
-              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-colors"
-              title="Close video"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
+
     </section>
   );
 };
