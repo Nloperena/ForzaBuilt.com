@@ -49,7 +49,7 @@ const TestimonialsSection = () => {
               : 'flex-row'
           }`}>
             {/* Video Container - Left Side */}
-            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl ${
+            <div className={`flex-shrink-0 flex items-start justify-center overflow-hidden rounded-lg md:rounded-xl ${
               isLandscape 
                 ? 'w-full max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
                 : 'w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px] xl:w-[280px] aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
@@ -84,12 +84,12 @@ const TestimonialsSection = () => {
             </div>
 
             {/* Text Content - Right Side */}
-            <div className={`flex-1 flex flex-col ${
+            <div className={`flex-1 flex flex-col justify-start ${
               isLandscape 
                 ? 'items-center text-center' 
                 : 'items-start text-left'
             }`}>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-white mb-1 sm:mb-2 leading-tight font-kallisto">
+              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-white mb-1 sm:mb-2 leading-tight font-kallisto pt-2 sm:pt-3 md:pt-4">
                 Alex Johnson
               </div>
               <div className="font-normal text-sm sm:text-base md:text-lg text-white/80 mb-2 sm:mb-3 md:mb-4">
