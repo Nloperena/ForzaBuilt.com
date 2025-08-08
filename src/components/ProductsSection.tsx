@@ -7,7 +7,7 @@ import TapeHeroicImage from '@/assets/images/Tape Heroic Image.png';
 import OS2CartridgeHeroImage from '@/assets/images/OS2 Cartridge Hero.png';
 import RRHandSprayingImage from '@/assets/images/RR Hand Spraying.png';
 import { Link } from 'react-router-dom';
-import SplitText from './SplitText';
+
 
 const products = [
   {
@@ -72,21 +72,14 @@ const ProductsSection = () => {
     <section className="py-16 bg-[#1b3764] text-white">
       <div className="w-full px-4 max-w-[1100px] mx-auto">
         <div className="text-center">
-          <SplitText
-            text="Our Products"
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block"
-            splitType="words"
-            delay={50}
-          />
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block">
+            Our Products
+          </h2>
         </div>
         <div className="text-center">
-          <SplitText
-            text="We offer the best performing and widest range of adhesive, sealant, specialty tape, and industrial cleaning solutions, including customization and environmentally friendly technologies. If we don't have it, we'll make it custom for you!"
-            className="text-xs sm:text-lg mb-6 sm:mb-8 font-light max-w-4xl mx-auto"
-            splitType="words"
-            delay={10}
-            duration={0.4}
-          />
+          <p className="text-xs sm:text-lg mb-6 sm:mb-8 font-light max-w-4xl mx-auto">
+            We offer the best performing and widest range of adhesive, sealant, specialty tape, and industrial cleaning solutions, including customization and environmentally friendly technologies. If we don't have it, we'll make it custom for you!
+          </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
           {products.map((product, index) => {
