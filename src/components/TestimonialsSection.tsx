@@ -43,16 +43,16 @@ const TestimonialsSection = () => {
               : 'mb-4 sm:mb-6 md:mb-8 lg:mb-10'
           }`}>What Our Clients Say</h2>
         <div className="relative">
-          <div className={`rounded-lg sm:rounded-xl md:rounded-2xl flex items-center p-3 sm:p-4 md:p-6 lg:p-8 gap-4 sm:gap-6 md:gap-8 lg:gap-10 ${
+          <div className={`rounded-lg sm:rounded-xl md:rounded-2xl flex items-start p-3 sm:p-4 md:p-6 lg:p-8 gap-4 sm:gap-6 md:gap-8 lg:gap-10 ${
             isLandscape 
               ? 'flex-col' 
-              : 'flex-col md:flex-row'
+              : 'flex-row'
           }`}>
-            {/* Video Container */}
-            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl w-full ${
+            {/* Video Container - Left Side */}
+            <div className={`flex-shrink-0 flex items-center justify-center overflow-hidden rounded-lg md:rounded-xl ${
               isLandscape 
-                ? 'max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
-                : 'max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md xl:max-w-lg aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
+                ? 'w-full max-w-[200px] sm:max-w-[220px] md:max-w-[240px] lg:max-w-[260px] xl:max-w-[280px] aspect-[3/4] md:aspect-[2/3] lg:aspect-[1/1]' 
+                : 'w-[200px] sm:w-[220px] md:w-[240px] lg:w-[260px] xl:w-[280px] aspect-[4/5] md:aspect-[3/4] lg:aspect-[2/3]'
             }`}>
               <div className="relative w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-xl md:shadow-2xl">
                 <video
@@ -83,11 +83,11 @@ const TestimonialsSection = () => {
               </div>
             </div>
 
-            {/* Text Content */}
+            {/* Text Content - Right Side */}
             <div className={`flex-1 flex flex-col ${
               isLandscape 
                 ? 'items-center text-center' 
-                : 'items-center md:items-start text-center md:text-left'
+                : 'items-start text-left'
             }`}>
               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-extrabold text-white mb-1 sm:mb-2 leading-tight font-kallisto">
                 Alex Johnson
@@ -98,7 +98,7 @@ const TestimonialsSection = () => {
               <div className={`flex items-center mb-2 sm:mb-3 md:mb-4 ${
                 isLandscape 
                   ? 'justify-center' 
-                  : 'justify-center md:justify-start'
+                  : 'justify-start'
               }`}>
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
