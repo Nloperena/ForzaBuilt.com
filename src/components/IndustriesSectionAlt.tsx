@@ -40,10 +40,10 @@ const IndustriesSectionAlt = () => {
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20">
         <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-32">
           <div className="max-w-6xl mx-auto space-y-8">
-            <h2 className="font-extrabold text-white font-kallisto text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl whitespace-nowrap">
+            <h2 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-none break-words">
               Better Built Bonds for All Industries
             </h2>
-            <p className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+            <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
               At Forza, we're your trusted scientists and mentors - delivering innovative adhesive solutions that secure your success
             </p>
           </div>
