@@ -30,6 +30,7 @@ import IndustrySummary from './pages/IndustrySummary';
 import ProductDatasheetsPage from './pages/ProductDatasheetsPage';
 import ProductIndex from './pages/ProductIndex';
 import ChemistriesPage from './pages/chemistries';
+import Blog from './pages/Blog';
 import PdfViewer from './pages/PdfViewer';
 import Dashboard from './pages/Dashboard';
 import Stylesheet from './pages/Stylesheet';
@@ -98,6 +99,7 @@ const App = () => {
               <Route path="/industries" element={<Industries />} />
               <Route path="/products" element={<ProductIndex />} />
               <Route path="/chemistries" element={<ChemistriesPage />} />
+              <Route path="/blog" element={<Blog />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />
