@@ -14,7 +14,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import FaqSection from '@/components/FaqSection';
 import NewsletterSection from '@/components/NewsletterSection';
 import Footer from '@/components/Footer';
-import ProductChemistriesSection from '@/components/ProductChemistriesSection';
+import ProductChemistriesSectionV2 from '@/components/ProductChemistriesSectionV2';
 import { useIsMobile } from '@/hooks/use-mobile';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 
@@ -90,7 +90,7 @@ const Index = () => {
       {!isMobile && <ScrollSections />}
 
       {/* Our Chemistries Section */}
-      <ProductChemistriesSection />
+      <ProductChemistriesSectionV2 />
 
 
 

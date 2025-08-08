@@ -139,14 +139,14 @@ const ScrollFloatParagraph: React.FC<ScrollFloatParagraphProps> = ({
   return (
     <p 
       ref={containerRef} 
-      className={`my-5 ${containerClassName}`}
+      className={`${containerClassName}`}
       style={{
         transformOrigin: "0% 50%",
         transform: `rotate(${baseRotation}deg)`
       }}
     >
       <span
-        className={`text-[clamp(1rem,2vw,1.125rem)] leading-[1.6] font-normal ${textClassName}`}
+        className={`text-[clamp(1rem,2vw,1.125rem)] leading-[1.4] font-normal ${textClassName}`}
       >
         {splitText}
       </span>

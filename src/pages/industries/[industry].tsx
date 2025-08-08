@@ -106,6 +106,7 @@ const IndustryPage = () => {
           loop
           muted
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover object-center z-[50] rounded-xl"
         >
           <source src={industryData.videoUrl} type="video/mp4" />
@@ -115,8 +116,8 @@ const IndustryPage = () => {
       {/* Title Overlap Container */}
       <div className="relative z-40 flex justify-center -mt-20">
         <div className="w-full px-4 sm:px-6 md:px-10 py-4 bg-white text-center relative flex items-center justify-center">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-11xl font-extrabold font-kallisto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4" style={{ color: industryData.color || '#1b3764', marginTop: '-2rem sm:-3rem md:-4rem lg:-5rem' }}>
-            <span className="leading-tight">{industryData.title.toUpperCase()}</span>
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold font-kallisto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4" style={{ color: industryData.color || '#1b3764', marginTop: '-2rem sm:-3rem md:-4rem lg:-5rem' }}>
+                            <span className="leading-[1.1]">{industryData.title.toUpperCase()}</span>
             {industryData.logo && (
               <img
                 src={industryData.logo}
@@ -175,7 +176,7 @@ const IndustryPage = () => {
                 </svg>
               )}
               <h3 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-center leading-tight font-kallisto text-[#1b3764]"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-extrabold text-center leading-[1.1] font-kallisto text-[#1b3764]"
               >
                 {industryData.pageHeadline}
               </h3>

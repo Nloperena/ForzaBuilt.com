@@ -73,7 +73,7 @@ const GenericCard: React.FC<GenericCardProps> = ({
       )}
       
       {/* Title */}
-      <h3 className={`font-bold ${themeStyles.text} leading-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl`}
+      <h3 className={`font-bold ${themeStyles.text} leading-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-6xl`}
           style={{ 
             fontFamily: themeStyles.titleFont,
             fontWeight: typography.headings.fontWeight,
@@ -175,8 +175,8 @@ const GenericCard: React.FC<GenericCardProps> = ({
       return (
         <div className="w-full h-full flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 2xl:p-16 3xl:p-20">
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-9xl 2xl:text-10xl 3xl:text-12xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 3xl:mb-8">{card.icon}</div>
-            <h3 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl font-bold ${themeStyles.text} mb-0.5 sm:mb-1 md:mb-2 xl:mb-3 2xl:mb-4 3xl:mb-5`}>{card.title}</h3>
+                            <div className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl 3xl:text-10xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 3xl:mb-8">{card.icon}</div>
+                <h3 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl font-bold ${themeStyles.text} mb-0.5 sm:mb-1 md:mb-2 xl:mb-3 2xl:mb-4 3xl:mb-5`}>{card.title}</h3>
             <p className={`text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl ${themeStyles.text}/70`}>Learn more about our solutions</p>
           </div>
         </div>

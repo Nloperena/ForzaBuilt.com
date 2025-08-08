@@ -62,15 +62,15 @@ export const IndustriesCtaCard: React.FC<IndustriesCtaCardProps> = ({ className,
         <div className="absolute inset-0 flex flex-col justify-center items-center p-3 sm:p-4 md:p-6 lg:p-8 text-center">
           <h3 className={`font-black font-kallisto drop-shadow-2xl text-center w-full mb-2 sm:mb-3 md:mb-4 lg:mb-6 text-white ${
             isLandscape 
-              ? 'text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl' 
-              : 'text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl'
+              ? 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl' 
+              : 'text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl'
           }`}>
             Don't see your industry?
           </h3>
           <p className={`font-light max-w-xs mx-auto text-center w-full mb-3 sm:mb-4 md:mb-6 lg:mb-8 text-white/90 ${
             isLandscape 
-              ? 'text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl' 
-              : 'text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl'
+              ? 'text-xs sm:text-sm md:text-base lg:text-lg' 
+              : 'text-xs sm:text-sm md:text-base lg:text-lg'
           }`}>
             We can still provide purpose built solutions for your projects.
           </p>
@@ -78,8 +78,8 @@ export const IndustriesCtaCard: React.FC<IndustriesCtaCardProps> = ({ className,
             asChild
             className={`bg-[#F2611D] text-white hover:bg-[#F2611D]/90 font-bold rounded-full shadow-lg transition-colors ${
               isLandscape 
-                ? 'px-4 sm:px-6 md:px-8 lg:px-10 py-2 sm:py-3 md:py-4 lg:py-5 text-sm sm:text-base md:text-lg lg:text-xl' 
-                : 'px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base lg:text-lg'
+                ? 'px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base lg:text-lg' 
+                : 'px-2 sm:px-3 md:px-4 lg:px-6 py-1 sm:py-2 md:py-3 text-xs sm:text-sm md:text-base'
             }`}
           >
             <a href="/contact">Contact Us</a>

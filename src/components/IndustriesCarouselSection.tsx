@@ -63,14 +63,14 @@ const MemoizedHeading = React.memo(() => (
     <SplitText
       key="industries-heading-line1"
       text="Better Built Bonds"
-      className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-tight break-words block"
+      className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block"
       splitType="words"
       delay={50}
     />
     <SplitText
       key="industries-heading-line2"
       text="for All Industries"
-      className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-tight break-words block"
+      className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block"
       splitType="words"
       delay={50}
     />
@@ -203,14 +203,14 @@ export const IndustriesCarouselSection = () => {
       >
         <div className="w-full flex flex-col items-center">
           <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 px-4">
-            <div className="max-w-6xl mx-auto space-y-6">
+            <div className="max-w-6xl lg:max-w-7xl xl:max-w-8xl 2xl:max-w-9xl mx-auto space-y-6">
               <MemoizedHeading />
               <MemoizedSubheading />
             </div>
           </div>
           
           {/* Carousel Container */}
-          <div className="w-full max-w-full overflow-hidden px-6 sm:px-10 lg:px-16 xl:px-20 py-12 sm:py-16 lg:py-20 xl:py-24">
+          <div className="w-full max-w-full lg:max-w-7xl xl:max-w-8xl 2xl:max-w-9xl overflow-hidden px-6 sm:px-10 lg:px-16 xl:px-20 py-12 sm:py-16 lg:py-20 xl:py-24">
             <div
               className="relative"
               style={{ 
@@ -240,7 +240,7 @@ export const IndustriesCarouselSection = () => {
                       className="block w-full h-full"
                     >
                       <Card
-                        className={`bg-white shadow-2xl rounded-[0.375rem] sm:rounded-[0.5rem] md:rounded-[0.75rem] lg:rounded-[1rem] xl:rounded-[1.5rem] border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-110 aspect-[3/4] group cursor-pointer ${
+                        className={`bg-white shadow-2xl rounded-[0.375rem] sm:rounded-[0.5rem] md:rounded-[0.75rem] lg:rounded-[1rem] xl:rounded-[1.5rem] border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] group cursor-pointer ${
                           isLandscape 
                             ? 'w-[540px]' 
                             : 'w-[120px] sm:w-[140px] md:w-[180px] lg:w-[360px] xl:w-[480px]'
@@ -324,7 +324,7 @@ export const IndustriesCarouselSection = () => {
                 <IndustriesCtaCard
                   key="cta"
                   size="large"
-                  className={`bg-white shadow-2xl rounded-[0.375rem] sm:rounded-[0.5rem] md:rounded-[0.75rem] lg:rounded-[1rem] xl:rounded-[1.5rem] border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-110 aspect-[3/4] flex flex-col justify-center items-center flex-shrink-0 ${
+                  className={`bg-white shadow-2xl rounded-[0.375rem] sm:rounded-[0.5rem] md:rounded-[0.75rem] lg:rounded-[1rem] xl:rounded-[1.5rem] border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] flex flex-col justify-center items-center flex-shrink-0 ${
                     isLandscape 
                       ? 'w-[800px]' 
                       : 'w-[400px] sm:w-[450px] md:w-[450px] lg:w-[520px] xl:w-[680px]'

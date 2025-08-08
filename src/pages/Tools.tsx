@@ -30,7 +30,7 @@ const Tools = () => {
               />
             </div>
             
-            <h1 className="text-6xl md:text-7xl font-kallisto font-black text-white mb-6 leading-tight">
+            <h1 className="text-6xl md:text-6xl font-kallisto font-black text-white mb-6 leading-none">
               Professional Tools
             </h1>
             

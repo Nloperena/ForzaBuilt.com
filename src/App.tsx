@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Toaster } from "@/components/ui/toaster";
+import '@/styles/globalStyles.css';
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -31,6 +32,7 @@ import ProductIndex from './pages/ProductIndex';
 import ChemistriesPage from './pages/chemistries';
 import PdfViewer from './pages/PdfViewer';
 import Dashboard from './pages/Dashboard';
+import Stylesheet from './pages/Stylesheet';
 
 import { initializeProducts } from "@/utils/products";
 
@@ -118,6 +120,7 @@ const App = () => {
               <Route path="/products/all" element={<ProductIndex />} />
               <Route path="/pdf-viewer/:pdfPath" element={<PdfViewer />} />
               <Route path="/admin/dashboard" element={<Dashboard />} />
+              <Route path="/stylesheet" element={<Stylesheet />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

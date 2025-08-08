@@ -15,7 +15,7 @@ const NewsletterSection = () => {
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
         <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-extrabold text-white mb-4 sm:mb-5 md:mb-6 tracking-tight font-kallisto">
+                      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-extrabold text-white mb-4 sm:mb-5 md:mb-6 tracking-tight font-kallisto">
             Stay Connected
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed">

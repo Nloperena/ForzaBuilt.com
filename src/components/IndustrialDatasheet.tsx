@@ -153,7 +153,7 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
               />
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-kallisto font-black mb-6 leading-tight">
+                            <h1 className="text-5xl md:text-5xl font-kallisto font-black mb-6 leading-none">
               Products Datasheet
             </h1>
             

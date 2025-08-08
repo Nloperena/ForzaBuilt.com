@@ -139,14 +139,14 @@ const ScrollFloatHeading: React.FC<ScrollFloatHeadingProps> = ({
   return (
     <h2 
       ref={containerRef} 
-      className={`my-5 ${containerClassName}`}
+      className={`${containerClassName}`}
       style={{
         transformOrigin: "0% 50%",
         transform: `rotate(${baseRotation}deg)`
       }}
     >
       <span
-        className={`text-[clamp(1.6rem,4vw,3rem)] leading-[1.2] font-semibold font-kallisto ${textClassName}`}
+        className={`text-[clamp(1.6rem,4vw,3rem)] leading-none font-semibold font-kallisto ${textClassName}`}
       >
         {splitText}
       </span>

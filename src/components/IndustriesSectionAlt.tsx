@@ -40,7 +40,7 @@ const IndustriesSectionAlt = () => {
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20">
         <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-32">
           <div className="max-w-6xl mx-auto space-y-8">
-            <h2 className="font-extrabold text-white font-kallisto text-3xl sm:text-4xl md:text-6xl lg:text-8xl xl:text-9xl whitespace-nowrap">
+            <h2 className="font-extrabold text-white font-kallisto text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl whitespace-nowrap">
               Better Built Bonds for All Industries
             </h2>
             <p className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
@@ -172,7 +172,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className={`bg-white shadow-2xl rounded-[1rem] sm:rounded-[2rem] border border-gray-200 overflow-hidden aspect-square transition-all duration-300 hover:scale-110 group cursor-pointer w-full h-full ${
+                    className={`bg-white shadow-2xl rounded-[1rem] sm:rounded-[2rem] border border-gray-200 overflow-hidden aspect-square transition-all duration-300 hover:scale-105 group cursor-pointer w-full h-full ${
                       isLandscape 
                         ? 'min-h-[600px]' // Landscape: 3x taller cards
                         : 'min-h-[320px] lg:min-h-[500px] xl:min-h-[600px]'

@@ -70,11 +70,11 @@ const ProductsSection = () => {
 
   return (
     <section className="py-16 bg-[#1b3764] text-white">
-      <div className="w-full px-4 max-w-6xl mx-auto">
+      <div className="w-full px-4 max-w-[1100px] mx-auto">
         <div className="text-center">
           <SplitText
             text="Our Products"
-            className="text-2xl sm:text-5xl md:text-8xl font-extrabold text-white mb-4 font-kallisto"
+            className="text-2xl sm:text-5xl md:text-7xl font-extrabold text-white mb-4 font-kallisto leading-none"
             splitType="words"
             delay={50}
           />

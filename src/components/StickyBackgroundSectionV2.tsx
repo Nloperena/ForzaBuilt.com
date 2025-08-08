@@ -10,6 +10,7 @@ const StickyBackgroundSectionV2 = () => {
           muted
           loop
           playsInline
+          preload="auto"
           className="fixed inset-0 w-full h-full object-cover"
           style={{ zIndex: -1 }}
         >
@@ -28,26 +29,27 @@ const StickyBackgroundSectionV2 = () => {
           ></div>
         </div>
         
-        {/* Flag Video - Layered between text and background */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-5">
-          <div className="w-64 md:w-80 lg:w-96">
-            <video
-              src="https://videos.ctfassets.net/hdznx4p7ef81/7FAYaB8msFZnVuKOMhuFse/30b2c632640ff0043ceea78211521787/Gen-4_Flag8.webm"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </div>
-        
         {/* Content Area */}
-        <div className="relative z-10 text-white text-center px-4 md:px-8 max-w-4xl w-full">
+        <div className="relative z-10 text-white text-center px-4 md:px-8 max-w-[1600px] w-full">
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-4 md:mb-6 leading-none text-white drop-shadow-lg font-kallisto" style={{ textShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), inset 0 -2px 4px rgba(255,255,255,0.1), 0 4px 8px rgba(0,0,0,0.5)' }}>
-            Manufactured in America
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl 2xl:text-10xl font-black mb-4 md:mb-6 leading-none text-white drop-shadow-lg font-kallisto" style={{ textShadow: 'inset 0 2px 4px rgba(0,0,0,0.3), inset 0 -2px 4px rgba(255,255,255,0.1), 0 4px 8px rgba(0,0,0,0.5)' }}>
+            Proudly Manufactured in America
           </h1>
+          
+          {/* American Flag Image - Appended under heading */}
+          <div className="flex justify-center mb-4 md:mb-6">
+            <div className="w-48 md:w-64 lg:w-80">
+              <video
+                src="https://videos.ctfassets.net/hdznx4p7ef81/7FAYaB8msFZnVuKOMhuFse/30b2c632640ff0043ceea78211521787/Gen-4_Flag8.webm"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-auto object-contain"
+              />
+            </div>
+          </div>
         </div>
       </section>
       
@@ -59,10 +61,7 @@ const StickyBackgroundSectionV2 = () => {
             Proudly Made in America
           </h2>
           
-          {/* Divider line */}
-          <div className="w-16 sm:w-20 md:w-24 lg:w-32 mx-auto mb-2 sm:mb-3 md:mb-4">
-            <div className="h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full" style={{ boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)' }}></div>
-          </div>
+
           
           {/* Description */}
           <p className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto" style={{ textShadow: 'inset 0 1px 1px rgba(0,0,0,0.1)' }}>

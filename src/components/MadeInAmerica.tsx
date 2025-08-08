@@ -18,6 +18,7 @@ const MadeInAmerica = () => {
                 loop
                 muted
                 playsInline
+                preload="auto"
                 className="w-full h-full object-contain mt-[2rem] sm:mt-[3rem] md:mt-[4rem] lg:mt-[6rem] xl:mt-[9rem]"
               />
             </div>
@@ -44,8 +45,8 @@ const MadeInAmerica = () => {
             </div>
 
             {/* Heading - Middle of Pyramid (Medium Width) */}
-            <div className="max-w-[1800px] mx-auto mb-4 md:mb-6 w-full">
-              <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#1b3764] uppercase font-kallisto">
+            <div className="max-w-[2000px] mx-auto mb-4 md:mb-6 w-full">
+              <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold text-[#1b3764] uppercase font-kallisto">
                 Made in America
               </h2>
             </div>
@@ -56,7 +57,7 @@ const MadeInAmerica = () => {
             </div>
             
             {/* Paragraph - Narrower than heading */}
-            <div className="max-w-[1800px] mx-auto mb-8 md:mb-10 w-full">
+            <div className="max-w-[2000px] mx-auto mb-8 md:mb-10 w-full">
               <p className="text-base md:text-lg text-[#1b3764]">
                 We're proud to manufacture our high-performance industrial adhesives, tapes, and sealants right here in the USA. Our commitment to American manufacturing ensures superior quality, faster delivery, and stronger support for our local communities.
               </p>

@@ -122,8 +122,9 @@ const Contact = () => {
             loop
             muted
             playsInline
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ opacity: isVideoLoaded ? 1 : 0 }}
+            style={{ opacity: isVideoLoaded ? 1 : 0, zIndex: 1 }}
           >
             <source 
               src="https://forzabuilt.com/wp-content/uploads/2024/12/ForzaLionLoop-1-2.mp4" 
@@ -133,7 +134,7 @@ const Contact = () => {
           </video>
           
           <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-none">
               Contact Us
             </h1>
             <p className="text-xl text-gray-200">

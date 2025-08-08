@@ -321,7 +321,7 @@ const ProductCategoryPage: React.FC = () => {
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.3 }}
-                      className="text-3xl md:text-5xl lg:text-7xl font-kallisto font-black mb-4 md:mb-6 leading-tight" 
+                      className="text-3xl md:text-5xl lg:text-6xl font-kallisto font-black mb-4 md:mb-6 leading-[1.1]" 
                       style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}
                     >
                       {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}

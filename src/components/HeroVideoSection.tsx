@@ -12,7 +12,9 @@ const HeroVideoSection = () => {
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
+        style={{ zIndex: 1 }}
       >
         <source src="https://forzabuilt.com/wp-content/uploads/2024/12/ForzaLionLoop-1-2.mp4" type="video/mp4" />
       </video>

@@ -100,7 +100,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
           {/* Right: Text and Button */}
           <div className="flex-1 text-center lg:text-left space-y-6 lg:space-y-8">
             <div className="space-y-4 lg:space-y-6">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white font-kallisto drop-shadow-lg leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold text-white font-kallisto drop-shadow-lg leading-tight">
                 {title || content.title}
               </h2>
               <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">

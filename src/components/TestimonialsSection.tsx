@@ -31,7 +31,7 @@ const TestimonialsSection = () => {
   return (
     <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-[#1b3764] relative overflow-hidden" style={{ backgroundImage: "url('/assets/images/abstract-background-pattern.svg')", backgroundRepeat: 'repeat' }}>
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-extrabold text-white text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12 tracking-tight font-kallisto">What Our Clients Say</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-extrabold text-white text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12 tracking-tight font-kallisto">What Our Clients Say</h2>
         <div className="relative">
           <div className="rounded-lg sm:rounded-xl md:rounded-2xl flex flex-col md:flex-row items-center p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
             {/* Video Container */}

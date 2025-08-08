@@ -41,7 +41,7 @@ const ChemistryCard: React.FC<ChemistryCardProps> = ({
         transition={{ duration: 0.5 }}
         style={{ pointerEvents: 'none' }}
       >
-        <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl mb-2 sm:mb-3 md:mb-4 lg:mb-6">{icon}</div>
+                        <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-8xl mb-2 sm:mb-3 md:mb-4 lg:mb-6">{icon}</div>
         <h3 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-black font-kallisto uppercase leading-tight">{title}</h3>
       </motion.div>
 

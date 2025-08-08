@@ -1,0 +1,395 @@
+/* Global Stylesheet for ForzaBuilt */
+/* This file contains all reusable component styles for easy editing and reference */
+
+:root {
+  /* Brand Colors */
+  --forza-regal-blue: #09668D;
+  --forza-blaze-orange: #F16022;
+  --forza-blue-velvet: #1B3764;
+  --forza-rusty-nail: #D35127;
+  --forza-slate-grey: #BFBFBF;
+  --forza-iron-grey: #F16022;
+  --forza-jet-black: #000000;
+  
+  /* Industry Colors */
+  --forza-industrial-primary: #f16a26;
+  --forza-marine-primary: #137875;
+  --forza-transportation-primary: #b83d35;
+  --forza-insulation-primary: #d0157d;
+  --forza-construction-primary: #fec770;
+  --forza-composites-primary: #c7c8c9;
+  
+  /* Product Colors */
+  --forza-bond-primary: #F16022;
+  --forza-bond-secondary: #09668D;
+  --forza-seal-primary: #ffd600;
+  --forza-seal-secondary: #09668D;
+  --forza-tape-primary: #e53935;
+  --forza-tape-secondary: #09668D;
+  
+  /* Typography */
+  --forza-font-heading: 'Kallisto', sans-serif;
+  --forza-font-body: 'Poppins', sans-serif;
+  --forza-font-subhead: 'Poppins', sans-serif;
+  --forza-font-product: 'Kallisto', sans-serif;
+  
+  /* Font Weights */
+  --forza-weight-heavy: 900;
+  --forza-weight-regular: 400;
+  --forza-weight-bold: 700;
+  
+  /* Line Heights */
+  --forza-line-height-heading: 1.1;
+  --forza-line-height-body: 1.6;
+  --forza-line-height-subhead: 1.3;
+  --forza-line-height-product: 1.1;
+}
+
+/* ===== HEADING STYLES ===== */
+
+/* Main Page Headings */
+.forza-hero-heading {
+  font-family: var(--forza-font-heading);
+  font-weight: var(--forza-weight-heavy);
+  line-height: var(--forza-line-height-heading);
+  color: white;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.forza-section-heading {
+  font-family: var(--forza-font-heading);
+  font-weight: var(--forza-weight-heavy);
+  line-height: var(--forza-line-height-heading);
+  color: white;
+  text-align: center;
+  word-break: break-words;
+}
+
+.forza-page-heading {
+  font-family: var(--forza-font-heading);
+  font-weight: var(--forza-weight-heavy);
+  line-height: var(--forza-line-height-heading);
+  color: white;
+}
+
+.forza-product-heading {
+  font-family: var(--forza-font-product);
+  font-weight: var(--forza-weight-heavy);
+  line-height: var(--forza-line-height-product);
+  color: white;
+}
+
+/* ===== BUTTON STYLES ===== */
+
+.forza-primary-button {
+  background-color: var(--forza-blaze-orange);
+  color: white;
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-bold);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(241, 96, 34, 0.3);
+}
+
+.forza-primary-button:hover {
+  background-color: var(--forza-rusty-nail);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(241, 96, 34, 0.4);
+}
+
+.forza-secondary-button {
+  background-color: var(--forza-regal-blue);
+  color: white;
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-bold);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(9, 102, 141, 0.3);
+}
+
+.forza-secondary-button:hover {
+  background-color: var(--forza-blue-velvet);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(9, 102, 141, 0.4);
+}
+
+.forza-ghost-button {
+  background: transparent;
+  color: var(--forza-regal-blue);
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-bold);
+  border: 2px solid var(--forza-regal-blue);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.forza-ghost-button:hover {
+  background: var(--forza-regal-blue);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ===== CARD STYLES ===== */
+
+.forza-card {
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blaze-orange) 100%);
+  color: white;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(9, 102, 141, 0.2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.forza-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(9, 102, 141, 0.3);
+}
+
+.forza-card-dark {
+  background: var(--forza-blue-velvet);
+  color: white;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(27, 55, 100, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.forza-card-dark:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(27, 55, 100, 0.4);
+}
+
+/* ===== BADGE STYLES ===== */
+
+.forza-badge-primary {
+  background: var(--forza-regal-blue);
+  color: white;
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-bold);
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.forza-badge-secondary {
+  background: var(--forza-blaze-orange);
+  color: white;
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-bold);
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+.forza-badge-outline {
+  background: transparent;
+  color: var(--forza-regal-blue);
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-bold);
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--forza-regal-blue);
+  border-radius: 9999px;
+  display: inline-block;
+}
+
+/* ===== SECTION STYLES ===== */
+
+.forza-section {
+  padding: 4rem 0;
+  position: relative;
+}
+
+.forza-section-dark {
+  background: var(--forza-blue-velvet);
+  color: white;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.forza-section-gradient {
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blue-velvet) 70%, var(--forza-blaze-orange) 100%);
+  color: white;
+  padding: 4rem 0;
+  position: relative;
+}
+
+/* ===== CONTAINER STYLES ===== */
+
+.forza-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.forza-container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.forza-container-xl {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.forza-container-2xl {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ===== TEXT STYLES ===== */
+
+.forza-text-body {
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-regular);
+  line-height: var(--forza-line-height-body);
+  color: inherit;
+}
+
+.forza-text-subhead {
+  font-family: var(--forza-font-subhead);
+  font-weight: var(--forza-weight-bold);
+  line-height: var(--forza-line-height-subhead);
+  color: inherit;
+}
+
+.forza-text-caption {
+  font-family: var(--forza-font-body);
+  font-weight: var(--forza-weight-regular);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* ===== ANIMATION STYLES ===== */
+
+.forza-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.forza-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.forza-scale-in {
+  animation: scaleIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+
+@media (max-width: 640px) {
+  .forza-container {
+    padding: 0 0.5rem;
+  }
+  
+  .forza-section {
+    padding: 2rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .forza-container {
+    padding: 0 2rem;
+  }
+}
+
+/* ===== FOCUS STYLES ===== */
+
+.forza-focus-visible {
+  outline: 2px solid var(--forza-regal-blue);
+  outline-offset: 2px;
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  .forza-section {
+    padding: 1rem 0;
+  }
+  
+  .forza-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ===== BRAND COMPLIANT UTILITY CLASSES ===== */
+
+/* Industry-specific color utilities */
+.forza-industrial-bg { background-color: var(--forza-industrial-primary); }
+.forza-marine-bg { background-color: var(--forza-marine-primary); }
+.forza-transportation-bg { background-color: var(--forza-transportation-primary); }
+.forza-insulation-bg { background-color: var(--forza-insulation-primary); }
+.forza-construction-bg { background-color: var(--forza-construction-primary); }
+.forza-composites-bg { background-color: var(--forza-composites-primary); }
+
+/* Product-specific color utilities */
+.forza-bond-bg { background-color: var(--forza-bond-primary); }
+.forza-seal-bg { background-color: var(--forza-seal-primary); }
+.forza-tape-bg { background-color: var(--forza-tape-primary); }
+
+/* Brand-compliant gradient utilities */
+.forza-gradient-brand {
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blaze-orange) 100%);
+}
+
+.forza-gradient-accent {
+  background: linear-gradient(135deg, var(--forza-blaze-orange) 0%, var(--forza-rusty-nail) 100%);
+}
+
+/* Text gradient utilities */
+.forza-text-gradient-brand {
+  background: linear-gradient(135deg, var(--forza-blue-velvet) 0%, var(--forza-blaze-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.forza-text-gradient-accent {
+  background: linear-gradient(135deg, var(--forza-blaze-orange) 0%, var(--forza-rusty-nail) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

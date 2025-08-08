@@ -239,7 +239,7 @@ const ProductDetailPage: React.FC = () => {
                     </div>
 
                     {/* Product ID */}
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-kallisto font-black mb-4 leading-tight text-white" 
+                    <h1 className="text-4xl md:text-5xl lg:text-5xl font-kallisto font-black mb-4 leading-none text-white" 
                         style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
                       {product.id.toUpperCase()}
                     </h1>

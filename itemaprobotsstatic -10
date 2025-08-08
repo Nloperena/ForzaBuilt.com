@@ -1,0 +1,7 @@
+[33mcommit 0c56498c8c87b17740f39cdd277952ee00531f56[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Nico <nicholasloperena@gmail.com>
+Date:   Thu Aug 7 14:58:36 2025 -0400
+
+    feat: implement static site generation for SEO and social sharing - Add static page generation script for product pages with meta tags - Add sitemap generation script for search engine optimization - Update build process to generate static pages and sitemap automatically - Add robots.txt for search engine guidance - Add comprehensive documentation for static generation system
+
+scripts/generateStaticPages.js

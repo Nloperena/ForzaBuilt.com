@@ -7,7 +7,7 @@ const FaqSection = () => {
   return (
     <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-[#1b3764]">
       <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-extrabold text-white text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 tracking-tight font-kallisto">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-extrabold text-white text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 tracking-tight font-kallisto">
           Frequently Asked Questions
         </h2>
         <div className="flex flex-col items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">

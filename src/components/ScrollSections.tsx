@@ -12,7 +12,7 @@ const ScrollSections = () => {
       <div className="relative z-20 bg-transparent">
         <section className="min-h-screen grid grid-cols-12 items-center">
           <div className="col-span-6"></div>
-          <div className="col-span-6 text-center pr-8 space-y-8 flex flex-col items-center justify-center">
+          <div className="col-span-6 text-center pr-8 space-y-4 flex flex-col items-center justify-center">
             <ScrollFloatHeading
               baseOpacity={0}
               enableBlur={true}
@@ -28,7 +28,7 @@ const ScrollSections = () => {
               enableBlur={true}
               baseRotation={3}
               blurStrength={6}
-              containerClassName="max-w-[calc(20rem+600px)] text-center"
+              containerClassName="max-w-[600px] text-center"
               textClassName="text-white"
             >
               We're continuously researching innovative, cutting-edge technologies & improving our chemistries for safer & greener products.
@@ -38,7 +38,7 @@ const ScrollSections = () => {
         
         <section className="min-h-screen grid grid-cols-12 items-center">
           <div className="col-span-6"></div>
-          <div className="col-span-6 text-center pr-8 space-y-8 flex flex-col items-center justify-center">
+          <div className="col-span-6 text-center pr-8 space-y-4 flex flex-col items-center justify-center">
             <ScrollFloatHeading
               baseOpacity={0}
               enableBlur={true}
@@ -54,7 +54,7 @@ const ScrollSections = () => {
               enableBlur={true}
               baseRotation={3}
               blurStrength={6}
-              containerClassName="max-w-[calc(20rem+600px)] text-center"
+              containerClassName="max-w-[600px] text-center"
               textClassName="text-white"
             >
               Our holistic diagnostic process delivers a solution optimized & customized for you.
@@ -63,7 +63,7 @@ const ScrollSections = () => {
         </section>
         
         <section className="min-h-screen grid grid-cols-12 items-center">
-          <div className="col-span-6 text-center pl-8 space-y-8 flex flex-col items-center justify-center">
+          <div className="col-span-6 text-center pl-8 space-y-4 flex flex-col items-center justify-center">
             <div className="text-center">
               <ScrollFloatHeading
                 baseOpacity={0}
@@ -91,7 +91,7 @@ const ScrollSections = () => {
               enableBlur={true}
               baseRotation={3}
               blurStrength={6}
-              containerClassName="max-w-[calc(20rem+600px)] text-center"
+              containerClassName="max-w-[600px] text-center"
               textClassName="text-white"
             >
               We know our chemistries. Solutions are developed & produced in-house through rigorous testing & analysis, then benchmarked against the best.
@@ -101,7 +101,7 @@ const ScrollSections = () => {
         </section>
         
         <section className="min-h-screen grid grid-cols-12 items-center">
-          <div className="col-span-6 text-center pl-8 space-y-8 flex flex-col items-center justify-center">
+          <div className="col-span-6 text-center pl-8 space-y-4 flex flex-col items-center justify-center">
             <div className="text-center">
               <ScrollFloatHeading
                 baseOpacity={0}
@@ -129,7 +129,7 @@ const ScrollSections = () => {
               enableBlur={true}
               baseRotation={3}
               blurStrength={6}
-              containerClassName="max-w-[calc(20rem+600px)] text-center"
+              containerClassName="max-w-[600px] text-center"
               textClassName="text-white"
             >
               In the age of tech portals & AI, we are singularly focused on personal, knowledgeable service that provides a legendary experience.
@@ -140,7 +140,7 @@ const ScrollSections = () => {
         
         <section className="min-h-screen grid grid-cols-12 items-center">
           <div className="col-span-6"></div>
-          <div className="col-span-6 text-center pr-8 space-y-8 flex flex-col items-center justify-center">
+          <div className="col-span-6 text-center pr-8 space-y-4 flex flex-col items-center justify-center">
             <div className="text-center">
               <ScrollFloatHeading
                 baseOpacity={0}
@@ -168,7 +168,7 @@ const ScrollSections = () => {
               enableBlur={true}
               baseRotation={3}
               blurStrength={6}
-              containerClassName="max-w-[calc(20rem+600px)] text-center"
+              containerClassName="max-w-[600px] text-center"
               textClassName="text-white"
             >
               We never just guess. Our core subject matter experts have 30+ years of tenure at Forza, so we actually understand you.
@@ -178,7 +178,7 @@ const ScrollSections = () => {
         
         <section className="min-h-screen grid grid-cols-12 items-center">
           <div className="col-span-6"></div>
-          <div className="col-span-6 text-center pr-8 space-y-8 flex flex-col items-center justify-center">
+          <div className="col-span-6 text-center pr-8 space-y-4 flex flex-col items-center justify-center">
             <div className="text-center">
               <ScrollFloatHeading
                 baseOpacity={0}
@@ -206,7 +206,7 @@ const ScrollSections = () => {
               enableBlur={true}
               baseRotation={3}
               blurStrength={6}
-              containerClassName="max-w-[calc(20rem+600px)] text-center"
+              containerClassName="max-w-[600px] text-center"
               textClassName="text-white"
             >
               We have the world's most comprehensive portfolio of adhesives, tapes & sealants under one roof - saving you time, money, & the risk of an incorrect product fit.
