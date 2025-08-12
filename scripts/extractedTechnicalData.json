@@ -1,0 +1,171 @@
+{
+  "mapping": {
+    "81-0389": {
+      "coverage": "• Excellent green strength"
+    },
+    "c130": {
+      "flammable": "flammable",
+      "coverage": "• High-temperature resistance"
+    },
+    "c331": {
+      "temperature": "220",
+      "flammable": "non-flammable",
+      "coverage": "• Over 220°F (105°C) temperature resistant",
+      "solvent": "Non-Flammable",
+      "voc": "0 g/L"
+    },
+    "ca1000": {
+      "viscosity": "surface-insensitive instant adhesive."
+    },
+    "ca1500": {
+      "viscosity": "surface-insensitive instant adhesive."
+    },
+    "ca2400": {
+      "viscosity": "surface-insensitive instant adhesive."
+    },
+    "ic932": {
+      "flammable": "non-flammable",
+      "solvent": "Non-Flammable"
+    },
+    "ic947": {
+      "coverage": "• Web spray"
+    },
+    "os35": {
+      "temperature": "35"
+    },
+    "r160": {
+      "temperature": "60"
+    },
+    "m-c280 (c130)": {
+      "coverage": "• Fast Drying"
+    },
+    "m-c283 (c331)": {
+      "temperature": "220",
+      "flammable": "non-flammable",
+      "coverage": "• Post formable",
+      "solvent": "Non-Flammable",
+      "voc": "0 g/L"
+    },
+    "m-c285 (81-0389)": {
+      "temperature": "285",
+      "coverage": "• High temperature resistance"
+    },
+    "m-r420 (r160)": {
+      "temperature": "60"
+    },
+    "mc722 (ic932)": {
+      "flammable": "non-flammable",
+      "solvent": "Non-Flammable"
+    },
+    "mc737 (ic947)": {
+      "coverage": "• Web spray"
+    },
+    "mc722": {
+      "flammable": "non-flammable",
+      "solvent": "Non-Flammable"
+    },
+    "mc737": {
+      "coverage": "• Web spray"
+    },
+    "t-c222 (c130)": {
+      "flammable": "flammable",
+      "coverage": "• High-temperature resistance"
+    },
+    "t-c225 (c331)": {
+      "temperature": "220",
+      "flammable": "non-flammable",
+      "coverage": "• Over 220°F (105°C) temperature resistant",
+      "solvent": "Non-Flammable",
+      "voc": "0 g/L"
+    },
+    "t-c485 (81-0389)": {
+      "coverage": "• Excellent green strength"
+    },
+    "tc452 (ic932)": {
+      "flammable": "non-flammable",
+      "solvent": "Non-Flammable"
+    },
+    "tc467 (ic947)": {
+      "coverage": "• Web spray"
+    },
+    "tc452": {
+      "flammable": "non-flammable",
+      "solvent": "Non-Flammable"
+    },
+    "tc467": {
+      "coverage": "• Web spray"
+    },
+    "r-a2000 (a1000)": {
+      "coverage": "– 600 sq ft per gallon"
+    },
+    "r-c661 (c331)": {
+      "temperature": "220",
+      "flammable": "Non-Flammable",
+      "coverage": "• Over 220ºF (105ºC) temperature resistant"
+    },
+    "r-r820 (r160)": {
+      "temperature": "60"
+    },
+    "rc862 (ic932)": {
+      "flammable": "Non-Flammable"
+    },
+    "rc862": {
+      "flammable": "Non-Flammable"
+    },
+    "c-c360 (c130)": {
+      "flammable": "flammable",
+      "coverage": "• Post formable"
+    },
+    "c-c551 (c331)": {
+      "temperature": "220",
+      "flammable": "flammable",
+      "coverage": "• Over 220ºF (105ºC) temperature resistant"
+    },
+    "c-r552 (r221)": {
+      "temperature": "75"
+    },
+    "c-r560 (r160)": {
+      "temperature": "60"
+    },
+    "c-w6106 (w700)": {
+      "coverage": "• Extended closed assembly time for press preparation"
+    },
+    "cc501 (ic946)": {
+      "voc": "37 g/L"
+    },
+    "cc507 (ic947)": {
+      "coverage": "• Web Spray"
+    },
+    "cc513 (ic932)": {
+      "flammable": "non-flammable",
+      "solvent": "Non-Flammable"
+    },
+    "cc501": {
+      "voc": "37 g/L"
+    },
+    "cc507": {
+      "coverage": "• Web Spray"
+    },
+    "cc513": {
+      "flammable": "non-flammable",
+      "solvent": "Non-Flammable"
+    }
+  },
+  "standards": {
+    "appearance": "Appearance",
+    "shelfLife": "Shelf Life",
+    "solids": "Solids",
+    "solvent": "Solvent",
+    "voc": "VOC",
+    "viscosity": "Viscosity",
+    "temperature": "Temperature Range",
+    "coverage": "Coverage",
+    "density": "Density",
+    "pH": "pH"
+  },
+  "summary": {
+    "totalProducts": 161,
+    "productsWithData": 47,
+    "extractionDate": "2025-08-12T19:01:04.349Z"
+  }
+}

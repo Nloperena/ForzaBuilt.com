@@ -22,6 +22,7 @@ export interface ServiceCardData {
   features: string[];            // Array of key features/benefits
   buttonText: string;            // Text for the call-to-action button
   imageUrl?: string;             // Optional image URL for the card
+  theme?: string;                // Optional theme/industry to drive styling (marine, construction, etc.)
   
   // Optional fields for construction management cards
   technologies?: string[];       // Array of technology names (AutoCAD, Revit, etc.)
@@ -49,5 +50,4 @@ export interface ServiceCardProps {
   card: ServiceCardData;         // Card data to display
   transform: string;             // CSS transform string for animations
   opacity: number;               // Opacity value for fade effects
-  blur?: number;                 // Blur amount for cards underneath
 }

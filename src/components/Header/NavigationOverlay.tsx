@@ -44,7 +44,7 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
               onClick={onClose}
             >
               <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
-                Sealants & Gaskets
+                Industrial Sealants
               </h3>
               <p className="text-white/80 text-sm">Advanced sealing solutions for leak prevention and environmental protection</p>
             </Link>

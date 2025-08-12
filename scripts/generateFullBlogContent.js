@@ -767,22 +767,22 @@ const generateSectionContent = (section, topic, keyTakeaways) => {
 const generateFullContent = (post) => {
   const template = contentTemplates[post.category] || contentTemplates['Technical Analysis'];
   
-  let fullContent = `<div class="prose prose-lg max-w-none">`;
+  let fullContent = `<div>`;
   
   // Introduction
   fullContent += `<div class="mb-8">
-    <p class="text-lg text-gray-700 leading-relaxed">${template.intro}</p>
+    <p class="text-lg leading-relaxed">${template.intro}</p>
   </div>`;
   
   // Key takeaways section
   if (post.keyTakeaways && post.keyTakeaways.length > 0) {
     fullContent += `<div class="mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Key Takeaways</h2>
+      <h2 class="text-2xl font-bold mb-4">Key Takeaways</h2>
       <ul class="space-y-3">
         ${post.keyTakeaways.map(takeaway => `
           <li class="flex items-start">
-            <span class="text-[#F2611D] mr-3 mt-1">•</span>
-            <span class="text-gray-700">${takeaway}</span>
+            <span class="mr-3 mt-1">•</span>
+            <span>${takeaway}</span>
           </li>
         `).join('')}
       </ul>
@@ -792,15 +792,15 @@ const generateFullContent = (post) => {
   // Main content sections
   template.sections.forEach(section => {
     fullContent += `<div class="mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">${section}</h2>
+      <h2 class="text-2xl font-bold mb-4">${section}</h2>
       ${generateSectionContent(section, post.title, post.keyTakeaways)}
     </div>`;
   });
   
   // Conclusion
   fullContent += `<div class="mb-8">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">Conclusion</h2>
-    <p class="text-gray-700 leading-relaxed">
+    <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
+    <p class="leading-relaxed">
       Understanding and implementing proper techniques for ${post.title.toLowerCase()} is essential for achieving optimal results in industrial applications. 
       By following the guidelines and best practices outlined in this article, you can ensure consistent, reliable performance 
       and maximize the benefits of modern adhesive solutions.

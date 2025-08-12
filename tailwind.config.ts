@@ -92,7 +92,8 @@ export default {
 			},
 			fontFamily: {
 				'inter': ['Inter', 'sans-serif'],
-				'kallisto': ['kallisto', 'sans-serif']
+				'kallisto': ['kallisto', 'sans-serif'],
+				'poppins': ['Poppins', 'sans-serif'],
 			},
 			fontWeight: {
 				'extrabold': '800',
@@ -103,5 +104,5 @@ export default {
 			},
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
 } satisfies Config;

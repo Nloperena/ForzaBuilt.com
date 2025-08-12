@@ -18,8 +18,10 @@ const StackSpacer = ({ cardCount }: StackSpacerProps) => {
   /**
    * Calculate total scroll height needed
    * Each card needs one full viewport height of scroll distance
+   * Reduced to 35% to minimize gap after last card disappears and bring next section closer
    */
-  const scrollHeight = cardCount * window.innerHeight;
+  // Allocate more scroll depth so the last card doesn't fade out too quickly
+  const scrollHeight = cardCount * window.innerHeight * 0.55;
 
   return (
     <div 

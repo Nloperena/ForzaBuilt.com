@@ -10,6 +10,8 @@
  * - Handle sticky positioning
  * - Manage z-index stacking
  * - Render the actual ServiceCard component
+ * - Mobile-optimized responsive design
+ * - Ultra-wide and foldable display support
  */
 
 import ServiceCard from '../ServiceCard';
@@ -50,25 +52,19 @@ const CardStackItem = ({
    */
   const opacity = isVisible ? 1 - nextCardProgress : 0;
 
-  /**
-   * Blur Calculation
-   * Cards underneath get blurred based on their position
-   */
-  const blurAmount = Math.max(0, (1 - opacity) * 10); // Blur up to 10px when card is fading out
-
   return (
     <div
-      className="sticky top-0 w-full h-screen flex items-center justify-center px-4"
+      className="sticky top-0 w-full h-screen flex items-center justify-center px-1 sm:px-2 md:px-4 lg:px-8 xl:px-12 2xl:px-16 3xl:px-20"
       style={{
         zIndex: 40 + index, // Each subsequent card has higher z-index
       }}
     >
-      <div className="w-full max-w-none">
+      <div className="w-full h-full max-w-none">
         <ServiceCard
           card={card}
           transform={transformString}
           opacity={opacity}
-          blur={blurAmount}
+          index={index}
         />
       </div>
     </div>

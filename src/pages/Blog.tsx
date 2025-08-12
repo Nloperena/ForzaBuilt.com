@@ -2,38 +2,31 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  image: string;
-  category: string;
-  date: string;
-  url: string;
-  keyTakeaways?: string[];
-}
+import blogPostsData from '../data/blogPosts.json';
+import FeaturedPosts from '@/components/blog/FeaturedPosts';
+import ControlsBar from '@/components/blog/ControlsBar';
+import PostsGrid from '@/components/blog/PostsGrid';
+import { generateSlugFromTitle } from '@/lib/utils';
+import type { BlogPost, ViewMode, SortOrder } from '@/types/Blog';
 
 const Blog = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('date');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [showNewsletter, setShowNewsletter] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [isSubscribing, setIsSubscribing] = useState<boolean>(false);
 
   useEffect(() => {
-    // Load blog data from the scraped JSON file
+    // Load blog data from the local data file
     const loadBlogData = async () => {
       try {
-        const response = await fetch('/blogPosts.json');
-        const data = await response.json();
-        setBlogPosts(data);
+        setBlogPosts(blogPostsData);
         setLoading(false);
       } catch (error) {
         console.error('Error loading blog data:', error);
@@ -222,7 +215,7 @@ const Blog = () => {
                       </p>
                       <div className="flex items-center justify-between">
                         <Link
-                          to={`/blog/${post.id}`}
+                          to={`/blog/${generateSlugFromTitle(post.title)}`}
                           className="inline-flex items-center text-[#F16022] font-bold text-sm hover:text-[#F16022]/80 transition-colors group-hover:translate-x-1 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-[#F16022] hover:bg-white/95 font-poppins"
                         >
                           Read Article
@@ -458,15 +451,15 @@ const Blog = () => {
                }>
                                    {currentPosts.map((post) => (
                     <article key={post.id} className={`bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 hover:scale-105 group ${
-                      viewMode === 'grid' ? 'flex flex-col h-full' : 'flex flex-row'
+                      viewMode === 'grid' ? 'flex flex-col h-full' : 'flex flex-row items-center'
                     }`}>
                       <div className={`bg-transparent overflow-hidden flex-shrink-0 ${
-                        viewMode === 'grid' ? 'aspect-[16/9]' : 'w-48 h-32'
+                        viewMode === 'grid' ? 'aspect-[16/9]' : 'w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center self-center'
                       }`}>
                         <img 
                           src={post.image} 
                           alt={post.title}
-                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                          className={`${viewMode === 'grid' ? 'w-full h-full' : 'max-w-full max-h-full'} object-contain object-center ${viewMode === 'grid' ? 'group-hover:scale-110 transition-transform duration-300' : ''}`}
                           onError={(e) => {
                             console.warn(`Failed to load image: ${post.image}`);
                             e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
@@ -511,7 +504,7 @@ const Blog = () => {
                         )}
                         <div className="flex items-center justify-between mt-auto pt-4">
                           <Link
-                            to={`/blog/${post.id}`}
+                            to={`/blog/${generateSlugFromTitle(post.title)}`}
                             className="inline-flex items-center text-[#F16022] font-bold text-sm hover:text-[#F16022]/80 transition-colors group-hover:translate-x-1 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-[#F16022] hover:bg-white/95 font-poppins"
                           >
                             Read Full Article

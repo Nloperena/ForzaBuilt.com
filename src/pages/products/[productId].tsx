@@ -153,6 +153,35 @@ const ProductDetailPage: React.FC = () => {
     return getRelatedProducts(productId, 4);
   }, [productId]);
 
+  // Normalize sizing/packaging into a single list for Sizing tab
+  const normalizeToList = useCallback((value: unknown): string[] => {
+    if (!value) return [];
+    if (Array.isArray(value)) {
+      return value
+        .filter((v): v is string => typeof v === 'string')
+        .map(v => v.trim())
+        .filter(v => v.length > 0);
+    }
+    if (typeof value === 'string') {
+      // Split on bullets or newlines
+      return value
+        .split(/\n|•/g)
+        .map(v => v.trim().replace(/^[-–·\u2022]\s*/, ''))
+        .filter(v => v.length > 0);
+    }
+    return [];
+  }, []);
+
+  const sizesAndPackaging = useMemo(() => {
+    if (!product) return [];
+    const sizes = normalizeToList((product as any).sizes);
+    const sizing = normalizeToList((product as any).sizing);
+    const packaging = normalizeToList((product as any).specifications?.packaging);
+    // Merge and dedupe
+    const merged = [...sizes, ...sizing, ...packaging];
+    return Array.from(new Set(merged));
+  }, [product, normalizeToList]);
+
   if (!product) {
     return (
       <div className="min-h-screen bg-[#1b3764] flex flex-col">
@@ -731,95 +760,89 @@ const ProductDetailPage: React.FC = () => {
                         Technical Data
                       </CardTitle>
                     </CardHeader>
-                                         <CardContent className="px-4 md:px-6 py-3 md:py-4">
+                    <CardContent className="px-4 md:px-6 py-3 md:py-4">
                        {product.technicalData ? (
-                         <div className="space-y-6">
-                           {/* Physical Properties */}
-                           <div>
-                             <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                               Physical Properties
-                             </h4>
-                             <div className="space-y-3">
-                               {product.technicalData.density && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Density:</span>
-                                   <span className="text-white/80">{product.technicalData.density}</span>
-                                 </div>
-                               )}
-                               {product.technicalData.pH && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">pH:</span>
-                                   <span className="text-white/80">{product.technicalData.pH}</span>
-                                 </div>
-                               )}
-                               {product.technicalData.color && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Color:</span>
-                                   <span className="text-white/80">{product.technicalData.color}</span>
-                                 </div>
-                               )}
-                               {product.technicalData.odor && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Odor:</span>
-                                   <span className="text-white/80">{product.technicalData.odor}</span>
-                                 </div>
-                               )}
+                         <div className="space-y-3">
+                                                  {/* Dynamic TDS Table Fields - Only show for non-TAPE products */}
+                       {product.category !== 'TAPE' && (
+                         <>
+                           {product.technicalData.appearance && (
+                             <div className="flex justify-between py-3 border-b border-white/10">
+                               <span className="font-semibold text-white">Appearance:</span>
+                               <span className="text-white/80">{product.technicalData.appearance}</span>
                              </div>
-                           </div>
-
-                           {/* Storage & Handling */}
-                           <div>
-                             <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                               Storage & Handling
-                             </h4>
-                             <div className="space-y-3">
-                               {product.technicalData.shelfLife && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Shelf Life:</span>
-                                   <span className="text-white/80">{product.technicalData.shelfLife}</span>
-                                 </div>
-                               )}
-                               {product.technicalData.storageConditions && (
-                                 <div className="flex justify-between py-3 border-b border-white/10">
-                                   <span className="font-semibold text-white">Storage Conditions:</span>
-                                   <span className="text-white/80">{product.technicalData.storageConditions}</span>
-                                 </div>
-                               )}
+                           )}
+                           {product.technicalData.shelfLife && (
+                             <div className="flex justify-between py-3 border-b border-white/10">
+                               <span className="font-semibold text-white">Shelf Life:</span>
+                               <span className="text-white/80">{product.technicalData.shelfLife}</span>
                              </div>
-                           </div>
-
-                           {/* Tape-specific technical data */}
-                           {(product.technicalData.adhesiveType || product.technicalData.foamType || product.technicalData.peelStrength || product.technicalData.shearStrength) && (
-                             <div>
-                               <h4 className="text-lg font-semibold text-white mb-4 border-b border-white/20 pb-2">
-                                 Performance Data
-                               </h4>
-                               <div className="space-y-3">
-                                 {product.technicalData.adhesiveType && (
-                                   <div className="flex justify-between py-3 border-b border-white/10">
-                                     <span className="font-semibold text-white">Adhesive Type:</span>
-                                     <span className="text-white/80">{product.technicalData.adhesiveType}</span>
-                                   </div>
-                                 )}
-                                 {product.technicalData.foamType && (
-                                   <div className="flex justify-between py-3 border-b border-white/10">
-                                     <span className="font-semibold text-white">Foam Type:</span>
-                                     <span className="text-white/80">{product.technicalData.foamType}</span>
-                                   </div>
-                                 )}
-                                 {product.technicalData.peelStrength && (
-                                   <div className="flex justify-between py-3 border-b border-white/10">
-                                     <span className="font-semibold text-white">Peel Strength:</span>
-                                     <span className="text-white/80">{product.technicalData.peelStrength}</span>
-                                   </div>
-                                 )}
-                                 {product.technicalData.shearStrength && (
-                                   <div className="flex justify-between py-3 border-b border-white/10">
-                                     <span className="font-semibold text-white">Shear Strength:</span>
-                                     <span className="text-white/80">{product.technicalData.shearStrength}</span>
-                                   </div>
-                                 )}
+                           )}
+                           {product.technicalData.solids && (
+                             <div className="flex justify-between py-3 border-b border-white/10">
+                               <span className="font-semibold text-white">Solids:</span>
+                               <span className="text-white/80">{product.technicalData.solids}</span>
+                             </div>
+                           )}
+                           {product.technicalData.solvent && (
+                             <div className="flex justify-between py-3 border-b border-white/10">
+                               <span className="font-semibold text-white">Solvent:</span>
+                               <span className="text-white/80">{product.technicalData.solvent}</span>
+                             </div>
+                           )}
+                           {product.technicalData.voc && (
+                             <div className="flex justify-between py-3 border-b border-white/10">
+                               <span className="font-semibold text-white">VOC:</span>
+                               <span className="text-white/80">{product.technicalData.voc}</span>
+                             </div>
+                           )}
+                         </>
+                       )}
+                           {/* Show Viscosity field for adhesives, or tape test data table for tapes */}
+                           {product.category === 'TAPE' && product.technicalData.testData ? (
+                             <>
+                               {/* Professional 3-column test data table */}
+                               <div className="overflow-x-auto">
+                                 <table className="w-full text-sm">
+                                   <thead>
+                                     <tr className="border-b border-white/20">
+                                       <th className="text-left py-3 px-2 font-semibold text-white">Property</th>
+                                       <th className="text-left py-3 px-2 font-semibold text-white">Value</th>
+                                       <th className="text-left py-3 px-2 font-semibold text-white">Methods</th>
+                                     </tr>
+                                   </thead>
+                                   <tbody>
+                                     {product.technicalData.testData.map((test, index) => (
+                                       <tr key={index} className="border-b border-white/10">
+                                         <td className="py-3 px-2 text-white/90 font-medium">{test.property}</td>
+                                         <td className="py-3 px-2 text-white/80">{test.value || '-'}</td>
+                                         <td className="py-3 px-2 text-white/70 text-xs">{test.method}</td>
+                                       </tr>
+                                     ))}
+                                   </tbody>
+                                 </table>
                                </div>
+                             </>
+                           ) : product.category === 'TAPE' ? (
+                             // Fallback for tapes without test data
+                             <>
+                               {product.technicalData.thickness && (
+                                 <div className="flex justify-between py-3 border-b border-white/10">
+                                   <span className="font-semibold text-white">Thickness:</span>
+                                   <span className="text-white/80">{product.technicalData.thickness}</span>
+                                 </div>
+                               )}
+                               {product.technicalData.adhesiveType && (
+                                 <div className="flex justify-between py-3 border-b border-white/10">
+                                   <span className="font-semibold text-white">Adhesive Type:</span>
+                                   <span className="text-white/80">{product.technicalData.adhesiveType}</span>
+                                 </div>
+                               )}
+                             </>
+                           ) : (
+                             <div className="flex justify-between py-3 border-b border-white/10">
+                               <span className="font-semibold text-white">Viscosity:</span>
+                               <span className="text-white/80">{product.technicalData.viscosity || ''}</span>
                              </div>
                            )}
                          </div>
@@ -838,16 +861,16 @@ const ProductDetailPage: React.FC = () => {
                         Available Sizes
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
-                      {/* Sizes */}
-                      {product.sizes && product.sizes.length > 0 ? (
+                    <CardContent className="space-y-6 px-4 md:px-6 py-3 md:py-4">
+                      {/* Sizes (includes packaging data under same label) */}
+                      {sizesAndPackaging.length > 0 ? (
                         <div>
-                          <h3 className="text-xl font-bold text-white mb-4" 
+                          <h3 className="text-xl font-bold text-white mb-4"
                               style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
-                            Available Packaging Options
+                            Available Sizes
                           </h3>
                           <div className="grid md:grid-cols-2 gap-4">
-                            {product.sizes.map((size, index) => (
+                            {sizesAndPackaging.map((size, index) => (
                               <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                                 <div className="flex items-center gap-3">
                                   <Package className="h-5 w-5 text-blue-300" />
@@ -861,7 +884,7 @@ const ProductDetailPage: React.FC = () => {
                         <div className="text-center py-8">
                           <Package className="h-16 w-16 text-white/30 mx-auto mb-4" />
                           <p className="text-white/70 text-lg">No sizing information available for this product.</p>
-                          <p className="text-white/50 text-sm mt-2">Contact us for custom sizing options.</p>
+                          <p className="text-white/50 text-sm mt-2">Contact us for options.</p>
                         </div>
                       )}
                     </CardContent>

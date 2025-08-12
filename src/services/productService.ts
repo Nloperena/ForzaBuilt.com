@@ -53,7 +53,10 @@ const PRODUCTS_DATA_URL = '/productsSimplified.json';
 
 // Service functions
 export async function getAllProducts(): Promise<Product[]> {
-  const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
+  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
+    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
+    : PRODUCTS_DATA_URL;
+  const data = await fetchData<ProductsData>(url);
   const products = data.products || [];
   
   // Skip image validation for now to improve loading performance
@@ -62,7 +65,10 @@ export async function getAllProducts(): Promise<Product[]> {
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
-  const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
+  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
+    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
+    : PRODUCTS_DATA_URL;
+  const data = await fetchData<ProductsData>(url);
   const product = data.products.find(p => p.id === id) || null;
   
   // Skip image validation for now to improve loading performance
@@ -70,22 +76,34 @@ export async function getProductById(id: string): Promise<Product | null> {
 }
 
 export async function getProductsByCategory(category: string): Promise<Product[]> {
-  const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
+  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
+    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
+    : PRODUCTS_DATA_URL;
+  const data = await fetchData<ProductsData>(url);
   return data.products.filter(p => p.category === category);
 }
 
 export async function getProductsByIndustry(industry: string): Promise<Product[]> {
-  const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
+  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
+    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
+    : PRODUCTS_DATA_URL;
+  const data = await fetchData<ProductsData>(url);
   return data.products.filter(p => p.industry && p.industry.includes(industry));
 }
 
 export async function getProductsByChemistry(chemistry: string): Promise<Product[]> {
-  const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
+  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
+    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
+    : PRODUCTS_DATA_URL;
+  const data = await fetchData<ProductsData>(url);
   return data.products.filter(p => p.chemistry === chemistry);
 }
 
 export async function searchProducts(term: string): Promise<Product[]> {
-  const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
+  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
+    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
+    : PRODUCTS_DATA_URL;
+  const data = await fetchData<ProductsData>(url);
   const searchTerm = term.toLowerCase();
   
   return data.products.filter(product => 

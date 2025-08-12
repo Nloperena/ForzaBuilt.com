@@ -1117,7 +1117,7 @@ export const industrialDatasheet: ProductDatasheet[] = [
     "id": "mc739",
     "name": "MC739 – MIST SPRAY ADHESIVE FOR FIBERGLASS INFUSION MOLDING",
     "category": "BOND",
-    "industry": "industrial",
+    "industry": "marine",
     "description": "Specialized mist spray adhesive designed for fiberglass infusion molding processes.",
     "image": "https://forzabuilt.com/wp-content/uploads/2024/04/ForzaBond-MC739.png",
     "url": "https://forzabuilt.com/product/m30-mist-spray-adhesive-for-fibreglass-infusion-molding/",

@@ -42,6 +42,11 @@ export class ImageMappingService {
       't-t420': '/product-images/t-t420.png',
       't-t415': '/product-images/t-t415.png',
       
+      // C (Contact Adhesive) products
+      'c130': '/product-images/c130.png',
+      'c331': '/product-images/c331.png',
+      'c150': '/product-images/c150.png',
+      
       // C (Cleaner) products
       'c-t5100': '/product-images/c-t5100.png',
       'c-t731': '/product-images/c-t731.png',

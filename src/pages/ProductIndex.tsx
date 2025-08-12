@@ -39,7 +39,7 @@ const getProductCategories = () => {
         color: '#f16022'
       },
       'SEAL': {
-        title: 'Sealants & Gaskets',
+        title: 'Industrial Sealants',
         description: 'Advanced sealing solutions for leak prevention and environmental protection.',
         gradient: 'from-[#faaf40] via-[#f4c430] to-[#1B3764]',
         color: '#faaf40'

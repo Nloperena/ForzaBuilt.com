@@ -88,8 +88,12 @@
         "Allows resin to obtain maximum tensile strength",
         "Will not interfere with the curing process of vinyl ester, polyesters, or styrene safe"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
+      "imageUrl": "/product-images/tac-734g.png",
       "pdfLinks": [
         "/TDS/4. Composites/TAC-734G/TDS/FOR EMAIL FORZA_V4_TAC-734_TDS Marine Canister_6.26.24.pdf"
       ],
@@ -132,8 +136,12 @@
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "1 Gallon",
+        "5 Gallon Pail",
+        "52 Gallon Drum"
+      ],
+      "imageUrl": "/product-images/tac-735r.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/4. Composites/TAC-735R/TDS/FORZA_TDS_TAC-735R.pdf",
       "hasTdsLink": false,
@@ -183,8 +191,11 @@
         "Ultra efficient portable low maintenance spray system (requires no external air source)",
         "California Compliant"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
+      "imageUrl": "/product-images/tac-738r.png",
       "pdfLinks": [
         "/TDS/4. Composites/TAC-738R/TDS/FOR EMAIL FORZA_V5_TAC-738_TDS Marine Canister_Aerosol 5.12.25.pdf"
       ],
@@ -234,8 +245,12 @@
         "Helps improve overall strength of composite structures by eliminating wet out (uncured resin pockets)",
         "Ultra efficient portable low maintenance spray system (requires no external air sources)"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
+      "imageUrl": "/product-images/tac-739r.png",
       "pdfLinks": [
         "/TDS/4. Composites/TAC-739R/TDS/FOR EMAIL FORZA_V5_TAC-739_TDS Composites-Canister_Aerosol 7_15_25.pdf"
       ],
@@ -289,8 +304,11 @@
         "Fully Portable System",
         "HAPs Free"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
+      "imageUrl": "/product-images/mc722.png",
       "pdfLinks": [
         "/TDS/2. Marine/MC722 (IC932)/TDS/FOR EMAIL FORZA_V11_MC722_TDS Industrial Canister_Aerosol 5.14.25.pdf"
       ],
@@ -341,8 +359,14 @@
         "High-strength, long-term bond",
         "Low VOC & California Compliant (SCAQMD Rule 1168)"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister",
+        "55 Gallon Drum",
+        "5 Gallon Pail"
+      ],
+      "imageUrl": "/product-images/mc723.png",
       "pdfLinks": [
         "/TDS/2. Marine/MC723 (IC933)/TDS/FOR EMAIL FORZA_V14_MC723_TDS Industrial Canister_Aerosol 5_12_25.pdf"
       ],
@@ -386,7 +410,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/mc724.png",
       "pdfLinks": [
         "/TDS/2. Marine/MC724 (IC934)/TDS/FOR EMAIL FORZA_V12_MC724_TDS Industrial Canister_Aerosol 7-15-25.pdf"
       ],
@@ -442,8 +466,12 @@
         "OTC Compliant",
         "Temporary fixturing single-sided applications"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
+      "imageUrl": "/product-images/mc737.png",
       "pdfLinks": [
         "/TDS/2. Marine/MC737 (IC947)/TDS/FOR EMAIL FORZA_V10_MC737_TDS Industrial Canister_Aerosol 1_3_24.pdf"
       ],
@@ -496,8 +524,13 @@
         "Low VOC & California Compliant (SCAQMD Rule 1168)",
         "Low HAPs formula"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13 oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister",
+        "55 Gallon Drum"
+      ],
+      "imageUrl": "/product-images/mc741.png",
       "pdfLinks": [
         "/TDS/2. Marine/MC741 (IC951)/TDS/FOR EMAIL FORZA _V14_MC741_TDS Marine Canister_Aerosol_3_24_2025.pdf"
       ],
@@ -541,7 +574,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/m-os764.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-OS764 (OS24)/TDS/FOR EMAIL FORZA_V4_M-OS764_TDS Industrial Canister_Aerosol 4_10_24.pdf"
       ],
@@ -585,7 +618,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa13.png",
+      "imageUrl": "/product-images/m-oa755.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-OA755 (OA4)/TDS/FOR EMAIL FORZA_V5_M-OA755_TDS 3_27_24.pdf"
       ],
@@ -629,7 +662,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/m-r420.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-R420 (R160)/TDS/FOR EMAIL FORZA_V4_M-R420_TDS Marine-Sausage_7.15.25.pdf"
       ],
@@ -673,7 +706,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/m-r445.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-R445 (R221)/TDS/FOR EMAIL FORZA_V4_M-R445_TDS Marine_7.10.25.pdf"
       ],
@@ -717,7 +750,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/m-osa783.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-OSA783 (OSA)/TDS/FOR EMAIL FORZA_V2_M-OSA783_TDS Industrial Canister_Aerosol 3_27_24.pdf"
       ],
@@ -734,34 +767,69 @@
       "id": "m-s750",
       "name": "M-S750 – TAPE PRIMER AND ADHESION PROMOTER",
       "description": "ForzaBOND™ M-S750 is a primer to increase adhesive performance.",
-      "category": "BOND",
+      "category": "TAPE",
       "industry": [
         "marine"
       ],
       "productType": "Tape",
-      "chemistry": "Hot Melt",
+      "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "12 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "7.5 lbs/gal",
-        "pH": "6.0-7.0",
+        "thickness": "See TDS",
         "color": "Clear to Amber",
-        "odor": "Mild",
-        "storageConditions": "Store at 50-80°F, keep container closed",
-        "temperatureRange": "",
-        "adhesiveType": "",
-        "foamType": "",
-        "peelStrength": "",
-        "shearStrength": ""
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "1/2in x 108 ft",
+        "1in x 108 ft",
+        "3/4in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
+      "imageUrl": "/product-images/m-s750.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/2. Marine/M-S750/TDS/FORZA_TDS_M-S750.pdf",
       "hasTdsLink": false,
@@ -803,7 +871,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/m-c280.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-C280 (C130)/TDS/FOR EMAIL FORZA_V3_M-C280_TDS Industrial Canister_Aerosol 3-25-24.pdf"
       ],
@@ -847,7 +915,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/m-c285.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-C285 (81-0389)/TDS/FOR EMAIL FORZA _V3_M-C285_TDS_Marine_2.14.2025.pdf"
       ],
@@ -897,8 +965,14 @@
         "Strong initial bond",
         "Low VOC California Compliant (SCAQMD Rule 1168)"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister",
+        "5 Gal Pail",
+        "55 Gal Drum"
+      ],
+      "imageUrl": "/product-images/ic933.png",
       "pdfLinks": [
         "/TDS/1. Industrial/IC933/TDS/FOR EMAIL FORZA_V9_IC933_TDS Industrial Canister_Aerosol 5.12.2025.pdf"
       ],
@@ -948,8 +1022,12 @@
         "Full strength achieved in 24 hours",
         "No ODS (ozone depleting substances)"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Canister",
+        "108L Canister"
+      ],
+      "imageUrl": "/product-images/ic934.png",
       "pdfLinks": [
         "/TDS/1. Industrial/IC934/TDS/FOR EMAIL FORZA_V10_IC934_TDS Industrial Canister_12_29_2023.pdf"
       ],
@@ -999,8 +1077,12 @@
         "Full strength achieved in 24 hours",
         "No ODS (ozone depleting substances)"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Canister",
+        "108L Canister"
+      ],
+      "imageUrl": "/product-images/ic946.png",
       "pdfLinks": [
         "/TDS/1. Industrial/IC946/TDS/FOR EMAIL FORZA _V11_IC946_TDS Industrial Canister_Aerosol_5.20.2024.pdf"
       ],
@@ -1051,8 +1133,12 @@
         "Allows resin to obtain maximum tensile strength",
         "Will not interfere with the curing process of vinyl esters, polyesters or styrene resin"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/os55.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Canister",
+        "108L Canister"
+      ],
+      "imageUrl": "/product-images/mc739.png",
       "pdfLinks": [
         "/TDS/2. Marine/MC739/TDS/FOR EMAIL FORZA_V7_MC739_TDS Marine Canister_Aerosol 5_13_25.pdf"
       ],
@@ -1105,8 +1191,12 @@
         "No chlorinated solvents",
         "Sprayable/ Rollable/ Brushable"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "1 Gallon",
+        "5 Gallon Pail",
+        "52 Gallon Drum"
+      ],
+      "imageUrl": "/product-images/c130.png",
       "pdfLinks": [
         "/TDS/1. Industrial/C130/TDS/FOR EMAIL FORZA_V1_C130_TDS Industrial Sausage_5.17.24.pdf"
       ],
@@ -1150,7 +1240,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/c150.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/1. Industrial/C150/TDS/FORZA_TDS_C150.pdf",
       "hasTdsLink": false,
@@ -1166,28 +1256,19 @@
       "name": "C331 – NON-FLAMMABLE CONTACT ADHESIVE",
       "description": "ForzaBOND™ C331 is a non-flammable high-performance spray contact adhesive.",
       "category": "BOND",
+      "imageUrl": "/product-images/c331.png",
       "industry": [
         "industrial"
       ],
       "productType": "Coating",
       "chemistry": "Solvent Base",
       "technicalData": {
-        "appearance": "",
+        "appearance": "Amber",
         "shelfLife": "12 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "8.0 lbs/gal",
-        "pH": "6.5-7.0",
-        "color": "Clear to Light Blue",
-        "odor": "Minimal",
-        "storageConditions": "Store at 50-80°F, keep container closed",
-        "temperatureRange": "",
-        "adhesiveType": "",
-        "foamType": "",
-        "peelStrength": "",
-        "shearStrength": ""
+        "solids": "22-28%",
+        "solvent": "Non-Flammable",
+        "voc": "0 g/L",
+        "viscosity": ""
       },
       "applications": "",
       "benefits": [
@@ -1200,8 +1281,11 @@
         "VOC free",
         "Qualifies for LEED®-NC & CI EQ Credit 4.4: laminating adhesives shall contain no urea formaldehyde resins"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "1 Gallon",
+        "5 Gallon Pail",
+        "52 Gallon Drum"
+      ],
       "pdfLinks": [
         "/TDS/1. Industrial/C331/TDS/FOR EMAIL FORZA_V2_C331_TDS_DRUM_5.17.24.pdf"
       ],
@@ -1212,7 +1296,17 @@
       "isActive": true,
       "createdAt": "2025-08-06T15:40:58.389Z",
       "updatedAt": "2025-08-06T15:52:29.475Z",
-      "version": 1
+      "version": 1,
+      "specifications": {
+        "technical": {
+          "appearance": "Amber",
+          "shelfLife": "12 months",
+          "solids": "22-28%",
+          "solvent": "Non-Flammable",
+          "voc": "0 g/L",
+          "viscosity": ""
+        }
+      }
     },
     {
       "id": "frp",
@@ -1245,7 +1339,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/frp.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/4. Composites/FRP/TDS/FORZA_TDS_FRP.pdf",
       "hasTdsLink": false,
@@ -1287,7 +1381,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/i1000.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/1. Industrial/I1000/TDS/FORZA_TDS_I1000.pdf",
       "hasTdsLink": false,
@@ -1338,8 +1432,14 @@
         "Meets or exceeds ASTM Standards D412, D1002, D794, G26",
         "High strength"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa12.png",
+      "sizes": [
+        "10.1 oz Cartridge",
+        "20 oz Sausage",
+        "28 oz Cartridge",
+        "5 Gallon Pail",
+        "52 Gallon Drum"
+      ],
+      "imageUrl": "/product-images/oa4.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OA4/TDS/FOR EMAIL ORZA_V6_OA4_TDS Industrial Sausage_5.16.25.pdf"
       ],
@@ -1387,7 +1487,7 @@
         "Low odor & VOC"
       ],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/oa75.png",
       "pdfLinks": [],
       "standardTdsLink": "",
       "hasTdsLink": false,
@@ -1429,7 +1529,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa13.png",
+      "imageUrl": "/product-images/oa99.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/1. Industrial/OA99/TDS/FORZA_TDS_OA99.pdf",
       "hasTdsLink": false,
@@ -1476,8 +1576,12 @@
         "Easy wipe on format",
         "Reduces grease and oils"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "2 oz",
+        "1 Quart Can",
+        "Custom Sizes Available"
+      ],
+      "imageUrl": "/product-images/osa.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OSA/TDS/FOR EMAIL FORZA_V1_OSA_TDS_2_7_24.pdf"
       ],
@@ -1530,8 +1634,11 @@
         "High tack holds parts until cured.",
         "UV stable."
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "10.1 oz Cartridge",
+        "20 oz Sausage"
+      ],
+      "imageUrl": "/product-images/os24.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS24/TDS/FOR EMAIL FORZA_V6_OS24_TDS Industrial Sausage_4_16_24.pdf"
       ],
@@ -1579,8 +1686,13 @@
         "-60º to 250º F service temperature",
         "Resistant to water, salt, vehicle fuels and fluids, and many other substances"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "280 ml Cartridge",
+        "5 Gallon",
+        "55 Gallon Drum",
+        "50 ml Cartridge"
+      ],
+      "imageUrl": "/product-images/r160.png",
       "pdfLinks": [
         "/TDS/1. Industrial/R160/TDS/FOR EMAIL FORZA_V5_R160_TDS Industrial Sausage_1_31_24.pdf"
       ],
@@ -1633,8 +1745,12 @@
         "Generates no heat",
         "100% solids no shrinking"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "400 ml Cartridge",
+        "5 Gallon Pail",
+        "52 Gallon Drum"
+      ],
+      "imageUrl": "/product-images/r221.png",
       "pdfLinks": [
         "/TDS/1. Industrial/R221/TDS/FOR EMAIL FORZA_V4_R221_TDS Industrial Drum_6_18_25.pdf"
       ],
@@ -1686,8 +1802,13 @@
         "Impact and weather resistant",
         "Retains bond strength in boiling water, salt water, salt fog, kerosene, gasoline, diesel fuel, antifreeze, hydraulic fluids and cutting oils"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "50 ml Cartridge",
+        "400 ml Cartridge",
+        "5 Gallon",
+        "52 Gallon Drum"
+      ],
+      "imageUrl": "/product-images/r519.png",
       "pdfLinks": [
         "/TDS/1. Industrial/R519/TDS/FOR EMAIL FORZA_V2_R519_TDS Industrial Drum_2_6_24.pdf"
       ],
@@ -1731,7 +1852,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/r529.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/1. Industrial/R529/TDS/FORZA_TDS_R529.pdf",
       "hasTdsLink": false,
@@ -1773,7 +1894,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/s228.png",
       "pdfLinks": [
         "/TDS/3. Transportation/T-S596 (S228)/FOR EMAIL FORZA_V4_T-S596_TDS_Transportation_1.9.25.pdf"
       ],
@@ -1817,7 +1938,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/c-t500.png",
+      "imageUrl": "/product-images/fc-car.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/1. Industrial/FC-CAR/TDS/FORZA_TDS_FC-CAR.pdf",
       "hasTdsLink": false,
@@ -1859,7 +1980,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/os55.png",
+      "imageUrl": "/product-images/m-os789.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-OS789 (OS2)/TDS/FOR EMAIL FORZA_V7_M-OS789_TDS Industrial Sausage_1_31_24.pdf"
       ],
@@ -1903,7 +2024,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/os55.png",
+      "imageUrl": "/product-images/m-os796.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-OS796 (OS16)/TDS/FOR EMAIL FORZA_V4_M-OS796_TDS_Marine_6-26-24.pdf"
       ],
@@ -1927,27 +2048,64 @@
       "productType": "Tape",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "60+ oz/in",
-        "shearStrength": "100+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "30-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "55-65 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "48-55 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "7-10 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "58-65 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "300°F / 149°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "390°F / 199°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
-      "imageUrl": "/product-images/t500.png",
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
+      "imageUrl": "/product-images/m-t815.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-T815 (T215)/FOR EMAIL FORZA _V2_M-T815_TDSTape_6.26.24.pdf"
       ],
@@ -1971,27 +2129,64 @@
       "productType": "Tape",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "60+ oz/in",
-        "shearStrength": "100+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "30-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "55-65 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "48-55 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "7-10 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "58-65 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "300°F / 149°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "390°F / 199°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
-      "imageUrl": "/product-images/t500.png",
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
+      "imageUrl": "/product-images/m-t820.png",
       "pdfLinks": [
         "/TDS/2. Marine/M-T820 (T220)/FOR EMAIL FORZA _V3_M-T820_TDSTape_6.26.24.pdf"
       ],
@@ -2042,8 +2237,12 @@
         "No ODS",
         "Bonds well to porous surfaces"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108 Returnable Canister"
+      ],
+      "imageUrl": "/product-images/cc501.png",
       "pdfLinks": [
         "/TDS/7. Construction/CC501 (IC946)/TDS/FOR EMAIL FORZA_V1_CC501_TDS Construction Canister_Aerosol 1_18_24.pdf"
       ],
@@ -2097,8 +2296,11 @@
         "OTC Compliant",
         "Temporary fixturing single-sided applications"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "22L Disposable Canister",
+        "108 Returnable Canister"
+      ],
+      "imageUrl": "/product-images/cc507.png",
       "pdfLinks": [
         "/TDS/7. Construction/CC507 (IC947)/TDS/FOR EMAIL FORZA_V1_CC507_TDS Construction Canister_1_3_24.pdf"
       ],
@@ -2151,8 +2353,11 @@
         "Fully Portable System",
         "HAPS Free"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
+      "imageUrl": "/product-images/cc513.png",
       "pdfLinks": [
         "/TDS/7. Construction/CC513 (IC932)/TDS/FOR EMAIL FORZA_V2_CC513_TDSConstructionCanister_5.14.25.pdf"
       ],
@@ -2200,8 +2405,12 @@
         "Very fast drying",
         "No ODS (Ozone Depleting Substances)"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108 Returnable Canister"
+      ],
+      "imageUrl": "/product-images/cc515.png",
       "pdfLinks": [
         "/TDS/7. Construction/CC515 (IC934)/TDS/FOR EMAIL FORZA_V1_CC515_TDS Construction Canister_Aerosol 1_11_24.pdf"
       ],
@@ -2250,7 +2459,13 @@
         "Aggressive – bonds to nearly any surface",
         "Great heat resistance (up to 180ºF/82ºC)"
       ],
-      "sizes": [],
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108 Returnable Canister",
+        "55 Gallon Drum",
+        "5 Gallon Pail"
+      ],
       "imageUrl": "/product-images/cc519.png",
       "pdfLinks": [
         "/TDS/7. Construction/CC519 (IC933)/TDS/FOR EMAIL FORZA_V2_CC519_TDSConstructionCanister_Aerosol 5_12_25.pdf"
@@ -2733,7 +2948,7 @@
       "applications": "",
       "benefits": [],
       "sizes": [],
-      "imageUrl": "/product-images/oa23.png",
+      "imageUrl": "/product-images/c-osa.png",
       "pdfLinks": [
         "/TDS/7. Construction/C-OSA (OSA)/TDS/FOR EMAIL FORZA_V2_C-OSA_TDS_Construction_1_28_25.pdf"
       ],
@@ -2792,33 +3007,68 @@
       "id": "c-s538",
       "name": "C-S538 – TAPE PRIMER AND ADHESION PROMOTER",
       "description": "ForzaTAPE™ C-S538 is a primer to increase adhesive performance.",
-      "category": "BOND",
+      "category": "TAPE",
       "industry": [
         "construction"
       ],
       "productType": "Adhesive",
-      "chemistry": "Hot Melt",
+      "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "12 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "7.0 lbs/gal",
-        "pH": "6.5-7.0",
+        "thickness": "See TDS",
         "color": "Clear to Light Amber",
-        "odor": "Low",
-        "storageConditions": "Store at 50-80°F, keep container sealed",
-        "temperatureRange": "",
-        "adhesiveType": "",
-        "foamType": "",
-        "peelStrength": "",
-        "shearStrength": ""
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/2in x 108 ft",
+        "1in x 108 ft",
+        "3/4in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/c-s538.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/7. Construction/C-S538/TDS/FORZA_TDS_C-S538.pdf",
@@ -2914,7 +3164,10 @@
         "Fully Portable System",
         "HAPs Free"
       ],
-      "sizes": [],
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/tc452.png",
       "pdfLinks": [
         "/TDS/3. Transportation/TC452 (IC932)/TDS/FOR EMAIL FORZA_V8_TC452_TDS Industrial Canister_5.14.25.pdf"
@@ -2964,7 +3217,13 @@
         "High-strength, long-term permanent bond",
         "Low VOC & California Compliant (SCAQMD Rule 1168)"
       ],
-      "sizes": [],
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister",
+        "5 Gal Pail",
+        "55 Gal Drum"
+      ],
       "imageUrl": "/product-images/tc453.png",
       "pdfLinks": [
         "/TDS/3. Transportation/TC453 (IC933)/TDS/FOR EMAIL FORZA_V11_TC453_TDS Industrial Canister_Aerosol 5_12_25.pdf"
@@ -3013,7 +3272,11 @@
         "Very fast drying",
         "No ODS (ozone depleting substances)"
       ],
-      "sizes": [],
+      "sizes": [
+        "13 oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/tc454.png",
       "pdfLinks": [
         "/TDS/3. Transportation/TC454 (IC934)/TDS/FOR EMAIL FORZA_V7_TC454_TDS Industrial Canister_Aerosol_2_6_25.pdf"
@@ -3063,7 +3326,11 @@
         "High Strength, long-term bond",
         "Low VOC & California Compliant (SCAQMD Rule 1168)"
       ],
-      "sizes": [],
+      "sizes": [
+        "13 oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/tc456.png",
       "pdfLinks": [],
       "standardTdsLink": "",
@@ -3113,7 +3380,11 @@
         "Low VOC & California Compliant (SCAQMD Rule 1168)",
         "No ODS (ozone depleting substances)"
       ],
-      "sizes": [],
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/tc466.png",
       "pdfLinks": [
         "/TDS/3. Transportation/TC466 (IC946)/TDS/FOR EMAIL FORZA_V11_TC466_TDS Industrial Canister_Aerosol 1_18_24.pdf"
@@ -3169,7 +3440,10 @@
         "OTC Compliant",
         "Temporary fixturing single-sided applications"
       ],
-      "sizes": [],
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/tc467.png",
       "pdfLinks": [
         "/TDS/3. Transportation/TC467 (IC947)/TDS/FOR EMAIL FORZA_V7_TC467_TDS Industrial Canister_Aerosol 1_3_24.pdf"
@@ -3867,7 +4141,10 @@
         "High Tack Formulation",
         "Ultra efficient, portable, low maintenance spray system (requires no external air sources)"
       ],
-      "sizes": [],
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/tac850.png",
       "pdfLinks": [
         "/TDS/4. Composites/TAC850 Series/TDS/FOR EMAIL FORZA_V1_TAC850_TDS Composites Canister_ 03.26.25.pdf"
@@ -4043,7 +4320,13 @@
         "Can be applied to overhead or vertical joints",
         "Excellent UV resistance, does not crack, collapse in direct sunlight"
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1oz Cartridge",
+        "20oz Sausage",
+        "2 Gallon Pail",
+        "5 Gallon Pail",
+        "55 Gallon Drum"
+      ],
       "imageUrl": "/product-images/tac-os75.png",
       "pdfLinks": [
         "/TDS/4. Composites/TAC-OS75/TDS/FOR EMAIL FORZA _V1_TAC-OS75_TDS_CompositeSealant_4.25.25.pdf"
@@ -4093,7 +4376,11 @@
         "Good heat resistance (up to 180ºF/82ºC)",
         "High-strength, long-term bond"
       ],
-      "sizes": [],
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/rc826.png",
       "pdfLinks": [
         "/TDS/6. Insulation/RC826 (IC936)/TDS/FOR EMAIL FORZA_V4_RC826_TDS Insulation Canister_ Aerosol_5.13.25 (1).pdf"
@@ -4145,7 +4432,10 @@
         "Fully Portable System",
         "HAPs Free"
       ],
-      "sizes": [],
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/rc862.png",
       "pdfLinks": [
         "/TDS/6. Insulation/RC862 (IC932)/TDS/FOR EMAIL FORZA_V3_RC862_TDS Insulation Canister_5.14.25.pdf"
@@ -4195,7 +4485,13 @@
         "Good heat resistance (up to 180ºF/82ºC)",
         "High-strength, long-term bond"
       ],
-      "sizes": [],
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister",
+        "5 Gallon Pail",
+        "55 Gallon Drum"
+      ],
       "imageUrl": "/product-images/rc863.png",
       "pdfLinks": [
         "/TDS/6. Insulation/RC863 (IC933)/TDS/FOR EMAIL FORZA_V3_RC863_TDS Insulation Canister_Aerosol 5_12_25.pdf"
@@ -4245,7 +4541,11 @@
         "Full strength achieved in 24 hours",
         "No ODS (Ozone Depleting Substances)"
       ],
-      "sizes": [],
+      "sizes": [
+        "13 oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/rc864.png",
       "pdfLinks": [
         "/TDS/6. Insulation/RC864 (IC934)/TDS/FOR EMAIL FORZA_V3_RC864_TDS Insulation Canister_Aerosol_2_6_25.pdf"
@@ -4296,7 +4596,11 @@
         "No ODS (Ozone Depleting Substances)",
         "Bonds well to porous surfaces"
       ],
-      "sizes": [],
+      "sizes": [
+        "13oz Aerosol Can",
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/rc886.png",
       "pdfLinks": [
         "/TDS/6. Insulation/RC886 (IC946)/TDS/FOR EMAIL FORZA _V2_RC886_TDS Industrial Canister_Aerosol_9_5_24.pdf"
@@ -4348,7 +4652,10 @@
         "No ODS (Ozone Depleting Substances)",
         "Temporary fixturing single-sided applications"
       ],
-      "sizes": [],
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/rc887.png",
       "pdfLinks": [
         "/TDS/6. Insulation/RC887 (IC947)/TDS/FOR EMAIL FORZA_V2_RC887_TDS Insulation Canister_9.5.2024.pdf"
@@ -4635,26 +4942,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "40+ oz/in",
-        "shearStrength": "80+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/r-t600.png",
       "pdfLinks": [
         "/TDS/6. Insulation/R-T600 (T305)/FOR EMAIL FORZA _V2_R-T600_TDSTape_9.9.24.pdf"
@@ -4679,26 +5023,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Low Density",
-        "peelStrength": "35+ oz/in",
-        "shearStrength": "70+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/r-t620.png",
       "pdfLinks": [
         "/TDS/6. Insulation/R-T620 (T310)/FOR EMAIL FORZA _V2_R-T620_TDSTape_9.9.24.pdf"
@@ -4723,26 +5104,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "45+ oz/in",
-        "shearStrength": "85+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "20-28 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "35-45 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "35-45 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "4-7 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "40-50 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-50°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "200°F / 93°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "250°F / 121°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/r-t860.png",
       "pdfLinks": [
         "/TDS/6. Insulation/R-T860 (T715)/FOR EMAIL FORZA _V2_R-T860_TDSTape_9.9.24.pdf"
@@ -4796,7 +5214,10 @@
         "Fully Portable System",
         "HAPs Free"
       ],
-      "sizes": [],
+      "sizes": [
+        "22L Disposable Canister",
+        "108L Returnable Canister"
+      ],
       "imageUrl": "/product-images/ic932.png",
       "pdfLinks": [
         "/TDS/2. Marine/MC722 (IC932)/TDS/FOR EMAIL FORZA_V11_MC722_TDS Industrial Canister_Aerosol 5.14.25.pdf"
@@ -4849,7 +5270,10 @@
         "No ODS (Ozone Depleting Substances)",
         "Temporary fixturing single-sided application"
       ],
-      "sizes": [],
+      "sizes": [
+        "22L Canister",
+        "108L Canister"
+      ],
       "imageUrl": "/product-images/ic947.png",
       "pdfLinks": [
         "/TDS/1. Industrial/IC947/TDS/FOR EMAIL FORZA_V10_IC947_TDS Industrial Canister_5.20.2025.pdf"
@@ -4902,7 +5326,11 @@
         "Sprayable",
         "Ideal for aircraft applications"
       ],
-      "sizes": [],
+      "sizes": [
+        "1 Gal Pail",
+        "5 Gal pail",
+        "55 Gal Drum"
+      ],
       "imageUrl": "/product-images/81-0389.png",
       "pdfLinks": [
         "/TDS/1. Industrial/81-0389/TDS/FOR EMAIL FORZA _V7_81-0389_TDS Industrial Canister_Aerosol8.29.24.pdf"
@@ -4953,7 +5381,11 @@
         "Can be painted over once fully cured",
         "Low odor and VOC content"
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1oz Cartridge",
+        "28 oz Cartridge",
+        "20 oz Sausage"
+      ],
       "imageUrl": "/product-images/oa12.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OA12/TDS/FOR EMAIL FORZA_V6_OA12_TDS Industrial Sausage_1_31_24.pdf"
@@ -5004,7 +5436,12 @@
         "Can be painted over once fully cured",
         "Low odor and VOC content"
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1oz Cartridge",
+        "20oz Sausage",
+        "28oz Cartridge",
+        "52 Gallon Drum"
+      ],
       "imageUrl": "/product-images/oa13.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OA13/TDS/FOR EMAIL FORZA_V2_OA13_TDS Industrial_06.20.2024.pdf"
@@ -5055,7 +5492,11 @@
         "Can be painted over once fully cured",
         "Low odor and VOC content"
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1 oz Cartridge",
+        "28 oz Cartridge",
+        "20 oz Sausage"
+      ],
       "imageUrl": "/product-images/oa23.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/7. Construction/OA23/TDS/FORZA_TDS_OA23.pdf",
@@ -5102,7 +5543,9 @@
         "Excellent Heat Aging Properties",
         "High Heat Resistance"
       ],
-      "sizes": [],
+      "sizes": [
+        "4.4 Pounds"
+      ],
       "imageUrl": "/product-images/ca1000.png",
       "pdfLinks": [
         "/TDS/1. Industrial/CA1000/TDS/FORZA _V1_CA1000_TDS_IndustrialInstant Adhesive_4.30.2025.pdf"
@@ -5151,7 +5594,9 @@
         "Excellent Heat Aging Properties",
         "High Heat Resistance"
       ],
-      "sizes": [],
+      "sizes": [
+        "1 Pound"
+      ],
       "imageUrl": "/product-images/ca1500.png",
       "pdfLinks": [
         "/TDS/1. Industrial/CA1500/TDS/FORZA _V1_CA1500_TDS_IndustrialInstant Adhesive_4.30.2025.pdf"
@@ -5200,7 +5645,9 @@
         "Excellent Heat Aging Properties",
         "High Heat Resistance"
       ],
-      "sizes": [],
+      "sizes": [
+        "1 Pound"
+      ],
       "imageUrl": "/product-images/ca2400.png",
       "pdfLinks": [
         "/TDS/1. Industrial/CA2400/TDS/FORZA _V1_CA2400_TDS_IndustrialInstant Adhesive_4.30.2025.pdf"
@@ -5255,7 +5702,13 @@
         "High UV resistance",
         "Doesn’t attract dust or dirt"
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1 oz Cartridge",
+        "20 oz Sausage",
+        "28 oz Cartridge",
+        "5 Gallon Pail",
+        "52 Gallon Drum"
+      ],
       "imageUrl": "/product-images/os2.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS2/TDS/FOR EMAIL FORZA_V7_OS2_TDS Industrial Sausage_5_5_25.pdf"
@@ -5308,7 +5761,13 @@
         "High UV resistance/ Doesn’t Chalkout",
         "Doesn’t attract dust or dirt"
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1oz Cartridge",
+        "28oz Cartridge",
+        "20oz Sausage",
+        "5 Gallon Pail",
+        "52 Gallon Drum"
+      ],
       "imageUrl": "/product-images/os10.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS10/TDS/FOR EMAIL FORZA_V1_OS10_TDS Industrial Polymer_5.6.25.pdf"
@@ -5362,7 +5821,13 @@
         "High UV resistance / Doesn’t Chalkout.",
         "Doesn’t attract dust or dirt."
       ],
-      "sizes": [],
+      "sizes": [
+        "20oz Sausage",
+        "10.1oz Catridge",
+        "28oz Cartridge",
+        "52 Gal Drum",
+        "5 Gal Pail"
+      ],
       "imageUrl": "/product-images/os20.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS20/TDS/FOR EMAIL FORZA_V3_OS20_TDS Industrial Sausage_5.16.25.pdf"
@@ -5411,7 +5876,11 @@
         "Weather resistant",
         "Paintable"
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1oz Cartridge",
+        "28oz Cartridge",
+        "20oz Sausage"
+      ],
       "imageUrl": "/product-images/os25.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS25/TDS/FOR EMAIL FORZA_V1_OS25_TDS Industrial Polymer_5.6.25.pdf"
@@ -5503,7 +5972,10 @@
         "Bonds many surfaces: Clean metal-including chrome, painted surfaces, glasses, ceramics, most plastics, non-oily woods, fibrous cement and concrete surfaces",
         "Di-electrical properties & FDA (Food Grade) Compliant. Sealing of solar panels and junction boxes."
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1 oz Cartridge",
+        "20oz Sausage"
+      ],
       "imageUrl": "/product-images/os35.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS35/TDS/FOR EMAIL FORZA _V1_OS35_TDS_IndustrialSealant_5.8.2025.pdf"
@@ -5551,7 +6023,13 @@
         "Glass",
         "Some Metals and Plastics"
       ],
-      "sizes": [],
+      "sizes": [
+        "10.1oz Cartridge",
+        "20oz Sausage",
+        "2 Gallon Pail",
+        "5 Gallon Pail",
+        "55 Gallon Drum"
+      ],
       "imageUrl": "/product-images/os37.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS37/TDS/FOR EMAIL FORZA _V1_OS37_TDS_IndustrialSealant_5.2.2025.pdf"
@@ -5595,7 +6073,12 @@
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "10.1 oz Cartridge",
+        "20 oz Sausage",
+        "5 Gallon Pail",
+        "52 Gallon Drum"
+      ],
       "imageUrl": "/product-images/os61.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS61/TDS/FOR EMAIL FORZA_V1_OS61_TDS Industrial Polymer_5.6.25.pdf"
@@ -5652,7 +6135,7 @@
         "USDA Accepted"
       ],
       "sizes": [],
-      "imageUrl": "/product-images/os55.png",
+      "imageUrl": "/product-images/os61-adhesive.png",
       "pdfLinks": [
         "/TDS/1. Industrial/OS61/TDS/FOR EMAIL FORZA_V1_OS61_TDS Industrial Polymer_5.6.25.pdf"
       ],
@@ -5676,26 +6159,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "35+ oz/in",
-        "shearStrength": "75+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/c-t500.png",
       "pdfLinks": [
         "/TDS/7. Construction/C-T500 (T305)/FOR EMAIL FORZA _V1_C-T500_TDSTape_5.24.24.pdf"
@@ -5720,26 +6240,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "Gray Foam Core",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "0.045 in (1.1 mm)",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "60+ oz/in",
-        "shearStrength": "100+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "30-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "55-65 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "48-55 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "7-10 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "58-65 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "300°F / 149°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "390°F / 199°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/2in x 108 ft",
+        "1in x 108 ft",
+        "1/4in x 108 ft",
+        "1 1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "3/8in x 108 ft"
+      ],
       "imageUrl": "/product-images/c-t550.png",
       "pdfLinks": [
         "/TDS/7. Construction/C-T550 (T205)/FOR EMAIL FORZA _V1_C-T550_TDSTape_3.5.24.pdf"
@@ -5764,26 +6321,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "60+ oz/in",
-        "shearStrength": "100+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "30-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "55-65 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "48-55 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "7-10 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "58-65 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "300°F / 149°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "390°F / 199°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/c-t553.png",
       "pdfLinks": [
         "/TDS/7. Construction/C-T553 (T215)/FOR EMAIL FORZA _V1_C-T553_TDSTape_8.20.24.pdf"
@@ -5808,26 +6402,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "50+ oz/in",
-        "shearStrength": "90+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/c-t557.png",
       "pdfLinks": [
         "/TDS/7. Construction/C-T557 (T220)/FOR EMAIL FORZA _V1_C-T557_TDSTape_8.20.24.pdf"
@@ -5852,26 +6483,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "40+ oz/in",
-        "shearStrength": "80+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/c-t564.png",
       "pdfLinks": [],
       "standardTdsLink": "",
@@ -5894,26 +6562,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "45+ oz/in",
-        "shearStrength": "85+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/c-t731.png",
       "pdfLinks": [
         "/TDS/7. Construction/C-T731 (T465)/FOR EMAIL FORZA _V1_C-T731_TDSTape_5.23.24.pdf"
@@ -5938,26 +6643,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "50+ oz/in",
-        "shearStrength": "90+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/c-t5100.png",
       "pdfLinks": [
         "/TDS/7. Construction/C-T5100 (T715)/FOR EMAIL FORZA _V1_C-T5100_TDSTape_5.23.24.pdf"
@@ -5982,27 +6724,64 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "60+ oz/in",
-        "shearStrength": "100+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "30-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "55-65 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "48-55 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "7-10 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "58-65 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "300°F / 149°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "390°F / 199°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
-      "imageUrl": "/product-images/t500.png",
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
+      "imageUrl": "/product-images/t-t415.png",
       "pdfLinks": [
         "/TDS/3. Transportation/T-T415 (T215)/FOR EMAIL FORZA _V4_T-T415_TDSTape_8.20.24.pdf"
       ],
@@ -6026,27 +6805,64 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "60+ oz/in",
-        "shearStrength": "100+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "30-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "55-65 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "48-55 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "7-10 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "58-65 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "300°F / 149°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "390°F / 199°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
-      "imageUrl": "/product-images/t500.png",
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
+      "imageUrl": "/product-images/t-t420.png",
       "pdfLinks": [
         "/TDS/3. Transportation/T-T420 (T220)/FOR EMAIL FORZA _V5_T-T420_TDSTape_8.20.24.pdf"
       ],
@@ -6070,27 +6886,64 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "40+ oz/in",
-        "shearStrength": "80+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
-      "imageUrl": "/product-images/t500.png",
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
+      "imageUrl": "/product-images/t-t1200.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/3. Transportation/T-T1200/TDS/FORZA_TDS_T-T1200.pdf",
       "hasTdsLink": false,
@@ -6112,22 +6965,52 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "50+ oz/in",
-        "shearStrength": "90+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
@@ -6140,8 +7023,10 @@
         "Durable backing is abrasion resistant",
         "Immediately paintable"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/t500.png",
+      "sizes": [
+        "Standard and Custom sizes are available. Call for request."
+      ],
+      "imageUrl": "/product-images/t-t1420.png",
       "pdfLinks": [
         "/TDS/3. Transportation/T-T1420/FOR EMAIL FORZA _V1_T-T1420_TDSTape_8.13.24.pdf"
       ],
@@ -6165,22 +7050,52 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
+        "thickness": "See TDS",
         "color": "Gray",
-        "odor": "Minimal",
-        "storageConditions": "Store at 60-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell",
-        "peelStrength": "45+ oz/in",
-        "shearStrength": "85+ psi"
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
@@ -6189,8 +7104,11 @@
         "High heat resistance",
         "Cold resistance"
       ],
-      "sizes": [],
-      "imageUrl": "/product-images/t500.png",
+      "sizes": [
+        "7/8” x 30’",
+        "Custom Sizing Available"
+      ],
+      "imageUrl": "/product-images/t-t430.png",
       "pdfLinks": [
         "/TDS/3. Transportation/T-T430/FOR EMAIL FORZA _V1_T-T430_TDSTape_03.11.2025.pdf"
       ],
@@ -6214,22 +7132,52 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell Foam",
-        "peelStrength": "45 lbs/in",
-        "shearStrength": "1000+ lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "30-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "55-65 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "48-55 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "7-10 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "58-65 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "300°F / 149°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "390°F / 199°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
@@ -6244,7 +7192,16 @@
         "Flexible and compressible",
         "Shockproof and soundproof characteristics"
       ],
-      "sizes": [],
+      "sizes": [
+        ".25 x 108",
+        ".75 x 108",
+        ".375 x 108",
+        "1 x 108",
+        "1.5 x 108",
+        "2 x 108",
+        "3.125 x 108",
+        "Custom Sizes Available"
+      ],
       "imageUrl": "/product-images/t215.png",
       "pdfLinks": [
         "/TDS/1. Industrial/T215/FOR EMAIL FORZA _V7_T215_TDSTape_1.24.25.pdf"
@@ -6269,22 +7226,52 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell Foam",
-        "peelStrength": "50 lbs/in",
-        "shearStrength": "1200+ lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "30-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "55-65 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "48-55 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "7-10 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "58-65 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "300°F / 149°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "390°F / 199°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
@@ -6298,7 +7285,15 @@
         "Flexible and compressible",
         "Shockproof and soundproof characteristics"
       ],
-      "sizes": [],
+      "sizes": [
+        ".5 x 108",
+        ".25 x 108",
+        ".75 x 108",
+        ".375 x 108",
+        "1 x 108",
+        "1.5 x 108",
+        ".052 Thick Foam"
+      ],
       "imageUrl": "/product-images/t220.png",
       "pdfLinks": [
         "/TDS/1. Industrial/T220/FOR EMAIL FORZA _V7_T220_TDSTape_3.4.24.pdf"
@@ -6323,28 +7318,60 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "-30°F to +180°F",
-        "adhesiveType": "Acrylic",
-        "foamType": "Closed Cell Foam",
-        "peelStrength": "35 lbs/in",
-        "shearStrength": "800 lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
         "High-quality design assures long-lasting performance."
       ],
-      "sizes": [],
+      "sizes": [
+        "3/8 in x 50 ft"
+      ],
       "imageUrl": "/product-images/t305.png",
       "pdfLinks": [
         "/TDS/1. Industrial/T305/FOR EMAIL FORZA _V2_T305_TDSTape_5.24.24.pdf"
@@ -6369,26 +7396,63 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "-40°F to +200°F",
-        "adhesiveType": "Acrylic",
-        "foamType": "Thermal Insulating Foam",
-        "peelStrength": "40 lbs/in",
-        "shearStrength": "900 lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/4in x 108 ft",
+        "3/8in x 108 ft",
+        "1/2in x 108 ft",
+        "3/4in x 108 ft",
+        "1in x 108 ft",
+        "1 1/2in x 108 ft"
+      ],
       "imageUrl": "/product-images/t350.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/7. Construction/T350/TDS/FORZA_TDS_T350.pdf",
@@ -6411,22 +7475,52 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "-30°F to +180°F",
-        "adhesiveType": "Acrylic",
-        "foamType": "Transfer Adhesive",
-        "peelStrength": "30 lbs/in",
-        "shearStrength": "600 lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "28-32 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "40-48 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "45-52 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "6-9 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "50-60 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
@@ -6438,7 +7532,11 @@
         "Excellent peel and shear",
         "Bonds a wide variety of substrates"
       ],
-      "sizes": [],
+      "sizes": [
+        "1.5 x 180",
+        "2 x 180",
+        "1.5 x 1080"
+      ],
       "imageUrl": "/product-images/t464.png",
       "pdfLinks": [
         "/TDS/1. Industrial/T464/FOR EMAIL FORZA _V3_T464_TDSTape_5.23.24.pdf"
@@ -6463,22 +7561,52 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "-40°F to +200°F",
-        "adhesiveType": "Acrylic",
-        "foamType": "Gasketing Foam",
-        "peelStrength": "45 lbs/in",
-        "shearStrength": "1000 lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "15-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-35 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "25-35 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "3-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "30-40 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-20°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
@@ -6487,7 +7615,10 @@
         "Remains pliable at temperatures of -20°C to 82°C",
         "Excellent fungi, oxidization and weather resistance"
       ],
-      "sizes": [],
+      "sizes": [
+        "2″ x 100′",
+        "2″ x 75″"
+      ],
       "imageUrl": "/product-images/t600.png",
       "pdfLinks": [],
       "standardTdsLink": "",
@@ -6510,22 +7641,52 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "-60°F to +150°F",
-        "adhesiveType": "Acrylic",
-        "foamType": "Cold Temperature Foam",
-        "peelStrength": "35 lbs/in",
-        "shearStrength": "800 lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "20-28 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "35-45 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "35-45 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "4-7 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "40-50 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-50°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "200°F / 93°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "250°F / 121°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
@@ -6537,7 +7698,13 @@
         "Excellent peel and shear",
         "Bonds a wide variety of substrates"
       ],
-      "sizes": [],
+      "sizes": [
+        ".75 x 180",
+        "1.5 x 180",
+        "1.5 x 1800",
+        "5.9 x 60 x 180",
+        "5.9 x 60 x 400"
+      ],
       "imageUrl": "/product-images/t715.png",
       "pdfLinks": [
         "/TDS/1. Industrial/T715/FOR EMAIL FORZA _V4_T715_TDSTape_5.23.24.pdf"
@@ -6562,26 +7729,62 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "-40°F to +200°F",
-        "adhesiveType": "Butyl",
-        "foamType": "Butyl Adhesive",
-        "peelStrength": "40 lbs/in",
-        "shearStrength": "900 lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "18-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-32 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "20-30 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "2-5 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "25-35 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-10°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "160°F / 71°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "200°F / 93°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/8in x 15 ft",
+        "1/4in x 30 ft",
+        "1/2in x 30 ft",
+        "3/4in x 30 ft",
+        "1in x 30 ft"
+      ],
       "imageUrl": "/product-images/t900.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/7. Construction/T900/TDS/FORZA_TDS_T900.pdf",
@@ -6604,26 +7807,60 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "-40°F to +200°F",
-        "adhesiveType": "Acrylic",
-        "foamType": "FSK Foam",
-        "peelStrength": "45 lbs/in",
-        "shearStrength": "1000 lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "22-28 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "30-38 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "30-40 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "4-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "35-45 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-30°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "280°F / 138°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "2in x 60 yds",
+        "3in x 60 yds",
+        "4in x 60 yds"
+      ],
       "imageUrl": "/product-images/t950.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/7. Construction/T950/TDS/FORZA_TDS_T950.pdf",
@@ -6646,26 +7883,60 @@
       "productType": "Adhesive",
       "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
+        "appearance": "See TDS",
         "shelfLife": "24 months",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "Store at 50-80°F, keep in original packaging",
-        "temperatureRange": "-40°F to +200°F",
-        "adhesiveType": "Acrylic",
-        "foamType": "Foil Foam",
-        "peelStrength": "40 lbs/in",
-        "shearStrength": "900 lbs/in²"
+        "thickness": "See TDS",
+        "color": "See TDS",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "22-28 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "30-38 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "30-40 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "4-6 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "35-45 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-30°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "280°F / 138°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "2in x 60 yds",
+        "3in x 60 yds",
+        "4in x 60 yds"
+      ],
       "imageUrl": "/product-images/t970.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/7. Construction/T970/TDS/FORZA_TDS_T970.pdf",
@@ -6807,33 +8078,69 @@
       "id": "t461",
       "name": "T461 – HOT MELT TRANSFER TAPE",
       "description": "ForzaTAPE™ T461 is an extremely aggressive synthetic rubber transfer tape.",
-      "category": "SEAL",
+      "category": "TAPE",
       "industry": [
         "industrial"
       ],
       "productType": "Adhesive",
-      "chemistry": "Hot Melt",
+      "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
-        "shelfLife": "",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "",
-        "temperatureRange": "",
-        "adhesiveType": "",
-        "foamType": "",
-        "peelStrength": "",
-        "shearStrength": ""
+        "appearance": "Clear",
+        "shelfLife": "12 months",
+        "thickness": "0.002 in (0.05 mm)",
+        "color": "Clear",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "28-32 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "40-48 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "45-52 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "6-9 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "50-60 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-40°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "180°F / 82°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "220°F / 104°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [],
-      "sizes": [],
+      "sizes": [
+        "1/2in x 108 ft",
+        "1in x 108 ft",
+        "3/4in x 108 ft",
+        "1 1/2in x 108 ft",
+        "2in x 108 ft"
+      ],
       "imageUrl": "/product-images/t461.png",
       "pdfLinks": [],
       "standardTdsLink": "/TDS/1. Industrial/T461/TDS/FORZA_TDS_T461.pdf",
@@ -6849,29 +8156,59 @@
       "id": "t500",
       "name": "T500 – BUTYL ADHESIVE TAPE",
       "description": "ForzaTAPE™ T500 is compounded to meet pre-engineered metal building specifications. The material is soft, resilient and easily worked by hand, yet adheres instantly to most uncleaned surfaces.",
-      "category": "SEAL",
+      "category": "TAPE",
       "industry": [
         "industrial"
       ],
       "productType": "Adhesive",
-      "chemistry": "Cyanoacrylates",
+      "chemistry": "Acrylic (incl. PSA)",
       "technicalData": {
-        "appearance": "",
-        "shelfLife": "",
-        "solids": "",
-        "solvent": "",
-        "voc": "",
-        "viscosity": "",
-        "density": "",
-        "pH": "",
-        "color": "",
-        "odor": "",
-        "storageConditions": "",
-        "temperatureRange": "",
-        "adhesiveType": "",
-        "foamType": "",
-        "peelStrength": "",
-        "shearStrength": ""
+        "appearance": "Black",
+        "shelfLife": "24 months",
+        "thickness": "0.045 in (1.1 mm)",
+        "color": "Black",
+        "testData": [
+          {
+            "property": "90° Peel Adhesion, Initial",
+            "value": "18-25 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "90° Peel Adhesion, Final",
+            "value": "25-32 psi",
+            "method": "ASTM D3330"
+          },
+          {
+            "property": "Static Shear (68°F / 20°C)",
+            "value": "20-30 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Static Shear (194°F / 90°C)",
+            "value": "2-5 oz",
+            "method": "ASTM D3654"
+          },
+          {
+            "property": "Dynamic Shear",
+            "value": "25-35 psi",
+            "method": "ASTM D1002"
+          },
+          {
+            "property": "Minimum Long Term Temp",
+            "value": "-10°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Long Term Temp",
+            "value": "160°F / 71°C",
+            "method": "Internal Method"
+          },
+          {
+            "property": "Maximum Short Term Temp",
+            "value": "200°F / 93°C",
+            "method": "Internal Method"
+          }
+        ]
       },
       "applications": "",
       "benefits": [
@@ -6879,7 +8216,13 @@
         "Excellent weathering characteristics while retaining adhesion and elasticity in both hot and cold environments.",
         "Chemically inert and is non-corrosive to paint, metal, aluminum, copper, plastic and will not swell rubber."
       ],
-      "sizes": [],
+      "sizes": [
+        "1in x 108 ft",
+        "1 1/2in x 108 ft",
+        "2in x 108 ft",
+        "3in x 108 ft",
+        "4in x 108 ft"
+      ],
       "imageUrl": "/product-images/t500.png",
       "pdfLinks": [],
       "standardTdsLink": "",

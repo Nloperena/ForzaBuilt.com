@@ -58,6 +58,11 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <div className="max-w-7xl mx-auto mt-6 pt-4 border-t border-white/10">
+        <p className="text-[10px] leading-snug text-white/70 font-poppins">
+          Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components.
+        </p>
+      </div>
     </footer>
   );
 };

@@ -5,6 +5,10 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ProductChemistriesSection from '../../components/ProductChemistriesSection';
 import DynamicIndustryCards from '../../components/StackableCards/DynamicIndustryCards';
+import ServiceCardStack from '../../components/ServiceCardStack';
+import { getCardsByIndustry } from '@/data/stackableCardsData';
+import { getBackgroundGradientByIndustry } from '@/data/stackableCardsData';
+import type { ServiceCardData } from '@/types/ServiceCard';
 import DynamicProductsSection from '../../components/DynamicProductsSection';
 import MarineProductsGrid from '../../components/MarineProductsGrid';
 import IndustryBrochureSection from '../../components/IndustryBrochureSection';
@@ -254,9 +258,29 @@ const IndustryPage = () => {
 
 
 
-      {/* Scroll Stack Cards Section */}
-
-
+      {/* Scroll Stack Cards Section (updated component with industry content + styling) */}
+      {(() => {
+        const industryKey = industryData.title.toLowerCase() as string;
+        const genericCards = getCardsByIndustry(industryKey);
+        const mappedCards: ServiceCardData[] = genericCards.map(card => ({
+          id: card.id,
+          title: card.title,
+          icon: card.icon || '✨',
+          features: card.features || [],
+          buttonText: card.buttonText || 'Learn More',
+          imageUrl: card.imageUrl,
+          storyText: card.description || card.subtitle,
+          theme: industryKey,
+        }));
+        const gradient = getBackgroundGradientByIndustry(industryKey);
+        return (
+          <section style={{ background: `linear-gradient(315deg, ${gradient})` }} className="text-white">
+            <div className="max-w-[1600px] mx-auto">
+              <ServiceCardStack cards={mappedCards} />
+            </div>
+          </section>
+        );
+      })()}
 
       {/* Dynamic Products Section */}
       {convertDatasheetToProducts(industryData.title).length > 0 && (

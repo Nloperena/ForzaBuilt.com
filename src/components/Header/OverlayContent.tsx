@@ -60,7 +60,7 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
         onMouseEnter={() => onVideoUrlChange('https://forzabuilt.com/wp-content/uploads/2024/02/Manufacturing-v2.mp4')}
       >
         <div className="w-40 h-24 flex items-center justify-center">
-          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg" alt="Sealants & Gaskets Logo" className="max-w-full max-h-full object-contain"/>
+          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg" alt="Industrial Sealants Logo" className="max-w-full max-h-full object-contain"/>
         </div>
         <h3 className="text-xl font-semibold text-center font-kallisto">
           <div>INDUSTRIAL</div>

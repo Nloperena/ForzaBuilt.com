@@ -39,8 +39,8 @@ export function sortByProperty<T>(
   direction: "asc" | "desc" = "asc"
 ): T[] {
   return [...array].sort((a, b) => {
-    if (a[property] < b[property]) return direction === "asc" ? -1 : 1;
-    if (a[property] > b[property]) return direction === "asc" ? 1 : -1;
+    if ((a as any)[property] < (b as any)[property]) return direction === "asc" ? -1 : 1;
+    if ((a as any)[property] > (b as any)[property]) return direction === "asc" ? 1 : -1;
     return 0;
   });
 }
@@ -59,7 +59,7 @@ export function filterBySearchTerm<T>(
   
   return array.filter(item =>
     properties.some(prop => {
-      const value = item[prop];
+      const value = (item as any)[prop];
       if (typeof value === "string") {
         return value.toLowerCase().includes(term);
       }
@@ -80,4 +80,23 @@ export function generateId(): string {
  */
 export function deepClone<T>(obj: T): T {
   return JSON.parse(JSON.stringify(obj));
+}
+
+/**
+ * Generates a URL-safe slug from a title.
+ * - Lowercases
+ * - Converts diacritics
+ * - Replaces ampersands with "and"
+ * - Replaces non-alphanumeric with hyphens
+ * - Collapses duplicate hyphens and trims
+ */
+export function generateSlugFromTitle(title: string): string {
+  return title
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
