@@ -215,3 +215,4 @@ fs.writeFileSync(productsDataPath, JSON.stringify(productsData, null, 2));
 console.log(`\n✅ All tape products now have professional TDS data!`);
 console.log(`🎯 Ready for industry-standard technical specification display`);
 console.log(`📋 Every tape shows Property | Value | Methods format`);
+

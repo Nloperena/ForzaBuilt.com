@@ -32,21 +32,17 @@ const ServiceCardStack: React.FC = () => {
     title: string;
     icon?: string;
     image?: string;
-    columnImages: string[];
-    columns: [ColumnData, ColumnData, ColumnData];
+    columns: ColumnData[];
   }> = [
     // 1) VALUE
     {
-      title: 'CARD 1',
+      title: 'Purpose-Built',
       icon: '⭐',
       image: '/Forza-lion-logo.png',
-      columnImages: [
-        '/static-approach-page-images/value.jpg',
-        '/static-approach-page-images/decades30.jpg'
-      ],
       columns: [
         {
           title: 'Value Proposition',
+          image: '/static-approach-page-images/value.png',
           items: [
             'Big‑Picture Expertise. Small‑Town Care',
             'We unleash the strength and spirit of America\'s Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.',
@@ -55,36 +51,35 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'Decades of Real-World Know-How',
+          image: '/static-approach-page-images/decades30.png',
           items: [
             'We\'ve seen it all. With over 30 years in the field, we don\'t guess—we get it right.',
             'We understand how adhesives & sealants behave in real-world conditions, not just in lab tests.',
             'We know a thing or two, because we\'ve seen a thing or two.',
             'If you have a unique situation, we\'ve most likely seen it and have already come up with a specific solution for it.'
           ]
-        }
-      ]
-    },
-    // 2) DECADES OF REAL‑WORLD KNOW‑HOW
-    {
-      title: 'Card 2',
-      icon: '⏳',
-      image: '/img/transportation/Trailer PreX-Ray.png',
-      columnImages: [
-        '/static-approach-page-images/purpose-built.jpg',
-        '/static-approach-page-images/Industryfocus.jpg',
-        '/static-approach-page-images/productporfolio.jpg'
-      ],
-      columns: [
+        },
         {
           title: 'PURPOSE-BUILT PRODUCT SOLUTIONS DESIGNED FOR YOUR PRECISE APPLICATIONS',
+          image: '/static-approach-page-images/purpose-built.png',
           items: [
             'Our solutions are never one-size-fits-all.',
             'We engineer adhesives and sealants for the exact needs our customers face—so they perform exactly as needed, the first time.',
             'Our products deliver guaranteed performance.'
           ]
-        },
+        }
+      ]
+    },
+    // 2) DECADES OF REAL‑WORLD KNOW‑HOW
+    {
+      title: 'Peformance',
+      icon: '⏳',
+      image: '/img/transportation/Trailer PreX-Ray.png',
+      columns: [
+       
         {
           title: 'INTENSE INDUSTRY FOCUS, ENGINEERED FOR PERFORMANCE',
+          image: '/static-approach-page-images/Industryfocus.png',
           items: [
             'Always Insightful. Never limited in expertise or offerings.',
             'We don\'t try to serve everyone. We serve the industries we know best—like transportation, industrial manufacturing, construction, marine, and insulation.',
@@ -94,6 +89,7 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'PRODUCT PORTFOLIO THAT GIVES YOU ALL YOU NEED & NOTHING YOU DON\'T',
+          image: '/static-approach-page-images/productporfolio.png',
           items: [
             'Most complete and comprehensive portfolio available.',
             'Our product line covers everything from core adhesives and sealants to niche products and specialty tapes.',
@@ -105,16 +101,13 @@ const ServiceCardStack: React.FC = () => {
     },
     // 3) PURPOSE‑BUILT PRODUCT SOLUTIONS
     {
-      title: 'Card 3',
+      title: 'Guaranteed Strength',
       icon: '🏗️',
       image: '/img/construction/Construction House Exploded Graphic Web.svg',
-      columnImages: [
-        '/static-approach-page-images/Innovation.jpg',
-        '/static-approach-page-images/integration.jpg'
-      ],
       columns: [
         {
           title: 'INNOVATION FROM SCIENCE AND COMMON SENSE',
+          image: '/static-approach-page-images/Innovation.png',
           items: [
             'We innovate with a purpose, blending cutting-edge science with in-field common sense.',
             'Our R&D teams are always improving what works—and tossing out what doesn\'t.',
@@ -124,36 +117,35 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'FULLY INTEGRATED FACTORY - PROUDLY MANUFACTURED IN THE USA',
+          image: '/static-approach-page-images/integration.png',
           items: [
             'Real people, making real products, making a real difference!',
             'We don\'t just resell & re-label someone else\'s products, we actually make them.',
             'We proudly manufacture our products in the USA, in America\'s heartland.',
             'From R&D to manufacturing, our vertical integration gives us full control over quality, consistency, and availability.'
           ]
-        }
-      ]
-    },
-    // 4) INTENSE INDUSTRY FOCUS
-    {
-      title: 'Card 4',
-      icon: '🎯',
-      image: '/img/marine/Marine Pontoon2 SVG.svg',
-      columnImages: [
-        '/static-approach-page-images/onsiternd.jpg',
-        '/static-approach-page-images/sustainability.jpg',
-        '/static-approach-page-images/experience.jpg'
-      ],
-      columns: [
+        },
         {
           title: 'ONSITE R&D TECHNICAL EXPERTISE DELIVERS RIGHT SOLUTION - RIGHT ON TIME',
+          image: '/static-approach-page-images/onsiternd.png',
           items: [
             'Guaranteed performance with our in-house lab.',
             'No wasted time. No off-the-shelf guesswork. Just the right product, right away—proven and validated.',
             'When a product doesn\'t exist to meet your need, our in-house chemists & testing teams can create & validate custom formulas tailored to your application—fast.'
           ]
-        },
+        }
+      ]
+    },
+    // 4) INTENSE INDUSTRY FOCUS
+    {
+      title: 'That\'s Forza',
+      icon: '🎯',
+      image: '/img/marine/Marine Pontoon2 SVG.svg',
+      columns: [
+        
         {
           title: 'SUSTAINABLE THINKING THAT WORKS',
+          image: '/static-approach-page-images/sustainability.png',
           items: [
             'We build stronger, safer products without sacrificing performance.',
             'We\'re pushing for a cleaner, more sustainable future—but never at the cost of quality.'
@@ -161,6 +153,7 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'CUSTOMER EXPERIENCE THAT\'S TRULY AN EXPERIENCE',
+          image: '/static-approach-page-images/experience.png',
           items: [
             'We answer the phone. We know your name. We help you get the job done.',
             'Our owners and tech teams are hands-on and accessible—no call centers, no runaround, no delays.',
@@ -184,7 +177,7 @@ const ServiceCardStack: React.FC = () => {
 
       </div>
       
-             <div className="relative space-y-16 lg:space-y-20 xl:space-y-24">
+             <div className="relative space-y-16 lg:space-y-20 xl:space-y-24 max-w-[1600px] mx-auto">
          {/* All cards as stackable items */}
          {cards.map((card, index) => {
            const { progress, nextCardProgress, isVisible } = getCardProgress(index);
@@ -201,7 +194,6 @@ const ServiceCardStack: React.FC = () => {
                    title={card.title}
                    icon={card.icon}
                    image={card.image}
-                   columnImages={card.columnImages}
                    columns={card.columns}
                    transform={transform}
                    opacity={opacity}

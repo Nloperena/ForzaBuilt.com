@@ -28,26 +28,25 @@ const industryColor = (industry: string | string[]) => {
   // Handle both string and array inputs - use first industry if array
   const industryStr = Array.isArray(industry) ? industry[0] || '' : industry;
   const industryLower = industryStr.toLowerCase();
-  const brandBlue = '#1b3764'; // Forza brand blue
   
   // Use gradients with 70% blue and 30% industry color
   switch (industryLower) {
     case 'marine':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#137875]`; // 70% blue, 30% Marine teal
+      return 'from-[#1b3764] via-[#1b3764] to-[#137875]'; // 70% blue, 30% Marine teal
     case 'industrial':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#f16a26]`; // 70% blue, 30% Industrial orange
+      return 'from-[#1b3764] via-[#1b3764] to-[#f16a26]'; // 70% blue, 30% Industrial orange
     case 'transportation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // 70% blue, 30% Transportation red
+      return 'from-[#1b3764] via-[#1b3764] to-[#b83d35]'; // 70% blue, 30% Transportation red
     case 'construction':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // 70% blue, 30% Construction yellow
+      return 'from-[#1b3764] via-[#1b3764] to-[#fec770]'; // 70% blue, 30% Construction yellow
     // case 'foam':
-    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // 70% blue, 30% Foam purple
+    //   return 'from-[#1b3764] via-[#1b3764] to-[#7a6fb0]'; // 70% blue, 30% Foam purple
     case 'composites':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // 70% blue, 30% Composites gray
+      return 'from-[#1b3764] via-[#1b3764] to-[#c7c8c9]'; // 70% blue, 30% Composites gray
     case 'insulation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#d0157d]`; // 70% blue, 30% Insulation pink
+      return 'from-[#1b3764] via-[#1b3764] to-[#d0157d]'; // 70% blue, 30% Insulation pink
     default:
-      return `from-[${brandBlue}] to-[${brandBlue}]`; // Default blue
+      return 'from-[#1b3764] to-[#1b3764]'; // Default blue
   }
 };
 
@@ -217,32 +216,17 @@ const ProductDetailPage: React.FC = () => {
       />
       <Header />
       <main className="flex-1 pt-20 pb-10">
-        <div className="max-w-screen-2xl mx-auto px-4">
-          {/* Breadcrumb */}
-          <nav className="mb-8">
-            <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <Link to="/products" className="hover:text-white transition-colors">
-                Products
-              </Link>
-              <span>/</span>
-              <Link to={`/products/${product.category.toLowerCase()}`} className="hover:text-white transition-colors">
-                {product.category}
-              </Link>
-              <span>/</span>
-              <span className="text-white">{product.name}</span>
-            </div>
-          </nav>
-
-          {/* Hero Section */}
-          <section className="mb-12">
+        {/* Hero Section - Contained within max-width */}
+        <section className="mb-12">
+          <div className="max-w-screen-2xl mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="relative rounded-3xl overflow-hidden shadow-2xl"
+              className="relative overflow-hidden shadow-2xl rounded-2xl"
             >
-              {/* Industry Color Gradient Background */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${industryColor(product.industry)} opacity-95`}></div>
+              {/* Industry Color Gradient Background - fading to page blue */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${industryColor(product.industry)} to-[#1B3764] opacity-95`}></div>
               {/* Content */}
               <div className="relative p-8 md:p-12 text-white">
                 <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -311,25 +295,45 @@ const ProductDetailPage: React.FC = () => {
                   </div>
 
                   {/* Product Image */}
-                  <div className="flex justify-center lg:justify-end">
-                    <div className="relative">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 shadow-2xl">
-                        <img 
-                          src={product.imageUrl || product.image} 
-                          alt={product.name}
-                          className="w-full max-w-md h-auto object-contain"
-                        />
-                      </div>
-                      {/* Floating Product Name */}
-                      <div className="absolute -bottom-4 -right-4 bg-[#F2611D] backdrop-blur-sm rounded-full px-4 py-2 border border-white/30 max-w-xs shadow-lg">
-                        <span className="text-white font-bold text-xs leading-tight">{product.name}</span>
-                      </div>
+                  <div className="flex justify-center lg:justify-end relative h-[400px] md:h-[500px] lg:h-[600px]">
+                    {/* Large Background Product Image - Full Size */}
+                    <div className="flex items-center justify-center opacity-100 h-full">
+                      <img 
+                        src={product.imageUrl || product.image} 
+                        alt={product.name}
+                        className="w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain drop-shadow-2xl"
+                        style={{
+                          filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.1)) brightness(1.2) contrast(1.1)'
+                        }}
+                      />
+                    </div>
+                    
+                    {/* Floating Product Name */}
+                    <div className="absolute top-4 right-4 z-10 bg-[#F2611D] backdrop-blur-sm rounded-full px-4 py-2 border border-white/30 max-w-xs shadow-lg">
+                      <span className="text-white font-bold text-xs leading-tight">{product.name}</span>
                     </div>
                   </div>
                 </div>
               </div>
             </motion.div>
-          </section>
+          </div>
+        </section>
+
+        <div className="max-w-screen-2xl mx-auto px-4">
+          {/* Breadcrumb */}
+          <nav className="mb-8">
+            <div className="flex items-center gap-2 text-gray-300 text-sm">
+              <Link to="/products" className="hover:text-white transition-colors">
+                Products
+              </Link>
+              <span>/</span>
+              <Link to={`/products/${product.category.toLowerCase()}`} className="hover:text-white transition-colors">
+                {product.category}
+              </Link>
+              <span>/</span>
+              <span className="text-white">{product.name}</span>
+            </div>
+          </nav>
 
           {/* Product Details Tabs */}
           <section className="mb-12">

@@ -168,7 +168,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className="bg-white shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] group cursor-pointer w-full"
+                    className="bg-white shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full"
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
                     }}

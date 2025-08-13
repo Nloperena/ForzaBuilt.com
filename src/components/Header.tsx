@@ -100,7 +100,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: animationDirection === 'up' ? -20 : 20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="global-nav-overlay fixed top-[72px] left-0 w-full bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-90 z-40 shadow-xl overflow-hidden"
+            className="global-nav-overlay fixed top-[72px] left-0 w-full bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-90 z-40 shadow-xl overflow-hidden font-kallisto"
             onMouseEnter={handleOverlayEnter}
             onMouseLeave={handleNavLeave}
             onClick={closeOverlay}

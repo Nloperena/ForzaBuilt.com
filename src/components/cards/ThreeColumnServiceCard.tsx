@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 export interface ColumnData {
   title: string;
   items: string[];
+  image: string;
 }
 
 interface ThreeColumnServiceCardProps {
   title: string;
   icon?: string;
   image?: string;
-  columnImages?: string[];
-  columns: [ColumnData, ColumnData, ColumnData];
+  columns: ColumnData[];
   transform: string;
   opacity: number;
   index?: number;
@@ -22,14 +22,40 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
   title,
   icon,
   image,
-  columnImages,
   columns,
   transform,
   opacity,
   index,
 }) => {
-  // For the 2-3-2-3 pattern: index 0 and 2 show 2 columns, index 1 and 3 show 3 columns
-  const displayedColumns = (index === 0 || index === 2) ? columns.slice(0, 2) : columns;
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger animations when card becomes visible
+    if (opacity > 0.1) {
+      const timer = setTimeout(() => setIsVisible(true), 100);
+      return () => clearTimeout(timer);
+    } else {
+      setIsVisible(false);
+    }
+  }, [opacity]);
+
+  // Map the original data to the correct display pattern without changing content
+  let displayedColumns;
+  
+  // For 3-2-3-2 pattern
+  if (index === 0) { // First card: 3 columns (Card 1 with Value Proposition and Decades)
+    displayedColumns = columns.length >= 3 
+      ? columns 
+      : [...columns, { title: "", items: [], image: "" }]; // Ensure 3 columns
+  } else if (index === 1) { // Second card: 2 columns (Card 2 with Purpose-Built and Industry Focus)
+    displayedColumns = columns.slice(0, 2); // First 2 columns only
+  } else if (index === 2) { // Third card: 3 columns (Card 3 with Innovation and Integration)
+    displayedColumns = columns.length >= 3 
+      ? columns 
+      : [...columns, { title: "", items: [], image: "" }]; // Ensure 3 columns
+  } else { // Fourth card: 2 columns (Card 4 with R&D and Sustainability)
+    displayedColumns = columns.slice(0, 2); // First 2 columns only
+  }
   
   return (
     <div
@@ -42,7 +68,13 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
           {/* Main card title only - no image or emoji */}
           <div className="w-full bg-gradient-to-r from-[#1b3764] to-[#09668d] py-8">
             <div className="flex items-center justify-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white font-kallisto tracking-tight text-center">
+              <h2 
+                className={cn(
+                  "text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white font-kallisto tracking-tight text-center transition-all duration-700 ease-out",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                )}
+                style={{ transitionDelay: "100ms" }}
+              >
                 {title}
               </h2>
             </div>
@@ -52,18 +84,49 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
             <div className={cn("grid grid-cols-1 gap-8 md:gap-10 lg:gap-14", displayedColumns.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3")}>
               {displayedColumns.map((col, idx) => (
                 <div key={idx} className="space-y-3 text-left">
-                  <img
-                    src={columnImages?.[idx] || '/placeholder.svg'}
-                    alt={`${col.title} illustration`}
-                    loading="lazy"
-                    className="block h-40 w-40 md:h-48 md:w-48 opacity-90 object-contain mx-auto filter brightness-0 saturate-100 invert-100 sepia-0 saturate-0 hue-rotate-0 mix-blend-multiply"
-                  />
-                  <h4 className="text-sm md:text-base lg:text-lg font-black text-white mb-3 font-kallisto tracking-tight text-center">
-                    {col.title}
+                  {/* Image with staggered animation */}
+                  <div 
+                    className={cn(
+                      "transition-all duration-700 ease-out",
+                      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+                    )}
+                    style={{ transitionDelay: `${200 + (idx * 100)}ms` }}
+                  >
+                    <img
+                      src={col.image || '/placeholder.svg'}
+                      alt={`${col.title} illustration`}
+                      loading="lazy"
+                      className="block h-40 w-40 md:h-48 md:w-48 opacity-100 object-contain mx-auto"
+                    />
+                  </div>
+                  
+                  {/* Title with staggered animation */}
+                  <h4 
+                    className={cn(
+                      "text-sm md:text-base lg:text-lg font-black text-white mb-3 font-kallisto tracking-tight text-center transition-all duration-700 ease-out",
+                      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                    )}
+                    style={{ transitionDelay: `${400 + (idx * 100)}ms` }}
+                  >
+                    {col.title.split(' ').map((word, wordIndex) => (
+                      <span key={wordIndex}>
+                        {word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()}
+                        {wordIndex < col.title.split(' ').length - 1 ? ' ' : ''}
+                      </span>
+                    ))}
                   </h4>
+                  
+                  {/* List items with staggered animation */}
                   <ul className="space-y-2">
                     {col.items.map((item, i) => (
-                      <li key={i} className="flex items-start justify-start gap-2 text-xs md:text-xs text-white/90">
+                      <li 
+                        key={i} 
+                        className={cn(
+                          "flex items-start justify-start gap-2 text-xs md:text-xs text-white/90 transition-all duration-700 ease-out",
+                          isVisible ? "opacity-100 translate-y-0 translate-x-0" : "opacity-0 translate-y-4 -translate-x-4"
+                        )}
+                        style={{ transitionDelay: `${600 + (idx * 100) + (i * 200)}ms` }}
+                      >
                         <span className="text-[#f16a26] text-sm">•</span>
                         <span className="leading-relaxed">{item}</span>
                       </li>

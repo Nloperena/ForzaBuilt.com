@@ -102,3 +102,4 @@ fs.writeFileSync(productsDataPath, JSON.stringify(productsData, null, 2));
 console.log(`\n✅ Updated product data saved`);
 console.log(`🎯 All tape products now have proper 3-column technical data!`);
 console.log(`📋 Next: Update the component to display the new format`);
+

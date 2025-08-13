@@ -50,3 +50,4 @@ fs.writeFileSync(productsDataPath, JSON.stringify(productsData, null, 2));
 
 console.log(`\n🎉 Successfully updated ${updatedCount} products with sizing data!`);
 console.log(`📄 Updated file: ${productsDataPath}`);
+

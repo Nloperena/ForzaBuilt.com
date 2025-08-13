@@ -113,3 +113,4 @@ fs.writeFileSync(productsDataPath, JSON.stringify(productsData, null, 2));
 console.log(`\n✅ Updated product data saved`);
 console.log(`🎯 T461 and T500 are now properly categorized as TAPE products!`);
 console.log(`🚀 They will now show tape-specific technical data and sizing!`);
+

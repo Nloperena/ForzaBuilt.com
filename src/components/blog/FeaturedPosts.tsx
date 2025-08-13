@@ -69,3 +69,4 @@ const FeaturedPosts: React.FC<FeaturedPostsProps> = ({ posts, calculateReadingTi
 export default FeaturedPosts;
 
 
+

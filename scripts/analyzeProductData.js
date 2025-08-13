@@ -76,3 +76,4 @@ console.log(`   • Products that could get technical data: ${tdsData.filter(p =
 ).length}`);
 
 console.log(`\n🎯 Ready for mass enhancement!`);
+
