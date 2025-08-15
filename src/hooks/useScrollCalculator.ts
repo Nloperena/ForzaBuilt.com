@@ -99,8 +99,9 @@ export const useScrollCalculator = ({
       return { progress: 0, nextCardProgress: 0, isVisible: false };
     }
 
-    // Increase per-card scroll height so each card, especially the last, stays visible longer
-    const cardHeight = window.innerHeight * 1.05;
+    // Tune per-card scroll height; on mobile, give more scroll distance so cards linger longer
+    const isDesktopOrTablet = window.innerWidth >= 768;
+    const cardHeight = window.innerHeight * (isDesktopOrTablet ? 1.05 : 0.8);
     const cardStart = containerTop + (cardIndex * cardHeight);
     
     // Progress calculation (0 = card just entered view, 1 = card fully animated)
@@ -110,7 +111,7 @@ export const useScrollCalculator = ({
     const nextCardProgress = Math.max(0, Math.min(1, (scrollY - cardStart - cardHeight) / cardHeight));
     
     // Visibility calculation (card should be visible during its animation window)
-    const isVisible = scrollY >= cardStart - cardHeight && scrollY < cardStart + cardHeight * 2.5;
+    const isVisible = scrollY >= cardStart - cardHeight * 0.5 && scrollY < cardStart + cardHeight * 2;
     
     return { progress, nextCardProgress, isVisible };
   };

@@ -1,5 +1,4 @@
 import React from 'react';
-import NewsletterSignup from './NewsletterSignup';
 
 const Footer = () => {
   return (
@@ -50,7 +49,7 @@ const Footer = () => {
           <div className="footer-made-in-america-video mt-8 flex justify-center">
             <a href="https://www.forzabuilt.com/made-in-america/" target="_blank" rel="noopener noreferrer">
               <img
-                src="https://ruggedred.com/static/media/Flag%20Icon.b74a43083f2f1e917f1a.png"
+                src="/Flag Icon with asterisk 1.png"
                 alt="Made in America Flag"
                 className="w-auto h-24 object-contain"
               />
@@ -60,7 +59,7 @@ const Footer = () => {
       </div>
       <div className="max-w-7xl mx-auto mt-6 pt-4 border-t border-white/10">
         <p className="text-[10px] leading-snug text-white/70 font-poppins">
-          Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components.
+          *Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components.
         </p>
       </div>
     </footer>

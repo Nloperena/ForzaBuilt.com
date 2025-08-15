@@ -3,14 +3,12 @@ import { useParams } from 'react-router-dom';
 import { industries } from '../../data/industries';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import ProductChemistriesSection from '../../components/ProductChemistriesSection';
-import DynamicIndustryCards from '../../components/StackableCards/DynamicIndustryCards';
-import ServiceCardStack from '../../components/ServiceCardStack';
-import { getCardsByIndustry } from '@/data/stackableCardsData';
-import { getBackgroundGradientByIndustry } from '@/data/stackableCardsData';
-import type { ServiceCardData } from '@/types/ServiceCard';
-import DynamicProductsSection from '../../components/DynamicProductsSection';
+import IdealChemistrySection from '../../components/IdealChemistrySection';
+import IndustryStackableCardsV2 from '../../components/StackableCards/IndustryStackableCardsV2';
+import { getCardsByIndustry, getBackgroundGradientByIndustry } from '@/data/stackableCardsData';
+ 
 import MarineProductsGrid from '../../components/MarineProductsGrid';
+import ProductsExplorerClone from '@/components/ProductsExplorerClone';
 import IndustryBrochureSection from '../../components/IndustryBrochureSection';
 import ConstructionProductSelection from '../../components/ConstructionProductSelection';
 import XRayExplorer from '../../components/xray/XRayExplorer';
@@ -20,11 +18,7 @@ import { TRANSPORTATION_DATA } from '../../data/industries/transportation';
 import { COMPOSITES_DATA } from '../../data/industries/composites';
 import { INSULATION_DATA } from '../../data/industries/insulation';
 
-import { allProducts } from '../../data/productsData';
 import { motion } from 'framer-motion';
-
-import { INDUSTRIAL_PRODUCTS } from '../../data/industrialProducts';
-import { byIndustry } from '@/utils/products';
 
 const IndustryPage = () => {
   const { industry } = useParams();
@@ -37,43 +31,7 @@ const IndustryPage = () => {
 
 
 
-  // Helper function to convert datasheet products to component format
-  const convertDatasheetToProducts = (industryName: string) => {
-    const industryLower = industryName.toLowerCase();
-    
-    // Use dedicated industrial products for industrial industry
-    if (industryLower === 'industrial') {
-      return INDUSTRIAL_PRODUCTS.map(product => ({
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        url: product.url,
-        productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
-        industries: Array.isArray(product.industry) ? product.industry : [product.industry],
-        description: product.description
-      }));
-    }
-    
-    const datasheetProducts = byIndustry(industryLower);
-    
-    // If no datasheet products found, fall back to allProducts for that industry
-    if (datasheetProducts.length === 0) {
-      const fallbackProducts = allProducts.filter(product => 
-        product.industries.includes(industryLower)
-      );
-      return fallbackProducts;
-    }
-    
-    return datasheetProducts.map(product => ({
-      id: product.id,
-      name: product.name,
-      image: product.mainImage || product.image,
-      url: product.url,
-      productType: product.category.toLowerCase() as 'bond' | 'seal' | 'tape',
-      industries: Array.isArray(product.industry) ? product.industry : [product.industry],
-      description: product.description
-    }));
-  };
+ 
 
   useEffect(() => {
     if (expandedIndex === null) return;
@@ -120,23 +78,25 @@ const IndustryPage = () => {
       {/* Title Overlap Container */}
       <div className="relative z-40 flex justify-center -mt-20">
         <div className="w-full px-4 sm:px-6 md:px-10 py-4 bg-white text-center relative flex items-center justify-center">
-                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none break-words w-full font-kallisto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4" style={{ color: industryData.color || '#1b3764' }}>
-                            <span className="leading-none">{industryData.title.toUpperCase()}</span>
-            {industryData.logo && (
+          <h1
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none break-words w-full font-kallisto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4"
+            style={{ color: industryData.color || '#1b3764' }}
+          >
+            <span className="leading-none">{industryData.title.toUpperCase()}</span>
+            {industryData.logo ? (
               <img
                 src={industryData.logo}
-                alt={industryData.title + ' logo'}
-                className="inline-block align-middle h-16 sm:h-24 md:h-32 lg:h-48 xl:h-64 w-auto object-contain"
+                alt={`${industryData.title} icon`}
+                className="inline-block align-middle h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 w-auto object-contain"
                 loading="lazy"
               />
-            )}
+            ) : null}
           </h1>
         </div>
       </div>
 
       {/* Dynamic Industry Headings Section */}
-      {industryData.pageHeadline && (
-        <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16">
+      <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16">
           <div className="w-full px-4 sm:px-6 max-w-[1600px] mx-auto">
             <motion.div 
               className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4 sm:mb-6 md:mb-8"
@@ -145,62 +105,15 @@ const IndustryPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              {/* Industry Icon */}
-              {industryData.title.toLowerCase() === 'marine' && (
-                <img 
-                  src="/src/assets/SVG/Marine SVG 1.svg"
-                  alt="Marine Industry Icon"
-                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-contain"
-                />
-              )}
-              {industryData.title.toLowerCase() === 'construction' && (
-                <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-[#1b3764]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-              )}
-              {industryData.title.toLowerCase() === 'transportation' && (
-                <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-[#1b3764]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 16.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                  <path d="M16 16.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                  <path d="M7 16V4H5v12h2zm10 0V4h-2v12h2z"/>
-                  <path d="M7 16V4H5v12h2zm10 0V4h-2v12h2z"/>
-                </svg>
-              )}
-              {industryData.title.toLowerCase() === 'composites' && (
-                <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-[#1b3764]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-              )}
-              {industryData.title.toLowerCase() === 'insulation' && (
-                <svg className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-[#1b3764]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-              )}
+              {/* Icons removed per brand standards; title only */}
               <h3 
                 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-center leading-none break-words font-kallisto text-[#1b3764]"
               >
-                {industryData.pageHeadline}
+                {`Building High-Performance ${industryData.title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape & Sealant Solutions`}
               </h3>
             </motion.div>
-            {industryData.supportingText && (
-              <motion.div 
-                className="max-w-4xl mx-auto text-base sm:text-lg md:text-xl text-gray-900 leading-relaxed px-4 sm:px-6 md:px-8"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-              >
-                <div className="whitespace-pre-line font-semibold text-center">
-                  {industryData.supportingText}
-                </div>
-              </motion.div>
-            )}
           </div>
         </section>
-      )}
 
       {/* X-Ray Explorer Sections */}
       {industryData.title.toLowerCase() === 'marine' && (
@@ -253,45 +166,41 @@ const IndustryPage = () => {
         </>
       )}
 
-      {/* Stackable Cards Section */}
-      <DynamicIndustryCards />
+      {/* Stackable Cards Section - removed old version */}
 
 
 
-      {/* Scroll Stack Cards Section (updated component with industry content + styling) */}
+      {/* New Two-Column Stack using industry gradient/glassmorphism */}
       {(() => {
-        const industryKey = industryData.title.toLowerCase() as string;
+        const industryKey = industryData.title.toLowerCase();
         const genericCards = getCardsByIndustry(industryKey);
-        const mappedCards: ServiceCardData[] = genericCards.map(card => ({
+        const v2Cards = genericCards.map(card => ({
           id: card.id,
           title: card.title,
-          icon: card.icon || '✨',
+          icon: card.icon,
           features: card.features || [],
-          buttonText: card.buttonText || 'Learn More',
-          imageUrl: card.imageUrl,
           storyText: card.description || card.subtitle,
-          theme: industryKey,
+          imageUrl: card.imageUrl,
+          buttonText: card.buttonText,
+          buttonLink: card.buttonLink,
         }));
         const gradient = getBackgroundGradientByIndustry(industryKey);
         return (
           <section style={{ background: `linear-gradient(315deg, ${gradient})` }} className="text-white">
             <div className="max-w-[1600px] mx-auto">
-              <ServiceCardStack cards={mappedCards} />
+              <IndustryStackableCardsV2 industryKey={industryKey} cards={v2Cards} />
             </div>
           </section>
         );
       })()}
 
-      {/* Dynamic Products Section */}
-      {convertDatasheetToProducts(industryData.title).length > 0 && (
-        <DynamicProductsSection 
-          industry={industryData.title}
-          products={convertDatasheetToProducts(industryData.title)}
-        />
-      )}
+      {/* Dynamic Products Section removed per request */}
 
-      {/* Chemistries Section */}
-      <ProductChemistriesSection />
+      {/* Products Explorer - carbon copy of product pages with line switcher */}
+      <ProductsExplorerClone industryName={industryData.title} />
+
+      {/* Chemistries Section - match homepage version */}
+      <IdealChemistrySection />
 
       {/* Industry Brochure Section */}
       <IndustryBrochureSection industry={industryData.title} />

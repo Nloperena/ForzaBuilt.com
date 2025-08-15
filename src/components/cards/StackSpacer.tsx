@@ -21,7 +21,9 @@ const StackSpacer = ({ cardCount }: StackSpacerProps) => {
    * Reduced to 35% to minimize gap after last card disappears and bring next section closer
    */
   // Allocate more scroll depth so the last card doesn't fade out too quickly
-  const scrollHeight = cardCount * window.innerHeight * 0.55;
+  const isDesktopOrTablet = typeof window !== 'undefined' ? window.innerWidth >= 768 : false;
+  const perCardFactor = isDesktopOrTablet ? 0.5 : 0.55; // increase mobile scroll space to ensure later cards have room without large blank tail
+  const scrollHeight = cardCount * window.innerHeight * perCardFactor;
 
   return (
     <div 

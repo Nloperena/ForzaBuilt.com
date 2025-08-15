@@ -13,7 +13,7 @@ const MadeInAmerica = () => {
           <div className="w-full h-[40vh] md:h-[60vh] flex justify-center z-10">
             <div className="relative w-full h-full flex justify-center">
               <video
-                src="https://videos.ctfassets.net/hdznx4p7ef81/7FAYaB8msFZnVuKOMhuFse/30b2c632640ff0043ceea78211521787/Gen-4_Flag8.webm"
+                src="/American%20Flag.mp4"
                 autoPlay
                 loop
                 muted

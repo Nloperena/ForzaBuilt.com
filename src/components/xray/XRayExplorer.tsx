@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { IndustryData, XRayComponent, Hotspot } from '../../types/industry';
 import ProductTooltip from './ProductTooltip';
 import SvgHotspotOverlay from './SvgHotspotOverlay';
-import { CoordinateDebugger } from './CoordinateDebugger';
 import { typography } from '../../styles/brandStandards';
 import { useIsMobile } from '../../hooks/use-mobile';
 
@@ -20,8 +19,8 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
 }) => {
   const containerRef = useRef<HTMLElement>(null);
   const [activeHotspot, setActiveHotspot] = useState<Hotspot | null>(null);
-  const [isDebugMode, setIsDebugMode] = useState(false);
-  const [debugCoordinates, setDebugCoordinates] = useState<Array<{ x: number; y: number; id: string }>>([]);
+  const [showSkipPrompt, setShowSkipPrompt] = useState<boolean>(false);
+  
   const isMobile = useIsMobile();
   
   // Get the specific X-Ray component
@@ -64,6 +63,28 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
   
   // Sticky phase - keep image locked during entire hotspot cycling
   const stickyPhase = useTransform(scrollYProgress, [hotspotStartProgress, hotspotEndProgress], [1, 1]);
+
+  // Show a skip prompt shortly after section becomes visible
+  React.useEffect(() => {
+    const timer = setTimeout(() => setShowSkipPrompt(true), 1500);
+    const unsubscribe = scrollYProgress.on("change", (v) => {
+      // Hide prompt once user has meaningfully engaged
+      if (v > 0.05) setShowSkipPrompt(false);
+    });
+    return () => {
+      clearTimeout(timer);
+      unsubscribe();
+    };
+  }, [scrollYProgress]);
+
+  const handleSkipSection = () => {
+    const el = containerRef.current as HTMLElement | null;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const absoluteTop = window.scrollY + rect.top;
+    const target = absoluteTop + el.offsetHeight + 1;
+    window.scrollTo({ top: target, behavior: 'smooth' });
+  };
 
   // Calculate active hotspot index with smooth transitions
   const activeHotspotIndex = useTransform(hotspotProgress, (value) => {
@@ -111,26 +132,10 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
       aria-labelledby={`${industry.id}-xray-explorer`}
     >
       {/* Sticky Container */}
-      <div className="sticky top-0 w-full dvh-100 flex items-end justify-center pb-20 overflow-hidden bg-background will-change-transform">
+      <div className="sticky top-0 w-full dvh-100 flex items-end justify-center pb-20 overflow-hidden bg-white will-change-transform">
         <div className="relative w-full max-w-7xl mx-auto px-4">
           
-          {/* Debug Mode Toggle */}
-          <motion.div
-            className="absolute top-4 right-4 z-50"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <label className="flex items-center gap-2 bg-background/95 backdrop-blur-sm rounded-lg px-3 py-2 border border-border shadow-lg">
-              <input
-                type="checkbox"
-                checked={isDebugMode}
-                onChange={(e) => setIsDebugMode(e.target.checked)}
-                className="w-4 h-4"
-              />
-              <span className="text-sm font-medium text-foreground">Debug Mode</span>
-            </label>
-          </motion.div>
+          
 
           {/* Section Title - Moved to top */}
           <motion.div
@@ -141,7 +146,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
           >
             <h2 
               id={`${industry.id}-xray-explorer`}
-              className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+              className="text-3xl md:text-4xl font-bold text-[#1B3764] mb-4"
               style={{ 
                 fontFamily: typography.headings.fontFamily, 
                 fontWeight: typography.headings.fontWeight,
@@ -152,7 +157,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               {industry.xrays.length > 1 && ` (${xrayIndex + 1}/${industry.xrays.length})`}
             </h2>
             <p 
-              className="text-lg text-muted-foreground max-w-2xl mx-auto"
+              className="text-lg text-[#1B3764] max-w-2xl mx-auto"
               style={{ 
                 fontFamily: typography.body.fontFamily, 
                 fontWeight: typography.body.fontWeight,
@@ -163,6 +168,32 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               Watch as we reveal the internal structure and highlight key application areas.
             </p>
           </motion.div>
+
+          {/* Skip prompt overlay */}
+          {showSkipPrompt && (
+            <motion.div
+              className="absolute top-4 left-1/2 -translate-x-1/2 z-40"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+            >
+              <div className="relative overflow-hidden bg-white/70 backdrop-blur-md border border-[#1B3764]/20 shadow-xl rounded-full px-4 py-2 flex items-center gap-3">
+                <span className="text-sm text-[#1B3764]">Want to skip the X-Ray?</span>
+                <button
+                  onClick={() => setShowSkipPrompt(false)}
+                  className="text-xs text-[#1B3764] hover:underline"
+                >
+                  Continue
+                </button>
+                <button
+                  onClick={handleSkipSection}
+                  className="text-xs bg-[#F16022] hover:bg-[#F16022]/85 text-white rounded-full px-3 py-1"
+                >
+                  Skip to Next Section
+                </button>
+              </div>
+            </motion.div>
+          )}
           
           {/* Mobile Product Display Area - Above the X-Ray images */}
           {isMobile && (
@@ -188,11 +219,11 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               
               {!activeHotspot && (
                 <motion.div
-                  className="text-center py-4 bg-muted/30 rounded-lg border border-border"
+                  className="text-center py-4 bg-white/70 rounded-lg border border-border"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-[#1B3764] text-sm">
                     Scroll to explore products and features
                   </p>
                 </motion.div>
@@ -200,51 +231,23 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
             </motion.div>
           )}
           
-          {/* Debug Coordinate Finder */}
-          {isDebugMode && (
-            <motion.div
-              className="mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              <CoordinateDebugger
-                imageSrc={xrayComponent.postSrc}
-                width={xrayComponent.width}
-                height={xrayComponent.height}
-                onCoordinatesChange={setDebugCoordinates}
-              />
-            </motion.div>
-          )}
+          
 
           {/* Image Container */}
           <motion.div
             className="relative w-full mx-auto max-h-[70dvh] will-change-transform"
             style={{
               aspectRatio: `${xrayComponent.width}/${xrayComponent.height}`,
-              y: slideY,
-              scale: slideScale,
-              opacity: slideOpacity
+              y: 0,
+              scale: 1.05,
+              opacity: 1
             }}
           >
-            {/* Normal Image (Phase 1) */}
-            <motion.img
-              src={xrayComponent.preSrc}
-              alt={`${xrayComponent.id} normal view`}
-              className="absolute inset-0 w-full h-full object-contain will-change-opacity"
-              style={{ opacity: normalOpacity }}
-              loading="eager"
-              width={xrayComponent.width}
-              height={xrayComponent.height}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-              decoding="async"
-            />
-            
-            {/* X-ray Image (Phase 2) */}
+            {/* X-ray Image displayed immediately, slightly enlarged */}
             <motion.img
               src={xrayComponent.postSrc}
               alt={`${xrayComponent.id} X-ray view`}
               className="absolute inset-0 w-full h-full object-contain will-change-opacity"
-              style={{ opacity: xrayOpacity }}
               loading="lazy"
               width={xrayComponent.width}
               height={xrayComponent.height}
@@ -357,12 +360,15 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
             className="flex justify-center mt-6 mb-2"
             style={{ opacity: hotspotsOpacity }}
           >
-            <div className="bg-background/95 backdrop-blur-sm rounded-lg px-6 py-3 border border-border shadow-lg">
+            <div className="relative overflow-hidden bg-white/10 backdrop-blur-xl rounded-lg px-6 py-3 border border-white/30 shadow-2xl">
+              {/* Glass shine overlay */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/20 to-white/5 pointer-events-none" />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-white/50 via-white/30 to-white/50 opacity-80 pointer-events-none" />
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                   <span 
-                    className="text-sm font-semibold text-foreground"
+                    className="text-sm font-semibold text-[#1B3764]"
                     style={{ 
                       fontFamily: typography.subheads.fontFamily, 
                       fontWeight: typography.subheads.fontWeight,
@@ -372,9 +378,9 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                     Step {Math.max(1, activeHotspotIndex.get() + 1)} of {xrayComponent.hotspots.length}
                   </span>
                 </div>
-                <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
+                <div className="w-32 h-2 bg-white/40 rounded-full overflow-hidden">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-primary to-primary/80 rounded-full shadow-sm"
+                    className="h-full bg-gradient-to-r from-[#1B3764] to-[#1B3764]/80 rounded-full shadow-sm"
                     style={{
                       scaleX: useTransform(
                         hotspotProgress,
@@ -386,7 +392,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                   />
                 </div>
                 <span 
-                  className="text-xs text-muted-foreground"
+                  className="text-xs text-[#1B3764]"
                   style={{ 
                     fontFamily: typography.body.fontFamily, 
                     fontWeight: typography.body.fontWeight,

@@ -1,5 +1,5 @@
 import { GenericCardData } from '@/components/StackableCards/GenericCard';
-import { getIndustryColors } from '@/styles/brandStandards';
+import { getIndustryColors, brandColors } from '@/styles/brandStandards';
 
 // Marine Industry Cards
 export const marineCards: GenericCardData[] = [
@@ -338,17 +338,11 @@ export const getCardsByIndustry = (industry: string): GenericCardData[] => {
 // Helper function to get background gradient by industry
 export const getBackgroundGradientByIndustry = (industry: string): string => {
   const colors = getIndustryColors(industry);
-  
-  // Ensure we have valid colors and format them properly
-  const primaryColor = colors.primary || '#09668D'; // Default to regal blue
-  const secondaryColor = colors.secondary || '#1B3764'; // Default to blue velvet
-  
-  // Debug logging
-  console.log(`Industry: ${industry}`);
-  console.log(`Primary: ${primaryColor}`);
-  console.log(`Secondary: ${secondaryColor}`);
-  console.log(`Gradient: ${primaryColor}, ${secondaryColor}`);
-  
-  // Return the gradient colors for inline style use
-  return `${primaryColor}, ${secondaryColor}`;
+
+  const primaryColor = colors.primary || brandColors.primary.regalBlue.hex;
+  const forzaBlue = brandColors.secondary.blueVelvet.hex; // #1B3764
+
+  // Ensure bottom is fully Forza blue with a smooth top transition from industry color.
+  // Top 40% industry color fading into bottom 60% Forza blue
+  return `${primaryColor} 0%, ${primaryColor} 40%, ${forzaBlue} 100%`;
 }; 

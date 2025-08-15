@@ -572,17 +572,17 @@ export const IndustriesCarouselSectionV4 = () => {
   };
 
   return (
-    <section className="relative py-8 sm:py-12 md:py-20 lg:py-28 xl:py-36 w-full overflow-hidden bg-[#1b3764]">
+    <section className="relative py-4 sm:py-10 md:py-20 lg:py-28 xl:py-36 w-full overflow-hidden bg-[#1b3764]">
       <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
 
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16 xl:mb-20">
+          <div className="text-center mb-3 sm:mb-6 md:mb-10 lg:mb-16 xl:mb-20">
             <MemoizedHeading />
             <MemoizedSubheading />
           </div>
 
-          <div className="w-full overflow-hidden">
+          <div className="w-full overflow-hidden min-h-[60vh] flex items-center justify-center sm:min-h-0 sm:block">
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-6 lg:gap-8 xl:gap-10 max-w-full">
               {allCards.map((item, idx) => (
                 <Link

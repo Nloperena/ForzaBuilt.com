@@ -175,3 +175,6 @@ console.log(`   • Confirm images are displaying properly`);
 console.log(`\n🚀 MASS PRODUCT ENHANCEMENT COMPLETE!`);
 console.log(`🎉 Your entire product catalog now has enhanced data!`);
 
+
+
+

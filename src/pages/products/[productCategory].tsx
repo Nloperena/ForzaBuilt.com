@@ -12,9 +12,6 @@ import { Anchor, Factory, Car, Building, Package, Layers, Snowflake } from 'luci
 import { industries as industriesData } from '@/data/industries';
 import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
-import CanisterSystemImage from '@/assets/images/Canister System.png';
-import TapeHeroicImage from '@/assets/images/Tape Heroic Image.png';
-import OS2CartridgeHeroImage from '@/assets/images/OS2 Cartridge Hero.png';
 
 // Chemistry icon paths
 const CHEMISTRY_ICONS = {
@@ -42,11 +39,11 @@ const getProductCategoryImage = (category: string) => {
   const categoryLower = category.toLowerCase();
   switch (categoryLower) {
     case 'bond':
-      return CanisterSystemImage; // Bond/Adhesives should use Canister System image
+      return '/src/assets/images/Canister System.png';
     case 'seal':
-      return OS2CartridgeHeroImage; // Sealants should use OS2 Cartridge Hero image
+      return '/src/assets/images/OS2 Cartridge Hero.png';
     case 'tape':
-      return TapeHeroicImage; // Tapes should use Tape Heroic Image
+      return '/src/assets/images/Tape Heroic Image.png';
     default:
       return null;
   }
@@ -280,120 +277,38 @@ const ProductCategoryPage: React.FC = () => {
       />
       <Header />
       <main className="flex-1 pt-16 md:pt-20 pb-10">
-        {/* Dynamic Hero Banner - Full Width */}
-        <section className="relative mb-8 md:mb-16 overflow-hidden -mx-4 md:-mx-6 lg:-mx-8 xl:-mx-12 2xl:-mx-16">
-          {/* Animated Background */}
-          <div className="absolute inset-0">
-            {/* Dynamic gradient based on category fading to page blue */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${getCategoryGradient(productCategory)} to-[#1B3764] opacity-90`}></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-[#1B3764]"></div>
-            
-            {/* Static particles - Better performance */}
-            <div className="absolute inset-0 opacity-20 md:opacity-30">
-              <div className="absolute top-1/4 left-1/4 w-16 md:w-32 h-16 md:h-32 bg-white/10 rounded-full blur-xl"></div>
-              <div className="absolute top-3/4 right-1/4 w-12 md:w-24 h-12 md:h-24 bg-white/10 rounded-full blur-xl"></div>
-              <div className="absolute bottom-1/4 left-1/3 w-8 md:w-16 h-8 md:h-16 bg-white/10 rounded-full blur-lg"></div>
-            </div>
-            
-            {/* Geometric patterns - Hidden on mobile */}
-            <div className="absolute inset-0 opacity-20 hidden md:block">
-              <div className="absolute top-0 left-0 w-64 h-64 border border-white/20 rounded-full transform -translate-x-32 -translate-y-32"></div>
-              <div className="absolute bottom-0 right-0 w-96 h-96 border border-white/20 rounded-full transform translate-x-48 translate-y-48"></div>
-            </div>
-          </div>
+        {/* Hero Section */}
+        <section className={`relative py-20 mb-12 bg-gradient-to-br ${getCategoryGradient(productCategory)}`}>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Text Content */}
+              <div className="text-white">
+                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/30">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <span className="text-sm font-medium uppercase tracking-wider">
+                    {productCategory.toUpperCase()} SOLUTIONS
+                  </span>
+                </div>
 
-          {/* Content Container - Mobile Optimized */}
-          <div className="relative z-10 min-h-[400px] md:min-h-[600px] flex items-center">
-            <div className="w-full px-2 md:px-4">
-              <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center max-w-7xl mx-auto">
-                {/* Text Content - Mobile Optimized */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="text-white text-center lg:text-left"
-                >
-                  {/* Category Badge - Mobile Optimized */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-3 md:px-4 py-1.5 md:py-2 mb-4 md:mb-6 border border-white/30"
-                  >
-                    <div className="w-1.5 md:w-2 h-1.5 md:h-2 bg-white rounded-full"></div>
-                    <span className="text-xs md:text-sm font-medium uppercase tracking-wider">
-                      {productCategory.toUpperCase()} SOLUTIONS
-                    </span>
-                  </motion.div>
+                <h1 className="text-5xl lg:text-6xl font-kallisto font-black mb-6 leading-tight">
+                  {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
+                </h1>
 
-                  {/* Main Heading - Mobile Optimized */}
-                  <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="text-3xl md:text-5xl lg:text-6xl font-kallisto font-black mb-4 md:mb-6 leading-[1.1]" 
-                    style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}
-                  >
-                    {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
-                  </motion.h1>
-
-                  {/* Description - Mobile Optimized */}
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-base md:text-xl lg:text-2xl text-white/90 mb-6 md:mb-8 leading-relaxed px-2 md:px-0" 
-                    style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}
-                  >
-                    Discover our premium {productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.
-                  </motion.p>
-
-                  {/* Spacer for layout balance */}
-                  <div className="h-6 md:h-8"></div>
-                </motion.div>
-
-                {/* Category Image - Mobile Optimized */}
-                {getProductCategoryImage(productCategory) && (
-                  <motion.div
-                    initial={
-                      ['seal', 'tape'].includes(productCategory.toLowerCase())
-                        ? { opacity: 0, x: '100vw' }
-                        : productCategory.toLowerCase() === 'bond'
-                        ? { opacity: 0, y: '100vh' }
-                        : { opacity: 0, scale: 0.8, x: 50 }
-                    }
-                    animate={
-                      ['seal', 'tape'].includes(productCategory.toLowerCase())
-                        ? { opacity: 1, x: 0 }
-                        : productCategory.toLowerCase() === 'bond'
-                        ? { opacity: 1, y: 0 }
-                        : { opacity: 1, scale: 1, x: 0 }
-                    }
-                    transition={
-                      ['seal', 'tape', 'bond'].includes(productCategory.toLowerCase())
-                        ? { duration: 1.6, ease: [0.16, 1, 0.3, 1] }
-                        : { duration: 1, delay: 0.4, ease: 'easeOut' }
-                    }
-                    className="flex justify-center lg:justify-end order-first lg:order-last relative"
-                  >
-                    {/* Large Background Product Image */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-100">
-                      <img 
-                        src={getProductCategoryImage(productCategory)} 
-                        alt={`${productCategory} Category`}
-                        className="w-[1600px] h-[1600px] md:w-[2000px] md:h-[2000px] lg:w-[2400px] lg:h-[2400px] object-contain drop-shadow-2xl"
-                        style={{
-                          filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.1)) brightness(1.2) contrast(1.1)',
-                          transform: productCategory.toLowerCase() === 'tape' ? 'scaleX(-1) scale(1.3)' : 
-                                   productCategory.toLowerCase() === 'bond' || productCategory.toLowerCase() === 'seal' ? 'scale(1.3)' : 'none'
-                        }}
-                      />
-                    </div>
-                    
-
-                  </motion.div>
-                )}
+                <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
+                  Discover our premium {productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.
+                </p>
               </div>
+
+              {/* Category Image */}
+              {getProductCategoryImage(productCategory) && (
+                <div className="flex justify-center lg:justify-end">
+                  <img 
+                    src={getProductCategoryImage(productCategory)} 
+                    alt={`${productCategory} Category`}
+                    className="w-full max-w-md lg:max-w-lg object-contain drop-shadow-2xl"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -638,187 +553,178 @@ const ProductCategoryPage: React.FC = () => {
               {/* Product Grid - Responsive with Progressive Loading */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
                 {filteredProducts.slice(0, Math.min(filteredProducts.length, visibleProductCount)).map((product, idx) => (
-              <motion.div
-                key={`${product.id}-${idx}-${selectedIndustries.join(',')}-${search}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: Math.min(idx * 0.03, 0.3) }}
-                className="group"
-              >
-                {/* Mobile Row Card / Desktop Card */}
-                <div 
-                  className={`relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer ${
-                    // Mobile: Row layout, Desktop: Card layout
-                    'h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-r md:bg-gradient-to-b'
-                  } ${industryColor(product.industry?.[0] || '')}`}
-                  onClick={() => openProductModal(product)}
-                >
-                  {/* Background Image - Desktop Only */}
-                  <div className="absolute inset-0 hidden md:block">
-                    <img 
-                      src={product.imageUrl} 
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
-
-                  {/* Content Overlay - Mobile Row Layout / Desktop Card Layout */}
-                  <div className="absolute inset-0 flex md:flex-col justify-between p-4 md:p-6 text-white">
-                    {/* Mobile: Left side with image and basic info */}
-                    <div className="flex md:hidden items-center gap-4 flex-1">
-                      {/* Mobile: Product Image */}
-                      <div className="w-20 h-20 md:hidden rounded-xl overflow-hidden bg-white/20 backdrop-blur-sm border border-white/30">
+                  <motion.div
+                    key={`${product.id}-${idx}-${selectedIndustries.join(',')}-${search}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2, delay: Math.min(idx * 0.03, 0.3) }}
+                    className="group"
+                  >
+                    <div className="relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-r md:bg-gradient-to-b from-[#1b3764] via-[#1b3764] to-[#f16a26]">
+                      {/* Background Image - Desktop Only */}
+                      <div className="absolute inset-0 hidden md:block">
                         <img 
                           src={product.imageUrl} 
                           alt={product.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
                       </div>
-                      
-                      {/* Mobile: Product Info */}
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base md:text-lg font-kallisto font-black mb-1 leading-tight line-clamp-1 md:truncate" 
-                            style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                          {product.name.split('–')[0].trim()}
-                        </h3>
-                        <p className="text-xs md:text-sm text-gray-300 line-clamp-2" 
-                           style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                          {product.name.split('–')[1]?.trim() || product.description}
-                        </p>
-                        {/* Mobile: Industry Badge */}
-                        <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r ${industryColor(product.industry?.[0] || '')} text-white text-xs font-bold uppercase tracking-wide mt-2`}>
-                          {getIndustryLogo(product.industry?.[0] || '') ? (
+
+                      {/* Content Overlay */}
+                      <div className="absolute inset-0 flex md:flex-col justify-between p-4 md:p-6 text-white">
+                        {/* Mobile: Left side with image and basic info */}
+                        <div className="flex md:hidden items-center gap-4 flex-1">
+                          {/* Mobile: Product Image */}
+                          <div className="w-20 h-20 md:hidden rounded-xl overflow-hidden bg-white/20 backdrop-blur-sm border border-white/30">
                             <img 
-                              src={getIndustryLogo(product.industry?.[0] || '')} 
-                              alt={`${product.industry?.[0] || ''} icon`}
-                              className="h-4 w-4 md:h-5 md:w-5 object-contain"
+                              src={product.imageUrl} 
+                              alt={product.name}
+                              className="w-full h-full object-cover"
                             />
-                          ) : (
-                            <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
-                          )}
-                          <span className="capitalize text-xs">{product.industry?.[0] || ''}</span>
+                          </div>
+                          
+                          {/* Mobile: Product Info */}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base md:text-lg font-kallisto font-black mb-1 leading-tight line-clamp-1 md:truncate">
+                              {product.name.split('–')[0].trim()}
+                            </h3>
+                            <p className="text-xs md:text-sm text-gray-300 line-clamp-2">
+                              {product.name.split('–')[1]?.trim() || product.description}
+                            </p>
+                            {/* Mobile: Industry Badge */}
+                            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[#1b3764] via-[#1b3764] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide mt-2">
+                              {getIndustryLogo(product.industry?.[0] || '') ? (
+                                <img 
+                                  src={getIndustryLogo(product.industry?.[0] || '')} 
+                                  alt={`${product.industry?.[0] || ''} icon`}
+                                  className="h-4 w-4 md:h-5 md:w-5 object-contain"
+                                />
+                              ) : (
+                                <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
+                              )}
+                              <span className="capitalize text-xs">{product.industry?.[0] || ''}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Desktop: Top Section */}
+                        <div className="hidden md:flex items-start justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[#1b3764] via-[#1b3764] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                              {getIndustryLogo(product.industry?.[0] || '') ? (
+                                <img 
+                                  src={getIndustryLogo(product.industry?.[0] || '')} 
+                                  alt={`${product.industry?.[0] || ''} icon`}
+                                  className="h-4 w-4 md:h-5 md:w-5 object-contain"
+                                />
+                              ) : (
+                                <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
+                              )}
+                              <span className="capitalize">{product.industry?.[0] || ''}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Desktop: Middle Section */}
+                        <div className="hidden md:flex flex-1 flex-col justify-end gap-4">
+                          <div>
+                            <h3 className="text-xl md:text-2xl font-kallisto font-black mb-2 leading-tight line-clamp-2">
+                              {product.name.split('–')[0].trim()}
+                            </h3>
+                            <p className="text-sm md:text-base text-gray-200 line-clamp-3">
+                              {product.name.split('–')[1]?.trim() || product.description}
+                            </p>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            {/* View Details Button */}
+                            <Link
+                              to={`/products/${productCategory}/${product.id}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="flex items-center gap-2 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
+                            >
+                              <span>Details</span>
+                              <ExternalLink className="h-3 w-3" />
+                            </Link>
+                            
+                            {/* Datasheet Button */}
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                // Check if TDS files are available
+                                const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
+                                if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                                  // TDS files are temporarily unavailable
+                                  toast({
+                                    title: "TDS Temporarily Unavailable",
+                                    description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
+                                    variant: "destructive",
+                                  });
+                                } else if (tdsLink) {
+                                  // External link or other PDF
+                                  window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
+                                } else {
+                                  toast({
+                                    title: "Datasheet not available",
+                                    description: "The datasheet for this product is not available yet.",
+                                    variant: "destructive",
+                                  });
+                                }
+                              }}
+                              className="flex items-center gap-2 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
+                            >
+                              <span>Datasheet</span>
+                              <ExternalLink className="h-3 w-3" />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Mobile: Right side with buttons */}
+                        <div className="flex md:hidden items-center gap-2">
+                          {/* Mobile: View Details Button */}
+                          <Link
+                            to={`/products/${productCategory}/${product.id}`}
+                            onClick={(e) => e.stopPropagation()}
+                            className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
+                          >
+                            <span>Details</span>
+                            <ExternalLink className="h-2.5 w-2.5" />
+                          </Link>
+                          
+                          {/* Mobile: Datasheet Button */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              // Check if TDS files are available
+                              const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
+                              if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                                // TDS files are temporarily unavailable
+                                toast({
+                                  title: "TDS Temporarily Unavailable",
+                                  description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
+                                  variant: "destructive",
+                                });
+                              } else if (tdsLink) {
+                                // External link or other PDF
+                                window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
+                              } else {
+                                toast({
+                                  title: "Datasheet not available",
+                                  description: "The datasheet for this product is not available yet.",
+                                  variant: "destructive",
+                                });
+                              }
+                            }}
+                            className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
+                          >
+                            <span>PDF</span>
+                            <ExternalLink className="h-2.5 w-2.5" />
+                          </button>
                         </div>
                       </div>
                     </div>
-
-                    {/* Desktop: Top Section */}
-                    <div className="hidden md:flex items-start justify-between">
-                      {/* Top badges (moved industry info here; removed top-right icon) */}
-                      <div className="flex items-center gap-2">
-                        <div className={`px-3 py-1 rounded-full bg-gradient-to-r ${industryColor(product.industry?.[0] || '')} text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1`}>
-                          {getIndustryLogo(product.industry?.[0] || '') ? (
-                            <img 
-                              src={getIndustryLogo(product.industry?.[0] || '')} 
-                              alt={`${product.industry?.[0] || ''} icon`}
-                              className="h-4 w-4 md:h-5 md:w-5 object-contain"
-                            />
-                          ) : (
-                            <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
-                          )}
-                          <span className="capitalize">{product.industry?.[0] || ''}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Desktop: Bottom Content - Text above Buttons */}
-                    <div className="hidden md:flex flex-1 flex-col justify-end gap-4">
-                      <div>
-                        <h3 className="text-xl md:text-2xl font-kallisto font-black mb-2 leading-tight line-clamp-2" 
-                            style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                          {product.name.split('–')[0].trim()}
-                        </h3>
-                        <p className="text-sm md:text-base text-gray-200 line-clamp-3" 
-                           style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                          {product.name.split('–')[1]?.trim() || product.description}
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <Link
-                          to={`/products/${productCategory}/${product.id}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="flex items-center gap-2 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
-                        >
-                          <span>Details</span>
-                          <ExternalLink className="h-3 w-3" />
-                        </Link>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            // Check if TDS files are available
-                            const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                            if (tdsLink && tdsLink.startsWith('/TDS/')) {
-                              toast({
-                                title: "TDS Temporarily Unavailable",
-                                description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
-                                variant: "destructive",
-                              });
-                            } else if (tdsLink) {
-                              window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
-                            } else {
-                              toast({
-                                title: "Datasheet not available",
-                                description: "The datasheet for this product is not available yet.",
-                                variant: "destructive",
-                              });
-                            }
-                          }}
-                          className="flex items-center gap-2 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
-                        >
-                          <span>Datasheet</span>
-                          <ExternalLink className="h-3 w-3" />
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Mobile: Right side with buttons */}
-                    <div className="flex md:hidden items-center gap-2">
-                      {/* Mobile: View Details Button */}
-                      <Link
-                        to={`/products/${productCategory}/${product.id}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
-                      >
-                        <span>Details</span>
-                        <ExternalLink className="h-2.5 w-2.5" />
-                      </Link>
-                      
-                      {/* Mobile: Datasheet Button */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // Check if TDS files are available
-                          const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                          if (tdsLink && tdsLink.startsWith('/TDS/')) {
-                            // TDS files are temporarily unavailable
-                            toast({
-                              title: "TDS Temporarily Unavailable",
-                              description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
-                              variant: "destructive",
-                            });
-                          } else if (tdsLink) {
-                            // External link or other PDF
-                            window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
-                          } else {
-                            toast({
-                              title: "Datasheet not available",
-                              description: "The datasheet for this product is not available yet.",
-                              variant: "destructive",
-                            });
-                          }
-                        }}
-                        className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
-                      >
-                        <span>PDF</span>
-                        <ExternalLink className="h-2.5 w-2.5" />
-                      </button>
-                    </div>
-
-                    {/* Desktop: Bottom Section removed; buttons moved under text above */}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                  </motion.div>
+                ))}
+              </div>
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-16 text-gray-400">

@@ -91,8 +91,10 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
       >
         <Card className={`
           overflow-hidden group
-          ${isMobileFixed ? 'shadow-lg border bg-card rounded-xl' : 'shadow-xl border-2 bg-card/95 backdrop-blur-sm'}
-          ${isMobile && !isMobileFixed ? 'rounded-t-xl rounded-b-none' : 'rounded-xl'}
+          ${isMobileFixed 
+            ? 'shadow-lg border border-white/20 bg-white/30 backdrop-blur-md rounded-2xl' 
+            : 'shadow-2xl border border-white/25 bg-white/15 backdrop-blur-md rounded-2xl'}
+          ${isMobile && !isMobileFixed ? 'rounded-t-2xl rounded-b-none' : 'rounded-2xl'}
         `}>
           {/* Amazon-style mobile layout */}
           {isMobileFixed && isProduct ? (
@@ -109,22 +111,22 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
               
               {/* Product Details - Right side */}
               <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-base leading-tight line-clamp-2 text-foreground mb-1">
+                <h3 className="font-semibold text-base leading-tight line-clamp-2 text-[#1B3764] mb-1">
                   {hotspot.product!.name}
                 </h3>
                 
-                <p className="text-xs text-muted-foreground/80 mb-2">
+                <p className="text-xs text-[#1B3764]/80 mb-2">
                   SKU: {hotspot.product!.sku}
                 </p>
                 
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                <p className="text-sm text-[#1B3764] line-clamp-2 mb-3">
                   {hotspot.product!.blurb}
                 </p>
                 
                 <Button 
                   asChild 
                   size="sm" 
-                  className="w-full text-sm"
+                  className="w-full text-sm bg-[#F16022] hover:bg-[#F16022]/85 text-white"
                 >
                   <a 
                     href={hotspot.product!.url}
@@ -142,15 +144,14 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
             <>
               {/* Desktop/tablet layout or non-mobile-fixed */}
               {isProduct && !isMobileFixed && (
-                <div className="bg-blue-900">
-                  <AspectRatio ratio={16/9}>
-                    <img 
-                      src={hotspot.product!.thumb}
-                      alt={hotspot.product!.name}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </AspectRatio>
+                <div className="relative h-40 md:h-48 overflow-hidden group">
+                  <img 
+                    src={hotspot.product!.thumb}
+                    alt={hotspot.product!.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/0 to-[#1B3764]/20 pointer-events-none" />
                 </div>
               )}
               
@@ -160,7 +161,7 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                   variant="ghost"
                   size="sm"
                   onClick={onClose}
-                  className="absolute top-2 right-2 h-6 w-6 p-0 bg-black/20 hover:bg-black/40 text-white border-white/20 backdrop-blur-sm z-10"
+                  className="absolute top-2 right-2 h-6 w-6 p-0 bg-[#1B3764]/20 hover:bg-[#1B3764]/40 text-white border-white/20 backdrop-blur-sm z-10"
                   aria-label="Close details"
                 >
                   <X className="h-3 w-3" />
@@ -168,19 +169,19 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
               )}
 
               {/* Content section */}
-              <div className="p-4 bg-background">
+              <div className="p-4 bg-white">
                 <div className="space-y-2">
                   {isProduct && (
                     <>
-                      <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-foreground">
+                      <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-[#1B3764]">
                         {hotspot.product!.name}
                       </h3>
                       
-                      <p className="text-sm text-muted-foreground line-clamp-2">
+                      <p className="text-sm text-[#1B3764] line-clamp-2">
                         {hotspot.product!.blurb}
                       </p>
                       
-                      <p className="text-xs text-muted-foreground/80">
+                      <p className="text-xs text-[#1B3764]/80">
                         SKU: {hotspot.product!.sku}
                       </p>
                       
@@ -188,7 +189,7 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                         <Button 
                           asChild 
                           size="sm" 
-                          className="flex-1"
+                          className="flex-1 bg-[#F16022] hover:bg-[#F16022]/85 text-white"
                         >
                           <a 
                             href={hotspot.product!.url}
@@ -201,16 +202,6 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                           </a>
                         </Button>
                         
-                        {!isPinned && (
-                          <Button 
-                            variant="outline"
-                            size="sm"
-                            onClick={() => {/* Add to favorites logic */}}
-                            className="px-3"
-                          >
-                            Save
-                          </Button>
-                        )}
                       </div>
                     </>
                   )}
@@ -218,13 +209,13 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                   {isExperience && (
                     <>
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-2xl">{hotspot.experience!.icon}</span>
-                        <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-foreground">
+                        <span className="text-2xl text-[#1B3764]">{hotspot.experience!.icon}</span>
+                        <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-[#1B3764]">
                           {hotspot.experience!.title}
                         </h3>
                       </div>
                       
-                      <p className="text-sm text-muted-foreground line-clamp-3">
+                      <p className="text-sm text-[#1B3764] line-clamp-3">
                         {hotspot.experience!.description}
                       </p>
                     </>

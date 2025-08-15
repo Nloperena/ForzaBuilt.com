@@ -65,20 +65,6 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
       <Card className="w-full max-h-full bg-gradient-to-br from-[#1b3764]/95 to-[#09668d]/95 backdrop-blur-xl border border-white/20 shadow-lg overflow-hidden rounded-2xl relative">
         {/* Remove the white glass overlay */}
         <div className="relative z-10">
-          {/* Main card title only - no image or emoji */}
-          <div className="w-full bg-gradient-to-r from-[#1b3764] to-[#09668d] py-8">
-            <div className="flex items-center justify-center">
-              <h2 
-                className={cn(
-                  "text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white font-kallisto tracking-tight text-center transition-all duration-700 ease-out",
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                )}
-                style={{ transitionDelay: "100ms" }}
-              >
-                {title}
-              </h2>
-            </div>
-          </div>
 
           <div className="w-full max-w-[860px] xl:max-w-[900px] mx-auto flex items-center justify-center px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12 py-12 md:py-14 lg:py-16">
             <div className={cn("grid grid-cols-1 gap-8 md:gap-10 lg:gap-14", displayedColumns.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3")}>
@@ -92,12 +78,14 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
                     )}
                     style={{ transitionDelay: `${200 + (idx * 100)}ms` }}
                   >
-                    <img
-                      src={col.image || '/placeholder.svg'}
-                      alt={`${col.title} illustration`}
-                      loading="lazy"
-                      className="block h-40 w-40 md:h-48 md:w-48 opacity-100 object-contain mx-auto"
-                    />
+                    {col.image && (
+                      <img
+                        src={col.image}
+                        alt={`${col.title} illustration`}
+                        loading="lazy"
+                        className="block h-40 w-40 md:h-48 md:w-48 lg:h-40 lg:w-40 xl:h-44 xl:w-44 opacity-100 object-contain mx-auto"
+                      />
+                    )}
                   </div>
                   
                   {/* Title with staggered animation */}
@@ -117,7 +105,7 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
                   </h4>
                   
                   {/* List items with staggered animation */}
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 max-w-[52ch] xl:max-w-[64ch] mx-auto md:mx-0">
                     {col.items.map((item, i) => (
                       <li 
                         key={i} 

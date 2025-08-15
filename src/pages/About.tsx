@@ -37,28 +37,15 @@ const About = () => {
           </p>
         </section>
 
-        {/* Forza / Made in America Section */}
+        {/* Sticky Background Section replacing Made in America for now */}
         <section className="pt-8 pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto px-4">
-            <div className="bg-white text-[#1b3764] rounded-lg shadow-lg p-6 flex flex-col items-center justify-center text-center aspect-square">
-              <img src="https://forzabuilt.com/wp-content/uploads/2022/12/Forza-Corporate-Wordmark-Positive.png" alt="Forza Logo" className="w-1/2 mb-2 object-contain" />
-              <h3 className="text-3xl font-extrabold mb-2 font-kallisto">Forza</h3>
-              <p className="text-base font-bold mb-2">noun / italian for "force" / forza/</p>
-              <p className="text-base mb-4">Strength, Power, Force</p>
-              <p className="text-base">Strength or power exerted on an object</p>
-            </div>
-            <div className="bg-white text-[#1b3764] rounded-lg shadow-lg p-8 flex flex-col items-center text-center aspect-square">
-              <video
-                src="https://videos.ctfassets.net/hdznx4p7ef81/7FAYaB8msFZnVuKOMhuFse/30b2c632640ff0043ceea78211521787/Gen-4_Flag8.webm"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-3/4 mb-4 object-contain"
-              />
-              <h3 className="text-3xl font-extrabold mb-2 font-kallisto">Made in America</h3>
-              <p className="text-base leading-relaxed">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut</p>
-            </div>
+          <div className="max-w-6xl mx-auto px-4">
+            {/* Importing dynamically to avoid unused import if page structure changes */}
+            {/* eslint-disable-next-line @typescript-eslint/no-var-requires */}
+            {(() => {
+              const StickyBackgroundSectionV2 = require('@/components/StickyBackgroundSectionV2').default;
+              return <StickyBackgroundSectionV2 />;
+            })()}
           </div>
         </section>
 

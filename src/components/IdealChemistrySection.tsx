@@ -1,159 +1,88 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { brandColors } from '@/styles/brandStandards';
 
-// Chemistry icons paths - using available icons and fallbacks
+// Chemistry icons paths - updated to use assets in public/Chemistry Products Icons
 const CHEMISTRY_ICONS = {
-  acrylic: '/chemistry-icons/Epoxy icon.svg', // Using epoxy icon as fallback
-  epoxy: '/chemistry-icons/Epoxy icon.svg',
-  modifiedEpoxy: '/chemistry-icons/Epoxy icon.svg',
-  polyurethane: '/chemistry-icons/Waterbase icon.svg',
-  ms: '/chemistry-icons/MS icon.svg',
-  silicone: '/chemistry-icons/Silicone icon.svg',
-  hotMelt: '/chemistry-icons/Epoxy icon.svg', // Using epoxy icon as fallback
-  solventBase: '/chemistry-icons/Waterbase icon.svg',
+  acrylic: '/Chemistry%20Products%20Icons/acrylic%20icon.svg',
+  epoxy: '/Chemistry%20Products%20Icons/epoxy%20icon.svg',
+  modifiedEpoxy: '/Chemistry%20Products%20Icons/modified%20epoxy%20icon.svg',
+  polyurethane: '/Chemistry%20Products%20Icons/polyurethane%20icon.svg',
+  ms: '/Chemistry%20Products%20Icons/ms%20icon.svg',
+  silicone: '/Chemistry%20Products%20Icons/silicone%20icon.svg',
+  hotMelt: '/Chemistry%20Products%20Icons/hotmelt%20icon.svg',
+  solventBase: '/Chemistry%20Products%20Icons/solvent%20based%20icon.svg',
 };
 
-interface ChemistryCardProps {
+interface ChemistryItemProps {
   title: string;
   iconSrc: string;
   badges: string[];
   features: string[];
   products: string[];
-  index: number;
 }
 
-const ChemistryCard: React.FC<ChemistryCardProps> = ({
+const ChemistryItem: React.FC<ChemistryItemProps> = ({
   title,
   iconSrc,
   badges,
   features,
   products,
-  index,
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          // Trigger animation when card comes into view
-          const timer = setTimeout(() => setIsVisible(true), 200 + (index * 100));
-          return () => clearTimeout(timer);
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
-    );
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [index]);
-
   return (
-    <div 
-      ref={cardRef}
-      className={`bg-gradient-to-br from-[${brandColors.primary.regalBlue.hex}] to-[${brandColors.secondary.blueVelvet.hex}] rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl transition-all duration-1000 ease-out ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      }`}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 items-center">
-        {/* Left - Chemistry Icon */}
-        <div 
-          className={`flex justify-center transition-all duration-700 ease-out ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'
-          }`}
-          style={{ transitionDelay: '300ms' }}
-        >
-          <div className="relative w-32 h-32 md:w-40 md:h-40">
-            <img 
-              src={iconSrc} 
-              alt={`${title} Chemistry Icon`} 
-              className="w-full h-full object-contain filter brightness-0 invert opacity-90"
+    <div className="bg-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 mb-4">
+      <div className="p-4 md:p-6">
+        {/* Header with Icon and Title */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
+            <img
+              src={iconSrc}
+              alt={title}
+              className="w-full h-full object-contain"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
+              }}
             />
           </div>
+          <div className="flex-1">
+            <h3 className="text-lg md:text-xl font-kallisto font-bold text-white">
+              {title}
+            </h3>
+            {/* Badges */}
+            <div className="flex flex-wrap gap-1 mt-1">
+              {badges.map((badge, badgeIndex) => (
+                <span
+                  key={badgeIndex}
+                  className="px-2 py-1 bg-white/10 border border-white/20 rounded-full text-white text-xs font-medium"
+                >
+                  {badge}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
         
-        {/* Middle - Info */}
-        <div 
-          className={`space-y-4 transition-all duration-700 ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
-          style={{ transitionDelay: '500ms' }}
-        >
-          <h3 className="text-xl md:text-2xl font-kallisto font-black text-white text-center md:text-left">
-            {title.split(' ').map((word, wordIndex) => (
-              <span key={wordIndex}>
-                {word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()}
-                {wordIndex < title.split(' ').length - 1 ? ' ' : ''}
-              </span>
-            ))}
-          </h3>
-          
-          {/* Badges */}
-          <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-4">
-            {badges.map((badge, badgeIndex) => (
-              <span 
-                key={badgeIndex} 
-                className={`bg-[${brandColors.primary.regalBlue.hex}]/30 text-[${brandColors.secondary.slateGrey.hex}] px-3 py-1 rounded-full text-sm font-poppins font-medium transition-all duration-500 ease-out ${
-                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                }`}
-                style={{ transitionDelay: `${700 + (badgeIndex * 100)}ms` }}
-              >
-                {badge}
-              </span>
-            ))}
-          </div>
-          
-          {/* Description/Features */}
-          <div className="text-white/90 space-y-2 text-sm md:text-base font-poppins">
+        {/* Features List */}
+        <div className="mb-4">
+          <ul className="text-white/80 text-sm space-y-1 font-poppins">
             {features.map((feature, featureIndex) => (
-              <p 
-                key={featureIndex}
-                className={`transition-all duration-700 ease-out ${
-                  isVisible ? 'opacity-100 translate-y-0 translate-x-0' : 'opacity-0 translate-y-4 -translate-x-4'
-                }`}
-                style={{ transitionDelay: `${900 + (featureIndex * 200)}ms` }}
-              >
-                • {feature}
-              </p>
-            ))}
-          </div>
-        </div>
-        
-        {/* Right - Products & Button */}
-        <div 
-          className={`flex flex-col justify-center items-center space-y-4 border-l border-white/20 pl-4 md:pl-6 h-full transition-all duration-700 ease-out ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
-          }`}
-          style={{ transitionDelay: '700ms' }}
-        >
-          <h3 className="text-xl md:text-2xl font-kallisto font-black text-white text-center">
-            Products
-          </h3>
-          <ul className="text-white/80 text-sm md:text-base text-center list-none space-y-1 font-poppins">
-            {products.map((product, productIndex) => (
-              <li 
-                key={productIndex}
-                className={`transition-all duration-500 ease-out ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
-                }`}
-                style={{ transitionDelay: `${1100 + (productIndex * 100)}ms` }}
-              >
-                {product}
+              <li key={featureIndex} className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-[#F2611D] rounded-full mt-2 flex-shrink-0"></div>
+                <span className="text-xs md:text-sm">{feature}</span>
               </li>
             ))}
           </ul>
+        </div>
+        
+        {/* Products and Button */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-3 border-t border-white/10">
+          <div className="flex-1">
+            <h4 className="text-sm font-semibold text-white mb-1">Products:</h4>
+            <div className="text-white/80 text-xs md:text-sm font-poppins">
+              {products.join(', ')}
+            </div>
+          </div>
           <button 
-            className={`bg-[${brandColors.primary.blazeOrange.hex}] hover:bg-[${brandColors.primary.blazeOrange.hex}]/80 text-white px-6 py-3 rounded-lg font-poppins font-bold transition-all duration-500 ease-out mt-4 ${
-              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`}
-            style={{ transitionDelay: '1300ms' }}
+            className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white px-4 py-2 rounded-lg text-sm font-poppins font-bold transition-all duration-300 flex-shrink-0"
           >
             See Products
           </button>
@@ -279,25 +208,24 @@ const IdealChemistrySection: React.FC = () => {
   ];
 
   return (
-    <section className={`py-16 md:py-24 bg-gradient-to-b from-[${brandColors.secondary.blueVelvet.hex}] to-[${brandColors.primary.regalBlue.hex}] text-white`}>
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-kallisto font-black mb-6 text-white leading-none">
+    <section className="py-12 md:py-16 bg-gradient-to-b from-[#1b3764] to-[#1b3764] text-white">
+      <div className="max-w-4xl mx-auto px-4 md:px-6">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-kallisto font-black mb-4 text-white leading-none">
             IDEAL CHEMISTRY FOR YOUR SPECIFIC APPLICATION
           </h2>
         </div>
         
-        {/* Chemistry Cards */}
-        <div className="grid grid-cols-1 gap-6 md:gap-8 max-w-7xl mx-auto">
+        {/* Chemistry List */}
+        <div className="space-y-3">
           {chemistries.map((chemistry, index) => (
-            <ChemistryCard
+            <ChemistryItem
               key={index}
               title={chemistry.title}
               iconSrc={chemistry.iconSrc}
               badges={chemistry.badges}
               features={chemistry.features}
               products={chemistry.products}
-              index={index}
             />
           ))}
         </div>

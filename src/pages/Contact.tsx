@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Linkedin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -144,24 +144,31 @@ const Contact = () => {
         </section>
 
         {/* Contact Section */}
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-12">
+        <section className="py-20 bg-gradient-to-b from-[#1B3764] via-[#1B3764]/95 to-[#1B3764] relative overflow-hidden sticky top-0">
+          {/* Background Effects */}
+          <div className="absolute inset-0">
+            <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-white/5 blur-3xl"></div>
+            <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-[#F2611D]/10 blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-cyan-300/5 blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
               {/* Contact Form */}
-              <Card className="shadow-xl border-0 bg-white/95 backdrop-blur-sm">
-                <CardHeader className="bg-gradient-to-r from-[#1B3764] to-[#09668D] text-white rounded-t-lg">
-                  <CardTitle className="text-2xl font-black font-kallisto">
+              <div className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg overflow-hidden">
+                <div className="bg-gradient-to-r from-[#1B3764] to-[#F2611D] text-white p-6">
+                  <h3 className="text-2xl font-black font-kallisto">
                     Get In Touch
-                  </CardTitle>
+                  </h3>
                   <p className="text-white/90 font-poppins">
                     Fill out the form below and our team will get back to you within 24 hours.
                   </p>
-                </CardHeader>
-                <CardContent className="p-8">
+                </div>
+                <div className="p-8">
                   <form className="space-y-6" onSubmit={handleSubmit}>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="firstName" className="text-sm font-semibold text-[#1B3764] font-poppins">
+                        <Label htmlFor="firstName" className="text-sm font-semibold text-white font-poppins">
                           First Name *
                         </Label>
                         <Input
@@ -170,13 +177,13 @@ const Contact = () => {
                           type="text"
                           value={formData.firstName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200 font-poppins"
+                          className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins text-white placeholder-white/50"
                           placeholder="John"
                           required
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="lastName" className="text-sm font-semibold text-[#1B3764] font-poppins">
+                        <Label htmlFor="lastName" className="text-sm font-semibold text-white font-poppins">
                           Last Name *
                         </Label>
                         <Input
@@ -185,7 +192,7 @@ const Contact = () => {
                           type="text"
                           value={formData.lastName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200 font-poppins"
+                          className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins text-white placeholder-white/50"
                           placeholder="Doe"
                           required
                         />
@@ -193,7 +200,7 @@ const Contact = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-semibold text-[#1B3764] font-poppins">
+                      <Label htmlFor="email" className="text-sm font-semibold text-white font-poppins">
                         Email Address *
                       </Label>
                       <Input
@@ -202,14 +209,14 @@ const Contact = () => {
                         type="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200 font-poppins"
+                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins text-white placeholder-white/50"
                         placeholder="john@company.com"
                         required
                       />
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="company" className="text-sm font-semibold text-[#1B3764] font-poppins">
+                      <Label htmlFor="company" className="text-sm font-semibold text-white font-poppins">
                         Company
                       </Label>
                       <Input
@@ -218,13 +225,13 @@ const Contact = () => {
                         type="text"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200 font-poppins"
+                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins text-white placeholder-white/50"
                         placeholder="Your Company"
                       />
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-sm font-semibold text-[#1B3764] font-poppins">
+                      <Label htmlFor="message" className="text-sm font-semibold text-white font-poppins">
                         Message *
                       </Label>
                       <textarea
@@ -233,7 +240,7 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={6}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent resize-none transition-all duration-200 font-poppins"
+                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent resize-none transition-all duration-200 font-poppins text-white placeholder-white/50"
                         placeholder="Tell us about your project and how we can help..."
                         required
                       />
@@ -242,95 +249,137 @@ const Contact = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-[#F16022] to-[#D35127] hover:from-[#F16022]/90 hover:to-[#D35127]/90 text-white py-3 px-6 rounded-lg font-bold transition-all duration-200 font-poppins text-lg"
+                      className="w-full bg-gradient-to-r from-[#F2611D] to-[#F2611D]/90 hover:from-[#F2611D]/80 hover:to-[#F2611D]/70 text-white py-3 px-6 rounded-lg font-bold transition-all duration-200 font-poppins text-lg shadow-lg hover:shadow-xl"
                     >
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
                   </form>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
               {/* Contact Information */}
-              <div className="space-y-8">
+              <div className="space-y-6">
                 <div>
-                  <h3 className="text-3xl font-black text-[#1B3764] mb-8 font-kallisto">
+                  <h3 className="text-3xl font-black text-white mb-6 font-kallisto">
                     Contact Information
                   </h3>
-                  <div className="space-y-8">
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg border border-white/20">
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
                       <div className="flex-shrink-0">
-                        <MapPin className="w-8 h-8 text-[#F16022]" />
+                        <MapPin className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg">Address</h4>
-                        <p className="text-[#09668D] font-poppins">
-                          123 Industrial Way<br />
-                          Manufacturing District<br />
-                          City, State 12345
+                        <h4 className="font-bold text-white font-poppins text-base">HQ Address</h4>
+                        <p className="text-white/90 font-poppins text-sm">
+                          <span className="font-bold text-[#F2611D]">Forza</span><br />
+                          3211 Nebraska Ave, Suite 300<br />
+                          Council Bluffs, Iowa 51501
                         </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg border border-white/20">
+                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
                       <div className="flex-shrink-0">
-                        <Phone className="w-8 h-8 text-[#F16022]" />
+                        <Phone className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg">Phone</h4>
-                        <p className="text-[#09668D] font-poppins">+1 (555) 123-4567</p>
+                        <h4 className="font-bold text-white font-poppins text-base">Phone</h4>
+                        <p className="text-white/90 font-poppins text-sm">
+                          <span className="font-bold">O. 402.731.9300</span>
+                        </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg border border-white/20">
+                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
                       <div className="flex-shrink-0">
-                        <Mail className="w-8 h-8 text-[#F16022]" />
+                        <Mail className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg">Email</h4>
-                        <p className="text-[#09668D] font-poppins">info@forzabuilt.com</p>
+                        <h4 className="font-bold text-white font-poppins text-base">Email</h4>
+                        <p className="text-white/90 font-poppins text-sm">
+                          <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
+                            support@forzabuilt.com
+                          </a>
+                        </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg border border-white/20">
+                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
                       <div className="flex-shrink-0">
-                        <Clock className="w-8 h-8 text-[#F16022]" />
+                        <Clock className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg">Business Hours</h4>
-                        <p className="text-[#09668D] font-poppins">
-                          Monday - Friday: 8:00 AM - 6:00 PM<br />
-                          Saturday: 9:00 AM - 2:00 PM<br />
-                          Sunday: Closed
+                        <h4 className="font-bold text-white font-poppins text-base">Business Hours</h4>
+                        <p className="text-white/90 font-poppins text-sm">
+                          <span className="font-bold">Mon – Fri | 8:00 AM – 4:30 PM CST</span><br />
+                          Saturday & Sunday: Closed
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
+                      <div className="flex-shrink-0">
+                        <Mail className="w-6 h-6 text-[#F2611D]" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white font-poppins text-base">Sales Inquiries</h4>
+                        <p className="text-white/90 font-poppins text-sm">
+                          <a href="mailto:sales@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
+                            sales@forzabuilt.com
+                          </a><br />
+                          <span className="text-xs">For optimization inquiries and working with us</span>
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-gradient-to-br from-[#1B3764] to-[#09668D] p-8 rounded-xl shadow-xl text-white">
-                  <h4 className="font-bold text-2xl mb-6 font-kallisto">Why Choose ForzaBuilt?</h4>
-                  <ul className="space-y-3 text-white/90 font-poppins">
+                <div className="bg-gradient-to-br from-[#F2611D] to-[#F2611D]/80 p-6 rounded-xl shadow-2xl text-white border border-white/20">
+                  <h4 className="font-bold text-xl mb-4 font-kallisto">Why Choose ForzaBuilt?</h4>
+                  <ul className="space-y-2 text-white/90 font-poppins text-sm">
                     <li className="flex items-center space-x-3">
-                      <span className="text-[#F16022] text-xl">•</span>
-                      <span>Expert technical support</span>
+                      <span className="text-white text-lg font-bold">•</span>
+                      <span>Expert technical support & application engineering</span>
                     </li>
                     <li className="flex items-center space-x-3">
-                      <span className="text-[#F16022] text-xl">•</span>
-                      <span>Custom solutions for your needs</span>
+                      <span className="text-white text-lg font-bold">•</span>
+                      <span>Custom solutions for your specific needs</span>
                     </li>
                     <li className="flex items-center space-x-3">
-                      <span className="text-[#F16022] text-xl">•</span>
-                      <span>Fast response times</span>
+                      <span className="text-white text-lg font-bold">•</span>
+                      <span>Fast response times within 24 hours</span>
                     </li>
                     <li className="flex items-center space-x-3">
-                      <span className="text-[#F16022] text-xl">•</span>
-                      <span>Industry-leading products</span>
+                      <span className="text-white text-lg font-bold">•</span>
+                      <span>Industry-leading adhesive & sealant products</span>
                     </li>
                     <li className="flex items-center space-x-3">
-                      <span className="text-[#F16022] text-xl">•</span>
-                      <span>Made in America quality</span>
+                      <span className="text-white text-lg font-bold">•</span>
+                      <span>Made in America quality & reliability</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <span className="text-white text-lg font-bold">•</span>
+                      <span>30+ years of proven expertise</span>
                     </li>
                   </ul>
+                </div>
+
+                {/* Social Media */}
+                <div className="bg-white/10 backdrop-blur-xl p-4 rounded-xl shadow-2xl border border-white/20 text-center">
+                  <h4 className="font-bold text-lg mb-3 font-kallisto text-white">Connect With Us</h4>
+                  <div className="flex justify-center">
+                    <a 
+                      href="https://www.linkedin.com/company/forza-built/posts/?feedView=all" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="p-2 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 hover:scale-110"
+                    >
+                      <Linkedin className="w-5 h-5 text-white" />
+                    </a>
+                  </div>
+                  <p className="text-white/80 text-xs mt-2 font-poppins">
+                    Follow us on LinkedIn for industry insights and company updates
+                  </p>
                 </div>
               </div>
             </div>

@@ -18,15 +18,18 @@
  * - Uses StackSpacer component for scroll height management
  */
 
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import CardStackItemCustom from './cards/CardStackItemCustom';
 import ThreeColumnServiceCard from './cards/ThreeColumnServiceCard';
 import StackSpacer from './cards/StackSpacer';
 import { useScrollCalculator } from '../hooks/useScrollCalculator';
+import { useIsMobile, useIsTablet } from '@/hooks/use-mobile';
 import { ColumnData } from './cards/ThreeColumnServiceCard';
 
 const ServiceCardStack: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
 
   const cards: Array<{
     title: string;
@@ -165,21 +168,49 @@ const ServiceCardStack: React.FC = () => {
     }
   ];
 
+  // Flatten to inner columns for mobile/tablet; otherwise keep as provided
+  const flatCards = useMemo(() => {
+    if (!(isMobile || isTablet)) return cards;
+    const mapped: Array<{ title: string; icon?: string; image?: string; columns: ColumnData[] }> = [];
+    cards.forEach((c) => {
+      (c.columns || []).forEach((col) => {
+        mapped.push({ title: col.title || c.title, icon: c.icon, image: col.image || c.image, columns: [col] });
+      });
+    });
+    return mapped;
+  }, [cards, isMobile, isTablet]);
+
   // Use the scroll calculator hook for all scroll-related logic
   const { getCardProgress } = useScrollCalculator({
-    cardCount: cards.length,
+    cardCount: flatCards.length,
     containerRef
   });
 
   return (
     <div ref={containerRef} className="relative w-full px-4 py-16 bg-gradient-to-b from-[#1b3764] via-[#09668d] to-[#1B3764]">
-      <div className="text-center mb-12">
-
+      <div className="text-center py-16 mt-4 px-4">
+        <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-3 font-kallisto">
+          Our Approach
+        </h2>
+        <ul className="text-2xl text-white/90 max-w-4xl mx-auto font-light space-y-4 text-left">
+          <li className="flex items-center gap-3">
+            <span className="text-[#F2611D] text-3xl">•</span>
+            <span>Big-Picture Expertise. Small-Town Care</span>
+          </li>
+          <li className="flex items-start gap-3">
+            <span className="text-[#F2611D] text-3xl mt-2">•</span>
+            <span>We unleash the strength and spirit of America's Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.</span>
+          </li>
+          <li className="flex items-center gap-3">
+            <span className="text-[#F2611D] text-3xl">•</span>
+            <span>Purpose-Built Performance. Guaranteed Strength.</span>
+          </li>
+        </ul>
       </div>
       
              <div className="relative space-y-16 lg:space-y-20 xl:space-y-24 max-w-[1600px] mx-auto">
-         {/* All cards as stackable items */}
-         {cards.map((card, index) => {
+         {/* All cards as stackable items (flattened on mobile/tablet) */}
+         {flatCards.map((card, index) => {
            const { progress, nextCardProgress, isVisible } = getCardProgress(index);
            
            return (
@@ -189,23 +220,24 @@ const ServiceCardStack: React.FC = () => {
                progress={progress}
                nextCardProgress={nextCardProgress}
                isVisible={isVisible}
+               isLast={index === flatCards.length - 1}
                render={({ transform, opacity }) => (
-                 <ThreeColumnServiceCard
-                   title={card.title}
-                   icon={card.icon}
-                   image={card.image}
-                   columns={card.columns}
-                   transform={transform}
-                   opacity={opacity}
-                   index={index}
-                 />
-               )}
-             />
-           );
+                   <ThreeColumnServiceCard
+                    title={card.title}
+                    icon={card.icon}
+                    image={card.image}
+                    columns={card.columns}
+                    transform={transform}
+                    opacity={opacity}
+                    index={index}
+                  />
+                )}
+              />
+            );
          })}
          
          {/* Spacer element for scroll height */}
-         <StackSpacer cardCount={cards.length} />
+         <StackSpacer cardCount={flatCards.length} />
         </div>
     </div>
   );

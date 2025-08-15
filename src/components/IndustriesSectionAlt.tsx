@@ -3,9 +3,25 @@ import { Link } from 'react-router-dom';
 import { Card } from './ui/card';
 import { industries } from '../data/industries';
 import { motion, easeInOut } from 'framer-motion';
-import { IndustriesCtaCard } from './IndustriesCtaCard';
 import type { Industry } from '../data/industries';
 import { useLandscapeValues } from '@/hooks/use-landscape';
+
+function hexToRgba(hex: string, alpha: number): string {
+  let normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    normalized = normalized.split('').map((c) => c + c).join('');
+  }
+  const r = parseInt(normalized.substring(0, 2), 16);
+  const g = parseInt(normalized.substring(2, 4), 16);
+  const b = parseInt(normalized.substring(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function toTitleCase(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
 
 const childItemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -67,7 +83,10 @@ const IndustriesSectionAlt = () => {
                   className="block w-full"
                 >
                   <Card
-                    className="bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full"
+                    className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, #1b3764, #1b3764, ${industry.color || '#f16a26'})`
+                    }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
                     }}
@@ -110,18 +129,19 @@ const IndustriesSectionAlt = () => {
                         <motion.h3
                           className="font-black font-kallisto text-lg sm:text-xl text-left w-full mb-1"
                           style={{
-                            color: industry.color || '#1b3764',
+                            color: '#ffffff',
                             lineHeight: 1.1,
                           }}
                           variants={childItemVariants}
                           initial="hidden"
                           animate="visible"
                         >
-                          {industry.title}
+                          {toTitleCase(industry.title)}
                         </motion.h3>
-                        <p className="text-xs sm:text-sm text-gray-600 font-light">
+                        <p className="text-xs sm:text-sm text-white/80 font-light">
                           Specialized solutions for {industry.title.toLowerCase()} applications
                         </p>
+                        
                       </div>
                       
                       {/* Arrow indicator */}
@@ -136,22 +156,12 @@ const IndustriesSectionAlt = () => {
               </motion.div>
             ))}
             
-            {/* Mobile CTA Card */}
-            <motion.div
-              variants={cardVariants}
-              initial="hidden"
-              animate={"visible"}
-              exit="exit"
-              custom={industriesArr.length}
-              className="block"
-            >
-              <IndustriesCtaCard size="large" className="bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl w-full h-24 sm:h-28" />
-            </motion.div>
+            
           </div>
         </div>
 
         {/* Desktop: Grid layout with 2 columns */}
-        <div className="hidden md:block w-full flex flex-col items-center">
+        <div className="hidden md:flex w-full flex-col items-center">
           <div className="grid grid-cols-2 gap-6 lg:gap-8 w-full max-w-7xl mb-8 mx-auto py-4 sm:py-6 lg:py-8">
             {industriesArr.map((industry: Industry, index: number) => (
               <motion.div
@@ -168,7 +178,10 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className="bg-white shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full"
+                    className="shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, #1b3764, #1b3764, ${industry.color || '#f16a26'})`
+                    }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
                     }}
@@ -207,20 +220,23 @@ const IndustriesSectionAlt = () => {
                         />
                       </motion.div>
                       
-                      {/* White bar at bottom with text only */}
+                      {/* Gradient bar at bottom with text only */}
                       <motion.div
-                        className="absolute bottom-0 left-0 right-0 bg-white p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none"
-                        style={{ zIndex: 10 }}
+                        className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none text-white"
+                        style={{
+                          zIndex: 10,
+                          backgroundImage: `linear-gradient(to right, #1b3764, #1b3764, ${industry.color || '#f16a26'})`
+                        }}
                       >
                         <div className="flex items-center justify-between gap-1">
                           <motion.h3
                             className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
                             style={{
-                              color: industry.color || '#1b3764',
+                              color: '#ffffff',
                               fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
                             }}
                           >
-                            {industry.title}
+                            {toTitleCase(industry.title)}
                           </motion.h3>
                         </div>
                       </motion.div>
@@ -229,8 +245,50 @@ const IndustriesSectionAlt = () => {
                 </Link>
               </motion.div>
             ))}
-            <IndustriesCtaCard size="large" className="w-full h-full" />
           </div>
+        </div>
+
+        {/* Standalone CTA Section: Glassmorphic liquid shine */}
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20 mt-8 sm:mt-12">
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            animate={"visible"}
+            exit="exit"
+            custom={industriesArr.length + 1}
+            className="relative max-w-7xl mx-auto overflow-hidden rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-xl"
+          >
+            {/* Animated liquid shine overlay */}
+            <motion.div
+              className="pointer-events-none absolute -inset-x-1/2 -inset-y-1/2"
+              style={{
+                background: 'radial-gradient(60% 40% at 50% 50%, rgba(255,255,255,0.15), rgba(255,255,255,0) 60%)',
+              }}
+              animate={{ x: ["-20%", "20%", "-20%"], y: ["-10%", "10%", "-10%"] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            <div className="relative z-10 p-5 sm:p-6 md:p-8 lg:p-10">
+              <div className="flex flex-col items-center justify-center text-center gap-5">
+                <div className="max-w-2xl">
+                  <h3 className="text-white font-kallisto font-black text-xl sm:text-2xl md:text-3xl leading-tight">
+                    Don't see your industry?
+                  </h3>
+                  <p className="mt-2 text-white/80 text-sm sm:text-base">
+                    We can still provide purpose built solutions.
+                  </p>
+                </div>
+                <div className="mt-4">
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center justify-center bg-[#F2611D] hover:bg-[#F2611D]/85 text-white rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 shadow-md shadow-black/10"
+                  >
+                    <span>Contact Us</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

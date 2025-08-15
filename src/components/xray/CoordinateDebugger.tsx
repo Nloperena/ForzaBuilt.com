@@ -129,7 +129,7 @@ export const CoordinateDebugger: React.FC<CoordinateDebuggerProps> = ({
             className="absolute w-4 h-4 bg-red-500 rounded-full border-2 border-white transform -translate-x-2 -translate-y-2"
             style={{ left: coord.x, top: coord.y }}
           >
-            <span className="absolute -top-6 -left-2 bg-black text-white text-xs px-1 py-0.5 rounded">
+            <span className="absolute -top-6 -left-2 bg-[#1B3764] text-white text-xs px-1 py-0.5 rounded">
               {index + 1}
             </span>
             <button
