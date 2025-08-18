@@ -112,7 +112,7 @@ export const useHeaderState = () => {
   const handleNavLeave = useCallback(() => {
     const timeout = setTimeout(() => {
       closeOverlay();
-    }, 300);
+    }, 500);
     setHoverTimeout(timeout);
   }, []);
 

@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import HeroOverlay from '@/components/HeroOverlay';
 import HeroVideoSection from '@/components/HeroVideoSection';
-import { IndustriesCarouselSectionV4 as IndustriesCarouselSection } from '@/components/IndustriesCarouselSection';
+import IndustriesSectionAlt from '@/components/IndustriesSectionAlt';
 import ProductsSection from '@/components/ProductsSection';
 import StickyBackgroundSection from '@/components/StickyBackgroundSection';
 import ScrollSections from '@/components/ScrollSections';
@@ -40,8 +40,8 @@ const Index = () => {
       {/* Hero Video Section */}
       <HeroVideoSection />
       
-      {/* Industries Section */}
-      <IndustriesCarouselSection />
+      {/* Industries Section (same as Industries page) */}
+      <IndustriesSectionAlt />
       
       {/* Products Section */}
       <ProductsSection />

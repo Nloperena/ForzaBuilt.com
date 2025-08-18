@@ -19,8 +19,9 @@ const ThirtyYearsTrustSection: React.FC = () => {
         style={{ y: bgY }}
         className="pointer-events-none absolute -inset-y-24 -inset-x-0"
       >
-        <div className="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full bg-cyan-300/20 blur-3xl" />
-        <div className="absolute top-1/3 -right-40 w-[48rem] h-[48rem] rounded-full bg-sky-500/15 blur-3xl" />
+        {/* Brand orange glow accents */}
+        <div className="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full bg-[#F2611D]/20 blur-3xl" />
+        <div className="absolute top-1/3 -right-40 w-[48rem] h-[48rem] rounded-full bg-[#F16022]/15 blur-3xl" />
         <div className="absolute bottom-0 left-1/4 w-[32rem] h-[32rem] rounded-full bg-white/10 blur-3xl" />
       </motion.div>
 

@@ -45,6 +45,8 @@ const Header = () => {
           ? 'bg-[#1b3764]/90 backdrop-blur-md shadow-lg' 
           : 'bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-70'
       }`}
+      onMouseEnter={handleOverlayEnter}
+      onMouseLeave={handleNavLeave}
     >
       <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
@@ -69,7 +71,7 @@ const Header = () => {
             
             <SearchBar />
             
-            <Button asChild className="forza-btn-primary rounded-full px-8 py-6 text-xl">
+            <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl border border-[#F2611D]">
               <Link to="/contact">Contact Us</Link>
             </Button>
             
@@ -100,7 +102,8 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: animationDirection === 'up' ? -20 : 20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="global-nav-overlay fixed top-[72px] left-0 w-full bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-90 z-40 shadow-sm overflow-hidden font-kallisto"
+            className="global-nav-overlay fixed left-0 w-full bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-90 z-40 shadow-sm overflow-hidden font-kallisto"
+            style={{ top: headerRef.current?.offsetHeight ?? 72 }}
             onMouseEnter={handleOverlayEnter}
             onMouseLeave={handleNavLeave}
             onClick={closeOverlay}

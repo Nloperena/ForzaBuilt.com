@@ -43,9 +43,25 @@ const getProductCategoryImage = (category: string) => {
     case 'seal':
       return '/src/assets/images/OS2 Cartridge Hero.png';
     case 'tape':
-      return '/src/assets/images/Tape Heroic Image.png';
+      return '/Tape Heroic Image 1.png';
     default:
       return null;
+  }
+};
+
+// Hero image sizing/position per category (desktop)
+const getHeroImageClasses = (category: string) => {
+  const cat = (category || '').toLowerCase();
+  switch (cat) {
+    case 'seal':
+      // Larger-than-life, pushed up so the section top crops it
+      return 'lg:scale-[1.35] lg:-translate-y-16 lg:-translate-x-2';
+    case 'bond':
+      return 'lg:scale-[1.2] lg:-translate-y-8';
+    case 'tape':
+      return 'lg:scale-[1.2] lg:translate-y-4 lg:scale-x-[-1]';
+    default:
+      return '';
   }
 };
 
@@ -278,11 +294,11 @@ const ProductCategoryPage: React.FC = () => {
       <Header />
       <main className="flex-1 pt-16 md:pt-20 pb-10">
         {/* Hero Section */}
-        <section className={`relative py-20 mb-12 bg-gradient-to-br ${getCategoryGradient(productCategory)}`}>
+        <section className={`relative py-20 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)}`}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Text Content */}
-              <div className="text-white">
+              <div className="text-white relative z-20">
                 <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/30">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
                   <span className="text-sm font-medium uppercase tracking-wider">
@@ -299,13 +315,13 @@ const ProductCategoryPage: React.FC = () => {
                 </p>
               </div>
 
-              {/* Category Image */}
+              {/* Category Image (background-style hero) */}
               {getProductCategoryImage(productCategory) && (
-                <div className="flex justify-center lg:justify-end">
+                <div className={`flex justify-center lg:justify-end relative z-10 ${productCategory.toLowerCase() === 'seal' ? 'lg:self-start' : ''}`}>
                   <img 
                     src={getProductCategoryImage(productCategory)} 
                     alt={`${productCategory} Category`}
-                    className="w-full max-w-md lg:max-w-lg object-contain drop-shadow-2xl"
+                    className={`w-full max-w-md lg:max-w-none lg:w-[760px] xl:w-[840px] object-contain drop-shadow-2xl transform ${getHeroImageClasses(productCategory)}`}
                   />
                 </div>
               )}

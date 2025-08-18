@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import AboutIdentityCards from '@/components/AboutIdentityCards';
 
 const About = () => {
   return (
@@ -23,6 +24,9 @@ const About = () => {
           </div>
         </section>
 
+        {/* Identity Cards Section (Forza + Made in America) */}
+        <AboutIdentityCards />
+
         {/* About Us Heading Section */}
         <section className="pt-8 md:pt-16 pb-6 md:pb-8 px-4 max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-5xl font-extrabold font-kallisto text-white mb-3 md:mb-4">About Us</h1>
@@ -37,20 +41,10 @@ const About = () => {
           </p>
         </section>
 
-        {/* Sticky Background Section replacing Made in America for now */}
-        <section className="pt-8 pb-16">
-          <div className="max-w-6xl mx-auto px-4">
-            {/* Importing dynamically to avoid unused import if page structure changes */}
-            {/* eslint-disable-next-line @typescript-eslint/no-var-requires */}
-            {(() => {
-              const StickyBackgroundSectionV2 = require('@/components/StickyBackgroundSectionV2').default;
-              return <StickyBackgroundSectionV2 />;
-            })()}
-          </div>
-        </section>
+        
 
         {/* Concluding Text Section */}
-        <section className="py-8 md:py-16 px-4 max-w-4xl md:max-w-6xl mx-auto text-center">
+        <section className="py-8 md:py-16 px-4 max-w-4xl mx-auto text-center">
           <p className="text-base md:text-2xl mb-6 md:mb-8 leading-relaxed">
             Why Forza? Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at all times.
           </p>

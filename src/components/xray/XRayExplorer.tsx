@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue, useMotionTemplate } from 'framer-motion';
 import { IndustryData, XRayComponent, Hotspot } from '../../types/industry';
 import ProductTooltip from './ProductTooltip';
 import SvgHotspotOverlay from './SvgHotspotOverlay';
@@ -34,7 +34,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
   // Dynamic height calculation based on hotspot count
   // Each hotspot needs enough scroll space to be properly highlighted
   const minDwellTimePerHotspot = 80; // vh units per hotspot
-  const basePhases = 150; // vh for slide-in and wipe phases
+  const basePhases = 110; // reduced vh for pre-wipe phases to start sooner
   const hotspotPhaseHeight = Math.max(100, xrayComponent.hotspots.length * minDwellTimePerHotspot);
   const extendedHeight = basePhases + hotspotPhaseHeight;
   
@@ -43,18 +43,17 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
     offset: ["start end", "end start"]
   });
 
-  // Phase 1 (0-30%): Slide-in, scale-up of normal image
-  const slideY = useTransform(scrollYProgress, [0, 0.3], [100, 0]);
-  const slideScale = useTransform(scrollYProgress, [0, 0.3], [0.8, 1]);
-  const slideOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  // Phase 1: No scale/slide. We'll rely solely on wipe for reveal.
 
-  // Phase 2 (30-60%): Wipe reveal to X-ray
-  const normalOpacity = useTransform(scrollYProgress, [0.3, 0.6], [1, 0]);
-  const xrayOpacity = useTransform(scrollYProgress, [0.3, 0.6], [0, 1]);
+  // Phase 2: Early wipe reveal to X-ray (no fade)
+  const wipeStart = 0.12;
+  const wipeEnd = 0.45;
+  const wipeTop = useTransform(scrollYProgress, [wipeStart, wipeEnd], [100, 0]);
+  const wipeClipPath = useMotionTemplate`inset(${wipeTop}% 0% 0% 0%)`;
 
   // Dynamic phase 3 calculation based on hotspot count
   // Hotspot phase should take up 70% of scroll to ensure all hotspots are seen
-  const hotspotStartProgress = 0.6;
+  const hotspotStartProgress = wipeEnd + 0.05; // start hotspots shortly after wipe completes
   const hotspotEndProgress = 0.9; // Leave 10% buffer for smooth exit
   
   const hotspotProgress = useTransform(scrollYProgress, [hotspotStartProgress, hotspotEndProgress], [0, 1]);
@@ -239,11 +238,22 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
             style={{
               aspectRatio: `${xrayComponent.width}/${xrayComponent.height}`,
               y: 0,
-              scale: 1.05,
+              scale: 1,
               opacity: 1
             }}
           >
-            {/* X-ray Image displayed immediately, slightly enlarged */}
+            {/* Pre-Xray (normal) image - static; wipe reveals X-ray */}
+            <motion.img
+              src={xrayComponent.preSrc}
+              alt={`${xrayComponent.id} normal view`}
+              className="absolute inset-0 w-full h-full object-contain will-change-transform"
+              loading="lazy"
+              width={xrayComponent.width}
+              height={xrayComponent.height}
+              style={{}}
+            />
+
+            {/* X-ray Image wipes in from bottom to top without opacity fade */}
             <motion.img
               src={xrayComponent.postSrc}
               alt={`${xrayComponent.id} X-ray view`}
@@ -253,6 +263,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               height={xrayComponent.height}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
               decoding="async"
+              style={{ opacity: 1, clipPath: wipeClipPath, WebkitClipPath: wipeClipPath }}
             />
 
             {/* Conditional Hotspot Overlay (Phase 3) */}

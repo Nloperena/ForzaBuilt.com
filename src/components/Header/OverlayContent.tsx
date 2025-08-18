@@ -21,16 +21,17 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
   const productsData = getProducts();
   
   const renderIndustriesContent = () => (
-    <div className="flex flex-row items-start justify-center space-x-12 text-center" onMouseLeave={() => onVideoUrlChange(null)}>
+    <div className="group/menu flex flex-row items-start justify-center space-x-12 text-center" onMouseLeave={() => onVideoUrlChange(null)}>
       {industriesData.map(industry => (
         <Link
           key={industry.title}
           to={`/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`}
-          className="flex flex-col items-center w-36 text-white hover:text-[#F2611D] transition-colors duration-300 group"
+          className="group/item flex flex-col items-center w-36 text-white hover:text-[#F2611D] transform transition-all duration-300 group-hover/menu:scale-90 hover:!scale-100"
           onMouseEnter={() => onVideoUrlChange(industry.videoUrl)}
         >
-          <div className="w-24 h-24 flex items-center justify-center mb-4">
-            <img src={industry.logo} alt={`${industry.title} Logo`} className="max-w-full max-h-full object-contain"/>
+          <div className="relative w-24 h-24 flex items-center justify-center mb-4 will-change-transform">
+            <img src={industry.logo} alt={`${industry.title} Logo`} className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"/>
+            <div className="pointer-events-none absolute inset-x-4 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
           </div>
           <h3 className="text-xl font-semibold font-kallisto">{industry.title}</h3>
         </Link>
@@ -39,15 +40,16 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
   );
 
   const renderProductsContent = () => (
-    <div className="flex flex-row items-center justify-center space-x-8 text-center" onMouseLeave={() => onVideoUrlChange(null)}>
+    <div className="group/menu flex flex-row items-center justify-center space-x-8 text-center" onMouseLeave={() => onVideoUrlChange(null)}>
       {/* Show main product categories instead of individual products */}
       <Link
         to="/products/bond"
-        className="flex flex-col items-center w-48 text-white hover:text-[#F2611D] transition-colors duration-300 group"
+        className="group/item flex flex-col items-center w-48 text-white hover:text-[#F2611D] transform transition-all duration-300 group-hover/menu:scale-90 hover:!scale-100"
         onMouseEnter={() => onVideoUrlChange('https://forzabuilt.com/wp-content/uploads/2024/02/Automotive-v2.mp4')}
       >
-        <div className="w-40 h-24 flex items-center justify-center">
-          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg" alt="Industrial Adhesives Logo" className="max-w-full max-h-full object-contain"/>
+        <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
+          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg" alt="Industrial Adhesives Logo" className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"/>
+          <div className="pointer-events-none absolute inset-x-6 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
         </div>
         <h3 className="text-xl font-semibold text-center font-kallisto">
           <div>INDUSTRIAL</div>
@@ -56,11 +58,12 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       </Link>
       <Link
         to="/products/seal"
-        className="flex flex-col items-center w-48 text-white hover:text-[#F2611D] transition-colors duration-300 group"
+        className="group/item flex flex-col items-center w-48 text-white hover:text-[#F2611D] transform transition-all duration-300 group-hover/menu:scale-90 hover:!scale-100"
         onMouseEnter={() => onVideoUrlChange('https://forzabuilt.com/wp-content/uploads/2024/02/Manufacturing-v2.mp4')}
       >
-        <div className="w-40 h-24 flex items-center justify-center">
-          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg" alt="Industrial Sealants Logo" className="max-w-full max-h-full object-contain"/>
+        <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
+          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg" alt="Industrial Sealants Logo" className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"/>
+          <div className="pointer-events-none absolute inset-x-6 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
         </div>
         <h3 className="text-xl font-semibold text-center font-kallisto">
           <div>INDUSTRIAL</div>
@@ -69,11 +72,12 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       </Link>
       <Link
         to="/products/tape"
-        className="flex flex-col items-center w-48 text-white hover:text-[#F2611D] transition-colors duration-300 group"
+        className="group/item flex flex-col items-center w-48 text-white hover:text-[#F2611D] transform transition-all duration-300 group-hover/menu:scale-90 hover:!scale-100"
         onMouseEnter={() => onVideoUrlChange('https://forzabuilt.com/wp-content/uploads/2024/02/Construction-v2.mp4')}
       >
-        <div className="w-40 h-24 flex items-center justify-center">
-          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg" alt="Industrial Tapes Logo" className="max-w-full max-h-full object-contain"/>
+        <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
+          <img src="https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg" alt="Industrial Tapes Logo" className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"/>
+          <div className="pointer-events-none absolute inset-x-6 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
         </div>
         <h3 className="text-xl font-semibold text-center font-kallisto">
           <div>INDUSTRIAL</div>

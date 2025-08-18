@@ -186,7 +186,7 @@ export const industries: Industry[] = [
   },
   {
     title: "INSULATION",
-    videoUrl: "https://forzabuilt.com/wp-content/uploads/2025/02/Final-Forza-Insulation-Header-Video.mp4#t=0,100",
+    videoUrl: "https://videos.ctfassets.net/hdznx4p7ef81/7wshIvIrD8PkRCpFxAM8WX/b8c6141ad0d22f16239d1ea77323777f/Final-Forza-Insulation-Header-Video_1.mp4",
     description: "High-performance bonding solutions for insulation materials",
     logo: "https://forzabuilt.com/wp-content/uploads/2024/09/Insulation-Icon.png",
     color: "#d0157d", // Insulation pink color from brand standards

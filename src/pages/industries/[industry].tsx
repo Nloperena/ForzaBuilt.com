@@ -4,7 +4,7 @@ import { industries } from '../../data/industries';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import IdealChemistrySection from '../../components/IdealChemistrySection';
-import IndustryStackableCardsV2 from '../../components/StackableCards/IndustryStackableCardsV2';
+import IndustryStackableCards from '../../components/StackableCards/IndustryStackableCards';
 import { getCardsByIndustry, getBackgroundGradientByIndustry } from '@/data/stackableCardsData';
  
 import MarineProductsGrid from '../../components/MarineProductsGrid';
@@ -173,24 +173,27 @@ const IndustryPage = () => {
       {/* New Two-Column Stack using industry gradient/glassmorphism */}
       {(() => {
         const industryKey = industryData.title.toLowerCase();
-        const genericCards = getCardsByIndustry(industryKey);
-        const v2Cards = genericCards.map(card => ({
-          id: card.id,
-          title: card.title,
-          icon: card.icon,
-          features: card.features || [],
-          storyText: card.description || card.subtitle,
-          imageUrl: card.imageUrl,
-          buttonText: card.buttonText,
-          buttonLink: card.buttonLink,
-        }));
-        const gradient = getBackgroundGradientByIndustry(industryKey);
+        // Map industry titles to valid industry keys
+        const getIndustryKey = (title: string) => {
+          const titleLower = title.toLowerCase();
+          if (titleLower.includes('marine')) return 'marine';
+          if (titleLower.includes('transportation')) return 'transportation';
+          if (titleLower.includes('construction')) return 'construction';
+          if (titleLower.includes('industrial')) return 'industrial';
+          if (titleLower.includes('composite')) return 'composites';
+          if (titleLower.includes('insulation')) return 'insulation';
+          return 'industrial'; // default fallback
+        };
+        
+        const validIndustryKey = getIndustryKey(industryData.title);
+        const gradient = getBackgroundGradientByIndustry(validIndustryKey);
+        
         return (
-          <section style={{ background: `linear-gradient(315deg, ${gradient})` }} className="text-white">
-            <div className="max-w-[1600px] mx-auto">
-              <IndustryStackableCardsV2 industryKey={industryKey} cards={v2Cards} />
-            </div>
-          </section>
+          
+            
+              <IndustryStackableCards industry={validIndustryKey} />
+         
+          
         );
       })()}
 

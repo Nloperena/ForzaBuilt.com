@@ -219,3 +219,4 @@ console.log(`📋 Every tape shows Property | Value | Methods format`);
 
 
 
+
