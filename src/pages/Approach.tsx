@@ -31,9 +31,9 @@ const Approach = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-24 pb-16">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Our Approach
-          </h1>
+                  <h1 className="text-4xl font-bold text-gray-900 mb-6">
+          Our Approach
+        </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             At Forza, we believe in delivering exceptional value through innovative solutions, 
             quality craftsmanship, and unwavering commitment to our customers' success.

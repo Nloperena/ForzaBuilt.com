@@ -72,7 +72,7 @@ const ProductsSection = () => {
     <section className="py-16 bg-[#1b3764] text-white">
       <div className="w-full px-4 max-w-[1100px] mx-auto">
         <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block">
             Our Products
           </h2>
         </div>

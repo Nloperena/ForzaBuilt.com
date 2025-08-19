@@ -39,11 +39,26 @@ const getProductCategoryImage = (category: string) => {
   const categoryLower = category.toLowerCase();
   switch (categoryLower) {
     case 'bond':
-      return '/src/assets/images/Canister System.png';
+      return '/Bond Heroic Image 1.png';
     case 'seal':
-      return '/src/assets/images/OS2 Cartridge Hero.png';
+      return '/Seal Heroic Image 1.png';
     case 'tape':
       return '/Tape Heroic Image 1.png';
+    default:
+      return null;
+  }
+};
+
+// Helper to get product category logo
+const getProductCategoryLogo = (category: string) => {
+  const categoryLower = category.toLowerCase();
+  switch (categoryLower) {
+    case 'bond':
+      return 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg';
+    case 'seal':
+      return 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg';
+    case 'tape':
+      return 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg';
     default:
       return null;
   }
@@ -59,7 +74,7 @@ const getHeroImageClasses = (category: string) => {
     case 'bond':
       return 'lg:scale-[1.2] lg:-translate-y-8';
     case 'tape':
-      return 'lg:scale-[1.2] lg:translate-y-4 lg:scale-x-[-1]';
+      return 'lg:scale-100 lg:translate-y-0';
     default:
       return '';
   }
@@ -70,15 +85,15 @@ const getCategoryGradient = (category: string) => {
   const categoryLower = category.toLowerCase();
   switch (categoryLower) {
     case 'bond':
-      return 'from-[#F16022] via-[#D35127] to-[#1B3764]';
+      return 'from-[#1B3764] via-[#1B3764] to-[#F16022]';
     case 'seal':
-      return 'from-[#faaf40] via-[#f4c430] to-[#1B3764]';
+      return 'from-[#1B3764] via-[#1B3764] to-[#faaf40]';
     case 'tape':
-      return 'from-[#d1181f] via-[#b3141a] to-[#1B3764]';
+      return 'from-[#1B3764] via-[#1B3764] to-[#d1181f]';
     case 'ruggedred':
-      return 'from-[#e53935] via-[#c62828] to-[#1B3764]';
+      return 'from-[#1B3764] via-[#1B3764] to-[#e53935]';
     default:
-      return 'from-[#1B3764] via-[#09668D] to-[#1B3764]';
+      return 'from-[#1B3764] via-[#1B3764] to-[#09668D]';
   }
 };
 
@@ -98,31 +113,57 @@ const categoryColor = (cat: string) => {
   }
 };
 
-// Industry colors using vertical gradients with more industry color at bottom
+// Industry colors using vertical gradients with more industry color at top
 const industryColor = (industry: string | string[]) => {
   // Handle both string and array inputs - use first industry if array
   const industryStr = Array.isArray(industry) ? industry[0] || '' : industry;
   const industryLower = industryStr.toLowerCase();
   const brandBlue = '#1b3764'; // Forza brand blue
   
-  // Use gradients with 70% blue and 30% industry color
+  // Use gradients with 30% blue and 70% industry color
   switch (industryLower) {
     case 'marine':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#137875]`; // 70% blue, 30% Marine teal
+      return `from-[#137875] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Marine teal, 30% blue
     case 'industrial':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#f16a26]`; // 70% blue, 30% Industrial orange
+      return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Industrial orange, 30% blue
     case 'transportation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // 70% blue, 30% Transportation red
+      return `from-[#b83d35] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Transportation red, 30% blue
     case 'construction':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // 70% blue, 30% Construction yellow
+      return `from-[#fec770] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Construction yellow, 30% blue
     // case 'foam':
-    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // 70% blue, 30% Foam purple
+    //   return `from-[#7a6fb0] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Foam purple, 30% blue
     case 'composites':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // 70% blue, 30% Composites gray
+      return `from-[#c7c8c9] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Composites gray, 30% blue
     case 'insulation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#d0157d]`; // 70% blue, 30% Insulation pink
+      return `from-[#d0157d] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Insulation pink, 30% blue
     default:
       return `from-[${brandBlue}] to-[${brandBlue}]`; // Default blue
+  }
+};
+
+// Helper to get just the industry color hex value
+const getIndustryColorHex = (industry: string | string[]) => {
+  // Handle both string and array inputs - use first industry if array
+  const industryStr = Array.isArray(industry) ? industry[0] || '' : industry;
+  const industryLower = industryStr.toLowerCase();
+  
+  switch (industryLower) {
+    case 'marine':
+      return '#137875'; // Marine teal
+    case 'industrial':
+      return '#f16a26'; // Industrial orange
+    case 'transportation':
+      return '#b83d35'; // Transportation red
+    case 'construction':
+      return '#fec770'; // Construction yellow
+    case 'foam':
+      return '#7a6fb0'; // Foam purple
+    case 'composites':
+      return '#c7c8c9'; // Composites gray
+    case 'insulation':
+      return '#d0157d'; // Insulation pink
+    default:
+      return '#1b3764'; // Default blue
   }
 };
 
@@ -294,7 +335,7 @@ const ProductCategoryPage: React.FC = () => {
       <Header />
       <main className="flex-1 pt-16 md:pt-20 pb-10">
         {/* Hero Section */}
-        <section className={`relative py-20 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)}`}>
+        <section className={`relative py-20 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)} ${productCategory.toLowerCase() === 'tape' ? '' : 'lg:max-h-[700px]'}`}>
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Text Content */}
@@ -306,8 +347,18 @@ const ProductCategoryPage: React.FC = () => {
                   </span>
                 </div>
 
-                <h1 className="text-5xl lg:text-6xl font-kallisto font-black mb-6 leading-tight">
-                  {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
+                <h1 className="mb-6">
+                  {getProductCategoryLogo(productCategory) ? (
+                    <img 
+                      src={getProductCategoryLogo(productCategory)} 
+                      alt={`Forza ${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Product Line`}
+                      className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto object-contain"
+                    />
+                  ) : (
+                    <span className="text-5xl lg:text-6xl font-kallisto font-black leading-tight">
+                      {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
+                    </span>
+                  )}
                 </h1>
 
                 <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
@@ -321,7 +372,7 @@ const ProductCategoryPage: React.FC = () => {
                   <img 
                     src={getProductCategoryImage(productCategory)} 
                     alt={`${productCategory} Category`}
-                    className={`w-full max-w-md lg:max-w-none lg:w-[760px] xl:w-[840px] object-contain drop-shadow-2xl transform ${getHeroImageClasses(productCategory)}`}
+                    className={`w-full max-w-md lg:max-w-none lg:w-[760px] xl:w-[840px] object-contain drop-shadow-2xl transform ${getHeroImageClasses(productCategory)} ${productCategory.toLowerCase() === 'tape' ? 'lg:w-[800px] xl:w-[900px]' : ''}`}
                   />
                 </div>
               )}
@@ -576,166 +627,143 @@ const ProductCategoryPage: React.FC = () => {
                     transition={{ duration: 0.2, delay: Math.min(idx * 0.03, 0.3) }}
                     className="group"
                   >
-                    <div className="relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-r md:bg-gradient-to-b from-[#1b3764] via-[#1b3764] to-[#f16a26]">
-                      {/* Background Image - Desktop Only */}
+                    <div 
+                      className="relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl"
+                      style={{
+                        background: `linear-gradient(to bottom, #1b3764 0%, #1b3764 70%, ${getIndustryColorHex(product.industry?.[0] || '')} 100%)`
+                      }}
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        setIsModalOpen(true);
+                      }}
+                    >
+                      {/* Desktop: Badge above image */}
+                      <div className="absolute top-3 left-3 z-30 hidden md:block">
+                        <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[#1b3764] via-[#1b3764] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                          {getIndustryLogo(product.industry?.[0] || '') ? (
+                            <img 
+                              src={getIndustryLogo(product.industry?.[0] || '')} 
+                              alt={`${product.industry?.[0] || ''} icon`}
+                              className="h-4 w-4 md:h-5 md:w-5 object-contain"
+                            />
+                          ) : (
+                            <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
+                          )}
+                          <span className="capitalize">{product.industry?.[0] || ''}</span>
+                        </div>
+                      </div>
+
+                      {/* Desktop: Product Image - Full height to show whole image */}
                       <div className="absolute inset-0 hidden md:block">
                         <img 
                           src={product.imageUrl} 
                           alt={product.name}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
                         />
                       </div>
 
-                      {/* Content Overlay */}
-                      <div className="absolute inset-0 flex md:flex-col justify-between p-4 md:p-6 text-white">
-                        {/* Mobile: Left side with image and basic info */}
-                        <div className="flex md:hidden items-center gap-4 flex-1">
-                          {/* Mobile: Product Image */}
-                          <div className="w-20 h-20 md:hidden rounded-xl overflow-hidden bg-white/20 backdrop-blur-sm border border-white/30">
-                            <img 
-                              src={product.imageUrl} 
-                              alt={product.name}
-                              className="w-full h-full object-cover"
-                            />
+                      {/* Desktop: Product Title between image and content */}
+                      <div className="hidden md:block px-4 py-3 absolute bottom-24 left-0 right-0">
+                        <h3 className="text-xl font-kallisto font-black leading-tight line-clamp-2 text-white">
+                          {product.name.split('–')[0].trim()}
+                        </h3>
+                      </div>
+
+                      {/* Mobile: Left side with image and basic info */}
+                      <div className="flex md:hidden items-center gap-4 flex-1 p-4">
+                        {/* Mobile: Product Image */}
+                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-sm border border-white/30">
+                          <img 
+                            src={product.imageUrl} 
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        
+                        {/* Mobile: Product Info */}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1">
+                            {product.name.split('–')[0].trim()}
+                          </h3>
+                          <p className="text-xs text-gray-300 line-clamp-2">
+                            {product.name.split('–')[1]?.trim() || product.description}
+                          </p>
+                          {/* Mobile: Industry Badge */}
+                          <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[#1b3764] via-[#1b3764] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide mt-2">
+                            {getIndustryLogo(product.industry?.[0] || '') ? (
+                              <img 
+                                src={getIndustryLogo(product.industry?.[0] || '')} 
+                                alt={`${product.industry?.[0] || ''} icon`}
+                                className="h-4 w-4 md:h-5 md:w-5 object-contain"
+                              />
+                            ) : (
+                              <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
+                            )}
+                            <span className="text-xs">{product.industry?.[0] || ''}</span>
                           </div>
+                        </div>
+                      </div>
+
+                      {/* Desktop: Content Section */}
+                      <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
+                        <div className="space-y-3">
+                          <p className="text-sm text-white line-clamp-3">
+                            {product.name.split('–')[1]?.trim() || product.description}
+                          </p>
                           
-                          {/* Mobile: Product Info */}
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-base md:text-lg font-kallisto font-black mb-1 leading-tight line-clamp-1 md:truncate">
-                              {product.name.split('–')[0].trim()}
-                            </h3>
-                            <p className="text-xs md:text-sm text-gray-300 line-clamp-2">
-                              {product.name.split('–')[1]?.trim() || product.description}
-                            </p>
-                            {/* Mobile: Industry Badge */}
-                            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[#1b3764] via-[#1b3764] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide mt-2">
-                              {getIndustryLogo(product.industry?.[0] || '') ? (
-                                <img 
-                                  src={getIndustryLogo(product.industry?.[0] || '')} 
-                                  alt={`${product.industry?.[0] || ''} icon`}
-                                  className="h-4 w-4 md:h-5 md:w-5 object-contain"
-                                />
-                              ) : (
-                                <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
-                              )}
-                              <span className="capitalize text-xs">{product.industry?.[0] || ''}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Desktop: Top Section */}
-                        <div className="hidden md:flex items-start justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[#1b3764] via-[#1b3764] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1">
-                              {getIndustryLogo(product.industry?.[0] || '') ? (
-                                <img 
-                                  src={getIndustryLogo(product.industry?.[0] || '')} 
-                                  alt={`${product.industry?.[0] || ''} icon`}
-                                  className="h-4 w-4 md:h-5 md:w-5 object-contain"
-                                />
-                              ) : (
-                                <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
-                              )}
-                              <span className="capitalize">{product.industry?.[0] || ''}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Desktop: Middle Section */}
-                        <div className="hidden md:flex flex-1 flex-col justify-end gap-4">
-                          <div>
-                            <h3 className="text-xl md:text-2xl font-kallisto font-black mb-2 leading-tight line-clamp-2">
-                              {product.name.split('–')[0].trim()}
-                            </h3>
-                            <p className="text-sm md:text-base text-gray-200 line-clamp-3">
-                              {product.name.split('–')[1]?.trim() || product.description}
-                            </p>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            {/* View Details Button */}
-                            <Link
-                              to={`/products/${productCategory}/${product.id}`}
-                              onClick={(e) => e.stopPropagation()}
-                              className="flex items-center gap-2 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
-                            >
-                              <span>Details</span>
-                              <ExternalLink className="h-3 w-3" />
-                            </Link>
-                            
-                            {/* Datasheet Button */}
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                // Check if TDS files are available
-                                const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                                if (tdsLink && tdsLink.startsWith('/TDS/')) {
-                                  // TDS files are temporarily unavailable
-                                  toast({
-                                    title: "TDS Temporarily Unavailable",
-                                    description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
-                                    variant: "destructive",
-                                  });
-                                } else if (tdsLink) {
-                                  // External link or other PDF
-                                  window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
-                                } else {
-                                  toast({
-                                    title: "Datasheet not available",
-                                    description: "The datasheet for this product is not available yet.",
-                                    variant: "destructive",
-                                  });
-                                }
-                              }}
-                              className="flex items-center gap-2 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
-                            >
-                              <span>Datasheet</span>
-                              <ExternalLink className="h-3 w-3" />
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Mobile: Right side with buttons */}
-                        <div className="flex md:hidden items-center gap-2">
-                          {/* Mobile: View Details Button */}
+                          {/* View Details Button */}
                           <Link
                             to={`/products/${productCategory}/${product.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
+                            className="inline-flex items-center gap-2 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
                           >
                             <span>Details</span>
-                            <ExternalLink className="h-2.5 w-2.5" />
+                            <ExternalLink className="h-3 w-3" />
                           </Link>
-                          
-                          {/* Mobile: Datasheet Button */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Check if TDS files are available
-                              const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                              if (tdsLink && tdsLink.startsWith('/TDS/')) {
-                                // TDS files are temporarily unavailable
-                                toast({
-                                  title: "TDS Temporarily Unavailable",
-                                  description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
-                                  variant: "destructive",
-                                });
-                              } else if (tdsLink) {
-                                // External link or other PDF
-                                window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
-                              } else {
-                                toast({
-                                  title: "Datasheet not available",
-                                  description: "The datasheet for this product is not available yet.",
-                                  variant: "destructive",
-                                });
-                              }
-                            }}
-                            className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
-                          >
-                            <span>PDF</span>
-                            <ExternalLink className="h-2.5 w-2.5" />
-                          </button>
                         </div>
+                      </div>
+
+                      {/* Mobile: Right side with buttons */}
+                      <div className="flex md:hidden items-center gap-2 p-4">
+                        {/* Mobile: View Details Button */}
+                        <Link
+                          to={`/products/${productCategory}/${product.id}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
+                        >
+                          <span>Details</span>
+                          <ExternalLink className="h-2.5 w-2.5" />
+                        </Link>
+                        
+                        {/* Mobile: Datasheet Button */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            // Check if TDS files are available
+                            const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
+                            if (tdsLink && tdsLink.startsWith('/TDS/')) {
+                              // TDS files are temporarily unavailable
+                              toast({
+                                title: "TDS Temporarily Unavailable",
+                                description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
+                                variant: "destructive",
+                              });
+                            } else if (tdsLink) {
+                              // External link or other PDF
+                              window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
+                            } else {
+                              toast({
+                                title: "Datasheet not available",
+                                description: "The datasheet for this product is not available yet.",
+                                variant: "destructive",
+                              });
+                            }
+                          }}
+                          className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
+                        >
+                          <span>PDF</span>
+                          <ExternalLink className="h-2.5 w-2.5" />
+                        </button>
                       </div>
                     </div>
                   </motion.div>

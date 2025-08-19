@@ -144,45 +144,53 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
             <>
               {/* Desktop/tablet layout or non-mobile-fixed */}
               {isProduct && !isMobileFixed && (
-                <div className="relative h-40 md:h-48 overflow-hidden group">
-                  <img 
-                    src={hotspot.product!.thumb}
-                    alt={hotspot.product!.name}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/0 to-[#1B3764]/20 pointer-events-none" />
+                <div className="relative">
+                  {/* Badge above image */}
+                  <div className="absolute top-3 left-3 z-30">
+                    <div className="bg-[#F16022] text-white text-xs font-semibold px-2 py-1 rounded-full">
+                      {hotspot.product!.sku}
+                    </div>
+                  </div>
+                  
+                  {/* Close Button for Pinned State */}
+                  {isPinned && onClose && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={onClose}
+                      className="absolute top-2 right-2 h-6 w-6 p-0 bg-[#1B3764]/20 hover:bg-[#1B3764]/40 text-white border-white/20 backdrop-blur-sm z-30"
+                      aria-label="Close details"
+                    >
+                      <X className="h-3 w-3" />
+                    </Button>
+                  )}
+                  
+                  {/* Product Image */}
+                  <div className="h-40 md:h-48 overflow-hidden group">
+                    <img 
+                      src={hotspot.product!.thumb}
+                      alt={hotspot.product!.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  {/* Product Title between image and content */}
+                  <div className="px-4 py-3 bg-white border-b border-gray-100">
+                    <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-[#1B3764]">
+                      {hotspot.product!.name}
+                    </h3>
+                  </div>
                 </div>
               )}
               
-              {/* Close Button for Pinned State */}
-              {isPinned && onClose && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onClose}
-                  className="absolute top-2 right-2 h-6 w-6 p-0 bg-[#1B3764]/20 hover:bg-[#1B3764]/40 text-white border-white/20 backdrop-blur-sm z-10"
-                  aria-label="Close details"
-                >
-                  <X className="h-3 w-3" />
-                </Button>
-              )}
-
               {/* Content section */}
               <div className="p-4 bg-white">
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {isProduct && (
                     <>
-                      <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-[#1B3764]">
-                        {hotspot.product!.name}
-                      </h3>
-                      
                       <p className="text-sm text-[#1B3764] line-clamp-2">
                         {hotspot.product!.blurb}
-                      </p>
-                      
-                      <p className="text-xs text-[#1B3764]/80">
-                        SKU: {hotspot.product!.sku}
                       </p>
                       
                       <div className="flex gap-2 pt-2">
@@ -201,7 +209,6 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                             <ExternalLink className="h-3 w-3" />
                           </a>
                         </Button>
-                        
                       </div>
                     </>
                   )}

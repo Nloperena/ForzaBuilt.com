@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
+
 import { getProducts } from '@/utils/products';
 import { industries as industriesData } from '@/data/industries';
 import { tools as toolsData } from '@/data/tools';
@@ -14,7 +14,6 @@ const navigation = [
 
 export const useHeaderState = () => {
   const navigate = useNavigate();
-  const { signOut } = useAuth();
   const productsData = getProducts();
 
   // Overlay state
@@ -123,11 +122,7 @@ export const useHeaderState = () => {
     }
   }, [hoverTimeout]);
 
-  const handleSignOut = useCallback(async () => {
-    await signOut();
-    setMobileMenuOpen(false);
-    closeOverlay();
-  }, [signOut, closeOverlay]);
+
 
   const openMobileMenu = useCallback(() => {
     setMobileMenuOpen(true);
@@ -161,7 +156,6 @@ export const useHeaderState = () => {
     handleNavLeave,
     handleOverlayEnter,
     closeOverlay,
-    handleSignOut,
     openMobileMenu,
     closeMobileMenu,
     setHoveredVideoUrl,

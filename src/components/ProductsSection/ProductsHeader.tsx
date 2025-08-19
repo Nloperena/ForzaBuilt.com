@@ -4,7 +4,7 @@ const ProductsHeader: React.FC = () => {
   return (
     <>
       <div className="text-center mb-4 sm:mb-6">
-        <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-8xl font-black text-white mb-2 sm:mb-3 font-kallisto leading-none break-words">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-7xl font-black text-white mb-2 sm:mb-3 font-kallisto leading-none break-words">
           Our Products
         </h2>
       </div>

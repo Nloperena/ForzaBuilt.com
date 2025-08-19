@@ -63,14 +63,14 @@ const MemoizedHeading = React.memo(() => (
     <SplitText
       key="industries-heading-line1"
       text="Better Built Bonds"
-      className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block"
+      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block"
       splitType="words"
       delay={50}
     />
     <SplitText
       key="industries-heading-line2"
       text="for All Industries"
-      className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block"
+      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block"
       splitType="words"
       delay={50}
     />

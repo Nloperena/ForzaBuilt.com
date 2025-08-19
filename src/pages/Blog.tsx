@@ -165,7 +165,7 @@ const Blog = () => {
          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-20">
            <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
              <div className="max-w-6xl mx-auto space-y-8">
-               <h1 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl leading-none break-words">
+               <h1 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-none break-words">
                  LEARNING CENTER
                </h1>
                <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">

@@ -1,4 +1,5 @@
 import React from 'react';
+import forzaLogo from '@/assets/images/forza-logo-full.png';
 
 const Footer = () => {
   return (
@@ -11,8 +12,11 @@ const Footer = () => {
               
             </div>
             <div>
-              <span className="text-4xl font-extrabold font-sans font-kallisto">Forza</span>
-              <div className="text-[var(--forza-blaze-orange)] text-xs font-bold tracking-widest mt-1">OUR TEAM. OUR SCIENCE. YOUR FORCE.</div>
+              <img 
+                src={forzaLogo}
+                alt="Forza Logo"
+                className="h-12 w-auto"
+              />
             </div>
           </div>
           <div className="flex items-center gap-4 mt-2">
@@ -35,7 +39,7 @@ const Footer = () => {
           <div>
             <span className="text-[var(--forza-blaze-orange)] font-extrabold font-kallisto">CONTACT</span><br />
             O. 402.731.9300<br />
-            <a href="mailto:support@forzabuilt.com" className="underline text-white">support@forzabuilt.com</a><br />
+            <a href="mailto:info@forza.com" className="underline text-white">info@forza.com</a><br />
             <span>Mon – Fri | 8:00 AM – 4:30 PM CST</span>
           </div>
         </div>

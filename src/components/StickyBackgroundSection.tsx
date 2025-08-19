@@ -8,18 +8,18 @@ const StickyBackgroundSection = () => {
         <div className="absolute top-0 left-0 w-full h-8 sm:h-12 bg-gradient-to-b from-black/60 via-black/30 to-transparent"></div>
         <div className="absolute bottom-0 left-0 w-full h-8 sm:h-12 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
       </div>
-      <div className="relative z-10 text-white text-left px-3 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full h-full flex flex-col justify-center">
+      <div className="relative text-white text-left px-3 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full h-full flex flex-col justify-center">
         <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6 xl:space-y-8">
-          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#096688] drop-shadow-sm">
+          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#096688]">
             Purpose-Built
           </div>
-          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#808080] drop-shadow-sm">
+          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#808080]">
             Performance
           </div>
-          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#F2611D] drop-shadow-sm">
+          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#F2611D]">
             Guaranteed
           </div>
-          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#F2611D] drop-shadow-sm">
+          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#F2611D]">
             Strength
           </div>
         </div>

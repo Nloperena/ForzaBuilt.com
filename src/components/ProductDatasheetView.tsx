@@ -375,19 +375,9 @@ const ProductDatasheetView: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Bottom Section */}
+                {/* Bottom Section - Removed datasheet button */}
                 <div className="flex items-center justify-start">
-                  {/* Learn More Button */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(prod.url, '_blank');
-                    }}
-                    className="flex items-center gap-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-all duration-300 rounded-full px-4 py-2 text-sm font-medium"
-                  >
-                    <span>View Datasheet</span>
-                    <ExternalLink className="h-3 w-3" />
-                  </button>
+                  {/* Datasheet button removed - clicking the card opens the modal */}
                 </div>
               </div>
             </div>

@@ -194,13 +194,13 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
               {svgPolygon.tagName === 'polygon' ? (
                 <motion.polygon
                   points={points}
-                  fill="rgba(245,108,35,0.79)"
+                  fill={isHighlight ? "rgba(242,97,29,0.9)" : "rgba(27,55,100,0.9)"}
                   stroke="rgba(255,255,255,0.1)"
                   strokeWidth="1"
                   className="cursor-pointer"
                   style={{
                     filter: isHighlight ? 
-                      'drop-shadow(0 0 8px rgba(8,96,143,0.8)) drop-shadow(0 0 12px rgba(8,96,143,0.6)) brightness(1.3)' : 
+                      'drop-shadow(0 0 8px rgba(242,97,29,0.8)) drop-shadow(0 0 12px rgba(242,97,29,0.6)) brightness(1.3)' : 
                       'none',
                     outline: 'none',
                     minWidth: isMobile || isTablet ? '44px' : 'auto',
@@ -229,13 +229,13 @@ const SvgHotspotOverlay: React.FC<SvgHotspotOverlayProps> = ({ xray, progress })
               ) : (
                 <motion.path
                   d={points}
-                  fill="rgba(245,108,35,0.79)"
+                  fill={isHighlight ? "rgba(242,97,29,0.9)" : "rgba(27,55,100,0.9)"}
                   stroke="rgba(255,255,255,0.1)"
                   strokeWidth="1"
                   className="cursor-pointer"
                   style={{
                     filter: isHighlight ? 
-                      'drop-shadow(0 0 8px rgba(8,96,143,0.8)) drop-shadow(0 0 12px rgba(8,96,143,0.6)) brightness(1.3)' : 
+                      'drop-shadow(0 0 8px rgba(242,97,29,0.8)) drop-shadow(0 0 12px rgba(242,97,29,0.6)) brightness(1.3)' : 
                       'none',
                     outline: 'none',
                     minWidth: isMobile || isTablet ? '44px' : 'auto',

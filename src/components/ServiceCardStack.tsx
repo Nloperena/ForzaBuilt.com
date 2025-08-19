@@ -189,23 +189,9 @@ const ServiceCardStack: React.FC = () => {
   return (
     <div ref={containerRef} className="relative w-full px-4 py-16 bg-gradient-to-b from-[#1b3764] via-[#09668d] to-[#1B3764]">
       <div className="text-center py-16 mt-4 px-4">
-        <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-3 font-kallisto">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-3 font-kallisto">
           Our Approach
         </h2>
-        <ul className="text-2xl text-white/90 max-w-4xl mx-auto font-light space-y-4 text-left">
-          <li className="flex items-center gap-3">
-            <span className="text-[#F2611D] text-3xl">•</span>
-            <span>Big-Picture Expertise. Small-Town Care</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <span className="text-[#F2611D] text-3xl mt-2">•</span>
-            <span>We unleash the strength and spirit of America's Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.</span>
-          </li>
-          <li className="flex items-center gap-3">
-            <span className="text-[#F2611D] text-3xl">•</span>
-            <span>Purpose-Built Performance. Guaranteed Strength.</span>
-          </li>
-        </ul>
       </div>
       
              <div className="relative space-y-16 lg:space-y-20 xl:space-y-24 max-w-[1600px] mx-auto">

@@ -52,7 +52,7 @@ const ApplicationsModal: React.FC<ApplicationsModalProps> = ({ isVisible, onClos
 
             {/* Content */}
             <div className="text-center">
-              <h3 className="text-4xl md:text-5xl font-extrabold mb-3 font-kallisto">
+              <h3 className="text-3xl md:text-4xl font-extrabold mb-3 font-kallisto">
                 Explore Applications
               </h3>
               <p className="text-xl md:text-2xl mb-6 font-semibold">

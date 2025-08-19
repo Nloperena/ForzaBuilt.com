@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useHeaderState } from '@/hooks/useHeaderState';
 import Logo from './Header/Logo';
 import NavigationItem from './Header/NavigationItem';
-import AuthSection from './Header/AuthSection';
+
 import MobileMenu from './Header/MobileMenu';
 import OverlayContent from './Header/OverlayContent';
 import SearchBar from './Header/SearchBar';
@@ -74,8 +74,6 @@ const Header = () => {
             <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl border border-[#F2611D]">
               <Link to="/contact">Contact Us</Link>
             </Button>
-            
-            <AuthSection onSignOut={handleSignOut} />
           </div>
 
           {/* Mobile Navigation */}
@@ -140,7 +138,6 @@ const Header = () => {
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={closeMobileMenu}
-        onSignOut={handleSignOut}
         navigation={navigation}
       />
     </header>

@@ -376,20 +376,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-white/20 to-white/5 pointer-events-none" />
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-white/50 via-white/30 to-white/50 opacity-80 pointer-events-none" />
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                  <span 
-                    className="text-sm font-semibold text-[#1B3764]"
-                    style={{ 
-                      fontFamily: typography.subheads.fontFamily, 
-                      fontWeight: typography.subheads.fontWeight,
-                      lineHeight: typography.subheads.lineHeight
-                    }}
-                  >
-                    Step {Math.max(1, activeHotspotIndex.get() + 1)} of {xrayComponent.hotspots.length}
-                  </span>
-                </div>
-                <div className="w-32 h-2 bg-white/40 rounded-full overflow-hidden">
+                <div className="w-48 h-3 bg-white/40 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full bg-gradient-to-r from-[#1B3764] to-[#1B3764]/80 rounded-full shadow-sm"
                     style={{

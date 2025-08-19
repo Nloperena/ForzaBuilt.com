@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/contexts/AuthContext';
+
 import SearchBar from './SearchBar';
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  onSignOut: () => void;
+  onSignOut?: () => void;
   navigation: Array<{ name: string; href: string; dropdown?: any[] }>;
 }
 
@@ -18,7 +18,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   onSignOut,
   navigation,
 }) => {
-  const { user } = useAuth();
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
   const handleSubmenuToggle = (itemName: string) => {
@@ -208,33 +207,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                 <Link to="/contact" onClick={onClose}>Contact Us</Link>
               </Button>
 
-              {user ? (
-                <div className="flex items-center justify-between p-4 bg-white/10 rounded-2xl">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                      <span className="text-[#1b3764] text-sm font-semibold">
-                        {user.email?.charAt(0).toUpperCase()}
-                      </span>
-                    </div>
-                    <p className="text-sm text-white font-medium truncate">{user.email}</p>
-                  </div>
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    onClick={() => {
-                      onSignOut();
-                      onClose();
-                    }}
-                    className="text-white/80 hover:text-white text-sm"
-                  >
-                    Sign Out
-                  </Button>
-                </div>
-              ) : (
-                <Button asChild variant="outline" className="w-full border-2 border-white text-[#1b3764] bg-white hover:bg-white/90 hover:text-[#1b3764] rounded-2xl text-base font-medium py-4 transition-all duration-200">
-                  <Link to="/auth" onClick={onClose}>Sign In</Link>
-                </Button>
-              )}
+
             </div>
           </motion.div>
         </>

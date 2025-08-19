@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useRef, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, ArrowLeft, Download, Share2, BookOpen, Settings, Zap, MapPin, Package } from 'lucide-react';
+import { ExternalLink, ArrowLeft, Phone, Mail, BookOpen, Settings, Zap, MapPin, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -257,6 +257,13 @@ const ProductDetailPage: React.FC = () => {
                       {product.id.toUpperCase()}
                     </h1>
 
+                    {/* Product Full Name */}
+                    <div className="mb-6">
+                      <h2 className="text-xl md:text-2xl lg:text-3xl text-white font-semibold leading-tight">
+                        {product.name}
+                      </h2>
+                    </div>
+
                     {/* Description */}
                     <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl" 
                        style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
@@ -267,29 +274,23 @@ const ProductDetailPage: React.FC = () => {
                     <div className="flex flex-wrap gap-4">
                       <Button 
                         onClick={() => {
-                          // Check if TDS files are available
-                          const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                          if (tdsLink && tdsLink.startsWith('/TDS/')) {
-                            // TDS files are temporarily unavailable
-                            alert("Technical Data Sheets are temporarily unavailable. Please contact us for product information.");
-                          } else if (tdsLink) {
-                            // External link or other PDF
-                            window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
-                          } else {
-                            alert("The datasheet for this product is not available yet.");
-                          }
+                          // Call them functionality
+                          window.location.href = 'tel:4027319300';
                         }}
                         className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       >
-                        <Download className="h-4 w-4 mr-2" />
-                        View Datasheet
+                        <Phone className="h-4 w-4 mr-2" />
+                        Order Now - Call Us
                       </Button>
                       <Button 
                         variant="outline"
+                        onClick={() => {
+                          window.location.href = '/contact';
+                        }}
                         className="border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white rounded-full px-8 py-6 text-xl transition-all duration-300"
                       >
-                        <Share2 className="h-4 w-4 mr-2" />
-                        Share Product
+                        <Mail className="h-4 w-4 mr-2" />
+                        Order Now - Contact
                       </Button>
                     </div>
                   </div>
@@ -308,10 +309,7 @@ const ProductDetailPage: React.FC = () => {
                       />
                     </div>
                     
-                    {/* Floating Product Name */}
-                    <div className="absolute top-4 right-4 z-10 bg-[#F2611D] backdrop-blur-sm rounded-full px-4 py-2 border border-white/30 max-w-xs shadow-lg">
-                      <span className="text-white font-bold text-xs leading-tight">{product.name}</span>
-                    </div>
+
                   </div>
                 </div>
               </div>
@@ -979,29 +977,19 @@ const ProductDetailPage: React.FC = () => {
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Button 
                     onClick={() => {
-                      // Check if TDS files are available
-                      const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                      if (tdsLink && tdsLink.startsWith('/TDS/')) {
-                        // TDS files are temporarily unavailable
-                        alert("Technical Data Sheets are temporarily unavailable. Please contact us for product information.");
-                      } else if (tdsLink) {
-                        // External link or other PDF
-                        window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
-                      } else {
-                        alert("The datasheet for this product is not available yet.");
-                      }
+                      window.location.href = 'tel:4027319300';
                     }}
                     className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl"
                   >
-                    <Download className="h-4 w-4 mr-2" />
-                    View Full Datasheet
+                    <Phone className="h-4 w-4 mr-2" />
+                    Call Sales
                   </Button>
                   <Link to="/contact">
                     <Button 
                       variant="outline"
                       className="border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white rounded-full px-8 py-6 text-xl transition-all duration-300"
                     >
-                      <ExternalLink className="h-4 w-4 mr-2" />
+                      <Mail className="h-4 w-4 mr-2" />
                       Contact Sales
                     </Button>
                   </Link>

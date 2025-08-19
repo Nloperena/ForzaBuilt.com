@@ -125,9 +125,9 @@ const ProductChemistriesSectionV2: React.FC = () => {
   return (
     <section className="py-10 sm:py-14 md:py-16 lg:py-20 xl:py-24 bg-[#1b3764] text-white">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-[2000px] mx-auto">
-        <h2 className="text-center font-kallisto font-black leading-[1.1] text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-6 sm:mb-8 md:mb-10">
-          Product Chemistries
-        </h2>
+                    <h2 className="text-center font-kallisto font-black leading-[1.1] text-4xl md:text-5xl lg:text-5xl xl:text-6xl mb-6 sm:mb-8 md:mb-10">
+              Product Chemistries
+            </h2>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
           {CATEGORIES.map((cat) => (
             <ChemistryFlipCard 

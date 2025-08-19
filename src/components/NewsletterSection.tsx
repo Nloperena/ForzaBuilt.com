@@ -54,7 +54,7 @@ const NewsletterSection = () => {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="font-kallisto text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">Stay Ahead with Forza</h2>
+            <h2 className="font-kallisto text-white text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight">Stay Ahead with Forza</h2>
             <p className="mt-4 text-white/80 text-base md:text-lg max-w-3xl mx-auto">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 

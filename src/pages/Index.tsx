@@ -7,8 +7,6 @@ import StickyBackgroundSection from '@/components/StickyBackgroundSection';
 import ScrollSections from '@/components/ScrollSections';
 import ServiceCardStack from '@/components/ServiceCardStack';
 import StickyBackgroundSectionV2 from '@/components/StickyBackgroundSectionV2';
-import ThirtyYearsTrustSection from '@/components/ThirtyYearsTrustSection';
-import ShinyFaqSection from '@/components/ShinyFaqSection';
 import NewsletterSection from '@/components/NewsletterSection';
 import Footer from '@/components/Footer';
 import ProductChemistriesSectionV2 from '@/components/ProductChemistriesSectionV2';
@@ -66,15 +64,7 @@ const Index = () => {
       {/* Made in America Section */}
       <StickyBackgroundSectionV2 />
       
-      {/* Trust Building Section - 30 Years Badge - STANDALONE */}
-      <div className="relative w-full">
-        <ThirtyYearsTrustSection />
-      </div>
-      
-      {/* FAQ Section (shiny glassmorphic) - STANDALONE */}
-      <div className="relative w-full">
-        <ShinyFaqSection />
-      </div>
+
       
       {/* Newsletter Section - STANDALONE */}
       <div className="relative w-full">

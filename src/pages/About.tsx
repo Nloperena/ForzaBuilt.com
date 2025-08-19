@@ -29,7 +29,7 @@ const About = () => {
 
         {/* About Us Heading Section */}
         <section className="pt-8 md:pt-16 pb-6 md:pb-8 px-4 max-w-4xl mx-auto text-center">
-          <h1 className="text-3xl md:text-5xl font-extrabold font-kallisto text-white mb-3 md:mb-4">About Us</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold font-kallisto text-white mb-3 md:mb-4">About Us</h1>
           <p className="text-base md:text-xl mb-4 md:mb-6 leading-relaxed">
             Forza is a family-owned adhesive, sealant & specialty tape manufacturer based in the USA. We supply the global industry with superior, high-performing, customized products.
           </p>

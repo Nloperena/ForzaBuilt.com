@@ -134,7 +134,7 @@ const Contact = () => {
           </video>
           
           <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-none font-kallisto">
+            <h1 className="text-4xl md:text-4xl font-black text-white mb-4 leading-none font-kallisto">
               Contact Us
             </h1>
             <p className="text-xl text-white/90 font-poppins">
@@ -297,9 +297,9 @@ const Contact = () => {
                       <div>
                         <h4 className="font-bold text-white font-poppins text-base">Email</h4>
                         <p className="text-white/90 font-poppins text-sm">
-                          <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
-                            support@forzabuilt.com
-                          </a>
+                                      <a href="mailto:info@forza.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
+              info@forza.com
+            </a>
                         </p>
                       </div>
                     </div>
