@@ -22,6 +22,32 @@ const getCategoryToColor = (category: ProductLine) => {
 
 const getCategoryGradient = (category: ProductLine) => `from-[#1b3764] via-[#1b3764] to-[${getCategoryToColor(category)}]`;
 
+const getIndustryGradient = (industryName?: string) => {
+  if (!industryName) return null;
+  
+  const industryLower = industryName.toLowerCase();
+  const brandBlue = '#1b3764';
+  
+  switch (industryLower) {
+    case 'marine':
+      return `from-[#137875] via-[${brandBlue}] to-[${brandBlue}]`;
+    case 'industrial':
+      return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`;
+    case 'transportation':
+      return `from-[#b83d35] via-[${brandBlue}] to-[${brandBlue}]`;
+    case 'construction':
+      return `from-[#fec770] via-[${brandBlue}] to-[${brandBlue}]`;
+    case 'composites':
+      return `from-[#c7c8c9] via-[${brandBlue}] to-[${brandBlue}]`;
+    case 'insulation':
+      return `from-[#d0157d] via-[${brandBlue}] to-[${brandBlue}]`;
+    case 'foam':
+      return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`;
+    default:
+      return null;
+  }
+};
+
 const toTitleCase = (value: string): string =>
   value
     .replace(/[-_]+/g, ' ')
@@ -47,20 +73,71 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
   // Restrict products by selected line and current industry (if provided)
   const categoryProducts = useMemo(() => {
     const byLine = byProductLine(selectedLine);
+    
+    // Debug logging
+    console.log('ProductsExplorerClone Debug:', {
+      industryName,
+      industryKey,
+      selectedLine,
+      totalProducts: byLine.length,
+      productsWithIndustry: byLine.filter(p => p.industry).length
+    });
+    
     if (!industryKey) return byLine;
-    return byLine.filter(p => p.industry && Array.isArray(p.industry) && p.industry.some(ind => ind.toLowerCase() === industryKey || ind.toLowerCase() === industryName?.toLowerCase()));
+    
+    const filtered = byLine.filter(p => {
+      if (!p.industry) return false;
+      
+      // Handle both array and string industry formats
+      const industries = Array.isArray(p.industry) ? p.industry : [p.industry];
+      const matchesIndustry = industries.some(ind => 
+        ind.toLowerCase() === industryKey || 
+        ind.toLowerCase() === industryName?.toLowerCase() ||
+        ind.toLowerCase().includes(industryKey) ||
+        industryKey.includes(ind.toLowerCase())
+      );
+      
+      return matchesIndustry;
+    });
+    
+    console.log('Filtered products:', {
+      originalCount: byLine.length,
+      filteredCount: filtered.length,
+      sampleProducts: filtered.slice(0, 3).map(p => ({ name: p.name, industry: p.industry }))
+    });
+    
+    // If no industry-specific products found, show all products for the selected line
+    if (filtered.length === 0 && industryKey) {
+      console.log('No industry-specific products found, showing all products for', selectedLine);
+      return byLine;
+    }
+    
+    return filtered;
   }, [selectedLine, industryKey, industryName]);
 
   const categoryCounts = useMemo(() => {
     const counts: Record<ProductLine, number> = { bond: 0, seal: 0, tape: 0 } as Record<ProductLine, number>;
     (['bond', 'seal', 'tape'] as ProductLine[]).forEach(line => {
       const byLine = byProductLine(line);
-      counts[line] = industryKey
-        ? byLine.filter(p => p.industry && Array.isArray(p.industry) && p.industry.some(ind => ind.toLowerCase() === industryKey || ind.toLowerCase() === industryName?.toLowerCase())).length
-        : byLine.length;
+      if (!industryKey) {
+        counts[line] = byLine.length;
+      } else {
+        counts[line] = byLine.filter(p => {
+          if (!p.industry) return false;
+          
+          // Handle both array and string industry formats
+          const industries = Array.isArray(p.industry) ? p.industry : [p.industry];
+          return industries.some(ind => 
+            ind.toLowerCase() === industryKey || 
+            ind.toLowerCase() === industryName?.toLowerCase() ||
+            ind.toLowerCase().includes(industryKey) ||
+            industryKey.includes(ind.toLowerCase())
+          );
+        }).length;
+      }
     });
     return counts;
-  }, [all, industryKey, industryName]);
+  }, [industryKey, industryName]);
 
   const chemistryTypes = useMemo(() => {
     const unique = new Set<string>(
@@ -277,6 +354,18 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
             </button>
           </div>
 
+          {/* Debug Info - Remove this after fixing */}
+          {industryName && (
+            <div className="col-span-full mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-sm text-blue-800">
+                <strong>Debug Info:</strong> Industry: "{industryName}", 
+                Industry Key: "{industryKey}", 
+                Products Found: {filteredProducts.length}, 
+                Total Available: {categoryProducts.length}
+              </p>
+            </div>
+          )}
+          
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-6">
             {filteredProducts.slice(0, Math.min(filteredProducts.length, visibleProductCount)).map((product, idx) => (
@@ -288,7 +377,7 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
                 className="group"
               >
                 <div
-                  className={`relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-r md:bg-gradient-to-b ${getCategoryGradient(selectedLine)}`}
+                  className={`relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-r md:bg-gradient-to-b ${getIndustryGradient(industryName) || getCategoryGradient(selectedLine)}`}
                 >
                   {/* Background Image - Desktop */}
                   <div className="absolute inset-0 hidden md:block">

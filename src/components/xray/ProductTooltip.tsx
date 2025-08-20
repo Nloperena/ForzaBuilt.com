@@ -24,18 +24,49 @@ interface HotspotTooltipProps {
   isPinned?: boolean;
   onClose?: () => void;
   isMobileFixed?: boolean; // New prop for mobile fixed positioning below X-Ray
+  onProductClick?: (product: any) => void; // New prop for opening product modal
+  industry?: string; // Industry name for color theming
 }
 
 const HotspotTooltip: React.FC<HotspotTooltipProps> = ({ 
   hotspot, 
   isPinned = false, 
   onClose,
-  isMobileFixed = false
+  isMobileFixed = false,
+  onProductClick,
+  industry
 }) => {
   // Device and accessibility detection
   const isMobile = useIsMobile();
   const isTablet = useIsTablet();
   const reducedMotion = useReducedMotion();
+  
+  // Industry color mapping
+  const getIndustryColor = (industryName?: string) => {
+    if (!industryName) return 'from-[#1B3764] to-[#1B3764]';
+    
+    const industryLower = industryName.toLowerCase();
+    const brandBlue = '#1b3764';
+    
+    switch (industryLower) {
+      case 'marine':
+        return `from-[#137875] via-[${brandBlue}] to-[${brandBlue}]`;
+      case 'industrial':
+        return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`;
+      case 'transportation':
+        return `from-[#b83d35] via-[${brandBlue}] to-[${brandBlue}]`;
+      case 'construction':
+        return `from-[#fec770] via-[${brandBlue}] to-[${brandBlue}]`;
+      case 'composites':
+        return `from-[#c7c8c9] via-[${brandBlue}] to-[${brandBlue}]`;
+      case 'insulation':
+        return `from-[#d0157d] via-[${brandBlue}] to-[${brandBlue}]`;
+      case 'foam':
+        return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`;
+      default:
+        return `from-[${brandBlue}] to-[${brandBlue}]`;
+    }
+  };
   
   // Check if this is a product or experience hotspot
   const isProduct = hotspot.product;
@@ -92,15 +123,18 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
         <Card className={`
           overflow-hidden group
           ${isMobileFixed 
-            ? 'shadow-lg border border-white/20 bg-white/30 backdrop-blur-md rounded-2xl' 
+            ? `shadow-lg border border-white/20 bg-gradient-to-r ${getIndustryColor(industry)} backdrop-blur-md rounded-2xl` 
             : 'shadow-2xl border border-white/25 bg-white/15 backdrop-blur-md rounded-2xl'}
           ${isMobile && !isMobileFixed ? 'rounded-t-2xl rounded-b-none' : 'rounded-2xl'}
         `}>
           {/* Amazon-style mobile layout */}
           {isMobileFixed && isProduct ? (
-            <div className="flex gap-4 p-4">
-              {/* Product Image - Left side */}
-              <div className="flex-shrink-0 w-24 h-24 bg-muted rounded-lg overflow-hidden">
+            <div 
+              className="flex gap-3 p-1.5 cursor-pointer hover:bg-white/20 transition-colors rounded-xl"
+              onClick={() => onProductClick && onProductClick(hotspot.product)}
+            >
+              {/* Product Image - Left side - Height matches text content */}
+              <div className="flex-shrink-0 w-24 h-auto bg-muted rounded-lg overflow-hidden">
                 <img 
                   src={hotspot.product!.thumb}
                   alt={hotspot.product!.name}
@@ -109,35 +143,19 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                 />
               </div>
               
-              {/* Product Details - Right side */}
+              {/* Product Details - Right side - Made smaller text */}
               <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-base leading-tight line-clamp-2 text-[#1B3764] mb-1">
+                <h3 className="font-semibold text-sm leading-tight line-clamp-2 text-white mb-0.5">
                   {hotspot.product!.name}
                 </h3>
                 
-                <p className="text-xs text-[#1B3764]/80 mb-2">
+                <p className="text-xs text-white/80 mb-0.5">
                   SKU: {hotspot.product!.sku}
                 </p>
                 
-                <p className="text-sm text-[#1B3764] line-clamp-2 mb-3">
+                <p className="text-xs text-white/90 line-clamp-2">
                   {hotspot.product!.blurb}
                 </p>
-                
-                <Button 
-                  asChild 
-                  size="sm" 
-                  className="w-full text-sm bg-[#F16022] hover:bg-[#F16022]/85 text-white"
-                >
-                  <a 
-                    href={hotspot.product!.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2"
-                  >
-                    View Product
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                </Button>
               </div>
             </div>
           ) : (

@@ -11,6 +11,7 @@ const CHEMISTRY_ICONS = {
   silicone: '/Chemistry%20Products%20Icons/silicone%20icon.svg',
   hotMelt: '/Chemistry%20Products%20Icons/hotmelt%20icon.svg',
   solventBase: '/Chemistry%20Products%20Icons/solvent%20based%20icon.svg',
+  waterBased: '/Chemistry%20Products%20Icons/water%20based%20icon.svg',
 };
 
 interface ChemistryItemProps {
@@ -21,6 +22,7 @@ interface ChemistryItemProps {
   products: string[];
 }
 
+// Mobile/Desktop variant (existing design)
 const ChemistryItem: React.FC<ChemistryItemProps> = ({
   title,
   iconSrc,
@@ -29,7 +31,7 @@ const ChemistryItem: React.FC<ChemistryItemProps> = ({
   products,
 }) => {
   return (
-    <div className="bg-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 mb-4">
+    <div className="bg-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 mb-4 max-w-[1400px] mx-auto">
       <div className="p-4 md:p-6">
         {/* Header with Icon and Title */}
         <div className="flex items-center gap-3 mb-4">
@@ -82,7 +84,80 @@ const ChemistryItem: React.FC<ChemistryItemProps> = ({
             </div>
           </div>
           <button 
-            className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white px-4 py-2 rounded-lg text-sm font-poppins font-bold transition-all duration-300 flex-shrink-0"
+            className="forza-btn-primary"
+          >
+            See Products
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Tablet/Landscape variant (new three-column design)
+const ChemistryItemTablet: React.FC<ChemistryItemProps> = ({
+  title,
+  iconSrc,
+  badges,
+  features,
+  products,
+}) => {
+  return (
+    <div className="bg-gradient-to-r from-[#1b3764] to-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 mb-6 max-w-[1400px] mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
+        {/* Left Column - Icon/Image */}
+        <div className="lg:col-span-1 flex justify-center items-center">
+          <div className="w-32 h-32 lg:w-40 lg:h-40 flex-shrink-0">
+            <img
+              src={iconSrc}
+              alt={title}
+              className="w-full h-full object-contain"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
+              }}
+            />
+          </div>
+        </div>
+        
+        {/* Middle Column - Product Details */}
+        <div className="lg:col-span-1 flex flex-col justify-center">
+          <h3 className="text-xl lg:text-2xl font-kallisto font-bold text-white mb-4">
+            {title}
+          </h3>
+          
+          {/* Badges */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {badges.map((badge, badgeIndex) => (
+              <span
+                key={badgeIndex}
+                className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-white text-sm font-medium"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
+          
+          {/* Features List */}
+          <ul className="text-white/80 text-sm space-y-2 font-poppins">
+            {features.map((feature, featureIndex) => (
+              <li key={featureIndex} className="flex items-start gap-2">
+                <div className="w-1.5 h-1.5 bg-[#F2611D] rounded-full mt-2 flex-shrink-0"></div>
+                <span className="text-sm">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        {/* Right Column - Products and Button */}
+        <div className="lg:col-span-1 flex flex-col justify-center items-center text-center">
+          <h4 className="text-lg font-semibold text-white mb-3">Products</h4>
+          <div className="text-white/80 text-sm font-poppins mb-4 space-y-1">
+            {products.map((product, productIndex) => (
+              <div key={productIndex}>{product}</div>
+            ))}
+          </div>
+          <button 
+            className="forza-btn-primary"
           >
             See Products
           </button>
@@ -204,30 +279,61 @@ const IdealChemistrySection: React.FC = () => {
         "ForzaCLEAN C400",
         "ForzaPRIME P450"
       ]
+    },
+    {
+      title: "Water Based",
+      iconSrc: CHEMISTRY_ICONS.waterBased,
+      badges: ["Environmentally Friendly", "Quick Drying", "Versatile"],
+      features: [
+        "Non-toxic, water-based adhesives for a healthier environment",
+        "Quick drying polymer solutions for immediate hold",
+        "Works on a wide range of surfaces"
+      ],
+      products: [
+        "ForzaCLEAN C400",
+        "ForzaPRIME P450"
+      ]
     }
   ];
 
   return (
     <section className="py-12 md:py-16 bg-gradient-to-b from-[#1b3764] to-[#1b3764] text-white">
-      <div className="max-w-4xl mx-auto px-4 md:px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-kallisto font-black mb-4 text-white leading-none">
             IDEAL CHEMISTRY FOR YOUR SPECIFIC APPLICATION
           </h2>
         </div>
         
-        {/* Chemistry List */}
+        {/* Chemistry List - Responsive variants */}
         <div className="space-y-3">
-          {chemistries.map((chemistry, index) => (
-            <ChemistryItem
-              key={index}
-              title={chemistry.title}
-              iconSrc={chemistry.iconSrc}
-              badges={chemistry.badges}
-              features={chemistry.features}
-              products={chemistry.products}
-            />
-          ))}
+          {/* Mobile/Desktop variant (hidden on lg+) */}
+          <div className="lg:hidden">
+            {chemistries.map((chemistry, index) => (
+              <ChemistryItem
+                key={index}
+                title={chemistry.title}
+                iconSrc={chemistry.iconSrc}
+                badges={chemistry.badges}
+                features={chemistry.features}
+                products={chemistry.products}
+              />
+            ))}
+          </div>
+          
+          {/* Tablet/Landscape variant (hidden on md and below) */}
+          <div className="hidden lg:block">
+            {chemistries.map((chemistry, index) => (
+              <ChemistryItemTablet
+                key={index}
+                title={chemistry.title}
+                iconSrc={chemistry.iconSrc}
+                badges={chemistry.badges}
+                features={chemistry.features}
+                products={chemistry.products}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

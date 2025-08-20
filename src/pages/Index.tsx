@@ -11,6 +11,7 @@ import NewsletterSection from '@/components/NewsletterSection';
 import Footer from '@/components/Footer';
 import ProductChemistriesSectionV2 from '@/components/ProductChemistriesSectionV2';
 import IdealChemistrySection from '@/components/IdealChemistrySection';
+import ProductChemistriesSection from '@/components/ProductChemistriesSection';
 import { useIsMobile } from '@/hooks/use-mobile';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 import { getCardsByIndustry } from '@/data/stackableCardsData';
@@ -60,6 +61,10 @@ const Index = () => {
 
       {/* Ideal Chemistry Section */}
       <IdealChemistrySection />
+
+      
+
+      
 
       {/* Made in America Section */}
       <StickyBackgroundSectionV2 />

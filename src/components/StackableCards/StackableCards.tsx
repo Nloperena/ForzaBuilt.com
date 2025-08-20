@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import GenericCardStackItem from './GenericCardStackItem';
+import GenericCard from './GenericCard';
 import StackSpacer from '../cards/StackSpacer';
 import { useScrollCalculator } from '../../hooks/useScrollCalculator';
 import { GenericCardData } from './GenericCard';

@@ -75,25 +75,7 @@ const IndustryPage = () => {
         </video>
       </section>
 
-      {/* Title Overlap Container */}
-      <div className="relative z-40 flex justify-center -mt-20">
-        <div className="w-full px-4 sm:px-6 md:px-10 py-4 bg-white text-center relative flex items-center justify-center">
-          <h1
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none break-words w-full font-kallisto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4"
-            style={{ color: industryData.color || '#1b3764' }}
-          >
-            <span className="leading-none">{industryData.title.toUpperCase()}</span>
-            {industryData.logo ? (
-              <img
-                src={industryData.logo}
-                alt={`${industryData.title} icon`}
-                className="inline-block align-middle h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 w-auto object-contain"
-                loading="lazy"
-              />
-            ) : null}
-          </h1>
-        </div>
-      </div>
+
 
       {/* Dynamic Industry Headings Section */}
       <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16">
@@ -207,6 +189,26 @@ const IndustryPage = () => {
 
       {/* Industry Brochure Section */}
       <IndustryBrochureSection industry={industryData.title} />
+
+      {/* Title Section - Now at the bottom */}
+      <section className="bg-white py-16 sm:py-20 md:py-24">
+        <div className="w-full px-4 sm:px-6 md:px-10 text-center">
+          <h1
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-1 sm:mb-2 md:mb-4 leading-none break-words w-full font-kallisto flex flex-row items-center justify-center gap-2 sm:gap-4"
+            style={{ color: industryData.color || '#1b3764' }}
+          >
+            <span className="leading-none">{industryData.title.toUpperCase()}</span>
+            {industryData.logo ? (
+              <img
+                src={industryData.logo}
+                alt={`${industryData.title} icon`}
+                className="inline-block align-middle h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 w-auto object-contain"
+                loading="lazy"
+              />
+            ) : null}
+          </h1>
+        </div>
+      </section>
 
       {/* Footer */}
       <Footer />

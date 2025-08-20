@@ -15,7 +15,7 @@ interface XRayExplorerProps {
   heightVh?: number;
 }
 
-const XRayExplorer: React.FC<XRayExplorerProps> = ({ 
+const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({ 
   industry, 
   xrayIndex = 0,
   heightVh = 300 
@@ -95,12 +95,6 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
     // Try to get the full product data from our product database
     const fullProduct = getFullProductBySku(hotspotProduct.sku);
     
-    console.log('openProductModal debug:', {
-      hotspotProduct,
-      fullProduct,
-      hotspotSku: hotspotProduct.sku
-    });
-    
     if (fullProduct) {
       // Merge hotspot data with full product data
       const mergedProduct = {
@@ -109,16 +103,11 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
         name: hotspotProduct.name || fullProduct.name,
         blurb: hotspotProduct.blurb || fullProduct.description,
         thumb: hotspotProduct.thumb || fullProduct.imageUrl,
-        url: hotspotProduct.url || `/products/${fullProduct.category.toLowerCase()}/${fullProduct.id}`,
-        // Ensure SKU is available from full product data
-        sku: (fullProduct as any).sku || fullProduct.id
+        url: hotspotProduct.url || `/products/${fullProduct.category.toLowerCase()}/${fullProduct.id}`
       };
-      
-      console.log('Merged product:', mergedProduct);
       setSelectedProduct(mergedProduct);
     } else {
       // Fallback to hotspot data if no full product found
-      console.log('No full product found, using hotspot data');
       setSelectedProduct(hotspotProduct);
     }
     
@@ -129,8 +118,6 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
-
-
 
   // Calculate active hotspot index with smooth transitions
   const activeHotspotIndex = useTransform(hotspotProgress, (value) => {
@@ -245,9 +232,9 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
       <div className="sticky top-0 w-full dvh-100 flex items-end justify-center pb-20 overflow-hidden bg-white will-change-transform">
         <div className="relative w-full max-w-7xl mx-auto px-4">
           
-          {/* Section Title - Moved to top */}
+          {/* Section Title - At the top */}
           <motion.div
-            className="text-center mb-8"
+            className="text-center mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -265,7 +252,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               {industry.xrays.length > 1 && ` (${xrayIndex + 1}/${industry.xrays.length})`}
             </h2>
             <p 
-              className="text-xs md:text-lg text-[#1B3764] max-w-2xl mx-auto"
+              className="text-xs text-[#1B3764] max-w-2xl mx-auto"
               style={{ 
                 fontFamily: typography.body.fontFamily, 
                 fontWeight: typography.body.fontWeight,
@@ -277,9 +264,9 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
             </p>
           </motion.div>
 
-          {/* Image Container */}
+          {/* Image Container - Below title */}
           <motion.div
-            className="relative w-full mx-auto max-h-[70dvh] will-change-transform"
+            className="relative w-full mx-auto will-change-transform mb-6"
             style={{
               aspectRatio: `${xrayComponent.width}/${xrayComponent.height}`,
               y: 0,
@@ -444,20 +431,40 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                 >
                   Scroll to explore
                 </span>
-                <button
-                  onClick={handleSkipSection}
-                  className="text-xs bg-[#F16022] hover:bg-[#F16022]/85 text-white rounded-full px-3 py-1 transition-colors"
-                >
-                  Skip
-                </button>
               </div>
             </div>
           </motion.div>
 
-          {/* Mobile Product Display Area - Now below the X-Ray image */}
+          {/* Skip prompt overlay */}
+          {showSkipPrompt && (
+            <motion.div
+              className="absolute top-4 left-1/2 -translate-x-1/2 z-40"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+            >
+              <div className="relative overflow-hidden bg-white/70 backdrop-blur-md border border-[#1B3764]/20 shadow-xl rounded-full px-4 py-2 flex items-center gap-3">
+                <span className="text-sm text-[#1B3764]">Want to skip the X-Ray?</span>
+                <button
+                  onClick={() => setShowSkipPrompt(false)}
+                  className="text-xs text-[#1B3764] hover:underline"
+                >
+                  Continue
+                </button>
+                <button
+                  onClick={handleSkipSection}
+                  className="text-xs bg-[#F16022] hover:bg-[#F16022]/85 text-white rounded-full px-3 py-1"
+                >
+                  Skip to Next Section
+                </button>
+              </div>
+            </motion.div>
+          )}
+          
+          {/* Mobile Product Display Area - At the bottom */}
           {isMobile && (
             <motion.div 
-              className="w-full mb-6"
+              className="w-full"
               style={{ opacity: hotspotsOpacity }}
             >
               {activeHotspot && (
@@ -473,7 +480,6 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                     isPinned={false}
                     isMobileFixed={true}
                     onProductClick={openProductModal}
-                    industry={industry.id}
                   />
                 </motion.div>
               )}
@@ -491,6 +497,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               )}
             </motion.div>
           )}
+
         </div>
       </div>
 
@@ -598,89 +605,6 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                       </div>
                     </div>
 
-                    {/* Benefits Section */}
-                    {(selectedProduct.benefits || selectedProduct.howToUse || selectedProduct.colors || selectedProduct.sizing || selectedProduct.cleanup) && (
-                      <div className="space-y-4 md:space-y-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-white mb-2">Benefits & Usage</h3>
-                        
-                        {/* Benefits */}
-                        {selectedProduct.benefits && selectedProduct.benefits.length > 0 && (
-                          <div>
-                            <h4 className="text-base font-semibold text-white mb-3">Key Benefits</h4>
-                            <div className="grid grid-cols-1 gap-3">
-                              {selectedProduct.benefits.map((benefit: string, index: number) => (
-                                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
-                                  <div className="flex items-start gap-3">
-                                    <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <span className="text-white/90 text-sm">{benefit}</span>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* How to Use */}
-                        {selectedProduct.howToUse && selectedProduct.howToUse.length > 0 && (
-                          <div>
-                            <h4 className="text-base font-semibold text-white mb-3">How to Use</h4>
-                            <div className="space-y-2">
-                              {selectedProduct.howToUse.map((instruction: string, index: number) => (
-                                <div key={index} className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20">
-                                  <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <span className="text-white font-bold text-xs">{index + 1}</span>
-                                  </div>
-                                  <span className="text-white/90 text-sm">{instruction}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Colors */}
-                        {selectedProduct.colors && selectedProduct.colors.length > 0 && (
-                          <div>
-                            <h4 className="text-base font-semibold text-white mb-3">Available Colors</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {selectedProduct.colors.map((color: string, index: number) => (
-                                <span key={index} className="bg-white/20 backdrop-blur-sm text-white border border-white/30 px-3 py-1 rounded-full text-xs">
-                                  {color}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Sizing */}
-                        {selectedProduct.sizing && selectedProduct.sizing.length > 0 && (
-                          <div>
-                            <h4 className="text-base font-semibold text-white mb-3">Available Sizes</h4>
-                            <div className="grid grid-cols-2 gap-2">
-                              {selectedProduct.sizing.map((size: string, index: number) => (
-                                <span key={index} className="bg-blue-500/20 backdrop-blur-sm text-blue-300 border border-blue-300/30 px-3 py-1 rounded-full text-xs">
-                                  {size}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Cleanup */}
-                        {selectedProduct.cleanup && selectedProduct.cleanup.length > 0 && (
-                          <div>
-                            <h4 className="text-base font-semibold text-white mb-3">Recommended Cleanup</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {selectedProduct.cleanup.map((method: string, index: number) => (
-                                <span key={index} className="bg-orange-500/20 backdrop-blur-sm text-orange-300 border border-orange-300/30 px-3 py-1 rounded-full text-xs">
-                                  {method}
-                                </span>
-                                ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    )}
-
                     {/* Action Buttons */}
                     <div className="flex flex-col gap-3">
                       <a 
@@ -710,4 +634,5 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
   );
 };
 
-export default XRayExplorer;
+export default XRayExplorerMobileVariation;
+

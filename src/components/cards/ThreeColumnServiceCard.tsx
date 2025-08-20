@@ -27,17 +27,50 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
   opacity,
   index,
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    // Trigger animations when card becomes visible
-    if (opacity > 0.1) {
-      const timer = setTimeout(() => setIsVisible(true), 100);
-      return () => clearTimeout(timer);
-    } else {
-      setIsVisible(false);
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Calculate scroll progress as a percentage (0 to 1)
+      const progress = Math.min(Math.max((scrollTop / (documentHeight - windowHeight)), 0), 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Calculate animation states based on scroll progress
+  const getAnimationState = (elementIndex: number, itemIndex: number = 0) => {
+    const baseDelay = elementIndex * 0.15; // Extended progression for longer animation
+    const itemDelay = itemIndex * 0.08; // Extended item delay
+    const totalDelay = baseDelay + itemDelay;
+    
+    // Trigger animation when scroll progress reaches the delay threshold
+    // Elements animate in and stay permanently visible
+    const shouldAnimate = scrollProgress >= totalDelay;
+    
+    // Once elements are visible, they stay visible forever
+    if (shouldAnimate) {
+      return {
+        opacity: 1,
+        translateY: 0,
+        translateX: 0
+      };
     }
-  }, [opacity]);
+    
+    return {
+      opacity: 0,
+      translateY: 20,
+      translateX: -10
+    };
+  };
 
   // Map the original data to the correct display pattern without changing content
   let displayedColumns;
@@ -60,68 +93,60 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
   return (
     <div
       className="w-full"
-      style={{ transform, opacity }}
+      style={{ transform, opacity: 1 }} // Force opacity to 1 to prevent parent fade
     >
       <Card className="w-full max-h-full bg-gradient-to-br from-[#1b3764]/95 to-[#09668d]/95 backdrop-blur-xl border border-white/20 shadow-lg overflow-hidden rounded-2xl relative">
         {/* Remove the white glass overlay */}
         <div className="relative z-10">
 
-          <div className="w-full max-w-[860px] xl:max-w-[900px] mx-auto flex items-center justify-center px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12 py-12 md:py-14 lg:py-16">
-            <div className={cn("grid grid-cols-1 gap-8 md:gap-10 lg:gap-14", displayedColumns.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3")}>
-              {displayedColumns.map((col, idx) => (
-                <div key={idx} className="space-y-3 text-left">
-                  {/* Image with staggered animation */}
-                  <div 
-                    className={cn(
-                      "transition-all duration-700 ease-out",
-                      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-                    )}
-                    style={{ transitionDelay: `${200 + (idx * 100)}ms` }}
-                  >
-                    {col.image && (
-                      <img
-                        src={col.image}
-                        alt={`${col.title} illustration`}
-                        loading="lazy"
-                        className="block h-40 w-40 md:h-48 md:w-48 lg:h-40 lg:w-40 xl:h-44 xl:w-44 opacity-100 object-contain mx-auto"
-                      />
-                    )}
+          <div className="w-full max-w-[1000px] xl:max-w-[1100px] mx-auto flex items-center justify-center px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12 py-12 md:py-14 lg:py-16">
+            <div className={cn("grid grid-cols-1 gap-5", displayedColumns.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3")}>
+              {displayedColumns.map((col, idx) => {
+                return (
+                  <div key={idx} className="space-y-4 text-left">
+                    {/* Image with scroll-driven animation */}
+                    <div 
+                      className="transition-all duration-1000 ease-out"
+                      style={{ 
+                        opacity: getAnimationState(idx).opacity,
+                        transform: `translateY(${getAnimationState(idx).translateY}px)`
+                      }}
+                    >
+                      {col.image && (
+                        <img
+                          src={col.image}
+                          alt={`${col.title} illustration`}
+                          loading="lazy"
+                          className="block h-48 w-48 md:h-56 md:w-56 lg:h-52 lg:w-52 xl:h-56 xl:w-56 opacity-100 object-contain mx-auto"
+                        />
+                      )}
+                    </div>
+                    
+                    {/* Title - static, no animation */}
+                    <h4 className="text-sm md:text-base lg:text-lg font-black text-white mb-4 font-kallisto tracking-tight text-center">
+                      {col.title.split(' ').map((word, wordIndex) => (
+                        <span key={wordIndex}>
+                          {word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()}
+                          {wordIndex < col.title.split(' ').length - 1 ? ' ' : ''}
+                        </span>
+                      ))}
+                    </h4>
+                    
+                    {/* List items - static, no animation */}
+                    <ul className="space-y-3 max-w-[85ch] xl:max-w-[110ch] mx-auto md:mx-0">
+                      {col.items.map((item, i) => (
+                        <li 
+                          key={i} 
+                          className="flex items-start justify-start gap-3 text-xs md:text-sm text-white/90"
+                        >
+                          <span className="text-[#f16a26] text-sm flex-shrink-0">•</span>
+                          <span className="leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  
-                  {/* Title with staggered animation */}
-                  <h4 
-                    className={cn(
-                      "text-sm md:text-base lg:text-lg font-black text-white mb-3 font-kallisto tracking-tight text-center transition-all duration-700 ease-out",
-                      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                    )}
-                    style={{ transitionDelay: `${400 + (idx * 100)}ms` }}
-                  >
-                    {col.title.split(' ').map((word, wordIndex) => (
-                      <span key={wordIndex}>
-                        {word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()}
-                        {wordIndex < col.title.split(' ').length - 1 ? ' ' : ''}
-                      </span>
-                    ))}
-                  </h4>
-                  
-                  {/* List items with staggered animation */}
-                  <ul className="space-y-2 max-w-[52ch] xl:max-w-[64ch] mx-auto md:mx-0">
-                    {col.items.map((item, i) => (
-                      <li 
-                        key={i} 
-                        className={cn(
-                          "flex items-start justify-start gap-2 text-xs md:text-xs text-white/90 transition-all duration-700 ease-out",
-                          isVisible ? "opacity-100 translate-y-0 translate-x-0" : "opacity-0 translate-y-4 -translate-x-4"
-                        )}
-                        style={{ transitionDelay: `${600 + (idx * 100) + (i * 200)}ms` }}
-                      >
-                        <span className="text-[#f16a26] text-sm">•</span>
-                        <span className="leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

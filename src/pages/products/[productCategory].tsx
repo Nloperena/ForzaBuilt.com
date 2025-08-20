@@ -682,7 +682,7 @@ const ProductCategoryPage: React.FC = () => {
                         
                         {/* Mobile: Product Info */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1">
+                          <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1 text-white">
                             {product.name.split('–')[0].trim()}
                           </h3>
                           <p className="text-xs text-gray-300 line-clamp-2">
@@ -802,7 +802,7 @@ const ProductCategoryPage: React.FC = () => {
                     duration: 0.6,
                     ease: [0.25, 0.46, 0.45, 0.94] // Custom bezier curve
                   }}
-                  className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[95vh] md:max-h-[90vh] overflow-hidden bg-gradient-to-b ${industryColor(selectedProduct.industry)}`}
+                  className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[95vh] md:max-h-[90vh] overflow-hidden bg-gradient-to-r md:bg-gradient-to-b ${industryColor(selectedProduct.industry)}`}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Wipe Animation Overlay */}
