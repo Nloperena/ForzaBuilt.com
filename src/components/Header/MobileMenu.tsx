@@ -103,7 +103,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               ) : (
                 <Link to="/" onClick={onClose} className="flex items-center justify-start flex-1">
                   <img 
-                    src="/src/assets/images/Forza-lion-logo.png" 
+                    src="/forza-logo-full.png" 
                     alt="Forza Built" 
                     className="h-16 w-auto sm:h-20 md:h-24"
                   />

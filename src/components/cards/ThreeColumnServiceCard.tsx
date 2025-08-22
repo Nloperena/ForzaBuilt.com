@@ -75,18 +75,16 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
   // Map the original data to the correct display pattern without changing content
   let displayedColumns;
   
-  // For 3-2-3-2 pattern
-  if (index === 0) { // First card: 3 columns (Card 1 with Value Proposition and Decades)
-    displayedColumns = columns.length >= 3 
-      ? columns 
-      : [...columns, { title: "", items: [], image: "" }]; // Ensure 3 columns
-  } else if (index === 1) { // Second card: 2 columns (Card 2 with Purpose-Built and Industry Focus)
+  // For 2-2-3-2 pattern (updated after removing Value Proposition)
+  if (index === 0) { // First card: 2 columns (Card 1 with Decades and Purpose-Built)
+    displayedColumns = columns.slice(0, 2); // First 2 columns only
+  } else if (index === 1) { // Second card: 2 columns (Card 2 with Performance content)
     displayedColumns = columns.slice(0, 2); // First 2 columns only
   } else if (index === 2) { // Third card: 3 columns (Card 3 with Innovation and Integration)
     displayedColumns = columns.length >= 3 
       ? columns 
       : [...columns, { title: "", items: [], image: "" }]; // Ensure 3 columns
-  } else { // Fourth card: 2 columns (Card 4 with R&D and Sustainability)
+  } else { // Fourth card: 2 columns (Card 4 with Industry Focus)
     displayedColumns = columns.slice(0, 2); // First 2 columns only
   }
   

@@ -27,6 +27,14 @@ const products = [
     slug: "seal"
   },
   {
+    title: "TAPES",
+    fullTitle: "INDUSTRIAL\nTAPES",
+    image: TapeHeroicImage,
+    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg",
+    color: "#d1181f",
+    slug: "tape"
+  },
+  {
     title: "INDUSTRIAL CLEANING",
     fullTitle: "INDUSTRIAL\nCLEANING",
     image: RRHandSprayingImage,
@@ -34,14 +42,6 @@ const products = [
     color: "#e53935",
     external: true,
     link: "https://ruggedred.com/"
-  },
-  {
-    title: "TAPES",
-    fullTitle: "INDUSTRIAL\nTAPES",
-    image: TapeHeroicImage,
-    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg",
-    color: "#d1181f",
-    slug: "tape"
   }
 ];
 
@@ -69,22 +69,23 @@ const ProductsSection = () => {
   }, [hoveredIndex]);
 
   return (
-    <section className="py-16 bg-[#1b3764] text-white">
+    <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 bg-[#1b3764] text-white">
       <div className="w-full px-4 max-w-[1100px] mx-auto">
-        <div className="text-center">
+        <div className="text-center relative z-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block">
             Our Products
           </h2>
         </div>
-        <div className="text-center">
+        <div className="text-center relative z-10">
           <p className="text-xs sm:text-lg mb-6 sm:mb-8 font-light max-w-4xl mx-auto">
             We offer the best performing and widest range of adhesive, sealant, specialty tape, and industrial cleaning solutions, including customization and environmentally friendly technologies. If we don't have it, we'll make it custom for you!
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8 relative z-10">
           {products.map((product, index) => {
             const isHovered = hoveredIndex === index;
             const isTapes = product.title === 'TAPES';
+            const isIndustrialCleaning = product.title === 'INDUSTRIAL CLEANING';
             const isTopRow = index < 2; // First two items are top row
 
             // Subtle, fast breathing effect
@@ -107,7 +108,7 @@ const ProductsSection = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 shadow-lg rounded-[2rem] overflow-hidden transition-all duration-100 hover:scale-[1.02] relative hover:bg-transparent"
+                    className="border-0 shadow-lg rounded-[2rem] overflow-hidden transition-all duration-100 hover:scale-[1.02] relative hover:bg-transparent z-10"
                     style={{
                       backgroundColor: product.color,
                       transition: 'box-shadow 0.1s linear', // super snappy
@@ -116,9 +117,9 @@ const ProductsSection = () => {
                         : 'none',
                     }}
                   >
-                    <div className={`relative aspect-square w-full${isTapes ? ' scale-x-[-1]' : ''}`}>
+                    <div className={`relative aspect-square w-full${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
                       <motion.div
-                        className={`absolute inset-0 ${isTopRow ? 'flex flex-row items-center' : 'flex flex-col justify-end items-center'}${isTapes ? ' scale-x-[-1]' : ''}`}
+                        className={`absolute inset-0 ${isTopRow ? 'flex flex-row items-center' : 'flex flex-col justify-end items-center'}${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
                         style={{
                           opacity: isHovered ? 0 : 1,
                           zIndex: 1,
@@ -132,16 +133,16 @@ const ProductsSection = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-contain${index === 1 ? ' transform scale-[2.3] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 3 ? ' transform scale-[1.43] -translate-x-2/3' : ''}`}
+                                  className={`w-full h-full object-contain${index === 1 ? ' transform scale-[2.3] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 ? ' transform scale-[1.43] -translate-x-2/3' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 3 ? { transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)' } : {}),
-                                    ...(index === 2 ? { transform: 'scaleX(1.43) scaleY(1.43) translateX(2.67%)' } : {})
+                                    ...(index === 2 ? { transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)' } : {}),
+                                    ...(index === 3 ? { transform: 'scaleX(1.43) scaleY(1.43) translateX(2.67%)' } : {})
                                   }}
                                 />
                               </div>
-                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 || index === 3 ? 'justify-start pl-4 sm:pl-16' : 'justify-end pr-4 sm:pr-16'}`}>
+                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 ? 'justify-end pr-4 sm:pr-16' : 'justify-start pl-4 sm:pl-16'}`}>
                                 <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
@@ -179,16 +180,16 @@ const ProductsSection = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-contain${index === 1 ? ' transform scale-[2.3] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 3 ? ' transform scale-[1.43] -translate-x-2/3' : ''}`}
+                                  className={`w-full h-full object-contain${index === 1 ? ' transform scale-[2.3] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 ? ' transform scale-[1.43] -translate-x-2/3' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 3 ? { transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)' } : {}),
-                                    ...(index === 2 ? { transform: 'scaleX(1.43) scaleY(1.43) translateX(16.67%)' } : {})
+                                    ...(index === 2 ? { transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)' } : {}),
+                                    ...(index === 3 ? { transform: 'scaleX(1.43) scaleY(1.43) translateX(16.67%)' } : {})
                                   }}
                                 />
                               </div>
-                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 || index === 3 ? 'justify-start pl-4 sm:pl-16' : 'justify-end pr-4 sm:pr-16'}`}>
+                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 ? 'justify-end pr-4 sm:pr-16' : 'justify-start pl-4 sm:pl-16'}`}>
                                 <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
@@ -200,7 +201,7 @@ const ProductsSection = () => {
                         )}
                       </motion.div>
                       <motion.div
-                        className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center gap-2${isTapes ? ' scale-x-[-1]' : ''}`}
+                        className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center gap-2${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
                         style={{
                           opacity: isHovered ? 1 : 0,
                           zIndex: 2,
@@ -237,7 +238,7 @@ const ProductsSection = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 shadow-lg rounded-[2rem] overflow-hidden transition-all duration-100 hover:scale-[1.02] relative hover:bg-transparent"
+                    className="border-0 shadow-lg rounded-[2rem] overflow-hidden transition-all duration-100 hover:scale-[1.02] relative hover:bg-transparent z-10"
                     style={{
                       backgroundColor: product.color,
                       transition: 'box-shadow 0.1s linear', // super snappy
@@ -246,9 +247,9 @@ const ProductsSection = () => {
                         : 'none',
                     }}
                   >
-                    <div className={`relative aspect-square w-full${isTapes ? ' scale-x-[-1]' : ''}`}>
+                    <div className={`relative aspect-square w-full${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
                       <motion.div
-                        className={`absolute inset-0 ${isTopRow ? 'flex flex-row items-center' : 'flex flex-col justify-end items-center'}${isTapes ? ' scale-x-[-1]' : ''}`}
+                        className={`absolute inset-0 ${isTopRow ? 'flex flex-row items-center' : 'flex flex-col justify-end items-center'}${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
                         style={{
                           opacity: isHovered ? 0 : 1,
                           zIndex: 1,
@@ -262,16 +263,16 @@ const ProductsSection = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-contain${index === 1 ? ' transform scale-[2.3] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 3 ? ' transform scale-[1.43] -translate-x-2/3' : ''}`}
+                                  className={`w-full h-full object-contain${index === 1 ? ' transform scale-[2.3] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 ? ' transform scale-[1.43] -translate-x-2/3' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 3 ? { transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)' } : {}),
-                                    ...(index === 2 ? { transform: 'scaleX(1.43) scaleY(1.43) translateX(16.67%)' } : {})
+                                    ...(index === 2 ? { transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)' } : {}),
+                                    ...(index === 3 ? { transform: 'scaleX(1.43) scaleY(1.43) translateX(16.67%)' } : {})
                                   }}
                                 />
                               </div>
-                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 || index === 3 ? 'justify-start pl-4 sm:pl-16' : 'justify-end pr-4 sm:pr-16'}`}>
+                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 ? 'justify-end pr-4 sm:pr-16' : 'justify-start pl-4 sm:pl-16'}`}>
                                 <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
@@ -309,16 +310,16 @@ const ProductsSection = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-contain${index === 1 ? ' transform scale-[2.3] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 3 ? ' transform scale-[1.43] -translate-x-2/3' : ''}`}
+                                  className={`w-full h-full object-contain${index === 1 ? ' transform scale-[2.3] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 ? ' transform scale-[1.43] -translate-x-2/3' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 3 ? { transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)' } : {}),
-                                    ...(index === 2 ? { transform: 'scaleX(1.43) scaleY(1.43) translateX(16.67%)' } : {})
+                                    ...(index === 2 ? { transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)' } : {}),
+                                    ...(index === 3 ? { transform: 'scaleX(1.43) scaleY(1.43) translateX(16.67%)' } : {})
                                   }}
                                 />
                               </div>
-                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 || index === 3 ? 'justify-start pl-4 sm:pl-16' : 'justify-end pr-4 sm:pr-16'}`}>
+                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 ? 'justify-end pr-4 sm:pr-16' : 'justify-start pl-4 sm:pl-16'}`}>
                                 <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
@@ -330,7 +331,7 @@ const ProductsSection = () => {
                         )}
                       </motion.div>
                       <motion.div
-                        className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center gap-2${isTapes ? ' scale-x-[-1]' : ''}`}
+                        className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center gap-2${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
                         style={{
                           opacity: isHovered ? 1 : 0,
                           zIndex: 2,

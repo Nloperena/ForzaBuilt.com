@@ -12,6 +12,8 @@ import Footer from '@/components/Footer';
 import ProductChemistriesSectionV2 from '@/components/ProductChemistriesSectionV2';
 import IdealChemistrySection from '@/components/IdealChemistrySection';
 import ProductChemistriesSection from '@/components/ProductChemistriesSection';
+import ScienceTrianglesBackground from '@/components/common/ScienceTrianglesBackground';
+import MultiScienceTrianglesBackground from '@/components/common/MultiScienceTrianglesBackground';
 import { useIsMobile } from '@/hooks/use-mobile';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 import { getCardsByIndustry } from '@/data/stackableCardsData';
@@ -34,25 +36,115 @@ const Index = () => {
       <Header />
       
       {/* Hero section */}
-      <HeroOverlay />
+      <section className="relative">
+        <ScienceTrianglesBackground 
+          variant="small" 
+          position="top-right" 
+          opacity={0.61} 
+          scale={0.6}
+          blendMode="overlay"
+        />
+        <HeroOverlay />
+      </section>
       
       {/* Hero Video Section */}
-      <HeroVideoSection />
+      <section className="relative">
+        <ScienceTrianglesBackground 
+          variant="small2" 
+          position="bottom-left" 
+          opacity={0.61} 
+          scale={0.8}
+          blendMode="overlay"
+        />
+        <HeroVideoSection />
+      </section>
       
       {/* Industries Section (same as Industries page) */}
-      <IndustriesSectionAlt />
+      <section className="relative">
+        <ScienceTrianglesBackground 
+          variant="small" 
+          position="top-right" 
+          opacity={0.61} 
+          scale={0.8}
+          blendMode="overlay"
+        />
+        <ScienceTrianglesBackground 
+          variant="large" 
+          position="bottom-left" 
+          opacity={0.61} 
+          scale={0.7}
+          blendMode="overlay"
+        />
+        <IndustriesSectionAlt />
+      </section>
       
+
+
       {/* Products Section */}
-      <ProductsSection />
+      <section className="relative">
+        <ScienceTrianglesBackground 
+          variant="small2" 
+          position="top-right" 
+          opacity={0.61} 
+          scale={0.8}
+          blendMode="overlay"
+        />
+        <ScienceTrianglesBackground 
+          variant="large" 
+          position="bottom-left" 
+          opacity={0.61} 
+          scale={0.9}
+          blendMode="overlay"
+        />
+        <ProductsSection />
+      </section>
       
       {/* Sticky Background Section */}
-      <StickyBackgroundSection />
+      <section className="relative">
+        <ScienceTrianglesBackground 
+          variant="large" 
+          position="center" 
+          opacity={0.61} 
+          scale={1.2}
+          blendMode="overlay"
+        />
+        <ScienceTrianglesBackground 
+          variant="small" 
+          position="top-left" 
+          opacity={0.61} 
+          scale={0.8}
+          blendMode="overlay"
+        />
+        <StickyBackgroundSection />
+      </section>
 
       {/* Scroll Stack Cards Section (Grid Layout: 3-2-3-2) */}
       <section className={`relative w-full bg-gradient-to-br from-[${brandColors.primary.blazeOrange.hex}] via-[${brandColors.secondary.rustyNailOrange.hex}] to-[${brandColors.primary.blazeOrange.hex}] text-white`}>
+        <MultiScienceTrianglesBackground 
+          elements={[
+            {
+              variant: 'small',
+              position: 'top-left',
+              opacity: 0.61,
+              scale: 0.7,
+              delay: 0,
+              blendMode: 'overlay'
+            },
+            {
+              variant: 'small2',
+              position: 'bottom-right',
+              opacity: 0.61,
+              scale: 0.8,
+              delay: 200,
+              blendMode: 'overlay'
+            }
+          ]}
+        />
         <ServiceCardStack />
       </section>
       
+
+
       {/* Scroll Sections with Chemistry Molecule - Desktop Only 
       {!isMobile && <ScrollSections />}*/}
 
@@ -60,24 +152,97 @@ const Index = () => {
       <ProductChemistriesSectionV2 /> */}
 
       {/* Ideal Chemistry Section */}
-      <IdealChemistrySection />
+      <section className="relative">
+        <MultiScienceTrianglesBackground 
+          elements={[
+            {
+              variant: 'small2',
+              position: 'bottom-right',
+              opacity: 0.61,
+              scale: 0.8,
+              delay: 0,
+              blendMode: 'overlay'
+            },
+            {
+              variant: 'small',
+              position: 'top-left',
+              opacity: 0.61,
+              scale: 0.6,
+              delay: 300,
+              blendMode: 'overlay'
+            },
+            {
+              variant: 'large',
+              position: 'center',
+              opacity: 0.61,
+              scale: 0.5,
+              delay: 600,
+              blendMode: 'overlay'
+            }
+          ]}
+        />
+        <IdealChemistrySection />
+      </section>
 
       
 
       
+
+      {/* Pre-Made in America Spacer with Alternating Backgrounds */}
+      <section className="relative py-10">
+        <ScienceTrianglesBackground 
+          variant="large" 
+          position="top-left" 
+          opacity={0.61} 
+          scale={0.6}
+          blendMode="overlay"
+        />
+        <ScienceTrianglesBackground 
+          variant="small" 
+          position="bottom-right" 
+          opacity={0.61} 
+          scale={0.6}
+          blendMode="overlay"
+        />
+      </section>
 
       {/* Made in America Section */}
-      <StickyBackgroundSectionV2 />
+      <section className="relative">
+        <StickyBackgroundSectionV2 />
+      </section>
       
 
       
       {/* Newsletter Section - STANDALONE */}
       <div className="relative w-full">
+        <ScienceTrianglesBackground 
+          variant="small" 
+          position="center" 
+          opacity={0.61} 
+          scale={0.9}
+          blendMode="overlay"
+        />
+        <ScienceTrianglesBackground 
+          variant="large" 
+          position="top-right" 
+          opacity={0.61} 
+          scale={0.5}
+          blendMode="overlay"
+        />
         <NewsletterSection />
       </div>
       
       {/* Footer */}
-      <Footer />
+      <section className="relative">
+        <ScienceTrianglesBackground 
+          variant="large" 
+          position="bottom-right" 
+          opacity={0.61} 
+          scale={1.0}
+          blendMode="overlay"
+        />
+        <Footer />
+      </section>
     </div>
   );
 };

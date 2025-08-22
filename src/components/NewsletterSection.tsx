@@ -13,7 +13,7 @@ const NewsletterSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const recentPosts = useMemo(() => {
-    return blogPostsData.slice(0, 3);
+    return blogPostsData.slice(0, 2);
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,47 +47,44 @@ const NewsletterSection = () => {
   return (
     <>
       <section className="relative py-16 md:py-24 bg-[#1B3764] overflow-hidden">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-white/10 blur-3xl"></div>
-          <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-[#F2611D]/20 blur-3xl"></div>
-        </div>
+
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-10 md:mb-14">
-            <h2 className="font-kallisto text-white text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold tracking-tight">Stay Ahead with Forza</h2>
-            <p className="mt-4 text-white/80 text-base md:text-lg max-w-3xl mx-auto">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white font-kallisto leading-none break-words">Stay Ahead with Forza</h2>
+            <p className="mt-4 text-white/80 text-base md:text-lg max-w-3xl mx-auto font-poppins">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1">
-              <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
-                <div className="p-6 md:p-8">
-                  <div className="h-1 w-full bg-gradient-to-r from-[#F2611D] via-white/40 to-[#F2611D] rounded mb-6"></div>
+            <div className="order-2 lg:order-1 h-full">
+              <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col">
+                <div className="p-6 md:p-8 flex-1 flex flex-col">
+                  <div className="h-1 w-full bg-gradient-to-r from-[#F16022] via-white/40 to-[#F16022] rounded mb-8"></div>
                   
-                  <div className="mb-6">
-                    <h3 className="text-white font-kallisto text-2xl md:text-3xl font-bold">Join Our Newsletter</h3>
+                  <div className="mb-8">
+                    <h3 className="text-white font-kallisto text-2xl md:text-3xl font-black">Join Our Newsletter</h3>
                   </div>
 
-                  <div className="space-y-4 mb-6">
+                  <div className="space-y-6 mb-8 flex-1">
                     <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-[#F2611D] rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-[#F16022] rounded-full mt-2 flex-shrink-0"></div>
                       <p className="text-white/90 text-sm md:text-base">Early access to new product launches and innovations</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-[#F2611D] rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-[#F16022] rounded-full mt-2 flex-shrink-0"></div>
                       <p className="text-white/90 text-sm md:text-base">Exclusive industry insights and technical solutions</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-[#F2611D] rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-[#F16022] rounded-full mt-2 flex-shrink-0"></div>
                       <p className="text-white/90 text-sm md:text-base">Expert tips and best practices for your applications</p>
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-6 mt-auto">
                     <button
                       onClick={() => setShowNewsletterForm(true)}
-                      className="w-full inline-flex items-center justify-center rounded-lg px-6 py-4 font-bold text-white bg-[#F2611D] hover:bg-[#F2611D]/90 shadow-lg hover:shadow-xl transition-all duration-200 text-lg"
+                      className="w-full inline-flex items-center justify-center rounded-lg px-6 py-5 font-bold text-white bg-[#F16022] hover:bg-[#F16022]/90 shadow-lg hover:shadow-xl transition-all duration-200 text-lg"
                     >
                       Subscribe to Newsletter
                     </button>
@@ -98,11 +95,11 @@ const NewsletterSection = () => {
             </div>
 
             {/* Featured Blog Section - Secondary Focus */}
-            <div className="order-1 lg:order-2">
-              <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
-                <div className="p-6 md:p-8">
+            <div className="order-1 lg:order-2 h-full">
+              <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col">
+                <div className="p-6 md:p-8 flex-1 flex flex-col">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-white font-kallisto text-xl md:text-2xl font-bold">Featured Articles</h3>
+                    <h3 className="text-white font-kallisto text-xl md:text-2xl font-black">Featured Articles</h3>
                     <a href="/blog" className="text-white/80 hover:text-white text-sm md:text-base font-semibold">View all articles →</a>
                   </div>
 
@@ -127,8 +124,8 @@ const NewsletterSection = () => {
                               />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="text-xs font-semibold uppercase tracking-wide text-[#F2611D] mb-1">{post.category}</div>
-                              <h4 className="text-white font-bold leading-snug line-clamp-2 text-sm md:text-base group-hover:text-[#F2611D] transition-colors">{post.title}</h4>
+                              <div className="text-xs font-semibold uppercase tracking-wide text-[#F16022] mb-1">{post.category}</div>
+                              <h4 className="text-white font-bold leading-snug line-clamp-2 text-sm md:text-base group-hover:text-[#F16022] transition-colors">{post.title}</h4>
                               <div className="mt-2 text-white/70 text-xs line-clamp-2">{post.excerpt}</div>
                             </div>
                           </div>
@@ -203,7 +200,7 @@ const NewsletterSection = () => {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200"
+                      className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
                       placeholder="First Name"
                     />
                   </div>
@@ -216,7 +213,7 @@ const NewsletterSection = () => {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200"
+                      className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
                       placeholder="Last Name"
                     />
                   </div>
@@ -231,7 +228,7 @@ const NewsletterSection = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200"
+                    className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
                     placeholder="Email Address"
                   />
                 </div>
@@ -244,7 +241,7 @@ const NewsletterSection = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200"
+                    className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
                     placeholder="Company Name"
                   />
                 </div>
@@ -252,7 +249,7 @@ const NewsletterSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-xl px-6 py-4 transition-all duration-200 text-lg font-bold shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+                  className="w-full bg-[#F16022] hover:bg-[#F16022]/80 text-white rounded-xl px-6 py-4 transition-all duration-200 text-lg font-bold shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed mt-4"
                 >
                   {isSubmitting ? 'Subscribing...' : 'Subscribe Now'}
                 </button>

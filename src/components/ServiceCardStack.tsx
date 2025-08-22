@@ -37,21 +37,12 @@ const ServiceCardStack: React.FC = () => {
     image?: string;
     columns: ColumnData[];
   }> = [
-    // 1) VALUE
+    // 1) DECADES OF REAL‑WORLD KNOW‑HOW
     {
       title: 'Purpose-Built',
       icon: '⭐',
       image: '/Forza-lion-logo.png',
       columns: [
-        {
-          title: 'Value Proposition',
-          image: '/static-approach-page-SVGs/Value Prop icon.svg',
-          items: [
-            'Big‑Picture Expertise. Small‑Town Care',
-            'We unleash the strength and spirit of America\'s Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.',
-            'Purpose‑Built Performance. Guaranteed Strength.'
-          ]
-        },
         {
           title: 'Decades of Real-World Know-How',
           image: '/static-approach-page-SVGs/Decades of Real Work Know How icon.svg',
@@ -73,7 +64,7 @@ const ServiceCardStack: React.FC = () => {
         }
       ]
     },
-    // 2) DECADES OF REAL‑WORLD KNOW‑HOW
+    // 2) PERFORMANCE
     {
       title: 'Peformance',
       icon: '⏳',
@@ -102,7 +93,7 @@ const ServiceCardStack: React.FC = () => {
         }
       ]
     },
-    // 3) PURPOSE‑BUILT PRODUCT SOLUTIONS
+    // 3) GUARANTEED STRENGTH
     {
       title: 'Guaranteed Strength',
       icon: '🏗️',
@@ -189,18 +180,40 @@ const ServiceCardStack: React.FC = () => {
   return (
     <div ref={containerRef} className="relative w-full px-4 py-16 bg-gradient-to-b from-[#1b3764] via-[#09668d] to-[#1B3764]">
       {/* Desktop heading - positioned at top */}
-      <div className="hidden md:block text-center py-16 mt-4 px-4">
-        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-3 font-kallisto">
+      <div className="hidden md:block text-center py-8 mt-4 px-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-3 font-kallisto leading-none break-words">
           Our Approach
         </h2>
+        <div className="text-lg md:text-xl text-white/90 max-w-4xl mx-auto space-y-4">
+          <p className="font-semibold">
+            Big‑Picture Expertise. Small‑Town Care
+          </p>
+          <p>
+            We unleash the strength and spirit of America's Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.
+          </p>
+          <p className="font-semibold">
+            Purpose‑Built Performance. Guaranteed Strength.
+          </p>
+        </div>
       </div>
       
       <div className="relative space-y-16 lg:space-y-20 xl:space-y-24 max-w-[1600px] mx-auto">
         {/* Mobile heading - positioned above cards */}
-        <div className="md:hidden text-center py-8 px-4">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-3 font-kallisto">
+        <div className="md:hidden text-center pt-4 pb-2 px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-3 font-kallisto leading-none break-words">
             Our Approach
           </h2>
+          <div className="text-base sm:text-lg text-white/90 max-w-3xl mx-auto space-y-3">
+            <p className="font-semibold">
+              Big‑Picture Expertise. Small‑Town Care
+            </p>
+            <p>
+              We unleash the strength and spirit of America's Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.
+            </p>
+            <p className="font-semibold">
+              Purpose‑Built Performance. Guaranteed Strength.
+            </p>
+          </div>
         </div>
         
         {/* All cards as stackable items (flattened on mobile/tablet) */}

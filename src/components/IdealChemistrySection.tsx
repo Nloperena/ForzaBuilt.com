@@ -12,6 +12,8 @@ const CHEMISTRY_ICONS = {
   hotMelt: '/Chemistry%20Products%20Icons/hotmelt%20icon.svg',
   solventBase: '/Chemistry%20Products%20Icons/solvent%20based%20icon.svg',
   waterBased: '/Chemistry%20Products%20Icons/water%20based%20icon.svg',
+  cyanoacrylates: '/Chemistry%20Products%20Icons/cyanoacrylates%20icon.svg',
+  methacrylate: '/Chemistry%20Products%20Icons/methacrylate%20icon.svg',
 };
 
 interface ChemistryItemProps {
@@ -31,7 +33,7 @@ const ChemistryItem: React.FC<ChemistryItemProps> = ({
   products,
 }) => {
   return (
-    <div className="bg-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 mb-4 max-w-[1400px] mx-auto">
+    <div className="bg-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 mb-4 max-w-[1400px] mx-auto relative z-10">
       <div className="p-4 md:p-6">
         {/* Header with Icon and Title */}
         <div className="flex items-center gap-3 mb-4">
@@ -103,7 +105,7 @@ const ChemistryItemTablet: React.FC<ChemistryItemProps> = ({
   products,
 }) => {
   return (
-    <div className="bg-gradient-to-r from-[#1b3764] to-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 mb-6 max-w-[1400px] mx-auto">
+    <div className="bg-gradient-to-r from-[#1b3764] to-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300 mb-6 max-w-[1400px] mx-auto relative z-10">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
         {/* Left Column - Icon/Image */}
         <div className="lg:col-span-1 flex justify-center items-center">
@@ -267,7 +269,7 @@ const IdealChemistrySection: React.FC = () => {
       ]
     },
     {
-      title: "Solvent Base",
+      title: "Solvent Based",
       iconSrc: CHEMISTRY_ICONS.solventBase,
       badges: ["Fast Drying", "High Initial Tack", "Versatile"],
       features: [
@@ -278,6 +280,34 @@ const IdealChemistrySection: React.FC = () => {
       products: [
         "ForzaCLEAN C400",
         "ForzaPRIME P450"
+      ]
+    },
+    {
+      title: "Cyanoacrylates",
+      iconSrc: CHEMISTRY_ICONS.cyanoacrylates,
+      badges: ["Instant Bond", "High Strength", "Precision Application"],
+      features: [
+        "Fast-curing adhesives for immediate bonding",
+        "Excellent for small, precise applications",
+        "Works on plastics, rubber, metal, and ceramics"
+      ],
+      products: [
+        "ForzaBOND CA100",
+        "ForzaBOND CA110"
+      ]
+    },
+    {
+      title: "Methacrylate",
+      iconSrc: CHEMISTRY_ICONS.methacrylate,
+      badges: ["High Performance", "Structural", "Temperature Resistant"],
+      features: [
+        "Two-part structural adhesives for demanding applications",
+        "Excellent temperature and chemical resistance",
+        "Ideal for metal, composite, and plastic bonding"
+      ],
+      products: [
+        "ForzaBOND M200",
+        "ForzaBOND M210"
       ]
     },
     {
@@ -297,16 +327,16 @@ const IdealChemistrySection: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-b from-[#1b3764] to-[#1b3764] text-white">
+    <section className="py-12 md:py-16 bg-gradient-to-b from-[#1b3764] to-[#1b3764] text-white relative z-10">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-kallisto font-black mb-4 text-white leading-none">
+        <div className="text-center mb-8 md:mb-12 relative z-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-kallisto font-black mb-4 text-white leading-none break-words">
             IDEAL CHEMISTRY FOR YOUR SPECIFIC APPLICATION
           </h2>
         </div>
         
         {/* Chemistry List - Responsive variants */}
-        <div className="space-y-3">
+        <div className="space-y-3 relative z-10">
           {/* Mobile/Desktop variant (hidden on lg+) */}
           <div className="lg:hidden">
             {chemistries.map((chemistry, index) => (

@@ -59,9 +59,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       case 'SEAL':
         return 'transform scale-[2.3] -translate-x-0 -translate-y-1/3';
       case 'RUGGED RED':
-        return 'transform scale-[1.43] -translate-x-2/3';
-      case 'TAPE':
         return 'transform scaleX(-1.8) scaleY(1.8) translateX(-5.6667%)';
+      case 'TAPE':
+        return 'transform scale-[1.43] -translate-x-2/3';
       default:
         return 'transform scale-[1.43] -translate-x-2/3';
     }
@@ -79,9 +79,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       case 'SEAL':
         return { ...baseStyle, transform: 'scale(2.3) translateX(0) translateY(-33.33%)' };
       case 'RUGGED RED':
-        return { ...baseStyle, transform: 'scale(1.43) translateX(-66.67%)' };
-      case 'TAPE':
         return { ...baseStyle, transform: 'scaleX(-1.8) scaleY(1.8) translateX(-5.67%)' };
+      case 'TAPE':
+        return { ...baseStyle, transform: 'scale(1.43) translateX(-66.67%)' };
       default:
         return baseStyle;
     }
@@ -93,6 +93,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       case 'SEAL':
         return 'flex items-center justify-start pl-8 sm:pl-16';
       case 'RUGGED RED':
+        return 'flex items-center justify-start pl-8 sm:pl-16';
       case 'TAPE':
         return 'flex items-center justify-end pr-8 sm:pr-16';
       default:
@@ -122,7 +123,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   const renderHoverContent = () => (
     <div 
-      className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center gap-2${isTapes ? ' scale-x-[-1]' : ''}`}
+      className={`absolute inset-0 flex flex-col items-center justify-center p-4 text-center gap-2${isRuggedRed ? ' scale-x-[-1]' : ''}`}
       style={{ 
         opacity: isHovered ? 1 : 0, 
         zIndex: 2, 
@@ -152,7 +153,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         boxShadow: 'none',
       }}
     >
-      <div className={`relative aspect-square w-full${isTapes ? ' scale-x-[-1]' : ''}`}>
+      <div className={`relative aspect-square w-full${isRuggedRed ? ' scale-x-[-1]' : ''}`}>
         {renderMainContent()}
         {renderHoverContent()}
       </div>

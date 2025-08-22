@@ -242,7 +242,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
       aria-labelledby={`${industry.id}-xray-explorer`}
     >
       {/* Sticky Container */}
-      <div className="sticky top-0 w-full dvh-100 flex items-end justify-center pb-20 overflow-hidden bg-white will-change-transform">
+      <div className="sticky top-20 w-full dvh-100 flex items-end justify-center pb-20 overflow-hidden bg-white will-change-transform">
         <div className="relative w-full max-w-7xl mx-auto px-4">
           
           {/* Section Title - Moved to top */}

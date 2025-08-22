@@ -52,9 +52,9 @@ const IndustriesSectionAlt = () => {
   const { isLandscape } = useLandscapeValues();
 
   return (
-    <section className="py-16 sm:py-24 md:py-32 lg:py-40 xl:py-48 bg-[#1b3764] w-full">
+    <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 bg-[#1b3764] w-full">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20">
-        <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
+        <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 relative z-10">
           <div className="max-w-6xl mx-auto space-y-8">
             <h2 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-none break-words">
               Better Built Bonds for All Industries
@@ -83,7 +83,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full"
                 >
                   <Card
-                    className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white"
+                    className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10"
                     style={{
                       backgroundImage: `linear-gradient(to right, #1b3764, #1b3764, ${industry.color || '#f16a26'})`
                     }}

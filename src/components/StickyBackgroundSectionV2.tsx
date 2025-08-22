@@ -30,10 +30,10 @@ const StickyBackgroundSectionV2 = () => {
         </div>
         
         {/* Content Area */}
-        <div className="relative text-white text-center px-4 md:px-8 max-w-[1600px] w-full">
+        <div className="relative text-white text-center px-4 md:px-8 max-w-[1600px] w-full z-10">
           {/* Main Heading */}
-                      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-4 md:mb-6 leading-none text-white font-kallisto">
-              Proudly Manufactured in America
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-4 md:mb-6 leading-none text-white font-kallisto">
+            Proudly Manufactured in America
           </h1>
           
           {/* American Flag Image - Appended under heading */}
@@ -54,11 +54,12 @@ const StickyBackgroundSectionV2 = () => {
       </section>
       
       {/* Appended Content Section */}
-      <section className="bg-[#1b3764] py-6 sm:py-8 md:py-12 lg:py-16">
+      <section className="bg-[#1b3764] pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto px-3 sm:px-6 md:px-8 text-center">
           {/* Subheading */}
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-2 sm:mb-3 md:mb-4 text-white font-kallisto">
-            Proudly Manufactured in America
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-2 sm:mb-3 md:mb-4 font-kallisto leading-none">
+            <span className="whitespace-nowrap">Proudly Manufactured</span><br />
+            in America
           </h2>
           
           {/* Description */}

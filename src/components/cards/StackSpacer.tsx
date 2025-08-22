@@ -22,7 +22,8 @@ const StackSpacer = ({ cardCount }: StackSpacerProps) => {
    */
   // Allocate more scroll depth so the last card doesn't fade out too quickly
   const isDesktopOrTablet = typeof window !== 'undefined' ? window.innerWidth >= 768 : false;
-  const perCardFactor = isDesktopOrTablet ? 0.5 : 0.55; // increase mobile scroll space to ensure later cards have room without large blank tail
+  // Match the cardHeight calculation from useScrollCalculator for proper pacing
+  const perCardFactor = isDesktopOrTablet ? 0.7 : 0.5; // Much smaller values to handle 10 cards reasonably
   const scrollHeight = cardCount * window.innerHeight * perCardFactor;
 
   return (

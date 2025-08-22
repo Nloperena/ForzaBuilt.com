@@ -195,7 +195,7 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
       <div className="max-w-[1600px] mx-auto px-3 md:px-4">
         {/* Section Heading - matches other headings pattern */}
         <div className="py-8 sm:py-10 md:py-12">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black font-kallisto text-center leading-none text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black font-kallisto text-center leading-none text-white break-words">
             {industryName ? `${toTitleCase(industryName)} Products` : 'Industry Products'}
           </h2>
         </div>
@@ -377,41 +377,26 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
                 className="group"
               >
                 <div
-                  className={`relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-r md:bg-gradient-to-b ${getIndustryGradient(industryName) || getCategoryGradient(selectedLine)}`}
+                  className={`relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-r md:bg-gradient-to-t ${getIndustryGradient(industryName) || getCategoryGradient(selectedLine)}`}
                 >
-                  {/* Background Image - Desktop */}
-                  <div className="absolute inset-0 hidden md:block">
-                    <img
-                      src={product.imageUrl || product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
-
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 flex md:flex-col justify-between p-4 md:p-6 text-white">
-                    {/* Mobile Row */}
-                    <div className="flex md:hidden items-center gap-4 flex-1">
-                      <div className="w-20 h-20 md:hidden rounded-xl overflow-hidden bg-white/20 backdrop-blur-sm border border-white/30">
-                        <img src={product.imageUrl || product.image} alt={product.name} className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base md:text-lg font-kallisto font-black mb-1 leading-tight line-clamp-1 md:truncate" style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                          {product.name.split('–')[0]?.trim() || product.name}
-                        </h3>
-                        <p className="text-xs md:text-sm text-gray-300 line-clamp-2" style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                          {product.name.split('–')[1]?.trim() || product.description}
-                        </p>
-                      </div>
+                  {/* Desktop Layout - Stacked */}
+                  <div className="hidden md:flex flex-col h-full">
+                    {/* Image Section - Top */}
+                    <div className="flex-1 relative overflow-hidden">
+                      <img
+                        src={product.imageUrl || product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
                     </div>
-
-                    {/* Desktop Bottom Content */}
-                    <div className="hidden md:flex flex-1 flex-col justify-end gap-4">
+                    
+                    {/* Text Section - Bottom */}
+                    <div className="p-4 md:p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent relative z-10">
                       <div>
-                        <h3 className="text-xl md:text-2xl font-kallisto font-black mb-2 leading-tight line-clamp-2" style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
+                        <h3 className="text-xl md:text-2xl font-kallisto font-black mb-2 leading-tight line-clamp-2 text-white" style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
                           {product.name.split('–')[0]?.trim() || product.name}
                         </h3>
-                        <p className="text-sm md:text-base text-gray-200 line-clamp-3" style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
+                        <p className="text-sm md:text-base text-gray-200 line-clamp-3 mb-4" style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
                           {product.name.split('–')[1]?.trim() || product.description}
                         </p>
                       </div>
@@ -425,9 +410,29 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
                         </Link>
                       </div>
                     </div>
+                  </div>
+
+                  {/* Mobile Layout - Row */}
+                  <div className="md:hidden absolute inset-0 flex justify-between p-4 text-white">
+                    {/* Mobile Row */}
+                    <div className="flex items-center gap-4 flex-1">
+                      <div className="w-20 h-20 md:hidden rounded-xl overflow-hidden bg-white/20 backdrop-blur-sm border border-white/30">
+                        <img src={product.imageUrl || product.image} alt={product.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base md:text-lg font-kallisto font-black mb-1 leading-tight line-clamp-1 md:truncate" style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
+                          {product.name.split('–')[0]?.trim() || product.name}
+                        </h3>
+                        <p className="text-xs md:text-sm text-gray-300 line-clamp-2" style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
+                          {product.name.split('–')[1]?.trim() || product.description}
+                        </p>
+                      </div>
+                    </div>
+
+
 
                     {/* Mobile Buttons */}
-                    <div className="flex md:hidden items-center gap-2">
+                    <div className="flex items-center gap-2">
                       <Link
                         to={`/products/${selectedLine}/${product.id}`}
                         className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"

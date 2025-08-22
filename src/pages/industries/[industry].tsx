@@ -75,7 +75,26 @@ const IndustryPage = () => {
         </video>
       </section>
 
-
+      {/* Title Section - First content after video */}
+      <section style={{ background: 'linear-gradient(to bottom, transparent 50%, white 50%)' }}>
+        <div className="w-full px-4 sm:px-6 md:px-10 text-center">
+          <h1
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-1 sm:mb-2 md:mb-4 leading-none break-words w-full font-kallisto flex flex-row items-center justify-center gap-2 sm:gap-4"
+            style={{ color: industryData.color || '#1b3764' }}
+          >
+            <span className="leading-none" style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}>{industryData.title.toUpperCase()}</span>
+            {industryData.logo ? (
+              <img
+                src={industryData.logo}
+                alt={`${industryData.title} icon`}
+                className="inline-block align-middle h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 w-auto object-contain"
+                style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}
+                loading="lazy"
+              />
+            ) : null}
+          </h1>
+        </div>
+      </section>
 
       {/* Dynamic Industry Headings Section */}
       <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16">
@@ -96,6 +115,8 @@ const IndustryPage = () => {
             </motion.div>
           </div>
         </section>
+
+
 
       {/* X-Ray Explorer Sections */}
       {industryData.title.toLowerCase() === 'marine' && (
@@ -190,25 +211,7 @@ const IndustryPage = () => {
       {/* Industry Brochure Section */}
       <IndustryBrochureSection industry={industryData.title} />
 
-      {/* Title Section - Now at the bottom */}
-      <section className="bg-white py-16 sm:py-20 md:py-24">
-        <div className="w-full px-4 sm:px-6 md:px-10 text-center">
-          <h1
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-1 sm:mb-2 md:mb-4 leading-none break-words w-full font-kallisto flex flex-row items-center justify-center gap-2 sm:gap-4"
-            style={{ color: industryData.color || '#1b3764' }}
-          >
-            <span className="leading-none">{industryData.title.toUpperCase()}</span>
-            {industryData.logo ? (
-              <img
-                src={industryData.logo}
-                alt={`${industryData.title} icon`}
-                className="inline-block align-middle h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 w-auto object-contain"
-                loading="lazy"
-              />
-            ) : null}
-          </h1>
-        </div>
-      </section>
+
 
       {/* Footer */}
       <Footer />
