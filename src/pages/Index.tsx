@@ -61,6 +61,16 @@ const Index = () => {
       
       {/* Industries Section (same as Industries page) */}
       <section className="relative">
+        {/* Left Side Gradient Background (Mirrored) */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <img
+            src="/Gradients and Triangles/Main Gradient.png"
+            alt="Left Side Gradient Background"
+            className="absolute top-0 left-0 w-full h-full object-cover opacity-80 transform scale-x-[-1]"
+            style={{ mixBlendMode: 'overlay' }}
+          />
+        </div>
+
         <ScienceTrianglesBackground 
           variant="small" 
           position="top-right" 
@@ -82,6 +92,16 @@ const Index = () => {
 
       {/* Products Section */}
       <section className="relative">
+        {/* Left Side Gradient Background */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <img
+            src="/Gradients and Triangles/Main Gradient.png"
+            alt="Left Side Gradient Background"
+            className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
+            style={{ mixBlendMode: 'overlay' }}
+          />
+        </div>
+
         <ScienceTrianglesBackground 
           variant="small2" 
           position="top-right" 
