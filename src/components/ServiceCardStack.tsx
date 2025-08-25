@@ -178,13 +178,13 @@ const ServiceCardStack: React.FC = () => {
   });
 
   return (
-    <div ref={containerRef} className="relative w-full px-4 py-16 bg-gradient-to-b from-[#1b3764] via-[#09668d] to-[#1B3764]">
+    <div ref={containerRef} className="relative w-full px-4 py-8 md:py-12 bg-gradient-to-b from-[#1b3764] via-[#09668d] to-[#1B3764]">
       {/* Desktop heading - positioned at top */}
-      <div className="hidden md:block text-center py-8 mt-4 px-4">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-3 font-kallisto leading-none break-words">
+      <div className="hidden md:block text-center py-2 mt-2 px-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-2 font-kallisto leading-none break-words">
           Our Approach
         </h2>
-        <div className="text-lg md:text-xl text-white/90 max-w-4xl mx-auto space-y-4">
+        <div className="text-lg md:text-xl text-white/90 max-w-4xl mx-auto space-y-3">
           <p className="font-semibold">
             Big‑Picture Expertise. Small‑Town Care
           </p>
@@ -197,7 +197,7 @@ const ServiceCardStack: React.FC = () => {
         </div>
       </div>
       
-      <div className="relative space-y-16 lg:space-y-20 xl:space-y-24 max-w-[1600px] mx-auto">
+      <div className="relative space-y-2 lg:space-y-3 xl:space-y-4 max-w-[1600px] mx-auto">
         {/* Mobile heading - positioned above cards */}
         <div className="md:hidden text-center pt-4 pb-2 px-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-3 font-kallisto leading-none break-words">

@@ -103,7 +103,7 @@ const ScienceTrianglesBackground: React.FC<ScienceTrianglesBackgroundProps> = ({
     }
   };
 
-    return (
+  return (
     <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`} style={{ zIndex: 0 }}>
       <motion.img
         src={getImageSrc()}

@@ -17,13 +17,12 @@ interface StackSpacerProps {
 const StackSpacer = ({ cardCount }: StackSpacerProps) => {
   /**
    * Calculate total scroll height needed
-   * Each card needs one full viewport height of scroll distance
-   * Reduced to 35% to minimize gap after last card disappears and bring next section closer
+   * Each card needs scroll distance for smooth animation
+   * Reduced significantly to prevent excessive height and bring sections closer together
    */
-  // Allocate more scroll depth so the last card doesn't fade out too quickly
   const isDesktopOrTablet = typeof window !== 'undefined' ? window.innerWidth >= 768 : false;
-  // Match the cardHeight calculation from useScrollCalculator for proper pacing
-  const perCardFactor = isDesktopOrTablet ? 0.7 : 0.5; // Much smaller values to handle 10 cards reasonably
+  // Much smaller values to prevent excessive height - cards should animate smoothly without huge gaps
+  const perCardFactor = isDesktopOrTablet ? 0.4 : 0.3; // Reduced from 0.7/0.5 to 0.4/0.3
   const scrollHeight = cardCount * window.innerHeight * perCardFactor;
 
   return (

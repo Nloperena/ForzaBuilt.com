@@ -23,7 +23,7 @@ import type { ServiceCardData } from '@/types/ServiceCard';
 const Index = () => {
   const isMobile = useIsMobile();
   
-  
+
 
   return (
     <div className="relative">
@@ -60,7 +60,7 @@ const Index = () => {
       </section>
       
       {/* Industries Section (same as Industries page) */}
-      <section className="relative">
+      <section className="relative overflow-hidden">
         {/* Left Side Gradient Background (Mirrored) */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
           <img
@@ -71,20 +71,7 @@ const Index = () => {
           />
         </div>
 
-        <ScienceTrianglesBackground 
-          variant="small" 
-          position="top-right" 
-          opacity={0.61} 
-          scale={0.8}
-          blendMode="overlay"
-        />
-        <ScienceTrianglesBackground 
-          variant="large" 
-          position="bottom-left" 
-          opacity={0.61} 
-          scale={0.7}
-          blendMode="overlay"
-        />
+
         <IndustriesSectionAlt />
       </section>
       
@@ -172,37 +159,7 @@ const Index = () => {
       <ProductChemistriesSectionV2 /> */}
 
       {/* Ideal Chemistry Section */}
-      <section className="relative">
-        <MultiScienceTrianglesBackground 
-          elements={[
-            {
-              variant: 'small2',
-              position: 'bottom-right',
-              opacity: 0.61,
-              scale: 0.8,
-              delay: 0,
-              blendMode: 'overlay'
-            },
-            {
-              variant: 'small',
-              position: 'top-left',
-              opacity: 0.61,
-              scale: 0.6,
-              delay: 300,
-              blendMode: 'overlay'
-            },
-            {
-              variant: 'large',
-              position: 'center',
-              opacity: 0.61,
-              scale: 0.5,
-              delay: 600,
-              blendMode: 'overlay'
-            }
-          ]}
-        />
-        <IdealChemistrySection />
-      </section>
+      <IdealChemistrySection />
 
       
 
@@ -210,20 +167,19 @@ const Index = () => {
 
       {/* Pre-Made in America Spacer with Alternating Backgrounds */}
       <section className="relative py-10">
-        <ScienceTrianglesBackground 
-          variant="large" 
-          position="top-left" 
-          opacity={0.61} 
-          scale={0.6}
-          blendMode="overlay"
-        />
-        <ScienceTrianglesBackground 
-          variant="small" 
-          position="bottom-right" 
-          opacity={0.61} 
-          scale={0.6}
-          blendMode="overlay"
-        />
+        {/* Custom positioned triangle - Top left only */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          {/* Top left triangle */}
+          <img
+            src="/Gradients and Triangles/Small Science Triangles.png"
+            alt="Top Left Science Triangles"
+            className="absolute top-8 left-8 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
+            style={{ 
+              mixBlendMode: 'overlay',
+              transform: 'scale(5.0) rotate(265deg)'
+            }}
+          />
+        </div>
       </section>
 
       {/* Made in America Section */}

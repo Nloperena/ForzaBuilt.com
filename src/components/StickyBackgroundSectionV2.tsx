@@ -1,22 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const StickyBackgroundSectionV2 = () => {
+  const [isInView, setIsInView] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          // Start playing video when in view
+          if (videoRef.current) {
+            videoRef.current.play();
+          }
+        } else {
+          setIsInView(false);
+          // Pause video when out of view
+          if (videoRef.current) {
+            videoRef.current.pause();
+          }
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+
   return (
     <>
-      <section className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Video Background */}
+      <section ref={sectionRef} className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] flex items-center justify-center overflow-hidden">
+        {/* Video Background with Fade-in Effect */}
         <video
-          autoPlay
+          ref={videoRef}
           muted
           loop
           playsInline
-          preload="auto"
-          className="fixed inset-0 w-full h-full object-cover"
-          style={{ zIndex: -1 }}
+          preload="none"
+          onLoadedData={handleVideoLoad}
+          className="fixed inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          style={{ 
+            zIndex: -1,
+            opacity: isInView && isVideoLoaded ? 1 : 0
+          }}
         >
           <source src="https://videos.ctfassets.net/hdznx4p7ef81/10s1OuRSDAglRlWOWuKlyY/44aa091229bd400168477bd2c4a0cf16/ManufacturedinAmericaStinger_1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        
+        {/* White overlay that fades out */}
+        <div 
+          className="absolute inset-0 bg-white transition-opacity duration-1000"
+          style={{ 
+            zIndex: -1,
+            opacity: isInView && isVideoLoaded ? 0 : 1
+          }}
+        />
         
         <div className="absolute inset-0 pointer-events-none">
           <div 
@@ -33,7 +89,8 @@ const StickyBackgroundSectionV2 = () => {
         <div className="relative text-white text-center px-4 md:px-8 max-w-[1600px] w-full z-10">
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-4 md:mb-6 leading-none text-white font-kallisto">
-            Proudly Manufactured in America
+            <span className="whitespace-nowrap">Proudly Manufactured</span><br />
+            in America
           </h1>
           
           {/* American Flag Image - Appended under heading */}

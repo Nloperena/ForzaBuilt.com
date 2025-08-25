@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from './ui/card';
 import { industries } from '../data/industries';
-import { motion, easeInOut } from 'framer-motion';
 import type { Industry } from '../data/industries';
 import { useLandscapeValues } from '@/hooks/use-landscape';
+import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 
 function hexToRgba(hex: string, alpha: number): string {
   let normalized = hex.replace('#', '');
@@ -23,26 +23,7 @@ function toTitleCase(text: string): string {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-const childItemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: easeInOut } },
-};
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.4,
-      ease: easeInOut,
-      when: 'beforeChildren',
-      staggerChildren: 0.1,
-    },
-  }),
-  exit: { opacity: 0, y: -50, transition: { duration: 0.3, ease: easeInOut } },
-};
 
 const IndustriesSectionAlt = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
@@ -51,9 +32,35 @@ const IndustriesSectionAlt = () => {
   // Landscape optimization values
   const { isLandscape } = useLandscapeValues();
 
+
+
   return (
-    <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 bg-[#1b3764] w-full">
+    <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 bg-[#1b3764] w-full relative">
+      {/* Orange to Blue Gradient Background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 1800px 1200px at top right, rgba(242, 97, 29, 0.8) 0%, rgba(242, 97, 29, 0.7) 25%, rgba(242, 97, 29, 0.5) 45%, rgba(242, 97, 29, 0.3) 65%, rgba(242, 97, 29, 0.15) 80%, rgba(242, 97, 29, 0.05) 90%, transparent 100%)',
+            opacity: 1
+          }}
+        />
+      </div>
+      
+      {/* Edge triangles positioned at left and right viewport edges */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles.png"
+        opacity={0.6}
+        scale={1.3}
+        leftRotation={280}
+        rightRotation={280}
+        leftFlipH={true}
+        rightFlipV={true}
+        blendMode="overlay"
+      />
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20">
+        {/* Header Section */}
         <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 relative z-10">
           <div className="max-w-6xl mx-auto space-y-8">
             <h2 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-none break-words">
@@ -69,13 +76,8 @@ const IndustriesSectionAlt = () => {
         <div className="block md:hidden">
           <div className="space-y-2">
             {industriesArr.map((industry: Industry, index: number) => (
-              <motion.div
+              <div
                 key={industry.title}
-                variants={cardVariants}
-                initial="hidden"
-                animate={"visible"}
-                exit="exit"
-                custom={index}
                 className="block"
               >
                 <Link 
@@ -100,7 +102,7 @@ const IndustriesSectionAlt = () => {
                     <div className="flex h-24 sm:h-28">
                       {/* Video/Image Section */}
                       <div className="relative w-24 sm:w-28 h-full flex-shrink-0">
-                        <motion.video
+                        <video
                           ref={(el) => (videoRefs.current[index] = el)}
                           loop
                           muted
@@ -109,35 +111,27 @@ const IndustriesSectionAlt = () => {
                           preload="auto"
                         >
                           <source src={industry.videoUrl} type="video/mp4" />
-                        </motion.video>
+                        </video>
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
-                        <motion.img
+                        <img
                           src={industry.logo}
                           alt={industry.title + ' logo'}
-                          className="absolute right-1 bottom-1 z-20 transform transition-all duration-150 pointer-events-none h-8 sm:h-10 w-auto"
+                          className="absolute right-1 bottom-1 z-20 transform transition-all duration-150 pointer-events-none h-8 sm:h-10 w-auto hover:rotate-5 hover:scale-110"
                           style={{ filter: 'drop-shadow(0px 0px 0px rgba(242, 97, 29, 0))' }}
-                          variants={childItemVariants}
-                          initial="hidden"
-                          animate="visible"
-                          whileHover={{ rotate: 5, scale: 1.1, filter: 'drop-shadow(0px 0px 25px rgba(242, 97, 29, 1))', transition: { duration: 0.15, ease: [0.42, 0, 0.58, 1] } }}
-                          transition={{ duration: 0.15, ease: [0.42, 0, 0.58, 1] }}
                         />
                       </div>
                       
                       {/* Content Section */}
                       <div className="flex-1 flex flex-col justify-center px-4 py-3">
-                        <motion.h3
+                        <h3
                           className="font-black font-kallisto text-lg sm:text-xl text-left w-full mb-1"
                           style={{
                             color: '#ffffff',
                             lineHeight: 1.1,
                           }}
-                          variants={childItemVariants}
-                          initial="hidden"
-                          animate="visible"
                         >
                           {toTitleCase(industry.title)}
-                        </motion.h3>
+                        </h3>
                         <p className="text-xs sm:text-sm text-white/80 font-light">
                           Specialized solutions for {industry.title.toLowerCase()} applications
                         </p>
@@ -153,10 +147,8 @@ const IndustriesSectionAlt = () => {
                     </div>
                   </Card>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-            
-            
           </div>
         </div>
 
@@ -164,13 +156,8 @@ const IndustriesSectionAlt = () => {
         <div className="hidden md:flex w-full flex-col items-center">
           <div className="grid grid-cols-3 gap-6 lg:gap-8 w-full max-w-7xl mb-8 mx-auto py-4 sm:py-6 lg:py-8">
             {industriesArr.map((industry: Industry, index: number) => (
-              <motion.div
+              <div
                 key={industry.title}
-                variants={cardVariants}
-                initial="hidden"
-                animate={"visible"}
-                exit="exit"
-                custom={index}
                 className="block"
               >
                 <Link 
@@ -193,7 +180,7 @@ const IndustriesSectionAlt = () => {
                     }}
                   >
                     <div className="relative w-full h-full overflow-hidden">
-                      <motion.video
+                      <video
                         ref={(el) => (videoRefs.current[index] = el)}
                         loop
                         muted
@@ -202,26 +189,25 @@ const IndustriesSectionAlt = () => {
                         preload="auto"
                       >
                         <source src={industry.videoUrl} type="video/mp4" />
-                      </motion.video>
+                      </video>
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
                       {/* Logo absolutely positioned at bottom right */}
-                      <motion.div
+                      <div
                         className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 pointer-events-none z-20"
                       >
-                        <motion.img
+                        <img
                           src={industry.logo}
                           alt={industry.title + ' logo'}
-                          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32"
+                          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 hover:rotate-5 hover:scale-110 transition-transform duration-150"
                           style={{
                             width: 'clamp(3rem, 5vw, 8rem)',
                             height: 'clamp(3rem, 5vw, 8rem)'
                           }}
-                          whileHover={{ rotate: 5, scale: 1.1, filter: 'drop-shadow(0px 0px 25px rgba(242, 97, 29, 1))' }}
                         />
-                      </motion.div>
+                      </div>
                       
                       {/* Gradient bar at bottom with text only */}
-                      <motion.div
+                      <div
                         className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none text-white"
                         style={{
                           zIndex: 10,
@@ -229,7 +215,7 @@ const IndustriesSectionAlt = () => {
                         }}
                       >
                         <div className="flex items-center justify-between gap-1">
-                          <motion.h3
+                          <h3
                             className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
                             style={{
                               color: '#ffffff',
@@ -237,35 +223,26 @@ const IndustriesSectionAlt = () => {
                             }}
                           >
                             {toTitleCase(industry.title)}
-                          </motion.h3>
+                          </h3>
                         </div>
-                      </motion.div>
+                      </div>
                     </div>
                   </Card>
                 </Link>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* Standalone CTA Section: Glassmorphic liquid shine */}
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20 mt-8 sm:mt-12">
-          <motion.div
-            variants={cardVariants}
-            initial="hidden"
-            animate={"visible"}
-            exit="exit"
-            custom={industriesArr.length + 1}
-            className="relative max-w-7xl mx-auto overflow-hidden rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-xl"
-          >
-            {/* Animated liquid shine overlay */}
-            <motion.div
+          <div className="relative max-w-7xl mx-auto overflow-hidden rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-xl">
+            {/* Static liquid shine overlay */}
+            <div
               className="pointer-events-none absolute -inset-x-1/2 -inset-y-1/2"
               style={{
                 background: 'radial-gradient(60% 40% at 50% 50%, rgba(255,255,255,0.15), rgba(255,255,255,0) 60%)',
               }}
-              animate={{ x: ["-20%", "20%", "-20%"], y: ["-10%", "10%", "-10%"] }}
-              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
             />
 
             <div className="relative z-10 p-5 sm:p-6 md:p-8 lg:p-10">
@@ -288,7 +265,7 @@ const IndustriesSectionAlt = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

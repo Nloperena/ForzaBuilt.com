@@ -99,9 +99,9 @@ export const useScrollCalculator = ({
       return { progress: 0, nextCardProgress: 0, isVisible: false };
     }
 
-    // Tune per-card scroll height; on mobile, give more scroll distance so cards linger longer
+    // Tune per-card scroll height; reduced to match StackSpacer and prevent excessive spacing
     const isDesktopOrTablet = window.innerWidth >= 768;
-    const cardHeight = window.innerHeight * (isDesktopOrTablet ? 0.8 : 0.6);
+    const cardHeight = window.innerHeight * (isDesktopOrTablet ? 0.5 : 0.4);
     const cardStart = containerTop + (cardIndex * cardHeight);
     
     // Progress calculation (0 = card just entered view, 1 = card fully animated)

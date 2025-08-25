@@ -62,7 +62,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
 
   const baseClasses = mobile 
     ? "py-1 px-2 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-1 focus:ring-[#F2611D] text-xs transition-all duration-300"
-    : "py-2 px-4 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] transition-all duration-300 ease-in-out";
+    : "py-3.5 px-8 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] transition-all duration-300 ease-in-out";
 
   const widthClasses = mobile
     ? "w-20 sm:w-24"

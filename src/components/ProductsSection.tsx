@@ -7,6 +7,7 @@ import TapeHeroicImage from '@/assets/images/Tape Heroic Image.png';
 import OS2CartridgeHeroImage from '@/assets/images/OS2 Cartridge Hero.png';
 import RRHandSprayingImage from '@/assets/images/RR Hand Spraying.png';
 import { Link } from 'react-router-dom';
+import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 
 
 const products = [
@@ -69,7 +70,30 @@ const ProductsSection = () => {
   }, [hoveredIndex]);
 
   return (
-    <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 bg-[#1b3764] text-white">
+    <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 bg-[#1b3764] text-white relative overflow-hidden">
+      {/* Orange to Blue Gradient Background - Bottom Right */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 1800px 1200px at bottom left, rgba(242, 97, 29, 0.8) 0%, rgba(242, 97, 29, 0.7) 25%, rgba(242, 97, 29, 0.5) 45%, rgba(242, 97, 29, 0.3) 65%, rgba(242, 97, 29, 0.15) 80%, rgba(242, 97, 29, 0.05) 90%, transparent 100%)',
+            opacity: 1
+          }}
+        />
+      </div>
+      
+      {/* Edge triangles positioned at left and right viewport edges */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        opacity={0.6}
+        scale={1.1}
+        leftRotation={265}
+        rightRotation={295}
+        leftFlipH={false}
+        rightFlipV={false}
+        blendMode="overlay"
+      />
       <div className="w-full px-4 max-w-[1100px] mx-auto">
         <div className="text-center relative z-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block">

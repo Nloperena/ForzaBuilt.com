@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import blogPostsData from '@/data/blogPosts.json';
 import { generateSlugFromTitle } from '@/lib/utils';
+import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 
 const NewsletterSection = () => {
   const [showNewsletterForm, setShowNewsletterForm] = useState(false);
@@ -47,57 +48,22 @@ const NewsletterSection = () => {
   return (
     <>
       <section className="relative py-16 md:py-24 bg-[#1B3764] overflow-hidden">
-        {/* Left Side Gradient Background */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          <img
-            src="/Gradients and Triangles/Main Gradient.png"
-            alt="Left Side Gradient Background"
-            className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
-            style={{ mixBlendMode: 'overlay' }}
-          />
-        </div>
-
-        {/* Top Triangle Background */}
-        <div className="absolute top-0 right-0 w-full pointer-events-none z-0">
-          <img
-            src="/Gradients and Triangles/Small Science Triangles.png"
-            alt="Science Triangles Background"
-            className="absolute top-0 right-0 w-64 h-64 object-contain opacity-60"
-            style={{ mixBlendMode: 'overlay' }}
-          />
-        </div>
-
-        {/* Bottom Triangle Background */}
-        <div className="absolute bottom-0 left-0 w-full pointer-events-none z-0">
-          <img
-            src="/Gradients and Triangles/Large Science Triangles.png"
-            alt="Science Triangles Background"
-            className="absolute bottom-0 left-0 w-80 h-80 object-contain opacity-60"
-            style={{ mixBlendMode: 'overlay' }}
-          />
-        </div>
-
-        {/* Center Triangle Background */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
-          <img
-            src="/Gradients and Triangles/Small Science Triangles 2.png"
-            alt="Science Triangles Background"
-            className="w-48 h-48 object-contain opacity-40"
-            style={{ mixBlendMode: 'overlay' }}
-          />
-        </div>
+        {/* Edge triangles positioned at left and right viewport edges */}
+        <EdgeTrianglesBackground 
+          leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+          rightImage="/Gradients and Triangles/Small Science Triangles.png"
+          opacity={0.5}
+          scale={0.9}
+          leftRotation={320}
+          rightRotation={40}
+          leftFlipH={true}
+          rightFlipV={false}
+          blendMode="overlay"
+        />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-10 md:mb-14 relative">
-            {/* Heading Triangle Background */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 pointer-events-none z-0">
-              <img
-                src="/Gradients and Triangles/Large Science Triangles.png"
-                alt="Science Triangles Background"
-                className="w-40 h-40 object-contain opacity-30"
-                style={{ mixBlendMode: 'overlay' }}
-              />
-            </div>
+
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white font-kallisto leading-none break-words relative z-10">Stay Ahead with Forza</h2>
             <p className="mt-4 text-white/80 text-base md:text-lg max-w-3xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
@@ -105,15 +71,7 @@ const NewsletterSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Newsletter Signup - Primary Focus */}
             <div className="order-2 lg:order-1 h-full relative">
-              {/* Container Triangle Background */}
-              <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-                <img
-                  src="/Gradients and Triangles/Small Science Triangles.png"
-                  alt="Science Triangles Background"
-                  className="absolute top-4 left-4 w-32 h-32 object-contain opacity-50"
-                  style={{ mixBlendMode: 'overlay' }}
-                />
-              </div>
+              
               <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10">
                 <div className="p-6 md:p-8 flex-1 flex flex-col">
                   <div className="h-1 w-full bg-gradient-to-r from-[#F16022] via-white/40 to-[#F16022] rounded mb-8"></div>
@@ -152,15 +110,7 @@ const NewsletterSection = () => {
 
             {/* Featured Blog Section - Secondary Focus */}
             <div className="order-1 lg:order-2 h-full relative">
-              {/* Container Triangle Background */}
-              <div className="absolute top-0 right-0 w-full h-full pointer-events-none z-0">
-                <img
-                  src="/Gradients and Triangles/Small Science Triangles 2.png"
-                  alt="Science Triangles Background"
-                  className="absolute top-4 right-4 w-32 h-32 object-contain opacity-50"
-                  style={{ mixBlendMode: 'overlay' }}
-                />
-              </div>
+
               <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10">
                 <div className="p-6 md:p-8 flex-1 flex flex-col">
                   <div className="mb-8">
