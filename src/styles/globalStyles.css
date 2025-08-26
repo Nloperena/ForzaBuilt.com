@@ -101,6 +101,22 @@
 
 /* ===== SCIENCE TRIANGLES BACKGROUND ANIMATIONS ===== */
 
+/* Hide triangles in hero video areas */
+.hero-video-area *[class*="triangle"],
+.hero-video-area *[class*="Triangle"],
+.hero-video-area img[src*="triangle"],
+.hero-video-area img[src*="Triangle"] {
+  display: none !important;
+}
+
+/* Ensure triangles blend properly */
+*[class*="triangle"] img,
+*[class*="Triangle"] img,
+img[src*="triangle"],
+img[src*="Triangle"] {
+  mix-blend-mode: multiply !important;
+}
+
 @keyframes float-gentle {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);

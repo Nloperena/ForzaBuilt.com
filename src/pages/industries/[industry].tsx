@@ -18,7 +18,7 @@ import { TRANSPORTATION_DATA } from '../../data/industries/transportation';
 import { COMPOSITES_DATA } from '../../data/industries/composites';
 import { INSULATION_DATA } from '../../data/industries/insulation';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const IndustryPage = () => {
   const { industry } = useParams();
@@ -28,6 +28,16 @@ const IndustryPage = () => {
 
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+
+  // Handle page transition animation when industry changes
+  useEffect(() => {
+    setIsPageTransitioning(true);
+    const timer = setTimeout(() => {
+      setIsPageTransitioning(false);
+    }, 300); // Match the animation duration
+    return () => clearTimeout(timer);
+  }, [industry]);
 
 
 
@@ -60,8 +70,18 @@ const IndustryPage = () => {
   return (
     <div className="bg-[#1b3764] min-h-screen flex flex-col">
       <Header />
-      {/* Hero Banner */}
-      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden z-10">
+      
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={industry}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="w-full"
+        >
+          {/* Hero Banner */}
+          <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden z-[5] hero-video-area">
         <video
           key={industryData.videoUrl}
           autoPlay
@@ -69,35 +89,46 @@ const IndustryPage = () => {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-center z-[50] rounded-xl"
+          className="absolute inset-0 w-full h-full object-cover object-center z-[5] rounded-xl"
         >
           <source src={industryData.videoUrl} type="video/mp4" />
         </video>
       </section>
 
       {/* Title Section - First content after video */}
-      <section style={{ background: 'linear-gradient(to bottom, transparent 50%, white 50%)' }}>
-        <div className="w-full px-4 sm:px-6 md:px-10 text-center">
+      <section style={{ background: 'linear-gradient(to bottom, transparent 50%, white 50%)' }} className="relative z-[20]">
+        <motion.div 
+          className="w-full px-4 sm:px-6 md:px-10 text-center"
+          style={{ marginTop: '-5rem' }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+        >
           <h1
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-1 sm:mb-2 md:mb-4 leading-none break-words w-full font-kallisto flex flex-row items-center justify-center gap-2 sm:gap-4"
+            className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black leading-none break-words w-full font-kallisto flex flex-row items-center justify-center gap-2 sm:gap-4"
             style={{ color: industryData.color || '#1b3764' }}
           >
             <span className="leading-none" style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}>{industryData.title.toUpperCase()}</span>
             {industryData.logo ? (
-              <img
+              <motion.img
                 src={industryData.logo}
                 alt={`${industryData.title} icon`}
                 className="inline-block align-middle h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 w-auto object-contain"
                 style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}
                 loading="lazy"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 }}
               />
             ) : null}
           </h1>
-        </div>
+        </motion.div>
       </section>
 
       {/* Dynamic Industry Headings Section */}
-      <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16">
+      <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16 relative z-[30]">
           <div className="w-full px-4 sm:px-6 max-w-[1600px] mx-auto">
             <motion.div 
               className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-4 sm:mb-6 md:mb-8"
@@ -121,10 +152,10 @@ const IndustryPage = () => {
       {/* X-Ray Explorer Sections */}
       {industryData.title.toLowerCase() === 'marine' && (
         <>
-          <section className="bg-white">
+          <section className="bg-white relative z-[30]">
             <XRayExplorer industry={MARINE_DATA} xrayIndex={0} />
           </section>
-          <section className="bg-white">
+          <section className="bg-white relative z-[30]">
             <XRayExplorer industry={MARINE_DATA} xrayIndex={1} />
           </section>
         </>
@@ -132,10 +163,10 @@ const IndustryPage = () => {
 
       {industryData.title.toLowerCase() === 'construction' && (
         <>
-          <section className="bg-white">
+          <section className="bg-white relative z-[30]">
             <XRayExplorer industry={CONSTRUCTION_DATA} xrayIndex={0} />
           </section>
-          <section className="bg-white">
+          <section className="bg-white relative z-[30]">
             <XRayExplorer industry={CONSTRUCTION_DATA} xrayIndex={1} />
           </section>
         </>
@@ -143,27 +174,27 @@ const IndustryPage = () => {
 
       {industryData.title.toLowerCase() === 'transportation' && (
         <>
-          <section className="bg-white">
+          <section className="bg-white relative z-[30]">
             <XRayExplorer industry={TRANSPORTATION_DATA} xrayIndex={0} />
           </section>
-          <section className="bg-white">
+          <section className="bg-white relative z-[30]">
             <XRayExplorer industry={TRANSPORTATION_DATA} xrayIndex={1} />
           </section>
         </>
       )}
 
       {industryData.title.toLowerCase() === 'composites' && (
-        <section className="bg-white">
+        <section className="bg-white relative z-[30]">
           <XRayExplorer industry={COMPOSITES_DATA} xrayIndex={0} />
         </section>
       )}
 
       {industryData.title.toLowerCase() === 'insulation' && (
         <>
-          <section className="bg-white">
+          <section className="bg-white relative z-[30]">
             <XRayExplorer industry={INSULATION_DATA} xrayIndex={0} />
           </section>
-          <section className="bg-white">
+          <section className="bg-white relative z-[30]">
             <XRayExplorer industry={INSULATION_DATA} xrayIndex={1} />
           </section>
         </>
@@ -192,26 +223,31 @@ const IndustryPage = () => {
         const gradient = getBackgroundGradientByIndustry(validIndustryKey);
         
         return (
-          
-            
-              <IndustryStackableCards industry={validIndustryKey} />
-         
-          
+          <div className="relative z-[30]">
+            <IndustryStackableCards industry={validIndustryKey} />
+          </div>
         );
       })()}
 
       {/* Dynamic Products Section removed per request */}
 
       {/* Products Explorer - carbon copy of product pages with line switcher */}
-      <ProductsExplorerClone industryName={industryData.title} />
+      <div className="relative z-[30]">
+        <ProductsExplorerClone industryName={industryData.title} />
+      </div>
 
       {/* Chemistries Section - match homepage version */}
-      <IdealChemistrySection />
+      <div className="relative z-[30]">
+        <IdealChemistrySection />
+      </div>
 
       {/* Industry Brochure Section */}
-      <IndustryBrochureSection industry={industryData.title} />
+      <div className="relative z-[30]">
+        <IndustryBrochureSection industry={industryData.title} />
+      </div>
 
-
+        </motion.div>
+      </AnimatePresence>
 
       {/* Footer */}
       <Footer />

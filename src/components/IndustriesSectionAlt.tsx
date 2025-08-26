@@ -35,15 +35,12 @@ const IndustriesSectionAlt = () => {
 
 
   return (
-    <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 bg-[#1b3764] w-full relative">
+    <section className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 bg-[#1b3764] w-full relative">
       {/* Orange to Blue Gradient Background */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse 1800px 1200px at top right, rgba(242, 97, 29, 0.8) 0%, rgba(242, 97, 29, 0.7) 25%, rgba(242, 97, 29, 0.5) 45%, rgba(242, 97, 29, 0.3) 65%, rgba(242, 97, 29, 0.15) 80%, rgba(242, 97, 29, 0.05) 90%, transparent 100%)',
-            opacity: 1
-          }}
+          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
+          style={{ opacity: 1 }}
         />
       </div>
       

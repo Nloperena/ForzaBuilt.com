@@ -23,19 +23,19 @@ const productTypes = [
     id: 'bond', 
     label: 'BOND', 
     color: '#F16022',
-    logo: 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg'
+    logo: '/products/brand-logos/product-line-brands-white-bond.svg'
   },
   { 
     id: 'seal', 
     label: 'SEAL', 
     color: '#ffd600',
-    logo: 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg'
+    logo: '/products/brand-logos/product-line-brands-white-seal.svg'
   },
   { 
     id: 'tape', 
     label: 'TAPE', 
     color: '#e53935',
-    logo: 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg'
+    logo: '/products/brand-logos/product-line-brands-white-tape.svg'
   }
 ];
 

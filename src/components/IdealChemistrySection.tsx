@@ -148,8 +148,9 @@ const ChemistryItem: React.FC<ChemistryItemProps & { index: number; getElementRe
       className={`bg-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] mb-4 max-w-[1400px] mx-auto relative z-10 transform ${
         isVisible(index)
           ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-12'
+          : 'opacity-100 translate-y-0'
       }`}
+      style={{ minHeight: '200px' }}
     >
       <div className="p-4 md:p-6">
         {/* Header with Icon and Title */}
@@ -464,23 +465,20 @@ const IdealChemistrySection: React.FC = () => {
         {/* Orange to Blue Gradient Background - Bottom */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div 
-            className="absolute inset-0"
-            style={{
-              background: 'radial-gradient(ellipse 2400px 1600px at bottom, rgba(242, 97, 29, 0.8) 0%, rgba(242, 97, 29, 0.7) 35%, rgba(242, 97, 29, 0.5) 60%, rgba(242, 97, 29, 0.3) 80%, rgba(242, 97, 29, 0.15) 90%, rgba(242, 97, 29, 0.05) 95%, transparent 100%)',
-              opacity: 1
-            }}
+            className="absolute inset-0 bg-[radial-gradient(ellipse_800px_533px_at_bottom,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_35%,rgba(242,97,29,0.5)_60%,rgba(242,97,29,0.3)_80%,rgba(242,97,29,0.15)_90%,rgba(242,97,29,0.05)_95%,transparent_100%)] md:bg-[radial-gradient(ellipse_2400px_1600px_at_bottom,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_35%,rgba(242,97,29,0.5)_60%,rgba(242,97,29,0.3)_80%,rgba(242,97,29,0.15)_90%,rgba(242,97,29,0.05)_95%,transparent_100%)]"
+            style={{ opacity: 1 }}
           />
         </div>
         
         {/* Custom positioned triangles - Top and bottom */}
-        <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 pointer-events-none z-10">
           {/* Top triangle */}
           <img
             src="/Gradients and Triangles/Small Science Triangles.png"
             alt="Top Science Triangles"
             className="absolute top-8 right-8 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
             style={{ 
-              mixBlendMode: 'overlay',
+              mixBlendMode: 'multiply',
               transform: 'scale(5.0) rotate(265deg)'
             }}
           />
@@ -491,7 +489,7 @@ const IdealChemistrySection: React.FC = () => {
             alt="Bottom Science Triangles"
             className="absolute bottom-8 left-8 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
             style={{ 
-              mixBlendMode: 'overlay',
+              mixBlendMode: 'multiply',
               transform: 'scale(5.0) rotate(295deg)'
             }}
           />
@@ -502,7 +500,7 @@ const IdealChemistrySection: React.FC = () => {
             alt="Left Middle Science Triangles"
             className="absolute top-1/2 left-16 md:left-20 lg:left-24 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
             style={{ 
-              mixBlendMode: 'overlay',
+              mixBlendMode: 'multiply',
               transform: 'translateY(-50%) scale(5.0) rotate(180deg)'
             }}
           />
@@ -513,7 +511,7 @@ const IdealChemistrySection: React.FC = () => {
             alt="Right Middle Science Triangles"
             className="absolute top-1/2 right-16 md:right-20 lg:right-24 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
             style={{ 
-              mixBlendMode: 'overlay',
+              mixBlendMode: 'multiply',
               transform: 'translateY(-50%) scale(5.0) rotate(90deg)'
             }}
           />
@@ -526,8 +524,11 @@ const IdealChemistrySection: React.FC = () => {
           
           {/* Chemistry List - Responsive variants */}
           <div className="space-y-3 relative z-10">
-            {/* Mobile/Desktop variant (hidden on lg+) */}
-            <div className="lg:hidden">
+            {/* Mobile/Desktop variant (visible on all screens below lg) */}
+            <div className="block lg:hidden">
+              <div className="text-white text-center mb-4 p-4 bg-white/10 rounded-lg">
+                Mobile View - {chemistries.length} Chemistry Cards
+              </div>
               {chemistries.map((chemistry, index) => (
                 <ChemistryItem
                   key={index}
@@ -543,7 +544,7 @@ const IdealChemistrySection: React.FC = () => {
               ))}
             </div>
             
-            {/* Tablet/Landscape variant (hidden on md and below) */}
+            {/* Tablet/Landscape variant (hidden on screens below lg) */}
             <div className="hidden lg:block">
               {chemistries.map((chemistry, index) => (
                 <ChemistryItemTablet

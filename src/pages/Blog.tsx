@@ -6,6 +6,7 @@ import blogPostsData from '../data/blogPosts.json';
 import FeaturedPosts from '@/components/blog/FeaturedPosts';
 import ControlsBar from '@/components/blog/ControlsBar';
 import PostsGrid from '@/components/blog/PostsGrid';
+import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
 import { generateSlugFromTitle } from '@/lib/utils';
 import type { BlogPost, ViewMode, SortOrder } from '@/types/Blog';
 
@@ -148,18 +149,28 @@ const Blog = () => {
     <div className="bg-[#1b3764] min-h-screen">
       <Header />
       
-      {/* Breadcrumb */}
-      <nav className="bg-white/10 backdrop-blur-sm border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-2">
-          <div className="flex items-center space-x-2 text-sm text-white/70 font-poppins">
-            <Link to="/" className="hover:text-[#F16022] transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-white">Learning Center</span>
-          </div>
-        </div>
-      </nav>
+      {/* Edge triangles positioned at left and right viewport edges */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles.png"
+        opacity={0.6}
+        scale={1.1}
+        leftRotation={280}
+        rightRotation={280}
+        leftFlipH={false}
+        rightFlipV={false}
+        blendMode="overlay"
+      />
       
-                             {/* Hero Section */}
+      {/* Orange to Blue Gradient Background */}
+      <div className="absolute inset-0 pointer-events-none z-[10]">
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
+          style={{ opacity: 1 }}
+        />
+      </div>
+      
+      {/* Hero Section */}
          <section className="relative pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 bg-[#1b3764]">
          <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-20">

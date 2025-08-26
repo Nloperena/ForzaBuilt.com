@@ -23,6 +23,7 @@ import Compatibility from './pages/tools/Compatibility';
 import IndustryPage from './pages/industries/[industry]';
 import ProductCategoryPage from './pages/products/[productCategory]';
 import ProductDetailPage from './pages/products/[productId]';
+import RuggedRed from './pages/products/RuggedRed';
 import IndustrialDatasheetPage from './pages/IndustrialDatasheetPage';
 import DatasheetDemo from './pages/DatasheetDemo';
 import IndustryReview from './pages/IndustryReview';
@@ -35,8 +36,10 @@ import BlogPostPage from './pages/blog/[slug]';
 import PdfViewer from './pages/PdfViewer';
 import Dashboard from './pages/Dashboard';
 import Stylesheet from './pages/Stylesheet';
+import Triangles from './pages/Triangles';
 
 import { initializeProducts } from "@/utils/products";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 const queryClient = new QueryClient();
 
@@ -45,16 +48,21 @@ const App = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        await initializeProducts();
-        setProductsLoaded(true);
-      } catch (error) {
-        console.error("Failed to load products:", error);
-        setError(error instanceof Error ? error.message : "Failed to load products");
-      }
-    };
-    loadProducts();
+    // Defer product loading to improve initial page render
+    const timer = setTimeout(() => {
+      const loadProducts = async () => {
+        try {
+          await initializeProducts();
+          setProductsLoaded(true);
+        } catch (error) {
+          console.error("Failed to load products:", error);
+          setError(error instanceof Error ? error.message : "Failed to load products");
+        }
+      };
+      loadProducts();
+    }, 100); // Small delay to let page render first
+
+    return () => clearTimeout(timer);
   }, []);
 
   if (error) {
@@ -91,6 +99,7 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <TooltipProvider>
+            <PerformanceMonitor />
             <Toaster />
             <Sonner />
             <BrowserRouter>
@@ -101,7 +110,7 @@ const App = () => {
               <Route path="/products" element={<Products />} />
               <Route path="/chemistries" element={<ChemistriesPage />} />
               <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPostPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />
@@ -112,6 +121,7 @@ const App = () => {
               <Route path="/tools/sealant-calculator" element={<SealantCalculator />} />
               <Route path="/tools/compatibility" element={<Compatibility />} />
               <Route path="/industries/:industry" element={<IndustryPage />} />
+              <Route path="/products/ruggedred" element={<RuggedRed />} />
               <Route path="/products/:productCategory" element={<ProductCategoryPage />} />
               <Route path="/product/:productId" element={<ProductDetailPage />} />
               <Route path="/products/:productCategory/:productId" element={<ProductDetailPage />} />
@@ -125,6 +135,7 @@ const App = () => {
               <Route path="/pdf-viewer/:pdfPath" element={<PdfViewer />} />
               <Route path="/admin/dashboard" element={<Dashboard />} />
               <Route path="/stylesheet" element={<Stylesheet />} />
+              <Route path="/triangles" element={<Triangles />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

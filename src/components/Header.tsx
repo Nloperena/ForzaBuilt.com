@@ -31,7 +31,6 @@ const Header = () => {
     handleNavLeave,
     handleOverlayEnter,
     closeOverlay,
-    handleSignOut,
     openMobileMenu,
     closeMobileMenu,
     setHoveredVideoUrl,
@@ -43,7 +42,7 @@ const Header = () => {
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-[#1b3764]/90 backdrop-blur-md shadow-lg' 
-          : 'bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-70'
+          : 'bg-transparent backdrop-blur-sm'
       }`}
       onMouseEnter={handleOverlayEnter}
       onMouseLeave={handleNavLeave}

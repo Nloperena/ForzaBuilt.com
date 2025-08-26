@@ -9,13 +9,23 @@ import RRHandSprayingImage from '@/assets/images/RR Hand Spraying.png';
 import { Link } from 'react-router-dom';
 import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 
+interface Product {
+  title: string;
+  fullTitle: string;
+  image: string;
+  hoverImage: string;
+  color: string;
+  slug: string;
+  external?: boolean;
+  link?: string;
+}
 
-const products = [
+const products: Product[] = [
   {
     title: "ADHESIVES",
     fullTitle: "INDUSTRIAL\nADHESIVES",
     image: CanisterSystemImage,
-    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg",
+    hoverImage: "/products/brand-logos/product-line-brands-white-bond.svg",
     color: "#f16022",
     slug: "bond"
   },
@@ -23,7 +33,7 @@ const products = [
     title: "SEALANTS",
     fullTitle: "INDUSTRIAL\nSEALANTS",
     image: OS2CartridgeHeroImage,
-    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg",
+    hoverImage: "/products/brand-logos/product-line-brands-white-seal.svg",
     color: "#faaf40",
     slug: "seal"
   },
@@ -31,7 +41,7 @@ const products = [
     title: "TAPES",
     fullTitle: "INDUSTRIAL\nTAPES",
     image: TapeHeroicImage,
-    hoverImage: "https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg",
+    hoverImage: "/products/brand-logos/product-line-brands-white-tape.svg",
     color: "#d1181f",
     slug: "tape"
   },
@@ -41,8 +51,7 @@ const products = [
     image: RRHandSprayingImage,
     hoverImage: "https://ruggedred.com/images/RRMascot+Type-smaller.png",
     color: "#e53935",
-    external: true,
-    link: "https://ruggedred.com/"
+    slug: "ruggedred"
   }
 ];
 
@@ -74,11 +83,8 @@ const ProductsSection = () => {
       {/* Orange to Blue Gradient Background - Bottom Right */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse 1800px 1200px at bottom left, rgba(242, 97, 29, 0.8) 0%, rgba(242, 97, 29, 0.7) 25%, rgba(242, 97, 29, 0.5) 45%, rgba(242, 97, 29, 0.3) 65%, rgba(242, 97, 29, 0.15) 80%, rgba(242, 97, 29, 0.05) 90%, transparent 100%)',
-            opacity: 1
-          }}
+          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_bottom_left,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_bottom_left,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
+          style={{ opacity: 1 }}
         />
       </div>
       
@@ -121,7 +127,7 @@ const ProductsSection = () => {
             const spread = isHovered ? baseSpread + breatheValue * (maxSpread - baseSpread) : 0;
 
             return (
-              product.external ? (
+              product.external && product.link ? (
                 <a
                   key={index}
                   href={product.link}

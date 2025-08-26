@@ -45,7 +45,7 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
   };
 
   return (
-    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`} style={{ zIndex: 0 }}>
+    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`} style={{ zIndex: 10 }}>
       {/* Left side image - positioned further outside left edge, will overflow and be cropped */}
       <img
         src={leftImage}
@@ -54,8 +54,8 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
         style={{
           opacity,
           transform: buildTransform('translateX(-30%)', leftRotation, leftFlipH, leftFlipV),
-          mixBlendMode: blendMode,
-          zIndex: 0
+          mixBlendMode: 'multiply',
+          zIndex: 10
         }}
       />
       
@@ -67,8 +67,8 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
         style={{
           opacity,
           transform: buildTransform('translateX(30%)', rightRotation, rightFlipH, rightFlipV),
-          mixBlendMode: blendMode,
-          zIndex: 0
+          mixBlendMode: 'multiply',
+          zIndex: 10
         }}
       />
     </div>

@@ -215,13 +215,13 @@ const ProductIndex: React.FC = () => {
               {/* Industry Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                 {[
-                  { id: 'marine', name: 'Marine', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Marine-Icon.png' },
-                  { id: 'industrial', name: 'Industrial', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Industrial-Icon.png' },
-                  { id: 'transportation', name: 'Transportation', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Transportation-Icon-2.png' },
-                  { id: 'construction', name: 'Construction', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Construction-Icon.png' },
-                  // { id: 'foam', name: 'Foam', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Foam-Icon.png' },
-                  { id: 'composites', name: 'Composites', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Composites-Icon.png' },
-                  { id: 'insulation', name: 'Insulation', logo: 'https://forzabuilt.com/wp-content/uploads/2024/09/Insulation-Icon.png' }
+                  { id: 'marine', name: 'Marine', logo: '/logos/Marine-Icon.png' },
+                  { id: 'industrial', name: 'Industrial', logo: '/logos/Industrial-Icon.png' },
+                  { id: 'transportation', name: 'Transportation', logo: '/logos/Transportation-Icon-2.png' },
+                  { id: 'construction', name: 'Construction', logo: '/logos/Construction-Icon.png' },
+                  // { id: 'foam', name: 'Foam', logo: '/logos/Foam-Icon.png' },
+                  { id: 'composites', name: 'Composites', logo: '/logos/Composite-Icon.png' },
+                  { id: 'insulation', name: 'Insulation', logo: '/logos/Insulation-Icon.png' }
                 ].map((industry, idx) => (
                   <motion.div
                     key={industry.id}

@@ -11,13 +11,12 @@ const Footer = () => {
             <img 
               src={forzaLogo}
               alt="Forza Logo"
-              className="h-8 w-auto sm:h-[4.5rem] mb-2"
+              className="h-8 w-auto sm:h-[4.5rem] mb-2 -ml-2.5"
             />
             <div className="leading-tight">
               <div className="text-[#F16022] font-extrabold font-kallisto mb-1">HQ</div>
               <div className="font-extrabold font-kallisto">Forza</div>
-              <div>3211 Nebraska Ave,</div>
-              <div>Suite 300</div>
+              <div>3211 Nebraska Ave, Suite 300</div>
               <div>Council Bluffs, Iowa 51501</div>
             </div>
           </div>
@@ -48,13 +47,13 @@ const Footer = () => {
           </div>
           
           {/* Right: Optimization Inquiries and Made in USA */}
-          <div className="flex-1 min-w-[250px] text-left md:text-right">
+          <div className="flex-1 min-w-[250px] text-left">
             <div className="mb-3 leading-tight">
               <div className="text-[#F16022] font-extrabold font-kallisto mb-1">OPTIMIZATION INQUIRIES</div>
               <div>Interested in working with us?</div>
               <div><a href="mailto:sales@forzabuilt.com" className="font-bold underline text-white">sales@forzabuilt.com</a></div>
             </div>
-            <div className="flex justify-start md:justify-end">
+            <div className="flex justify-start">
               <a href="https://www.forzabuilt.com/made-in-america/" target="_blank" rel="noopener noreferrer">
                 <img
                   src="/Flag Icon with asterisk 1.png"
@@ -67,7 +66,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto mt-6 pt-4 border-t border-white/10">
-        <p className="text-[10px] leading-snug text-white/70 font-poppins mb-3">
+        <p className="text-[10px] leading-snug text-white/70 font-poppins mb-3 text-left md:text-center">
           *Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components.
         </p>
         <p className="text-[10px] text-white/60 text-left md:text-center font-poppins">

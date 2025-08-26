@@ -34,7 +34,7 @@ const getIndustryGradient = (industryName?: string) => {
     case 'industrial':
       return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`;
     case 'transportation':
-      return `from-[#b83d35] via-[${brandBlue}] to-[${brandBlue}]`;
+      return `from-[#e53935] via-[#3f5275] to-[${brandBlue}]`;
     case 'construction':
       return `from-[#fec770] via-[${brandBlue}] to-[${brandBlue}]`;
     case 'composites':

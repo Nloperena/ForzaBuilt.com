@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import MultiScienceTrianglesBackground from '@/components/common/MultiScienceTrianglesBackground';
-import ScienceTrianglesBackground from '@/components/common/ScienceTrianglesBackground';
+import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
 
 const Approach = () => {
   const approaches = [
@@ -30,43 +29,34 @@ const Approach = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-24 pb-16 relative">
-      {/* Hero Section Background */}
-      <MultiScienceTrianglesBackground 
-        elements={[
-          {
-            variant: 'large',
-            position: 'top-right',
-            opacity: 0.61,
-            scale: 1.2,
-            delay: 0,
-            blendMode: 'overlay'
-          },
-          {
-            variant: 'small',
-            position: 'bottom-left',
-            opacity: 0.61,
-            scale: 0.8,
-            delay: 300,
-            blendMode: 'overlay'
-          },
-          {
-            variant: 'small2',
-            position: 'center',
-            opacity: 0.61,
-            scale: 0.6,
-            delay: 600,
-            blendMode: 'overlay'
-          }
-        ]}
+    <div className="min-h-screen bg-[#1b3764] pt-24 pb-16 relative">
+      {/* Orange to Blue Gradient Background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
+          style={{ opacity: 1 }}
+        />
+      </div>
+      
+      {/* Edge triangles positioned at left and right viewport edges */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles.png"
+        opacity={0.6}
+        scale={1.1}
+        leftRotation={280}
+        rightRotation={280}
+        leftFlipH={false}
+        rightFlipV={false}
+        blendMode="overlay"
       />
       
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-                  <h1 className="text-4xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-16 relative z-10">
+                  <h1 className="text-4xl font-bold text-white mb-6">
           Our Approach
         </h1>
-          <div className="text-xl text-gray-600 max-w-3xl mx-auto space-y-4">
+          <div className="text-xl text-white/90 max-w-3xl mx-auto space-y-4">
             <p className="font-semibold">
               Big‑Picture Expertise. Small‑Town Care
             </p>
@@ -80,15 +70,6 @@ const Approach = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16 relative">
-          {/* Approaches Grid Background */}
-          <ScienceTrianglesBackground 
-            variant="small2" 
-            position="center" 
-            opacity={0.61} 
-            scale={1.0}
-            blendMode="overlay"
-          />
-          
           {approaches.map((approach) => (
             <Card key={approach.title} className="hover:shadow-xl transition-shadow duration-300">
               <CardHeader className="text-center">
@@ -103,15 +84,6 @@ const Approach = () => {
         </div>
 
         <div className="text-center relative">
-          {/* Bottom Section Background */}
-          <ScienceTrianglesBackground 
-            variant="small" 
-            position="top-left" 
-            opacity={0.61} 
-            scale={0.9}
-            blendMode="overlay"
-          />
-          
           <Link to="/">
             <Button variant="outline" className="text-lg px-8 py-3">
               ← Back to Home

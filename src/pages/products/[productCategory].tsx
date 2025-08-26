@@ -23,6 +23,7 @@ const CHEMISTRY_ICONS = {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
+import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
 
 // Helper to get industry logo from navbar data
 const getIndustryLogo = (industry: string | string[]) => {
@@ -54,11 +55,11 @@ const getProductCategoryLogo = (category: string) => {
   const categoryLower = category.toLowerCase();
   switch (categoryLower) {
     case 'bond':
-      return 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-bond.svg';
+      return '/products/brand-logos/product-line-brands-white-bond.svg';
     case 'seal':
-      return 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-seal.svg';
+      return '/products/brand-logos/product-line-brands-white-seal.svg';
     case 'tape':
-      return 'https://forzabuilt.com/wp-content/uploads/2023/05/product-line-brands-white-tape.svg';
+      return '/products/brand-logos/product-line-brands-white-tape.svg';
     default:
       return null;
   }
@@ -196,6 +197,7 @@ const ProductCategoryPage: React.FC = () => {
   const [isFilterDialogOpen, setIsFilterDialogOpen] = useState(false);
   const [visibleProductCount, setVisibleProductCount] = useState(12);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
 
   // Get products for this category
   const categoryProducts = useMemo(() => {
@@ -275,6 +277,15 @@ const ProductCategoryPage: React.FC = () => {
     setVisibleProductCount(12);
   }, [selectedIndustries, selectedChemistries, search, nameSort]);
 
+  // Handle page transition animation when productCategory changes
+  useEffect(() => {
+    setIsPageTransitioning(true);
+    const timer = setTimeout(() => {
+      setIsPageTransitioning(false);
+    }, 300); // Match the animation duration
+    return () => clearTimeout(timer);
+  }, [productCategory]);
+
   // Filter and sort products
   const filteredProducts = useMemo(() => {
     // Apply all filters
@@ -333,52 +344,95 @@ const ProductCategoryPage: React.FC = () => {
         type="website"
       />
       <Header />
+      
+      {/* Edge triangles positioned at left and right viewport edges */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles.png"
+        opacity={0.6}
+        scale={1.1}
+        leftRotation={280}
+        rightRotation={280}
+        leftFlipH={false}
+        rightFlipV={false}
+        blendMode="overlay"
+      />
+      
+      {/* Orange to Blue Gradient Background */}
+      <div className="absolute inset-0 pointer-events-none z-[10]">
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
+          style={{ opacity: 1 }}
+        />
+      </div>
+      
       <main className="flex-1 pt-16 md:pt-20 pb-10">
-        {/* Hero Section */}
-        <section className={`relative py-20 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)} ${productCategory.toLowerCase() === 'tape' ? '' : 'lg:max-h-[700px]'}`}>
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Text Content */}
-              <div className="text-white relative z-20">
-                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/30">
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                  <span className="text-sm font-medium uppercase tracking-wider">
-                    {productCategory.toUpperCase()} SOLUTIONS
-                  </span>
-                </div>
+                <AnimatePresence mode="wait">
+          <motion.div
+            key={productCategory}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="w-full"
+          >
+            {/* Hero Section */}
+            <section className={`relative py-24 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)} ${productCategory.toLowerCase() === 'tape' ? '' : 'lg:max-h-[700px]'}`}>
+              <div className="max-w-7xl mx-auto px-6">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  {/* Text Content */}
+                  <motion.div 
+                    className="text-white relative z-20"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+                  >
+                    <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/30">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                      <span className="text-sm font-medium uppercase tracking-wider">
+                        {productCategory.toUpperCase()} SOLUTIONS
+                      </span>
+                    </div>
 
-                <h1 className="mb-6">
-                  {getProductCategoryLogo(productCategory) ? (
-                    <img 
-                      src={getProductCategoryLogo(productCategory)} 
-                      alt={`Forza ${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Product Line`}
-                      className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto object-contain"
-                    />
-                  ) : (
-                    <span className="text-5xl lg:text-6xl font-kallisto font-black leading-tight">
-                      {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
-                    </span>
+                    <h1 className="mb-6">
+                      {getProductCategoryLogo(productCategory) ? (
+                        <img 
+                          src={getProductCategoryLogo(productCategory)} 
+                          alt={`Forza ${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Product Line`}
+                          className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto object-contain"
+                        />
+                      ) : (
+                        <span className="text-5xl lg:text-6xl font-kallisto font-black leading-tight">
+                          {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
+                        </span>
+                      )}
+                    </h1>
+
+                    <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
+                      Discover our premium {productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.
+                    </p>
+                  </motion.div>
+
+                  {/* Category Image (background-style hero) */}
+                  {getProductCategoryImage(productCategory) && (
+                    <motion.div 
+                      className={`flex justify-center lg:justify-end relative z-10 ${productCategory.toLowerCase() === 'seal' ? 'lg:self-start' : ''}`}
+                      initial={{ opacity: 0, x: 100 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 100 }}
+                      transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                    >
+                      <img 
+                        src={getProductCategoryImage(productCategory)} 
+                        alt={`${productCategory} Category`}
+                        className={`w-full max-w-md lg:max-w-none lg:w-[760px] xl:w-[840px] object-contain drop-shadow-2xl transform ${getHeroImageClasses(productCategory)} ${productCategory.toLowerCase() === 'tape' ? 'lg:w-[800px] xl:w-[900px]' : ''}`}
+                      />
+                    </motion.div>
                   )}
-                </h1>
-
-                <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
-                  Discover our premium {productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.
-                </p>
-              </div>
-
-              {/* Category Image (background-style hero) */}
-              {getProductCategoryImage(productCategory) && (
-                <div className={`flex justify-center lg:justify-end relative z-10 ${productCategory.toLowerCase() === 'seal' ? 'lg:self-start' : ''}`}>
-                  <img 
-                    src={getProductCategoryImage(productCategory)} 
-                    alt={`${productCategory} Category`}
-                    className={`w-full max-w-md lg:max-w-none lg:w-[760px] xl:w-[840px] object-contain drop-shadow-2xl transform ${getHeroImageClasses(productCategory)} ${productCategory.toLowerCase() === 'tape' ? 'lg:w-[800px] xl:w-[900px]' : ''}`}
-                  />
                 </div>
-              )}
-            </div>
-          </div>
-        </section>
+              </div>
+            </section>
 
         <div className="max-w-screen-2xl mx-auto px-4 md:px-6">
           {/* Amazon-style Layout with Sidebar Filter and Product Grid */}
@@ -1208,6 +1262,8 @@ const ProductCategoryPage: React.FC = () => {
               </div>
             </div>
           )}
+            </motion.div>
+          </AnimatePresence>
       </main>
       <Footer />
     </div>
