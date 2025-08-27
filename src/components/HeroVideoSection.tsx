@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const HeroVideoSection = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoVisible, setIsVideoVisible] = useState(false);
+  
   useEffect(() => {
     // Only start loading video when component is visible
     const observer = new IntersectionObserver(
@@ -19,8 +20,18 @@ const HeroVideoSection = () => {
       observer.observe(section);
     }
 
-    return () => observer.disconnect();
-  }, []);
+    // Fallback timeout to prevent infinite loading on slow connections
+    const timeout = setTimeout(() => {
+      if (!isVideoLoaded) {
+        setIsVideoLoaded(true);
+      }
+    }, 5000); // 5 second fallback
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeout);
+    };
+  }, [isVideoLoaded]);
 
   const handleVideoLoad = () => {
     // Directly fade in video when loaded
@@ -50,12 +61,14 @@ const HeroVideoSection = () => {
           playsInline
           preload="none"
           onLoadedData={handleVideoLoad}
+          onCanPlay={handleVideoLoad}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
             isVideoLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           style={{ zIndex: 1 }}
+          poster="/Forza-lion-logo.png"
         >
-          <source src="https://forzabuilt.com/wp-content/uploads/2024/12/ForzaLionLoop-1-2.mp4" type="video/mp4" />
+          <source src="/ForzaLionLoop-1-2.mp4" type="video/mp4" />
         </video>
       )}
     </section>

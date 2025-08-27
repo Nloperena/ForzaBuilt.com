@@ -127,7 +127,7 @@ const Contact = () => {
             style={{ opacity: isVideoLoaded ? 1 : 0, zIndex: 1 }}
           >
             <source 
-              src="https://forzabuilt.com/wp-content/uploads/2024/12/ForzaLionLoop-1-2.mp4" 
+              src="/ForzaLionLoop-1-2.mp4" 
               type="video/mp4"
             />
             Your browser does not support the video tag.
