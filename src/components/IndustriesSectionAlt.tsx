@@ -105,21 +105,9 @@ const IndustriesSectionAlt = () => {
                           muted
                           playsInline
                           className="w-full h-full object-cover"
-                          preload="metadata"
-                          poster={industry.logo}
-                          onLoadedData={() => {
-                            // Ensure video is ready to play
-                            if (videoRefs.current[index]) {
-                              videoRefs.current[index]!.load();
-                            }
-                          }}
-                          onError={(e) => {
-                            console.error(`Video failed to load for ${industry.title}:`, e);
-                          }}
+                          preload="auto"
                         >
                           <source src={industry.videoUrl} type="video/mp4" />
-                          {/* Fallback to logo image if video fails */}
-                          <img src={industry.logo} alt={industry.title + ' logo'} className="w-full h-full object-cover" />
                         </video>
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
                         <img

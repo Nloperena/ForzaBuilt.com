@@ -9,6 +9,8 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  // Ensure public directory is properly handled
+  publicDir: 'public',
   plugins: [
     react(),
     mode === 'development' &&
@@ -28,6 +30,20 @@ export default defineConfig(({ mode }) => ({
     cssMinify: true,
     // Target modern browsers for smaller bundles
     target: 'esnext',
+    // Ensure all assets are copied to dist
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          // Keep original file names for videos and other assets
+          if (assetInfo.name) {
+            return assetInfo.name;
+          }
+          return 'assets/[name]-[hash][extname]';
+        },
+      },
+    },
+    // Copy all assets from public directory
+    copyPublicDir: true,
   },
   // Optimize dependencies
   optimizeDeps: {
@@ -40,6 +56,6 @@ export default defineConfig(({ mode }) => ({
       '@radix-ui/react-tabs',
     ],
   },
-  // Asset handling
-  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg', '**/*.webp'],
+  // Asset handling - include video files
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg', '**/*.webp', '**/*.mp4', '**/*.mov', '**/*.avi', '**/*.webm'],
 }));

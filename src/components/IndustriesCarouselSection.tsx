@@ -263,21 +263,9 @@ export const IndustriesCarouselSection = () => {
                             muted
                             playsInline
                             className="w-full h-full object-cover"
-                            preload="metadata"
-                            poster={item.logo}
-                            onLoadedData={() => {
-                              // Ensure video is ready to play
-                              if (videoRefs.current[idx]) {
-                                videoRefs.current[idx]!.load();
-                              }
-                            }}
-                            onError={(e) => {
-                              console.error(`Video failed to load for ${item.title}:`, e);
-                            }}
+                            preload="auto"
                           >
                             <source src={item.videoUrl} type="video/mp4" />
-                            {/* Fallback to logo image if video fails */}
-                            <img src={item.logo} alt={item.title + ' logo'} className="w-full h-full object-cover" />
                           </motion.video>
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
                           <motion.img
