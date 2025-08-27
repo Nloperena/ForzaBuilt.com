@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "optimize-images": "node scripts/optimize-images.js",
-    "analyze": "vite build --mode production && npx vite-bundle-analyzer dist"
+    "analyze": "vite build --mode production && npx vite-bundle-analyzer dist",
+    "test-videos": "node scripts/test-video-loading.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
