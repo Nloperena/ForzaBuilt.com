@@ -105,7 +105,16 @@ const IndustriesSectionAlt = () => {
                           muted
                           playsInline
                           className="w-full h-full object-cover"
-                          preload="auto"
+                          preload="metadata"
+                          onLoadedData={() => {
+                            // Ensure video is ready to play on mobile
+                            if (videoRefs.current[index]) {
+                              videoRefs.current[index].load();
+                            }
+                          }}
+                          onError={(e) => {
+                            console.warn(`Video failed to load for ${industry.title}:`, e);
+                          }}
                         >
                           <source src={industry.videoUrl} type="video/mp4" />
                         </video>
