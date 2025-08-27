@@ -5,36 +5,29 @@ const HeroVideoSection = () => {
   const [isVideoVisible, setIsVideoVisible] = useState(false);
   
   useEffect(() => {
-    // Only start loading video when component is visible
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVideoVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const section = document.querySelector('.hero-video-section');
-    if (section) {
-      observer.observe(section);
-    }
-
+    // Start loading video immediately for better mobile performance
+    setIsVideoVisible(true);
+    
     // Fallback timeout to prevent infinite loading on slow connections
     const timeout = setTimeout(() => {
       if (!isVideoLoaded) {
         setIsVideoLoaded(true);
       }
-    }, 5000); // 5 second fallback
+    }, 3000); // Reduced to 3 seconds for faster fallback
 
     return () => {
-      observer.disconnect();
       clearTimeout(timeout);
     };
   }, [isVideoLoaded]);
 
   const handleVideoLoad = () => {
     // Directly fade in video when loaded
+    setIsVideoLoaded(true);
+  };
+
+  const handleVideoError = () => {
+    // If video fails to load, still show the section
+    console.warn('Video failed to load, showing fallback');
     setIsVideoLoaded(true);
   };
 
@@ -52,25 +45,23 @@ const HeroVideoSection = () => {
         </div>
       )}
       
-      {/* Video - only load when visible */}
-      {isVideoVisible && (
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="none"
-          onLoadedData={handleVideoLoad}
-          onCanPlay={handleVideoLoad}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-            isVideoLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{ zIndex: 1 }}
-          poster="/Forza-lion-logo.png"
-        >
-          <source src="/ForzaLionLoop-1-2.mp4" type="video/mp4" />
-        </video>
-      )}
+      {/* Video - always load for better mobile performance */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        onLoadedData={handleVideoLoad}
+        onCanPlay={handleVideoLoad}
+        onError={handleVideoError}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          isVideoLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ zIndex: 1 }}
+      >
+        <source src="/ForzaLionLoop-1-2.mp4" type="video/mp4" />
+      </video>
     </section>
   );
 };
