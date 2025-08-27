@@ -44,18 +44,46 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
     return transforms.join(' ');
   };
 
+  // Helper function to get blend mode CSS class
+  const getBlendModeClass = () => {
+    switch (blendMode) {
+      case 'overlay':
+        return 'science-triangles-overlay';
+      case 'soft-light':
+        return 'science-triangles-soft-light';
+      case 'multiply':
+        return 'science-triangles-multiply';
+      case 'screen':
+        return 'science-triangles-screen';
+      case 'hard-light':
+        return 'science-triangles-hard-light';
+      case 'color-dodge':
+        return 'science-triangles-color-dodge';
+      case 'exclusion':
+        return 'science-triangles-exclusion';
+      case 'difference':
+        return 'science-triangles-difference';
+      case 'hue':
+        return 'science-triangles-hue';
+      case 'luminosity':
+        return 'science-triangles-luminosity';
+      case 'saturation':
+        return 'science-triangles-saturation';
+      default:
+        return '';
+    }
+  };
+
   return (
-    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`} style={{ zIndex: 10 }}>
+    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}>
       {/* Left side image - positioned further outside left edge, will overflow and be cropped */}
       <img
         src={leftImage}
         alt="Left Edge Triangles"
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 object-contain"
+        className={`absolute top-1/2 left-0 transform -translate-y-1/2 object-contain ${getBlendModeClass()}`}
         style={{
           opacity,
-          transform: buildTransform('translateX(-30%)', leftRotation, leftFlipH, leftFlipV),
-          mixBlendMode: 'multiply',
-          zIndex: 10
+          transform: buildTransform('translateX(-30%)', leftRotation, leftFlipH, leftFlipV)
         }}
       />
       
@@ -63,12 +91,10 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
       <img
         src={rightImage}
         alt="Right Edge Triangles"
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 object-contain"
+        className={`absolute top-1/2 right-0 transform -translate-y-1/2 object-contain ${getBlendModeClass()}`}
         style={{
           opacity,
-          transform: buildTransform('translateX(30%)', rightRotation, rightFlipH, rightFlipV),
-          mixBlendMode: 'multiply',
-          zIndex: 10
+          transform: buildTransform('translateX(30%)', rightRotation, rightFlipH, rightFlipV)
         }}
       />
     </div>

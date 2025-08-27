@@ -67,7 +67,7 @@ const GenericCard: React.FC<GenericCardProps> = ({
       {/* Badge intentionally removed */}
       
       {/* Title */}
-      <h3 className={`font-bold ${themeStyles.text} leading-tight text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl`}
+      <h3 className={`font-bold ${themeStyles.text} leading-tight text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl`}
           style={{ 
             fontFamily: themeStyles.titleFont,
             fontWeight: typography.headings.fontWeight,

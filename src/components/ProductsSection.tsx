@@ -79,11 +79,11 @@ const ProductsSection = () => {
   }, [hoveredIndex]);
 
   return (
-    <section className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 bg-[#1b3764] text-white relative overflow-hidden">
+    <section className="pt-4 sm:pt-8 md:pt-12 lg:pt-8 xl:pt-10 pb-16 bg-[#1b3764] text-white relative overflow-hidden">
       {/* Orange to Blue Gradient Background - Bottom Right */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 
-          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_bottom_left,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_bottom_left,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_center_bottom,rgba(242,97,29,0.6)_0%,rgba(242,97,29,0.5)_25%,rgba(242,97,29,0.35)_45%,rgba(242,97,29,0.2)_65%,rgba(242,97,29,0.1)_80%,rgba(242,97,29,0.03)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_center_bottom,rgba(242,97,29,0.6)_0%,rgba(242,97,29,0.5)_25%,rgba(242,97,29,0.35)_45%,rgba(242,97,29,0.2)_65%,rgba(242,97,29,0.1)_80%,rgba(242,97,29,0.03)_90%,transparent_100%)]"
           style={{ opacity: 1 }}
         />
       </div>
@@ -100,18 +100,18 @@ const ProductsSection = () => {
         rightFlipV={false}
         blendMode="overlay"
       />
-      <div className="w-full px-4 max-w-[1100px] mx-auto">
+      <div className="w-full px-4 max-w-[700px] mx-auto">
         <div className="text-center relative z-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block">
             Our Products
           </h2>
         </div>
         <div className="text-center relative z-10">
-          <p className="text-xs sm:text-lg mb-6 sm:mb-8 font-light max-w-4xl mx-auto">
+          <p className="text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto">
             We offer the best performing and widest range of adhesive, sealant, specialty tape, and industrial cleaning solutions, including customization and environmentally friendly technologies. If we don't have it, we'll make it custom for you!
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-3 lg:gap-4 max-w-3xl mx-auto relative z-10">
           {products.map((product, index) => {
             const isHovered = hoveredIndex === index;
             const isTapes = product.title === 'TAPES';
@@ -172,8 +172,8 @@ const ProductsSection = () => {
                                   }}
                                 />
                               </div>
-                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 ? 'justify-end pr-4 sm:pr-16' : 'justify-start pl-4 sm:pl-16'}`}>
-                                <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -185,8 +185,8 @@ const ProductsSection = () => {
                           // Bottom row: check for INDUSTRIAL CLEANING to swap image/text order
                           product.title === "INDUSTRIAL CLEANING" ? (
                             <div className="w-full h-full flex flex-row items-center justify-center">
-                              <div className="absolute inset-0 z-10 flex items-center justify-end pr-4 sm:pr-16">
-                                <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -219,8 +219,8 @@ const ProductsSection = () => {
                                   }}
                                 />
                               </div>
-                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 ? 'justify-end pr-4 sm:pr-16' : 'justify-start pl-4 sm:pl-16'}`}>
-                                <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -251,7 +251,7 @@ const ProductsSection = () => {
                             transition: 'all 0.3s ease-in-out'
                           }}
                         >
-                          <Button className="bg-white hover:bg-white/80 text-[#1b3764] rounded-full px-4 sm:px-8 py-2 sm:py-4 text-sm sm:text-xl">
+                          <Button className="bg-white hover:bg-white/80 text-[#1b3764] rounded-full px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg">
                             LEARN MORE
                           </Button>
                         </motion.span>
@@ -302,8 +302,8 @@ const ProductsSection = () => {
                                   }}
                                 />
                               </div>
-                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 ? 'justify-end pr-4 sm:pr-16' : 'justify-start pl-4 sm:pl-16'}`}>
-                                <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -315,8 +315,8 @@ const ProductsSection = () => {
                           // Bottom row: check for INDUSTRIAL CLEANING to swap image/text order
                           product.title === "INDUSTRIAL CLEANING" ? (
                             <div className="w-full h-full flex flex-row items-center justify-center">
-                              <div className="absolute inset-0 z-10 flex items-center justify-end pr-4 sm:pr-16">
-                                <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -349,8 +349,8 @@ const ProductsSection = () => {
                                   }}
                                 />
                               </div>
-                              <div className={`absolute inset-0 z-10 flex items-center ${index === 2 ? 'justify-end pr-4 sm:pr-16' : 'justify-start pl-4 sm:pl-16'}`}>
-                                <div className="text-sm sm:text-2xl md:text-4xl lg:text-5xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                              <div className="absolute inset-0 z-10 flex items-center justify-center">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -381,7 +381,7 @@ const ProductsSection = () => {
                             transition: 'all 0.3s ease-in-out'
                           }}
                         >
-                          <Button className="bg-white hover:bg-white/80 text-[#1b3764] rounded-full px-4 sm:px-8 py-2 sm:py-4 text-sm sm:text-xl">
+                          <Button className="bg-white hover:bg-white/80 text-[#1b3764] rounded-full px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-lg">
                             LEARN MORE
                           </Button>
                         </motion.span>

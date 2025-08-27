@@ -40,13 +40,7 @@ const RuggedRed = () => {
         blendMode="overlay"
       />
       
-      {/* Orange to Blue Gradient Background */}
-      <div className="absolute inset-0 pointer-events-none z-[10]">
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
-          style={{ opacity: 1 }}
-        />
-      </div>
+
       
             <main className="flex-1 pt-16 md:pt-20 pb-10">
         <AnimatePresence mode="wait">
@@ -59,7 +53,7 @@ const RuggedRed = () => {
             className="w-full"
           >
             {/* Hero Section */}
-            <section className="relative py-24 mb-12 bg-gradient-to-br from-[#1B3764] via-[#1B3764] to-[#e53935] overflow-hidden">
+            <section className="relative py-12 md:py-16 mb-12 bg-gradient-to-br from-[#1B3764] via-[#1B3764] to-[#e53935] overflow-hidden min-h-[300px] md:min-h-[400px] lg:min-h-[650px]">
               <div className="max-w-7xl mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   {/* Text Content */}
@@ -79,9 +73,9 @@ const RuggedRed = () => {
 
                                          <h1 className="mb-6">
                        <img 
-                         src="/src/assets/images/RR Horizontal Logo 1.svg" 
+                         src="https://ruggedred.com/images/RRMascot+Type-smaller.png" 
                          alt="Rugged Red Logo"
-                         className="h-20 sm:h-24 md:h-28 lg:h-32 xl:h-36 2xl:h-40 w-auto object-contain"
+                         className="h-80 sm:h-96 md:h-[112] lg:h-[128] xl:h-[144] 2xl:h-[160] w-auto object-contain"
                        />
                      </h1>
 

@@ -67,7 +67,7 @@ const StackableCards: React.FC<StackableCardsProps> = ({
       {(title || subtitle) && (
         <div className="text-center py-10 md:py-12 mt-12 px-4">
           {title && (
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-2 font-kallisto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-2 font-kallisto leading-none">
               {title}
             </h2>
           )}

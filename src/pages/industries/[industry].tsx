@@ -17,6 +17,7 @@ import { CONSTRUCTION_DATA } from '../../data/industries/construction';
 import { TRANSPORTATION_DATA } from '../../data/industries/transportation';
 import { COMPOSITES_DATA } from '../../data/industries/composites';
 import { INSULATION_DATA } from '../../data/industries/insulation';
+import ScienceTrianglesBackground from '@/components/common/ScienceTrianglesBackground';
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -68,7 +69,7 @@ const IndustryPage = () => {
   }
 
   return (
-    <div className="bg-[#1b3764] min-h-screen flex flex-col">
+    <div className="bg-[#1b3764] min-h-screen flex flex-col relative">
       <Header />
       
       <AnimatePresence mode="wait">
@@ -78,7 +79,7 @@ const IndustryPage = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="w-full"
+          className="w-full relative"
         >
           {/* Hero Banner */}
           <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden z-[5] hero-video-area">
@@ -126,6 +127,22 @@ const IndustryPage = () => {
           </h1>
         </motion.div>
       </section>
+
+      {/* Triangle Backgrounds - same approach as products section */}
+      <ScienceTrianglesBackground 
+        variant="small2" 
+        position="top-right" 
+        opacity={0.61} 
+        scale={0.6}
+        blendMode="overlay"
+      />
+      <ScienceTrianglesBackground 
+        variant="large" 
+        position="bottom-left" 
+        opacity={0.61} 
+        scale={0.7}
+        blendMode="overlay"
+      />
 
       {/* Dynamic Industry Headings Section */}
       <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16 relative z-[30]">

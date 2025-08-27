@@ -13,12 +13,20 @@ import { industries as industriesData } from '@/data/industries';
 import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 
-// Chemistry icon paths
+// Chemistry icon paths - updated to use All White Chemistry Icons
 const CHEMISTRY_ICONS = {
-  epoxy: '/chemistry-icons/Epoxy icon.svg',
-  silicone: '/chemistry-icons/Silicone icon.svg',
-  ms: '/chemistry-icons/MS icon.svg',
-  waterbase: '/chemistry-icons/Waterbase icon.svg'
+  acrylic: '/All%20White%20Chemistry%20Icons/Acrylic%20icon.svg',
+  epoxy: '/All%20White%20Chemistry%20Icons/Epoxy%20icon.svg',
+  modifiedEpoxy: '/All%20White%20Chemistry%20Icons/Modified%20Epoxy%20Icon.svg',
+  silicone: '/All%20White%20Chemistry%20Icons/silicone%20icon.svg',
+  ms: '/All%20White%20Chemistry%20Icons/MS%20icon.svg',
+  waterbase: '/All%20White%20Chemistry%20Icons/Water%20based%20icon.svg',
+  hotmelt: '/All%20White%20Chemistry%20Icons/Hotmelt%20icon.svg',
+  solventbase: '/All%20White%20Chemistry%20Icons/Solvent%20based%20icon.svg',
+  polyurethane: '/All%20White%20Chemistry%20Icons/Pollyutherane%20icon.svg',
+  cyanoacrylates: '/All%20White%20Chemistry%20Icons/Cyanoacrylates%20icon.svg',
+  methacrylate: '/All%20White%20Chemistry%20Icons/Methacrylate%20icon.svg',
+  rubberbased: '/All%20White%20Chemistry%20Icons/rubber%20based%20icon.svg'
 };
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -173,15 +181,34 @@ const getChemistryIcon = (chemistry: string) => {
   if (!chemistry) return null;
   
   const chemistryLower = chemistry.toLowerCase();
-  if (chemistryLower.includes('epoxy')) {
+  
+  // Map chemistry names to icon paths
+  if (chemistryLower.includes('acrylic') || chemistryLower.includes('psa')) {
+    return CHEMISTRY_ICONS.acrylic;
+  } else if (chemistryLower.includes('epoxy') && !chemistryLower.includes('modified')) {
     return CHEMISTRY_ICONS.epoxy;
+  } else if (chemistryLower.includes('modified') && chemistryLower.includes('epoxy')) {
+    return CHEMISTRY_ICONS.modifiedEpoxy;
   } else if (chemistryLower.includes('silicone')) {
     return CHEMISTRY_ICONS.silicone;
-  } else if (chemistryLower.includes('ms') || chemistryLower.includes('hybrid')) {
+  } else if (chemistryLower.includes('ms') || chemistryLower.includes('hybrid') || chemistryLower.includes('polymer')) {
     return CHEMISTRY_ICONS.ms;
-  } else if (chemistryLower.includes('water')) {
+  } else if (chemistryLower.includes('water') || chemistryLower.includes('waterbase')) {
     return CHEMISTRY_ICONS.waterbase;
+  } else if (chemistryLower.includes('hot') && chemistryLower.includes('melt')) {
+    return CHEMISTRY_ICONS.hotmelt;
+  } else if (chemistryLower.includes('solvent')) {
+    return CHEMISTRY_ICONS.solventbase;
+  } else if (chemistryLower.includes('polyurethane') || chemistryLower.includes('urethane')) {
+    return CHEMISTRY_ICONS.polyurethane;
+  } else if (chemistryLower.includes('cyanoacrylate') || chemistryLower.includes('cyano')) {
+    return CHEMISTRY_ICONS.cyanoacrylates;
+  } else if (chemistryLower.includes('methacrylate')) {
+    return CHEMISTRY_ICONS.methacrylate;
+  } else if (chemistryLower.includes('rubber')) {
+    return CHEMISTRY_ICONS.rubberbased;
   }
+  
   return null;
 };
 
@@ -218,19 +245,20 @@ const ProductCategoryPage: React.FC = () => {
   
   // Get unique chemistry types for this category
   const chemistryTypes = useMemo(() => {
-    const unique = new Set<string>(
-      categoryProducts
-        .filter(p => p.chemistry) // Filter out products without chemistry
-        .filter(p => {
-          // Exclude Acrylic (incl. PSA) from BOND and SEAL categories
-          if (productCategory !== 'tape' && p.chemistry === 'Acrylic (incl. PSA)') {
-            return false;
-          }
-          return true;
-        })
-        .map(p => p.chemistry!)
-    );
-    return Array.from(unique).sort();
+    if (productCategory === 'tape') {
+      // For tapes, show Acrylic and Rubber chemistries
+      // Note: Currently all tapes are Acrylic, but we show both filters for future use
+      return ['Acrylic (incl. PSA)', 'Rubber Based'].sort();
+    } else {
+      // For bond and seal, exclude Acrylic (incl. PSA)
+      const unique = new Set<string>(
+        categoryProducts
+          .filter(p => p.chemistry) // Filter out products without chemistry
+          .filter(p => p.chemistry !== 'Acrylic (incl. PSA)') // Always exclude acrylic for bond/seal
+          .map(p => p.chemistry!)
+      );
+      return Array.from(unique).sort();
+    }
   }, [categoryProducts, productCategory]);
 
   // Dynamic counts based on current filter context
@@ -262,9 +290,16 @@ const ProductCategoryPage: React.FC = () => {
          p.industry.some(ind => selectedIndustries.includes(ind.toLowerCase())));
       
       if (matchesSearch && matchesIndustryFilter && p.chemistry) {
-        // Exclude Acrylic (incl. PSA) from chemistry counts on BOND and SEAL pages
-        if (productCategory === 'tape' || p.chemistry !== 'Acrylic (incl. PSA)') {
-          byChemistry[p.chemistry] = (byChemistry[p.chemistry] || 0) + 1;
+        if (productCategory === 'tape') {
+          // For tapes, count Acrylic and Rubber chemistries
+          if (p.chemistry === 'Acrylic (incl. PSA)' || p.chemistry === 'Rubber Based') {
+            byChemistry[p.chemistry] = (byChemistry[p.chemistry] || 0) + 1;
+          }
+        } else {
+          // For bond and seal, exclude Acrylic (incl. PSA)
+          if (p.chemistry !== 'Acrylic (incl. PSA)') {
+            byChemistry[p.chemistry] = (byChemistry[p.chemistry] || 0) + 1;
+          }
         }
       }
     });
@@ -300,11 +335,19 @@ const ProductCategoryPage: React.FC = () => {
         product.name.toLowerCase().includes(search.toLowerCase()) || 
         product.description.toLowerCase().includes(search.toLowerCase());
       
-      // Chemistry filter - only apply for non-tape categories
-      // For tapes, always return true for chemistry filter
-      const matchChemistry = productCategory === 'tape' || 
-        selectedChemistries.length === 0 || 
-        (product.chemistry && selectedChemistries.includes(product.chemistry));
+      // Chemistry filter
+      let matchChemistry = true;
+      if (selectedChemistries.length > 0) {
+        if (productCategory === 'tape') {
+          // For tapes, only match if chemistry is Acrylic or Rubber
+          matchChemistry = product.chemistry === 'Acrylic (incl. PSA)' || product.chemistry === 'Rubber Based';
+        } else {
+          // For bond and seal, match selected chemistries but exclude Acrylic
+          matchChemistry = product.chemistry && 
+            selectedChemistries.includes(product.chemistry) && 
+            product.chemistry !== 'Acrylic (incl. PSA)';
+        }
+      }
       
       // Product must match all active filters
       return matchIndustry && matchSearch && matchChemistry;
@@ -358,13 +401,7 @@ const ProductCategoryPage: React.FC = () => {
         blendMode="overlay"
       />
       
-      {/* Orange to Blue Gradient Background */}
-      <div className="absolute inset-0 pointer-events-none z-[10]">
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
-          style={{ opacity: 1 }}
-        />
-      </div>
+
       
       <main className="flex-1 pt-16 md:pt-20 pb-10">
                 <AnimatePresence mode="wait">
@@ -377,7 +414,7 @@ const ProductCategoryPage: React.FC = () => {
             className="w-full"
           >
             {/* Hero Section */}
-            <section className={`relative py-24 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)} ${productCategory.toLowerCase() === 'tape' ? '' : 'lg:max-h-[700px]'}`}>
+            <section className={`relative py-12 md:py-16 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)} min-h-[300px] md:min-h-[400px] lg:min-h-[650px]`}>
               <div className="max-w-7xl mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   {/* Text Content */}

@@ -124,22 +124,22 @@ const ProductIndex: React.FC = () => {
                       <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-70`}></div>
 
                       {/* Content */}
-                      <CardContent className="relative z-10 h-full flex flex-col justify-between p-4 md:p-8 text-white">
+                      <CardContent className="relative z-10 h-full flex flex-col justify-center items-center text-center p-4 md:p-8 text-white">
                         {/* Header */}
-                        <div>
-                          <h3 className="text-xl md:text-3xl lg:text-4xl font-kallisto font-bold mb-2 md:mb-3" 
+                        <div className="mb-6">
+                          <h3 className="text-xl md:text-3xl lg:text-4xl font-kallisto font-bold mb-2 md:mb-3 drop-shadow-lg" 
                               style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
                             {category.name}
                           </h3>
-                          <p className="text-sm md:text-lg text-white/90 mb-1 md:mb-2">{category.title}</p>
-                          <p className="text-xs md:text-base text-white/80 leading-relaxed">
+                          <p className="text-sm md:text-lg text-white/90 mb-1 md:mb-2 drop-shadow-md">{category.title}</p>
+                          <p className="text-xs md:text-base text-white/80 leading-relaxed drop-shadow-md">
                             {category.description}
                           </p>
                         </div>
 
                         {/* CTA */}
-                        <div className="flex items-center justify-between">
-                          <Button className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30 rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300">
+                        <div className="flex justify-center">
+                          <Button className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30 rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300 drop-shadow-lg">
                             <span className="hidden md:inline">Visit RuggedRed.com</span>
                             <span className="md:hidden">Visit</span>
                             <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
@@ -166,22 +166,22 @@ const ProductIndex: React.FC = () => {
                       <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-70`}></div>
 
                       {/* Content */}
-                      <CardContent className="relative z-10 h-full flex flex-col justify-between p-4 md:p-8 text-white">
+                      <CardContent className="relative z-10 h-full flex flex-col justify-center items-center text-center p-4 md:p-8 text-white">
                         {/* Header */}
-                        <div>
-                          <h3 className="text-xl md:text-3xl lg:text-4xl font-kallisto font-bold mb-2 md:mb-3" 
+                        <div className="mb-6">
+                          <h3 className="text-xl md:text-3xl lg:text-4xl font-kallisto font-bold mb-2 md:mb-3 drop-shadow-lg" 
                               style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
                             {category.name}
                           </h3>
-                          <p className="text-sm md:text-lg text-white/90 mb-1 md:mb-2">{category.title}</p>
-                          <p className="text-xs md:text-base text-white/80 leading-relaxed">
+                          <p className="text-sm md:text-lg text-white/90 mb-1 md:mb-2 drop-shadow-md">{category.title}</p>
+                          <p className="text-xs md:text-base text-white/80 leading-relaxed drop-shadow-md">
                             {category.description}
                           </p>
                         </div>
 
                         {/* CTA */}
-                        <div className="flex items-center justify-between">
-                          <Button className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30 rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300">
+                        <div className="flex justify-center">
+                          <Button className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30 rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300 drop-shadow-lg">
                             <span className="hidden md:inline">Explore {category.name}</span>
                             <span className="md:hidden">Explore</span>
                             <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />

@@ -140,18 +140,20 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
   }, [industryKey, industryName]);
 
   const chemistryTypes = useMemo(() => {
-    const unique = new Set<string>(
-      categoryProducts
-        .filter(p => p.chemistry)
-        .filter(p => {
-          if (selectedLine !== 'tape' && p.chemistry === 'Acrylic (incl. PSA)') {
-            return false;
-          }
-          return true;
-        })
-        .map(p => p.chemistry!)
-    );
-    return Array.from(unique).sort();
+    if (selectedLine === 'tape') {
+      // For tapes, show Acrylic and Rubber chemistries
+      // Note: Currently all tapes are Acrylic, but we show both filters for future use
+      return ['Acrylic (incl. PSA)', 'Rubber Based'].sort();
+    } else {
+      // For bond and seal, exclude Acrylic (incl. PSA)
+      const unique = new Set<string>(
+        categoryProducts
+          .filter(p => p.chemistry)
+          .filter(p => p.chemistry !== 'Acrylic (incl. PSA)') // Always exclude acrylic for bond/seal
+          .map(p => p.chemistry!)
+      );
+      return Array.from(unique).sort();
+    }
   }, [categoryProducts, selectedLine]);
 
   const dynamicCounts = useMemo(() => {
@@ -161,8 +163,16 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
         p.name.toLowerCase().includes(search.toLowerCase()) ||
         p.description?.toLowerCase().includes(search.toLowerCase());
       if (matchesSearch && p.chemistry) {
-        if (selectedLine === 'tape' || p.chemistry !== 'Acrylic (incl. PSA)') {
-          byChem[p.chemistry] = (byChem[p.chemistry] || 0) + 1;
+        if (selectedLine === 'tape') {
+          // For tapes, count Acrylic and Rubber chemistries
+          if (p.chemistry === 'Acrylic (incl. PSA)' || p.chemistry === 'Rubber Based') {
+            byChem[p.chemistry] = (byChem[p.chemistry] || 0) + 1;
+          }
+        } else {
+          // For bond and seal, exclude Acrylic (incl. PSA)
+          if (p.chemistry !== 'Acrylic (incl. PSA)') {
+            byChem[p.chemistry] = (byChem[p.chemistry] || 0) + 1;
+          }
         }
       }
     });
@@ -179,9 +189,19 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
         product.name.toLowerCase().includes(search.toLowerCase()) ||
         product.description?.toLowerCase().includes(search.toLowerCase());
 
-      const matchChemistry = selectedLine === 'tape' ||
-        selectedChemistries.length === 0 ||
-        (product.chemistry && selectedChemistries.includes(product.chemistry));
+      // Chemistry filter
+      let matchChemistry = true;
+      if (selectedChemistries.length > 0) {
+        if (selectedLine === 'tape') {
+          // For tapes, only match if chemistry is Acrylic or Rubber
+          matchChemistry = product.chemistry === 'Acrylic (incl. PSA)' || product.chemistry === 'Rubber Based';
+        } else {
+          // For bond and seal, match selected chemistries but exclude Acrylic
+          matchChemistry = product.chemistry && 
+            selectedChemistries.includes(product.chemistry) && 
+            product.chemistry !== 'Acrylic (incl. PSA)';
+        }
+      }
 
       return matchSearch && matchChemistry;
     });

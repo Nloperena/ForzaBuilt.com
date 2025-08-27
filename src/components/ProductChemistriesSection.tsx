@@ -1,11 +1,19 @@
 import React from 'react';
 import ChemistryCard from './ChemistryCard';
-// Chemistry icon paths
+// Chemistry icon paths - updated to use All White Chemistry Icons
 const CHEMISTRY_ICONS = {
-  epoxy: '/chemistry-icons/Epoxy icon.svg',
-  silicone: '/chemistry-icons/Silicone icon.svg',
-  ms: '/chemistry-icons/MS icon.svg',
-  waterbase: '/chemistry-icons/Waterbase icon.svg'
+  acrylic: '/All%20White%20Chemistry%20Icons/Acrylic%20icon.svg',
+  epoxy: '/All%20White%20Chemistry%20Icons/Epoxy%20icon.svg',
+  modifiedEpoxy: '/All%20White%20Chemistry%20Icons/Modified%20Epoxy%20Icon.svg',
+  silicone: '/All%20White%20Chemistry%20Icons/silicone%20icon.svg',
+  ms: '/All%20White%20Chemistry%20Icons/MS%20icon.svg',
+  waterbase: '/All%20White%20Chemistry%20Icons/Water%20based%20icon.svg',
+  hotmelt: '/All%20White%20Chemistry%20Icons/Hotmelt%20icon.svg',
+  solventbase: '/All%20White%20Chemistry%20Icons/Solvent%20based%20icon.svg',
+  polyurethane: '/All%20White%20Chemistry%20Icons/Pollyutherane%20icon.svg',
+  cyanoacrylates: '/All%20White%20Chemistry%20Icons/Cyanoacrylates%20icon.svg',
+  methacrylate: '/All%20White%20Chemistry%20Icons/Methacrylate%20icon.svg',
+  rubberbased: '/All%20White%20Chemistry%20Icons/rubber%20based%20icon.svg'
 };
 
 const ProductChemistriesSection = () => {

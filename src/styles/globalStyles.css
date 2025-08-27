@@ -109,13 +109,7 @@
   display: none !important;
 }
 
-/* Ensure triangles blend properly */
-*[class*="triangle"] img,
-*[class*="Triangle"] img,
-img[src*="triangle"],
-img[src*="Triangle"] {
-  mix-blend-mode: multiply !important;
-}
+/* Blend modes are now handled by specific CSS classes */
 
 @keyframes float-gentle {
   0%, 100% {
@@ -160,56 +154,67 @@ img[src*="Triangle"] {
 
 /* Overlay blend mode - creates rich, vibrant interactions */
 .science-triangles-overlay {
+  mix-blend-mode: overlay;
   filter: contrast(1.1) brightness(1.05);
 }
 
 /* Soft light blend mode - gentle, atmospheric effect */
 .science-triangles-soft-light {
+  mix-blend-mode: soft-light;
   filter: contrast(0.95) brightness(1.02);
 }
 
 /* Multiply blend mode - deep, rich shadows */
 .science-triangles-multiply {
+  mix-blend-mode: multiply;
   filter: contrast(1.2) brightness(0.95);
 }
 
 /* Screen blend mode - bright, glowing effect */
 .science-triangles-screen {
+  mix-blend-mode: screen;
   filter: contrast(0.9) brightness(1.1);
 }
 
 /* Hard light blend mode - dramatic, high contrast */
 .science-triangles-hard-light {
+  mix-blend-mode: hard-light;
   filter: contrast(1.3) brightness(0.98);
 }
 
 /* Color dodge blend mode - bright, vibrant highlights */
 .science-triangles-color-dodge {
+  mix-blend-mode: color-dodge;
   filter: contrast(1.15) brightness(1.15);
 }
 
 /* Exclusion blend mode - unique, artistic effect */
 .science-triangles-exclusion {
+  mix-blend-mode: exclusion;
   filter: contrast(1.1) brightness(1.05) saturate(1.1);
 }
 
 /* Difference blend mode - high contrast, dramatic */
 .science-triangles-difference {
+  mix-blend-mode: difference;
   filter: contrast(1.25) brightness(0.9);
 }
 
 /* Hue blend mode - color-focused interaction */
 .science-triangles-hue {
+  mix-blend-mode: hue;
   filter: contrast(1.05) brightness(1.02) saturate(1.2);
 }
 
 /* Luminosity blend mode - brightness-focused */
 .science-triangles-luminosity {
+  mix-blend-mode: luminosity;
   filter: contrast(1.1) brightness(1.08);
 }
 
 /* Saturation blend mode - color intensity focus */
 .science-triangles-saturation {
+  mix-blend-mode: saturation;
   filter: contrast(1.05) brightness(1.05) saturate(1.3);
 }
 

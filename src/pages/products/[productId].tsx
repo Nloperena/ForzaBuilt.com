@@ -13,6 +13,58 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 
+// Chemistry icon paths - updated to use All White Chemistry Icons
+const CHEMISTRY_ICONS = {
+  acrylic: '/All%20White%20Chemistry%20Icons/Acrylic%20icon.svg',
+  epoxy: '/All%20White%20Chemistry%20Icons/Epoxy%20icon.svg',
+  modifiedEpoxy: '/All%20White%20Chemistry%20Icons/Modified%20Epoxy%20Icon.svg',
+  silicone: '/All%20White%20Chemistry%20Icons/silicone%20icon.svg',
+  ms: '/All%20White%20Chemistry%20Icons/MS%20icon.svg',
+  waterbase: '/All%20White%20Chemistry%20Icons/Water%20based%20icon.svg',
+  hotmelt: '/All%20White%20Chemistry%20Icons/Hotmelt%20icon.svg',
+  solventbase: '/All%20White%20Chemistry%20Icons/Solvent%20based%20icon.svg',
+  polyurethane: '/All%20White%20Chemistry%20Icons/Pollyutherane%20icon.svg',
+  cyanoacrylates: '/All%20White%20Chemistry%20Icons/Cyanoacrylates%20icon.svg',
+  methacrylate: '/All%20White%20Chemistry%20Icons/Methacrylate%20icon.svg',
+  rubberbased: '/All%20White%20Chemistry%20Icons/rubber%20based%20icon.svg'
+};
+
+// Helper to get chemistry icon
+const getChemistryIcon = (chemistry: string) => {
+  if (!chemistry) return null;
+  
+  const chemistryLower = chemistry.toLowerCase();
+  
+  // Map chemistry names to icon paths
+  if (chemistryLower.includes('acrylic') || chemistryLower.includes('psa')) {
+    return CHEMISTRY_ICONS.acrylic;
+  } else if (chemistryLower.includes('epoxy') && !chemistryLower.includes('modified')) {
+    return CHEMISTRY_ICONS.epoxy;
+  } else if (chemistryLower.includes('modified') && chemistryLower.includes('epoxy')) {
+    return CHEMISTRY_ICONS.modifiedEpoxy;
+  } else if (chemistryLower.includes('silicone')) {
+    return CHEMISTRY_ICONS.silicone;
+  } else if (chemistryLower.includes('ms') || chemistryLower.includes('hybrid') || chemistryLower.includes('polymer')) {
+    return CHEMISTRY_ICONS.ms;
+  } else if (chemistryLower.includes('water') || chemistryLower.includes('waterbase')) {
+    return CHEMISTRY_ICONS.waterbase;
+  } else if (chemistryLower.includes('hot') && chemistryLower.includes('melt')) {
+    return CHEMISTRY_ICONS.hotmelt;
+  } else if (chemistryLower.includes('solvent')) {
+    return CHEMISTRY_ICONS.solventbase;
+  } else if (chemistryLower.includes('polyurethane') || chemistryLower.includes('urethane')) {
+    return CHEMISTRY_ICONS.polyurethane;
+  } else if (chemistryLower.includes('cyanoacrylate') || chemistryLower.includes('cyano')) {
+    return CHEMISTRY_ICONS.cyanoacrylates;
+  } else if (chemistryLower.includes('methacrylate')) {
+    return CHEMISTRY_ICONS.methacrylate;
+  } else if (chemistryLower.includes('rubber')) {
+    return CHEMISTRY_ICONS.rubberbased;
+  }
+  
+  return null;
+};
+
 // Helper to get industry logo from navbar data
 const getIndustryLogo = (industry: string | string[]) => {
   // Handle both string and array inputs - use first industry if array
@@ -274,23 +326,12 @@ const ProductDetailPage: React.FC = () => {
                     <div className="flex flex-wrap gap-4">
                       <Button 
                         onClick={() => {
-                          // Call them functionality
-                          window.location.href = 'tel:4027319300';
+                          window.location.href = '/contact';
                         }}
                         className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       >
-                        <Phone className="h-4 w-4 mr-2" />
-                        Order Now - Call Us
-                      </Button>
-                      <Button 
-                        variant="outline"
-                        onClick={() => {
-                          window.location.href = '/contact';
-                        }}
-                        className="border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white rounded-full px-8 py-6 text-xl transition-all duration-300"
-                      >
                         <Mail className="h-4 w-4 mr-2" />
-                        Order Now - Contact
+                        Contact Us
                       </Button>
                     </div>
                   </div>
@@ -427,23 +468,20 @@ const ProductDetailPage: React.FC = () => {
                         <div className="grid md:grid-cols-2 gap-4">
                           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 flex items-center">
                             <div className="mr-4">
-                                              {product.chemistry === 'MS' && (
-                  <img src="/chemistry-icons/MS icon.svg" alt="MS Chemistry" className="w-16 h-16 chemistry-icon" />
-                )}
-                {product.chemistry === 'Silicone' && (
-                  <img src="/chemistry-icons/Silicone icon.svg" alt="Silicone Chemistry" className="w-16 h-16 chemistry-icon" />
-                )}
-                {product.chemistry === 'Epoxy' && (
-                  <img src="/chemistry-icons/Epoxy icon.svg" alt="Epoxy Chemistry" className="w-16 h-16 chemistry-icon" />
-                )}
-                {product.chemistry === 'Water Base' && (
-                  <img src="/chemistry-icons/Waterbase icon.svg" alt="Water Base Chemistry" className="w-16 h-16 chemistry-icon" />
-                )}
-                              {(!product.chemistry || !['MS', 'Silicone', 'Epoxy', 'Water Base'].includes(product.chemistry)) && (
-                                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-                                  <span className="text-white font-bold text-2xl">{product.chemistry ? product.chemistry.charAt(0) : '?'}</span>
-                                </div>
-                              )}
+                              {(() => {
+                                const chemIcon = getChemistryIcon(product.chemistry);
+                                if (chemIcon) {
+                                  return <img src={chemIcon} alt={`${product.chemistry} Chemistry`} className="w-16 h-16 chemistry-icon" />;
+                                } else {
+                                  return (
+                                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                                      <span className="text-white font-bold text-2xl">
+                                        {product.chemistry ? (typeof product.chemistry === 'string' ? product.chemistry.charAt(0) : '?') : '?'}
+                                      </span>
+                                    </div>
+                                  );
+                                }
+                              })()}
                             </div>
                             <div>
                               <div className="font-semibold text-white mb-1">
@@ -975,22 +1013,12 @@ const ProductDetailPage: React.FC = () => {
                   Contact our technical team for expert guidance and support with your application.
                 </p>
                 <div className="flex flex-wrap gap-4 justify-center">
-                  <Button 
-                    onClick={() => {
-                      window.location.href = 'tel:4027319300';
-                    }}
-                    className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl"
-                  >
-                    <Phone className="h-4 w-4 mr-2" />
-                    Call Sales
-                  </Button>
                   <Link to="/contact">
                     <Button 
-                      variant="outline"
-                      className="border-[#F2611D] text-[#F2611D] hover:bg-[#F2611D] hover:text-white rounded-full px-8 py-6 text-xl transition-all duration-300"
+                      className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       <Mail className="h-4 w-4 mr-2" />
-                      Contact Sales
+                      Contact Us
                     </Button>
                   </Link>
                 </div>

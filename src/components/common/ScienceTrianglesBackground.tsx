@@ -104,7 +104,7 @@ const ScienceTrianglesBackground: React.FC<ScienceTrianglesBackgroundProps> = ({
   };
 
   return (
-    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`} style={{ zIndex: 10 }}>
+    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}>
       <motion.img
         src={getImageSrc()}
         alt="Science Triangles Background"
@@ -113,11 +113,9 @@ const ScienceTrianglesBackground: React.FC<ScienceTrianglesBackgroundProps> = ({
           opacity: isMobile ? opacity * 0.7 : opacity,
           maxWidth: '100%',
           maxHeight: '100%',
-          zIndex: 10,
-          mixBlendMode: 'multiply'
+          y: parallax ? parallaxY : 0
         }}
         animate={{
-          y: parallax ? parallaxY : 0,
           scale: isMobile ? scale * 0.8 : scale
         }}
         transition={{
