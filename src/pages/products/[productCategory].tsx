@@ -13,7 +13,7 @@ import { industries as industriesData } from '@/data/industries';
 import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 
-// Chemistry icon paths - updated to use All White Chemistry Icons
+// Chemistry icon paths - using All White Chemistry Icons
 const CHEMISTRY_ICONS = {
   acrylic: '/All%20White%20Chemistry%20Icons/Acrylic%20icon.svg',
   epoxy: '/All%20White%20Chemistry%20Icons/Epoxy%20icon.svg',
@@ -414,7 +414,7 @@ const ProductCategoryPage: React.FC = () => {
             className="w-full"
           >
             {/* Hero Section */}
-            <section className={`relative py-12 md:py-16 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)} min-h-[300px] md:min-h-[400px] lg:min-h-[650px]`}>
+            <section className={`relative py-12 md:py-16 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)} min-h-[150px] md:min-h-[200px] lg:min-h-[325px]`}>
               <div className="max-w-7xl mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   {/* Text Content */}
@@ -719,9 +719,10 @@ const ProductCategoryPage: React.FC = () => {
                     className="group"
                   >
                     <div 
-                      className="relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl"
+                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl"
                       style={{
-                        background: `linear-gradient(to bottom, #1b3764 0%, #1b3764 70%, ${getIndustryColorHex(product.industry?.[0] || '')} 100%)`
+                        background: `linear-gradient(to bottom, #0f1f39 0%, #0f1f39 70%, ${getIndustryColorHex(product.industry?.[0] || '')} 100%)`,
+                        filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))'
                       }}
                       onClick={() => {
                         setSelectedProduct(product);
@@ -730,7 +731,7 @@ const ProductCategoryPage: React.FC = () => {
                     >
                       {/* Desktop: Badge above image */}
                       <div className="absolute top-3 left-3 z-30 hidden md:block">
-                        <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[#1b3764] via-[#1b3764] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                        <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[#0f1f39] via-[#0f1f39] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1">
                           {getIndustryLogo(product.industry?.[0] || '') ? (
                             <img 
                               src={getIndustryLogo(product.industry?.[0] || '')} 
@@ -780,7 +781,7 @@ const ProductCategoryPage: React.FC = () => {
                             {product.name.split('–')[1]?.trim() || product.description}
                           </p>
                           {/* Mobile: Industry Badge */}
-                          <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[#1b3764] via-[#1b3764] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide mt-2">
+                          <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[#0f1f39] via-[#0f1f39] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide mt-2">
                             {getIndustryLogo(product.industry?.[0] || '') ? (
                               <img 
                                 src={getIndustryLogo(product.industry?.[0] || '')} 

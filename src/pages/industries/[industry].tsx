@@ -97,7 +97,7 @@ const IndustryPage = () => {
       </section>
 
       {/* Title Section - First content after video */}
-      <section style={{ background: 'linear-gradient(to bottom, transparent 50%, white 50%)' }} className="relative z-[20]">
+      <section style={{ background: 'linear-gradient(#ffffff 50%, #ffffff 50%)' }} className="relative z-[20] pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48">
         <motion.div 
           className="w-full px-4 sm:px-6 md:px-10 text-center"
           style={{ marginTop: '-5rem' }}
@@ -265,6 +265,9 @@ const IndustryPage = () => {
 
         </motion.div>
       </AnimatePresence>
+
+      {/* Spacer above footer */}
+      <div className="py-8 sm:py-10 md:py-12 lg:py-14 xl:py-16"></div>
 
       {/* Footer */}
       <Footer />

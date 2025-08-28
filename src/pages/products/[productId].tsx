@@ -13,20 +13,20 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 
-// Chemistry icon paths - updated to use All White Chemistry Icons
+// Chemistry icon paths - updated to use regular Chemistry Products Icons (no white background)
 const CHEMISTRY_ICONS = {
-  acrylic: '/All%20White%20Chemistry%20Icons/Acrylic%20icon.svg',
-  epoxy: '/All%20White%20Chemistry%20Icons/Epoxy%20icon.svg',
-  modifiedEpoxy: '/All%20White%20Chemistry%20Icons/Modified%20Epoxy%20Icon.svg',
-  silicone: '/All%20White%20Chemistry%20Icons/silicone%20icon.svg',
-  ms: '/All%20White%20Chemistry%20Icons/MS%20icon.svg',
-  waterbase: '/All%20White%20Chemistry%20Icons/Water%20based%20icon.svg',
-  hotmelt: '/All%20White%20Chemistry%20Icons/Hotmelt%20icon.svg',
-  solventbase: '/All%20White%20Chemistry%20Icons/Solvent%20based%20icon.svg',
-  polyurethane: '/All%20White%20Chemistry%20Icons/Pollyutherane%20icon.svg',
-  cyanoacrylates: '/All%20White%20Chemistry%20Icons/Cyanoacrylates%20icon.svg',
-  methacrylate: '/All%20White%20Chemistry%20Icons/Methacrylate%20icon.svg',
-  rubberbased: '/All%20White%20Chemistry%20Icons/rubber%20based%20icon.svg'
+  acrylic: '/Chemistry%20Products%20Icons/acrylic%20icon.svg',
+  epoxy: '/Chemistry%20Products%20Icons/epoxy%20icon.svg',
+  modifiedEpoxy: '/Chemistry%20Products%20Icons/modified%20epoxy%20icon.svg',
+  silicone: '/Chemistry%20Products%20Icons/silicone%20icon.svg',
+  ms: '/Chemistry%20Products%20Icons/ms%20icon.svg',
+  waterbase: '/Chemistry%20Products%20Icons/water%20based%20icon.svg',
+  hotmelt: '/Chemistry%20Products%20Icons/hotmelt%20icon.svg',
+  solventbase: '/Chemistry%20Products%20Icons/solvent%20based%20icon.svg',
+  polyurethane: '/Chemistry%20Products%20Icons/polyurethane%20icon.svg',
+  cyanoacrylates: '/Chemistry%20Products%20Icons/cyanoacrylates%20icon.svg',
+  methacrylate: '/Chemistry%20Products%20Icons/methacrylate%20icon.svg',
+  rubberbased: '/Chemistry%20Products%20Icons/rubber%20based%20icon.svg'
 };
 
 // Helper to get chemistry icon

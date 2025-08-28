@@ -50,7 +50,7 @@ const products: Product[] = [
     fullTitle: "INDUSTRIAL\nCLEANING",
     image: RRHandSprayingImage,
     hoverImage: "https://ruggedred.com/images/RRMascot+Type-smaller.png",
-    color: "#e53935",
+    color: "#d1181f",
     slug: "ruggedred"
   }
 ];
@@ -79,7 +79,7 @@ const ProductsSection = () => {
   }, [hoveredIndex]);
 
   return (
-    <section className="pt-4 sm:pt-8 md:pt-12 lg:pt-8 xl:pt-10 pb-16 bg-[#1b3764] text-white relative overflow-hidden">
+    <section className="pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 pb-16 bg-[#1b3764] text-white relative overflow-hidden">
       {/* Orange to Blue Gradient Background - Bottom Right */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 
@@ -173,7 +173,7 @@ const ProductsSection = () => {
                                 />
                               </div>
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -186,7 +186,7 @@ const ProductsSection = () => {
                           product.title === "INDUSTRIAL CLEANING" ? (
                             <div className="w-full h-full flex flex-row items-center justify-center">
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -220,7 +220,7 @@ const ProductsSection = () => {
                                 />
                               </div>
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -303,7 +303,7 @@ const ProductsSection = () => {
                                 />
                               </div>
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -316,7 +316,7 @@ const ProductsSection = () => {
                           product.title === "INDUSTRIAL CLEANING" ? (
                             <div className="w-full h-full flex flex-row items-center justify-center">
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -350,7 +350,7 @@ const ProductsSection = () => {
                                 />
                               </div>
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center drop-shadow-2xl leading-tight">
+                                <div className="text-sm sm:text-xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -366,7 +366,7 @@ const ProductsSection = () => {
                           opacity: isHovered ? 1 : 0,
                           zIndex: 2,
                           transition: 'all 0.3s ease-in-out',
-                          backgroundColor: '#1b3764' // Same as homepage background
+                          backgroundColor: '#0F1F39' // Same as homepage background
                         }}
                       >
                         <img
@@ -394,8 +394,12 @@ const ProductsSection = () => {
           })}
         </div>
       </div>
+
+      {/* Spacer above footer */}
+      <div className="py-8 sm:py-10 md:py-12 lg:py-14 xl:py-16"></div>
     </section>
   );
 };
 
 export default ProductsSection; 
+

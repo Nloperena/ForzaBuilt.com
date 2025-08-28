@@ -47,7 +47,7 @@ const ChemistryCard: React.FC<ChemistryCardProps> = ({
 
       {/* Back of the card */}
       <motion.div
-        className="absolute w-full h-full flex flex-col items-center justify-center bg-[#1b3764] text-white rounded-2xl backface-hidden p-2 sm:p-3 md:p-4 text-center"
+        className="absolute w-full h-full flex flex-col items-center justify-center bg-white/10 text-white rounded-2xl backface-hidden p-2 sm:p-3 md:p-4 text-center"
         initial={{ rotateY: 180 }}
         animate={{ rotateY: isFlipped ? 0 : 180, opacity: isFlipped ? 1 : 0 }}
         transition={{ duration: 0.5 }}

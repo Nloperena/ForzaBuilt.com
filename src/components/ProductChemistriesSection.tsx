@@ -1,19 +1,19 @@
 import React from 'react';
 import ChemistryCard from './ChemistryCard';
-// Chemistry icon paths - updated to use All White Chemistry Icons
+// Chemistry icon paths - updated to use regular Chemistry Products Icons (no white background)
 const CHEMISTRY_ICONS = {
-  acrylic: '/All%20White%20Chemistry%20Icons/Acrylic%20icon.svg',
-  epoxy: '/All%20White%20Chemistry%20Icons/Epoxy%20icon.svg',
-  modifiedEpoxy: '/All%20White%20Chemistry%20Icons/Modified%20Epoxy%20Icon.svg',
-  silicone: '/All%20White%20Chemistry%20Icons/silicone%20icon.svg',
-  ms: '/All%20White%20Chemistry%20Icons/MS%20icon.svg',
-  waterbase: '/All%20White%20Chemistry%20Icons/Water%20based%20icon.svg',
-  hotmelt: '/All%20White%20Chemistry%20Icons/Hotmelt%20icon.svg',
-  solventbase: '/All%20White%20Chemistry%20Icons/Solvent%20based%20icon.svg',
-  polyurethane: '/All%20White%20Chemistry%20Icons/Pollyutherane%20icon.svg',
-  cyanoacrylates: '/All%20White%20Chemistry%20Icons/Cyanoacrylates%20icon.svg',
-  methacrylate: '/All%20White%20Chemistry%20Icons/Methacrylate%20icon.svg',
-  rubberbased: '/All%20White%20Chemistry%20Icons/rubber%20based%20icon.svg'
+  acrylic: '/Chemistry%20Products%20Icons/acrylic%20icon.svg',
+  epoxy: '/Chemistry%20Products%20Icons/epoxy%20icon.svg',
+  modifiedEpoxy: '/Chemistry%20Products%20Icons/modified%20epoxy%20icon.svg',
+  silicone: '/Chemistry%20Products%20Icons/silicone%20icon.svg',
+  ms: '/Chemistry%20Products%20Icons/ms%20icon.svg',
+  waterbase: '/Chemistry%20Products%20Icons/water%20based%20icon.svg',
+  hotmelt: '/Chemistry%20Products%20Icons/hotmelt%20icon.svg',
+  solventbase: '/Chemistry%20Products%20Icons/solvent%20based%20icon.svg',
+  polyurethane: '/Chemistry%20Products%20Icons/polyurethane%20icon.svg',
+  cyanoacrylates: '/Chemistry%20Products%20Icons/cyanoacrylates%20icon.svg',
+  methacrylate: '/Chemistry%20Products%20Icons/methacrylate%20icon.svg',
+  rubberbased: '/Chemistry%20Products%20Icons/rubber%20based%20icon.svg'
 };
 
 const ProductChemistriesSection = () => {
@@ -62,9 +62,12 @@ const ProductChemistriesSection = () => {
   ];
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-[#1b3764] text-white relative">
+    <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-white/10 text-white relative">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-8xl mx-auto z-10 relative">
-        <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-8xl font-black font-kallisto mb-8 sm:mb-12 md:mb-16 lg:mb-20 text-center leading-none break-words">Product Chemistries</h2>
+                    <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-8xl font-black font-kallisto mb-8 sm:mb-12 md:mb-16 lg:mb-20 text-center leading-none break-words">Product Chemistries</h2>
+        
+
+        
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-8 xl:gap-12">
                       {chemistryCategories.map((category, index) => (
               <div key={index} className="p-4 sm:p-6 md:p-8 lg:p-8 xl:p-12 min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px] xl:min-h-[400px]">
@@ -124,7 +127,7 @@ const ProductChemistriesSectionExperimental: React.FC = () => {
   ];
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-[#1b3764] text-white relative">
+    <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-white/10 text-white relative">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-8xl mx-auto z-10 relative">
         <h2 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-8xl font-black font-kallisto mb-8 sm:mb-12 md:mb-16 lg:mb-20 text-center leading-none break-words">Product Chemistries - Experimental</h2>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-8 xl:gap-12">
@@ -242,7 +245,7 @@ const ProductChemistriesSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="py-10 sm:py-14 md:py-16 lg:py-20 xl:py-24 bg-[#1b3764] text-white">
+    <section className="py-10 sm:py-14 md:py-16 lg:py-20 xl:py-24 bg-white/10 text-white">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-[2000px] mx-auto">
         <h2 className="text-center font-kallisto font-black leading-[1.1] text-4xl md:text-5xl lg:text-5xl xl:text-6xl mb-6 sm:mb-8 md:mb-10">
           Product Chemistries V2

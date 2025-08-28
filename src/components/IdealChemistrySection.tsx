@@ -235,7 +235,14 @@ const ChemistryItemTablet: React.FC<ChemistryItemProps & { index: number; getEle
           : 'opacity-0 translate-y-12'
       }`}
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
+      {/* Liquid shine overlay */}
+      <div
+        className="pointer-events-none absolute -inset-x-1/2 -inset-y-1/2"
+        style={{
+          background: 'radial-gradient(60% 40% at 50% 50%, rgba(255,255,255,0.15), rgba(255,255,255,0) 60%)',
+        }}
+      />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 relative z-10">
         {/* Left Column - Icon/Image */}
         <div className="lg:col-span-1 flex justify-center items-center">
           <div className="w-32 h-32 lg:w-40 lg:h-40 flex-shrink-0">

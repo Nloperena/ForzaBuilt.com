@@ -39,11 +39,7 @@ const Header = () => {
   return (
     <header 
       ref={headerRef} 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-[#1b3764]/90 backdrop-blur-md shadow-lg' 
-          : 'bg-transparent backdrop-blur-sm'
-      }`}
+      className="fixed top-0 w-full z-50 transition-all duration-300 bg-[#0f1f39] backdrop-blur-md shadow-lg"
       onMouseEnter={handleOverlayEnter}
       onMouseLeave={handleNavLeave}
     >

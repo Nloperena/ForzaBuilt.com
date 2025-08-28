@@ -60,9 +60,9 @@ const IndustriesSectionAlt = () => {
         {/* Header Section */}
         <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 relative z-10">
           <div className="max-w-6xl mx-auto space-y-8">
-            <h2 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-none break-words">
-              Better Built Bonds for All Industries
-            </h2>
+                          <h2 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-none break-words">
+                Better Built Bonds For All Industries
+              </h2>
             <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
               At Forza, we're your trusted scientists and mentors - delivering innovative adhesive solutions that secure your success
             </p>
@@ -84,7 +84,7 @@ const IndustriesSectionAlt = () => {
                   <Card
                     className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10"
                     style={{
-                      backgroundImage: `linear-gradient(to right, #1b3764, #1b3764, ${industry.color || '#f16a26'})`
+                      backgroundImage: `linear-gradient(to right, #1b3764, #465D81, ${industry.color || '#f16a26'})`
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -173,7 +173,7 @@ const IndustriesSectionAlt = () => {
                   <Card
                     className="shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white"
                     style={{
-                      backgroundImage: `linear-gradient(to right, #1b3764, #1b3764, ${industry.color || '#f16a26'})`
+                      backgroundImage: `linear-gradient(to right, #1b3764, #465D81, ${industry.color || '#f16a26'})`
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -217,7 +217,7 @@ const IndustriesSectionAlt = () => {
                         className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none text-white"
                         style={{
                           zIndex: 10,
-                          backgroundImage: `linear-gradient(to right, #1b3764, #1b3764, ${industry.color || '#f16a26'})`
+                          backgroundImage: `linear-gradient(to right, #1b3764, #465D81, ${industry.color || '#f16a26'})`
                         }}
                       >
                         <div className="flex items-center justify-between gap-1">

@@ -56,7 +56,7 @@ const StackableCards: React.FC<StackableCardsProps> = ({
   return (
     <div 
       ref={containerRef} 
-      className={`relative w-full pt-12 ${className}`}
+      className={`relative w-full pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 ${className}`}
       style={{
         background: `linear-gradient(315deg, ${gradientColors})`
       }}

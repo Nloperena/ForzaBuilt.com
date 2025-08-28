@@ -147,7 +147,7 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex justify-center mb-8">
               <img 
-                src="/src/assets/images/Forza-lion-logo.png" 
+                src="/Forza-lion-logo.png" 
                 alt="ForzaBuilt Lion Logo" 
                 className="w-20 h-20 object-contain"
               />
