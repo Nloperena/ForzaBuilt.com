@@ -572,8 +572,8 @@ export const IndustriesCarouselSectionV4 = () => {
   };
 
   return (
-    <section className="relative py-4 sm:py-10 md:py-20 lg:py-28 xl:py-36 w-full overflow-hidden bg-[#1b3764]">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
+    <section className="relative py-4 sm:py-10 md:py-20 lg:py-28 xl:py-36 w-full overflow-hidden bg-[#115B87]">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#115B87]/80 via-[#115B87]/60 to-[#115B87]/80"></div>
 
       <div className="relative z-10 w-full px-3 sm:px-4 md:px-6 lg:px-8 overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col items-center">

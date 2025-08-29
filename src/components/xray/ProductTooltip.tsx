@@ -176,7 +176,7 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                       variant="ghost"
                       size="sm"
                       onClick={onClose}
-                      className="absolute top-2 right-2 h-6 w-6 p-0 bg-[#1B3764]/20 hover:bg-[#1B3764]/40 text-white border-white/20 backdrop-blur-sm z-30"
+                      className="absolute top-2 right-2 h-6 w-6 p-0 bg-[#115B87]/20 hover:bg-[#115B87]/40 text-white border-white/20 backdrop-blur-sm z-30"
                       aria-label="Close details"
                     >
                       <X className="h-3 w-3" />

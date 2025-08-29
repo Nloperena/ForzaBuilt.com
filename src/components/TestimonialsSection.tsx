@@ -1,23 +1,23 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLandscapeValues } from '@/hooks/use-landscape';
+import VideoSkeleton from './common/VideoSkeleton';
 
 const TestimonialsSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { isLandscape } = useLandscapeValues();
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
 
   const handleVideoClick = () => {
     if (videoRef.current) {
       if (isPlaying) {
-        // If already playing, pause and reset
         videoRef.current.pause();
-        videoRef.current.currentTime = 0;
         setIsPlaying(false);
-        videoRef.current.muted = true;
       } else {
-        // Start playing with audio
-        videoRef.current.muted = false;
         videoRef.current.play();
         setIsPlaying(true);
       }
@@ -25,72 +25,60 @@ const TestimonialsSection = () => {
   };
 
   const handleVideoExpand = () => {
-    // If video is not playing, start it
-    if (!isPlaying && videoRef.current) {
-      videoRef.current.muted = false;
-      videoRef.current.play();
-      setIsPlaying(true);
+    if (videoRef.current) {
+      videoRef.current.requestFullscreen();
     }
   };
 
   const handleCloseFullscreen = () => {
     if (videoRef.current) {
       videoRef.current.pause();
-      videoRef.current.currentTime = 0;
       setIsPlaying(false);
-      videoRef.current.muted = true;
     }
   };
-
-  // Handle escape key and click outside to close playing video
-  React.useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isPlaying) {
-        handleCloseFullscreen();
-      }
-    };
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (isPlaying && videoRef.current && !videoRef.current.contains(event.target as Node)) {
-        handleCloseFullscreen();
-      }
-    };
-
-    if (isPlaying) {
-      document.addEventListener('keydown', handleEscape);
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isPlaying]);
 
   const handleVideoEnded = () => {
     setIsPlaying(false);
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-    }
   };
 
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        setIsPlaying(false);
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
   return (
-    <section className={`bg-[#1b3764] relative overflow-hidden ${
-      isLandscape 
-        ? 'py-4 sm:py-6 md:py-8 lg:py-10' 
-        : 'py-6 sm:py-8 md:py-10 lg:py-12'
-    }`} style={{ backgroundImage: "url('/assets/images/abstract-background-pattern.svg')", backgroundRepeat: 'repeat' }}>
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
-                    <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-5xl font-extrabold text-white text-center tracking-tight font-kallisto ${
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-[#115B87] relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div 
+          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_center,rgba(242,97,29,0.6)_0%,rgba(242,97,29,0.5)_25%,rgba(242,97,29,0.35)_45%,rgba(242,97,29,0.2)_65%,rgba(242,97,29,0.1)_80%,rgba(242,97,29,0.03)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_center,rgba(242,97,29,0.6)_0%,rgba(242,97,29,0.5)_25%,rgba(242,97,29,0.35)_45%,rgba(242,97,29,0.2)_65%,rgba(242,97,29,0.1)_80%,rgba(242,97,29,0.03)_90%,transparent_100%)]"
+          style={{ opacity: 1 }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        {/* Header */}
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white font-kallisto leading-none mb-4 sm:mb-6">
+            What Our Customers Say
+          </h2>
+          <p className="text-white/80 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto">
+            Hear from industry professionals who trust Forza for their critical bonding and sealing needs
+          </p>
+        </div>
+
+        {/* Testimonial Card */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border border-white/20 shadow-2xl">
+          <div className={`flex ${
             isLandscape 
-              ? 'mb-2 sm:mb-3 md:mb-4 lg:mb-6' 
-              : 'mb-4 sm:mb-6 md:mb-8 lg:mb-10'
-          }`}>What Our Clients Say</h2>
-        <div className="relative">
-          <div className={`rounded-lg sm:rounded-xl md:rounded-2xl flex items-center p-3 sm:p-4 md:p-6 lg:p-8 gap-4 sm:gap-6 md:gap-8 lg:gap-10 ${
-            isLandscape 
-              ? 'flex-col' 
-              : 'flex-col md:flex-row'
+              ? 'flex-col items-center space-y-6 sm:space-y-8' 
+              : 'flex-col md:flex-row items-center md:items-start space-y-6 sm:space-y-8 md:space-y-0 md:space-x-8 lg:space-x-12'
           }`}>
             {/* Video Container */}
             <div 
@@ -106,16 +94,22 @@ const TestimonialsSection = () => {
               <div className={`relative w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-xl md:shadow-2xl ${
                 isPlaying ? 'rounded-none shadow-none' : ''
               }`}>
+                {/* Video Skeleton Loading State */}
+                {!isVideoLoaded && (
+                  <VideoSkeleton />
+                )}
+                
                 <video
                   ref={videoRef}
                   src="https://videos.ctfassets.net/hdznx4p7ef81/4CqNHu0mxSPaW4l6HQPphS/256d6e3db7569a19f1b33f8e1a57da9c/Sequence_01_2.mp4"
                   className={`w-full h-full object-cover object-center cursor-pointer transition-all duration-500 ${
                     isPlaying ? 'object-contain' : ''
-                  }`}
+                  } ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
                   muted={!isPlaying}
                   loop
                   playsInline
                   controls={isPlaying}
+                  onLoadedData={handleVideoLoad}
                   onClick={handleVideoClick}
                   onEnded={handleVideoEnded}
                 />

@@ -9,7 +9,7 @@ import OldProductsSection from '../components/OldProductsSection';
 
 const Products = () => {
   return (
-    <div className="bg-[#1b3764] min-h-screen">
+    <div className="bg-[#115B87] min-h-screen">
       <Header />
 
       {/* Using the homepage products component that shows 4 product categories */}

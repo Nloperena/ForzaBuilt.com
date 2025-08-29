@@ -211,7 +211,7 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
   }, [categoryProducts, selectedChemistries, search, nameSort, selectedLine]);
 
   return (
-    <section className="w-full bg-[#1b3764] text-white">
+    <section className="w-full bg-[#115B87] text-white">
       <div className="max-w-[1600px] mx-auto px-3 md:px-4">
         {/* Section Heading - matches other headings pattern */}
         <div className="py-8 sm:py-10 md:py-12">
@@ -510,8 +510,8 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
             className="fixed inset-0 bg-black/60 z-50 flex items-end lg:hidden"
             onClick={() => setIsFilterDialogOpen(false)}
           >
-            <div className="bg-[#1b3764] w-full rounded-t-xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-              <div className="sticky top-0 bg-[#1b3764] pt-3 pb-2 px-4 flex justify-between items-center border-b border-white/10">
+                    <div className="bg-[#115B87] w-full rounded-t-xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+          <div className="sticky top-0 bg-[#115B87] pt-3 pb-2 px-4 flex justify-between items-center border-b border-white/10">
                 <h3 className="text-white text-lg font-bold">Filter & Sort</h3>
                 <button onClick={() => setIsFilterDialogOpen(false)} className="p-2 rounded-full hover:bg-white/10">
                   <X className="text-white h-5 w-5" />

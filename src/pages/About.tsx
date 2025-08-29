@@ -9,7 +9,7 @@ const About = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <div className="flex-1 bg-[#1b3764] text-white relative">
+      <div className="flex-1 bg-[#115B87] text-white relative">
         {/* Orange to Blue Gradient Background */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div 

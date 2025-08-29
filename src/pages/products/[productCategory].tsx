@@ -12,6 +12,7 @@ import { Anchor, Factory, Car, Building, Package, Layers, Snowflake } from 'luci
 import { industries as industriesData } from '@/data/industries';
 import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
+import ImageSkeleton from '@/components/common/ImageSkeleton';
 
 // Chemistry icon paths - using All White Chemistry Icons
 const CHEMISTRY_ICONS = {
@@ -112,7 +113,7 @@ const getCategoryGradient = (category: string) => {
 const categoryColor = (cat: string) => {
   switch (cat) {
     case 'BOND':
-      return `from-[${productColors.bond.primary}] to-[${brandColors.secondary.rustyNailOrange.hex}]`;
+      return `from-[${productColors.bond.primary}] to-[${brandColors.secondary.rustyNail.hex}]`;
     case 'SEAL':
       return `from-[${productColors.seal.primary}] to-[#f4c430]`;
     case 'TAPE':
@@ -225,6 +226,19 @@ const ProductCategoryPage: React.FC = () => {
   const [visibleProductCount, setVisibleProductCount] = useState(12);
   const [isLoading, setIsLoading] = useState(false);
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const [imageLoadedStates, setImageLoadedStates] = useState<{ [key: string]: boolean }>({});
+
+  const handleImageLoad = (productId: string) => {
+    setImageLoadedStates(prev => ({
+      ...prev,
+      [productId]: true
+    }));
+  };
+
+  const handleImageError = (productId: string) => {
+    // Mark as loaded even on error to hide skeleton
+    handleImageLoad(productId);
+  };
 
   // Get products for this category
   const categoryProducts = useMemo(() => {
@@ -379,7 +393,7 @@ const ProductCategoryPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1b3764] flex flex-col">
+    <div className="min-h-screen bg-[#115B87] flex flex-col">
       <DynamicMetaTags
         title={`${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Products`}
         description={`Discover our premium ${productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.`}
@@ -577,11 +591,11 @@ const ProductCategoryPage: React.FC = () => {
                               }
                             }}
                             disabled={count === 0 && !isSelected}
-                            className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden ${
-                              isSelected 
-                                ? 'bg-[#F2611D] text-white' 
-                                : 'bg-[#3f5275]/40 text-white/90 hover:bg-[#3f5275]/60'
-                            } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
+                                                          className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden backdrop-blur-xl border border-white/20 ${
+                                isSelected 
+                                  ? 'bg-[#F2611D] text-white shadow-lg' 
+                                  : 'bg-[#3f5275]/40 text-white/90 hover:bg-[#3f5275]/60 hover:shadow-md'
+                              } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
                           >
                                                       <div className="flex items-center gap-2 min-w-0 flex-1">
                                 <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
@@ -635,10 +649,10 @@ const ProductCategoryPage: React.FC = () => {
                                 }
                               }}
                               disabled={count === 0 && !isSelected}
-                              className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden ${
+                              className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden backdrop-blur-xl border border-white/20 ${
                                 isSelected 
-                                  ? 'bg-[#F2611D] text-white' 
-                                  : 'bg-[#3f5275]/40 text-white/90 hover:bg-[#3f5275]/60'
+                                  ? 'bg-[#F2611D] text-white shadow-lg' 
+                                  : 'bg-[#3f5275]/40 text-white/90 hover:bg-[#3f5275]/60 hover:shadow-md'
                               } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
                             >
                               <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -664,7 +678,7 @@ const ProductCategoryPage: React.FC = () => {
               {/* Mobile Filter Button */}
               <div className="lg:hidden sticky bottom-4 w-full flex justify-center z-30">
                 <button 
-                  className="bg-[#F2611D] hover:bg-[#E55B1C] rounded-full px-6 py-3 shadow-lg transition-colors flex items-center justify-center gap-2"
+                  className="bg-[#F2611D] hover:bg-[#E55B1C] rounded-full px-6 py-3 shadow-xl transition-colors flex items-center justify-center gap-2 backdrop-blur-xl border border-white/20"
                   aria-label="Filter"
                   onClick={() => setIsFilterDialogOpen(true)}
                 >
@@ -678,7 +692,7 @@ const ProductCategoryPage: React.FC = () => {
             <div className="flex-1">
               {/* Results Info - Glassmorphic Badge */}
               <div className="flex justify-between items-center mb-6">
-                <div className="bg-[#3f5275]/50 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-sm">
+                <div className="bg-[#3f5275]/50 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg">
                   <p className="text-sm text-white/90">
                     <span className="font-semibold text-white">
                       {isLoading ? (
@@ -703,7 +717,7 @@ const ProductCategoryPage: React.FC = () => {
                 </div>
                 
                 {/* Mobile Sort Button */}
-                <button className="lg:hidden bg-[#3f5275]/50 backdrop-blur-md p-2 rounded-full border border-white/10">
+                <button className="lg:hidden bg-[#3f5275]/50 backdrop-blur-xl p-2 rounded-full border border-white/20 shadow-lg">
                   <ArrowUpDown className="text-white h-5 w-5" />
                 </button>
               </div>
@@ -719,10 +733,11 @@ const ProductCategoryPage: React.FC = () => {
                     className="group"
                   >
                     <div 
-                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl"
+                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl backdrop-blur-xl bg-white/10 border border-white/20"
                       style={{
-                        background: `linear-gradient(to bottom, #0f1f39 0%, #0f1f39 70%, ${getIndustryColorHex(product.industry?.[0] || '')} 100%)`,
-                        filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))'
+                        background: `linear-gradient(to bottom, rgba(15, 31, 57, 0.8) 0%, rgba(15, 31, 57, 0.8) 70%, ${getIndustryColorHex(product.industry?.[0] || '')}CC 100%)`,
+                        filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))',
+                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                       }}
                       onClick={() => {
                         setSelectedProduct(product);
@@ -747,10 +762,19 @@ const ProductCategoryPage: React.FC = () => {
 
                       {/* Desktop: Product Image - Full height to show whole image */}
                       <div className="absolute inset-0 hidden md:block">
+                        {/* Image Skeleton Loading State */}
+                        {!imageLoadedStates[product.id] && (
+                          <ImageSkeleton />
+                        )}
+                        
                         <img 
                           src={product.imageUrl} 
                           alt={product.name}
-                          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                          className={`w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 transition-opacity duration-500 ${
+                            imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onLoad={() => handleImageLoad(product.id)}
+                          onError={() => handleImageError(product.id)}
                         />
                       </div>
 
@@ -764,11 +788,20 @@ const ProductCategoryPage: React.FC = () => {
                       {/* Mobile: Left side with image and basic info */}
                       <div className="flex md:hidden items-center gap-4 flex-1 p-4">
                         {/* Mobile: Product Image */}
-                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-sm border border-white/30">
+                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg relative">
+                          {/* Image Skeleton Loading State */}
+                          {!imageLoadedStates[product.id] && (
+                            <ImageSkeleton className="rounded-xl" />
+                          )}
+                          
                           <img 
                             src={product.imageUrl} 
                             alt={product.name}
-                            className="w-full h-full object-cover"
+                            className={`w-full h-full object-cover transition-opacity duration-500 ${
+                              imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onLoad={() => handleImageLoad(product.id)}
+                            onError={() => handleImageError(product.id)}
                           />
                         </div>
                         

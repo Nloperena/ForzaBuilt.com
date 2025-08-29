@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from './ui/card';
 import { industries } from '../data/industries';
 import type { Industry } from '../data/industries';
 import { useLandscapeValues } from '@/hooks/use-landscape';
 import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
+import VideoSkeleton from './common/VideoSkeleton';
 
 function hexToRgba(hex: string, alpha: number): string {
   let normalized = hex.replace('#', '');
@@ -23,19 +24,25 @@ function toTitleCase(text: string): string {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-
-
 const IndustriesSectionAlt = () => {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const industriesArr: Industry[] = industries;
+  const [videoLoadedStates, setVideoLoadedStates] = useState<boolean[]>(new Array(industriesArr.length).fill(false));
   
   // Landscape optimization values
   const { isLandscape } = useLandscapeValues();
 
+  const handleVideoLoad = (index: number) => {
+    setVideoLoadedStates(prev => {
+      const newStates = [...prev];
+      newStates[index] = true;
+      return newStates;
+    });
+  };
 
 
   return (
-    <section className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 bg-[#1b3764] w-full relative">
+    <section className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 bg-[#115B87] w-full relative">
       {/* Orange to Blue Gradient Background */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 
@@ -82,9 +89,10 @@ const IndustriesSectionAlt = () => {
                   className="block w-full"
                 >
                   <Card
-                    className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10"
+                    className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-white/10"
                     style={{
-                      backgroundImage: `linear-gradient(to right, #1b3764, #465D81, ${industry.color || '#f16a26'})`
+                      backgroundImage: `linear-gradient(to right, rgba(27, 55, 100, 0.6), rgba(70, 93, 129, 0.6), ${industry.color ? `${industry.color}99` : 'rgba(241, 106, 38, 0.6)'})`,
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -99,14 +107,22 @@ const IndustriesSectionAlt = () => {
                     <div className="flex h-24 sm:h-28">
                       {/* Video/Image Section */}
                       <div className="relative w-24 sm:w-28 h-full flex-shrink-0">
+                        {/* Video Skeleton Loading State */}
+                        {!videoLoadedStates[index] && (
+                          <VideoSkeleton />
+                        )}
+                        
                         <video
                           ref={(el) => (videoRefs.current[index] = el)}
                           loop
                           muted
                           playsInline
-                          className="w-full h-full object-cover"
+                          className={`w-full h-full object-cover transition-opacity duration-500 ${
+                            videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
+                          }`}
                           preload="metadata"
                           onLoadedData={() => {
+                            handleVideoLoad(index);
                             // Ensure video is ready to play on mobile
                             if (videoRefs.current[index]) {
                               videoRefs.current[index].load();
@@ -114,6 +130,8 @@ const IndustriesSectionAlt = () => {
                           }}
                           onError={(e) => {
                             console.warn(`Video failed to load for ${industry.title}:`, e);
+                            // Mark as loaded even on error to hide skeleton
+                            handleVideoLoad(index);
                           }}
                         >
                           <source src={industry.videoUrl} type="video/mp4" />
@@ -171,9 +189,10 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className="shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white"
+                    className="shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-white/10"
                     style={{
-                      backgroundImage: `linear-gradient(to right, #1b3764, #465D81, ${industry.color || '#f16a26'})`
+                      backgroundImage: `linear-gradient(to right, rgba(27, 55, 100, 0.6), rgba(70, 93, 129, 0.6), ${industry.color ? `${industry.color}99` : 'rgba(241, 106, 38, 0.6)'})`,
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -186,13 +205,22 @@ const IndustriesSectionAlt = () => {
                     }}
                   >
                     <div className="relative w-full h-full overflow-hidden">
+                      {/* Video Skeleton Loading State */}
+                      {!videoLoadedStates[index] && (
+                        <VideoSkeleton />
+                      )}
+                      
                       <video
                         ref={(el) => (videoRefs.current[index] = el)}
                         loop
                         muted
                         playsInline
-                        className="w-full h-full object-cover"
+                        className={`w-full h-full object-cover transition-opacity duration-500 ${
+                          videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
+                        }`}
                         preload="auto"
+                        onLoadedData={() => handleVideoLoad(index)}
+                        onError={() => handleVideoLoad(index)}
                       >
                         <source src={industry.videoUrl} type="video/mp4" />
                       </video>
@@ -242,7 +270,7 @@ const IndustriesSectionAlt = () => {
 
         {/* Standalone CTA Section: Glassmorphic liquid shine */}
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20 mt-8 sm:mt-12">
-          <div className="relative max-w-7xl mx-auto overflow-hidden rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-xl">
+          <div className="relative max-w-7xl mx-auto overflow-hidden rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl">
             {/* Static liquid shine overlay */}
             <div
               className="pointer-events-none absolute -inset-x-1/2 -inset-y-1/2"

@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import VideoSkeleton from './common/VideoSkeleton';
 
 const AboutIdentityCards = () => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+
   return (
-    <section className="py-10 md:py-14 px-4 bg-[#1b3764]">
+    <section className="py-10 md:py-14 px-4 bg-[#115B87]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 justify-items-center max-w-4xl mx-auto">
         {/* Forza Definition Card */}
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 border border-white/60 w-96 h-96 mx-auto aspect-square">
@@ -24,7 +31,12 @@ const AboutIdentityCards = () => {
         {/* Made in America Card */}
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 border border-white/60 w-96 h-96 mx-auto aspect-square">
           <div className="flex flex-col items-center justify-center text-center h-full">
-            <div className="w-32 md:w-36 mb-3 md:mb-4">
+            <div className="w-32 md:w-36 mb-3 md:mb-4 relative">
+              {/* Video Skeleton Loading State */}
+              {!isVideoLoaded && (
+                <VideoSkeleton className="rounded-lg" />
+              )}
+              
               <video
                 src="/American%20Flag.mp4"
                 autoPlay
@@ -32,7 +44,10 @@ const AboutIdentityCards = () => {
                 muted
                 playsInline
                 preload="auto"
-                className="w-full h-auto object-contain rounded-lg"
+                onLoadedData={handleVideoLoad}
+                className={`w-full h-auto object-contain rounded-lg transition-opacity duration-500 ${
+                  isVideoLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
                 aria-label="American flag waving"
               />
             </div>

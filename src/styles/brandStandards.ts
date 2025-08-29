@@ -2,52 +2,43 @@
 // Based on the official brand kit for adhesives, tapes, and sealant solutions
 
 export const brandColors = {
-  // Primary Colors
   primary: {
     regalBlue: {
-      pantone: '634C',
-      hex: '#09668D',
-      rgb: '12, 102, 141',
-      cmyk: '92, 56, 27, 6'
+      hex: '#115B87',
+      rgb: '17, 91, 135',
+      hsl: '207, 78%, 30%'
     },
     blazeOrange: {
-      pantone: '165C',
       hex: '#F16022',
-      rgb: '242, 97, 35',
-      cmyk: '0, 77, 100, 0'
+      rgb: '241, 96, 34',
+      hsl: '16, 88%, 54%'
     }
   },
-  
-  // Secondary Colors
   secondary: {
-    blueVelvet: {
-      pantone: '534C',
-      hex: '#1B3764',
-      rgb: '26, 56, 100',
-      cmyk: '100, 86, 34, 23'
-    },
-    rustyNailOrange: {
-      pantone: '7579C',
+    rustyNail: {
       hex: '#D35127',
-      rgb: '206, 80, 38',
-      cmyk: '12, 82, 100, 5'
+      rgb: '211, 81, 39',
+      hsl: '12, 69%, 49%'
+    },
+    blueVelvet: {
+      hex: '#115B87',
+      rgb: '17, 91, 135',
+      hsl: '207, 78%, 30%'
     },
     slateGrey: {
-      pantone: 'Cool Grey 4C',
       hex: '#BFBFBF',
-      rgb: '191, 192, 192',
-      cmyk: '25, 20, 20, 0'
+      rgb: '191, 191, 191',
+      hsl: '0, 0%, 75%'
     },
     ironGrey: {
       hex: '#F16022',
-      rgb: '219, 218, 217',
-      cmyk: '13, 10, 11, 0'
+      rgb: '241, 96, 34',
+      hsl: '16, 88%, 54%'
     },
     jetBlack: {
-      pantone: 'Black C',
       hex: '#000000',
       rgb: '0, 0, 0',
-      cmyk: '75, 68, 67, 90'
+      hsl: '0, 0%, 0%'
     }
   }
 };
@@ -150,7 +141,7 @@ export const cssVariables = {
   '--forza-regal-blue': brandColors.primary.regalBlue.hex,
   '--forza-blaze-orange': brandColors.primary.blazeOrange.hex,
   '--forza-blue-velvet': brandColors.secondary.blueVelvet.hex,
-  '--forza-rusty-nail': brandColors.secondary.rustyNailOrange.hex,
+  '--forza-rusty-nail': brandColors.secondary.rustyNail.hex,
   '--forza-slate-grey': brandColors.secondary.slateGrey.hex,
   '--forza-iron-grey': brandColors.secondary.ironGrey.hex,
   '--forza-jet-black': brandColors.secondary.jetBlack.hex,

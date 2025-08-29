@@ -25,7 +25,7 @@ const getIndustryLogo = (industry: string) => {
 const categoryColor = (cat: string) => {
   switch (cat) {
     case 'BOND':
-      return `from-[${productColors.bond.primary}] to-[${brandColors.secondary.rustyNailOrange.hex}]`;
+      return `from-[${productColors.bond.primary}] to-[${brandColors.secondary.rustyNail.hex}]`;
     case 'SEAL':
       return `from-[${productColors.seal.primary}] to-[#f4c430]`;
     case 'TAPE':

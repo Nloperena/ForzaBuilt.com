@@ -23,6 +23,7 @@ import type { ServiceCardData } from '@/types/ServiceCard';
 // Lazy load heavy components
 const ServiceCardStack = lazy(() => import('@/components/ServiceCardStack'));
 const IdealChemistrySection = lazy(() => import('@/components/IdealChemistrySection'));
+const IdealChemistrySectionV2 = lazy(() => import('@/components/IdealChemistrySectionV2'));
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -57,7 +58,17 @@ const Index = () => {
         <IndustriesSectionAlt />
       </section>
       
-
+      {/* New Ideal Chemistry Section V2
+      <Suspense fallback={
+        <div className="min-h-[300px] flex items-center justify-center bg-gradient-to-br from-[#115B87] to-[#2C5F8A]">
+          <div className="text-center text-white">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+            <p className="text-lg">Loading Chemistry Section...</p>
+          </div>
+        </div>
+      }>
+        <IdealChemistrySectionV2 />
+      </Suspense> */}
 
       {/* Products Section */}
       <section className="relative">
@@ -123,9 +134,7 @@ const Index = () => {
 
       
 
-      {/* Pre-Made in America Spacer with Alternating Backgrounds */}
-      <section className="relative py-10">
-      </section>
+
 
       {/* Made in America Section */}
       <section className="relative">

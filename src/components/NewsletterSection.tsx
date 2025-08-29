@@ -47,7 +47,7 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <section className="relative py-16 md:py-24 bg-[#1B3764] overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-[#115B87] overflow-hidden">
         {/* Edge triangles positioned at left and right viewport edges */}
         <EdgeTrianglesBackground 
           leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
@@ -74,8 +74,6 @@ const NewsletterSection = () => {
               
               <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10">
                 <div className="p-6 md:p-8 flex-1 flex flex-col">
-                  <div className="h-1 w-full bg-gradient-to-r from-[#F16022] via-white/40 to-[#F16022] rounded mb-8"></div>
-                  
                   <div className="mb-8">
                     <h3 className="text-white font-kallisto text-2xl md:text-3xl font-black">Join Our Newsletter</h3>
                   </div>

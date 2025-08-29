@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 
 const Industries = () => {
   return (
-    <div className="bg-[#1b3764] min-h-screen">
+    <div className="bg-[#115B87] min-h-screen">
       <Header />
       <IndustriesSectionAlt />
       

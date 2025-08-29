@@ -76,7 +76,7 @@ export default function Dashboard() {
                     </TabsTrigger>
                     <TabsTrigger 
                       value="seal" 
-                      className="font-poppins font-bold data-[state=active]:bg-[#1B3764] data-[state=active]:text-white"
+                      className="font-poppins font-bold data-[state=active]:bg-[#115B87] data-[state=active]:text-white"
                     >
                       Seal
                     </TabsTrigger>

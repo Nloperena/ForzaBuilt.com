@@ -235,7 +235,7 @@ const ProductDetailPage: React.FC = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-[#1b3764] flex flex-col">
+      <div className="min-h-screen bg-[#115B87] flex flex-col">
         <Header />
         <main className="flex-1 pt-20 pb-10">
           <div className="max-w-screen-2xl mx-auto px-4 text-center">
@@ -255,7 +255,7 @@ const ProductDetailPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1b3764] flex flex-col">
+    <div className="min-h-screen bg-[#115B87] flex flex-col">
       <DynamicMetaTags
         title={product.name}
         description={product.description}

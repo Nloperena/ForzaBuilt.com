@@ -146,7 +146,7 @@ const Blog = () => {
   };
 
   return (
-    <div className="bg-[#1b3764] min-h-screen">
+    <div className="bg-[#115B87] min-h-screen">
       <Header />
       
       {/* Edge triangles positioned at left and right viewport edges */}
@@ -171,8 +171,8 @@ const Blog = () => {
       </div>
       
       {/* Hero Section */}
-         <section className="relative pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 bg-[#1b3764]">
-         <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
+         <section className="relative pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 bg-[#115B87]">
+                   <div className="absolute inset-0 bg-gradient-to-b from-[#115B87]/80 via-[#115B87]/60 to-[#115B87]/80"></div>
          <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-20">
            <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
              <div className="max-w-6xl mx-auto space-y-8">
@@ -211,7 +211,7 @@ const Blog = () => {
                     </div>
                     <div className="p-6 bg-white/10 backdrop-blur-sm">
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs font-bold text-[#F16022] uppercase tracking-wide bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-[#F16022] font-poppins">
+                        <span className="text-xs font-bold text-white uppercase tracking-wide px-3 py-1 rounded-full font-poppins">
                           {post.category}
                         </span>
                         <span className="text-xs text-white/70 font-poppins">
@@ -227,7 +227,7 @@ const Blog = () => {
                       <div className="flex items-center justify-between">
                         <Link
                           to={`/blog/${generateSlugFromTitle(post.title)}`}
-                          className="inline-flex items-center text-[#F16022] font-bold text-sm hover:text-[#F16022]/80 transition-colors group-hover:translate-x-1 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-[#F16022] hover:bg-white/95 font-poppins"
+                          className="inline-flex items-center text-white font-bold text-sm hover:text-white/90 transition-colors group-hover:translate-x-1 bg-[#F16022] px-4 py-2 rounded-full hover:bg-[#F16022]/80 font-poppins"
                         >
                           Read Article
                           <svg className="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -235,9 +235,9 @@ const Blog = () => {
                           </svg>
                         </Link>
                         <div className="flex space-x-2">
-                          <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on Twitter">
+                          <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on YouTube">
                             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                             </svg>
                           </button>
                           <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on LinkedIn">
@@ -481,9 +481,9 @@ const Blog = () => {
                         viewMode === 'grid' ? 'p-6' : 'p-4'
                       }`}>
                         <div className="flex items-center justify-between mb-3">
-                          <span className="text-xs font-bold text-[#F16022] uppercase tracking-wide bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-[#F16022] font-poppins">
+                          <span className="text-xs font-bold text-white uppercase tracking-wide px-3 py-1 rounded-full font-poppins">
                             {post.category}
-                          </span>
+                        </span>
                           <div className="flex items-center gap-2 text-xs text-white/70 font-poppins">
                             <span>{new Date(post.date).toLocaleDateString()}</span>
                             <span>•</span>
@@ -516,7 +516,7 @@ const Blog = () => {
                         <div className="flex items-center justify-between mt-auto pt-4">
                           <Link
                             to={`/blog/${generateSlugFromTitle(post.title)}`}
-                            className="inline-flex items-center text-[#F16022] font-bold text-sm hover:text-[#F16022]/80 transition-colors group-hover:translate-x-1 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-[#F16022] hover:bg-white/95 font-poppins"
+                            className="inline-flex items-center text-white font-bold text-sm hover:text-white/90 transition-colors group-hover:translate-x-1 bg-[#F16022] px-4 py-2 rounded-full hover:bg-[#F16022]/80 font-poppins"
                           >
                             Read Full Article
                             <svg className="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -524,9 +524,9 @@ const Blog = () => {
                             </svg>
                           </Link>
                           <div className="flex space-x-2">
-                            <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on Twitter">
+                            <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on YouTube">
                               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                               </svg>
                             </button>
                             <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on LinkedIn">

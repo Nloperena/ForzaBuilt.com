@@ -3,9 +3,9 @@
 
 :root {
   /* Brand Colors */
-  --forza-regal-blue: #09668D;
+  --forza-regal-blue: #115B87;
   --forza-blaze-orange: #F16022;
-  --forza-blue-velvet: #1B3764;
+  --forza-blue-velvet: #115B87;
   --forza-rusty-nail: #D35127;
   --forza-slate-grey: #BFBFBF;
   --forza-iron-grey: #F16022;
@@ -21,11 +21,11 @@
   
   /* Product Colors */
   --forza-bond-primary: #F16022;
-  --forza-bond-secondary: #09668D;
+  --forza-bond-secondary: #115B87;
   --forza-seal-primary: #ffd600;
-  --forza-seal-secondary: #09668D;
+  --forza-seal-secondary: #115B87;
   --forza-tape-primary: #e53935;
-  --forza-tape-secondary: #09668D;
+  --forza-tape-secondary: #115B87;
   
   /* Typography */
   --forza-font-heading: 'Kallisto', sans-serif;

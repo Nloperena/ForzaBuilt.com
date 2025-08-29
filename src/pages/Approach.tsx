@@ -29,7 +29,7 @@ const Approach = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#1b3764] pt-24 pb-16 relative">
+    <div className="min-h-screen bg-[#115B87] pt-24 pb-16 relative">
       {/* Orange to Blue Gradient Background */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 

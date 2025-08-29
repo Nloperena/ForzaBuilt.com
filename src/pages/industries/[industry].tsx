@@ -60,7 +60,7 @@ const IndustryPage = () => {
 
   if (!industryData) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#1b3764] text-white">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#115B87] text-white">
         <h1 className="text-4xl font-extrabold mb-4 font-kallisto">Industry Not Found</h1>
         <p className="text-lg">Sorry, we couldn't find the industry you're looking for.</p>
         <Footer />
@@ -69,7 +69,7 @@ const IndustryPage = () => {
   }
 
   return (
-    <div className="bg-[#1b3764] min-h-screen flex flex-col relative">
+    <div className="bg-[#115B87] min-h-screen flex flex-col relative">
       <Header />
       
       <AnimatePresence mode="wait">

@@ -1,32 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import VideoSkeleton from './common/VideoSkeleton';
 
 const StickyBackgroundSectionV2 = () => {
-  const [isInView, setIsInView] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          // Start playing video when in view
-          if (videoRef.current) {
-            videoRef.current.play();
-          }
-        } else {
-          setIsInView(false);
-          // Pause video when out of view
-          if (videoRef.current) {
-            videoRef.current.pause();
-          }
-        }
+        setIsInView(entry.isIntersecting);
       },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-      }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -46,14 +32,20 @@ const StickyBackgroundSectionV2 = () => {
 
   return (
     <>
-      <section ref={sectionRef} className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[85vh] flex items-center justify-center overflow-hidden">
+      <section ref={sectionRef} className="relative h-[36vh] md:h-[42vh] lg:h-[48vh] xl:h-[51vh] flex items-center justify-center overflow-hidden">
+        {/* Video Skeleton Loading State */}
+        {!isVideoLoaded && (
+          <VideoSkeleton />
+        )}
+        
         {/* Video Background with Fade-in Effect */}
         <video
           ref={videoRef}
+          autoPlay
           muted
           loop
           playsInline
-          preload="none"
+          preload="auto"
           onLoadedData={handleVideoLoad}
           className="fixed inset-0 w-full h-full object-cover transition-opacity duration-1000"
           style={{ 
@@ -89,8 +81,7 @@ const StickyBackgroundSectionV2 = () => {
         <div className="relative text-white text-center px-4 md:px-8 max-w-[1600px] w-full z-10">
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-4 md:mb-6 leading-none text-white font-kallisto">
-            <span>Proudly Manufactured</span><br />
-            in America
+            Proudly Manufactured in America
           </h1>
           
           {/* American Flag Image - Appended under heading */}
@@ -111,18 +102,20 @@ const StickyBackgroundSectionV2 = () => {
       </section>
       
       {/* Appended Content Section */}
-      <section className="bg-[#1b3764] pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 relative z-10">
-        <div className="max-w-4xl mx-auto px-3 sm:px-6 md:px-8 text-center">
+      <section className="bg-[#115B87] pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Subheading */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-2 sm:mb-3 md:mb-4 font-kallisto leading-none">
-            <span>Proudly Manufactured</span><br />
-            in America
+            Proudly Manufactured in America
           </h2>
           
           {/* Description */}
-          <p className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto mb-8">
             We're proud to manufacture our high-performance industrial adhesives, tapes, and sealants right here in the USA.
           </p>
+          
+          {/* Orange separator line */}
+          <div className="h-1 w-24 bg-[#F16022] mx-auto rounded-t-full"></div>
         </div>
       </section>
     </>

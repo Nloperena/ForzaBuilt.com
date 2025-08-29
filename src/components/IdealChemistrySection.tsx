@@ -145,7 +145,7 @@ const ChemistryItem: React.FC<ChemistryItemProps & { index: number; getElementRe
     <div
       ref={getElementRef(index)}
       data-index={index}
-      className={`bg-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] mb-4 max-w-[1400px] mx-auto relative z-10 transform ${
+      className={`backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] mb-4 max-w-2xl mx-auto relative z-10 transform ${
         isVisible(index)
           ? 'opacity-100 translate-y-0' 
           : 'opacity-100 translate-y-0'
@@ -229,19 +229,13 @@ const ChemistryItemTablet: React.FC<ChemistryItemProps & { index: number; getEle
     <div
       ref={getElementRef(index)}
       data-index={index}
-      className={`bg-gradient-to-r from-[#1b3764] to-[#1b3764] rounded-lg border border-white/10 hover:border-white/20 transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] mb-6 max-w-[1400px] mx-auto relative z-10 transform ${
+      className={`backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] mb-6 max-w-4xl mx-auto relative z-10 transform ${
         isVisible(index)
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-12'
       }`}
     >
-      {/* Liquid shine overlay */}
-      <div
-        className="pointer-events-none absolute -inset-x-1/2 -inset-y-1/2"
-        style={{
-          background: 'radial-gradient(60% 40% at 50% 50%, rgba(255,255,255,0.15), rgba(255,255,255,0) 60%)',
-        }}
-      />
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 relative z-10">
         {/* Left Column - Icon/Image */}
         <div className="lg:col-span-1 flex justify-center items-center">
@@ -477,49 +471,62 @@ const IdealChemistrySection: React.FC = () => {
           />
         </div>
         
-        {/* Custom positioned triangles - Top and bottom */}
+        {/* Edge triangles positioned at left and right viewport edges - Top set */}
+        <EdgeTrianglesBackground 
+          leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+          rightImage="/Gradients and Triangles/Small Science Triangles.png"
+          opacity={0.6}
+          scale={1.1}
+          leftRotation={265}
+          rightRotation={295}
+          leftFlipH={false}
+          rightFlipV={false}
+          blendMode="overlay"
+        />
+        
+        {/* Custom positioned triangles for zig-zag pattern */}
         <div className="absolute inset-0 pointer-events-none z-10">
-          {/* Top triangle */}
+          {/* Second set - Middle left */}
           <img
             src="/Gradients and Triangles/Small Science Triangles.png"
-            alt="Top Science Triangles"
-            className="absolute top-8 right-8 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
+            alt="Middle Left Science Triangles"
+            className="absolute top-1/3 left-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-50"
             style={{ 
-              mixBlendMode: 'multiply',
-              transform: 'scale(5.0) rotate(265deg)'
+              mixBlendMode: 'overlay',
+              transform: 'translateX(-30%) translateY(-50%) scale(0.9) rotate(280deg)'
             }}
           />
           
-          {/* Bottom triangle */}
+          {/* Third set - Middle right */}
           <img
             src="/Gradients and Triangles/Small Science Triangles 2.png"
-            alt="Bottom Science Triangles"
-            className="absolute bottom-8 left-8 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
+            alt="Middle Right Science Triangles"
+            className="absolute top-2/3 right-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-50"
             style={{ 
-              mixBlendMode: 'multiply',
-              transform: 'scale(5.0) rotate(295deg)'
+              mixBlendMode: 'overlay',
+              transform: 'translateX(30%) translateY(-50%) scale(0.9) rotate(310deg)'
             }}
           />
           
-          {/* Left middle triangle - slightly offset inward */}
+          {/* Fourth set - Bottom left */}
+          <img
+            src="/Gradients and Triangles/Small Science Triangles 2.png"
+            alt="Bottom Left Science Triangles"
+            className="absolute bottom-1/4 left-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-40"
+            style={{ 
+              mixBlendMode: 'overlay',
+              transform: 'translateX(-30%) translateY(-50%) scale(0.8) rotate(250deg)'
+            }}
+          />
+          
+          {/* Fifth set - Bottom right */}
           <img
             src="/Gradients and Triangles/Small Science Triangles.png"
-            alt="Left Middle Science Triangles"
-            className="absolute top-1/2 left-16 md:left-20 lg:left-24 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
+            alt="Bottom Right Science Triangles"
+            className="absolute bottom-1/3 right-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-40"
             style={{ 
-              mixBlendMode: 'multiply',
-              transform: 'translateY(-50%) scale(5.0) rotate(180deg)'
-            }}
-          />
-          
-          {/* Right middle triangle - slightly offset inward */}
-          <img
-            src="/Gradients and Triangles/Small Science Triangles 2.png"
-            alt="Right Middle Science Triangles"
-            className="absolute top-1/2 right-16 md:right-20 lg:right-24 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-60"
-            style={{ 
-              mixBlendMode: 'multiply',
-              transform: 'translateY(-50%) scale(5.0) rotate(90deg)'
+              mixBlendMode: 'overlay',
+              transform: 'translateX(30%) translateY(-50%) scale(0.8) rotate(325deg)'
             }}
           />
         </div>
@@ -533,7 +540,7 @@ const IdealChemistrySection: React.FC = () => {
           <div className="space-y-3 relative z-10">
             {/* Mobile/Desktop variant (visible on all screens below lg) */}
             <div className="block lg:hidden">
-              <div className="text-white text-center mb-4 p-4 bg-white/10 rounded-lg">
+              <div className="text-white text-center mb-4 p-4 backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-lg">
                 Mobile View - {chemistries.length} Chemistry Cards
               </div>
               {chemistries.map((chemistry, index) => (

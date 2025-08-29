@@ -67,7 +67,7 @@ const App = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#1b3764] flex items-center justify-center">
+      <div className="min-h-screen bg-[#115B87] flex items-center justify-center">
         <div className="text-center">
           <div className="text-red-400 text-6xl mb-4">⚠️</div>
           <h1 className="text-white text-2xl font-bold mb-2">Error Loading Products</h1>
@@ -85,7 +85,7 @@ const App = () => {
 
   if (!productsLoaded) {
     return (
-      <div className="min-h-screen bg-[#1b3764] flex items-center justify-center">
+      <div className="min-h-screen bg-[#115B87] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#F2611D] mx-auto mb-4"></div>
           <p className="text-white text-lg">Loading products...</p>

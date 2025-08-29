@@ -61,11 +61,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
   };
 
   const baseClasses = mobile 
-    ? "py-1 px-2 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-1 focus:ring-[#F2611D] text-xs transition-all duration-300"
-    : "py-3.5 px-8 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] transition-all duration-300 ease-in-out";
+    ? "py-2 px-4 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-sm transition-all duration-300 border border-white/30"
+    : "py-3.5 px-8 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] transition-all duration-300 ease-in-out border border-white/30";
 
   const widthClasses = mobile
-    ? "w-20 sm:w-24"
+    ? "w-full"
     : isSearchFocused ? 'w-64' : 'w-40';
 
   return (
@@ -81,7 +81,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
       />
       
       {showSearchResults && searchResults.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto border border-gray-200">
           {searchResults.map((result, index) => (
             <button
               key={`${result.type}-${index}`}

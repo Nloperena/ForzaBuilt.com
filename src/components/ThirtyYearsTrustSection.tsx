@@ -12,7 +12,7 @@ const ThirtyYearsTrustSection: React.FC = () => {
   const chipsOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [0, 1, 1]);
 
   return (
-    <section ref={sectionRef} className="relative z-10 w-full min-h-[70vh] md:min-h-[80vh] bg-[#1b3764] text-white overflow-hidden">
+    <section ref={sectionRef} className="relative z-10 w-full min-h-[70vh] md:min-h-[80vh] bg-[#115B87] text-white overflow-hidden">
       {/* Full-bleed animated background that layers into adjacent sections */}
       <motion.div
         aria-hidden

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useHeaderState } from '@/hooks/useHeaderState';
 import Logo from './Header/Logo';
 import NavigationItem from './Header/NavigationItem';
-
 import MobileMenu from './Header/MobileMenu';
 import OverlayContent from './Header/OverlayContent';
 import SearchBar from './Header/SearchBar';
@@ -39,7 +38,8 @@ const Header = () => {
   return (
     <header 
       ref={headerRef} 
-      className="fixed top-0 w-full z-50 transition-all duration-300 bg-[#0f1f39] backdrop-blur-md shadow-lg"
+      className="fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-2xl bg-white/50 border-b border-white/60 shadow-2xl"
+      style={{ backgroundColor: '#115B8730' }}
       onMouseEnter={handleOverlayEnter}
       onMouseLeave={handleNavLeave}
     >
@@ -101,7 +101,12 @@ const Header = () => {
             onMouseLeave={handleNavLeave}
             onClick={closeOverlay}
           >
-            {/* Background Video */}
+            {/* Default Gradient Background (when no video is hovered) */}
+            {!hoveredVideoUrl && (
+              <div className="absolute inset-0 bg-gradient-to-br from-[#1B3764] to-[#2C5F8A] -z-20"></div>
+            )}
+            
+            {/* Background Video (only when hovered) */}
             {hoveredVideoUrl && (
               <>
                 <video

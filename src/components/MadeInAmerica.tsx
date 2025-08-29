@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import VideoSkeleton from './common/VideoSkeleton';
 
 const MadeInAmerica = () => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+
   return (
-    <section className="pt-16 md:pt-20 lg:pt-24 px-0 md:px-0 text-[#1b3764] bg-[#1b3764]" style={{ marginTop: '-10rem md:-20rem' }}>
+    <section className="pt-16 md:pt-20 lg:pt-24 px-0 md:px-0 text-[#115B87] bg-[#115B87]" style={{ marginTop: '-10rem md:-20rem' }}>
       <div className="max-w-[1000px] mx-auto relative overflow-visible">
         {/* Subtle pyramid background - REMOVED */}
         
@@ -12,6 +19,11 @@ const MadeInAmerica = () => {
           {/* Video Container - Top of Pyramid (Widest) */}
           <div className="w-full h-[40vh] md:h-[60vh] flex justify-center z-10">
             <div className="relative w-full h-full flex justify-center">
+              {/* Video Skeleton Loading State */}
+              {!isVideoLoaded && (
+                <VideoSkeleton className="mt-[2rem] sm:mt-[3rem] md:mt-[4rem] lg:mt-[6rem] xl:mt-[9rem]" />
+              )}
+              
               <video
                 src="/American%20Flag.mp4"
                 autoPlay
@@ -19,7 +31,10 @@ const MadeInAmerica = () => {
                 muted
                 playsInline
                 preload="auto"
-                className="w-full h-full object-contain mt-[2rem] sm:mt-[3rem] md:mt-[4rem] lg:mt-[6rem] xl:mt-[9rem]"
+                onLoadedData={handleVideoLoad}
+                className={`w-full h-full object-contain mt-[2rem] sm:mt-[3rem] md:mt-[4rem] lg:mt-[6rem] xl:mt-[9rem] transition-opacity duration-500 ${
+                  isVideoLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
               />
             </div>
           </div>

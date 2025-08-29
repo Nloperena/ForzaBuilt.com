@@ -19,7 +19,7 @@ const StackableCardsDemo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1b3764]">
+    <div className="min-h-screen bg-[#115B87]">
       <Header />
       
       {/* Navigation to different industry demos */}

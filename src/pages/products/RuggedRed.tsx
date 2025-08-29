@@ -18,7 +18,7 @@ const RuggedRed = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#1b3764] flex flex-col">
+    <div className="min-h-screen bg-[#115B87] flex flex-col">
       <DynamicMetaTags
         title="Rugged Red - Industrial Cleaning Solutions"
         description="Professional industrial cleaning solutions from Rugged Red. Discover our premium cleaning products designed for demanding industrial applications."

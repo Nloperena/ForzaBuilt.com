@@ -30,7 +30,7 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
             {/* Show main product categories instead of individual products */}
             <Link
               to="/products/bond"
-              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
+              className="group block p-6 rounded-lg hover:bg-white/10 transition-all duration-300"
               onClick={onClose}
             >
               <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
@@ -40,7 +40,7 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
             </Link>
             <Link
               to="/products/seal"
-              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
+              className="group block p-6 rounded-lg hover:bg-white/10 transition-all duration-300"
               onClick={onClose}
             >
               <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
@@ -50,7 +50,7 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
             </Link>
             <Link
               to="/products/tape"
-              className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
+              className="group block p-6 rounded-lg hover:bg-white/10 transition-all duration-300"
               onClick={onClose}
             >
               <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
@@ -68,7 +68,7 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
               <Link
                 key={industry.title}
                 to={`/industries/${industry.title.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group block p-6 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300"
+                className="group block p-6 rounded-lg hover:bg-white/10 transition-all duration-300"
                 onClick={onClose}
               >
                 <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
@@ -95,7 +95,7 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          className="global-nav-overlay fixed top-[72px] left-0 w-full bg-[#1b3764] backdrop-blur-sm bg-opacity-90 z-40 shadow-xl overflow-hidden"
+          className="global-nav-overlay fixed top-[72px] left-0 w-full bg-[#115B87] border-b border-white/20 z-40 shadow-2xl overflow-hidden"
           onMouseEnter={() => {}} // Keep overlay open
           onMouseLeave={onClose}
         >

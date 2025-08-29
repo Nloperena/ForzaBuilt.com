@@ -53,16 +53,8 @@ export const useHeaderState = () => {
 
   // Update video URL when overlay content changes
   useEffect(() => {
-    if (activeOverlayContent === 'industries' && industriesData.length > 0) {
-      setHoveredVideoUrl(industriesData[0].videoUrl);
-    } else if (activeOverlayContent === 'products' && productsData.length > 0) {
-      // For now, use a default video URL since Product type doesn't have videoUrl
-      setHoveredVideoUrl(null);
-    } else if (activeOverlayContent === 'tools' && toolsData.length > 0) {
-      setHoveredVideoUrl(toolsData[0].videoUrl);
-    } else {
-      setHoveredVideoUrl(null);
-    }
+    // Don't auto-select any video - let user hover to see videos
+    setHoveredVideoUrl(null);
   }, [activeOverlayContent]);
 
   const closeOverlay = useCallback(() => {

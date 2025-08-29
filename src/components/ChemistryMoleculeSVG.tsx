@@ -113,7 +113,7 @@ const ChemistryMoleculeSVG: React.FC<ChemistryMoleculeSVGProps> = ({
   /* ---------- render ---------- */
   if (isLoading) {
     return (
-      <div className={`w-full h-full bg-[#1b3764] ${className}`}>
+      <div className={`w-full h-full bg-[#115B87] ${className}`}>
         <div className="flex items-center justify-center h-full">
           <div className="animate-pulse text-orange-500">Loading...</div>
         </div>
@@ -122,7 +122,7 @@ const ChemistryMoleculeSVG: React.FC<ChemistryMoleculeSVGProps> = ({
   }
 
   return (
-    <div ref={containerRef} className={`relative w-full h-full bg-[#1b3764] ${className}`}>
+    <div ref={containerRef} className={`relative w-full h-full bg-[#115B87] ${className}`}>
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#F2611D] via-[#F2611D]/90 to-transparent blur-[80px] pointer-events-none" />
       <svg
         ref={svgRef}

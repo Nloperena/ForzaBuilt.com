@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const IndustrialDatasheetPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#1b3764]">
+    <div className="min-h-screen bg-[#115B87]">
       <Header />
       
       {/* Main Content */}

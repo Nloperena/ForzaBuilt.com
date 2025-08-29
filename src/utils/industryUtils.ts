@@ -13,7 +13,7 @@ export const getIndustryLogo = (industry: string) => {
 export const getCategoryColor = (cat: string) => {
   switch (cat.toUpperCase()) {
     case 'BOND':
-      return `from-[${productColors.bond.primary}] to-[${brandColors.secondary.rustyNailOrange.hex}]`;
+      return `from-[${productColors.bond.primary}] to-[${brandColors.secondary.rustyNail.hex}]`;
     case 'SEAL':
       return `from-[${productColors.seal.primary}] to-[#f4c430]`;
     case 'TAPE':
@@ -26,7 +26,7 @@ export const getCategoryColor = (cat: string) => {
 // Industry colors using gradients with 70% blue and 30% industry color
 export const getIndustryColor = (industry: string) => {
   const industryLower = industry.toLowerCase();
-  const brandBlue = '#1b3764'; // Forza brand blue
+  const brandBlue = '#115B87'; // Forza brand blue
   
   // Use gradients with 70% blue and 30% industry color
   switch (industryLower) {

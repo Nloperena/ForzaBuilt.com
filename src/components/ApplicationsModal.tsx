@@ -11,7 +11,7 @@ interface ApplicationsModalProps {
 
 const ApplicationsModal: React.FC<ApplicationsModalProps> = ({ isVisible, onClose, opacity = 1, industry }) => {
   // Get the industry color (primary) or fallback to default
-  const forzaBlue = '#1b3764';
+  const forzaBlue = '#115B87';
   const industryColor = industry ? getIndustryColors(industry).primary : '#147974';
   const gradient = `linear-gradient(to right, ${forzaBlue}, ${industryColor})`;
 

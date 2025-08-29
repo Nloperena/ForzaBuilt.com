@@ -66,7 +66,7 @@ const DynamicProductsSection: React.FC<DynamicProductsSectionProps> = ({
   // Mobile View: A simple list
   if (isMobile) {
     return (
-      <section className={`py-16 bg-[#1b3764] ${className}`}>
+      <section className={`py-16 bg-[#115B87] ${className}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-extrabold text-white mb-4 font-kallisto">{industry.toUpperCase()} SOLUTIONS</h2>
@@ -119,7 +119,7 @@ const DynamicProductsSection: React.FC<DynamicProductsSectionProps> = ({
 
   // Desktop View: Grid of cards
   return (
-    <section className={`py-20 bg-[#1b3764] ${className}`}>
+    <section className={`py-20 bg-[#115B87] ${className}`}>
       <div className="max-w-7xl mx-auto px-4">
         {/* Header Section */}
         <div className="text-center mb-16">

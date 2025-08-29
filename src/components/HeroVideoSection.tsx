@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import VideoSkeleton from './common/VideoSkeleton';
 
 const HeroVideoSection = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -33,16 +34,9 @@ const HeroVideoSection = () => {
 
   return (
     <section className="relative h-[50vh] flex items-center justify-center overflow-hidden hero-video-section">
-      {/* Clean loading state */}
+      {/* Video Skeleton Loading State */}
       {!isVideoLoaded && (
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#1B3764] to-[#2C5F8A] flex items-center justify-center">
-          {/* Simple loading indicator */}
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 bg-white/40 rounded-full animate-bounce"></div>
-            <div className="w-3 h-3 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-            <div className="w-3 h-3 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-          </div>
-        </div>
+        <VideoSkeleton />
       )}
       
       {/* Video - always load for better mobile performance */}

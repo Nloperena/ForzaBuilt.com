@@ -67,7 +67,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm w-screen h-screen"
             onClick={onClose}
           />
           
@@ -82,14 +82,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               damping: 30,
               mass: 0.8
             }}
-            className="fixed inset-y-0 right-0 w-80 z-50 bg-[#1b3764] border-l border-gray-200/20 shadow-2xl rounded-bl-2xl drop-shadow-2xl"
-            style={{
-              backgroundColor: '#1b3764',
-              boxShadow: '0 0 50px rgba(0, 0, 0, 0.8), 0 0 100px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.1)'
-            }}
+            className="fixed inset-y-0 right-0 w-80 z-50 bg-gradient-to-b from-[#1B3764] via-[#115B87] to-[#1B3764] border-l border-white/20 shadow-2xl rounded-bl-2xl"
           >
             {/* Header */}
-            <div className="flex justify-between items-center p-6 border-b border-white/10 bg-[#1b3764]">
+            <div className="flex justify-between items-center p-6 border-b border-white/20 bg-gradient-to-r from-[#1B3764] to-[#115B87]">
               {activeSubmenu ? (
                 <button 
                   onClick={handleBackToMain}
@@ -105,7 +101,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <img 
                     src="/forza-logo-full.png" 
                     alt="Forza Built" 
-                    className="h-16 w-auto sm:h-20 md:h-24"
+                    className="h-20 w-auto object-contain"
                   />
                 </Link>
               )}
@@ -122,29 +118,28 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto bg-[#1b3764]">
-              <div className="p-6 bg-[#1b3764] rounded-tl-2xl">
+            <div className="flex-1 overflow-y-auto bg-gradient-to-b from-[#115B87] to-[#1B3764]">
+              <div className="p-6">
                 {!activeSubmenu ? (
                   <>
                     {/* Search */}
-                    <div className="mb-8 bg-[#1b3764]">
+                    <div className="mb-8">
                       <SearchBar mobile={true} />
                     </div>
 
                     {/* Main Navigation */}
-                    <nav className="space-y-3 bg-[#1b3764]">
+                    <nav className="space-y-2">
                       {navigation.map((item, index) => (
                         <motion.div
                           key={item.name}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className="bg-[#1b3764]"
                         >
                           {hasDropdown(item.name) ? (
                             <button
                               onClick={() => handleSubmenuToggle(item.name)}
-                              className="w-full flex items-center justify-between py-4 px-4 rounded-2xl text-base font-medium text-white hover:bg-white/10 hover:text-white/80 transition-all duration-200 group"
+                              className="w-full flex items-center justify-between py-4 px-4 rounded-2xl text-base font-medium text-white bg-white/10 hover:bg-white/20 hover:text-white transition-all duration-200 group border border-white/20"
                             >
                               <span>{item.name}</span>
                               <svg 
@@ -160,7 +155,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                             <Link
                               to={item.href}
                               onClick={onClose}
-                              className="block py-4 px-4 rounded-2xl text-base font-medium text-white hover:bg-white/10 hover:text-white/80 transition-all duration-200"
+                              className="block py-4 px-4 rounded-2xl text-base font-medium text-white bg-white/10 hover:bg-white/20 hover:text-white transition-all duration-200 border border-white/20"
                             >
                               {item.name}
                             </Link>
@@ -174,22 +169,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="space-y-3 bg-[#1b3764]"
+                    className="space-y-2"
                   >
                     <h2 className="text-xl font-semibold text-white mb-6">{activeSubmenu}</h2>
-                    <nav className="space-y-3 bg-[#1b3764]">
+                    <nav className="space-y-2">
                       {getSubmenuItems(activeSubmenu).map((subItem, index) => (
                         <motion.div
                           key={subItem.name}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.05 }}
-                          className="bg-[#1b3764]"
                         >
                           <Link
                             to={subItem.href}
                             onClick={onClose}
-                            className="block py-3 px-4 rounded-xl text-sm font-medium text-white hover:bg-white/10 hover:text-white/80 transition-all duration-200"
+                            className="block py-3 px-4 rounded-xl text-sm font-medium text-white bg-white/10 hover:bg-white/20 hover:text-white transition-all duration-200 border border-white/20"
                           >
                             {subItem.name}
                           </Link>
@@ -202,12 +196,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             </div>
 
             {/* Footer */}
-            <div className="border-t border-white/10 p-6 space-y-4 bg-[#1b3764] rounded-bl-2xl">
+            <div className="border-t border-white/20 p-6 space-y-4 bg-gradient-to-r from-[#1B3764] to-[#115B87] rounded-bl-2xl">
               <Button asChild className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-2xl text-base font-medium py-4 transition-all duration-200 shadow-lg">
                 <Link to="/contact" onClick={onClose}>Contact Us</Link>
               </Button>
-
-
             </div>
           </motion.div>
         </>

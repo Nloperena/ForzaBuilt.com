@@ -108,7 +108,7 @@ function ChemistryFlipCard({
         </div>
 
         {/* Back */}
-                      <div className="absolute inset-0 rounded-2xl bg-[#1b3764] text-white p-4 sm:p-5 md:p-6 flex items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                      <div className="absolute inset-0 rounded-2xl bg-[#115B87] text-white p-4 sm:p-5 md:p-6 flex items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div>
             <div className="font-kallisto font-black uppercase mb-2 text-[clamp(12px,1.6vw,20px)] leading-[1.1]">
               {category.name}
@@ -131,7 +131,7 @@ const ProductChemistriesSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="py-10 sm:py-14 md:py-16 lg:py-20 xl:py-24 bg-[#1b3764] text-white">
+          <section className="py-10 sm:py-14 md:py-16 lg:py-20 xl:py-24 bg-[#115B87] text-white">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-[2000px] mx-auto">
                     <h2 className="text-center font-kallisto font-black leading-[1.1] text-4xl md:text-5xl lg:text-5xl xl:text-6xl mb-6 sm:mb-8 md:mb-10">
               Product Chemistries

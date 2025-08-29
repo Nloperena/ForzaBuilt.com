@@ -3,10 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 import { MapPin, Phone, Mail, Clock, Linkedin } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import VideoSkeleton from '@/components/common/VideoSkeleton';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -116,6 +120,12 @@ const Contact = () => {
         {/* Hero Section */}
         <section className="relative h-96 flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-[#1B3764]/90 to-[#09668D]/70 z-10"></div>
+          
+          {/* Video Skeleton Loading State */}
+          {!isVideoLoaded && (
+            <VideoSkeleton />
+          )}
+          
           <video
             ref={videoRef}
             autoPlay
@@ -123,7 +133,8 @@ const Contact = () => {
             muted
             playsInline
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover"
+            onLoadedData={() => setIsVideoLoaded(true)}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
             style={{ opacity: isVideoLoaded ? 1 : 0, zIndex: 1 }}
           >
             <source 

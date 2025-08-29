@@ -229,7 +229,7 @@ const ProductChemistriesSectionV2: React.FC = () => {
           </div>
 
           {/* Back */}
-          <div className="absolute inset-0 rounded-2xl bg-[#1b3764] text-white p-4 sm:p-5 md:p-6 flex items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+          <div className="absolute inset-0 rounded-2xl bg-[#115B87] text-white p-4 sm:p-5 md:p-6 flex items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
             <div>
               <div className="font-kallisto font-black uppercase mb-2 text-[clamp(12px,1.6vw,20px)] leading-[1.1]">
                 {category.name}
@@ -285,7 +285,7 @@ const HorizontalChemistryRow: React.FC = () => {
   ];
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 bg-[#1b3764] text-white">
+          <section className="py-8 sm:py-12 md:py-16 bg-[#115B87] text-white">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-8xl mx-auto">
         <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black font-kallisto mb-8 text-center leading-none">
           Chemistry Types

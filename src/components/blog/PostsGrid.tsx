@@ -39,7 +39,7 @@ const PostsGrid: React.FC<PostsGridProps> = ({ posts, viewMode, calculateReading
                 viewMode === 'grid' ? 'p-6' : 'p-4'
               }`}>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-bold text-[#F16022] uppercase tracking-wide bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-[#F16022] font-poppins">
+                  <span className="text-xs font-bold text-white uppercase tracking-wide px-3 py-1 rounded-full font-poppins">
                     {post.category}
                   </span>
                   <div className="flex items-center gap-2 text-xs text-white/70 font-poppins">
@@ -61,7 +61,7 @@ const PostsGrid: React.FC<PostsGridProps> = ({ posts, viewMode, calculateReading
                 <div className="flex items-center justify-between mt-auto pt-4">
                   <Link
                     to={`/blog/${generateSlugFromTitle(post.title)}`}
-                    className="inline-flex items-center text-[#F16022] font-bold text-sm hover:text-[#F16022]/80 transition-colors group-hover:translate-x-1 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-[#F16022] hover:bg-white/95 font-poppins"
+                    className="inline-flex items-center text-white font-bold text-sm hover:text-white/90 transition-colors group-hover:translate-x-1 bg-[#F16022] px-4 py-2 rounded-full hover:bg-[#F16022]/80 font-poppins"
                   >
                     Read Full Article
                     <svg className="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
