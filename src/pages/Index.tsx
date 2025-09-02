@@ -19,11 +19,14 @@ import DynamicMetaTags from '@/components/DynamicMetaTags';
 import { getCardsByIndustry } from '@/data/stackableCardsData';
 import { brandColors, getIndustryGradient } from '@/styles/brandStandards';
 import type { ServiceCardData } from '@/types/ServiceCard';
+import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
+import IdealChemistriesSection from '@/components/IdealChemistriesSection';
+import ProductsSectionRow from '@/components/ProductsSectionRow';
 
 // Lazy load heavy components
 const ServiceCardStack = lazy(() => import('@/components/ServiceCardStack'));
-const IdealChemistrySection = lazy(() => import('@/components/IdealChemistrySection'));
-const IdealChemistrySectionV2 = lazy(() => import('@/components/IdealChemistrySectionV2'));
+// import IdealChemistrySection from '@/components/IdealChemistrySection';
+// import IdealChemistrySectionV2 from '@/components/IdealChemistrySectionV2';
 
 const Index = () => {
   const isMobile = useIsMobile();
@@ -57,39 +60,17 @@ const Index = () => {
 
         <IndustriesSectionAlt />
       </section>
-      
-      {/* New Ideal Chemistry Section V2
-      <Suspense fallback={
-        <div className="min-h-[300px] flex items-center justify-center bg-gradient-to-br from-[#115B87] to-[#2C5F8A]">
-          <div className="text-center text-white">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-            <p className="text-lg">Loading Chemistry Section...</p>
-          </div>
-        </div>
-      }>
-        <IdealChemistrySectionV2 />
-      </Suspense> */}
 
       {/* Products Section */}
-      <section className="relative">
-        {/* Optimized Gradient Background */}
-        <OptimizedGradient variant="left" opacity={0.8} />
-
-        <ScienceTrianglesBackground 
-          variant="small2" 
-          position="top-right" 
-          opacity={0.61} 
-          scale={0.6}
-          blendMode="overlay"
-        />
-        <ScienceTrianglesBackground 
-          variant="large" 
-          position="bottom-left" 
-          opacity={0.61} 
-          scale={0.7}
-          blendMode="overlay"
-        />
-        <ProductsSection />
+      <section className="relative overflow-hidden">
+        {/* Orange to Blue Gradient Background - Bottom Right */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div 
+            className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_center_bottom,rgba(242,97,29,0.6)_0%,rgba(242,97,29,0.5)_25%,rgba(242,97,29,0.35)_45%,rgba(242,97,29,0.2)_65%,rgba(242,97,29,0.1)_80%,rgba(242,97,29,0.03)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_center_bottom,rgba(242,97,29,0.6)_0%,rgba(242,97,29,0.5)_25%,rgba(242,97,29,0.35)_45%,rgba(242,97,29,0.2)_65%,rgba(242,97,29,0.1)_80%,rgba(242,97,29,0.03)_90%,transparent_100%)]"
+            style={{ opacity: 1 }}
+          />
+        </div>
+        <ProductsSectionRow />
       </section>
       
       {/* Sticky Background Section */}
@@ -119,7 +100,7 @@ const Index = () => {
       <ProductChemistriesSectionV2 /> */}
 
       {/* Ideal Chemistry Section */}
-      <Suspense fallback={
+      {/* <Suspense fallback={
         <div className="min-h-[300px] flex items-center justify-center bg-gradient-to-br from-[#1B3764] to-[#2C5F8A]">
           <div className="text-center text-white">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
@@ -128,23 +109,32 @@ const Index = () => {
         </div>
       }>
         <IdealChemistrySection />
-      </Suspense>
+      </Suspense> */}
 
       
 
       
 
 
+
+      {/* Ideal Chemistries Section - new version */}
+      <IdealChemistriesSection />
 
       {/* Made in America Section */}
       <section className="relative">
         <StickyBackgroundSectionV2 />
       </section>
-      
 
-      
+      {/* Edge Triangles Background spanning both sections and divider */}
+      {/* Removed EdgeTrianglesBackground overlay and its parent div */}
+
+      {/* Orange Divider */}
+      <div className="flex justify-center items-center h-12 w-full relative z-10" style={{ background: '#115B87' }}>
+        <div className="w-full max-w-5xl h-3 bg-[#F16022] rounded-full" style={{ borderRadius: '999px' }}></div>
+      </div>
+
       {/* Newsletter Section - STANDALONE */}
-      <div className="relative w-full">
+      <div className="relative w-full z-10">
         <NewsletterSection />
       </div>
       
