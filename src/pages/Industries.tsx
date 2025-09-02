@@ -11,6 +11,7 @@ const Industries = () => {
   return (
     <div className="bg-[#115B87] min-h-screen">
       <Header />
+      <div className="pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24" />
       <IndustriesSectionAlt />
       
       {/* Spacer above footer */}

@@ -446,19 +446,16 @@ const ProductCategoryPage: React.FC = () => {
                       </span>
                     </div>
 
-                    <h1 className="mb-6">
-                      {getProductCategoryLogo(productCategory) ? (
-                        <img 
-                          src={getProductCategoryLogo(productCategory)} 
-                          alt={`Forza ${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Product Line`}
-                          className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto object-contain"
-                        />
-                      ) : (
-                        <span className="text-5xl lg:text-6xl font-kallisto font-black leading-tight">
-                          {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
-                        </span>
-                      )}
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto text-center">
+                      {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
                     </h1>
+                    {getProductCategoryLogo(productCategory) && (
+                      <img 
+                        src={getProductCategoryLogo(productCategory)} 
+                        alt={`Forza ${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Product Line`}
+                        className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto object-contain mt-2 mx-auto"
+                      />
+                    )}
 
                     <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
                       Discover our premium {productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.
@@ -692,7 +689,7 @@ const ProductCategoryPage: React.FC = () => {
             <div className="flex-1">
               {/* Results Info - Glassmorphic Badge */}
               <div className="flex justify-between items-center mb-6">
-                <div className="bg-[#3f5275]/50 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg">
+                <div className="bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg">
                   <p className="text-sm text-white/90">
                     <span className="font-semibold text-white">
                       {isLoading ? (
@@ -717,7 +714,7 @@ const ProductCategoryPage: React.FC = () => {
                 </div>
                 
                 {/* Mobile Sort Button */}
-                <button className="lg:hidden bg-[#3f5275]/50 backdrop-blur-xl p-2 rounded-full border border-white/20 shadow-lg">
+                <button className="lg:hidden bg-white/10 backdrop-blur-xl p-2 rounded-full border border-white/20 shadow-lg">
                   <ArrowUpDown className="text-white h-5 w-5" />
                 </button>
               </div>
@@ -735,7 +732,7 @@ const ProductCategoryPage: React.FC = () => {
                     <div 
                       className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl backdrop-blur-xl bg-white/10 border border-white/20"
                       style={{
-                        background: `linear-gradient(to bottom, rgba(15, 31, 57, 0.8) 0%, rgba(15, 31, 57, 0.8) 70%, ${getIndustryColorHex(product.industry?.[0] || '')}CC 100%)`,
+                        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 70%, ${getIndustryColorHex(product.industry?.[0] || '')}CC 100%)`,
                         filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))',
                         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                       }}
@@ -746,7 +743,7 @@ const ProductCategoryPage: React.FC = () => {
                     >
                       {/* Desktop: Badge above image */}
                       <div className="absolute top-3 left-3 z-30 hidden md:block">
-                        <div className="px-3 py-1 rounded-full bg-gradient-to-r from-[#0f1f39] via-[#0f1f39] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                        <div className="px-3 py-1 rounded-full bg-gradient-to-r from-white/20 via-white/20 to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1">
                           {getIndustryLogo(product.industry?.[0] || '') ? (
                             <img 
                               src={getIndustryLogo(product.industry?.[0] || '')} 
@@ -814,7 +811,7 @@ const ProductCategoryPage: React.FC = () => {
                             {product.name.split('–')[1]?.trim() || product.description}
                           </p>
                           {/* Mobile: Industry Badge */}
-                          <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-[#0f1f39] via-[#0f1f39] to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide mt-2">
+                          <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-white/20 via-white/20 to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide mt-2">
                             {getIndustryLogo(product.industry?.[0] || '') ? (
                               <img 
                                 src={getIndustryLogo(product.industry?.[0] || '')} 

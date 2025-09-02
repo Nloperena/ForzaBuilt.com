@@ -31,9 +31,22 @@ const About = () => {
           blendMode="overlay"
         />
         
+        {/* About Us Heading and Subheading - match Industries page style */}
+        <section className="pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 w-full px-4 sm:px-6 md:px-8 lg:px-20">
+          <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
+            <div className="max-w-6xl mx-auto space-y-8">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto text-center">
+                About Us
+              </h1>
+              <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
+                Get Ready for Great
+              </p>
+            </div>
+          </div>
+        </section>
         {/* Meet Forza Video Section */}
-        <section className="relative flex flex-col items-center justify-start overflow-hidden text-center py-32 z-20">
-          <div className="relative w-full max-w-[72rem] aspect-video mt-28 bg-black bg-opacity-90 p-12 rounded-[2rem] shadow-2xl border-2 border-gray-700 z-20">
+        <section className="relative flex flex-col items-center justify-start overflow-hidden text-center py-16 z-20">
+          <div className="relative w-full max-w-[72rem] aspect-video bg-black bg-opacity-90 p-12 rounded-[2rem] shadow-2xl border-2 border-gray-700 z-20">
             <iframe
               src="https://www.youtube.com/embed/DjI8bEcu6FI?autoplay=1&mute=1&loop=1&playlist=DjI8bEcu6FI&si=TmFaUGLTPbk8fClu"
               title="YouTube video player"
@@ -55,7 +68,7 @@ const About = () => {
         <section className="relative pt-8 md:pt-16 pb-6 md:pb-8 px-4 max-w-[1400px] mx-auto text-center z-20">
           <div className="max-w-[1400px] mx-auto space-y-8">
             <h1 className="font-black text-white font-kallisto text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-none break-words">
-              About Us
+              Welcome to the Forza Family
             </h1>
             <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
               Forza is a family-owned adhesive, sealant & specialty tape manufacturer based in the USA. We supply the global industry with superior, high-performing, customized products.

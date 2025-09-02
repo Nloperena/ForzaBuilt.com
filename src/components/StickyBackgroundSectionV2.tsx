@@ -47,7 +47,7 @@ const StickyBackgroundSectionV2 = () => {
           playsInline
           preload="auto"
           onLoadedData={handleVideoLoad}
-          className="fixed inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
           style={{ 
             zIndex: -1,
             opacity: isInView && isVideoLoaded ? 1 : 0
@@ -111,11 +111,11 @@ const StickyBackgroundSectionV2 = () => {
           
           {/* Description */}
           <p className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto mb-8">
-            We're proud to manufacture our high-performance industrial adhesives, tapes, and sealants right here in the USA.
+            We're proud to manufacture our high-performance industrial adhesives and sealants right here in America.
           </p>
-          
           {/* Orange separator line */}
-          <div className="h-1 w-24 bg-[#F16022] mx-auto rounded-t-full"></div>
+          {/* Divider will be added below as per next step */}
+          {/* Orange divider removed as per new instructions */}
         </div>
       </section>
     </>

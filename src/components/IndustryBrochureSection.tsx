@@ -78,7 +78,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
     <section 
       className="w-full py-16 md:py-20 px-4 md:px-6 lg:px-8"
       style={{
-        background: `linear-gradient(315deg, ${gradientColors})`
+        background: `linear-gradient(to top, ${gradientColors})`
       }}
     >
       <div className="max-w-7xl mx-auto">

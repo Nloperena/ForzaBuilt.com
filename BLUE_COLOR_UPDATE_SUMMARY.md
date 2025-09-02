@@ -88,3 +88,4 @@ To complete the blue color update across the entire website, you can use the fol
 - All glassmorphic effects now use the new blue as the base color
 - Brand standards and CSS custom properties have been updated consistently
 - The update maintains the visual hierarchy and design consistency across the site
+

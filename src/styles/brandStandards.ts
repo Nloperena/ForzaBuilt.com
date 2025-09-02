@@ -206,7 +206,6 @@ export const getIndustryBrochureGradient = (industry: string) => {
     result: `${mainBlue} 0%, ${mainBlue} 20%, ${industryColorRgb} 60%, ${industryColorRgb} 100%`
   });
   
-  // Create gradient with 30% industry color, 70% Forza blue
-  // Blue starts at 0% and transitions to industry color at 70%
-  return `${mainBlue} 0%, ${mainBlue} 70%, ${industryColorRgb} 100%`;
+  // Create gradient with strong contrast: industry color at bottom, blue at top
+  return `${industryColorRgb} 0%, ${industryColorRgb} 30%, ${mainBlue} 100%`;
 }; 

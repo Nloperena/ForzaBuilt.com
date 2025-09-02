@@ -304,23 +304,12 @@ const ProductDetailPage: React.FC = () => {
                     </div>
 
                     {/* Product ID */}
-                    <h1 className="text-4xl md:text-5xl lg:text-5xl font-kallisto font-black mb-4 leading-none text-white" 
-                        style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto text-center">
                       {product.id.toUpperCase()}
                     </h1>
-
-                    {/* Product Full Name */}
-                    <div className="mb-6">
-                      <h2 className="text-xl md:text-2xl lg:text-3xl text-white font-semibold leading-tight">
-                        {product.name}
-                      </h2>
+                    <div className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed text-center">
+                      {product.name.split('–')[1]?.trim() || product.description}
                     </div>
-
-                    {/* Description */}
-                    <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl" 
-                       style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                      {product.description}
-                    </p>
 
                     {/* Action Buttons */}
                     <div className="flex flex-wrap gap-4">

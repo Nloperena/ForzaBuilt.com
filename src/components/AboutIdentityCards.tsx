@@ -9,7 +9,7 @@ const AboutIdentityCards = () => {
   };
 
   return (
-    <section className="py-10 md:py-14 px-4 bg-[#115B87]">
+    <section className="py-10 md:py-14 px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 justify-items-center max-w-4xl mx-auto">
         {/* Forza Definition Card */}
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-8 border border-white/60 w-96 h-96 mx-auto aspect-square">

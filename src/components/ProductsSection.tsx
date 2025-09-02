@@ -95,11 +95,14 @@ const ProductsSection = () => {
 
   return (
     <section className="pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 pb-16 bg-[#115B87] text-white relative overflow-hidden">
-      {/* Orange to Blue Gradient Background - Bottom Right */}
+      {/* Contrasting Orange-to-Blue Gradient Background - From Bottom */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_center_bottom,rgba(242,97,29,0.6)_0%,rgba(242,97,29,0.5)_25%,rgba(242,97,29,0.35)_45%,rgba(242,97,29,0.2)_65%,rgba(242,97,29,0.1)_80%,rgba(242,97,29,0.03)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_center_bottom,rgba(242,97,29,0.6)_0%,rgba(242,97,29,0.5)_25%,rgba(242,97,29,0.35)_45%,rgba(242,97,29,0.2)_65%,rgba(242,97,29,0.1)_80%,rgba(242,97,29,0.03)_90%,transparent_100%)]"
-          style={{ opacity: 1 }}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to top, rgba(241, 96, 34, 0.95) 0%, rgba(241, 96, 34, 0.7) 30%, #115B87 100%)',
+            opacity: 1
+          }}
         />
       </div>
       

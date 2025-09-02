@@ -4,8 +4,9 @@ import { Card } from './ui/card';
 import { industries } from '../data/industries';
 import type { Industry } from '../data/industries';
 import { useLandscapeValues } from '@/hooks/use-landscape';
-import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
+
 import VideoSkeleton from './common/VideoSkeleton';
+import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 
 function hexToRgba(hex: string, alpha: number): string {
   let normalized = hex.replace('#', '');
@@ -50,19 +51,20 @@ const IndustriesSectionAlt = () => {
           style={{ opacity: 1 }}
         />
       </div>
-      
-      {/* Edge triangles positioned at left and right viewport edges */}
-      <EdgeTrianglesBackground 
+      {/* Edge triangles positioned at left and right viewport edges (like ProductsSection, but swapped images) */}
+      <EdgeTrianglesBackground
         leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
         rightImage="/Gradients and Triangles/Small Science Triangles.png"
         opacity={0.6}
-        scale={1.3}
-        leftRotation={280}
-        rightRotation={280}
-        leftFlipH={true}
-        rightFlipV={true}
+        scale={1.1}
+        leftRotation={265}
+        rightRotation={295}
+        leftFlipH={false}
+        rightFlipV={false}
         blendMode="overlay"
       />
+      
+
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20">
         {/* Header Section */}
         <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 relative z-10">
@@ -91,7 +93,7 @@ const IndustriesSectionAlt = () => {
                   <Card
                     className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-white/10"
                     style={{
-                      backgroundImage: `linear-gradient(to right, rgba(27, 55, 100, 0.6), rgba(70, 93, 129, 0.6), ${industry.color ? `${industry.color}99` : 'rgba(241, 106, 38, 0.6)'})`,
+                      backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1), ${industry.color ? `${industry.color}99` : 'rgba(241, 106, 38, 0.6)'})`,
                       boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                     }}
                     onMouseEnter={() => {
@@ -191,7 +193,7 @@ const IndustriesSectionAlt = () => {
                   <Card
                     className="shadow-xl sm:shadow-2xl rounded-lg sm:rounded-xl md:rounded-2xl border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-white/10"
                     style={{
-                      backgroundImage: `linear-gradient(to right, rgba(27, 55, 100, 0.6), rgba(70, 93, 129, 0.6), ${industry.color ? `${industry.color}99` : 'rgba(241, 106, 38, 0.6)'})`,
+                      backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1), ${industry.color ? `${industry.color}99` : 'rgba(241, 106, 38, 0.6)'})`,
                       boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                     }}
                     onMouseEnter={() => {
@@ -245,7 +247,7 @@ const IndustriesSectionAlt = () => {
                         className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none text-white"
                         style={{
                           zIndex: 10,
-                          backgroundImage: `linear-gradient(to right, #1b3764, #465D81, ${industry.color || '#f16a26'})`
+                          backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1), ${industry.color || '#f16a26'})`
                         }}
                       >
                         <div className="flex items-center justify-between gap-1">

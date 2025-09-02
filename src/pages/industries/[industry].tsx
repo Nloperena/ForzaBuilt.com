@@ -17,7 +17,8 @@ import { CONSTRUCTION_DATA } from '../../data/industries/construction';
 import { TRANSPORTATION_DATA } from '../../data/industries/transportation';
 import { COMPOSITES_DATA } from '../../data/industries/composites';
 import { INSULATION_DATA } from '../../data/industries/insulation';
-import ScienceTrianglesBackground from '@/components/common/ScienceTrianglesBackground';
+import IdealChemistriesSection from '@/components/IdealChemistriesSection';
+
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -107,42 +108,27 @@ const IndustryPage = () => {
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         >
           <h1
-            className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black leading-none break-words w-full font-kallisto flex flex-row items-center justify-center gap-2 sm:gap-4"
-            style={{ color: industryData.color || '#1b3764' }}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto text-center w-full"
           >
-            <span className="leading-none" style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}>{industryData.title.toUpperCase()}</span>
-            {industryData.logo ? (
-              <motion.img
-                src={industryData.logo}
-                alt={`${industryData.title} icon`}
-                className="inline-block align-middle h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 w-auto object-contain"
-                style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}
-                loading="lazy"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 }}
-              />
-            ) : null}
+            {industryData.title.toUpperCase()}
           </h1>
+          {industryData.logo ? (
+            <motion.img
+              src={industryData.logo}
+              alt={`${industryData.title} icon`}
+              className="inline-block align-middle h-10 sm:h-14 md:h-20 lg:h-24 xl:h-28 w-auto object-contain mt-2 mx-auto"
+              style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}
+              loading="lazy"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 }}
+            />
+          ) : null}
         </motion.div>
       </section>
 
-      {/* Triangle Backgrounds - same approach as products section */}
-      <ScienceTrianglesBackground 
-        variant="small2" 
-        position="top-right" 
-        opacity={0.61} 
-        scale={0.6}
-        blendMode="overlay"
-      />
-      <ScienceTrianglesBackground 
-        variant="large" 
-        position="bottom-left" 
-        opacity={0.61} 
-        scale={0.7}
-        blendMode="overlay"
-      />
+
 
       {/* Dynamic Industry Headings Section */}
       <section className="bg-white text-[#1b3764] py-8 sm:py-12 md:py-16 relative z-[30]">
@@ -253,14 +239,14 @@ const IndustryPage = () => {
         <ProductsExplorerClone industryName={industryData.title} />
       </div>
 
-      {/* Chemistries Section - match homepage version */}
-      <div className="relative z-[30]">
-        <IdealChemistrySection />
-      </div>
-
       {/* Industry Brochure Section */}
       <div className="relative z-[30]">
         <IndustryBrochureSection industry={industryData.title} />
+      </div>
+
+      {/* Chemistries Section - match homepage version */}
+      <div className="relative z-[30]">
+        <IdealChemistriesSection />
       </div>
 
         </motion.div>
