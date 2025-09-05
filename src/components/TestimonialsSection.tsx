@@ -53,7 +53,7 @@ const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-[#115B87] relative overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-gradient-to-b from-[#115B87] to-[#1B3764] relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div 

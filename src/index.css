@@ -274,10 +274,7 @@
     display: none;  /* Chrome, Safari and Opera */
   }
   
-  /* Chemistry icons - mask to white */
-  .chemistry-icon {
-    filter: brightness(0) invert(1);
-  }
+  /* Chemistry icons - show original colors (white mask filter removed) */
   
   /* X-Ray Hotspot Styles */
   .hotspot-default { 

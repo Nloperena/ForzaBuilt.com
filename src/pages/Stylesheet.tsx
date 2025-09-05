@@ -268,8 +268,8 @@ const Stylesheet = () => {
                   <h3 className="forza-text-subhead text-xl mb-4">Colors</h3>
                   <div className="space-y-2">
                     <div className="flex items-center gap-3">
-                      <div className="w-6 h-6 bg-[#09668D] rounded"></div>
-                      <code className="forza-text-caption">--forza-regal-blue: #09668D</code>
+                      <div className="w-6 h-6 bg-[#115B87] rounded"></div>
+                      <code className="forza-text-caption">--forza-regal-blue: #115B87</code>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-6 h-6 bg-[#F16022] rounded"></div>

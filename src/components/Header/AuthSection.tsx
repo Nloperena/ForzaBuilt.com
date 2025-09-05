@@ -30,7 +30,7 @@ const AuthSection: React.FC<AuthSectionProps> = ({ onSignOut, className = '' }) 
         <Button 
           asChild 
           size="lg" 
-          className="bg-white hover:bg-white/90 text-[#1b3764] rounded-full px-8 py-6 text-xl border border-white"
+          className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl border border-[#F2611D]"
         >
           <Link to="/auth">
             Sign In

@@ -15,44 +15,44 @@ export const CONSTRUCTION_DATA: IndustryData = {
           id: 'Moisture_Cure_Adhesive',
           points: [241, 87], // Center point for numbering
           product: {
-            sku: 'TAC-738R',
-            name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
-            blurb: 'TAC-738R Foundation Bonding Solution',
-            url: '/product/tac-738r/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/TAC-738R-bundle-New.png',
+            sku: 'TAC-R777',
+            name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
+            blurb: 'TAC-R777 Foundation Bonding Solution',
+            url: '/product/tac-r777/',
+            thumb: '/product-images/tac-r777.png',
           },
         },
         {
           id: 'Adhesives',
           points: [176, 81], // Center point for numbering
           product: {
-            sku: 'TAC-734G',
-            name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
-            blurb: 'TAC-734G Structural Bonding System',
-            url: '/product/tac-734g/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-734G-NEW.png',
+            sku: 'TAC-OS74',
+            name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
+            blurb: 'TAC-OS74 Structural Bonding System',
+            url: '/product/tac-os74/',
+            thumb: '/product-images/tac-os74.png',
           },
         },
         {
           id: 'Moisture_Cure_Adhesive-2',
           points: [147, 85], // Center point for numbering
           product: {
-            sku: 'TAC-735R',
-            name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
-            blurb: 'TAC-735R Roofing Installation System',
-            url: '/product/tac-735r/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-735R-NEW.png',
+            sku: 'TAC-738R',
+            name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
+            blurb: 'TAC-738R Roofing Installation System',
+            url: '/product/tac-738r/',
+            thumb: '/product-images/tac-738r.png',
           },
         },
         {
           id: 'Tapes',
           points: [62, 91], // Center point for numbering
           product: {
-            sku: 'TAC-R777',
-            name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
-            blurb: 'TAC-R777 Insulation Mounting System',
-            url: '/product/tac-r777/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/52-GAL-DRUM-TAC-R777.png',
+            sku: 'TAC-734G',
+            name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
+            blurb: 'TAC-734G Insulation Mounting System',
+            url: '/product/tac-734g/',
+            thumb: '/product-images/tac-734g.png',
           },
         },
         {
@@ -63,29 +63,29 @@ export const CONSTRUCTION_DATA: IndustryData = {
             name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
             blurb: 'TAC-739R Window Sealing Solution',
             url: '/product/tac-739r/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-739R-NEW.png',
+            thumb: '/product-images/tac-739r.png',
           },
         },
         {
           id: 'Sealants_Adhesives',
           points: [85, 120], // Center point for numbering
           product: {
-            sku: 'TAC-OS74',
-            name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
-            blurb: 'TAC-OS74 Door Assembly Bonding',
-            url: '/product/tac-os74/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/sausage-TAC-OS74.png',
+            sku: 'TAC-735R',
+            name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
+            blurb: 'TAC-735R Door Assembly Bonding',
+            url: '/product/tac-735r/',
+            thumb: '/product-images/tac-735r.png',
           },
         },
         {
           id: 'Contact_Adhesives',
           points: [143, 161], // Center point for numbering
           product: {
-            sku: 'TAC-R777',
-            name: 'TAC-R777 Two-Part Modified Epoxy Adhesive',
-            blurb: 'TAC-R777 Commercial Construction Solutions',
-            url: '/product/tac-r777/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2025/03/52-GAL-DRUM-TAC-R777.png',
+            sku: 'TAC-739R',
+            name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
+            blurb: 'TAC-739R Commercial Construction Solutions',
+            url: '/product/tac-739r/',
+            thumb: '/product-images/tac-739r.png',
           },
         },
       ],
@@ -102,11 +102,11 @@ export const CONSTRUCTION_DATA: IndustryData = {
           id: 'Moisture_Cure_Adhesive',
           points: [92, 44], // Center point for numbering
           product: {
-            sku: 'TAC-738R',
-            name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
-            blurb: 'TAC-738R Foundation Bonding Solution',
-            url: '/product/tac-738r/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/TAC-738R-bundle-New.png',
+            sku: 'TAC-OS74',
+            name: 'TAC-OS74 Ultra High-Strength Hybrid Polymer Structural Adhesive',
+            blurb: 'TAC-OS74 Foundation Bonding Solution',
+            url: '/product/tac-os74/',
+            thumb: '/product-images/tac-os74.png',
           },
         },
         {

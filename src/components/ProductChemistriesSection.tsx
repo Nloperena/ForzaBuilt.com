@@ -285,7 +285,7 @@ const HorizontalChemistryRow: React.FC = () => {
   ];
 
   return (
-          <section className="py-8 sm:py-12 md:py-16 bg-[#115B87] text-white">
+          <section className="py-8 sm:py-12 md:py-16 bg-gradient-to-b from-[#115B87] to-[#1B3764] text-white">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-8xl mx-auto">
         <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black font-kallisto mb-8 text-center leading-none">
           Chemistry Types

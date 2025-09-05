@@ -42,7 +42,7 @@ export default function Dashboard() {
             <Button 
               variant="ghost" 
               onClick={handleBackToList} 
-              className="mb-6 flex gap-2 text-[#09668D] hover:bg-[#09668D] hover:text-white transition-all duration-200"
+              className="mb-6 flex gap-2 text-[#115B87] hover:bg-[#115B87] hover:text-white transition-all duration-200"
             >
               <ArrowLeft className="h-4 w-4" />
               <span className="font-poppins font-bold">Back to Product List</span>
@@ -64,7 +64,7 @@ export default function Dashboard() {
                   <TabsList className="bg-white border border-slate-200 shadow-sm">
                     <TabsTrigger 
                       value="all" 
-                      className="font-poppins font-bold data-[state=active]:bg-[#09668D] data-[state=active]:text-white"
+                      className="font-poppins font-bold data-[state=active]:bg-[#115B87] data-[state=active]:text-white"
                     >
                       All Products
                     </TabsTrigger>
@@ -91,7 +91,7 @@ export default function Dashboard() {
                   <div className="flex items-center space-x-4 mt-4 lg:mt-0">
                     <Button 
                       variant="default" 
-                      className="bg-[#09668D] hover:bg-[#075b7a] text-white font-poppins font-bold"
+                      className="bg-[#115B87] hover:bg-[#0f4a6b] text-white font-poppins font-bold"
                       onClick={() => setSelectedProductId("new")}
                     >
                       <Plus className="h-4 w-4 mr-2" />
@@ -101,7 +101,7 @@ export default function Dashboard() {
                       <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                       <Input 
                         placeholder="Search products..."
-                        className="pl-10 w-[300px] border-slate-200 focus:border-[#09668D] focus:ring-[#09668D] font-poppins"
+                        className="pl-10 w-[300px] border-slate-200 focus:border-[#115B87] focus:ring-[#115B87] font-poppins"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                       />

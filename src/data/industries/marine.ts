@@ -15,66 +15,66 @@ export const MARINE_DATA: IndustryData = {
           id: 'seating',
           points: [97, 117], // Center point for numbering
           product: {
-            sku: 'MC723',
-            name: 'MC723 - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
-            blurb: 'MC723 Marine-Grade Seating Bonding Solution',
-            url: '/product/mc723/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New.png',
+            sku: 'MC722',
+            name: 'MC722 – WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE',
+            blurb: 'MC722 Marine Seating Installation System',
+            url: '/product/mc722/',
+            thumb: '/product-images/mc722.png',
           },
         },
         {
           id: 'carpeting',
           points: [35, 155], // Center point for numbering
           product: {
-            sku: 'TAC-739R',
-            name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
-            blurb: 'TAC-739R Marine-Grade Carpet Bonding Solution',
-            url: '/product/mc739R/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/Master-bundle-TAC-739R-NEW.png',
+            sku: 'M-OS764',
+            name: 'M-OS764 – ULTRA HIGH-STRENGTH HYBRID POLYMER STRUCTURAL ADHESIVE',
+            blurb: 'M-OS764 Marine Carpet Bonding System',
+            url: '/product/m-os764/',
+            thumb: '/product-images/m-os764.png',
           },
         },
         {
           id: 'lowerbow',
           points: [78, 155], // Center point for numbering
           product: {
-            sku: 'MC722',
-            name: 'MC722 Web Spray Non-Flammable / Non-Mrthylene Chloride Contact Adhesive',
-            blurb: 'MC722 High-Strength Bow Assembly Bonding',
-            url: '/product/mc722/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/03/MC722-single.png',
+            sku: 'M-OA755',
+            name: 'M-OA755 – HIGH-STRENGTH SINGLE-PART HYBRID POLYMER ADHESIVE/SEALANT',
+            blurb: 'M-OA755 Bow Assembly Structural Bonding',
+            url: '/product/m-oa755/',
+            thumb: '/product-images/m-oa755.png',
           },
         },
         {
           id: 'counters',
           points: [121, 110], // Center point for numbering
           product: {
-            sku: 'MC722',
-            name: 'MC722 - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
-            blurb: 'MC722 Marine Counter Installation System',
-            url: '/product/mc724/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/03/MC722-single.png',
+            sku: 'MC723',
+            name: 'MC723 – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
+            blurb: 'MC723 Marine Counter Installation System',
+            url: '/product/mc723/',
+            thumb: '/product-images/mc723.png',
           },
         },
         {
           id: 'heeadliner',
           points: [127, 91], // Center point for numbering
           product: {
-            sku: 'MC723',
-            name: 'MC723 - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
-            blurb: 'MC723 Headliner Mounting Adhesive',
-            url: '/product/mc723/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New.png',
+            sku: 'TAC-734G',
+            name: 'TAC-734G – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
+            blurb: 'TAC-734G Headliner Mounting System',
+            url: '/product/tac-734g/',
+            thumb: '/product-images/tac-734g.png',
           },
         },
         {
           id: 'headdliner2',
           points: [162, 96], // Center point for numbering
           product: {
-            sku: 'MC722',
-            name: 'MC722 - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
-            blurb: 'MC722 Additional Ceiling Support System',
-            url: '/product/mc722/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/03/MC722-single.png',
+            sku: 'TAC-735R',
+            name: 'TAC-735R Mist Spray No Haps Infusion Molding Adhesive',
+            blurb: 'TAC-735R Additional Ceiling Support System',
+            url: '/product/tac-735r/',
+            thumb: '/product-images/tac-735r.png',
           },
         },
         {
@@ -85,7 +85,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-C285 Premium High-Temp Neoprene Contact Adhesive',
             blurb: 'M-C285 Hull-to-Deck Bonding System',
             url: '/product/m-c285/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-C285-NEW.png',
+            thumb: '/product-images/m-c285.png',
           },
         },
         {
@@ -94,20 +94,20 @@ export const MARINE_DATA: IndustryData = {
           product: {
             sku: 'M-T820',
             name: 'M-T820 Double-Coated Ultra High Bond Acrylic Foam Tape',
-            blurb: '  M-T820 Multi-Purpose Marine Mounting System',
+            blurb: 'M-T820 Multi-Purpose Marine Mounting System',
             url: '/product/m-t820/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-T820-NEW.png',
+            thumb: '/product-images/m-t820.png',
           },
         },
         {
           id: 'interior_cabinets',
           points: [131, 140], // Center point for numbering
           product: {
-            sku: 'MC723',
-            name: 'MC723 - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
-            blurb: 'MC723 Marine Interior Cabinet Adhesive System',
-            url: '/product/mc723/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New.png',
+            sku: 'TAC-739R',
+            name: 'TAC-739R Mist Spray Infusion Molding Adhesive',
+            blurb: 'TAC-739R Marine Interior Cabinet Adhesive System',
+            url: '/product/tac-739r/',
+            thumb: '/product-images/tac-739r.png',
           },
         },
         {
@@ -118,7 +118,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-OS789 Multi-Purpose Hybrid Polymer Sealant',
             blurb: 'M-OS789 Weather-Resistant External Seating Adhesive',
             url: '/product/m-os789/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/sausagem-os789-NEW-USE.png',
+            thumb: '/product-images/m-os789.png',
           },
         },
         {
@@ -129,7 +129,7 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-R445 Two-Part Modified Epoxy Adhesive',
             blurb: 'M-R445 Heavy-Duty Marine Bonding Solution',
             url: '/product/m-r445/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-R445-NEW.png',
+            thumb: '/product-images/m-r445.png',
           },
         },
         {
@@ -137,21 +137,21 @@ export const MARINE_DATA: IndustryData = {
           points: [235, 135], // Center point for numbering
           product: {
             sku: 'M-R478',
-            name: 'M-R478 Two- Part Methacrylate Adhesive',
+            name: 'M-R478 Two-Part Methacrylate Adhesive',
             blurb: 'M-R478 Reinforcement Bonding Solution',
             url: '/product/m-r478/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-R478-NEW.png',
+            thumb: '/product-images/m-r478.png',
           },
         },
         {
           id: 'navigation_mount',
           points: [210, 90], // Navigation equipment area
           product: {
-            sku: 'MA1015',
-            name: 'Navigation Equipment Mount',
-            blurb: 'MA1015 Electronics Mounting Adhesive System',
-            url: '/product/ma1015-navigation-mount/',
-            thumb: '/img/products/mc725-thumb.jpg',
+            sku: 'TAC-738R',
+            name: 'TAC-738R Web Spray Zero VOC Infusion Molding Adhesive',
+            blurb: 'TAC-738R Electronics Mounting Adhesive System',
+            url: '/product/tac-738r/',
+            thumb: '/product-images/tac-738r.png',
           },
         },
         {
@@ -187,10 +187,10 @@ export const MARINE_DATA: IndustryData = {
           points: [513, 250],
           product: {
             sku: 'MC722',
-            name: 'MC722 - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
+            name: 'MC722 – WEB SPRAY NON-FLAM/NON-METHYLENE CHLORIDE CONTACT ADHESIVE',
             blurb: 'MC722 Upholstery Adhesive',
             url: '/product/mc722/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/03/MC722-single.png',
+            thumb: '/product-images/mc722.png',
           },
         },
         {
@@ -198,10 +198,10 @@ export const MARINE_DATA: IndustryData = {
           points: [281, 306],
           product: {
             sku: 'MC723',
-            name: 'MC723 - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
+            name: 'MC723 – WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
             blurb: 'MC723 Upholstery Adhesive',
             url: '/product/mc723/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/MC723-bundle-New.png',
+            thumb: '/product-images/mc723.png',
           },
         },
         {
@@ -212,18 +212,18 @@ export const MARINE_DATA: IndustryData = {
             name: 'M-C285 Premium High-Temp Neoprene Contact Adhesive',
             blurb: 'M-C285 Neoprene Contact Adhesive',
             url: '/product/m-c285/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/M-C285-NEW.png',
+            thumb: '/product-images/m-c285.png',
           },
         },
         {
           id: 'Bonding_Decking_to_Metal_Struts',
           points: [605, 702],
           product: {
-            sku: 'MC722',
-            name: 'MC722 - WEB SPRAY HIGH TACK INFUSION MOLDING ADHESIVE',
-            blurb: 'MC722 Deck Bonding System',
-            url: '/product/mc722/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/03/MC722-single.png',
+            sku: 'TAC-734G',
+            name: 'TAC-734G Web Spray High Tack Infusion Molding Adhesive',
+            blurb: 'TAC-734G Deck Bonding System',
+            url: '/product/tac-734g/',
+            thumb: '/product-images/tac-734g.png',
           },
         },
         {
@@ -231,10 +231,10 @@ export const MARINE_DATA: IndustryData = {
           points: [559, 984],
           product: {
             sku: 'M-OS789',
-            name: 'M-OS789 NON-HAZARDOUS, HIGH-STRENGTH, SINGLE-PART, MOISTURE CURE SEALANT',
+            name: 'M-OS789 Multi-Purpose Hybrid Polymer Sealant',
             blurb: 'M-OS789 Deck Bonding System',
             url: '/product/m-os789/',
-            thumb: 'https://forzabuilt.com/wp-content/uploads/2024/06/sausagem-os789-NEW-USE-600x600.png',
+            thumb: '/product-images/m-os789.png',
           },
         },
         {

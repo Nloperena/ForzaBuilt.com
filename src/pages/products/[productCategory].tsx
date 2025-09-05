@@ -13,6 +13,7 @@ import { industries as industriesData } from '@/data/industries';
 import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
+import GradientToggleModal from '@/components/GradientToggleModal';
 
 // Chemistry icon paths - using All White Chemistry Icons
 const CHEMISTRY_ICONS = {
@@ -82,7 +83,7 @@ const getHeroImageClasses = (category: string) => {
       // Larger-than-life, pushed up so the section top crops it
       return 'lg:scale-[1.35] lg:-translate-y-16 lg:-translate-x-2';
     case 'bond':
-      return 'lg:scale-[1.2] lg:-translate-y-8';
+      return 'lg:scale-[0.8] lg:-translate-y-0';
     case 'tape':
       return 'lg:scale-100 lg:translate-y-0';
     default:
@@ -103,7 +104,7 @@ const getCategoryGradient = (category: string) => {
     case 'ruggedred':
       return 'from-[#1B3764] via-[#1B3764] to-[#e53935]';
     default:
-      return 'from-[#1B3764] via-[#1B3764] to-[#09668D]';
+      return 'from-[#1B3764] via-[#1B3764] to-[#115B87]';
   }
 };
 
@@ -227,6 +228,15 @@ const ProductCategoryPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
   const [imageLoadedStates, setImageLoadedStates] = useState<{ [key: string]: boolean }>({});
+  const [modalImageLoaded, setModalImageLoaded] = useState(false);
+  const [triangleAnimation, setTriangleAnimation] = useState({
+    leftRotation: 300,
+    rightRotation: 260,
+    leftImage: "/Gradients and Triangles/Small Science Triangles.png",
+    rightImage: "/Gradients and Triangles/Small Science Triangles 2.png",
+    opacity: 0.3,
+    scale: 0.8
+  });
 
   const handleImageLoad = (productId: string) => {
     setImageLoadedStates(prev => ({
@@ -239,6 +249,62 @@ const ProductCategoryPage: React.FC = () => {
     // Mark as loaded even on error to hide skeleton
     handleImageLoad(productId);
   };
+
+  const handleModalImageLoad = () => {
+    setModalImageLoaded(true);
+  };
+
+  const handleModalImageError = () => {
+    setModalImageLoaded(true);
+  };
+
+  // Animate triangles based on product category
+  useEffect(() => {
+    const category = productCategory?.toLowerCase();
+    let newConfig = {
+      leftRotation: 300,
+      rightRotation: 260,
+      leftImage: "/Gradients and Triangles/Small Science Triangles.png",
+      rightImage: "/Gradients and Triangles/Small Science Triangles 2.png",
+      opacity: 0.3,
+      scale: 0.8
+    };
+
+    switch (category) {
+      case 'bond':
+        newConfig = {
+          leftRotation: 320,
+          rightRotation: 240,
+          leftImage: "/Gradients and Triangles/Small Science Triangles 2.png",
+          rightImage: "/Gradients and Triangles/Small Science Triangles.png",
+          opacity: 0.4,
+          scale: 0.9
+        };
+        break;
+      case 'seal':
+        newConfig = {
+          leftRotation: 280,
+          rightRotation: 280,
+          leftImage: "/Gradients and Triangles/Small Science Triangles.png",
+          rightImage: "/Gradients and Triangles/Small Science Triangles 2.png",
+          opacity: 0.35,
+          scale: 0.85
+        };
+        break;
+      case 'tape':
+        newConfig = {
+          leftRotation: 340,
+          rightRotation: 220,
+          leftImage: "/Gradients and Triangles/Small Science Triangles 2.png",
+          rightImage: "/Gradients and Triangles/Small Science Triangles.png",
+          opacity: 0.3,
+          scale: 0.75
+        };
+        break;
+    }
+
+    setTriangleAnimation(newConfig);
+  }, [productCategory]);
 
   // Get products for this category
   const categoryProducts = useMemo(() => {
@@ -381,6 +447,7 @@ const ProductCategoryPage: React.FC = () => {
   const openProductModal = (product: any) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
+    setModalImageLoaded(false); // Reset modal image loading state
   };
 
   const closeModal = () => {
@@ -393,7 +460,7 @@ const ProductCategoryPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#115B87] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#1B3764] to-[#115B87] flex flex-col">
       <DynamicMetaTags
         title={`${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Products`}
         description={`Discover our premium ${productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.`}
@@ -428,7 +495,19 @@ const ProductCategoryPage: React.FC = () => {
             className="w-full"
           >
             {/* Hero Section */}
-            <section className={`relative py-12 md:py-16 mb-12 bg-gradient-to-br overflow-hidden ${getCategoryGradient(productCategory)} min-h-[150px] md:min-h-[200px] lg:min-h-[325px]`}>
+            <section className="relative py-2 md:py-4 mb-2 bg-gradient-to-b from-[#1B3764] to-[#115B87] overflow-hidden min-h-[34px] md:min-h-[45px] lg:min-h-[72px]">
+              {/* Edge Triangles for Header - Animated */}
+              <EdgeTrianglesBackground 
+                leftImage={triangleAnimation.leftImage}
+                rightImage={triangleAnimation.rightImage}
+                opacity={triangleAnimation.opacity}
+                scale={triangleAnimation.scale}
+                leftRotation={triangleAnimation.leftRotation}
+                rightRotation={triangleAnimation.rightRotation}
+                leftFlipH={false}
+                rightFlipV={false}
+                blendMode="overlay"
+              />
               <div className="max-w-7xl mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   {/* Text Content */}
@@ -440,20 +519,19 @@ const ProductCategoryPage: React.FC = () => {
                     transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
                   >
                     <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/30">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
                       <span className="text-sm font-medium uppercase tracking-wider">
                         {productCategory.toUpperCase()} SOLUTIONS
                       </span>
                     </div>
 
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto text-center">
+                    <h1 className="sr-only">
                       {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
                     </h1>
                     {getProductCategoryLogo(productCategory) && (
                       <img 
                         src={getProductCategoryLogo(productCategory)} 
                         alt={`Forza ${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Product Line`}
-                        className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto object-contain mt-2 mx-auto"
+                        className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto object-contain mt-2"
                       />
                     )}
 
@@ -465,7 +543,7 @@ const ProductCategoryPage: React.FC = () => {
                   {/* Category Image (background-style hero) */}
                   {getProductCategoryImage(productCategory) && (
                     <motion.div 
-                      className={`flex justify-center lg:justify-end relative z-10 ${productCategory.toLowerCase() === 'seal' ? 'lg:self-start' : ''}`}
+                      className={`flex justify-center relative z-10 ${productCategory.toLowerCase() === 'seal' ? 'lg:self-start' : ''}`}
                       initial={{ opacity: 0, x: 100 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 100 }}
@@ -655,7 +733,7 @@ const ProductCategoryPage: React.FC = () => {
                               <div className="flex items-center gap-2 min-w-0 flex-1">
                                 <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
                                   {chemIcon ? (
-                                    <img src={chemIcon} alt={chemistry} className="w-5 h-5 object-contain chemistry-icon" />
+                                    <img src={chemIcon} alt={chemistry} className="w-6 h-6 object-contain chemistry-icon" />
                                   ) : (
                                     <FlaskConical className="w-4 h-4 text-white" />
                                   )}
@@ -730,20 +808,23 @@ const ProductCategoryPage: React.FC = () => {
                     className="group"
                   >
                     <div 
-                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] cursor-pointer h-32 md:h-[500px] rounded-2xl md:rounded-3xl backdrop-blur-xl bg-white/10 border border-white/20"
+                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl backdrop-blur-xl border border-white/20 hover:border-white/30 shadow-2xl"
                       style={{
-                        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 70%, ${getIndustryColorHex(product.industry?.[0] || '')}CC 100%)`,
-                        filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))',
-                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-                      }}
-                      onClick={() => {
-                        setSelectedProduct(product);
-                        setIsModalOpen(true);
+                        background: `linear-gradient(to top, ${getIndustryColorHex(product.industry?.[0] || '')} 0%, ${getIndustryColorHex(product.industry?.[0] || '')} 15%, rgba(255, 255, 255, 0.15) 100%)`,
+                        filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))',
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                       }}
                     >
                       {/* Desktop: Badge above image */}
                       <div className="absolute top-3 left-3 z-30 hidden md:block">
-                        <div className="px-3 py-1 rounded-full bg-gradient-to-r from-white/20 via-white/20 to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide flex items-center gap-1">
+                        <div 
+                          className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1"
+                          style={{
+                            background: `rgba(255, 255, 255, 0.2)`,
+                            color: '#ffffff',
+                            textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)'
+                          }}
+                        >
                           {getIndustryLogo(product.industry?.[0] || '') ? (
                             <img 
                               src={getIndustryLogo(product.industry?.[0] || '')} 
@@ -758,7 +839,7 @@ const ProductCategoryPage: React.FC = () => {
                       </div>
 
                       {/* Desktop: Product Image - Full height to show whole image */}
-                      <div className="absolute inset-0 hidden md:block">
+                      <div className="absolute inset-0 hidden md:block" style={{ transform: 'translateY(-7.5%)' }}>
                         {/* Image Skeleton Loading State */}
                         {!imageLoadedStates[product.id] && (
                           <ImageSkeleton />
@@ -767,7 +848,7 @@ const ProductCategoryPage: React.FC = () => {
                         <img 
                           src={product.imageUrl} 
                           alt={product.name}
-                          className={`w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 transition-opacity duration-500 ${
+                          className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-110 ${
                             imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                           }`}
                           onLoad={() => handleImageLoad(product.id)}
@@ -777,7 +858,7 @@ const ProductCategoryPage: React.FC = () => {
 
                       {/* Desktop: Product Title between image and content */}
                       <div className="hidden md:block px-4 py-3 absolute bottom-24 left-0 right-0">
-                        <h3 className="text-xl font-kallisto font-black leading-tight line-clamp-2 text-white">
+                        <h3 className="text-xl font-kallisto font-black leading-tight line-clamp-2 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                           {product.name.split('–')[0].trim()}
                         </h3>
                       </div>
@@ -785,7 +866,7 @@ const ProductCategoryPage: React.FC = () => {
                       {/* Mobile: Left side with image and basic info */}
                       <div className="flex md:hidden items-center gap-4 flex-1 p-4">
                         {/* Mobile: Product Image */}
-                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg relative">
+                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 hover:border-white/40 shadow-2xl relative" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)', transform: 'translateY(-50%)' }}>
                           {/* Image Skeleton Loading State */}
                           {!imageLoadedStates[product.id] && (
                             <ImageSkeleton className="rounded-xl" />
@@ -804,14 +885,21 @@ const ProductCategoryPage: React.FC = () => {
                         
                         {/* Mobile: Product Info */}
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1 text-white">
+                          <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                             {product.name.split('–')[0].trim()}
                           </h3>
-                          <p className="text-xs text-gray-300 line-clamp-2">
+                          <p className="text-xs text-white/90 line-clamp-2">
                             {product.name.split('–')[1]?.trim() || product.description}
                           </p>
                           {/* Mobile: Industry Badge */}
-                          <div className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-white/20 via-white/20 to-[#f16a26] text-white text-xs font-bold uppercase tracking-wide mt-2">
+                          <div 
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wide mt-2"
+                            style={{
+                              background: `rgba(255, 255, 255, 0.2)`,
+                              color: '#ffffff',
+                              textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)'
+                            }}
+                          >
                             {getIndustryLogo(product.industry?.[0] || '') ? (
                               <img 
                                 src={getIndustryLogo(product.industry?.[0] || '')} 
@@ -829,63 +917,60 @@ const ProductCategoryPage: React.FC = () => {
                       {/* Desktop: Content Section */}
                       <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
                         <div className="space-y-3">
-                          <p className="text-sm text-white line-clamp-3">
+                          <p className="text-sm text-white/90 line-clamp-3">
                             {product.name.split('–')[1]?.trim() || product.description}
                           </p>
                           
-                          {/* View Details Button */}
-                          <Link
-                            to={`/products/${productCategory}/${product.id}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center gap-2 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
-                          >
-                            <span>Details</span>
-                            <ExternalLink className="h-3 w-3" />
-                          </Link>
+                          {/* Button Row */}
+                          <div className="flex gap-2">
+                            {/* Quick View Button */}
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedProduct(product);
+                                setIsModalOpen(true);
+                              }}
+                              className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 border border-white/30"
+                            >
+                              <span>Quick View</span>
+                            </button>
+                            
+                            {/* Product Details Button */}
+                            <Link
+                              to={`/products/${productCategory}/${product.id}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 border border-white/30"
+                            >
+                              <span>Product Details</span>
+                              <ExternalLink className="h-3 w-3" />
+                            </Link>
+                          </div>
                         </div>
                       </div>
 
                       {/* Mobile: Right side with buttons */}
                       <div className="flex md:hidden items-center gap-2 p-4">
-                        {/* Mobile: View Details Button */}
+                        {/* Mobile: Quick View Button */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProduct(product);
+                            setIsModalOpen(true);
+                          }}
+                          className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
+                        >
+                          <span>Quick View</span>
+                        </button>
+                        
+                        {/* Mobile: Product Details Button */}
                         <Link
                           to={`/products/${productCategory}/${product.id}`}
                           onClick={(e) => e.stopPropagation()}
-                          className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
+                          className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
                         >
                           <span>Details</span>
                           <ExternalLink className="h-2.5 w-2.5" />
                         </Link>
-                        
-                        {/* Mobile: Datasheet Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            // Check if TDS files are available
-                            const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];
-                            if (tdsLink && tdsLink.startsWith('/TDS/')) {
-                              // TDS files are temporarily unavailable
-                              toast({
-                                title: "TDS Temporarily Unavailable",
-                                description: "Technical Data Sheets are temporarily unavailable. Please contact us for product information.",
-                                variant: "destructive",
-                              });
-                            } else if (tdsLink) {
-                              // External link or other PDF
-                              window.location.href = `/pdf-viewer/${encodeURIComponent(tdsLink)}`;
-                            } else {
-                              toast({
-                                title: "Datasheet not available",
-                                description: "The datasheet for this product is not available yet.",
-                                variant: "destructive",
-                              });
-                            }
-                          }}
-                          className="flex items-center gap-1 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
-                        >
-                          <span>PDF</span>
-                          <ExternalLink className="h-2.5 w-2.5" />
-                        </button>
                       </div>
                     </div>
                   </motion.div>
@@ -924,7 +1009,7 @@ const ProductCategoryPage: React.FC = () => {
                     duration: 0.6,
                     ease: [0.25, 0.46, 0.45, 0.94] // Custom bezier curve
                   }}
-                  className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[95vh] md:max-h-[90vh] overflow-hidden bg-gradient-to-r md:bg-gradient-to-b ${industryColor(selectedProduct.industry)}`}
+                  className="relative rounded-2xl md:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[95vh] md:max-h-[90vh] overflow-hidden bg-gradient-to-b from-[#1B3764] to-[#115B87]"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Wipe Animation Overlay */}
@@ -944,8 +1029,11 @@ const ProductCategoryPage: React.FC = () => {
                     <div className="flex items-start justify-between">
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap gap-1 md:gap-2 mb-2 md:mb-3">
-                          <Badge className={`bg-white/20 backdrop-blur-sm text-white border border-white/30 text-xs`}>
-                            {selectedProduct.category}
+                          <Badge className={`sr-only`}>
+                            {selectedProduct.category === 'BOND' ? 'ForzaBond' : 
+                             selectedProduct.category === 'SEAL' ? 'ForzaSeal' : 
+                             selectedProduct.category === 'TAPE' ? 'ForzaTape' : 
+                             selectedProduct.category}
                           </Badge>
                           <Badge className={`bg-white/20 backdrop-blur-sm text-white border border-white/30 flex items-center gap-1 text-xs`}>
                             {getIndustryLogo(selectedProduct.industry) ? (
@@ -974,168 +1062,44 @@ const ProductCategoryPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Modal Content - Mobile Optimized */}
-                  <div className="p-4 md:p-6 max-h-[70vh] md:max-h-[60vh] overflow-y-auto bg-white/10 backdrop-blur-sm">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
-                      {/* Product Image - Mobile Optimized */}
-                      <div className="space-y-3 md:space-y-4">
+                  {/* Modal Content - Simplified Quick View */}
+                  <div className="p-4 md:p-6 bg-white/10 backdrop-blur-sm">
+                    <div className="flex flex-col items-center text-center space-y-6">
+                      {/* Product Image */}
+                      <div className="relative w-full max-w-md h-[300px] md:h-[400px]">
+                        {/* Modal Image Skeleton Loading State */}
+                        {!modalImageLoaded && (
+                          <ImageSkeleton className="w-full h-full rounded-xl md:rounded-2xl" />
+                        )}
+                        
                         <img 
                           src={selectedProduct.imageUrl || selectedProduct.image} 
                           alt={selectedProduct.name}
-                          className="w-full h-[300px] md:h-[500px] object-contain rounded-xl md:rounded-2xl shadow-lg bg-white/10"
+                          className={`w-full h-full object-contain rounded-xl md:rounded-2xl shadow-lg bg-white/10 transition-opacity duration-500 ${
+                            modalImageLoaded ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          onLoad={handleModalImageLoad}
+                          onError={handleModalImageError}
                         />
-                        <p className="text-white/90 text-sm md:text-base" 
-                           style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                          {selectedProduct.description}
-                        </p>
                       </div>
+                      
+                      {/* Product Description */}
+                      <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-2xl" 
+                         style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
+                        {selectedProduct.description}
+                      </p>
+                    </div>
+                  </div>
 
-                      {/* Product Details - Mobile Optimized */}
-                      <div className="space-y-4 md:space-y-6">
-                        {/* Basic Specifications */}
-                        {selectedProduct.specifications && (
-                          <div>
-                            <h3 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3" 
-                                style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
-                              Key Specifications
-                            </h3>
-                            <div className="space-y-1 md:space-y-2">
-                              {selectedProduct.specifications.type && (
-                                <div className="flex justify-between py-1.5 md:py-2 border-b border-white/20">
-                                  <span className="font-medium text-white/90 text-sm">Type:</span>
-                                  <span className="text-white/80 text-sm text-right">{selectedProduct.specifications.type}</span>
-                                </div>
-                              )}
-                              {selectedProduct.specifications.viscosity && (
-                                <div className="flex justify-between py-1.5 md:py-2 border-b border-white/20">
-                                  <span className="font-medium text-white/90 text-sm">Viscosity:</span>
-                                  <span className="text-white/80 text-sm text-right">{selectedProduct.specifications.viscosity}</span>
-                                </div>
-                              )}
-                              {selectedProduct.specifications.potLife && (
-                                <div className="flex justify-between py-1.5 md:py-2 border-b border-white/20">
-                                  <span className="font-medium text-white/90 text-sm">Pot Life:</span>
-                                  <span className="text-white/80 text-sm text-right">{selectedProduct.specifications.potLife}</span>
-                                </div>
-                              )}
-                              {selectedProduct.specifications.cureTime && (
-                                <div className="flex justify-between py-1.5 md:py-2 border-b border-white/20">
-                                  <span className="font-medium text-white/90 text-sm">Cure Time:</span>
-                                  <span className="text-white/80 text-sm text-right">{selectedProduct.specifications.cureTime}</span>
-                                </div>
-                              )}
-                              {selectedProduct.specifications.temperatureRange && (
-                                <div className="flex justify-between py-1.5 md:py-2 border-b border-white/20">
-                                  <span className="font-medium text-white/90 text-sm">Temperature Range:</span>
-                                  <span className="text-white/80 text-sm text-right">{selectedProduct.specifications.temperatureRange}</span>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Applications */}
-                        {selectedProduct.specifications?.applications && (
-                          <div>
-                            <h3 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3" 
-                                style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
-                              Applications
-                            </h3>
-                            <div className="flex flex-wrap gap-1 md:gap-2">
-                              {selectedProduct.specifications.applications.slice(0, 4).map((app, index) => (
-                                <Badge key={index} className="bg-white/20 backdrop-blur-sm text-white text-xs border border-white/30">
-                                  {app}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Features */}
-                        {selectedProduct.specifications?.features && (
-                          <div>
-                            <h3 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3" 
-                                style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
-                              Key Features
-                            </h3>
-                            <div className="flex flex-wrap gap-1 md:gap-2">
-                              {selectedProduct.specifications.features.slice(0, 4).map((feature, index) => (
-                                <Badge key={index} variant="outline" className="border-white/30 text-white text-xs">
-                                  {feature}
-                                </Badge>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Technical Data */}
-                        {selectedProduct.technicalData && (
-                          <div>
-                            <h3 className="text-base md:text-lg font-bold text-white mb-2 md:mb-3" 
-                                style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
-                              Technical Data
-                            </h3>
-                            <div className="space-y-1 md:space-y-2">
-                              {selectedProduct.technicalData.density && (
-                                <div className="flex justify-between py-1.5 md:py-2 border-b border-white/20">
-                                  <span className="font-medium text-white/90 text-sm">Density:</span>
-                                  <span className="text-white/80 text-sm text-right">{selectedProduct.technicalData.density}</span>
-                                </div>
-                              )}
-                              {selectedProduct.technicalData.shelfLife && (
-                                <div className="flex justify-between py-1.5 md:py-2 border-b border-white/20">
-                                  <span className="font-medium text-white/90 text-sm">Shelf Life:</span>
-                                  <span className="text-white/80 text-sm text-right">{selectedProduct.technicalData.shelfLife}</span>
-                                </div>
-                              )}
-                              {selectedProduct.technicalData.storageConditions && (
-                                <div className="flex justify-between py-1.5 md:py-2 border-b border-white/20">
-                                  <span className="font-medium text-white/90 text-sm">Storage:</span>
-                                  <span className="text-white/80 text-sm text-right">{selectedProduct.technicalData.storageConditions}</span>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        )}
-            </div>
-          </div>
-        </div>
-
-                  {/* Modal Footer - Mobile Optimized */}
+                  {/* Modal Footer - Simplified */}
                   <div className="p-4 md:p-6 border-t border-white/20 bg-white/10 backdrop-blur-sm">
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
-                      <div className="flex items-center gap-2 md:gap-3">
-                        {/* Industry Icon */}
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full p-1.5 md:p-2 border border-white/30">
-                          {getIndustryLogo(selectedProduct.industry) ? (
-                            <img 
-                              src={getIndustryLogo(selectedProduct.industry)} 
-                              alt={`${selectedProduct.industry} icon`}
-                              className="h-4 md:h-6 w-4 md:w-6 object-contain"
-                            />
-                          ) : (
-                            <span className="text-white font-bold text-xs md:text-sm">{selectedProduct.industry.charAt(0).toUpperCase()}</span>
-                          )}
-                        </div>
-                        <div className="text-xs md:text-sm text-white/70">
-                          Product ID: {selectedProduct.id.toUpperCase()}
-                        </div>
-                      </div>
-                      <div className="flex flex-col sm:flex-row gap-2 md:gap-3 w-full md:w-auto">
-                        <Link
-                          to={`/products/${selectedProduct.category.toLowerCase()}/${selectedProduct.id}`}
-                          className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 md:px-6 py-2 md:py-3 transition-colors text-sm md:text-base text-center"
-                        >
-                          View Full Details
-                        </Link>
-                        <Button
-                          onClick={() => window.open(selectedProduct.url, '_blank')}
-                          className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 md:px-6 py-2 md:py-3 text-sm md:text-base"
-                        >
-                          <ExternalLink className="h-3 md:h-4 w-3 md:w-4 mr-1 md:mr-2" />
-                          View Datasheet
-                        </Button>
-                      </div>
+                    <div className="flex justify-center">
+                      <Link
+                        to={`/products/${selectedProduct.category.toLowerCase()}/${selectedProduct.id}`}
+                        className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-8 md:px-12 py-3 md:py-4 transition-all duration-300 text-base md:text-lg font-medium border border-white/30"
+                      >
+                        View Product
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
@@ -1193,10 +1157,10 @@ const ProductCategoryPage: React.FC = () => {
               onClick={() => setIsFilterDialogOpen(false)}
             >
               <div 
-                className="bg-[#1b3764] w-full rounded-t-xl max-h-[90vh] overflow-y-auto"
+                className="bg-gradient-to-b from-[#115B87] to-[#1B3764] w-full rounded-t-xl max-h-[90vh] overflow-y-auto"
                 onClick={e => e.stopPropagation()}
               >
-                <div className="sticky top-0 bg-[#1b3764] pt-3 pb-2 px-4 flex justify-between items-center border-b border-white/10">
+                <div className="sticky top-0 bg-gradient-to-r from-[#1B3764] to-[#115B87] pt-3 pb-2 px-4 flex justify-between items-center border-b border-white/10">
                   <h3 className="text-white text-lg font-bold">Filter & Sort</h3>
                   <button 
                     onClick={() => setIsFilterDialogOpen(false)}
@@ -1334,6 +1298,12 @@ const ProductCategoryPage: React.FC = () => {
           </AnimatePresence>
       </main>
       <Footer />
+      
+      {/* Gradient Toggle Modal */}
+      <GradientToggleModal 
+        onModeChange={() => {}} 
+        currentMode="neutral" 
+      />
     </div>
   );
 };

@@ -1,35 +1,43 @@
 import React, { useState } from 'react';
 import forzaLogo from '@/assets/images/forza-logo-full.png';
 import { brandColors, typography } from '@/styles/brandStandards';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const Footer = () => {
   const [showNewsletterForm, setShowNewsletterForm] = useState(false);
+  const { mode, getGradientClasses } = useGradientMode();
 
   const handleCloseModal = () => {
     setShowNewsletterForm(false);
   };
 
   return (
-    <footer className="relative text-white py-8 px-6 overflow-hidden" style={{ backgroundColor: '#115B87' }}>
-      {/* Glassmorphic background */}
-      <div className="absolute inset-0 backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl"></div>
+    <footer className={`relative text-white py-5 px-6 overflow-hidden ${
+      mode === 'light' 
+        ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87]' 
+        : `bg-gradient-to-b ${getGradientClasses()}`
+    }`}>
+      {/* Glassmorphic background - only for dark/neutral modes */}
+      {mode !== 'light' && (
+        <div className="absolute inset-0 backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl"></div>
+      )}
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Section: Company Information */}
-          <div className="space-y-4">
+          <div className="space-y-0">
             <img 
               src={forzaLogo}
               alt="Forza Logo"
-              className="h-36 w-auto mb-4 -ml-5"
+              className="h-30 w-auto -ml-5"
             />
             <div className="text-sm leading-relaxed" style={{ fontFamily: typography.body.fontFamily }}>
               {/* Flag and Social Media Icons on the same row */}
               <div className="flex items-center gap-10 mb-4">
                 <img 
                   src="/Flag Icon with asterisk 1.png"
-                  alt="PROUDLY MADE IN THE USA"
+                  alt="PROUDLY MADE IN AMERICA"
                   className="w-32 h-auto"
                 />
                 {/* Social Media Icons */}
@@ -47,11 +55,8 @@ const Footer = () => {
                 </div>
               </div>
               
-              <p className="text-xs text-white/70 mb-2" style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
-                *Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components.
-              </p>
-              <p className="text-xs text-white/60" style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
-                © {new Date().getFullYear()} Forza Built. All rights reserved.
+              <p className="text-[10px] text-white/70" style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
+                *Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components. © {new Date().getFullYear()} Forza Built. All rights reserved.
               </p>
             </div>
           </div>
@@ -60,17 +65,16 @@ const Footer = () => {
                       <div className="space-y-6">
               <div className="space-y-3">
                 <div className="text-lg font-bold" style={{ color: brandColors.primary.blazeOrange.hex, fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight, lineHeight: typography.headings.lineHeight }}>HQ</div>
-                <div className="text-white space-y-1" style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
+                <div className="text-white space-y-0.5" style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
                   <div className="font-semibold">Forza</div>
-                  <div>3211 Nebraska Ave,</div>
-                  <div>Suite 300</div>
+                  <div>3211 Nebraska Ave, Suite 300</div>
                   <div>Council Bluffs, Iowa 51501</div>
                 </div>
               </div>
               
               <div className="space-y-3">
                 <div className="text-lg font-bold" style={{ color: brandColors.primary.blazeOrange.hex, fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight, lineHeight: typography.headings.lineHeight }}>CONTACT</div>
-                <div className="text-white space-y-1" style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
+                <div className="text-white space-y-0.5" style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
                   <div>O. 402.731.9300</div>
                   <div><a href="mailto:support@forzabuilt.com" className="hover:underline">support@forzabuilt.com</a></div>
                   <div>Mon - Fri | 8:00 AM – 4:30 PM CST</div>
@@ -102,7 +106,7 @@ const Footer = () => {
       {/* Newsletter Signup Modal */}
       {showNewsletterForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="relative rounded-2xl md:rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b from-[#1b3764] via-[#1b3764] to-[#f16a26] animate-in zoom-in-95 duration-300">
+          <div className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses('industrial')} animate-in zoom-in-95 duration-300`}>
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent z-10 pointer-events-none animate-pulse"></div>
             

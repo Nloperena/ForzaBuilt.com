@@ -7,10 +7,14 @@ import FeaturedPosts from '@/components/blog/FeaturedPosts';
 import ControlsBar from '@/components/blog/ControlsBar';
 import PostsGrid from '@/components/blog/PostsGrid';
 import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
+import SplitText from '@/components/SplitText';
 import { generateSlugFromTitle } from '@/lib/utils';
 import type { BlogPost, ViewMode, SortOrder } from '@/types/Blog';
+import GradientToggleModal from '../components/GradientToggleModal';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const Blog = () => {
+  const { mode, getGradientClasses, getTextClasses } = useGradientMode();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -146,9 +150,34 @@ const Blog = () => {
   };
 
   return (
-    <div className="bg-[#115B87] min-h-screen">
+    <div className={`bg-gradient-to-b ${getGradientClasses()} min-h-screen`}>
       <Header />
       
+      
+
+      
+      {/* Hero Section */}
+      <section className="relative">
+        <div className="bg-gradient-to-b from-[#1B3764] to-[#115B87] pt-16 sm:pt-20 relative">
+          <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 lg:py-16 [&:has(>div)]:max-w-[2000px]">
+            <div className="text-center mx-auto">
+              <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto ${getTextClasses()}`}>
+                <SplitText
+                  text="ForzaBuilt Blog"
+                  className="block"
+                  splitType="words"
+                  delay={50}
+                  as="span"
+                />
+              </h1>
+              <p className={`${getTextClasses()} text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium leading-relaxed max-w-[1200px] mx-auto`}>
+                Products, Tips, Tutorials, and More!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Edge triangles positioned at left and right viewport edges */}
       <EdgeTrianglesBackground 
         leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
@@ -161,39 +190,14 @@ const Blog = () => {
         rightFlipV={false}
         blendMode="overlay"
       />
-      
-      {/* Orange to Blue Gradient Background */}
-      <div className="absolute inset-0 pointer-events-none z-[10]">
-        <div 
-          className="absolute inset-0 bg-[radial-gradient(ellipse_600px_400px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)] md:bg-[radial-gradient(ellipse_1800px_1200px_at_top_right,rgba(242,97,29,0.8)_0%,rgba(242,97,29,0.7)_25%,rgba(242,97,29,0.5)_45%,rgba(242,97,29,0.3)_65%,rgba(242,97,29,0.15)_80%,rgba(242,97,29,0.05)_90%,transparent_100%)]"
-          style={{ opacity: 1 }}
-        />
-      </div>
-      
-      {/* Hero Section */}
-         <section className="relative pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 bg-[#115B87]">
-                   <div className="absolute inset-0 bg-gradient-to-b from-[#115B87]/80 via-[#115B87]/60 to-[#115B87]/80"></div>
-         <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-20">
-           <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
-             <div className="max-w-6xl mx-auto space-y-8">
-               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto text-center">
-                 ForzaBuilt Blog
-               </h1>
-               <p className="text-white text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
-                 Products, Tips, Tutorials, and More!
-               </p>
-             </div>
-           </div>
-         </div>
-               </section>
 
         {/* Featured Posts */}
         {!loading && featuredPosts.length > 0 && (
-          <section className="py-12 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80">
+          <section className="py-12 bg-gradient-to-t from-[#1B3764] to-[#115B87]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
               <div className="mb-8">
-                <h2 className="text-3xl font-black text-white font-kallisto mb-4">Featured Articles</h2>
-                <p className="text-white/80 font-poppins">Discover our most popular and important content</p>
+                <h2 className={`text-3xl font-black font-kallisto mb-4 ${getTextClasses()}`}>Featured Articles</h2>
+                <p className={`${getTextClasses()} font-poppins opacity-80`}>Discover our most popular and important content</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {featuredPosts.map((post) => (
@@ -417,7 +421,7 @@ const Blog = () => {
        </section>
 
                {/* Blog Posts Grid */}
-       <section className="py-12 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80">
+       <section className={`py-12 bg-gradient-to-b ${getGradientClasses()}`}>
          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
            {loading ? (
              <div className="text-center py-20">
@@ -585,11 +589,11 @@ const Blog = () => {
         </section>
 
         {/* Newsletter Signup */}
-        <section className="py-16 bg-gradient-to-b from-[#1b3764]/60 to-[#1b3764]/80">
+        <section className={`py-16 bg-gradient-to-t ${getGradientClasses()}`}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center">
             <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-8">
-              <h2 className="text-3xl font-black text-white font-kallisto mb-4">Stay Updated</h2>
-              <p className="text-white/80 font-poppins mb-6">
+              <h2 className={`text-3xl font-black font-kallisto mb-4 ${getTextClasses()}`}>Stay Updated</h2>
+              <p className={`${getTextClasses()} font-poppins mb-6 opacity-80`}>
                 Get the latest insights, tips, and industry news delivered to your inbox.
               </p>
               <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -613,7 +617,11 @@ const Blog = () => {
           </div>
         </section>
 
+
       <Footer />
+      
+      {/* Gradient Toggle Modal */}
+      <GradientToggleModal />
     </div>
   );
 };

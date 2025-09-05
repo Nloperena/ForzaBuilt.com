@@ -8,7 +8,7 @@ const CallToActionSection = () => {
         <h2 className="text-4xl font-bold text-slate-800">Ready to Build Your Dream?</h2>
         <p className="text-xl text-slate-600">Join hundreds of satisfied homeowners across Texas</p>
         <div className="flex flex-col md:flex-row gap-4 justify-center">
-          <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl text-lg font-semibold">
+          <Button className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white px-8 py-4 rounded-xl text-lg font-semibold border border-[#F2611D]">
             Get Free Quote
           </Button>
           <Button variant="outline" className="border-2 border-slate-300 px-8 py-4 rounded-xl text-lg font-semibold">

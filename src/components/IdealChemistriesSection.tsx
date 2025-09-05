@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const CHEMISTRY_ICONS = {
   acrylic: '/Chemistry%20Products%20Icons/acrylic%20icon.svg',
@@ -138,126 +140,183 @@ const chemistries = [
   }
 ];
 
-const CARDS_PER_PAGE = 3;
-
-const cardVariants = {
-  enter: (direction) => ({
-    x: direction > 0 ? 100 : -100,
-    opacity: 0,
-    scale: 0.96,
-  }),
-  center: (i) => ({
-    x: 0,
-    opacity: 1,
-    scale: 1,
-    transition: { delay: i * 0.08, duration: 0.5, ease: [0.4, 0, 0.2, 1] },
-  }),
-  exit: (direction) => ({
-    x: direction < 0 ? 100 : -100,
-    opacity: 0,
-    scale: 0.96,
-    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
-  }),
-};
-
 const IdealChemistriesSection: React.FC = () => {
-  const [page, setPage] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState(0);
-  const totalPages = Math.ceil(chemistries.length / CARDS_PER_PAGE);
+  const { mode, getGradientClasses, getTextClasses, getTextSecondaryClasses } = useGradientMode();
+  
+  // Show 3 cards at a time on desktop, 1 on mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const cardsToShow = isMobile ? 1 : 3;
+  const maxIndex = Math.max(0, chemistries.length - cardsToShow);
 
   const handlePrev = () => {
+    if (isAnimating || currentIndex <= 0) return;
+    setIsAnimating(true);
     setDirection(-1);
-    setPage((p) => Math.max(0, p - 1));
-  };
-  const handleNext = () => {
-    setDirection(1);
-    setPage((p) => Math.min(totalPages - 1, p + 1));
+    setCurrentIndex(prev => Math.max(0, prev - 1));
+    setTimeout(() => setIsAnimating(false), 800);
   };
 
-  // Responsive: 1 card on mobile, 3 on desktop
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const cardsPerPage = isMobile ? 1 : CARDS_PER_PAGE;
-  const startIdx = page * cardsPerPage;
-  const visibleChemistries = chemistries.slice(startIdx, startIdx + cardsPerPage);
+  const handleNext = () => {
+    if (isAnimating || currentIndex >= maxIndex) return;
+    setIsAnimating(true);
+    setDirection(1);
+    setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+    setTimeout(() => setIsAnimating(false), 800);
+  };
+
+  const visibleChemistries = chemistries.slice(currentIndex, currentIndex + cardsToShow);
 
   return (
-    <section className="w-full bg-[#196b8c] py-16 px-2 md:px-0">
-      <div className="max-w-screen-2xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-black text-white text-center mb-12 font-kallisto leading-tight">
+    <section className={`w-full ${
+      mode === 'light' 
+        ? 'bg-[#e8e8e8]' 
+        : `bg-gradient-to-b ${getGradientClasses()}`
+    } py-16 px-2 md:px-0 relative overflow-hidden`}>
+      {/* Edge Triangles Background */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles.png"
+        opacity={0.6}
+        scale={0.8}
+        leftRotation={45}
+        rightRotation={315}
+        leftFlipH={false}
+        rightFlipV={true}
+        blendMode="overlay"
+      />
+      
+      <div className="max-w-screen-2xl mx-auto relative z-10">
+        <h2 className={`text-4xl md:text-6xl font-black ${getTextClasses()} text-center mb-12 font-kallisto leading-tight`}>
           Ideal Chemistry For Your<br className="hidden md:block" /> Specific Application
         </h2>
+        
+        {/* Navigation Controls */}
         <div className="flex items-center justify-center gap-4 mb-8">
-          <button onClick={handlePrev} disabled={page === 0} className="hidden md:inline text-white/70 hover:text-white text-3xl px-2 py-1 disabled:opacity-30">&#8592;</button>
-          <div className="relative w-full max-w-7xl flex items-center justify-center overflow-visible">
-            <AnimatePresence initial={false} custom={direction} mode="wait">
-              <motion.div
-                key={page}
-                className={`grid grid-cols-1 md:grid-cols-3 gap-8 w-full`}
-                custom={direction}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                variants={{}}
-                transition={{ staggerChildren: 0.08 }}
-              >
+          <button 
+            onClick={handlePrev} 
+            disabled={currentIndex <= 0 || isAnimating} 
+            className={`${getTextSecondaryClasses()} hover:${getTextClasses()} text-2xl sm:text-3xl px-2 py-1 disabled:opacity-30 transition-all duration-200`}
+          >
+            &#8592;
+          </button>
+          
+          {/* Cards Container */}
+          <div className="relative w-full max-w-7xl overflow-hidden">
+            <div className="flex gap-4 sm:gap-6 md:gap-8 justify-center">
+              <AnimatePresence mode="wait" custom={direction}>
                 {visibleChemistries.map((chem, idx) => (
                   <motion.div
-                    key={chem.title}
+                    key={`${currentIndex}-${chem.title}-${idx}`}
                     custom={direction}
-                    variants={cardVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{ type: 'spring', stiffness: 200, damping: 20, delay: idx * 0.08 }}
-                    className="bg-[#23648A] rounded-3xl border border-white/20 p-6 sm:p-8 flex flex-col items-center shadow-xl transition-transform hover:scale-105"
+                                         initial={{ 
+                       x: direction > 0 ? 300 : -300, 
+                       opacity: 0
+                     }}
+                     animate={{ 
+                       x: 0, 
+                       opacity: 1,
+                       transition: {
+                         delay: idx * 0.15,
+                         duration: 0.5,
+                         ease: "easeOut"
+                       }
+                     }}
+                     exit={{ 
+                       x: direction > 0 ? -300 : 300, 
+                       opacity: 0,
+                       transition: {
+                         delay: (visibleChemistries.length - 1 - idx) * 0.1,
+                         duration: 0.4,
+                         ease: "easeIn"
+                       }
+                     }}
+                    className={`rounded-2xl sm:rounded-3xl border ${
+                      mode === 'light' ? 'border-gray-200/50 hover:border-gray-300' : 'border-white/20 hover:border-white/30'
+                    } p-4 sm:p-6 md:p-8 flex flex-col items-center shadow-lg sm:shadow-2xl transition-all duration-300 hover:scale-105 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] ${
+                      mode === 'light' ? 'bg-white/90' : 'bg-white/10'
+                    }`}
+                    style={{
+                      background: mode === 'light' 
+                        ? 'linear-gradient(to bottom, #1B3764 0%, #115B87 100%)'
+                        : 'linear-gradient(to bottom, #1B3764 0%, #115B87 100%)',
+                      boxShadow: mode === 'light' 
+                        ? '0 4px 12px rgba(0, 0, 0, 0.1)' 
+                        : '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                    }}
                   >
                     {/* Icon */}
-                    <div className="mb-6">
-                      <img src={chem.iconSrc} alt={chem.title} className="w-24 h-24 object-contain" />
+                    <div className="mb-4 sm:mb-6">
+                      <img src={chem.iconSrc} alt={chem.title} className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 object-contain" />
                     </div>
+                    
                     {/* Name */}
-                    <h3 className="text-2xl font-black text-white text-center mb-4 font-kallisto">{chem.title}</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-black text-center mb-3 sm:mb-4 font-kallisto text-white">{chem.title}</h3>
+                    
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2 justify-center mb-4">
+                    <div className="flex flex-wrap gap-1 sm:gap-2 justify-center mb-3 sm:mb-4">
                       {chem.badges.map(tag => (
-                        <span key={tag} className="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                        <span key={tag} className="text-xs font-semibold px-2 sm:px-3 py-1 rounded-full bg-white/20 text-white">
                           {tag}
                         </span>
                       ))}
                     </div>
+                    
                     {/* Description */}
-                    <ul className="text-white/90 text-sm mb-6 list-disc list-inside text-center">
+                    <ul className="text-xs sm:text-sm mb-4 sm:mb-6 list-disc list-inside text-center text-white/90">
                       {chem.features.map((desc, i) => (
                         <li key={i}>{desc}</li>
                       ))}
                     </ul>
+                    
                     {/* Products */}
-                    <div className="w-full text-left mb-4">
-                      <span className="block text-white font-bold mb-1">Products</span>
+                    <div className="w-full text-left mb-3 sm:mb-4">
+                      <span className="block font-bold mb-1 text-sm sm:text-base text-white">Products</span>
                       {chem.products.map(prod => (
-                        <div key={prod} className="text-white/90 text-sm">{prod}</div>
+                        <div key={prod} className="text-xs sm:text-sm text-white/90">{prod}</div>
                       ))}
                     </div>
+                    
                     {/* Button */}
-                    <button className="mt-auto bg-[#F16022] hover:bg-[#e55b1c] text-white font-bold rounded-full px-6 py-2 text-base transition-colors">
+                    <button className="mt-auto bg-[#F2611D] hover:bg-[#e55b1c] text-white font-bold rounded-full px-4 sm:px-6 py-2 text-sm sm:text-base transition-colors">
                       See Products
                     </button>
                   </motion.div>
                 ))}
-              </motion.div>
-            </AnimatePresence>
+              </AnimatePresence>
+            </div>
           </div>
-          <button onClick={handleNext} disabled={page === totalPages - 1} className="hidden md:inline text-white/70 hover:text-white text-3xl px-2 py-1 disabled:opacity-30">&#8594;</button>
+          
+          <button 
+            onClick={handleNext} 
+            disabled={currentIndex >= maxIndex || isAnimating} 
+            className={`${getTextSecondaryClasses()} hover:${getTextClasses()} text-2xl sm:text-3xl px-2 py-1 disabled:opacity-30 transition-all duration-200`}
+          >
+            &#8594;
+          </button>
         </div>
+        
         {/* Pagination dots */}
         <div className="flex justify-center gap-2 mt-4">
-          {Array.from({ length: totalPages }).map((_, i) => (
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
             <motion.button
               key={i}
-              onClick={() => { setDirection(i > page ? 1 : -1); setPage(i); }}
-              className={`w-3 h-3 rounded-full ${i === page ? 'bg-[#F16022] scale-125' : 'bg-white/30'} transition-all`}
+              onClick={() => { 
+                if (isAnimating) return;
+                setDirection(i > currentIndex ? 1 : -1); 
+                setCurrentIndex(i); 
+              }}
+              disabled={isAnimating}
+              className={`w-3 h-3 rounded-full transition-all disabled:opacity-50 ${
+                i === currentIndex ? 'bg-[#F16022] scale-125' : 'bg-white/30'
+              }`}
               aria-label={`Go to page ${i + 1}`}
-              animate={{ scale: i === page ? 1.25 : 1, backgroundColor: i === page ? '#F16022' : 'rgba(255,255,255,0.3)' }}
+              animate={{ 
+                scale: i === currentIndex ? 1.25 : 1, 
+                backgroundColor: i === currentIndex ? '#F16022' : 'rgba(255,255,255,0.3)' 
+              }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             />
           ))}

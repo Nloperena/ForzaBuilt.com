@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import VideoSkeleton from '@/components/common/VideoSkeleton';
+import GradientToggleModal from '@/components/GradientToggleModal';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -119,7 +120,7 @@ const Contact = () => {
       <div className="flex-1">
         {/* Hero Section */}
         <section className="relative h-96 flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1B3764]/90 to-[#09668D]/70 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1B3764]/90 to-[#115B87]/70 z-10"></div>
           
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
@@ -345,53 +346,7 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="bg-gradient-to-br from-[#F2611D] to-[#F2611D]/80 p-6 rounded-xl shadow-2xl text-white border border-white/20">
-                  <h4 className="font-bold text-xl mb-4 font-kallisto">Why Choose ForzaBuilt?</h4>
-                  <ul className="space-y-2 text-white/90 font-poppins text-sm">
-                    <li className="flex items-center space-x-3">
-                      <span className="text-white text-lg font-bold">•</span>
-                      <span>Expert technical support & application engineering</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <span className="text-white text-lg font-bold">•</span>
-                      <span>Custom solutions for your specific needs</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <span className="text-white text-lg font-bold">•</span>
-                      <span>Fast response times within 24 hours</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <span className="text-white text-lg font-bold">•</span>
-                      <span>Industry-leading adhesive & sealant products</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <span className="text-white text-lg font-bold">•</span>
-                      <span>Made in America quality & reliability</span>
-                    </li>
-                    <li className="flex items-center space-x-3">
-                      <span className="text-white text-lg font-bold">•</span>
-                      <span>30+ years of proven expertise</span>
-                    </li>
-                  </ul>
-                </div>
 
-                {/* Social Media */}
-                <div className="bg-white/10 backdrop-blur-xl p-4 rounded-xl shadow-2xl border border-white/20 text-center">
-                  <h4 className="font-bold text-lg mb-3 font-kallisto text-white">Connect With Us</h4>
-                  <div className="flex justify-center">
-                    <a 
-                      href="https://www.linkedin.com/company/forza-built/posts/?feedView=all" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="p-2 bg-white/20 hover:bg-white/30 rounded-full transition-all duration-300 hover:scale-110"
-                    >
-                      <Linkedin className="w-5 h-5 text-white" />
-                    </a>
-                  </div>
-                  <p className="text-white/80 text-xs mt-2 font-poppins">
-                    Follow us on LinkedIn for industry insights and company updates
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -399,6 +354,9 @@ const Contact = () => {
       </div>
       
       <Footer />
+      
+      {/* Gradient Toggle Modal */}
+      <GradientToggleModal />
     </div>
   );
 };

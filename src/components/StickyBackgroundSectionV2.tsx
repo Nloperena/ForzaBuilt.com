@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import VideoSkeleton from './common/VideoSkeleton';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const StickyBackgroundSectionV2 = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { mode, getGradientClasses, getTextClasses } = useGradientMode();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,13 +34,13 @@ const StickyBackgroundSectionV2 = () => {
 
   return (
     <>
-      <section ref={sectionRef} className="relative h-[36vh] md:h-[42vh] lg:h-[48vh] xl:h-[51vh] flex items-center justify-center overflow-hidden">
+      <section ref={sectionRef} className="relative h-[40vh] overflow-hidden" style={{ marginTop: '7rem' }}>
         {/* Video Skeleton Loading State */}
         {!isVideoLoaded && (
           <VideoSkeleton />
         )}
         
-        {/* Video Background with Fade-in Effect */}
+        {/* Sticky Video Background */}
         <video
           ref={videoRef}
           autoPlay
@@ -47,7 +49,7 @@ const StickyBackgroundSectionV2 = () => {
           playsInline
           preload="auto"
           onLoadedData={handleVideoLoad}
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          className="fixed inset-0 w-full h-full object-cover transition-opacity duration-1000"
           style={{ 
             zIndex: -1,
             opacity: isInView && isVideoLoaded ? 1 : 0
@@ -59,14 +61,14 @@ const StickyBackgroundSectionV2 = () => {
         
         {/* White overlay that fades out */}
         <div 
-          className="absolute inset-0 bg-white transition-opacity duration-1000"
+          className="fixed inset-0 bg-white transition-opacity duration-1000"
           style={{ 
             zIndex: -1,
             opacity: isInView && isVideoLoaded ? 0 : 1
           }}
         />
         
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="fixed inset-0 pointer-events-none">
           <div 
             className="absolute top-0 left-0 w-full h-12" 
             style={{ background: 'var(--gradient-overlay-top)' }}
@@ -77,15 +79,15 @@ const StickyBackgroundSectionV2 = () => {
           ></div>
         </div>
         
-        {/* Content Area */}
-        <div className="relative text-white text-center px-4 md:px-8 max-w-[1600px] w-full z-10">
+        {/* Content Area - positioned to scroll over the video */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4 md:px-8 w-full z-10">
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-4 md:mb-6 leading-none text-white font-kallisto">
-            Proudly Manufactured in America
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-4 md:mb-6 leading-none text-white font-kallisto text-center">
+            Proudly Manufactured<br/> in America
           </h1>
           
-          {/* American Flag Image - Appended under heading */}
-          <div className="flex justify-center mb-4 md:mb-6">
+          {/* American Flag Video - Appended under heading */}
+          <div className="flex justify-center">
             <div className="w-48 md:w-64 lg:w-80">
               <video
                 src="/American%20Flag.mp4"
@@ -94,28 +96,32 @@ const StickyBackgroundSectionV2 = () => {
                 muted
                 playsInline
                 preload="auto"
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain rounded-2xl shadow-lg"
               />
             </div>
           </div>
         </div>
       </section>
       
+      {/* Spacer section to create scrolling effect and reveal full video */}
+      <section className="relative h-[15vh] bg-transparent">
+        {/* This section allows scrolling to reveal the full video underneath */}
+      </section>
+      
       {/* Appended Content Section */}
-      <section className="bg-[#115B87] pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Subheading */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white mb-2 sm:mb-3 md:mb-4 font-kallisto leading-none">
-            Proudly Manufactured in America
+      <section className={`bg-gradient-to-b from-[#115B87] to-[#1B3764] pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-16 relative z-10`}>
+        <div className="max-w-6xl mx-auto text-center">
+          {/* Combined Main Title */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-6 sm:mb-8 font-kallisto leading-none text-white">
+            <div>Fully Integrated Factory</div>
+            <div>Proudly Manufactured</div>
+            <div>in America</div>
           </h2>
           
-          {/* Description */}
-          <p className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed max-w-2xl sm:max-w-3xl mx-auto mb-8">
-            We're proud to manufacture our high-performance industrial adhesives and sealants right here in America.
+          {/* Single Paragraph */}
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-8 text-white/80">
+            Real people, making real products, making a real difference! We don't just resell & re-label someone else's products, we actually make them. We proudly manufacture our products in the USA, in America's heartland. From R&D to manufacturing, our vertical integration gives us full control over quality, consistency, and availability.
           </p>
-          {/* Orange separator line */}
-          {/* Divider will be added below as per next step */}
-          {/* Orange divider removed as per new instructions */}
         </div>
       </section>
     </>

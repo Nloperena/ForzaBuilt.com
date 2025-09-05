@@ -4,9 +4,19 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
+import ImageSkeleton from '@/components/common/ImageSkeleton';
 
 const RuggedRed = () => {
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+
+  const handleHeroImageLoad = () => {
+    setHeroImageLoaded(true);
+  };
+
+  const handleHeroImageError = () => {
+    setHeroImageLoaded(true);
+  };
 
   // Handle page transition animation
   useEffect(() => {
@@ -18,7 +28,7 @@ const RuggedRed = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#115B87] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#115B87] to-[#1B3764] flex flex-col">
       <DynamicMetaTags
         title="Rugged Red - Industrial Cleaning Solutions"
         description="Professional industrial cleaning solutions from Rugged Red. Discover our premium cleaning products designed for demanding industrial applications."
@@ -53,7 +63,7 @@ const RuggedRed = () => {
             className="w-full"
           >
             {/* Hero Section */}
-            <section className="relative py-12 md:py-16 mb-12 bg-gradient-to-br from-[#1B3764] via-[#1B3764] to-[#e53935] overflow-hidden min-h-[300px] md:min-h-[400px] lg:min-h-[650px]">
+            <section className="relative py-2 md:py-4 mb-2 bg-gradient-to-br from-[#1B3764] via-[#1B3764] to-[#e53935] overflow-hidden min-h-[67px] md:min-h-[90px] lg:min-h-[146px]">
               <div className="max-w-7xl mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   {/* Text Content */}
@@ -64,12 +74,7 @@ const RuggedRed = () => {
                     exit={{ opacity: 0, x: -30 }}
                     transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
                   >
-                    <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/30">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                      <span className="text-sm font-medium uppercase tracking-wider">
-                        INDUSTRIAL CLEANING SOLUTIONS
-                      </span>
-                    </div>
+
 
                                          <h1 className="mb-6">
                        <img 
@@ -86,17 +91,28 @@ const RuggedRed = () => {
 
                   {/* Rugged Red Bottles Hero Image */}
                   <motion.div 
-                    className="flex justify-center lg:justify-end relative z-10"
+                    className="flex justify-center relative z-10"
                     initial={{ opacity: 0, x: 100 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 100 }}
                     transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
                   >
-                    <img 
-                      src="https://ruggedred.com/images/B2BRRBottlesHeroImage.png" 
-                      alt="Rugged Red Industrial Cleaning Products"
-                      className="w-full max-w-md lg:max-w-none lg:w-[760px] xl:w-[840px] object-contain drop-shadow-2xl lg:translate-x-32 xl:translate-x-40 2xl:translate-x-48"
-                    />
+                    <div className="relative w-full max-w-md lg:max-w-none lg:w-[760px] xl:w-[840px]">
+                      {/* Hero Image Skeleton Loading State */}
+                      {!heroImageLoaded && (
+                        <ImageSkeleton className="w-full h-[400px] lg:h-[600px] rounded-2xl" />
+                      )}
+                      
+                      <img 
+                        src="https://ruggedred.com/images/B2BRRBottlesHeroImage.png" 
+                        alt="Rugged Red Industrial Cleaning Products"
+                        className={`w-full h-auto object-contain drop-shadow-2xl lg:translate-x-32 xl:translate-x-40 2xl:translate-x-48 transition-opacity duration-500 ${
+                          heroImageLoaded ? 'opacity-100' : 'opacity-0'
+                        }`}
+                        onLoad={handleHeroImageLoad}
+                        onError={handleHeroImageError}
+                      />
+                    </div>
                   </motion.div>
                 </div>
               </div>

@@ -81,7 +81,7 @@ const Tools = () => {
                 
                 <CardContent className="text-center pt-0">
                   <Link to="/product-datasheets">
-                    <Button className="w-full bg-gradient-to-r from-[#F16022] to-[#D35127] hover:from-[#D35127] hover:to-[#F16022] text-white font-bold text-xl py-8 px-12 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border-0">
+                    <Button className="w-full bg-[#F2611D] hover:bg-[#F2611D]/80 text-white font-bold text-xl py-8 px-12 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-[#F2611D]">
                       Launch Products Datasheet
                     </Button>
                   </Link>
@@ -103,12 +103,12 @@ const Tools = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="bg-gradient-to-r from-[#F16022] to-[#D35127] hover:from-[#D35127] hover:to-[#F16022] text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+              <Button className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white font-bold text-lg py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 border border-[#F2611D]">
                 Contact Our Team
               </Button>
             </Link>
             <Link to="/">
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#1B3764] font-bold text-lg py-4 px-8 rounded-xl transition-all duration-300">
+              <Button className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white font-bold text-lg py-4 px-8 rounded-xl transition-all duration-300 border border-[#F2611D]">
                 Back to Home
               </Button>
             </Link>

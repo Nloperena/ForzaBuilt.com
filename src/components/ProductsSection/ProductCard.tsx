@@ -137,7 +137,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         className="w-full object-contain"
       />
       <span style={{ opacity: 0, transform: 'translateY(20px)', transition: '0.3s ease-in-out' }}>
-        <Button className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-8 sm:h-10 bg-white hover:bg-white/80 text-[#1b3764] rounded-full px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-xl">
+        <Button className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-8 sm:h-10 bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 text-sm sm:text-base md:text-xl border border-[#F2611D]">
           LEARN MORE
         </Button>
       </span>

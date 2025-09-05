@@ -51,7 +51,7 @@ const StackableCards: React.FC<StackableCardsProps> = ({
   };
 
   // Use dynamic gradient if industry is provided, otherwise use backgroundGradient prop
-  const gradientColors = industry ? getIndustryGradient(industry) : (backgroundGradient || '#09668D, #1B3764');
+  const gradientColors = industry ? getIndustryGradient(industry) : (backgroundGradient || '#115B87, #1B3764');
 
   return (
     <div 

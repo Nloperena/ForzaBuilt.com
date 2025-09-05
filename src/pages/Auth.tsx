@@ -370,7 +370,7 @@ const Auth = () => {
                     >
                       <Button 
                         type="submit" 
-                        className="w-full bg-white hover:bg-white/90 text-[#1b3764] py-6 text-lg font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden group" 
+                        className="w-full bg-[#F2611D] hover:bg-[#F2611D]/80 text-white py-6 text-lg font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden group border border-[#F2611D]" 
                         disabled={loading}
                       >
                         <motion.div

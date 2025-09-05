@@ -131,7 +131,7 @@ const ProductChemistriesSectionV2: React.FC = () => {
   };
 
   return (
-          <section className="py-10 sm:py-14 md:py-16 lg:py-20 xl:py-24 bg-[#115B87] text-white">
+          <section className="py-10 sm:py-14 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-b from-[#115B87] to-[#1B3764] text-white">
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 max-w-[2000px] mx-auto">
                     <h2 className="text-center font-kallisto font-black leading-[1.1] text-4xl md:text-5xl lg:text-5xl xl:text-6xl mb-6 sm:mb-8 md:mb-10">
               Product Chemistries

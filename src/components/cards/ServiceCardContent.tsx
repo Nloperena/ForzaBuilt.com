@@ -43,7 +43,7 @@ const ServiceCardContent = ({ card }: ServiceCardContentProps) => {
 
       {/* Call-to-action button */}
       <div className="pt-4">
-        <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+        <Button className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 border border-[#F2611D]">
           {card.buttonText}
         </Button>
       </div>

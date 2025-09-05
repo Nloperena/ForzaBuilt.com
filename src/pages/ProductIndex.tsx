@@ -9,6 +9,7 @@ import { getProducts } from '@/utils/products';
 import { brandColors, typography } from '@/styles/brandStandards';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import GradientToggleModal from '@/components/GradientToggleModal';
 
 // Helper to get product category logo
 const getProductCategoryLogo = (category: string) => {
@@ -55,7 +56,7 @@ const getProductCategories = () => {
     const config = categoryConfig[category as keyof typeof categoryConfig] || {
       title: category,
       description: `${category} products for industrial applications.`,
-      gradient: 'from-[#1B3764] via-[#09668D] to-[#1B3764]',
+      gradient: 'from-[#1B3764] via-[#115B87] to-[#1B3764]',
       color: '#1B3764'
     };
     
@@ -75,7 +76,7 @@ const ProductIndex: React.FC = () => {
   const productCategories = getProductCategories();
   
   return (
-    <div className="min-h-screen bg-[#115B87] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#1B3764] to-[#115B87] flex flex-col">
       <Header />
       <main className="flex-1 flex items-center justify-center px-4 pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 pb-20">
         <div className="max-w-7xl mx-auto w-full">
@@ -139,7 +140,7 @@ const ProductIndex: React.FC = () => {
 
                         {/* CTA */}
                         <div className="flex justify-center">
-                          <Button className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30 rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300 drop-shadow-lg">
+                          <Button className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border border-[#F2611D] rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300 drop-shadow-lg">
                             <span className="hidden md:inline">Visit RuggedRed.com</span>
                             <span className="md:hidden">Visit</span>
                             <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
@@ -181,7 +182,7 @@ const ProductIndex: React.FC = () => {
 
                         {/* CTA */}
                         <div className="flex justify-center">
-                          <Button className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30 rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300 drop-shadow-lg">
+                          <Button className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border border-[#F2611D] rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300 drop-shadow-lg">
                             <span className="hidden md:inline">Explore {category.name}</span>
                             <span className="md:hidden">Explore</span>
                             <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
@@ -251,6 +252,9 @@ const ProductIndex: React.FC = () => {
       </main>
       
       <Footer />
+      
+      {/* Gradient Toggle Modal */}
+      <GradientToggleModal onModeChange={() => {}} currentMode="neutral" />
     </div>
   );
 };

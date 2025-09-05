@@ -1,4 +1,5 @@
 import React from 'react';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 interface EdgeTrianglesBackgroundProps {
   leftImage?: string;
@@ -29,6 +30,7 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
   blendMode = 'overlay',
   className = ''
 }) => {
+  const { mode } = useGradientMode();
   // Helper function to build transform string with flips
   const buildTransform = (translateX: string, rotation: number, flipH: boolean, flipV: boolean) => {
     const transforms = [
@@ -77,26 +79,62 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
   return (
     <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}>
       {/* Left side image - positioned further outside left edge, will overflow and be cropped */}
-      <img
-        src={leftImage}
-        alt="Left Edge Triangles"
-        className={`absolute top-1/2 left-0 transform -translate-y-1/2 object-contain ${getBlendModeClass()}`}
+      <div
+        className="absolute top-1/2 left-0 transform -translate-y-1/2"
         style={{
-          opacity,
-          transform: buildTransform('translateX(-30%)', leftRotation, leftFlipH, leftFlipV)
+          transform: buildTransform('translateX(-30%)', leftRotation, leftFlipH, leftFlipV),
+          opacity: mode === 'light' ? opacity * 0.8 : opacity * 0.6,
         }}
-      />
+      >
+        {mode === 'light' ? (
+          <img
+            src={leftImage}
+            alt="Left Edge Triangles"
+            className="object-contain"
+            style={{
+              opacity: 0,
+            }}
+          />
+        ) : (
+          <img
+            src={leftImage}
+            alt="Left Edge Triangles"
+            className={`object-contain ${getBlendModeClass()}`}
+            style={{
+              opacity: opacity * 0.6,
+            }}
+          />
+        )}
+      </div>
       
       {/* Right side image - positioned further outside right edge, will overflow and be cropped */}
-      <img
-        src={rightImage}
-        alt="Right Edge Triangles"
-        className={`absolute top-1/2 right-0 transform -translate-y-1/2 object-contain ${getBlendModeClass()}`}
+      <div
+        className="absolute top-1/2 right-0 transform -translate-y-1/2"
         style={{
-          opacity,
-          transform: buildTransform('translateX(30%)', rightRotation, rightFlipH, rightFlipV)
+          transform: buildTransform('translateX(30%)', rightRotation, rightFlipH, rightFlipV),
+          opacity: mode === 'light' ? opacity * 0.8 : opacity * 0.6,
         }}
-      />
+      >
+        {mode === 'light' ? (
+          <img
+            src={rightImage}
+            alt="Right Edge Triangles"
+            className="object-contain"
+            style={{
+              opacity: 0,
+            }}
+          />
+        ) : (
+          <img
+            src={rightImage}
+            alt="Right Edge Triangles"
+            className={`object-contain ${getBlendModeClass()}`}
+            style={{
+              opacity: opacity * 0.6,
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };

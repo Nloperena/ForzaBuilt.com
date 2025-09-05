@@ -15,7 +15,7 @@ export const tools: Tool[] = [
     description: 'Comprehensive technical specifications for all ForzaBuilt products.',
     href: '/industrial-datasheet',
     icon: 'FileText',
-    color: '#09668D',
+    color: '#115B87',
     videoUrl: '/videos/datasheet.mp4'
   }
 ]; 

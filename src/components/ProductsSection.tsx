@@ -94,17 +94,8 @@ const ProductsSection = () => {
   };
 
   return (
-    <section className="pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 pb-16 bg-[#115B87] text-white relative overflow-hidden">
-      {/* Contrasting Orange-to-Blue Gradient Background - From Bottom */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(to top, rgba(241, 96, 34, 0.95) 0%, rgba(241, 96, 34, 0.7) 30%, #115B87 100%)',
-            opacity: 1
-          }}
-        />
-      </div>
+          <section className="pt-4 pb-16 bg-gradient-to-b from-[#115B87] to-[#1B3764] text-white relative overflow-hidden">
+
       
       {/* Edge triangles positioned at left and right viewport edges */}
       <EdgeTrianglesBackground 
@@ -119,16 +110,6 @@ const ProductsSection = () => {
         blendMode="overlay"
       />
       <div className="w-full px-4 max-w-[700px] mx-auto">
-        <div className="text-center relative z-10">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block">
-            Our Products
-          </h2>
-        </div>
-        <div className="text-center relative z-10">
-          <p className="text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto">
-            We offer the best performing and widest range of adhesive, sealant, specialty tape, and industrial cleaning solutions, including customization and environmentally friendly technologies. If we don't have it, we'll make it custom for you!
-          </p>
-        </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2 md:gap-3 lg:gap-4 max-w-3xl mx-auto relative z-10">
           {products.map((product, index) => {
             const isHovered = hoveredIndex === index;

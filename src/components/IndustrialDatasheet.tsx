@@ -361,7 +361,7 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
                       <Badge className={`font-bold px-3 py-1 rounded-lg ${getCategoryColor(product.category)}`}>
                         {product.category}
                       </Badge>
-                      <Badge variant="outline" className="text-xs border-[#09668D] text-[#09668D]">
+                      <Badge variant="outline" className="text-xs border-[#115B87] text-[#115B87]">
                         {getIndustryIcon(product.industry)}
                         {product.industry}
                       </Badge>
@@ -434,43 +434,35 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
                   </TabsContent>
                   
                   <TabsContent value="technical" className="mt-4">
-                    <div className="space-y-3">
-                      {product.technicalData?.density && (
-                        <div className="flex justify-between">
-                          <span className="font-semibold text-gray-700">Density:</span>
-                          <span className="text-gray-600">{product.technicalData.density}</span>
-                        </div>
-                      )}
-                      {product.technicalData?.pH && (
-                        <div className="flex justify-between">
-                          <span className="font-semibold text-gray-700">pH:</span>
-                          <span className="text-gray-600">{product.technicalData.pH}</span>
-                        </div>
-                      )}
-                      {product.technicalData?.color && (
-                        <div className="flex justify-between">
-                          <span className="font-semibold text-gray-700">Color:</span>
-                          <span className="text-gray-600">{product.technicalData.color}</span>
-                        </div>
-                      )}
-                      {product.technicalData?.odor && (
-                        <div className="flex justify-between">
-                          <span className="font-semibold text-gray-700">Odor:</span>
-                          <span className="text-gray-600">{product.technicalData.odor}</span>
-                        </div>
-                      )}
-                      {product.technicalData?.shelfLife && (
-                        <div className="flex justify-between">
-                          <span className="font-semibold text-gray-700">Shelf Life:</span>
-                          <span className="text-gray-600">{product.technicalData.shelfLife}</span>
-                        </div>
-                      )}
-                      {product.technicalData?.storageConditions && (
-                        <div className="flex justify-between">
-                          <span className="font-semibold text-gray-700">Storage:</span>
-                          <span className="text-gray-600">{product.technicalData.storageConditions}</span>
-                        </div>
-                      )}
+                    {/* 2-column, 3-row grid for technical data - organized in groups of 3 */}
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+                      {/* Column 1: First 3 items */}
+                      <div className="flex justify-between">
+                        <span className="font-semibold text-gray-700">Density:</span>
+                        <span className="text-gray-600">{product.technicalData?.density || 'N/A'}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-semibold text-gray-700">pH:</span>
+                        <span className="text-gray-600">{product.technicalData?.pH || 'N/A'}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-semibold text-gray-700">Color:</span>
+                        <span className="text-gray-600">{product.technicalData?.color || 'N/A'}</span>
+                      </div>
+                      
+                      {/* Column 2: Next 3 items */}
+                      <div className="flex justify-between">
+                        <span className="font-semibold text-gray-700">Odor:</span>
+                        <span className="text-gray-600">{product.technicalData?.odor || 'N/A'}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-semibold text-gray-700">Shelf Life:</span>
+                        <span className="text-gray-600">{product.technicalData?.shelfLife || 'N/A'}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-semibold text-gray-700">Storage:</span>
+                        <span className="text-gray-600">{product.technicalData?.storageConditions || 'N/A'}</span>
+                      </div>
                     </div>
                   </TabsContent>
                   
@@ -521,7 +513,7 @@ export const IndustrialDatasheet: React.FC<IndustrialDatasheetProps> = ({ classN
                 <div className="mt-6 pt-4 border-t border-gray-200">
                   <Button 
                     variant="outline" 
-                    className="w-full border-2 border-[#09668D] text-[#09668D] hover:bg-[#09668D] hover:text-white"
+                    className="w-full border-2 border-[#115B87] text-[#115B87] hover:bg-[#115B87] hover:text-white"
                     onClick={() => {
                       // Check if TDS files are available
                       const tdsLink = product.standardTdsLink || product.pdfLinks?.[0];

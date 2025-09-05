@@ -8,8 +8,8 @@ export default function DashboardStats() {
       value: "1,247",
       change: "+12%",
       icon: Package,
-      color: "from-[#09668D] to-[#1B3764]",
-      bgColor: "bg-gradient-to-br from-[#09668D] to-[#1B3764]",
+      color: "from-[#115B87] to-[#1B3764]",
+      bgColor: "bg-gradient-to-br from-[#115B87] to-[#1B3764]",
       textColor: "text-white"
     },
     {
@@ -26,8 +26,8 @@ export default function DashboardStats() {
       value: "89",
       change: "+23%",
       icon: TrendingUp,
-      color: "from-[#1B3764] to-[#09668D]",
-      bgColor: "bg-gradient-to-br from-[#1B3764] to-[#09668D]",
+      color: "from-[#1B3764] to-[#115B87]",
+      bgColor: "bg-gradient-to-br from-[#1B3764] to-[#115B87]",
       textColor: "text-white"
     }
   ];
@@ -47,7 +47,7 @@ export default function DashboardStats() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-kallisto font-heavy text-[#09668D]">
+              <div className="text-2xl font-kallisto font-heavy text-[#115B87]">
                 {stat.value}
               </div>
               <p className="text-xs font-poppins text-slate-500 mt-1">

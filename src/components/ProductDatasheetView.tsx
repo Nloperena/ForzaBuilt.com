@@ -508,13 +508,14 @@ const ProductDatasheetView: React.FC = () => {
                         <h3 className="text-lg font-bold text-white mb-3" style={{ fontFamily: typography.subheads.fontFamily, fontWeight: typography.subheads.fontWeight }}>
                           Technical Data
                         </h3>
-                        <div className="space-y-2">
-                          {Object.entries(selectedProduct.technicalData).map(([key, value]) => {
+                        {/* 2-column, 3-row grid for technical data - organized in groups of 3 */}
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                          {Object.entries(selectedProduct.technicalData).map(([key, value], index) => {
                             if (typeof value === 'string') {
                               return (
                                 <div key={key} className="flex justify-between py-2 border-b border-white/20">
                                   <span className="font-medium text-white/90 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                  <span className="text-white/80">{value}</span>
+                                  <span className="text-white/80">{value || 'N/A'}</span>
                                 </div>
                               );
                             }

@@ -16,12 +16,12 @@ export default function DashboardHeader({ onExport, onSave, onHelp }: DashboardH
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             {/* Forza Logo/Brand */}
-            <div className="w-12 h-12 bg-gradient-to-br from-[#09668D] to-[#1B3764] rounded-lg flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#115B87] to-[#1B3764] rounded-lg flex items-center justify-center shadow-lg">
               <span className="text-white font-kallisto font-heavy text-lg">F</span>
             </div>
             
             <div>
-              <h1 className="text-2xl font-kallisto font-heavy text-[#09668D]">
+              <h1 className="text-2xl font-kallisto font-heavy text-[#115B87]">
                 Forza Admin Portal
               </h1>
               <p className="text-sm font-poppins text-slate-600">
@@ -37,7 +37,7 @@ export default function DashboardHeader({ onExport, onSave, onHelp }: DashboardH
               <DialogTrigger asChild>
                 <Button 
                   variant="outline" 
-                  className="flex gap-2 border-[#09668D] text-[#09668D] hover:bg-[#09668D] hover:text-white transition-all duration-200 font-poppins font-bold"
+                  className="flex gap-2 border-[#115B87] text-[#115B87] hover:bg-[#115B87] hover:text-white transition-all duration-200 font-poppins font-bold"
                 >
                   <HelpCircle className="h-4 w-4" />
                   <span>Help</span>
@@ -45,7 +45,7 @@ export default function DashboardHeader({ onExport, onSave, onHelp }: DashboardH
               </DialogTrigger>
               <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
                 <DialogHeader>
-                  <DialogTitle className="font-kallisto text-[#09668D]">Dashboard Documentation</DialogTitle>
+                  <DialogTitle className="font-kallisto text-[#115B87]">Dashboard Documentation</DialogTitle>
                   <DialogDescription className="font-poppins">
                     Learn how to use the product management dashboard
                   </DialogDescription>
@@ -77,7 +77,7 @@ export default function DashboardHeader({ onExport, onSave, onHelp }: DashboardH
             <Button 
               variant="ghost" 
               size="sm"
-              className="text-slate-600 hover:text-[#09668D] hover:bg-[#09668D] hover:text-white transition-all duration-200"
+              className="text-slate-600 hover:text-[#115B87] hover:bg-[#115B87] hover:text-white transition-all duration-200"
             >
               <User className="h-4 w-4" />
             </Button>

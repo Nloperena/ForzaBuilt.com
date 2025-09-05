@@ -7,7 +7,7 @@ const HeroSection = () => {
       <div className="text-center space-y-8">
         <h1 className="text-6xl font-bold text-slate-800">Welcome to ForzaBuilt</h1>
         <p className="text-xl text-slate-600 max-w-2xl">Building dreams with precision and passion</p>
-        <Button className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white px-8 py-4 rounded-xl text-lg font-semibold">
+        <Button className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white px-8 py-4 rounded-xl text-lg font-semibold border border-[#F2611D]">
           Start Building
         </Button>
       </div>

@@ -8,6 +8,7 @@ import NavigationItem from './Header/NavigationItem';
 import MobileMenu from './Header/MobileMenu';
 import OverlayContent from './Header/OverlayContent';
 import SearchBar from './Header/SearchBar';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const Header = () => {
   const {
@@ -34,12 +35,18 @@ const Header = () => {
     closeMobileMenu,
     setHoveredVideoUrl,
   } = useHeaderState();
+  
+  const { mode } = useGradientMode();
 
   return (
     <header 
       ref={headerRef} 
-      className="fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-2xl bg-white/50 border-b border-white/60 shadow-2xl"
-      style={{ backgroundColor: '#115B8730' }}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        mode === 'light' 
+          ? 'bg-gradient-to-r from-[#1B3764] to-[#115B87] border-b border-white/20' 
+          : 'backdrop-blur-2xl bg-white/50 border-b border-white/60'
+      } shadow-2xl`}
+      style={mode === 'light' ? {} : { backgroundColor: '#115B8730' }}
       onMouseEnter={handleOverlayEnter}
       onMouseLeave={handleNavLeave}
     >

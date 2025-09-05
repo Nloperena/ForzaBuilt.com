@@ -7,7 +7,7 @@ const ShinyFaqSection: React.FC = () => {
   const faqs = useMemo(() => faqData as Array<{ question: string; answer: string }>, []);
 
   return (
-    <section className="relative z-10 w-full bg-[#115B87] text-white py-14 md:py-20 overflow-hidden">
+    <section className="relative z-10 w-full bg-gradient-to-b from-[#115B87] to-[#1B3764] text-white py-14 md:py-20 overflow-hidden">
       {/* soft glow background that can layer over neighbors */}
       <div className="pointer-events-none absolute -inset-y-20 inset-x-0 opacity-40">
         <div className="absolute -top-24 -left-24 w-[32rem] h-[32rem] rounded-full bg-cyan-300/18 blur-3xl" />
