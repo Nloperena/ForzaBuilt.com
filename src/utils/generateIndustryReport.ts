@@ -1,4 +1,4 @@
-import { industrialDatasheet } from '../data/industrialDatasheet.js';
+import { industrialDatasheet } from '../data/industrialDatasheet';
 
 const OFFICIAL_INDUSTRIES = [
   'transportation',

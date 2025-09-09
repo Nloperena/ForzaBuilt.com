@@ -1,4 +1,4 @@
-import { ProductDatasheet } from './industrialDatasheet.js';
+import { ProductDatasheet } from './industrialDatasheet';
 
 export const INDUSTRIAL_PRODUCTS: ProductDatasheet[] = [
   // INDUSTRIAL BOND PRODUCTS

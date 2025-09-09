@@ -107,7 +107,7 @@ const Index = () => {
       </section>
 
       {/* Scroll Stack Cards Section (Grid Layout: 3-2-3-2) - COMMENTED OUT */}
-      {/* <section className={`relative w-full bg-gradient-to-br from-[${brandColors.primary.blazeOrange.hex}] via-[${brandColors.secondary.rustyNailOrange.hex}] to-[${brandColors.primary.blazeOrange.hex}] text-white`}>
+      {/* <section className="relative w-full bg-gradient-to-br from-[#F16022] via-[#D35127] to-[#F16022] text-white">
         <Suspense fallback={
           <div className="min-h-[400px] flex items-center justify-center">
             <div className="text-center">

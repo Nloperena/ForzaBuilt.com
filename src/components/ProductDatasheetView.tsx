@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { industrialDatasheet } from '@/data/industrialDatasheet.js';
+import { industrialDatasheet } from '@/data/industrialDatasheet';
 import { industries as industriesData } from '@/data/industries';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -25,39 +25,38 @@ const getIndustryLogo = (industry: string) => {
 const categoryColor = (cat: string) => {
   switch (cat) {
     case 'BOND':
-      return `from-[${productColors.bond.primary}] to-[${brandColors.secondary.rustyNail.hex}]`;
+      return 'from-[#F16022] to-[#D35127]'; // blazeOrange to rustyNail
     case 'SEAL':
-      return `from-[${productColors.seal.primary}] to-[#f4c430]`;
+      return 'from-[#ffd600] to-[#f4c430]'; // yellow gradient
     case 'TAPE':
       return 'from-[#d1181f] to-[#b3141a]'; // More vibrant red gradient
     default:
-      return `from-[${brandColors.secondary.slateGrey.hex}] to-[${brandColors.secondary.ironGrey.hex}]`;
+      return 'from-[#BFBFBF] to-[#F16022]'; // slateGrey to ironGrey (blazeOrange)
   }
 };
 
 // Industry colors using gradients with 70% blue and 30% industry color
 const industryColor = (industry: string) => {
   const industryLower = industry.toLowerCase();
-  const brandBlue = '#1b3764'; // Forza brand blue
   
   // Use gradients with 70% blue and 30% industry color
   switch (industryLower) {
     case 'marine':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#137875]`; // 70% blue, 30% Marine teal
+      return 'from-[#1b3764] via-[#1b3764] to-[#137875]'; // 70% blue, 30% Marine teal
     case 'industrial':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#f16a26]`; // 70% blue, 30% Industrial orange
+      return 'from-[#1b3764] via-[#1b3764] to-[#f16a26]'; // 70% blue, 30% Industrial orange
     case 'transportation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#b83d35]`; // 70% blue, 30% Transportation red
+      return 'from-[#1b3764] via-[#1b3764] to-[#b83d35]'; // 70% blue, 30% Transportation red
     case 'construction':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#fec770]`; // 70% blue, 30% Construction yellow
+      return 'from-[#1b3764] via-[#1b3764] to-[#fec770]'; // 70% blue, 30% Construction yellow
     // case 'foam':
-    //   return `from-[${brandBlue}] via-[${brandBlue}] to-[#7a6fb0]`; // 70% blue, 30% Foam purple
+    //   return 'from-[#1b3764] via-[#1b3764] to-[#7a6fb0]'; // 70% blue, 30% Foam purple
     case 'composites':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#c7c8c9]`; // 70% blue, 30% Composites gray
+      return 'from-[#1b3764] via-[#1b3764] to-[#c7c8c9]'; // 70% blue, 30% Composites gray
     case 'insulation':
-      return `from-[${brandBlue}] via-[${brandBlue}] to-[#d0157d]`; // 70% blue, 30% Insulation pink
+      return 'from-[#1b3764] via-[#1b3764] to-[#d0157d]'; // 70% blue, 30% Insulation pink
     default:
-      return `from-[${brandBlue}] to-[${brandBlue}]`; // Default blue
+      return 'from-[#1b3764] to-[#1b3764]'; // Default blue
   }
 };
 

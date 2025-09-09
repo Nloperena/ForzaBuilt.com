@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { industrialDatasheet } from '@/data/industrialDatasheet.js';
+import { industrialDatasheet } from '@/data/industrialDatasheet';
 import { getProducts } from '@/utils/products';
 import { brandColors, typography } from '@/styles/brandStandards';
 import Header from '@/components/Header';

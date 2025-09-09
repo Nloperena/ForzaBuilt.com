@@ -94,7 +94,7 @@ const AnimatedHeading: React.FC = () => {
   return (
     <div
       ref={elementRef}
-      className={`transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] transform ${
+      className={`transition-all duration-700 ease-&lsqb;cubic-bezier(0.25,0.46,0.45,0.94)&rsqb; transform ${
         isVisible 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-8'
@@ -145,7 +145,7 @@ const ChemistryItem: React.FC<ChemistryItemProps & { index: number; getElementRe
     <div
       ref={getElementRef(index)}
       data-index={index}
-      className={`backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] mb-4 max-w-2xl mx-auto relative z-10 transform ${
+      className={`backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-700 ease-&lsqb;cubic-bezier(0.25,0.46,0.45,0.94)&rsqb; mb-4 max-w-2xl mx-auto relative z-10 transform ${
         isVisible(index)
           ? 'opacity-100 translate-y-0' 
           : 'opacity-100 translate-y-0'
@@ -229,7 +229,7 @@ const ChemistryItemTablet: React.FC<ChemistryItemProps & { index: number; getEle
     <div
       ref={getElementRef(index)}
       data-index={index}
-      className={`backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] mb-6 max-w-4xl mx-auto relative z-10 transform ${
+      className={`backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl shadow-lg hover:shadow-xl transition-all duration-700 ease-&lsqb;cubic-bezier(0.25,0.46,0.45,0.94)&rsqb; mb-6 max-w-4xl mx-auto relative z-10 transform ${
         isVisible(index)
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-12'

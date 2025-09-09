@@ -5,10 +5,28 @@ console.log('🔧 Generating Unified Product SEO System...\n');
 
 // Load all product data sources
 const loadProductData = () => {
+  let industrial = [];
+  let industrialProducts = [];
+  
+  // Try to load TypeScript files, but handle errors gracefully
+  try {
+    // Note: These imports may fail in production builds since they're TypeScript files
+    // The script will continue with just the simplified products if these fail
+    industrial = require('../src/data/industrialDatasheet.ts').industrialDatasheet || [];
+  } catch (error) {
+    console.log('⚠️  Could not load industrialDatasheet.ts (this is expected in production builds)');
+  }
+  
+  try {
+    industrialProducts = require('../src/data/industrialProducts.ts').INDUSTRIAL_PRODUCTS || [];
+  } catch (error) {
+    console.log('⚠️  Could not load industrialProducts.ts (this is expected in production builds)');
+  }
+  
   const sources = {
     simplified: JSON.parse(fs.readFileSync(path.join(__dirname, '../public/productsSimplified.json'), 'utf8')),
-    industrial: require('../src/data/industrialDatasheet.ts').industrialDatasheet || [],
-    industrialProducts: require('../src/data/industrialProducts.ts').INDUSTRIAL_PRODUCTS || []
+    industrial,
+    industrialProducts
   };
   
   console.log('📊 PRODUCT DATA SOURCES:');

@@ -20,29 +20,39 @@ const getCategoryToColor = (category: ProductLine) => {
   }
 };
 
-const getCategoryGradient = (category: ProductLine) => `from-[#1b3764] via-[#1b3764] to-[${getCategoryToColor(category)}]`;
+const getCategoryGradient = (category: ProductLine) => {
+  switch (category) {
+    case 'bond':
+      return 'from-[#1b3764] via-[#1b3764] to-[#F16022]';
+    case 'seal':
+      return 'from-[#1b3764] via-[#1b3764] to-[#f4c430]';
+    case 'tape':
+      return 'from-[#1b3764] via-[#1b3764] to-[#d1181f]';
+    default:
+      return 'from-[#1b3764] via-[#1b3764] to-[#1B3764]';
+  }
+};
 
 const getIndustryGradient = (industryName?: string) => {
   if (!industryName) return null;
   
   const industryLower = industryName.toLowerCase();
-  const brandBlue = '#1b3764';
   
   switch (industryLower) {
     case 'marine':
-      return `from-[#137875] via-[${brandBlue}] to-[${brandBlue}]`;
+      return 'from-[#137875] via-[#1b3764] to-[#1b3764]';
     case 'industrial':
-      return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`;
+      return 'from-[#f16a26] via-[#1b3764] to-[#1b3764]';
     case 'transportation':
-      return `from-[#e53935] via-[#3f5275] to-[${brandBlue}]`;
+      return 'from-[#e53935] via-[#3f5275] to-[#1b3764]';
     case 'construction':
-      return `from-[#fec770] via-[${brandBlue}] to-[${brandBlue}]`;
+      return 'from-[#fec770] via-[#1b3764] to-[#1b3764]';
     case 'composites':
-      return `from-[#c7c8c9] via-[${brandBlue}] to-[${brandBlue}]`;
+      return 'from-[#c7c8c9] via-[#1b3764] to-[#1b3764]';
     case 'insulation':
-      return `from-[#d0157d] via-[${brandBlue}] to-[${brandBlue}]`;
+      return 'from-[#d0157d] via-[#1b3764] to-[#1b3764]';
     case 'foam':
-      return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`;
+      return 'from-[#f16a26] via-[#1b3764] to-[#1b3764]';
     default:
       return null;
   }

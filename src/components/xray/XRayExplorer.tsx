@@ -190,23 +190,22 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
   const getIndustryColor = (industry: string | string[]) => {
     const industryStr = Array.isArray(industry) ? industry[0] || '' : industry;
     const industryLower = industryStr.toLowerCase();
-    const brandBlue = '#1b3764';
     
     switch (industryLower) {
       case 'marine':
-        return `from-[#137875] via-[${brandBlue}] to-[${brandBlue}]`;
+        return 'from-[#137875] via-[#1b3764] to-[#1b3764]';
       case 'industrial':
-        return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`;
+        return 'from-[#f16a26] via-[#1b3764] to-[#1b3764]';
       case 'transportation':
-        return `from-[#b83d35] via-[${brandBlue}] to-[${brandBlue}]`;
+        return 'from-[#b83d35] via-[#1b3764] to-[#1b3764]';
       case 'construction':
-        return `from-[#fec770] via-[${brandBlue}] to-[${brandBlue}]`;
+        return 'from-[#fec770] via-[#1b3764] to-[#1b3764]';
       case 'composites':
-        return `from-[#c7c8c9] via-[${brandBlue}] to-[${brandBlue}]`;
+        return 'from-[#c7c8c9] via-[#1b3764] to-[#1b3764]';
       case 'insulation':
-        return `from-[#d0157d] via-[${brandBlue}] to-[${brandBlue}]`;
+        return 'from-[#d0157d] via-[#1b3764] to-[#1b3764]';
       default:
-        return `from-[${brandBlue}] to-[${brandBlue}]`;
+        return 'from-[#1b3764] to-[#1b3764]';
     }
   };
 

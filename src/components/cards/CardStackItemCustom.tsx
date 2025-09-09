@@ -57,7 +57,7 @@ const CardStackItemCustom: React.FC<CardStackItemCustomProps> = ({
 
   return (
     <div
-      className={`sticky top-16 md:top-16 w-full h-[80vh] ${index === 0 && progress < 0.1 ? 'md:h-[70vh]' : 'md:h-[100vh]'} flex items-center justify-center px-1 sm:px-2 md:px-4 lg:px-8 xl:px-12 2xl:px-16 3xl:px-20 transition-[height] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+      className={`sticky top-16 md:top-16 w-full h-[80vh] ${index === 0 && progress < 0.1 ? 'md:h-[70vh]' : 'md:h-[100vh]'} flex items-center justify-center px-1 sm:px-2 md:px-4 lg:px-8 xl:px-12 2xl:px-16 3xl:px-20 transition-[height] duration-700 ease-&lsqb;cubic-bezier(0.22,1,0.36,1)&rsqb;`}
       style={{ zIndex: 40 + index }}
     >
       <div className="w-full max-w-none">

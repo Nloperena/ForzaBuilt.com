@@ -114,13 +114,13 @@ const getCategoryGradient = (category: string) => {
 const categoryColor = (cat: string) => {
   switch (cat) {
     case 'BOND':
-      return `from-[${productColors.bond.primary}] to-[${brandColors.secondary.rustyNail.hex}]`;
+      return 'from-[#F16022] to-[#D35127]'; // blazeOrange to rustyNail
     case 'SEAL':
-      return `from-[${productColors.seal.primary}] to-[#f4c430]`;
+      return 'from-[#ffd600] to-[#f4c430]'; // yellow gradient
     case 'TAPE':
       return 'from-[#d1181f] to-[#b3141a]'; // More vibrant red gradient
     default:
-      return `from-[${brandColors.secondary.slateGrey.hex}] to-[${brandColors.secondary.ironGrey.hex}]`;
+      return 'from-[#BFBFBF] to-[#F16022]'; // slateGrey to ironGrey (blazeOrange)
   }
 };
 
@@ -129,26 +129,25 @@ const industryColor = (industry: string | string[]) => {
   // Handle both string and array inputs - use first industry if array
   const industryStr = Array.isArray(industry) ? industry[0] || '' : industry;
   const industryLower = industryStr.toLowerCase();
-  const brandBlue = '#1b3764'; // Forza brand blue
   
   // Use gradients with 30% blue and 70% industry color
   switch (industryLower) {
     case 'marine':
-      return `from-[#137875] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Marine teal, 30% blue
+      return 'from-[#137875] via-[#1b3764] to-[#1b3764]'; // 70% Marine teal, 30% blue
     case 'industrial':
-      return `from-[#f16a26] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Industrial orange, 30% blue
+      return 'from-[#f16a26] via-[#1b3764] to-[#1b3764]'; // 70% Industrial orange, 30% blue
     case 'transportation':
-      return `from-[#b83d35] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Transportation red, 30% blue
+      return 'from-[#b83d35] via-[#1b3764] to-[#1b3764]'; // 70% Transportation red, 30% blue
     case 'construction':
-      return `from-[#fec770] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Construction yellow, 30% blue
+      return 'from-[#fec770] via-[#1b3764] to-[#1b3764]'; // 70% Construction yellow, 30% blue
     // case 'foam':
-    //   return `from-[#7a6fb0] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Foam purple, 30% blue
+    //   return 'from-[#7a6fb0] via-[#1b3764] to-[#1b3764]'; // 70% Foam purple, 30% blue
     case 'composites':
-      return `from-[#c7c8c9] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Composites gray, 30% blue
+      return 'from-[#c7c8c9] via-[#1b3764] to-[#1b3764]'; // 70% Composites gray, 30% blue
     case 'insulation':
-      return `from-[#d0157d] via-[${brandBlue}] to-[${brandBlue}]`; // 70% Insulation pink, 30% blue
+      return 'from-[#d0157d] via-[#1b3764] to-[#1b3764]'; // 70% Insulation pink, 30% blue
     default:
-      return `from-[${brandBlue}] to-[${brandBlue}]`; // Default blue
+      return 'from-[#1b3764] to-[#1b3764]'; // Default blue
   }
 };
 
