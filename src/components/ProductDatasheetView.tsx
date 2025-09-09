@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { industrialDatasheet } from '@/data/industrialDatasheet';
+import { industrialDatasheet } from '@/data/industrialDatasheet.js';
 import { industries as industriesData } from '@/data/industries';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

@@ -1,4 +1,4 @@
-import { industrialDatasheet } from '../data/industrialDatasheet';
+import { industrialDatasheet } from '../data/industrialDatasheet.js';
 
 // Official industries in order
 const OFFICIAL_INDUSTRIES = [
