@@ -24,6 +24,14 @@ import ChemistryOverviewSectionV6 from '@/components/ChemistryOverviewSectionV6'
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import GradientToggleModal from '@/components/GradientToggleModal';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import WithLoading from '@/components/common/WithLoading';
+import HeaderSkeleton from '@/components/skeletons/HeaderSkeleton';
+import HeroSkeleton from '@/components/skeletons/HeroSkeleton';
+import IndustriesSkeleton from '@/components/skeletons/IndustriesSkeleton';
+import ProductsSkeleton from '@/components/skeletons/ProductsSkeleton';
+import ChemistrySkeleton from '@/components/skeletons/ChemistrySkeleton';
+import NewsletterSkeleton from '@/components/skeletons/NewsletterSkeleton';
+import FooterSkeleton from '@/components/skeletons/FooterSkeleton';
 
 // Lazy load heavy components
 const ServiceCardStack = lazy(() => import('@/components/ServiceCardStack'));
@@ -56,17 +64,21 @@ const Index = () => {
         url="/"
         type="website"
       />
-      <Header />
+      <WithLoading fallback={<HeaderSkeleton />} loadingKey="header" delay={0}>
+        <Header />
+      </WithLoading>
       
       {/* Hero section */}
-      <section className="relative">
-        <HeroOverlay />
-      </section>
-      
-      {/* Hero Video Section */}
-      <section className="relative">
-        <HeroVideoSection />
-      </section>
+      <WithLoading fallback={<HeroSkeleton />} loadingKey="hero" delay={200}>
+        <section className="relative">
+          <HeroOverlay />
+        </section>
+        
+        {/* Hero Video Section */}
+        <section className="relative">
+          <HeroVideoSection />
+        </section>
+      </WithLoading>
       
       {/* Divider/Products Section */}
       {mode === 'light2' ? (
@@ -93,22 +105,28 @@ const Index = () => {
       )}
       
       {/* Industries Section (same as Industries page) */}
-      <section className="relative overflow-hidden">
-        {/* Optimized Gradient Background (Mirrored) */}
-        <OptimizedGradient variant="mirrored" opacity={0.8} />
+      <WithLoading fallback={<IndustriesSkeleton />} loadingKey="industries" delay={400}>
+        <section className="relative overflow-hidden">
+          {/* Optimized Gradient Background (Mirrored) */}
+          <OptimizedGradient variant="mirrored" opacity={0.8} />
 
-        <IndustriesSectionAlt />
-      </section>
+          <IndustriesSectionAlt />
+        </section>
+      </WithLoading>
 
       {/* Products Section Row */}
-      <section className="relative">
-        <ProductsSectionRow />
-      </section>
+      <WithLoading fallback={<ProductsSkeleton />} loadingKey="products" delay={600}>
+        <section className="relative">
+          <ProductsSectionRow />
+        </section>
+      </WithLoading>
 
       {/* Sticky Background Section */}
-      <section className="relative">
-        <StickyBackgroundSection />
-      </section>
+      <WithLoading fallback={<div className="h-96 bg-gradient-to-b from-[#115B87] to-[#1B3764]" />} loadingKey="sticky" delay={800}>
+        <section className="relative">
+          <StickyBackgroundSection />
+        </section>
+      </WithLoading>
 
       {/* Scroll Stack Cards Section (Grid Layout: 3-2-3-2) - COMMENTED OUT */}
       {/* <section className="relative w-full bg-gradient-to-br from-[#F16022] via-[#D35127] to-[#F16022] text-white">
@@ -151,10 +169,14 @@ const Index = () => {
 
       
       {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
-      <ChemistryOverviewSectionV6 />
+      <WithLoading fallback={<ChemistrySkeleton />} loadingKey="chemistry" delay={1000}>
+        <ChemistryOverviewSectionV6 />
+      </WithLoading>
 
       {/* Made in America Section - Sticky background with video */}
-      <StickyBackgroundSectionV7 />
+      <WithLoading fallback={<div className="h-96 bg-gradient-to-b from-[#115B87] to-[#1B3764]" />} loadingKey="made-in-america" delay={1200}>
+        <StickyBackgroundSectionV7 />
+      </WithLoading>
 
       {/* Edge Triangles Background spanning both sections and divider */}
       {/* Removed EdgeTrianglesBackground overlay and its parent div */}
@@ -162,14 +184,18 @@ const Index = () => {
     
 
       {/* Newsletter Section - STANDALONE */}
-      <div className="relative w-full z-10">
-        <NewsletterSection />
-      </div>
+      <WithLoading fallback={<NewsletterSkeleton />} loadingKey="newsletter" delay={1400}>
+        <div className="relative w-full z-10">
+          <NewsletterSection />
+        </div>
+      </WithLoading>
       
       {/* Footer */}
-      <section className="relative">
-        <Footer />
-      </section>
+      <WithLoading fallback={<FooterSkeleton />} loadingKey="footer" delay={1600}>
+        <section className="relative">
+          <Footer />
+        </section>
+      </WithLoading>
 
       {/* Gradient Toggle Modal */}
       <GradientToggleModal 
