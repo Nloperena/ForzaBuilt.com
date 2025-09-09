@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 
 interface ChemistryData {
   id: string;
@@ -172,6 +173,45 @@ const ChemistryOverviewSectionV6: React.FC = () => {
 
   return (
     <section className="w-full py-16 px-4 relative overflow-hidden bg-gradient-to-br from-[#F16022] via-[#E8551C] to-[#F16022]">
+      {/* Edge Triangles Background - Multiple variations */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles.png"
+        opacity={0.4}
+        scale={0.6}
+        leftRotation={45}
+        rightRotation={315}
+        leftFlipH={false}
+        rightFlipV={true}
+        blendMode="overlay"
+      />
+      
+      {/* Additional Triangle Layer - Different orientation */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        opacity={0.3}
+        scale={0.8}
+        leftRotation={135}
+        rightRotation={225}
+        leftFlipH={true}
+        rightFlipV={false}
+        blendMode="multiply"
+      />
+      
+      {/* Third Triangle Layer - Subtle variation */}
+      <EdgeTrianglesBackground 
+        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+        rightImage="/Gradients and Triangles/Small Science Triangles.png"
+        opacity={0.2}
+        scale={1.0}
+        leftRotation={0}
+        rightRotation={180}
+        leftFlipH={false}
+        rightFlipV={false}
+        blendMode="soft-light"
+      />
+      
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <h2 className="text-4xl md:text-6xl font-black text-white text-center mb-12 font-kallisto leading-tight">
           Ideal Chemistry For Your<br className="hidden md:block" /> Specific Application
