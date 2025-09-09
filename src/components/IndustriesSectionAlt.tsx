@@ -188,7 +188,7 @@ const IndustriesSectionAlt = () => {
 
         {/* Desktop: Grid layout with 3 columns */}
         <div className="hidden md:flex w-full flex-col items-center">
-          <div className="grid grid-cols-3 gap-6 lg:gap-8 w-full max-w-7xl mb-8 mx-auto py-4 sm:py-6 lg:py-8">
+          <div className="grid grid-cols-3 gap-6 lg:gap-8 w-full max-w-7xl mb-4 mx-auto py-4 sm:py-6 lg:py-8">
             {industriesArr.map((industry: Industry, index: number) => (
               <div
                 key={industry.title}
@@ -280,16 +280,14 @@ const IndustriesSectionAlt = () => {
         </div>
 
         {/* Standalone CTA Section: Glassmorphic liquid shine */}
-        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20 mt-8 sm:mt-12 pb-24" style={{
-          marginTop: 0,
-          paddingBottom: '4rem',
-          marginBottom: '0rem'
-        }}>
-          <div className={`relative max-w-7xl mx-auto overflow-hidden rounded-2xl shadow-2xl ${
+        <div className="w-full md:px-8 lg:px-20 mt-8 sm:mt-0 pb-12">
+          <div className={`relative max-w-7xl mx-auto overflow-hidden rounded-2xl shadow-xl sm:shadow-2xl ${
             mode === 'light' || mode === 'light2'
               ? 'bg-gradient-to-r from-[#1B3764] to-[#115B87]' 
               : 'border border-white/20 bg-white/10 backdrop-blur-xl'
-          }`}>
+          }`} style={{
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)'
+          }}>
             {/* Static liquid shine overlay - only for dark mode */}
             {mode !== 'light' && mode !== 'light2' && (
               <div

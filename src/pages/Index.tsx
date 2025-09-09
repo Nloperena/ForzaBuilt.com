@@ -20,6 +20,7 @@ import { brandColors, getIndustryGradient } from '@/styles/brandStandards';
 import type { ServiceCardData } from '@/types/ServiceCard';
 import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
 import IdealChemistriesSection from '@/components/IdealChemistriesSection';
+import ChemistryOverviewSectionV6 from '@/components/ChemistryOverviewSectionV6';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import GradientToggleModal from '@/components/GradientToggleModal';
 import { useGradientMode } from '@/contexts/GradientModeContext';
@@ -80,11 +81,14 @@ const Index = () => {
           </div>
         </section>
       ) : (
-        <section className={`relative w-full h-16 ${
-          mode === 'light'
-            ? 'bg-gradient-to-b from-white to-gray-100'
-            : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
-        }`}>
+        <section 
+          className={`relative w-full h-2 sm:h-16 ${
+            mode === 'light'
+              ? ''
+              : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
+          }`}
+          style={mode === 'light' ? { backgroundColor: '#e8e8e8' } : {}}
+        >
         </section>
       )}
       
@@ -145,8 +149,9 @@ const Index = () => {
 
 
 
-      {/* Ideal Chemistries Section - new version */}
-      <IdealChemistriesSection />
+      
+      {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
+      <ChemistryOverviewSectionV6 />
 
       {/* Made in America Section - Sticky background with video */}
       <StickyBackgroundSectionV7 />

@@ -78,16 +78,6 @@ const ProductsSection = () => {
       />
       
       <div className="w-full px-4 mx-auto max-w-7xl">
-        <div className="text-center relative z-10">
-          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${getTextClasses()} mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
-            Our Products
-          </h2>
-        </div>
-        <div className="text-center relative z-10">
-          <p className={`text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto ${getTextSecondaryClasses()}`}>
-            We offer the best performing and widest range of adhesive, sealant, specialty tape, and industrial cleaning solutions, including customization and environmentally friendly technologies. If we don't have it, we'll make it custom for you!
-          </p>
-        </div>
         
         {/* Desktop Row Layout - hidden on mobile */}
         <div className="hidden md:flex flex-row gap-6 md:gap-8 lg:gap-10 xl:gap-12 2xl:gap-16 justify-center items-center relative z-10">
@@ -111,10 +101,10 @@ const ProductsSection = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 rounded-[2rem] overflow-hidden transition-all duration-300 hover:scale-[1.02] relative z-10 w-96 h-96 flex-shrink-0"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 relative z-10 w-96 h-96 flex-shrink-0 backdrop-blur-xl bg-white/10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
                     }}
                   >
                     <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
@@ -243,10 +233,10 @@ const ProductsSection = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 rounded-[2rem] overflow-hidden transition-all duration-300 hover:scale-[1.02] relative z-10 w-96 h-96 flex-shrink-0"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 relative z-10 w-96 h-96 flex-shrink-0 backdrop-blur-xl bg-white/10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
                     }}
                   >
                     <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
@@ -393,10 +383,10 @@ const ProductsSection = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 shadow-lg rounded-[2rem] overflow-hidden transition-all duration-100 hover:scale-[1.02] relative hover:bg-transparent z-10"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 relative z-10 backdrop-blur-xl bg-white/10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
                     }}
                   >
                     <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
@@ -525,10 +515,10 @@ const ProductsSection = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 shadow-lg rounded-[2rem] overflow-hidden transition-all duration-100 hover:scale-[1.02] relative hover:bg-transparent z-10"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 relative z-10 backdrop-blur-xl bg-white/10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
                     }}
                   >
                     <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>

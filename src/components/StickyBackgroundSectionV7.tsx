@@ -5,7 +5,7 @@ const StickyBackgroundSectionV7 = () => {
     <>
       {/* Sticky Video Background Section */}
       <div className="relative">
-        <section className="sticky top-0 h-[60vh] overflow-hidden bg-gradient-to-b from-[#115B87] to-[#1B3764] shadow-2xl">
+        <section className="sticky top-0 h-[55vh] overflow-hidden bg-gradient-to-b from-[#115B87] to-[#1B3764] shadow-2xl">
           {/* Background Video */}
           <video
             autoPlay
