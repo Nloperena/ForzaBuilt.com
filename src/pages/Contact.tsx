@@ -139,7 +139,7 @@ const Contact = () => {
             style={{ opacity: isVideoLoaded ? 1 : 0, zIndex: 1 }}
           >
             <source 
-              src="/ForzaLionLoop-1-2.mp4" 
+              src="/Lion_Walk.mp4" 
               type="video/mp4"
             />
             Your browser does not support the video tag.

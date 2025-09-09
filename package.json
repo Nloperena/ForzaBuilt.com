@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generateStaticPages.js && node scripts/generateSitemap.js && vite build",
+    "build": "node scripts/generateStaticPages.js && node scripts/generateSitemap.js && vite build && node scripts/generatePrerenderedPages.js && node scripts/optimizeBlogSEO.js && node scripts/generateUnifiedProductSEO.js",
     "build:dev": "node scripts/generateStaticPages.js && node scripts/generateSitemap.js && vite build --mode development",
     "build:prod": "node scripts/generateStaticPages.js && node scripts/generateSitemap.js && vite build --mode production",
     "generate-static": "node scripts/generateStaticPages.js",

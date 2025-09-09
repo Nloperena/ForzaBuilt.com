@@ -13,16 +13,16 @@ const StickyBackgroundSection = () => {
       </div>
       <div className={`relative ${getTextClasses()} text-left px-3 sm:px-6 md:px-8 lg:px-12 xl:px-16 w-full h-full flex flex-col justify-center`}>
         <div className="space-y-1 sm:space-y-1 md:space-y-2 lg:space-y-2 xl:space-y-3">
-          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#096688]">
+          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#096688]" style={{ textShadow: '2px 2px 0 rgba(0, 0, 0, 0.25)' }}>
             Purpose-Built
           </div>
-          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#808080]">
+          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#808080]" style={{ textShadow: '2px 2px 0 rgba(0, 0, 0, 0.25)' }}>
             Performance
           </div>
-          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#F2611D]">
+          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#F2611D]" style={{ textShadow: '2px 2px 0 rgba(0, 0, 0, 0.25)' }}>
             Guaranteed
           </div>
-          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#F2611D]">
+          <div className="text-[clamp(1.25rem,6vw,6rem)] font-heavy leading-none font-kallisto text-[#F2611D]" style={{ textShadow: '2px 2px 0 rgba(0, 0, 0, 0.25)' }}>
             Strength
           </div>
         </div>

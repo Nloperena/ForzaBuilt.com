@@ -4,8 +4,7 @@ import { industries } from '../../data/industries';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import IdealChemistrySection from '../../components/IdealChemistrySection';
-import IndustryStackableCards from '../../components/StackableCards/IndustryStackableCards';
-import { getCardsByIndustry, getBackgroundGradientByIndustry } from '@/data/stackableCardsData';
+import HybridStackableCards from '../../components/HybridStackableCards';
  
 import MarineProductsGrid from '../../components/MarineProductsGrid';
 import ProductsExplorerClone from '@/components/ProductsExplorerClone';
@@ -398,7 +397,7 @@ const IndustryPage = () => {
 
 
 
-      {/* New Two-Column Stack using industry gradient/glassmorphism */}
+      {/* Hybrid Stackable Cards Section - Combining best of both components */}
       {(() => {
         const industryKey = industryData.title.toLowerCase();
         // Map industry titles to valid industry keys
@@ -414,16 +413,16 @@ const IndustryPage = () => {
         };
         
         const validIndustryKey = getIndustryKey(industryData.title);
-        const gradient = getBackgroundGradientByIndustry(validIndustryKey);
         
         return (
           <div className="relative z-[30]">
-            <IndustryStackableCards industry={validIndustryKey} />
+            <HybridStackableCards 
+              industry={validIndustryKey}
+              maxCards={2}
+            />
           </div>
         );
       })()}
-
-      {/* Dynamic Products Section removed per request */}
 
       {/* Product Cards Section - Uniform look with product pages */}
       {industryProducts.length > 0 && (
@@ -673,7 +672,7 @@ const IndustryPage = () => {
                     {/* Mobile: Left side with image and basic info */}
                     <div className="flex md:hidden items-center gap-4 flex-1 p-4">
                       {/* Mobile: Product Image */}
-                      <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 hover:border-white/40 shadow-2xl relative" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)', transform: 'translateY(-50%)' }}>
+                      <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 hover:border-white/40 shadow-2xl relative flex items-center justify-center" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)' }}>
                         {/* Image Skeleton Loading State */}
                         {!imageLoadedStates[product.id] && (
                           <ImageSkeleton className="rounded-xl" />
@@ -682,7 +681,7 @@ const IndustryPage = () => {
                         <img 
                           src={product.imageUrl} 
                           alt={product.name}
-                          className={`w-full h-full object-cover transition-opacity duration-500 ${
+                          className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
                             imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                           }`}
                           onLoad={() => handleImageLoad(product.id)}

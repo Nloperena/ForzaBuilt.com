@@ -1,11 +1,127 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/industries/industrial",
+      "destination": "/industries/industrial.html"
+    },
+    {
+      "source": "/products/bond",
+      "destination": "/products/bond.html"
+    },
+    {
+      "source": "/industries/marine",
+      "destination": "/industries/marine.html"
+    },
+    {
+      "source": "/industries/construction",
+      "destination": "/industries/construction.html"
+    },
+    {
+      "source": "/industries/transportation",
+      "destination": "/industries/transportation.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog.html"
+    },
+    {
+      "source": "/blog/(.*)",
+      "destination": "/blog/$1.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
+  "headers": [
+    {
+      "source": "/(.*).html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite"
-} 
+  "framework": "vite",
+  "redirects": [
+    {
+      "source": "/product-category/adhesives/",
+      "destination": "/products/bond",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/sealants/",
+      "destination": "/products/seal",
+      "permanent": true
+    },
+    {
+      "source": "/product-category/tapes/",
+      "destination": "/products/tape",
+      "permanent": true
+    },
+    {
+      "source": "/industrial-adhesives/",
+      "destination": "/industries/industrial",
+      "permanent": true
+    },
+    {
+      "source": "/marine-adhesives/",
+      "destination": "/industries/marine",
+      "permanent": true
+    },
+    {
+      "source": "/construction-adhesives/",
+      "destination": "/industries/construction",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/products-page/",
+      "destination": "/products",
+      "permanent": true
+    }
+  ]
+}

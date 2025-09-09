@@ -863,7 +863,7 @@ const ProductDetailPage: React.FC = () => {
       {/* Gradient Toggle Modal */}
       <GradientToggleModal 
         onModeChange={() => {}} 
-        currentMode="neutral" 
+        currentMode="dark" 
       />
     </div>
   );

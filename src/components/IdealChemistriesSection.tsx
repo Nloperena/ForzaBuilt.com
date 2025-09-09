@@ -170,11 +170,14 @@ const IdealChemistriesSection: React.FC = () => {
   const visibleChemistries = chemistries.slice(currentIndex, currentIndex + cardsToShow);
 
   return (
-    <section className={`w-full ${
-      mode === 'light' 
-        ? 'bg-[#e8e8e8]' 
-        : `bg-gradient-to-b ${getGradientClasses()}`
-    } py-16 px-2 md:px-0 relative overflow-hidden`}>
+    <section className={`w-full py-16 px-2 md:px-0 relative overflow-hidden ${
+      mode === 'light' || mode === 'light2'
+        ? 'bg-white'
+        : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
+    }`} style={{
+      backgroundColor: mode === 'light' || mode === 'light2' ? '#ffffff' : undefined,
+      background: mode === 'light' || mode === 'light2' ? '#ffffff' : 'linear-gradient(to bottom, #115B87, #1B3764)'
+    }}>
       {/* Edge Triangles Background */}
       <EdgeTrianglesBackground 
         leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
@@ -234,15 +237,15 @@ const IdealChemistriesSection: React.FC = () => {
                        }
                      }}
                     className={`rounded-2xl sm:rounded-3xl border ${
-                      mode === 'light' ? 'border-gray-200/50 hover:border-gray-300' : 'border-white/20 hover:border-white/30'
+                      mode === 'light' || mode === 'light2' ? 'border-gray-200/50 hover:border-gray-300' : 'border-white/20 hover:border-white/30'
                     } p-4 sm:p-6 md:p-8 flex flex-col items-center shadow-lg sm:shadow-2xl transition-all duration-300 hover:scale-105 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] ${
-                      mode === 'light' ? 'bg-white/90' : 'bg-white/10'
+                      mode === 'light' || mode === 'light2' ? 'bg-white/90' : 'bg-white/10'
                     }`}
                     style={{
-                      background: mode === 'light' 
+                      background: mode === 'light' || mode === 'light2' 
                         ? 'linear-gradient(to bottom, #1B3764 0%, #115B87 100%)'
                         : 'linear-gradient(to bottom, #1B3764 0%, #115B87 100%)',
-                      boxShadow: mode === 'light' 
+                      boxShadow: mode === 'light' || mode === 'light2' 
                         ? '0 4px 12px rgba(0, 0, 0, 0.1)' 
                         : '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                     }}
@@ -265,7 +268,7 @@ const IdealChemistriesSection: React.FC = () => {
                     </div>
                     
                     {/* Description */}
-                    <ul className="text-xs sm:text-sm mb-4 sm:mb-6 list-disc list-inside text-center text-white/90">
+                    <ul className="text-xs sm:text-sm mb-4 sm:mb-6 list-disc list-inside text-left text-white/90">
                       {chem.features.map((desc, i) => (
                         <li key={i}>{desc}</li>
                       ))}
@@ -279,10 +282,6 @@ const IdealChemistriesSection: React.FC = () => {
                       ))}
                     </div>
                     
-                    {/* Button */}
-                    <button className="mt-auto bg-[#F2611D] hover:bg-[#e55b1c] text-white font-bold rounded-full px-4 sm:px-6 py-2 text-sm sm:text-base transition-colors">
-                      See Products
-                    </button>
                   </motion.div>
                 ))}
               </AnimatePresence>

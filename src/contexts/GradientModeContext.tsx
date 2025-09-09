@@ -21,7 +21,7 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
   // Load saved mode from localStorage on mount
   useEffect(() => {
     const savedMode = localStorage.getItem('gradientMode') as GradientMode;
-    if (savedMode && ['dark', 'neutral', 'light'].includes(savedMode)) {
+    if (savedMode && ['dark', 'light', 'light2'].includes(savedMode)) {
       setMode(savedMode);
     }
   }, []);
@@ -34,15 +34,6 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
   const getGradientClasses = (industry?: string): string => {
     const baseGradients = {
       dark: {
-        default: 'from-[#0A2A4A] via-[#1b3764] via-[#1b3764] via-[#1b3764] to-[#1b3764]',
-        marine: 'from-[#0D4A4A] via-[#1b3764] via-[#1b3764] via-[#1b3764] to-[#1b3764]',
-        industrial: 'from-[#8B4513] via-[#1b3764] via-[#1b3764] via-[#1b3764] to-[#1b3764]',
-        transportation: 'from-[#8B2A2A] via-[#1b3764] via-[#1b3764] via-[#1b3764] to-[#1b3764]',
-        construction: 'from-[#8B6F47] via-[#1b3764] via-[#1b3764] via-[#1b3764] to-[#1b3764]',
-        composites: 'from-[#6B6B6B] via-[#1b3764] via-[#1b3764] via-[#1b3764] to-[#1b3764]',
-        insulation: 'from-[#8B2A5A] via-[#1b3764] via-[#1b3764] via-[#1b3764] to-[#1b3764]'
-      },
-      neutral: {
         default: 'from-[#115B87] via-[#1b3764] to-[#1b3764]',
         marine: 'from-[#137875] via-[#1b3764] to-[#1b3764]',
         industrial: 'from-[#F16A26] via-[#1b3764] to-[#1b3764]',
@@ -52,6 +43,15 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
         insulation: 'from-[#d0157d] via-[#1b3764] to-[#1b3764]'
       },
       light: {
+        default: 'from-gray-100 via-gray-50 to-gray-100',
+        marine: 'from-gray-100 via-gray-50 to-teal-50',
+        industrial: 'from-gray-100 via-gray-50 to-orange-50',
+        transportation: 'from-gray-100 via-gray-50 to-red-50',
+        construction: 'from-gray-100 via-gray-50 to-yellow-50',
+        composites: 'from-gray-100 via-gray-50 to-gray-50',
+        insulation: 'from-gray-100 via-gray-50 to-pink-50'
+      },
+      light2: {
         default: 'from-gray-100 via-gray-50 to-gray-100',
         marine: 'from-gray-100 via-gray-50 to-teal-50',
         industrial: 'from-gray-100 via-gray-50 to-orange-50',
@@ -71,8 +71,8 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
   const getTextClasses = (): string => {
     const textColors = {
       dark: 'text-white',
-      neutral: 'text-white',
-      light: 'text-[#1B3764]'
+      light: 'text-[#1B3764]',
+      light2: 'text-[#1B3764]'
     };
     return textColors[mode];
   };
@@ -80,8 +80,8 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
   const getTextSecondaryClasses = (): string => {
     const textSecondaryColors = {
       dark: 'text-white/90',
-      neutral: 'text-white/90',
-      light: 'text-[#1B3764]/80'
+      light: 'text-[#1B3764]/80',
+      light2: 'text-[#1B3764]/80'
     };
     return textSecondaryColors[mode];
   };

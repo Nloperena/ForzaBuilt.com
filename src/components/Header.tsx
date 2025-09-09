@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useHeaderState } from '@/hooks/useHeaderState';
 import Logo from './Header/Logo';
 import NavigationItem from './Header/NavigationItem';
-import MobileMenu from './Header/MobileMenu';
+import MobileMenuSimple from './Header/MobileMenuSimple';
 import OverlayContent from './Header/OverlayContent';
 import SearchBar from './Header/SearchBar';
 import { useGradientMode } from '@/contexts/GradientModeContext';
@@ -42,11 +42,11 @@ const Header = () => {
     <header 
       ref={headerRef} 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        mode === 'light' 
+        mode === 'light' || mode === 'light2' 
           ? 'bg-gradient-to-r from-[#1B3764] to-[#115B87] border-b border-white/20' 
           : 'backdrop-blur-2xl bg-white/50 border-b border-white/60'
       } shadow-2xl`}
-      style={mode === 'light' ? {} : { backgroundColor: '#115B8730' }}
+      style={mode === 'light' || mode === 'light2' ? {} : { backgroundColor: '#115B8730' }}
       onMouseEnter={handleOverlayEnter}
       onMouseLeave={handleNavLeave}
     >
@@ -142,10 +142,9 @@ const Header = () => {
       </AnimatePresence>
 
       {/* Mobile Menu */}
-      <MobileMenu
+      <MobileMenuSimple
         isOpen={mobileMenuOpen}
         onClose={closeMobileMenu}
-        navigation={navigation}
       />
     </header>
   );

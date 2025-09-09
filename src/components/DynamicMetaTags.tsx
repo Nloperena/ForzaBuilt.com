@@ -22,7 +22,7 @@ export default function DynamicMetaTags({
   productChemistry
 }: DynamicMetaTagsProps) {
   const fullTitle = title ? `${title} - ForzaBuilt` : 'ForzaBuilt - Industrial Adhesives, Sealants, Tapes & Cleaning Solutions';
-  const fullDescription = description || 'ForzaBuilt delivers premium industrial solutions across transportation, marine, construction, and manufacturing. Expert adhesives, sealants, tapes, and cleaning products for demanding applications.';
+  const fullDescription = description || 'ForzaBuilt delivers premium industrial adhesives, sealants, and bonding solutions across transportation, marine, construction, and manufacturing. Expert industrial structural adhesives, equipment assembly solutions, and specialized bonding products for demanding industrial applications.';
   const fullUrl = url ? `https://forzabuilt.com${url}` : 'https://forzabuilt.com';
   const fullImage = image.startsWith('http') ? image : `https://forzabuilt.com${image}`;
 

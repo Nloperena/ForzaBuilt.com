@@ -297,7 +297,7 @@ export const IndustriesCarouselSection = () => {
                             <motion.h3
                               className="font-black font-kallisto drop-shadow-2xl text-left w-full leading-tight"
                               style={{
-                                color: item.color || '#1b3764',
+                                color: '#ffffff',
                                 fontSize: isLandscape 
                                   ? '3rem' 
                                   : (window.innerWidth < 640 
@@ -440,7 +440,7 @@ export const IndustriesCarouselSectionV2 = () => {
                       >
                         <motion.h3
                           className="font-black font-kallisto text-base sm:text-lg md:text-xl lg:text-2xl text-left w-full leading-tight"
-                          style={{ color: item.color || '#1b3764' }}
+                          style={{ color: '#ffffff' }}
                         >
                           {item.title}
                         </motion.h3>
@@ -523,7 +523,7 @@ export const IndustriesCarouselSectionV3 = () => {
                         <motion.h3
                           className="font-black font-kallisto text-left leading-tight"
                           style={{ 
-                            color: item.color || '#1b3764',
+                            color: '#ffffff',
                             fontSize: 'clamp(0.75rem, 3vw, 1.5rem)'
                           }}
                         >
@@ -640,7 +640,7 @@ export const IndustriesCarouselSectionV4 = () => {
                           <motion.h3
                             className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
                             style={{
-                              color: item.color || '#1b3764',
+                              color: '#ffffff',
                               fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
                             }}
                           >

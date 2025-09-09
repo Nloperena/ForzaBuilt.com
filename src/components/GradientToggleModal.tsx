@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Palette } from 'lucide-react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
-export type GradientMode = 'dark' | 'neutral' | 'light';
+export type GradientMode = 'dark' | 'light' | 'light2';
 
 interface GradientToggleModalProps {
   onModeChange: (mode: GradientMode) => void;
@@ -38,16 +38,16 @@ const GradientToggleModal: React.FC<GradientToggleModalProps> = ({
       description: 'Deep blue gradients'
     },
     {
-      id: 'neutral' as GradientMode,
-      name: 'Neutral',
-      icon: Palette,
-      description: 'Balanced gradients'
-    },
-    {
       id: 'light' as GradientMode,
       name: 'Light',
       icon: Sun,
       description: 'Clean light theme'
+    },
+    {
+      id: 'light2' as GradientMode,
+      name: 'Light 2.0',
+      icon: Sun,
+      description: 'Enhanced light theme'
     }
   ];
 
@@ -63,7 +63,7 @@ const GradientToggleModal: React.FC<GradientToggleModalProps> = ({
         className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50"
       >
         <div className={`rounded-2xl p-2 shadow-lg ${
-          mode === 'light' 
+          mode === 'light' || mode === 'light2' 
             ? 'bg-gradient-to-r from-[#1B3764] to-[#115B87] border border-white/20' 
             : 'bg-white/10 backdrop-blur-sm border border-white/20'
         }`}>

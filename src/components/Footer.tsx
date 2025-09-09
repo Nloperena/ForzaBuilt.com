@@ -13,12 +13,12 @@ const Footer = () => {
 
   return (
     <footer className={`relative text-white py-5 px-6 overflow-hidden ${
-      mode === 'light' 
+      mode === 'light' || mode === 'light2'
         ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87]' 
         : `bg-gradient-to-b ${getGradientClasses()}`
     }`}>
-      {/* Glassmorphic background - only for dark/neutral modes */}
-      {mode !== 'light' && (
+      {/* Glassmorphic background - only for dark mode */}
+      {mode !== 'light' && mode !== 'light2' && (
         <div className="absolute inset-0 backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl"></div>
       )}
       

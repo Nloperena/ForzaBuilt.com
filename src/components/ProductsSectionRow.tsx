@@ -61,7 +61,7 @@ const ProductsSectionRow = () => {
   const { mode, getGradientClasses, getTextClasses, getTextSecondaryClasses } = useGradientMode();
 
   return (
-    <section className={`pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-28 pb-16 bg-gradient-to-b ${
+    <section className={`pt-12 pb-16 bg-gradient-to-b ${
       mode === 'neutral' ? 'from-[#1B3764] to-[#115B87]' : getGradientClasses()
     } ${getTextClasses()} relative overflow-hidden`}>
       {/* Edge triangles positioned at left and right viewport edges */}
@@ -97,8 +97,6 @@ const ProductsSectionRow = () => {
             const isIndustrialCleaning = product.title === 'INDUSTRIAL CLEANING';
             const isTopRow = index < 2; // First two items are top row
 
-
-
             return (
               product.external && product.link ? (
                 <a
@@ -111,10 +109,11 @@ const ProductsSectionRow = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 rounded-[2rem] overflow-hidden transition-all duration-300 hover:scale-[1.02] relative z-10 w-96 h-96 flex-shrink-0"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10 w-96 h-96 flex-shrink-0"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      boxShadow: 'rgba(0, 0, 0, 0.6) 0px 4px 8px',
+                      backgroundImage: 'none'
                     }}
                   >
                     <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
@@ -208,10 +207,10 @@ const ProductsSectionRow = () => {
                           opacity: isHovered ? 1 : 0,
                           zIndex: 2,
                           transition: 'all 0.3s ease-in-out',
-                          background: mode === 'light' ? 'linear-gradient(135deg, #1B3764 0%, #115B87 100%)' : 'transparent',
-                          backdropFilter: mode === 'light' ? 'none' : 'blur(20px)',
-                          border: mode === 'light' ? '1px solid rgba(27, 55, 100, 0.3)' : '1px solid rgba(255, 255, 255, 0.2)',
-                          boxShadow: mode === 'light' ? '0 8px 32px rgba(27, 55, 100, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                          background: mode === 'light' || mode === 'light2' ? 'linear-gradient(135deg, #1B3764 0%, #115B87 100%)' : 'transparent',
+                          backdropFilter: mode === 'light' || mode === 'light2' ? 'none' : 'blur(20px)',
+                          border: mode === 'light' || mode === 'light2' ? '1px solid rgba(27, 55, 100, 0.3)' : '1px solid rgba(255, 255, 255, 0.2)',
+                          boxShadow: mode === 'light' || mode === 'light2' ? '0 8px 32px rgba(27, 55, 100, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                         }}
                       >
                         <img
@@ -243,10 +242,11 @@ const ProductsSectionRow = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 rounded-[2rem] overflow-hidden transition-all duration-300 hover:scale-[1.02] relative z-10 w-96 h-96 flex-shrink-0"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10 w-96 h-96 flex-shrink-0"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      boxShadow: 'rgba(0, 0, 0, 0.6) 0px 4px 8px',
+                      backgroundImage: 'none'
                     }}
                   >
                     <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
@@ -340,10 +340,10 @@ const ProductsSectionRow = () => {
                           opacity: isHovered ? 1 : 0,
                           zIndex: 2,
                           transition: 'all 0.3s ease-in-out',
-                          background: mode === 'light' ? 'linear-gradient(135deg, #1B3764 0%, #115B87 100%)' : 'transparent',
-                          backdropFilter: mode === 'light' ? 'none' : 'blur(20px)',
-                          border: mode === 'light' ? '1px solid rgba(27, 55, 100, 0.3)' : '1px solid rgba(255, 255, 255, 0.2)',
-                          boxShadow: mode === 'light' ? '0 8px 32px rgba(27, 55, 100, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                          background: mode === 'light' || mode === 'light2' ? 'linear-gradient(135deg, #1B3764 0%, #115B87 100%)' : 'transparent',
+                          backdropFilter: mode === 'light' || mode === 'light2' ? 'none' : 'blur(20px)',
+                          border: mode === 'light' || mode === 'light2' ? '1px solid rgba(27, 55, 100, 0.3)' : '1px solid rgba(255, 255, 255, 0.2)',
+                          boxShadow: mode === 'light' || mode === 'light2' ? '0 8px 32px rgba(27, 55, 100, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                         }}
                       >
                         <img
@@ -372,14 +372,12 @@ const ProductsSectionRow = () => {
         </div>
 
         {/* Mobile Grid Layout - hidden on desktop */}
-        <div className="md:hidden grid grid-cols-2 gap-2 md:gap-3 lg:gap-4 max-w-3xl mx-auto relative z-10">
+        <div className="md:hidden grid grid-cols-2 gap-3 px-4 relative z-10">
           {products.map((product, index) => {
             const isHovered = hoveredIndex === index;
             const isTapes = product.title === 'TAPES';
             const isIndustrialCleaning = product.title === 'INDUSTRIAL CLEANING';
             const isTopRow = index < 2; // First two items are top row
-
-
 
             return (
               product.external && product.link ? (
@@ -393,10 +391,11 @@ const ProductsSectionRow = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 shadow-lg rounded-[2rem] overflow-hidden transition-all duration-100 hover:scale-[1.02] relative hover:bg-transparent z-10"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-square md:aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative hover:bg-transparent z-10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      boxShadow: 'rgba(0, 0, 0, 0.6) 0px 4px 8px',
+                      backgroundImage: 'none'
                     }}
                   >
                     <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
@@ -490,10 +489,10 @@ const ProductsSectionRow = () => {
                           opacity: isHovered ? 1 : 0,
                           zIndex: 2,
                           transition: 'all 0.3s ease-in-out',
-                          background: mode === 'light' ? 'linear-gradient(135deg, #1B3764 0%, #115B87 100%)' : 'transparent',
-                          backdropFilter: mode === 'light' ? 'none' : 'blur(20px)',
-                          border: mode === 'light' ? '1px solid rgba(27, 55, 100, 0.3)' : '1px solid rgba(255, 255, 255, 0.2)',
-                          boxShadow: mode === 'light' ? '0 8px 32px rgba(27, 55, 100, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                          background: mode === 'light' || mode === 'light2' ? 'linear-gradient(135deg, #1B3764 0%, #115B87 100%)' : 'transparent',
+                          backdropFilter: mode === 'light' || mode === 'light2' ? 'none' : 'blur(20px)',
+                          border: mode === 'light' || mode === 'light2' ? '1px solid rgba(27, 55, 100, 0.3)' : '1px solid rgba(255, 255, 255, 0.2)',
+                          boxShadow: mode === 'light' || mode === 'light2' ? '0 8px 32px rgba(27, 55, 100, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                         }}
                       >
                         <img
@@ -525,10 +524,11 @@ const ProductsSectionRow = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="border-0 shadow-lg rounded-[2rem] overflow-hidden transition-all duration-100 hover:scale-[1.02] relative hover:bg-transparent z-10"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-square md:aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative hover:bg-transparent z-10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
-                      boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      boxShadow: 'rgba(0, 0, 0, 0.6) 0px 4px 8px',
+                      backgroundImage: 'none'
                     }}
                   >
                     <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
@@ -622,10 +622,10 @@ const ProductsSectionRow = () => {
                           opacity: isHovered ? 1 : 0,
                           zIndex: 2,
                           transition: 'all 0.3s ease-in-out',
-                          background: mode === 'light' ? 'linear-gradient(135deg, #1B3764 0%, #115B87 100%)' : 'transparent',
-                          backdropFilter: mode === 'light' ? 'none' : 'blur(20px)',
-                          border: mode === 'light' ? '1px solid rgba(27, 55, 100, 0.3)' : '1px solid rgba(255, 255, 255, 0.2)',
-                          boxShadow: mode === 'light' ? '0 8px 32px rgba(27, 55, 100, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                          background: mode === 'light' || mode === 'light2' ? 'linear-gradient(135deg, #1B3764 0%, #115B87 100%)' : 'transparent',
+                          backdropFilter: mode === 'light' || mode === 'light2' ? 'none' : 'blur(20px)',
+                          border: mode === 'light' || mode === 'light2' ? '1px solid rgba(27, 55, 100, 0.3)' : '1px solid rgba(255, 255, 255, 0.2)',
+                          boxShadow: mode === 'light' || mode === 'light2' ? '0 8px 32px rgba(27, 55, 100, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                         }}
                       >
                         <img
@@ -654,9 +654,8 @@ const ProductsSectionRow = () => {
         </div>
       </div>
 
-
       {/* Spacer above footer */}
-      <div className="py-8 sm:py-10 md:py-12 lg:py-14 xl:py-16"></div>
+      <div className="py-8 sm:py-10 md:py-12 lg:py-14 xl:py-16" style={{ padding: '0 1rem' }}></div>
     </section>
   );
 };

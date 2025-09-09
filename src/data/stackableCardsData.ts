@@ -135,25 +135,46 @@ export const constructionCards: GenericCardData[] = [
 // Industrial Industry Cards
 export const industrialCards: GenericCardData[] = [
   {
-    id: 'industrial-general-adhesives',
-    title: 'General Adhesive Technologies',
-    subtitle: 'Comprehensive solutions for general industries',
-    description: 'Forza has a comprehensive line of General Adhesive technologies and chemistry solutions that are ideal for numerous general industries and applications. Our product solutions include canister systems, aerosols, spray adhesives, structural adhesives and sealants (including single-part adhesives and 2-part epoxies), and specialty adhesives & tapes.',
+    id: 'industrial-structural-adhesives',
+    title: 'Industrial Structural Adhesives',
+    subtitle: 'High-strength bonding for manufacturing and equipment assembly',
+    description: 'ForzaBuilt delivers premium industrial structural adhesives engineered for demanding manufacturing environments. Our industrial-grade adhesives provide superior bonding strength for metal, plastic, composite, and multi-substrate applications in heavy equipment, machinery assembly, and production line operations.',
     features: [
-      'Canister Systems, Aerosols, Spray Adhesives',
-      'Structural Adhesives and Sealants (single-part, 2-Part epoxies)',
-      'Specialty Adhesives & Tapes',
-      'Deliver the highest performance possible',
-      'Precisely match our general industry customers’ needs',
-      'Cutting-edge chemistries and technologies (green strengths, open times, and more)'
+      'High-strength structural bonding up to 3,500 PSI',
+      'Temperature resistance from -40°F to +200°F',
+      'Chemical resistance to oils, solvents, and industrial fluids',
+      'Fast cure times to minimize production downtime',
+      'VOC-compliant formulations for workplace safety',
+      'Custom formulations for specific industrial requirements'
     ],
-    buttonText: 'Explore Solutions',
-    buttonLink: '/industrial/general-adhesives',
+    buttonText: 'Explore Industrial Adhesives',
+    buttonLink: '/industries/industrial',
     imageUrl: 'https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-General-Industries-2-2048x1365.jpeg',
     icon: '⚙️',
-    badge: 'Industrial',
+    badge: 'Industrial Adhesives',
     theme: 'industrial',
     layout: 'default'
+  },
+  {
+    id: 'industrial-manufacturing-solutions',
+    title: 'Manufacturing Adhesive Solutions',
+    subtitle: 'Comprehensive bonding systems for industrial manufacturing',
+    description: 'Our industrial adhesive solutions are specifically designed for manufacturing environments, providing reliable bonding for equipment assembly, production line applications, and maintenance operations. From structural bonding to sealing applications, our products deliver consistent performance in demanding industrial conditions.',
+    features: [
+      'Equipment assembly and machinery bonding',
+      'Production line sealing and gasketing',
+      'Maintenance and repair applications',
+      'Conveyor system bonding solutions',
+      'Industrial pipe and fitting sealing',
+      'Factory automation component bonding'
+    ],
+    buttonText: 'View Manufacturing Solutions',
+    buttonLink: '/products/bond',
+    imageUrl: 'https://forzabuilt.com/wp-content/uploads/2023/06/Industrial-Bonding-Adhesive.png',
+    icon: '🏭',
+    badge: 'Manufacturing',
+    theme: 'industrial',
+    layout: 'reversed'
   },
   {
     id: 'industrial-applications',

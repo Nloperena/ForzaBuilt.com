@@ -139,7 +139,7 @@ const IndustriesSectionClean = () => {
                             <h3
                               className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
                               style={{
-                                color: industry.color || '#115B87',
+                                color: '#ffffff',
                                 fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
                                 textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
                               }}
@@ -227,7 +227,7 @@ const IndustriesSectionClean = () => {
                           <h3
                             className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
                             style={{
-                              color: industry.color || '#115B87',
+                              color: '#ffffff',
                               fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
                               textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
                             }}
@@ -247,12 +247,12 @@ const IndustriesSectionClean = () => {
         {/* Standalone CTA Section: Conditional styling */}
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20 mt-8 sm:mt-12 pb-12">
           <div className={`relative max-w-7xl mx-auto overflow-hidden rounded-2xl shadow-2xl ${
-            mode === 'light' 
+            mode === 'light' || mode === 'light2'
               ? 'bg-gradient-to-r from-[#1B3764] to-[#115B87]' 
               : 'border border-white/20 bg-white/10 backdrop-blur-xl'
           }`}>
-            {/* Static liquid shine overlay - only for dark/neutral modes */}
-            {mode !== 'light' && (
+            {/* Static liquid shine overlay - only for dark mode */}
+            {mode !== 'light' && mode !== 'light2' && (
               <div
                 className="pointer-events-none absolute -inset-x-1/2 -inset-y-1/2"
                 style={{
@@ -265,12 +265,12 @@ const IndustriesSectionClean = () => {
               <div className="flex flex-col items-center justify-center text-center gap-5">
                 <div className="max-w-2xl">
                   <h3 className={`font-kallisto font-black text-xl sm:text-2xl md:text-3xl leading-tight ${
-                    mode === 'light' ? 'text-white' : 'text-white'
+                    mode === 'light' || mode === 'light2' ? 'text-white' : 'text-white'
                   }`}>
                     Don't see your industry?
                   </h3>
                   <p className={`mt-2 text-sm sm:text-base ${
-                    mode === 'light' ? 'text-white/80' : 'text-white/80'
+                    mode === 'light' || mode === 'light2' ? 'text-white/80' : 'text-white/80'
                   }`}>
                     We can still provide purpose built solutions.
                   </p>

@@ -49,11 +49,13 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <section className={`relative py-16 md:py-24 ${
-        mode === 'light' 
+      <section className={`relative py-16 md:py-2${
+        mode === 'light' || mode === 'light2' 
           ? 'bg-[#e8e8e8]' 
-          : `bg-gradient-to-t ${getGradientClasses()}`
-      } overflow-hidden`}>
+          : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
+      } overflow-hidden`} style={{
+        background: mode === 'light' || mode === 'light2' ? '#e8e8e8' : 'linear-gradient(to bottom, #115B87, #1B3764)'
+      }}>
         {/* Edge triangles positioned at left and right viewport edges */}
         <EdgeTrianglesBackground 
           leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
@@ -79,27 +81,27 @@ const NewsletterSection = () => {
             <div className="order-2 lg:order-1 h-full relative">
               
               <div className={`${
-                mode === 'light' 
-                  ? 'bg-white border-gray-200' 
+                mode === 'light' || mode === 'light2' 
+                  ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87] border-[#1B3764]/30' 
                   : 'bg-white/10 border-white/20 backdrop-blur-md'
               } rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10`}>
                 <div className="p-6 md:p-8 flex-1 flex flex-col">
                   <div className="mb-8">
-                    <h3 className={`${getTextClasses()} font-kallisto text-2xl md:text-3xl font-black`}>Join Our Newsletter</h3>
+                    <h3 className={`${mode === 'light' || mode === 'light2' ? 'text-white' : getTextClasses()} font-kallisto text-2xl md:text-3xl font-black`}>Join Our Newsletter</h3>
                   </div>
 
                   <div className="space-y-6 mb-8 flex-1">
                     <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-[#115B87] rounded-full mt-2 flex-shrink-0"></div>
-                      <p className={`${getTextSecondaryClasses()} text-sm md:text-base`}>Early access to new product launches and innovations</p>
+                      <div className={`w-2 h-2 ${mode === 'light' || mode === 'light2' ? 'bg-white' : 'bg-[#115B87]'} rounded-full mt-2 flex-shrink-0`}></div>
+                      <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/90' : getTextSecondaryClasses()} text-sm md:text-base`}>Early access to new product launches and innovations</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-[#115B87] rounded-full mt-2 flex-shrink-0"></div>
-                      <p className={`${getTextSecondaryClasses()} text-sm md:text-base`}>Exclusive industry insights and technical solutions</p>
+                      <div className={`w-2 h-2 ${mode === 'light' || mode === 'light2' ? 'bg-white' : 'bg-[#115B87]'} rounded-full mt-2 flex-shrink-0`}></div>
+                      <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/90' : getTextSecondaryClasses()} text-sm md:text-base`}>Exclusive industry insights and technical solutions</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-[#115B87] rounded-full mt-2 flex-shrink-0"></div>
-                      <p className={`${getTextSecondaryClasses()} text-sm md:text-base`}>Expert tips and best practices for your applications</p>
+                      <div className={`w-2 h-2 ${mode === 'light' || mode === 'light2' ? 'bg-white' : 'bg-[#115B87]'} rounded-full mt-2 flex-shrink-0`}></div>
+                      <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/90' : getTextSecondaryClasses()} text-sm md:text-base`}>Expert tips and best practices for your applications</p>
                     </div>
                   </div>
 
@@ -110,7 +112,7 @@ const NewsletterSection = () => {
                     >
                       Subscribe to Newsletter
                     </button>
-                    <p className={`${getTextSecondaryClasses()} text-xs text-center`}>No spam, unsubscribe at any time</p>
+                    <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/80' : getTextSecondaryClasses()} text-xs text-center`}>No spam, unsubscribe at any time</p>
                   </div>
                 </div>
               </div>
@@ -120,13 +122,13 @@ const NewsletterSection = () => {
             <div className="order-1 lg:order-2 h-full relative">
 
               <div className={`${
-                mode === 'light' 
-                  ? 'bg-white border-gray-200' 
+                mode === 'light' || mode === 'light2' 
+                  ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87] border-[#1B3764]/30' 
                   : 'bg-white/10 border-white/20 backdrop-blur-md'
               } rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10`}>
                 <div className="p-6 md:p-8 flex-1 flex flex-col">
                   <div className="mb-8">
-                    <h3 className={`${getTextClasses()} font-kallisto text-2xl md:text-3xl font-black`}>Featured Articles</h3>
+                    <h3 className={`${mode === 'light' || mode === 'light2' ? 'text-white' : getTextClasses()} font-kallisto text-2xl md:text-3xl font-black`}>Featured Articles</h3>
                   </div>
 
                   <div className="space-y-6 mb-8 flex-1">
@@ -137,15 +139,15 @@ const NewsletterSection = () => {
                           key={post.id}
                           href={`/blog/${slug}`}
                           className={`group block rounded-xl overflow-hidden ${
-                            mode === 'light' 
-                              ? 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50' 
+                            mode === 'light' || mode === 'light2' 
+                              ? 'bg-white/20 border-white/30 hover:border-white/40 hover:bg-white/30' 
                               : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'
                           } transition-all`}
                         >
                           <div className="flex gap-4">
                             <div className={`w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg ${
-                              mode === 'light' 
-                                ? 'bg-gray-100' 
+                              mode === 'light' || mode === 'light2' 
+                                ? 'bg-white/20' 
                                 : 'bg-white/5'
                             }`}>
                               <img
@@ -158,9 +160,9 @@ const NewsletterSection = () => {
                               />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="text-xs font-semibold uppercase tracking-wide text-[#115B87] mb-1">{post.category}</div>
-                              <h4 className={`${getTextClasses()} font-bold leading-snug line-clamp-2 text-sm md:text-base group-hover:text-[#115B87] transition-colors`}>{post.title}</h4>
-                              <div className={`mt-2 ${getTextSecondaryClasses()} text-xs line-clamp-2`}>{post.excerpt}</div>
+                              <div className={`text-xs font-semibold uppercase tracking-wide ${mode === 'light' || mode === 'light2' ? 'text-white/80' : 'text-[#115B87]'} mb-1`}>{post.category}</div>
+                              <h4 className={`${mode === 'light' || mode === 'light2' ? 'text-white group-hover:text-white/80' : getTextClasses() + ' group-hover:text-[#115B87]'} font-bold leading-snug line-clamp-2 text-sm md:text-base transition-colors`}>{post.title}</h4>
+                              <div className={`mt-2 ${mode === 'light' || mode === 'light2' ? 'text-white/70' : getTextSecondaryClasses()} text-xs line-clamp-2`}>{post.excerpt}</div>
                             </div>
                           </div>
                         </a>
@@ -171,7 +173,7 @@ const NewsletterSection = () => {
                   <div className="space-y-6 mt-auto">
                     <a
                       href="/blog"
-                      className={`inline-flex items-center gap-2 ${getTextSecondaryClasses()} hover:${getTextClasses()} font-semibold text-sm transition-colors`}
+                      className={`inline-flex items-center gap-2 ${mode === 'light' || mode === 'light2' ? 'text-white/80 hover:text-white' : getTextSecondaryClasses() + ' hover:' + getTextClasses()} font-semibold text-sm transition-colors`}
                     >
                       Explore all articles
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">

@@ -45,10 +45,10 @@ const IndustriesSectionAlt = () => {
 
 
   return (
-    <section className={`pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 ${
-      mode === 'light' 
-        ? 'bg-[#e8e8e8]' 
-        : `bg-gradient-to-b from-[#115B87] to-[#1B3764]`
+    <section className={`pt-4 ${
+      mode === 'light' || mode === 'light2'
+        ? 'bg-[#e8e8e8]'
+        : `bg-gradient-to-b from-[#1B3764] to-[#115B87]`
     } w-full relative`}>
 
       {/* Edge triangles positioned at left and right viewport edges (like ProductsSection, but swapped images) */}
@@ -87,24 +87,21 @@ const IndustriesSectionAlt = () => {
               <div
                 key={industry.title}
                 className="block"
+                style={{
+                  marginBottom: index === industriesArr.length - 1 ? '2rem' : '0'
+                }}
               >
                 <Link 
                   to={`/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`}
                   className="block w-full"
                 >
                   <Card
-                    className={`shadow-lg rounded-xl border ${
-                      mode === 'light' ? 'border-white/20' : 'border-white/20'
-                    } overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl ${
-                      mode === 'light' ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87]' : 'bg-white/10'
-                    }`}
+                    className="shadow-lg rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87]"
                     style={{
-                      backgroundImage: mode === 'light' 
-                        ? 'none'
-                        : `linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1), ${industry.color ? `${industry.color}99` : 'rgba(241, 106, 38, 0.6)'})`,
-                      boxShadow: mode === 'light' 
-                        ? '0 4px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2)' 
-                        : '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                      backgroundImage: 'none',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
+                      backgroundColor: mode === 'light' || mode === 'light2' ? 'transparent' : 'transparent',
+                      background: 'linear-gradient(to bottom, #1B3764, #115B87)'
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -164,23 +161,19 @@ const IndustriesSectionAlt = () => {
                           style={{
                             lineHeight: 1.1,
                             textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
-                            color: mode === 'light' ? '#ffffff' : (industry.color || '#115B87')
+                            color: '#ffffff'
                           }}
                         >
                           {toTitleCase(industry.title)}
                         </h3>
-                        <p className={`text-xs sm:text-sm font-light ${
-                          mode === 'light' ? 'text-white/90' : getTextSecondaryClasses()
-                        }`}>
+                        <p className="text-xs sm:text-sm font-light text-white/90">
                           Specialized solutions for {industry.title.toLowerCase()} applications
                         </p>
                         
                       </div>
                       
                       {/* Arrow indicator */}
-                      <div className={`flex items-center justify-center w-8 h-full transition-colors ${
-                        mode === 'light' ? 'text-white/70 group-hover:text-white' : 'text-gray-400 group-hover:text-[#115B87]'
-                      }`}>
+                      <div className="flex items-center justify-center w-8 h-full transition-colors text-white/70 group-hover:text-white">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
@@ -206,15 +199,9 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className={`shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border ${
-                      mode === 'light' ? 'border-white/20' : 'border-white/20'
-                    } overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl ${
-                      mode === 'light' ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87]' : 'bg-white/10'
-                    }`}
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87]"
                     style={{
-                      backgroundImage: mode === 'light' 
-                        ? 'none'
-                        : `linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1), #ffffff)`,
+                      backgroundImage: 'none',
                       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)'
                     }}
                     onMouseEnter={() => {
@@ -265,17 +252,17 @@ const IndustriesSectionAlt = () => {
                       
                       {/* Solid color bar at bottom with text only */}
                       <div
-                        className={`absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none ${getTextClasses()}`}
+                        className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none text-[#1B3764]"
                         style={{
                           zIndex: 10,
-                          backgroundColor: mode === 'light' ? 'transparent' : '#ffffff'
+                          backgroundColor: 'transparent'
                         }}
                       >
                         <div className="flex items-center justify-between gap-1">
                           <h3
                             className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
                             style={{
-                              color: mode === 'light' ? '#ffffff' : (industry.color || '#115B87'),
+                              color: '#ffffff',
                               fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
                               textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
                             }}
@@ -293,14 +280,18 @@ const IndustriesSectionAlt = () => {
         </div>
 
         {/* Standalone CTA Section: Glassmorphic liquid shine */}
-        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20 mt-8 sm:mt-12 pb-24">
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20 mt-8 sm:mt-12 pb-24" style={{
+          marginTop: 0,
+          paddingBottom: '4rem',
+          marginBottom: '0rem'
+        }}>
           <div className={`relative max-w-7xl mx-auto overflow-hidden rounded-2xl shadow-2xl ${
-            mode === 'light' 
+            mode === 'light' || mode === 'light2'
               ? 'bg-gradient-to-r from-[#1B3764] to-[#115B87]' 
               : 'border border-white/20 bg-white/10 backdrop-blur-xl'
           }`}>
-            {/* Static liquid shine overlay - only for dark/neutral modes */}
-            {mode !== 'light' && (
+            {/* Static liquid shine overlay - only for dark mode */}
+            {mode !== 'light' && mode !== 'light2' && (
               <div
                 className="pointer-events-none absolute -inset-x-1/2 -inset-y-1/2"
                 style={{

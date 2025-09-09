@@ -3,10 +3,9 @@ import Header from '@/components/Header';
 import HeroOverlay from '@/components/HeroOverlay';
 import HeroVideoSection from '@/components/HeroVideoSection';
 import IndustriesSectionAlt from '@/components/IndustriesSectionAlt';
-import ProductsSection from '@/components/ProductsSection';
 import StickyBackgroundSection from '@/components/StickyBackgroundSection';
 import ScrollSections from '@/components/ScrollSections';
-import StickyBackgroundSectionV2 from '@/components/StickyBackgroundSectionV2';
+import StickyBackgroundSectionV7 from '@/components/StickyBackgroundSectionV7';
 import NewsletterSection from '@/components/NewsletterSection';
 import Footer from '@/components/Footer';
 import ProductChemistriesSectionV2 from '@/components/ProductChemistriesSectionV2';
@@ -38,19 +37,18 @@ const Index = () => {
   const getDividerBackgroundColor = () => {
     switch (mode) {
       case 'light':
-        return '#e8e8e8'; // Light gray to match light mode
-      case 'neutral':
-        return '#1B3764'; // Darker blue to match neutral mode
+      case 'light2':
+        return '#ffffff'; // White gradient base for light modes
       case 'dark':
       default:
-        return '#0A2A4A'; // Darker blue to match dark mode
+        return '#1B3764'; // Darker blue to match dark mode
     }
   };
   
 
 
   return (
-    <div className="relative">
+    <div className={`relative ${mode === 'light' || mode === 'light2' ? 'bg-white' : ''}`}>
       <DynamicMetaTags
         title="ForzaBuilt - Industrial Adhesives, Sealants, Tapes & Cleaning Solutions"
         description="ForzaBuilt delivers premium industrial solutions across transportation, marine, construction, and manufacturing. Expert adhesives, sealants, tapes, and cleaning products for demanding applications."
@@ -69,6 +67,27 @@ const Index = () => {
         <HeroVideoSection />
       </section>
       
+      {/* Divider/Products Section */}
+      {mode === 'light2' ? (
+        <section className="relative w-full pt-[13rem] pb-0 -mt-[22rem] bg-[#e8e8e8]">
+          <div className="w-full flex items-center justify-center">
+            <img 
+              src="/Industrail Bundle HeroImg.png" 
+              alt="Forza Industrial Products Bundle - Adhesives, Sealants, Tapes & Cleaning Solutions"
+              className="w-full h-auto object-contain object-center max-w-[900px]"
+              style={{ zIndex: 1 }}
+            />
+          </div>
+        </section>
+      ) : (
+        <section className={`relative w-full h-16 ${
+          mode === 'light'
+            ? 'bg-gradient-to-b from-white to-gray-100'
+            : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
+        }`}>
+        </section>
+      )}
+      
       {/* Industries Section (same as Industries page) */}
       <section className="relative overflow-hidden">
         {/* Optimized Gradient Background (Mirrored) */}
@@ -77,12 +96,11 @@ const Index = () => {
         <IndustriesSectionAlt />
       </section>
 
-      {/* Products Section */}
-      <section className="relative overflow-hidden">
-
+      {/* Products Section Row */}
+      <section className="relative">
         <ProductsSectionRow />
       </section>
-      
+
       {/* Sticky Background Section */}
       <section className="relative">
         <StickyBackgroundSection />
@@ -130,18 +148,13 @@ const Index = () => {
       {/* Ideal Chemistries Section - new version */}
       <IdealChemistriesSection />
 
-      {/* Made in America Section */}
-      <section className="relative">
-        <StickyBackgroundSectionV2 />
-      </section>
+      {/* Made in America Section - Sticky background with video */}
+      <StickyBackgroundSectionV7 />
 
       {/* Edge Triangles Background spanning both sections and divider */}
       {/* Removed EdgeTrianglesBackground overlay and its parent div */}
 
-      {/* Newsletter Divider */}
-      <div className="flex justify-center items-center h-12 w-full relative z-10" style={{ background: getDividerBackgroundColor() }}>
-        <div className={`w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-5xl h-0.5 sm:h-1 ${mode === 'light' ? 'bg-transparent' : 'bg-[#F2611D]'} rounded-full`} style={{ borderRadius: '999px' }}></div>
-      </div>
+    
 
       {/* Newsletter Section - STANDALONE */}
       <div className="relative w-full z-10">

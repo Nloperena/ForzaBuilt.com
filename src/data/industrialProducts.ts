@@ -7,7 +7,7 @@ export const INDUSTRIAL_PRODUCTS: ProductDatasheet[] = [
     name: 'I-BOND-100 – INDUSTRIAL STRUCTURAL ADHESIVE',
     category: 'BOND',
     industry: ['industrial'],
-    description: 'High-strength structural adhesive designed specifically for industrial manufacturing applications.',
+    description: 'Premium high-strength industrial structural adhesive engineered for demanding manufacturing and equipment assembly applications. Delivers exceptional bonding performance for metal, plastic, and composite substrates in industrial environments.',
     image: 'https://forzabuilt.com/wp-content/uploads/2023/06/Industrial-Bonding-Adhesive.png',
     url: 'https://forzabuilt.com/product/i-bond-100-industrial-structural-adhesive/',
     specifications: {
@@ -18,11 +18,11 @@ export const INDUSTRIAL_PRODUCTS: ProductDatasheet[] = [
       potLife: '2 hours',
       cureTime: '24-48 hours',
       temperatureRange: '-40°F to +200°F',
-      substrates: ['Metal', 'Plastic', 'Glass', 'Ceramic'],
-      applications: ['Industrial Equipment', 'Manufacturing', 'Assembly Lines', 'Heavy Machinery'],
-      features: ['High Temperature', 'Chemical Resistant', 'Industrial Grade', 'Long Service Life'],
-      certifications: ['Industrial Approved', 'Chemical Resistant'],
-      packaging: ['10 oz Cartridge', '5 Gallon Pail']
+      substrates: ['Metal', 'Plastic', 'Glass', 'Ceramic', 'Composites', 'Rubber'],
+      applications: ['Industrial Equipment Assembly', 'Manufacturing Production Lines', 'Heavy Machinery Bonding', 'Factory Automation Systems', 'Industrial Maintenance', 'Equipment Housing Assembly'],
+      features: ['High Temperature Resistance', 'Chemical Resistant Formula', 'Industrial Grade Strength', 'Extended Service Life', 'VOC Compliant', 'Fast Cure Technology'],
+      certifications: ['Industrial Approved', 'Chemical Resistant', 'VOC Compliant'],
+      packaging: ['10 oz Cartridge', '5 Gallon Pail', '55 Gallon Drum']
     },
     technicalData: {
       density: '12.5 lbs/gal',

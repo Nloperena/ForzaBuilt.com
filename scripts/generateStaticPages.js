@@ -81,9 +81,35 @@ productsData.products.forEach(product => {
         fs.mkdirSync(categoryDir, { recursive: true });
     }
     
-    // Generate meta tags
-    const title = `${product.name} - ForzaBuilt`;
-    const description = product.description || 'Premium industrial solution from ForzaBuilt';
+    // Enhanced SEO meta tags with industrial focus
+    const isIndustrialProduct = 
+      product.industry?.includes('industrial') || 
+      product.category === 'BOND' ||
+      product.name?.toLowerCase().includes('adhesive') ||
+      product.name?.toLowerCase().includes('structural');
+    
+    // Industrial-optimized title
+    let title;
+    if (isIndustrialProduct) {
+      if (product.category === 'BOND') {
+        title = `${product.name} - Industrial Structural Adhesive | ForzaBuilt`;
+      } else if (product.category === 'SEAL') {
+        title = `${product.name} - Industrial Sealant Solution | ForzaBuilt`;
+      } else if (product.category === 'TAPE') {
+        title = `${product.name} - Industrial Bonding Tape | ForzaBuilt`;
+      } else {
+        title = `${product.name} - Industrial Adhesive Solution | ForzaBuilt`;
+      }
+    } else {
+      title = `${product.name} - ${product.category || 'Premium'} Solution | ForzaBuilt`;
+    }
+    
+    // Industrial-optimized description
+    let description = product.description || 'Premium industrial solution from ForzaBuilt';
+    if (isIndustrialProduct && !description.toLowerCase().includes('industrial')) {
+      description = `Premium industrial ${product.category?.toLowerCase() || 'adhesive'} solution for manufacturing and equipment assembly applications. ${description}`.substring(0, 160);
+    }
+    
     // Use product image if available, otherwise fall back to logo
     const image = product.imageUrl ? `https://forzabuilt.com${product.imageUrl}` : 'https://forzabuilt.com/forza-logo-full.png';
     const url = `https://forzabuilt.com/products/${category}/${productId}`;

@@ -254,7 +254,7 @@ const ProductIndex: React.FC = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal onModeChange={() => {}} currentMode="neutral" />
+      <GradientToggleModal onModeChange={() => {}} currentMode="dark" />
     </div>
   );
 };

@@ -15,7 +15,7 @@ const VideoSkeleton: React.FC<VideoSkeletonProps> = ({
   const { mode, getGradientClasses } = useGradientMode();
   
   // Use provided gradient or default based on mode
-  const gradientClasses = backgroundGradient || (mode === 'neutral' ? 'from-[#115B87] to-[#1B3764]' : getGradientClasses());
+  const gradientClasses = backgroundGradient || getGradientClasses();
   return (
     <div className={`absolute inset-0 w-full h-full bg-gradient-to-br ${gradientClasses} flex items-center justify-center ${className}`}>
       {showLoadingDots && (
