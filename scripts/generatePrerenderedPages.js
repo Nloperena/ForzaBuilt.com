@@ -14,6 +14,11 @@ const generateSlugFromTitle = (title) => {
     .trim();
 };
 
+// Function to get blog post by slug
+const getBlogPostBySlug = (slug) => {
+  return blogPostsData.find(post => generateSlugFromTitle(post.title) === slug);
+};
+
 const blogRoutes = blogPostsData.map(post => `/blog/${generateSlugFromTitle(post.title)}`);
 
 // Routes that should be prerendered for better SEO
