@@ -57,7 +57,7 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/src/assets/images/forza-bond-mb-color.svg' : '/products/brand-logos/product-line-brands-white-bond.svg'} 
+            src={mode === 'light' || mode === 'light2' ? '/forza-bond-mb-color.svg' : '/products/brand-logos/product-line-brands-white-bond.svg'} 
             alt="Industrial Adhesives Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
@@ -78,7 +78,7 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/src/assets/images/forza-seal-mb-color.svg' : '/products/brand-logos/product-line-brands-white-seal.svg'} 
+            src={mode === 'light' || mode === 'light2' ? '/forza-seal-mb-color.svg' : '/products/brand-logos/product-line-brands-white-seal.svg'} 
             alt="Industrial Sealants Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
@@ -99,7 +99,7 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/src/assets/images/forza-tape-mb-color.svg' : '/products/brand-logos/product-line-brands-white-tape.svg'} 
+            src={mode === 'light' || mode === 'light2' ? '/forza-tape-mb-color.svg' : '/products/brand-logos/product-line-brands-white-tape.svg'} 
             alt="Industrial Tapes Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
