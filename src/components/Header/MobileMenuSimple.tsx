@@ -48,11 +48,11 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 w-80 h-auto z-50 bg-gradient-to-b from-[#1B3764] to-[#115B87] shadow-2xl rounded-l-3xl border border-white/20"
+            className="fixed top-0 right-0 w-80 h-auto z-50 bg-gradient-to-b from-white to-gray-50 shadow-2xl rounded-l-3xl border border-[#1B3764]/20"
             style={{ top: '72px', maxHeight: 'calc(100vh - 72px)' }}
           >
             {/* Header */}
-            <div className="flex justify-between items-center p-4 border-b border-white/20">
+            <div className="flex justify-between items-center p-4 border-b border-[#1B3764]/20">
               <Link to="/" onClick={onClose} className="flex items-center">
                 <img 
                   src={logoSrc} 
@@ -63,7 +63,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
               
               <button 
                 onClick={onClose}
-                className="p-2 text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/10"
+                className="p-2 text-[#1B3764]/80 hover:text-[#1B3764] transition-colors rounded-full hover:bg-[#1B3764]/10"
                 aria-label="Close menu"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,7 +84,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
                   <Link
                     to={item.href}
                     onClick={onClose}
-                    className="block py-3 px-4 text-base font-medium text-white bg-white/10 hover:bg-white/20 hover:text-white rounded-2xl transition-all duration-200 border border-white/20"
+                    className="block py-3 px-4 text-base font-medium text-[#1B3764] bg-[#1B3764]/10 hover:bg-[#1B3764]/20 hover:text-[#1B3764] rounded-2xl transition-all duration-200 border border-[#1B3764]/20"
                   >
                     {item.name}
                   </Link>
@@ -93,7 +93,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
             </nav>
 
             {/* Footer */}
-            <div className="p-4 border-t border-white/20">
+            <div className="p-4 border-t border-[#1B3764]/20">
               <Button asChild className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-2xl">
                 <Link to="/contact" onClick={onClose}>Contact Us</Link>
               </Button>

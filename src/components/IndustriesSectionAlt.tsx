@@ -67,12 +67,20 @@ const IndustriesSectionAlt = () => {
       {/* Industries Header Section */}
       <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
         <div className="text-center relative z-10">
-          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${getTextClasses()} mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
+          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${
+            mode === 'light' || mode === 'light2'
+              ? 'text-[#1B3764]'
+              : getTextClasses()
+          } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
             Better Built Bonds For All Industries
           </h2>
         </div>
         <div className="text-center relative z-10">
-          <p className={`${getTextSecondaryClasses()} text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto`}>
+          <p className={`${
+            mode === 'light' || mode === 'light2'
+              ? 'text-[#1B3764]/80'
+              : getTextSecondaryClasses()
+          } text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto`}>
           At Forza, we're your trusted experts and mentors - delivering innovative adhesive solutions that secure your success.
           </p>
         </div>

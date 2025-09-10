@@ -72,8 +72,12 @@ const NewsletterSection = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-10 md:mb-14 relative">
 
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black ${getTextClasses()} font-kallisto leading-none break-words relative z-10`}>Stay Ahead with Forza</h2>
-            <p className={`mt-4 ${getTextSecondaryClasses()} text-base md:text-lg max-w-3xl mx-auto font-poppins relative z-10`}>Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black ${
+              mode === 'light' || mode === 'light2' ? 'text-[#1B3764]' : getTextClasses()
+            } font-kallisto leading-none break-words relative z-10`}>Stay Ahead with Forza</h2>
+            <p className={`mt-4 ${
+              mode === 'light' || mode === 'light2' ? 'text-[#1B3764]/80' : getTextSecondaryClasses()
+            } text-base md:text-lg max-w-3xl mx-auto font-poppins relative z-10`}>Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">

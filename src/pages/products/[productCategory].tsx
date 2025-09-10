@@ -807,11 +807,15 @@ const ProductCategoryPage: React.FC = () => {
                     className="group"
                   >
                     <div 
-                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl backdrop-blur-xl border border-white/20 hover:border-white/30 shadow-2xl"
+                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl backdrop-blur-xl border border-white/20 hover:border-white/30 shadow-2xl cursor-pointer"
                       style={{
                         background: `linear-gradient(to top, ${getIndustryColorHex(product.industry?.[0] || '')} 0%, ${getIndustryColorHex(product.industry?.[0] || '')} 15%, rgba(255, 255, 255, 0.15) 100%)`,
                         filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))',
                         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
+                      }}
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        setIsModalOpen(true);
                       }}
                     >
                       {/* Desktop: Badge above image */}
@@ -862,10 +866,10 @@ const ProductCategoryPage: React.FC = () => {
                         </h3>
                       </div>
 
-                      {/* Mobile: Left side with image and basic info */}
-                      <div className="flex md:hidden items-center gap-4 flex-1 p-4">
+                      {/* Mobile: Centered content with image and basic info */}
+                      <div className="flex md:hidden items-center justify-center gap-4 flex-1 p-4">
                         {/* Mobile: Product Image */}
-                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 hover:border-white/40 shadow-2xl relative" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)', transform: 'translateY(-50%)' }}>
+                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 hover:border-white/40 shadow-2xl relative flex-shrink-0" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)' }}>
                           {/* Image Skeleton Loading State */}
                           {!imageLoadedStates[product.id] && (
                             <ImageSkeleton className="rounded-xl" />
@@ -882,15 +886,15 @@ const ProductCategoryPage: React.FC = () => {
                           />
                         </div>
                         
-                        {/* Mobile: Product Info */}
-                        <div className="flex-1 min-w-0">
+                        {/* Mobile: Product Info - Centered */}
+                        <div className="flex-1 min-w-0 text-center">
                           <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                             {product.name.split('–')[0].trim()}
                           </h3>
                           <p className="text-xs text-white/90 line-clamp-2">
                             {product.name.split('–')[1]?.trim() || product.description}
                           </p>
-                          {/* Mobile: Industry Badge */}
+                          {/* Mobile: Industry Badge - Centered */}
                           <div 
                             className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wide mt-2"
                             style={{
@@ -947,8 +951,8 @@ const ProductCategoryPage: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Mobile: Right side with buttons */}
-                      <div className="flex md:hidden items-center gap-2 p-4">
+                      {/* Mobile: Centered buttons - positioned at bottom */}
+                      <div className="flex md:hidden items-center justify-center gap-2 p-2 pb-4">
                         {/* Mobile: Quick View Button */}
                         <button
                           onClick={(e) => {

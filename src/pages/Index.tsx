@@ -1,12 +1,10 @@
 import React, { lazy, Suspense } from 'react';
 import Header from '@/components/Header';
-import HeroOverlay from '@/components/HeroOverlay';
-import HeroVideoSection from '@/components/HeroVideoSection';
+import StickyHeroVideoSection from '@/components/StickyHeroVideoSection';
 import IndustriesSectionAlt from '@/components/IndustriesSectionAlt';
 import StickyBackgroundSection from '@/components/StickyBackgroundSection';
 import ScrollSections from '@/components/ScrollSections';
-import StickyBackgroundSectionV7 from '@/components/StickyBackgroundSectionV7';
-import NewsletterSection from '@/components/NewsletterSection';
+import StickyNewsletterSection from '@/components/StickyNewsletterSection';
 import Footer from '@/components/Footer';
 import ProductChemistriesSectionV2 from '@/components/ProductChemistriesSectionV2';
 import ProductChemistriesSection from '@/components/ProductChemistriesSection';
@@ -58,57 +56,52 @@ const Index = () => {
       />
       <Header />
       
-      {/* Hero section */}
-      <section className="relative">
-        <HeroOverlay />
-      </section>
-      
-      {/* Hero Video Section */}
-      <section className="relative">
-        <HeroVideoSection />
-      </section>
-      
-      {/* Divider/Products Section */}
-      {mode === 'light2' ? (
-        <section className="relative w-full pt-[13rem] pb-0 -mt-[22rem] bg-[#e8e8e8]">
-          <div className="w-full flex items-center justify-center">
-            <img 
-              src="/Industrail Bundle HeroImg.png" 
-              alt="Forza Industrial Products Bundle - Adhesives, Sealants, Tapes & Cleaning Solutions"
-              className="w-full h-auto object-contain object-center max-w-[900px]"
-              style={{ zIndex: 1 }}
-            />
-          </div>
+      {/* Sticky Hero Video Section - video stays while content slides over */}
+      <StickyHeroVideoSection>
+        {/* All content that should slide over the video */}
+        
+        {/* Divider/Products Section */}
+        {mode === 'light2' ? (
+          <section className="relative w-full pb-0 -mt-[22rem] bg-[#e8e8e8]" style={{ paddingTop: '0rem' }}>
+            <div className="w-full flex items-center justify-center">
+              <img 
+                src="/Industrail Bundle HeroImg.png" 
+                alt="Forza Industrial Products Bundle - Adhesives, Sealants, Tapes & Cleaning Solutions"
+                className="w-full h-auto object-contain object-center max-w-[900px]"
+                style={{ zIndex: 1 }}
+              />
+            </div>
+          </section>
+        ) : (
+          <section 
+            className={`relative w-full h-2 sm:h-16 ${
+              mode === 'light'
+                ? ''
+                : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
+            }`}
+            style={mode === 'light' ? { backgroundColor: '#e8e8e8' } : {}}
+          >
+          </section>
+        )}
+        
+        {/* Industries Section (same as Industries page) */}
+        <section className="relative overflow-hidden">
+          {/* Optimized Gradient Background (Mirrored) */}
+          <OptimizedGradient variant="mirrored" opacity={0.8} />
+
+          <IndustriesSectionAlt />
         </section>
-      ) : (
-        <section 
-          className={`relative w-full h-2 sm:h-16 ${
-            mode === 'light'
-              ? ''
-              : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
-          }`}
-          style={mode === 'light' ? { backgroundColor: '#e8e8e8' } : {}}
-        >
+
+        {/* Products Section Row */}
+        <section className="relative">
+          <ProductsSectionRow />
         </section>
-      )}
-      
-      {/* Industries Section (same as Industries page) */}
-      <section className="relative overflow-hidden">
-        {/* Optimized Gradient Background (Mirrored) */}
-        <OptimizedGradient variant="mirrored" opacity={0.8} />
 
-        <IndustriesSectionAlt />
-      </section>
-
-      {/* Products Section Row */}
-      <section className="relative">
-        <ProductsSectionRow />
-      </section>
-
-      {/* Sticky Background Section */}
-      <section className="relative">
-        <StickyBackgroundSection />
-      </section>
+        {/* Sticky Background Section */}
+        <section className="relative">
+          <StickyBackgroundSection />
+        </section>
+      </StickyHeroVideoSection>
 
       {/* Scroll Stack Cards Section (Grid Layout: 3-2-3-2) - COMMENTED OUT */}
       {/* <section className="relative w-full bg-gradient-to-br from-[#F16022] via-[#D35127] to-[#F16022] text-white">
@@ -153,18 +146,8 @@ const Index = () => {
       {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
       <ChemistryOverviewSectionV6 />
 
-      {/* Made in America Section - Sticky background with video */}
-      <StickyBackgroundSectionV7 />
-
-      {/* Edge Triangles Background spanning both sections and divider */}
-      {/* Removed EdgeTrianglesBackground overlay and its parent div */}
-
-    
-
-      {/* Newsletter Section - STANDALONE */}
-      <div className="relative w-full z-10">
-        <NewsletterSection />
-      </div>
+      {/* Sticky Newsletter Section - Newsletter slides over video background */}
+      <StickyNewsletterSection />
       
       {/* Footer */}
       <section className="relative">

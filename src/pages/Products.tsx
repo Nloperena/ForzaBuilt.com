@@ -14,20 +14,12 @@ const Products = () => {
   const { mode, setMode, getGradientClasses, getTextClasses, getTextSecondaryClasses } = useGradientMode();
 
   return (
-    <div className={`min-h-screen ${
-      mode === 'light' || mode === 'light2'
-        ? 'bg-gradient-to-b from-gray-100 to-gray-50'
-        : 'bg-gradient-to-b from-[#1B3764] to-[#115B87]'
-    }`}>
+    <div className={`min-h-screen bg-gradient-to-b ${getGradientClasses()}`}>
       <Header />
 
       {/* Hero Section */}
       <section className="relative">
-        <div className={`pt-16 sm:pt-20 relative ${
-          mode === 'light' || mode === 'light2'
-            ? 'bg-gradient-to-b from-gray-100 to-gray-50'
-            : 'bg-gradient-to-b from-[#1B3764] to-[#115B87]'
-        }`}>
+        <div className={`pt-16 sm:pt-20 relative bg-gradient-to-b ${getGradientClasses()}`}>
           <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 lg:py-16 [&:has(>div)]:max-w-[2000px]">
             <div className="text-center mx-auto">
               <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto ${getTextClasses()}`}>

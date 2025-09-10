@@ -64,13 +64,28 @@ export const useHeaderState = () => {
   }, []);
 
   const handleNavClick = useCallback((content: string) => {
-    const navItem = navigation.find(item => item.name.toLowerCase() === content);
+    const lower = content.toLowerCase();
+    // For dropdown items, toggle the overlay instead of navigating
+    if (['products', 'industries'].includes(lower)) {
+      if (isOverlayOpen && activeOverlayContent === lower) {
+        // Close if the same menu button is clicked again
+        closeOverlay();
+      } else {
+        // Open and show the requested content
+        setAnimationDirection('down');
+        setIsOverlayOpen(true);
+        setActiveOverlayContent(lower);
+      }
+      return;
+    }
+
+    // Default behavior for non-dropdown items: navigate
+    const navItem = navigation.find(item => item.name.toLowerCase() === lower);
     if (navItem) {
-      // Close overlay before navigation
       closeOverlay();
       navigate(navItem.href);
     }
-  }, [navigate, closeOverlay]);
+  }, [navigate, closeOverlay, isOverlayOpen, activeOverlayContent]);
 
   const handleNavHover = useCallback((content: string) => {
     if (hoverTimeout) {
@@ -101,11 +116,12 @@ export const useHeaderState = () => {
   }, [hoverTimeout, isOverlayOpen, activeOverlayContent]);
 
   const handleNavLeave = useCallback(() => {
-    const timeout = setTimeout(() => {
-      closeOverlay();
-    }, 500);
-    setHoverTimeout(timeout);
-  }, []);
+    // Keep the submenu open; do not auto-close on mouse leave
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+  }, [hoverTimeout]);
 
   const handleOverlayEnter = useCallback(() => {
     if (hoverTimeout) {

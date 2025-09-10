@@ -106,14 +106,18 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: animationDirection === 'up' ? -20 : 20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="global-nav-overlay fixed left-0 w-full bg-[var(--forza-blue-velvet)] backdrop-blur-sm bg-opacity-90 z-40 shadow-sm overflow-hidden font-kallisto"
+            className={`global-nav-overlay fixed left-0 w-full backdrop-blur-sm z-40 shadow-sm overflow-hidden font-kallisto ${
+              mode === 'light' || mode === 'light2'
+                ? 'bg-white'
+                : 'bg-[var(--forza-blue-velvet)] bg-opacity-90'
+            }`}
             style={{ top: headerRef.current?.offsetHeight ?? 72 }}
             onMouseEnter={handleOverlayEnter}
             onMouseLeave={handleNavLeave}
             onClick={closeOverlay}
           >
-            {/* Default Gradient Background (when no video is hovered) */}
-            {!hoveredVideoUrl && (
+            {/* Default Gradient Background (when no video is hovered) - only for dark mode */}
+            {!hoveredVideoUrl && mode !== 'light' && mode !== 'light2' && (
               <div className="absolute inset-0 bg-gradient-to-br from-[#1B3764] to-[#2C5F8A] -z-20"></div>
             )}
             

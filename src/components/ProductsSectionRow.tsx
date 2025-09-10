@@ -61,9 +61,17 @@ const ProductsSectionRow = () => {
   const { mode, getGradientClasses, getTextClasses, getTextSecondaryClasses } = useGradientMode();
 
   return (
-    <section className={`pt-12 pb-16 bg-gradient-to-b ${
-      mode === 'neutral' ? 'from-[#1B3764] to-[#115B87]' : getGradientClasses()
-    } ${getTextClasses()} relative overflow-hidden`}>
+    <section className={`pt-12 pb-16 ${
+      mode === 'light' || mode === 'light2'
+        ? 'bg-white'
+        : mode === 'neutral' 
+          ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87]'
+          : `bg-gradient-to-b ${getGradientClasses()}`
+    } ${
+      mode === 'light' || mode === 'light2'
+        ? 'text-[#1B3764]'
+        : getTextClasses()
+    } relative overflow-hidden`}>
       {/* Edge triangles positioned at left and right viewport edges */}
       <EdgeTrianglesBackground 
         leftImage="/Gradients and Triangles/Small Science Triangles.png"
@@ -79,12 +87,20 @@ const ProductsSectionRow = () => {
       
       <div className="w-full px-4 mx-auto max-w-7xl">
         <div className="text-center relative z-10">
-          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${getTextClasses()} mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
+          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${
+            mode === 'light' || mode === 'light2'
+              ? 'text-[#1B3764]'
+              : getTextClasses()
+          } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
             Our Products
           </h2>
         </div>
         <div className="text-center relative z-10">
-          <p className={`text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto ${getTextSecondaryClasses()}`}>
+          <p className={`text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto ${
+            mode === 'light' || mode === 'light2'
+              ? 'text-[#1B3764]/80'
+              : getTextSecondaryClasses()
+          }`}>
             We offer the best performing and widest range of adhesive, sealant, specialty tape, and industrial cleaning solutions, including customization and environmentally friendly technologies. If we don't have it, we'll make it custom for you!
           </p>
         </div>

@@ -89,14 +89,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               damping: 30,
               mass: 0.8
             }}
-            className="fixed inset-y-0 right-0 w-80 z-50 bg-gradient-to-b from-[#1B3764] via-[#115B87] to-[#1B3764] border-l border-white/20 shadow-2xl rounded-bl-2xl"
+            className="fixed inset-y-0 right-0 w-80 z-50 bg-gradient-to-b from-white via-gray-50 to-white border-l border-[#1B3764]/20 shadow-2xl rounded-bl-2xl"
           >
             {/* Header */}
-            <div className="flex justify-between items-center p-6 border-b border-white/20 bg-gradient-to-r from-[#1B3764] to-[#115B87]">
+            <div className="flex justify-between items-center p-6 border-b border-[#1B3764]/20 bg-gradient-to-r from-white to-gray-50">
               {activeSubmenu ? (
                 <button 
                   onClick={handleBackToMain}
-                  className="flex items-center space-x-2 text-white hover:text-white/80 transition-colors"
+                  className="flex items-center space-x-2 text-[#1B3764] hover:text-[#1B3764]/80 transition-colors"
                 >
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -115,7 +115,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               
               <button 
                 onClick={onClose}
-                className="p-2 text-white/80 hover:text-white transition-colors rounded-full hover:bg-white/10"
+                className="p-2 text-[#1B3764]/80 hover:text-[#1B3764] transition-colors rounded-full hover:bg-white/10"
                 aria-label="Close menu"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -146,11 +146,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                           {hasDropdown(item.name) ? (
                             <button
                               onClick={() => handleSubmenuToggle(item.name)}
-                              className="w-full flex items-center justify-between py-4 px-4 rounded-2xl text-base font-medium text-white bg-white/10 hover:bg-white/20 hover:text-white transition-all duration-200 group border border-white/20"
+                              className="w-full flex items-center justify-between py-4 px-4 rounded-2xl text-base font-medium text-[#1B3764] bg-white/10 hover:bg-white/20 hover:text-[#1B3764] transition-all duration-200 group border border-[#1B3764]/20"
                             >
                               <span>{item.name}</span>
                               <svg 
-                                className="h-4 w-4 transition-transform duration-200 text-white/60 group-hover:text-white" 
+                                className="h-4 w-4 transition-transform duration-200 text-[#1B3764]/60 group-hover:text-[#1B3764]" 
                                 fill="none" 
                                 viewBox="0 0 24 24" 
                                 stroke="currentColor"
@@ -162,7 +162,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                             <Link
                               to={item.href}
                               onClick={onClose}
-                              className="block py-4 px-4 rounded-2xl text-base font-medium text-white bg-white/10 hover:bg-white/20 hover:text-white transition-all duration-200 border border-white/20"
+                              className="block py-4 px-4 rounded-2xl text-base font-medium text-[#1B3764] bg-white/10 hover:bg-white/20 hover:text-[#1B3764] transition-all duration-200 border border-[#1B3764]/20"
                             >
                               {item.name}
                             </Link>
@@ -178,7 +178,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-2"
                   >
-                    <h2 className="text-xl font-semibold text-white mb-6">{activeSubmenu}</h2>
+                    <h2 className="text-xl font-semibold text-[#1B3764] mb-6">{activeSubmenu}</h2>
                     <nav className="space-y-2">
                       {getSubmenuItems(activeSubmenu).map((subItem, index) => (
                         <motion.div
@@ -190,7 +190,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                           <Link
                             to={subItem.href}
                             onClick={onClose}
-                            className="block py-3 px-4 rounded-xl text-sm font-medium text-white bg-white/10 hover:bg-white/20 hover:text-white transition-all duration-200 border border-white/20"
+                            className="block py-3 px-4 rounded-xl text-sm font-medium text-[#1B3764] bg-white/10 hover:bg-white/20 hover:text-[#1B3764] transition-all duration-200 border border-[#1B3764]/20"
                           >
                             {subItem.name}
                           </Link>
@@ -203,8 +203,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
             </div>
 
             {/* Footer */}
-            <div className="border-t border-white/20 p-6 space-y-4 bg-gradient-to-r from-[#1B3764] to-[#115B87] rounded-bl-2xl">
-              <Button asChild className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-2xl text-base font-medium py-4 transition-all duration-200 shadow-lg">
+            <div className="border-t border-[#1B3764]/20 p-6 space-y-4 bg-gradient-to-r from-[#1B3764] to-[#115B87] rounded-bl-2xl">
+              <Button asChild className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-[#1B3764] rounded-2xl text-base font-medium py-4 transition-all duration-200 shadow-lg">
                 <Link to="/contact" onClick={onClose}>Contact Us</Link>
               </Button>
             </div>

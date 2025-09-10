@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { getProducts } from '@/utils/products';
 import { industries as industriesData } from '@/data/industries';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 interface NavigationOverlayProps {
   isOpen: boolean;
@@ -20,7 +21,11 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
   onClose,
   onContentChange,
 }) => {
+  const { mode } = useGradientMode();
   const productsData = getProducts();
+  
+  // Debug logging
+  console.log('NavigationOverlay mode:', mode);
   
   const renderContent = () => {
     switch (activeContent) {
@@ -30,33 +35,69 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
             {/* Show main product categories instead of individual products */}
             <Link
               to="/products/bond"
-              className="group block p-6 rounded-lg hover:bg-white/10 transition-all duration-300"
+              className={`group block p-6 rounded-lg transition-all duration-300 ${
+                mode === 'light' || mode === 'light2' 
+                  ? 'hover:bg-[#1B3764]/10' 
+                  : 'hover:bg-white/10'
+              }`}
               onClick={onClose}
             >
-              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
+              <h3 
+                className="text-xl font-semibold mb-2 group-hover:text-[#F2611D] transition-colors"
+                style={{ color: mode === 'light' || mode === 'light2' ? '#1B3764' : 'white' }}
+              >
                 Industrial Adhesives
               </h3>
-              <p className="text-white/80 text-sm">High-performance bonding solutions for demanding industrial applications</p>
+              <p 
+                className="text-sm"
+                style={{ color: mode === 'light' || mode === 'light2' ? 'rgba(27, 55, 100, 0.8)' : 'rgba(255, 255, 255, 0.8)' }}
+              >
+                High-performance bonding solutions for demanding industrial applications
+              </p>
             </Link>
             <Link
               to="/products/seal"
-              className="group block p-6 rounded-lg hover:bg-white/10 transition-all duration-300"
+              className={`group block p-6 rounded-lg transition-all duration-300 ${
+                mode === 'light' || mode === 'light2' 
+                  ? 'hover:bg-[#1B3764]/10' 
+                  : 'hover:bg-white/10'
+              }`}
               onClick={onClose}
             >
-              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
+              <h3 
+                className="text-xl font-semibold mb-2 group-hover:text-[#F2611D] transition-colors"
+                style={{ color: mode === 'light' || mode === 'light2' ? '#1B3764' : 'white' }}
+              >
                 Industrial Sealants
               </h3>
-              <p className="text-white/80 text-sm">Advanced sealing solutions for leak prevention and environmental protection</p>
+              <p 
+                className="text-sm"
+                style={{ color: mode === 'light' || mode === 'light2' ? 'rgba(27, 55, 100, 0.8)' : 'rgba(255, 255, 255, 0.8)' }}
+              >
+                Advanced sealing solutions for leak prevention and environmental protection
+              </p>
             </Link>
             <Link
               to="/products/tape"
-              className="group block p-6 rounded-lg hover:bg-white/10 transition-all duration-300"
+              className={`group block p-6 rounded-lg transition-all duration-300 ${
+                mode === 'light' || mode === 'light2' 
+                  ? 'hover:bg-[#1B3764]/10' 
+                  : 'hover:bg-white/10'
+              }`}
               onClick={onClose}
             >
-              <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
+              <h3 
+                className="text-xl font-semibold mb-2 group-hover:text-[#F2611D] transition-colors"
+                style={{ color: mode === 'light' || mode === 'light2' ? '#1B3764' : 'white' }}
+              >
                 Industrial Tapes
               </h3>
-              <p className="text-white/80 text-sm">Specialized tapes for industrial applications and high-performance needs</p>
+              <p 
+                className="text-sm"
+                style={{ color: mode === 'light' || mode === 'light2' ? 'rgba(27, 55, 100, 0.8)' : 'rgba(255, 255, 255, 0.8)' }}
+              >
+                Specialized tapes for industrial applications and high-performance needs
+              </p>
             </Link>
           </div>
         );
@@ -68,13 +109,25 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
               <Link
                 key={industry.title}
                 to={`/industries/${industry.title.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group block p-6 rounded-lg hover:bg-white/10 transition-all duration-300"
+                className={`group block p-6 rounded-lg transition-all duration-300 ${
+                mode === 'light' || mode === 'light2' 
+                  ? 'hover:bg-[#1B3764]/10' 
+                  : 'hover:bg-white/10'
+              }`}
                 onClick={onClose}
               >
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#F2611D] transition-colors">
+                <h3 
+                  className="text-xl font-semibold mb-2 group-hover:text-[#F2611D] transition-colors"
+                  style={{ color: mode === 'light' || mode === 'light2' ? '#1B3764' : 'white' }}
+                >
                   {industry.title}
                 </h3>
-                <p className="text-white/80 text-sm">{industry.description}</p>
+                <p 
+                  className="text-sm"
+                  style={{ color: mode === 'light' || mode === 'light2' ? 'rgba(27, 55, 100, 0.8)' : 'rgba(255, 255, 255, 0.8)' }}
+                >
+                  {industry.description}
+                </p>
               </Link>
             ))}
           </div>
@@ -102,10 +155,15 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
           <div className="container mx-auto px-6 py-8">
             <div className="flex justify-between items-start mb-8">
               <div>
-                <h2 className="text-3xl font-bold text-white mb-2 capitalize">
+                <h2 
+                  className="text-3xl font-bold mb-2 capitalize"
+                  style={{ color: mode === 'light' || mode === 'light2' ? '#1B3764' : 'white' }}
+                >
                   {activeContent}
                 </h2>
-                <p className="text-white/80">
+                <p 
+                  style={{ color: mode === 'light' || mode === 'light2' ? 'rgba(27, 55, 100, 0.8)' : 'rgba(255, 255, 255, 0.8)' }}
+                >
                   Explore our {activeContent} and find the perfect solution for your needs.
                 </p>
               </div>
@@ -113,7 +171,8 @@ const NavigationOverlay: React.FC<NavigationOverlayProps> = ({
                 variant="ghost"
                 size="sm"
                 onClick={onClose}
-                className="text-white hover:text-[#F2611D]"
+                className="hover:text-[#F2611D]"
+                style={{ color: mode === 'light' || mode === 'light2' ? '#1B3764' : 'white' }}
               >
                 ✕
               </Button>
