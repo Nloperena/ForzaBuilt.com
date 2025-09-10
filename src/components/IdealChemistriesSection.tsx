@@ -170,13 +170,8 @@ const IdealChemistriesSection: React.FC = () => {
   const visibleChemistries = chemistries.slice(currentIndex, currentIndex + cardsToShow);
 
   return (
-    <section className={`w-full py-16 px-2 md:px-0 relative overflow-hidden ${
-      mode === 'light' || mode === 'light2'
-        ? 'bg-white'
-        : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
-    }`} style={{
-      backgroundColor: mode === 'light' || mode === 'light2' ? '#ffffff' : undefined,
-      background: mode === 'light' || mode === 'light2' ? '#ffffff' : 'linear-gradient(to bottom, #115B87, #1B3764)'
+    <section className="w-full py-16 px-2 md:px-0 relative overflow-hidden" style={{
+      background: 'linear-gradient(to bottom, #FFA0BA 0%, #FF0B21 15%, #F16022 100%)'
     }}>
       {/* Edge Triangles Background */}
       <EdgeTrianglesBackground 
@@ -192,7 +187,7 @@ const IdealChemistriesSection: React.FC = () => {
       />
       
       <div className="max-w-screen-2xl mx-auto relative z-10">
-        <h2 className={`text-4xl md:text-6xl font-black ${getTextClasses()} text-center mb-12 font-kallisto leading-tight`}>
+        <h2 className="text-4xl md:text-6xl font-black text-white text-center mb-12 font-kallisto leading-tight">
           Ideal Chemistry For Your<br className="hidden md:block" /> Specific Application
         </h2>
         
@@ -201,7 +196,7 @@ const IdealChemistriesSection: React.FC = () => {
           <button 
             onClick={handlePrev} 
             disabled={currentIndex <= 0 || isAnimating} 
-            className={`${getTextSecondaryClasses()} hover:${getTextClasses()} text-2xl sm:text-3xl px-2 py-1 disabled:opacity-30 transition-all duration-200`}
+            className="text-white/70 hover:text-white text-2xl sm:text-3xl px-2 py-1 disabled:opacity-30 transition-all duration-200"
           >
             &#8592;
           </button>
@@ -236,18 +231,10 @@ const IdealChemistriesSection: React.FC = () => {
                          ease: "easeIn"
                        }
                      }}
-                    className={`rounded-2xl sm:rounded-3xl border ${
-                      mode === 'light' || mode === 'light2' ? 'border-gray-200/50 hover:border-gray-300' : 'border-white/20 hover:border-white/30'
-                    } p-4 sm:p-6 md:p-8 flex flex-col items-center shadow-lg sm:shadow-2xl transition-all duration-300 hover:scale-105 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] ${
-                      mode === 'light' || mode === 'light2' ? 'bg-white/90' : 'bg-white/10'
-                    }`}
+                    className="rounded-2xl sm:rounded-3xl border border-white/20 hover:border-white/30 p-4 sm:p-6 md:p-8 flex flex-col items-center shadow-lg sm:shadow-2xl transition-all duration-300 hover:scale-105 w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] bg-white/10"
                     style={{
-                      background: mode === 'light' || mode === 'light2' 
-                        ? 'linear-gradient(to bottom, #1B3764 0%, #115B87 100%)'
-                        : 'linear-gradient(to bottom, #1B3764 0%, #115B87 100%)',
-                      boxShadow: mode === 'light' || mode === 'light2' 
-                        ? '0 4px 12px rgba(0, 0, 0, 0.1)' 
-                        : '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                      background: 'linear-gradient(to bottom, #1B3764 0%, #115B87 100%)',
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
                     }}
                   >
                     {/* Icon */}
@@ -291,7 +278,7 @@ const IdealChemistriesSection: React.FC = () => {
           <button 
             onClick={handleNext} 
             disabled={currentIndex >= maxIndex || isAnimating} 
-            className={`${getTextSecondaryClasses()} hover:${getTextClasses()} text-2xl sm:text-3xl px-2 py-1 disabled:opacity-30 transition-all duration-200`}
+            className="text-white/70 hover:text-white text-2xl sm:text-3xl px-2 py-1 disabled:opacity-30 transition-all duration-200"
           >
             &#8594;
           </button>
