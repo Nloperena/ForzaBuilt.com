@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 import SearchBar from './SearchBar';
 
@@ -19,6 +20,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   navigation,
 }) => {
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const { mode } = useGradientMode();
+  
+  // Use blue logo for light modes, regular logo for dark modes
+  const logoSrc = mode === 'light' || mode === 'light2' 
+    ? '/forza-logo-blue.svg' 
+    : '/forza-logo-full.png';
 
   const handleSubmenuToggle = (itemName: string) => {
     setActiveSubmenu(activeSubmenu === itemName ? null : itemName);
@@ -99,7 +106,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
               ) : (
                 <Link to="/" onClick={onClose} className="flex items-center justify-start flex-1">
                   <img 
-                    src="/forza-logo-full.png" 
+                    src={logoSrc} 
                     alt="Forza Built" 
                     className="h-20 w-auto object-contain"
                   />

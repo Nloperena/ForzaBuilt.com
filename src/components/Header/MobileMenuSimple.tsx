@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 interface MobileMenuSimpleProps {
   isOpen: boolean;
@@ -12,6 +13,13 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
   isOpen,
   onClose,
 }) => {
+  const { mode } = useGradientMode();
+  
+  // Use blue logo for light modes, regular logo for dark modes
+  const logoSrc = mode === 'light' || mode === 'light2' 
+    ? '/forza-logo-blue.svg' 
+    : '/forza-logo-full.png';
+  
   // Simplified navigation - just the essential links
   const navigation = [
     { name: 'Home', href: '/' },
@@ -47,7 +55,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
             <div className="flex justify-between items-center p-4 border-b border-white/20">
               <Link to="/" onClick={onClose} className="flex items-center">
                 <img 
-                  src="/forza-logo-full.png" 
+                  src={logoSrc} 
                   alt="Forza Built" 
                   className="h-12 w-auto object-contain"
                 />

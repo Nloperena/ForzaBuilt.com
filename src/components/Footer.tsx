@@ -6,6 +6,11 @@ import { useGradientMode } from '@/contexts/GradientModeContext';
 const Footer = () => {
   const [showNewsletterForm, setShowNewsletterForm] = useState(false);
   const { mode, getGradientClasses } = useGradientMode();
+  
+  // Use blue logo for light modes, regular logo for dark modes
+  const logoSrc = mode === 'light' || mode === 'light2' 
+    ? '/forza-logo-blue.svg' 
+    : forzaLogo;
 
   const handleCloseModal = () => {
     setShowNewsletterForm(false);
@@ -28,7 +33,7 @@ const Footer = () => {
           {/* Left Section: Company Information */}
           <div className="space-y-0">
             <img 
-              src={forzaLogo}
+              src={logoSrc}
               alt="Forza Logo"
               className="h-30 w-auto -ml-5"
             />
