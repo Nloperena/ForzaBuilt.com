@@ -84,7 +84,7 @@ const Header = () => {
               type="button"
               className={`p-2 transition-colors ${
                 mode === 'light' || mode === 'light2'
-                  ? 'text-gray-700 hover:text-gray-900'
+                  ? 'text-[#1B3764] hover:text-[#115B87]'
                   : 'text-white/80 hover:text-white'
               }`}
               onClick={openMobileMenu}

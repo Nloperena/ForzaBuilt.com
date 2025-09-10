@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer className={`relative py-5 px-6 overflow-hidden ${
       mode === 'light' || mode === 'light2'
-        ? 'bg-white text-gray-800' 
+        ? 'bg-white text-[#1B3764]' 
         : `text-white bg-gradient-to-b ${getGradientClasses()}`
     }`}>
       {/* Glassmorphic background - only for dark mode */}
@@ -44,7 +44,7 @@ const Footer = () => {
                 <div className="flex items-center gap-10">
                   <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className={`transition-colors flex items-center ${
                     mode === 'light' || mode === 'light2'
-                      ? 'text-gray-600 hover:text-gray-800'
+                      ? 'text-[#1B3764] hover:text-[#115B87]'
                       : 'text-white/70 hover:text-white'
                   }`}>
                     <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
@@ -53,7 +53,7 @@ const Footer = () => {
                   </a>
                   <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={`transition-colors flex items-center ${
                     mode === 'light' || mode === 'light2'
-                      ? 'text-gray-600 hover:text-gray-800'
+                      ? 'text-[#1B3764] hover:text-[#115B87]'
                       : 'text-white/70 hover:text-white'
                   }`}>
                     <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
@@ -65,7 +65,7 @@ const Footer = () => {
               
               <p className={`text-[10px] ${
                 mode === 'light' || mode === 'light2'
-                  ? 'text-gray-600'
+                  ? 'text-[#1B3764]/70'
                   : 'text-white/70'
               }`} style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
                 *Forza industrial adhesive and industrial sealants are proudly manufactured in the USA from domestic and limited foreign components. © {new Date().getFullYear()} Forza Built. All rights reserved.
@@ -79,7 +79,7 @@ const Footer = () => {
                 <div className="text-lg font-bold" style={{ color: brandColors.primary.blazeOrange.hex, fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight, lineHeight: typography.headings.lineHeight }}>HQ</div>
                 <div className={`space-y-0.5 ${
                   mode === 'light' || mode === 'light2'
-                    ? 'text-gray-800'
+                    ? 'text-[#1B3764]'
                     : 'text-white'
                 }`} style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
                   <div className="font-semibold">Forza</div>
@@ -92,7 +92,7 @@ const Footer = () => {
                 <div className="text-lg font-bold" style={{ color: brandColors.primary.blazeOrange.hex, fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight, lineHeight: typography.headings.lineHeight }}>CONTACT</div>
                 <div className={`space-y-0.5 ${
                   mode === 'light' || mode === 'light2'
-                    ? 'text-gray-800'
+                    ? 'text-[#1B3764]'
                     : 'text-white'
                 }`} style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>
                   <div>O. 402.731.9300</div>
@@ -108,12 +108,12 @@ const Footer = () => {
               <div className="text-lg font-bold" style={{ color: brandColors.primary.blazeOrange.hex, fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight, lineHeight: typography.headings.lineHeight }}>OPTIMIZATION INQUIRIES</div>
               <div className={`${
                 mode === 'light' || mode === 'light2'
-                  ? 'text-gray-800'
+                  ? 'text-[#1B3764]'
                   : 'text-white'
               }`} style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>Interested in working with us?</div>
               <div><a href="mailto:sales@forzabuilt.com" className={`font-semibold hover:underline ${
                 mode === 'light' || mode === 'light2'
-                  ? 'text-gray-800'
+                  ? 'text-[#1B3764]'
                   : 'text-white'
               }`} style={{ fontFamily: typography.body.fontFamily, lineHeight: typography.body.lineHeight }}>sales@forzabuilt.com</a></div>
             </div>
