@@ -172,56 +172,64 @@ const ChemistryOverviewSectionV6: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-16 px-4 relative overflow-hidden bg-gradient-to-br from-[#F16022] via-[#E8551C] to-[#F16022]">
-      {/* Edge Triangles Background - Multiple variations */}
-      <EdgeTrianglesBackground 
-        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles.png"
-        opacity={0.4}
-        scale={0.6}
-        leftRotation={45}
-        rightRotation={315}
-        leftFlipH={false}
-        rightFlipV={true}
-        blendMode="overlay"
-      />
-      
-      {/* Additional Triangle Layer - Different orientation */}
-      <EdgeTrianglesBackground 
-        leftImage="/Gradients and Triangles/Small Science Triangles.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        opacity={0.3}
-        scale={0.8}
-        leftRotation={135}
-        rightRotation={225}
-        leftFlipH={true}
-        rightFlipV={false}
-        blendMode="multiply"
-      />
-      
-      {/* Third Triangle Layer - Subtle variation */}
-      <EdgeTrianglesBackground 
-        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles.png"
-        opacity={0.2}
-        scale={1.0}
-        leftRotation={0}
-        rightRotation={180}
-        leftFlipH={false}
-        rightFlipV={false}
-        blendMode="soft-light"
-      />
+    <section className="w-full py-16 px-4 relative overflow-hidden bg-gradient-to-b from-[#ffa989] to-[#E8551C]">
+      {/* Single Triangle Background - Override Global Effects */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ isolation: 'isolate' }}>
+        {/* Left Triangle */}
+        <div
+          className="absolute top-1/2 left-0 transform -translate-y-1/2"
+          style={{
+            transform: 'translateY(-50%) scale(1.2) translateX(-30%) rotate(45deg)',
+            opacity: 0.8,
+            isolation: 'isolate',
+          }}
+        >
+          <img
+            src="/Gradients and Triangles/Small Science Triangles 2.png"
+            alt="Left Edge Triangles"
+            className="object-contain"
+            style={{
+              mixBlendMode: 'screen',
+              filter: 'contrast(0.5) brightness(2.5)',
+              opacity: 0.3,
+              isolation: 'isolate',
+            }}
+          />
+        </div>
+        
+        {/* Right Triangle */}
+        <div
+          className="absolute top-1/2 right-0 transform -translate-y-1/2"
+          style={{
+            transform: 'translateY(-50%) scale(1.2) translateX(30%) rotate(315deg) scaleY(-1)',
+            opacity: 0.8,
+            isolation: 'isolate',
+          }}
+        >
+          <img
+            src="/Gradients and Triangles/Small Science Triangles.png"
+            alt="Right Edge Triangles"
+            className="object-contain"
+            style={{
+              mixBlendMode: 'screen',
+              filter: 'contrast(0.5) brightness(2.5)',
+              opacity: 0.3,
+              isolation: 'isolate',
+            }}
+          />
+        </div>
+      </div>
       
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <h2 className="text-4xl md:text-6xl font-black text-white text-center mb-12 font-kallisto leading-tight">
           Ideal Chemistry For Your<br className="hidden md:block" /> Specific Application
         </h2>
         
-        {/* Chemistry Grid - Mobile Optimized 4-4-3 Layout */}
-        <div className="max-w-7xl mx-auto">
-          {/* First Row - 4 chemistry icons (2x2 on mobile) */}
-          <div className="grid grid-cols-2 md:flex md:justify-center md:items-center gap-4 sm:gap-6 md:gap-12 lg:gap-16 mb-6 md:mb-12">
-            {chemistryData.slice(0, 4).map((chemistry) => (
+        {/* Chemistry Grid - Mobile 2x2, Desktop 6-5 Layout */}
+        <div className="max-w-screen-2xl mx-auto">
+          {/* First Row - 6 chemistry icons on desktop (2x2 on mobile) */}
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 mb-4 sm:mb-6 md:mb-8 lg:mb-12 xl:mb-16 2xl:mb-20">
+            {chemistryData.slice(0, 6).map((chemistry) => (
               <motion.div
                 key={chemistry.id}
                 className="flex flex-col items-center cursor-pointer group"
@@ -247,16 +255,16 @@ const ChemistryOverviewSectionV6: React.FC = () => {
                 </div>
                 
                 {/* Chemistry Name - Mobile Optimized */}
-                <h3 className="text-white text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center font-kallisto group-hover:text-yellow-200 transition-colors duration-300 leading-tight">
+                <h3 className="text-white text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center font-kallisto group-hover:text-yellow-200 transition-colors duration-300 leading-tight whitespace-nowrap">
                   {chemistry.name}
                 </h3>
               </motion.div>
             ))}
           </div>
 
-          {/* Second Row - 4 chemistry icons (2x2 on mobile) */}
-          <div className="grid grid-cols-2 md:flex md:justify-center md:items-center gap-4 sm:gap-6 md:gap-12 lg:gap-16 mb-6 md:mb-12">
-            {chemistryData.slice(4, 8).map((chemistry) => (
+          {/* Second Row - 5 chemistry icons on desktop (2x2 on mobile) */}
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20">
+            {chemistryData.slice(6, 11).map((chemistry) => (
               <motion.div
                 key={chemistry.id}
                 className="flex flex-col items-center cursor-pointer group"
@@ -282,42 +290,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
                 </div>
                 
                 {/* Chemistry Name - Mobile Optimized */}
-                <h3 className="text-white text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center font-kallisto group-hover:text-yellow-200 transition-colors duration-300 leading-tight">
-                  {chemistry.name}
-                </h3>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Third Row - 3 chemistry icons (2+1 on mobile, centered on desktop) */}
-          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-12 lg:gap-16">
-            {chemistryData.slice(8, 11).map((chemistry) => (
-              <motion.div
-                key={chemistry.id}
-                className="flex flex-col items-center cursor-pointer group"
-                onMouseEnter={() => setHoveredChemistry(chemistry.id)}
-                onMouseLeave={() => setHoveredChemistry(null)}
-                onClick={() => handleChemistryClick(chemistry)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {/* Mobile Optimized SVG Icon */}
-                <div className="relative mb-2 md:mb-6">
-                  <motion.img 
-                    src={chemistry.iconSrc} 
-                    alt={chemistry.name} 
-                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain drop-shadow-lg"
-                    animate={{
-                      filter: hoveredChemistry === chemistry.id 
-                        ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
-                        : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
-                    }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </div>
-                
-                {/* Chemistry Name - Mobile Optimized */}
-                <h3 className="text-white text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center font-kallisto group-hover:text-yellow-200 transition-colors duration-300 leading-tight">
+                <h3 className="text-white text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center font-kallisto group-hover:text-yellow-200 transition-colors duration-300 leading-tight whitespace-nowrap">
                   {chemistry.name}
                 </h3>
               </motion.div>

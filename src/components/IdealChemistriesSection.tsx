@@ -170,20 +170,18 @@ const IdealChemistriesSection: React.FC = () => {
   const visibleChemistries = chemistries.slice(currentIndex, currentIndex + cardsToShow);
 
   return (
-    <section className="w-full py-16 px-2 md:px-0 relative overflow-hidden" style={{
-      background: 'linear-gradient(to bottom, #FFA0BA 0%, #F16022 100%)'
-    }}>
+    <section className="w-full py-16 px-2 md:px-0 relative overflow-hidden bg-gradient-to-b from-[#ffa989] to-[#E8551C]">
       {/* Edge Triangles Background */}
       <EdgeTrianglesBackground 
         leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
         rightImage="/Gradients and Triangles/Small Science Triangles.png"
-        opacity={0.6}
+        opacity={0.8}
         scale={0.8}
         leftRotation={45}
         rightRotation={315}
         leftFlipH={false}
         rightFlipV={true}
-        blendMode="overlay"
+        blendMode="color-dodge"
       />
       
       <div className="max-w-screen-2xl mx-auto relative z-10">
