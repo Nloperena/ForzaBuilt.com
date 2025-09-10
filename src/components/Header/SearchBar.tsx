@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { productCategories } from '@/data/productCategories';
 import { industries as industriesData } from '@/data/industries';
+import { useGradientMode } from '@/contexts/GradientModeContext';
 
 interface SearchResult {
   name: string;
@@ -16,6 +17,7 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false }) => {
   const navigate = useNavigate();
+  const { mode } = useGradientMode();
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -60,9 +62,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
     }
   };
 
+  // Use blue text for light modes, white text for dark modes
+  const textColor = mode === 'light' || mode === 'light2' ? 'text-[#1B3764]' : 'text-white';
+  const placeholderColor = mode === 'light' || mode === 'light2' ? 'placeholder-[#1B3764]/70' : 'placeholder-white/70';
+  const bgColor = mode === 'light' || mode === 'light2' ? 'bg-white/80' : 'bg-white/20';
+  const borderColor = mode === 'light' || mode === 'light2' ? 'border-[#1B3764]/30' : 'border-white/30';
+
   const baseClasses = mobile 
-    ? "py-2 px-4 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-sm transition-all duration-300 border border-white/30"
-    : "py-3.5 px-8 rounded-full bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-[#F2611D] transition-all duration-300 ease-in-out border border-white/30";
+    ? `py-2 px-4 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-sm transition-all duration-300 border ${borderColor}`
+    : `py-3.5 px-8 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] transition-all duration-300 ease-in-out border ${borderColor}`;
 
   const widthClasses = mobile
     ? "w-full"
