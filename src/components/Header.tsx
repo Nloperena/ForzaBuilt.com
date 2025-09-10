@@ -43,10 +43,10 @@ const Header = () => {
       ref={headerRef} 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         mode === 'light' || mode === 'light2' 
-          ? 'bg-gradient-to-r from-[#1B3764] to-[#115B87] border-b border-white/20' 
+          ? 'bg-white border-b border-gray-200 shadow-lg' 
           : 'backdrop-blur-2xl bg-white/50 border-b border-white/60'
       } shadow-2xl`}
-      style={mode === 'light' || mode === 'light2' ? {} : { backgroundColor: '#115B8730' }}
+      style={mode === 'light' || mode === 'light2' ? { backgroundColor: '#ffffff' } : { backgroundColor: '#115B8730' }}
       onMouseEnter={handleOverlayEnter}
       onMouseLeave={handleNavLeave}
     >
@@ -82,7 +82,11 @@ const Header = () => {
           <div className="flex items-center lg:hidden">
             <button 
               type="button"
-              className="p-2 text-white/80 hover:text-white transition-colors"
+              className={`p-2 transition-colors ${
+                mode === 'light' || mode === 'light2'
+                  ? 'text-gray-700 hover:text-gray-900'
+                  : 'text-white/80 hover:text-white'
+              }`}
               onClick={openMobileMenu}
               aria-label="Open menu"
             >
