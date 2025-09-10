@@ -45,16 +45,11 @@ export const useHeaderState = () => {
       const scrollTop = window.scrollY;
       // Change background when scrolled past 100px (adjust as needed)
       setIsScrolled(scrollTop > 100);
-      
-      // Close overlay when scrolling starts
-      if (isOverlayOpen) {
-        closeOverlay();
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isOverlayOpen, closeOverlay]);
+  }, []);
 
   // Update video URL when overlay content changes
   useEffect(() => {
@@ -70,14 +65,27 @@ export const useHeaderState = () => {
 
   const handleNavClick = useCallback((content: string) => {
     const lower = content.toLowerCase();
-    
-    // For all navigation items, navigate to their pages
+    // For dropdown items, toggle the overlay instead of navigating
+    if (['products', 'industries'].includes(lower)) {
+      if (isOverlayOpen && activeOverlayContent === lower) {
+        // Close if the same menu button is clicked again
+        closeOverlay();
+      } else {
+        // Open and show the requested content
+        setAnimationDirection('down');
+        setIsOverlayOpen(true);
+        setActiveOverlayContent(lower);
+      }
+      return;
+    }
+
+    // Default behavior for non-dropdown items: navigate
     const navItem = navigation.find(item => item.name.toLowerCase() === lower);
     if (navItem) {
       closeOverlay();
       navigate(navItem.href);
     }
-  }, [navigate, closeOverlay]);
+  }, [navigate, closeOverlay, isOverlayOpen, activeOverlayContent]);
 
   const handleNavHover = useCallback((content: string) => {
     if (hoverTimeout) {
@@ -85,8 +93,8 @@ export const useHeaderState = () => {
       setHoverTimeout(null);
     }
 
-    // Only show overlay for products and industries (dropdown items)
-    if (!['products', 'industries'].includes(content)) {
+    // Don't show overlay for blog (direct navigation)
+    if (content === 'blog') {
       return;
     }
 
