@@ -171,7 +171,7 @@ const IdealChemistriesSection: React.FC = () => {
 
   return (
     <section className="w-full py-16 px-2 md:px-0 relative overflow-hidden" style={{
-      background: 'linear-gradient(to bottom, #FFA0BA 0%, #FF0B21 15%, #F16022 100%)'
+      background: 'linear-gradient(to bottom, #FFA0BA 0%, #F16022 100%)'
     }}>
       {/* Edge Triangles Background */}
       <EdgeTrianglesBackground 
