@@ -6,10 +6,7 @@ import { useGradientMode } from '@/contexts/GradientModeContext';
 const NewsletterSection = () => {
   const [showNewsletterForm, setShowNewsletterForm] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    company: ''
+    email: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { mode, getGradientClasses, getTextClasses, getTextSecondaryClasses } = useGradientMode();
@@ -21,6 +18,18 @@ const NewsletterSection = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleNewsletterSubmitInline = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setFormData({ email: '' });
+      alert('Thank you for subscribing to our newsletter!');
+    }, 1000);
   };
 
   const handleCloseModal = () => {
@@ -35,12 +44,7 @@ const NewsletterSection = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       setShowNewsletterForm(false);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        company: ''
-      });
+      setFormData({ email: '' });
       // Here you would typically send the data to your backend
       alert('Thank you for subscribing to our newsletter!');
     }, 1000);
@@ -48,98 +52,95 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <section className={`relative py-16 md:py-20 ${
-        mode === 'light' || mode === 'light2' 
-          ? 'bg-gray-100' 
-          : 'bg-gradient-to-b from-[#293350] to-[#81899f]'
-      } overflow-hidden`}>
+      <section className="relative isolate py-16 md:py-20 bg-[#f3f5f7] shadow-[inset_0_1px_0_rgba(255,255,255,.35)]">
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_60rem_at_50%_-10%,rgba(41,51,80,.06),transparent_60%)]"></div>
         {/* Edge triangles positioned at left and right viewport edges */}
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
-          <div className="text-center mb-10 md:mb-14 relative">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-8 md:mb-12 relative">
 
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal ${
-              mode === 'light' || mode === 'light2' ? 'text-[#293350]' : getTextClasses()
-            } font-poppins leading-tight break-words relative z-10`}>Stay Ahead with Forza</h2>
-            <p className={`mt-4 ${
-              mode === 'light' || mode === 'light2' ? 'text-gray-600' : getTextSecondaryClasses()
-            } text-base md:text-lg max-w-3xl mx-auto font-poppins relative z-10`}>Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#293350] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance">Stay Ahead with Forza</h2>
+            <p className="mt-4 text-gray-600 text-base md:text-lg max-w-2xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1 h-full relative">
-              
-              <div className={`${
-                mode === 'light' || mode === 'light2' 
-                  ? 'bg-gradient-to-b from-[#293350] to-[#81899f] border-[#1B3764]/30' 
-                  : 'bg-white/10 border-white/20 backdrop-blur-md'
-              } rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10`}>
-                <div className="p-6 md:p-8 flex-1 flex flex-col">
-                  <div className="mb-8">
-                    <h3 className={`${mode === 'light' || mode === 'light2' ? 'text-white' : getTextClasses()} font-kallisto text-2xl md:text-3xl font-black`}>Join Our Newsletter</h3>
-                  </div>
+            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-b from-[#293350] sm:from-[#344063] to-[#4a5a7a] border border-white/10">
+              <div className="p-6 md:p-8 flex-1 flex flex-col">
+                <div className="mb-8">
+                  <h3 className="text-white font-kallisto text-2xl md:text-3xl font-black">Join Our Newsletter</h3>
+                </div>
 
-                  <div className="space-y-6 mb-8 flex-1">
-                    <div className="flex items-start gap-3">
-                      <div className={`w-2 h-2 ${mode === 'light' || mode === 'light2' ? 'bg-white' : 'bg-[#115B87]'} rounded-full mt-2 flex-shrink-0`}></div>
-                      <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/90' : getTextSecondaryClasses()} text-sm md:text-base`}>Early access to new product launches and innovations</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className={`w-2 h-2 ${mode === 'light' || mode === 'light2' ? 'bg-white' : 'bg-[#115B87]'} rounded-full mt-2 flex-shrink-0`}></div>
-                      <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/90' : getTextSecondaryClasses()} text-sm md:text-base`}>Exclusive industry insights and technical solutions</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className={`w-2 h-2 ${mode === 'light' || mode === 'light2' ? 'bg-white' : 'bg-[#115B87]'} rounded-full mt-2 flex-shrink-0`}></div>
-                      <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/90' : getTextSecondaryClasses()} text-sm md:text-base`}>Expert tips and best practices for your applications</p>
-                    </div>
+                <div className="space-y-6 mb-8 flex-1">
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-1 size-5 flex-shrink-0 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-white/85 text-sm md:text-base">Early access to new product launches and innovations</p>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-1 size-5 flex-shrink-0 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-white/85 text-sm md:text-base">Exclusive industry insights and technical solutions</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-1 size-5 flex-shrink-0 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-white/85 text-sm md:text-base">Expert tips and best practices for your applications</p>
+                  </div>
+                </div>
 
-                  <div className="space-y-6 mt-auto">
+                <div className="space-y-6 mt-auto">
+                  <form onSubmit={handleNewsletterSubmitInline} className="mt-2 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3">
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      placeholder="you@company.com"
+                      className="h-11 px-4 rounded-lg bg-white text-[#293350] placeholder:text-slate-400 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                    />
                     <button
-                      onClick={() => setShowNewsletterForm(true)}
-                      className="w-full inline-flex items-center justify-center rounded-lg px-6 py-4 font-bold text-white bg-[#F2611D] hover:bg-[#F2611D]/80 shadow-lg hover:shadow-xl transition-all duration-200 text-lg border border-[#F2611D]"
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="h-11 px-5 rounded-lg bg-[#F2611D] text-white font-bold hover:bg-[#F2611D]/90 shadow-md transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 disabled:opacity-50"
                     >
-                      SUBSCRIBE TO NEWSLETTER
+                      {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                     </button>
-                    <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/80' : getTextSecondaryClasses()} text-xs text-center`}>No spam, unsubscribe at any time</p>
-                  </div>
+                  </form>
+                  <p className="text-white/85 text-xs text-center">No spam, unsubscribe at any time</p>
+                  <button
+                    onClick={() => setShowNewsletterForm(true)}
+                    className="text-white/70 hover:text-white text-xs underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                  >
+                    Or use detailed form
+                  </button>
                 </div>
               </div>
             </div>
 
             {/* Featured Blog Section - Secondary Focus */}
-            <div className="order-1 lg:order-2 h-full relative">
+            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-b from-[#293350] sm:from-[#344063] to-[#4a5a7a] border border-white/10">
+              <div className="p-6 md:p-8 flex-1 flex flex-col">
+                <div className="mb-8">
+                  <h3 className="text-white font-kallisto text-2xl md:text-3xl font-black">Featured Articles</h3>
+                </div>
 
-              <div className={`${
-                mode === 'light' || mode === 'light2' 
-                  ? 'bg-gradient-to-b from-[#293350] to-[#81899f] border-[#1B3764]/30' 
-                  : 'bg-white/10 border-white/20 backdrop-blur-md'
-              } rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10`}>
-                <div className="p-6 md:p-8 flex-1 flex flex-col">
-                  <div className="mb-8">
-                    <h3 className={`${mode === 'light' || mode === 'light2' ? 'text-white' : getTextClasses()} font-kallisto text-2xl md:text-3xl font-black`}>Featured Articles</h3>
-                  </div>
-
-                  <div className="space-y-6 mb-8 flex-1">
-                    {recentPosts.map((post, index) => {
-                      const slug = generateSlugFromTitle(post.title);
-                      return (
+                <ul role="list" className="space-y-4 mb-8 flex-1">
+                  {recentPosts.map((post, index) => {
+                    const slug = generateSlugFromTitle(post.title);
+                    return (
+                      <li key={post.id}>
                         <a
-                          key={post.id}
                           href={`/blog/${slug}`}
-                          className={`group block rounded-xl overflow-hidden ${
-                            mode === 'light' || mode === 'light2' 
-                              ? 'bg-white/20 border-white/30 hover:border-white/40 hover:bg-white/30' 
-                              : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'
-                          } transition-all`}
+                          className="group rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 hover:border-white/30 transition ring-0 hover:ring-1 hover:ring-white/40 backdrop-blur-sm block p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                          aria-label={`Read article: ${post.title}`}
                         >
                           <div className="flex gap-4">
-                            <div className={`w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 overflow-hidden rounded-lg ${
-                              mode === 'light' || mode === 'light2' 
-                                ? 'bg-white/20' 
-                                : 'bg-white/5'
-                            }`}>
+                            <div className="aspect-square w-24 sm:w-28 overflow-hidden rounded-lg bg-white/20 flex-shrink-0">
                               <img
                                 src={post.image}
                                 alt={post.title}
@@ -150,28 +151,29 @@ const NewsletterSection = () => {
                               />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className={`text-xs font-semibold uppercase tracking-wide ${mode === 'light' || mode === 'light2' ? 'text-white/80' : 'text-[#115B87]'} mb-1`}>{post.category}</div>
-                              <h4 className={`${mode === 'light' || mode === 'light2' ? 'text-white group-hover:text-white/80' : getTextClasses() + ' group-hover:text-[#115B87]'} font-bold leading-snug line-clamp-2 text-sm md:text-base transition-colors`}>{post.title}</h4>
-                              <div className={`mt-2 ${mode === 'light' || mode === 'light2' ? 'text-white/70' : getTextSecondaryClasses()} text-xs line-clamp-2`}>{post.excerpt}</div>
+                              <div className="text-xs font-semibold uppercase tracking-wide text-white/80 mb-1">{post.category}</div>
+                              <h4 className="text-white group-hover:text-white/80 font-bold leading-snug line-clamp-2 text-sm md:text-base transition-colors">{post.title}</h4>
+                              <div className="mt-1.5 text-white/75 text-xs md:text-sm line-clamp-3">{post.excerpt}</div>
                             </div>
                           </div>
                         </a>
-                      );
-                    })}
-                  </div>
+                      </li>
+                    );
+                  })}
+                </ul>
 
-                  <div className="space-y-6 mt-auto">
-                    <a
-                      href="/blog"
-                      className={`inline-flex items-center gap-2 ${mode === 'light' || mode === 'light2' ? 'text-white/80 hover:text-white' : getTextSecondaryClasses() + ' hover:' + getTextClasses()} font-semibold text-sm transition-colors`}
-                    >
-                      Explore all articles
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                      </svg>
-                    </a>
-                  </div>
+                <div className="space-y-6 mt-auto">
+                  <a
+                    href="/blog"
+                    className="inline-flex items-center gap-2 self-start text-white/90 hover:text-white font-semibold text-sm px-3 py-2 rounded-lg hover:bg-white/10 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                    aria-label="Explore all blog articles"
+                  >
+                    Explore all articles
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             </div>
@@ -216,59 +218,17 @@ const NewsletterSection = () => {
             {/* Simple Form Content */}
             <div className="p-4 md:p-6 bg-white/10 backdrop-blur-sm">
               <form onSubmit={handleNewsletterSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-white/90 mb-2">First Name *</label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#115B87] focus:border-transparent transition-all duration-200"
-                      placeholder="First Name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-white/90 mb-2">Last Name *</label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#115B87] focus:border-transparent transition-all duration-200"
-                      placeholder="Last Name"
-                    />
-                  </div>
-                </div>
-
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white/90 mb-2">Email Address *</label>
+                  <label htmlFor="modalEmail" className="block text-sm font-medium text-white/90 mb-2">Email Address *</label>
                   <input
                     type="email"
-                    id="email"
+                    id="modalEmail"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
                     className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
                     placeholder="Email Address"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-white/90 mb-2">Company (Optional)</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
-                    placeholder="Company Name"
                   />
                 </div>
 
