@@ -191,11 +191,11 @@ const Index = () => {
 
       
 
-      {/* Gradient Toggle Modal */}
-      <GradientToggleModal 
+      {/* Gradient Toggle Modal - COMMENTED OUT */}
+      {/* <GradientToggleModal 
         currentMode={mode} 
         onModeChange={setMode} 
-      />
+      /> */}
     </div>
   );
 };
