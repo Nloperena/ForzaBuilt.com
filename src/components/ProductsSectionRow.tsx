@@ -7,7 +7,6 @@ import TapeHeroicImage from '@/assets/images/Tape Heroic Image.png';
 import OS2CartridgeHeroImage from '@/assets/images/OS2 Cartridge Hero.png';
 import RRHandSprayingImage from '@/assets/images/RR Hand Spraying.png';
 import { Link } from 'react-router-dom';
-import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 interface Product {
@@ -73,17 +72,6 @@ const ProductsSectionRow = () => {
         : getTextClasses()
     } relative overflow-hidden`}>
       {/* Edge triangles positioned at left and right viewport edges */}
-      <EdgeTrianglesBackground 
-        leftImage="/Gradients and Triangles/Small Science Triangles.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        opacity={0.6}
-        scale={1.1}
-        leftRotation={15}
-        rightRotation={295}
-        leftFlipH={false}
-        rightFlipV={false}
-        blendMode="overlay"
-      />
       
       <div className="w-full px-4 mx-auto max-w-7xl">
         <div className="text-center relative z-10">

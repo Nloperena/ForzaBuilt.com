@@ -6,6 +6,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* News Ticker Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Product Ticker Animation - Slower for images */
+@keyframes scroll-slow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-slow {
+  animation: scroll-slow 60s linear infinite;
+}
+
 @font-face {
   font-family: 'kallisto';
   src: url('/fonts/kallisto.woff2') format('woff2'),
@@ -133,9 +161,9 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Forza Brand Colors */
-    --forza-regal-blue: #115B87;
+    --forza-regal-blue: #293350;
     --forza-blaze-orange: #F16022;
-    --forza-blue-velvet: #115B87;
+    --forza-blue-velvet: #293350;
     --forza-rusty-nail: #D35127;
     --forza-slate-grey: #BFBFBF;
     --forza-iron-grey: #F16022;
@@ -187,8 +215,19 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-poppins;
     overflow-x: hidden;
+  }
+  
+  /* Set Poppins as default font for headings with regular weight */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-normal;
+  }
+  
+  /* Set Poppins regular for paragraphs and body text */
+  p, span, div, a, button, input, textarea, select, label {
+    @apply font-poppins;
+    font-weight: 400;
   }
 }
 

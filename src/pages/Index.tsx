@@ -20,6 +20,9 @@ import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground
 import IdealChemistriesSection from '@/components/IdealChemistriesSection';
 import ChemistryOverviewSectionV6 from '@/components/ChemistryOverviewSectionV6';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
+import InteractiveProductsSection from '@/components/InteractiveProductsSection';
+import ProductImageTicker from '@/components/ProductImageTicker';
+import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import GradientToggleModal from '@/components/GradientToggleModal';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
@@ -60,29 +63,57 @@ const Index = () => {
       <StickyHeroVideoSection>
         {/* All content that should slide over the video */}
         
-        {/* Divider/Products Section */}
-        {mode === 'light2' ? (
-          <section className="relative w-full pb-0 -mt-[22rem] bg-[#e8e8e8]" style={{ paddingTop: '0rem' }}>
-            <div className="w-full flex items-center justify-center">
-              <img 
-                src="/Industrail Bundle HeroImg.png" 
-                alt="Forza Industrial Products Bundle - Adhesives, Sealants, Tapes & Cleaning Solutions"
-                className="w-full h-auto object-contain object-center max-w-[900px]"
-                style={{ zIndex: 1 }}
-              />
-            </div>
-          </section>
-        ) : (
-          <section 
-            className={`relative w-full h-2 sm:h-16 ${
-              mode === 'light'
-                ? ''
-                : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
-            }`}
-            style={mode === 'light' ? { backgroundColor: '#e8e8e8' } : {}}
-          >
-          </section>
-        )}
+        {/* Product Image Ticker - New Product Divider */}
+        <section className="relative">
+          <ProductImageTicker
+            items={[
+              { src: "/product-images/c-os9.png", alt: "OS9" },
+              { src: "/product-images/c130.png", alt: "C130" },
+              { src: "/product-images/c150.png", alt: "C150" },
+              { src: "/product-images/c331.png", alt: "C331" },
+              { src: "/product-images/ic933.png", alt: "IC933" },
+              { src: "/product-images/ic946.png", alt: "IC946" },
+              { src: "/product-images/os2.png", alt: "OS2" },
+              { src: "/product-images/os20.png", alt: "OS20" },
+              { src: "/product-images/os24.png", alt: "OS24" },
+              { src: "/product-images/os31.png", alt: "OS31" },
+              { src: "/product-images/os35.png", alt: "OS35" },
+              { src: "/product-images/os37.png", alt: "OS37" },
+              { src: "/product-images/os45.png", alt: "OS45" },
+              { src: "/product-images/os55.png", alt: "OS55" },
+              { src: "/product-images/r160.png", alt: "R160" },
+              { src: "/product-images/r221.png", alt: "R221" },
+              { src: "/product-images/r519.png", alt: "R519" },
+              { src: "/product-images/r529.png", alt: "R529" },
+              { src: "/product-images/t215.png", alt: "T215" },
+              { src: "/product-images/t220.png", alt: "T220" },
+              { src: "/product-images/t305.png", alt: "T305" },
+              { src: "/product-images/t350.png", alt: "T350" },
+              { src: "/product-images/t500.png", alt: "T500" },
+              { src: "/product-images/t600.png", alt: "T600" },
+              { src: "/product-images/t715.png", alt: "T715" },
+              { src: "/product-images/t900.png", alt: "T900" },
+              { src: "/product-images/t950.png", alt: "T950" },
+              { src: "/product-images/t970.png", alt: "T970" },
+              { src: "/product-images/mc722.png", alt: "MC722" },
+              { src: "/product-images/mc723.png", alt: "MC723" },
+              { src: "/product-images/mc724.png", alt: "MC724" },
+              { src: "/product-images/mc737.png", alt: "MC737" },
+              { src: "/product-images/mc739.png", alt: "MC739" },
+              { src: "/product-images/mc741.png", alt: "MC741" },
+              { src: "/product-images/tac-734g.png", alt: "TAC-734G" },
+              { src: "/product-images/tac-735r.png", alt: "TAC-735R" },
+              { src: "/product-images/tac-738r.png", alt: "TAC-738R" },
+              { src: "/product-images/tac-739r.png", alt: "TAC-739R" },
+              { src: "/product-images/fc-car.png", alt: "FC Car" },
+              { src: "/product-images/frp.png", alt: "FRP" }
+            ]}
+            speed={100}
+            direction="left"
+            className="py-10 md:py-16"
+            gapClass="gap-3 md:gap-6"
+          />
+        </section>
         
         {/* Industries Section (same as Industries page) */}
         <section className="relative overflow-hidden">
@@ -94,13 +125,29 @@ const Index = () => {
 
         {/* Products Section Row */}
         <section className="relative">
-          <ProductsSectionRow />
+          {mode === 'light2' ? (
+            <InteractiveProductsSection />
+          ) : (
+            <ProductsSectionRow />
+          )}
+        </section>
+
+
+        {/* Made in America Section */}
+        <section className="relative">
+          <MadeInAmericaSection />
         </section>
 
         {/* Sticky Background Section */}
-        <section className="relative">
-          <StickyBackgroundSection />
-        </section>
+        <StickyBackgroundSection>
+          {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
+          <section className="relative" style={{ zIndex: 20 }}>
+            <ChemistryOverviewSectionV6 />
+          </section>
+
+          {/* Sticky Newsletter Section - Newsletter as background */}
+          <StickyNewsletterSection />
+        </StickyBackgroundSection>
       </StickyHeroVideoSection>
 
       {/* Scroll Stack Cards Section (Grid Layout: 3-2-3-2) - COMMENTED OUT */}
@@ -143,16 +190,6 @@ const Index = () => {
 
 
       
-      {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
-      <ChemistryOverviewSectionV6 />
-
-      {/* Sticky Newsletter Section - Newsletter slides over video background */}
-      <StickyNewsletterSection />
-      
-      {/* Footer */}
-      <section className="relative">
-        <Footer />
-      </section>
 
       {/* Gradient Toggle Modal */}
       <GradientToggleModal 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
-import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 
 interface ChemistryData {
   id: string;
@@ -172,163 +171,167 @@ const ChemistryOverviewSectionV6: React.FC = () => {
   };
 
   return (
-    <section className="w-full py-16 px-4 relative overflow-hidden bg-gradient-to-b from-[#ffa989] to-[#E8551C]">
-      {/* Single Triangle Background - Override Global Effects */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ isolation: 'isolate' }}>
-        {/* Left Triangle */}
-        <div
-          className="absolute top-1/2 left-0 transform -translate-y-1/2"
-          style={{
-            transform: 'translateY(-50%) scale(1.2) translateX(-30%) rotate(45deg)',
-            opacity: 0.8,
-            isolation: 'isolate',
-          }}
-        >
-          <img
-            src="/Gradients and Triangles/Small Science Triangles 2.png"
-            alt="Left Edge Triangles"
-            className="object-contain"
-            style={{
-              mixBlendMode: 'screen',
-              filter: 'contrast(0.5) brightness(2.5)',
-              opacity: 0.1,
-              isolation: 'isolate',
-            }}
-          />
-        </div>
-        
-        {/* Right Triangle */}
-        <div
-          className="absolute top-1/2 right-0 transform -translate-y-1/2"
-          style={{
-            transform: 'translateY(-50%) scale(1.2) translateX(30%) rotate(315deg) scaleY(-1)',
-            opacity: 0.8,
-            isolation: 'isolate',
-          }}
-        >
-          <img
-            src="/Gradients and Triangles/Small Science Triangles.png"
-            alt="Right Edge Triangles"
-            className="object-contain"
-            style={{
-              mixBlendMode: 'screen',
-              filter: 'contrast(0.5) brightness(2.5)',
-              opacity: 0.1,
-              isolation: 'isolate',
-            }}
-          />
-        </div>
-      </div>
+    <section className="w-full relative overflow-hidden
+                        py-[clamp(40px,6vw,96px)] px-[clamp(16px,4vw,48px)]">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ zIndex: 1 }}
+      >
+        <source src="/Moleculesubtle.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       
-      <div className="max-w-screen-2xl mx-auto relative z-10">
-        <h2 className="text-4xl md:text-6xl font-black text-white text-center mb-12 font-kallisto leading-tight">
-          Ideal Chemistry For Your<br className="hidden md:block" /> Specific Application
+      {/* Frosted overlay for text readability */}
+      <div className="absolute inset-0" style={{ 
+        backgroundColor: 'rgb(41 55 103 / 66%)',
+        zIndex: 2 
+      }}></div>
+      
+      <div className="max-w-screen-2xl mx-auto relative z-10" style={{ zIndex: 3 }}>
+        <h2
+          className="font-poppins font-normal text-white text-center
+                     text-[clamp(28px,6vw,56px)] md:text-[clamp(40px,4.5vw,64px)]
+                     leading-[1.12] md:leading-[1.12]
+                     mb-[clamp(18px,3.5vw,40px)]
+                     [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
+          Ideal Chemistry For Your <br className="hidden md:block" />
+          Specific Application
         </h2>
         
-        {/* Chemistry Grid - Mobile 3x3+2, Desktop 6-5 Layout */}
+        {/* Chemistry Grid - Single responsive grid */}
         <div className="max-w-screen-2xl mx-auto">
-          {/* First Row - 6 chemistry icons on desktop (3 per row on mobile) */}
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 mb-4 sm:mb-6 md:mb-8 lg:mb-12 xl:mb-16 2xl:mb-20">
+          {/* First Row - 6 chemistry icons */}
+          <div
+            className="
+              grid
+              grid-cols-2 xs:grid-cols-3
+              md:[grid-template-columns:repeat(6,minmax(9.5rem,1fr))]
+              justify-items-center
+              gap-x-[clamp(14px,3vw,28px)]
+              gap-y-[clamp(18px,4vw,40px)]
+              w-full
+              mx-auto
+              mb-[clamp(12px,3vw,32px)]
+            "
+          >
             {chemistryData.slice(0, 6).map((chemistry) => (
               <motion.div
                 key={chemistry.id}
-                className="flex flex-col items-center cursor-pointer group"
+                className="group transition-transform duration-200 hover:-translate-y-1.5"
                 onMouseEnter={() => setHoveredChemistry(chemistry.id)}
                 onMouseLeave={() => setHoveredChemistry(null)}
                 onClick={() => handleChemistryClick(chemistry)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                tabIndex={0}
               >
-                {/* Mobile Optimized SVG Icon */}
-                <div className="relative mb-2 md:mb-6">
-                  <motion.img 
-                    src={chemistry.iconSrc} 
-                    alt={chemistry.name} 
-                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain drop-shadow-lg"
-                    animate={{
-                      filter: hoveredChemistry === chemistry.id 
-                        ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
-                        : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
-                    }}
-                    transition={{ duration: 0.2 }}
-                  />
+                <div className="flex flex-col items-center cursor-pointer
+                                gap-[clamp(8px,1.6vw,20px)]">
+                  <div className="relative">
+                    <motion.img 
+                      src={chemistry.iconSrc} 
+                      alt={chemistry.name} 
+                      className="
+                        w-[clamp(3.5rem,6.2vw,9rem)]
+                        h-[clamp(3.5rem,6.2vw,9rem)]
+                        object-contain
+                        drop-shadow-lg
+                        group-hover:drop-shadow-[0_8px_20px_rgba(242,97,29,0.35)]
+                        transition-shadow duration-300
+                      "
+                      animate={{
+                        filter: hoveredChemistry === chemistry.id 
+                          ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
+                          : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
+                      }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </div>
+                  
+                  <h3
+                    className="
+                      font-poppins font-normal text-white text-center
+                      text-[clamp(12px,1.6vw,20px)]
+                      leading-[1.18] md:leading-[1.15]
+                      sm:whitespace-nowrap
+                      whitespace-normal
+                      min-h-[2.2em] md:min-h-[2em]
+                    "
+                  >
+                    {chemistry.name}
+                  </h3>
                 </div>
-                
-                {/* Chemistry Name - Mobile Optimized */}
-                <h3 className="text-white text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center font-kallisto transition-colors duration-300 leading-tight whitespace-nowrap">
-                  {chemistry.name}
-                </h3>
               </motion.div>
             ))}
           </div>
 
-          {/* Second Row - 5 chemistry icons on desktop (3 on mobile, 2 more centered below) */}
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 mb-4 sm:mb-6 md:mb-0">
-            {/* On desktop, show all 5. On mobile, show first 3 */}
-            {chemistryData.slice(6, 11).map((chemistry, index) => (
+          {/* Second Row - 5 chemistry icons */}
+          <div
+            className="
+              grid
+              grid-cols-2 xs:grid-cols-3
+              md:[grid-template-columns:repeat(5,minmax(9.5rem,1fr))]
+              justify-items-center
+              gap-x-[clamp(14px,3vw,28px)]
+              gap-y-[clamp(18px,4vw,40px)]
+              w-full
+              md:max-w-[min(68rem,100%)]
+              mx-auto
+            "
+          >
+            {chemistryData.slice(6, 11).map((chemistry) => (
               <motion.div
                 key={chemistry.id}
-                className={`flex flex-col items-center cursor-pointer group ${index >= 3 ? 'hidden md:flex' : ''}`}
+                className="group transition-transform duration-200 hover:-translate-y-1.5"
                 onMouseEnter={() => setHoveredChemistry(chemistry.id)}
                 onMouseLeave={() => setHoveredChemistry(null)}
                 onClick={() => handleChemistryClick(chemistry)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                tabIndex={0}
               >
-                {/* Mobile Optimized SVG Icon */}
-                <div className="relative mb-2 md:mb-6">
-                  <motion.img 
-                    src={chemistry.iconSrc} 
-                    alt={chemistry.name} 
-                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain drop-shadow-lg"
-                    animate={{
-                      filter: hoveredChemistry === chemistry.id 
-                        ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
-                        : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
-                    }}
-                    transition={{ duration: 0.2 }}
-                  />
+                <div className="flex flex-col items-center cursor-pointer
+                                gap-[clamp(8px,1.6vw,20px)]">
+                  <div className="relative">
+                    <motion.img 
+                      src={chemistry.iconSrc} 
+                      alt={chemistry.name} 
+                      className="
+                        w-[clamp(3.5rem,6.2vw,9rem)]
+                        h-[clamp(3.5rem,6.2vw,9rem)]
+                        object-contain
+                        drop-shadow-lg
+                        group-hover:drop-shadow-[0_8px_20px_rgba(242,97,29,0.35)]
+                        transition-shadow duration-300
+                      "
+                      animate={{
+                        filter: hoveredChemistry === chemistry.id 
+                          ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
+                          : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
+                      }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </div>
+                  
+                  <h3
+                    className="
+                      font-poppins font-normal text-white text-center
+                      text-[clamp(12px,1.6vw,20px)]
+                      leading-[1.18] md:leading-[1.15]
+                      sm:whitespace-nowrap
+                      whitespace-normal
+                      min-h-[2.2em] md:min-h-[2em]
+                    "
+                  >
+                    {chemistry.name}
+                  </h3>
                 </div>
-                
-                {/* Chemistry Name - Mobile Optimized */}
-                <h3 className="text-white text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center font-kallisto transition-colors duration-300 leading-tight whitespace-nowrap">
-                  {chemistry.name}
-                </h3>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Third Row - Last 2 chemistry icons centered on mobile, part of second row on desktop */}
-          <div className="flex justify-center md:hidden gap-4 sm:gap-6">
-            {chemistryData.slice(9, 11).map((chemistry) => (
-              <motion.div
-                key={chemistry.id}
-                className="flex flex-col items-center cursor-pointer group"
-                onMouseEnter={() => setHoveredChemistry(chemistry.id)}
-                onMouseLeave={() => setHoveredChemistry(null)}
-                onClick={() => handleChemistryClick(chemistry)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {/* Mobile Optimized SVG Icon */}
-                <div className="relative mb-2 md:mb-6">
-                  <motion.img 
-                    src={chemistry.iconSrc} 
-                    alt={chemistry.name} 
-                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-36 md:h-36 lg:w-44 lg:h-44 object-contain drop-shadow-lg"
-                    animate={{
-                      filter: hoveredChemistry === chemistry.id 
-                        ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
-                        : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
-                    }}
-                    transition={{ duration: 0.2 }}
-                  />
-                </div>
-                
-                {/* Chemistry Name - Mobile Optimized */}
-                <h3 className="text-white text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-center font-kallisto transition-colors duration-300 leading-tight whitespace-nowrap">
-                  {chemistry.name}
-                </h3>
               </motion.div>
             ))}
           </div>
@@ -370,17 +373,17 @@ const ChemistryOverviewSectionV6: React.FC = () => {
 
                 {/* Content */}
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl md:text-3xl font-black text-[#1B3764] mb-2 font-kallisto">
+                  <h3 className="text-2xl md:text-3xl font-normal text-[#293350] mb-2 font-poppins">
                     {selectedChemistry.name}
                   </h3>
-                  <p className="text-sm md:text-base text-gray-600 font-semibold">
+                  <p className="text-sm md:text-base text-gray-600 font-normal font-poppins">
                     {selectedChemistry.description}
                   </p>
                 </div>
 
                 {/* Features */}
                 <div className="mb-6">
-                  <ul className="text-sm md:text-base text-gray-700 list-disc list-inside text-left space-y-1">
+                  <ul className="text-sm md:text-base text-gray-700 list-disc list-inside text-left space-y-1 font-poppins">
                     {selectedChemistry.features.map((feature, index) => (
                       <li key={index}>{feature}</li>
                     ))}
@@ -389,10 +392,10 @@ const ChemistryOverviewSectionV6: React.FC = () => {
 
                 {/* Products */}
                 <div className="text-left">
-                  <h4 className="font-bold text-[#1B3764] mb-2 text-base md:text-lg">Products</h4>
+                  <h4 className="font-normal text-[#293350] mb-2 text-base md:text-lg font-poppins">Products</h4>
                   <div className="space-y-1">
                     {selectedChemistry.products.map((product, index) => (
-                      <div key={index} className="text-sm md:text-base text-gray-700">
+                      <div key={index} className="text-sm md:text-base text-gray-700 font-poppins">
                         {product}
                       </div>
                     ))}

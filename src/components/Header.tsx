@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useHeaderState } from '@/hooks/useHeaderState';
 import Logo from './Header/Logo';
 import NavigationItem from './Header/NavigationItem';
-import MobileMenuSimple from './Header/MobileMenuSimple';
+import FlowingMenu from './Header/FlowingMenu';
 import OverlayContent from './Header/OverlayContent';
 import SearchBar from './Header/SearchBar';
 import { useGradientMode } from '@/contexts/GradientModeContext';
@@ -42,22 +42,30 @@ const Header = () => {
     <header 
       ref={headerRef} 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        mode === 'light' || mode === 'light2' 
+        mode === 'light' 
           ? 'bg-white border-b border-gray-200 shadow-lg' 
+          : mode === 'light2'
+          ? isScrolled 
+            ? 'bg-[#293350] border-b border-[#293350] shadow-lg'
+            : 'bg-transparent border-b border-transparent shadow-none'
           : 'backdrop-blur-2xl bg-white/50 border-b border-white/60'
       } shadow-2xl`}
-      style={mode === 'light' || mode === 'light2' ? { backgroundColor: '#ffffff' } : { backgroundColor: '#115B8730' }}
+      style={
+        mode === 'light' 
+          ? { backgroundColor: '#ffffff' } 
+          : mode === 'light2'
+          ? isScrolled 
+            ? { backgroundColor: '#293350' }
+            : { backgroundColor: 'transparent' }
+          : { backgroundColor: '#29335030' }
+      }
       onMouseEnter={handleOverlayEnter}
       onMouseLeave={handleNavLeave}
     >
       <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+        {/* Always centered layout */}
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Logo className="h-8 w-auto sm:h-[4.5rem]" />
-          </div>
-          
-          {/* Desktop Navigation */}
+          {/* Left Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <NavigationItem
@@ -70,23 +78,27 @@ const Header = () => {
                 onClick={handleNavClick}
               />
             ))}
-            
-            <SearchBar />
-            
-            <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl border border-[#F2611D]">
-              <Link to="/contact">Contact Us</Link>
-            </Button>
           </div>
-
-          {/* Mobile Navigation */}
-          <div className="flex items-center lg:hidden">
+          
+          {/* Centered Logo */}
+          <div className="flex-shrink-0">
+            <Logo className="h-8 w-auto sm:h-[4.5rem]" isScrolled={isScrolled} />
+          </div>
+          
+          {/* Right Navigation */}
+          <div className="flex items-center space-x-4">
+            {/* Desktop Right Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              <SearchBar />
+              <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl border border-[#F2611D]">
+                <Link to="/contact">Contact Us</Link>
+              </Button>
+            </div>
+            
+            {/* Mobile Navigation Button */}
             <button 
               type="button"
-              className={`p-2 transition-colors ${
-                mode === 'light' || mode === 'light2'
-                  ? 'text-[#1B3764] hover:text-[#115B87]'
-                  : 'text-white/80 hover:text-white'
-              }`}
+              className="lg:hidden p-2 transition-colors text-white hover:text-white/80"
               onClick={openMobileMenu}
               aria-label="Open menu"
             >
@@ -118,7 +130,7 @@ const Header = () => {
           >
             {/* Default Gradient Background (when no video is hovered) - only for dark mode */}
             {!hoveredVideoUrl && mode !== 'light' && mode !== 'light2' && (
-              <div className="absolute inset-0 bg-gradient-to-br from-[#1B3764] to-[#2C5F8A] -z-20"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#293350] to-[#81899f] -z-20"></div>
             )}
             
             {/* Background Video (only when hovered) */}
@@ -149,8 +161,8 @@ const Header = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Menu */}
-      <MobileMenuSimple
+      {/* Flowing Mobile Menu */}
+      <FlowingMenu
         isOpen={mobileMenuOpen}
         onClose={closeMobileMenu}
       />

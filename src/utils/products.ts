@@ -43,7 +43,7 @@ export const byChemistry = (chemistry: string): Product[] =>
 
 // Get single product by ID
 export const getProduct = (id: string): Product | undefined =>
-  getProducts().find(p => p.id.toLowerCase() === id.toLowerCase());
+  products.find(p => p.id.toLowerCase() === id.toLowerCase());
 
 // Get related products (same industry, excluding self)
 export const getRelatedProducts = (productId: string, limit: number = 4): Product[] => {

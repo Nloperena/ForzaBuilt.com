@@ -171,18 +171,6 @@ const IdealChemistriesSection: React.FC = () => {
 
   return (
     <section className="w-full py-16 px-2 md:px-0 relative overflow-hidden bg-gradient-to-b from-[#ffa989] to-[#E8551C]">
-      {/* Edge Triangles Background */}
-      <EdgeTrianglesBackground 
-        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles.png"
-        opacity={0.8}
-        scale={0.8}
-        leftRotation={45}
-        rightRotation={315}
-        leftFlipH={false}
-        rightFlipV={true}
-        blendMode="color-dodge"
-      />
       
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <h2 className="text-4xl md:text-6xl font-black text-white text-center mb-12 font-kallisto leading-tight">

@@ -29,8 +29,8 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   const isActive = (isOverlayOpen && activeOverlayContent === item.name.toLowerCase()) || 
                    location.pathname.startsWith(item.href);
   
-  // Use blue text for light modes, white text for dark modes
-  const defaultTextColor = mode === 'light' || mode === 'light2' ? 'text-[#1B3764]' : 'text-white';
+  // Use white text for light2 mode, blue for light mode, white for dark mode
+  const defaultTextColor = mode === 'light2' ? 'text-white' : mode === 'light' ? 'text-[#293350]' : 'text-white';
 
   if (hasDropdown) {
     return (

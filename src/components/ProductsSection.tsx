@@ -64,18 +64,6 @@ const ProductsSection = () => {
     <section className={`pt-16 pb-16 bg-gradient-to-b ${
       getGradientClasses()
     } ${getTextClasses()} relative overflow-hidden`}>
-      {/* Edge triangles positioned at left and right viewport edges */}
-      <EdgeTrianglesBackground 
-        leftImage="/Gradients and Triangles/Small Science Triangles.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        opacity={0.6}
-        scale={1.1}
-        leftRotation={15}
-        rightRotation={295}
-        leftFlipH={false}
-        rightFlipV={false}
-        blendMode="overlay"
-      />
       
       <div className="w-full px-4 mx-auto max-w-7xl">
         

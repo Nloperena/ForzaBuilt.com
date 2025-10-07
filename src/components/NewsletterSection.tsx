@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import blogPostsData from '@/data/blogPosts.json';
 import { generateSlugFromTitle } from '@/lib/utils';
-import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const NewsletterSection = () => {
@@ -49,34 +48,21 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <section className={`relative py-16 md:py-2${
+      <section className={`relative py-16 md:py-20 ${
         mode === 'light' || mode === 'light2' 
-          ? 'bg-[#e8e8e8]' 
-          : 'bg-gradient-to-b from-[#115B87] to-[#1B3764]'
-      } overflow-hidden`} style={{
-        background: mode === 'light' || mode === 'light2' ? '#e8e8e8' : 'linear-gradient(to bottom, #115B87, #1B3764)'
-      }}>
+          ? 'bg-gray-100' 
+          : 'bg-gradient-to-b from-[#293350] to-[#81899f]'
+      } overflow-hidden`}>
         {/* Edge triangles positioned at left and right viewport edges */}
-        <EdgeTrianglesBackground 
-          leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
-          rightImage="/Gradients and Triangles/Small Science Triangles.png"
-          opacity={0.6}
-          scale={0.9}
-          leftRotation={320}
-          rightRotation={40}
-          leftFlipH={true}
-          rightFlipV={false}
-          blendMode="overlay"
-        />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-10 md:mb-14 relative">
 
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black ${
-              mode === 'light' || mode === 'light2' ? 'text-[#1B3764]' : getTextClasses()
-            } font-kallisto leading-none break-words relative z-10`}>Stay Ahead with Forza</h2>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal ${
+              mode === 'light' || mode === 'light2' ? 'text-[#293350]' : getTextClasses()
+            } font-poppins leading-tight break-words relative z-10`}>Stay Ahead with Forza</h2>
             <p className={`mt-4 ${
-              mode === 'light' || mode === 'light2' ? 'text-[#1B3764]/80' : getTextSecondaryClasses()
+              mode === 'light' || mode === 'light2' ? 'text-gray-600' : getTextSecondaryClasses()
             } text-base md:text-lg max-w-3xl mx-auto font-poppins relative z-10`}>Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 
@@ -86,7 +72,7 @@ const NewsletterSection = () => {
               
               <div className={`${
                 mode === 'light' || mode === 'light2' 
-                  ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87] border-[#1B3764]/30' 
+                  ? 'bg-gradient-to-b from-[#293350] to-[#81899f] border-[#1B3764]/30' 
                   : 'bg-white/10 border-white/20 backdrop-blur-md'
               } rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10`}>
                 <div className="p-6 md:p-8 flex-1 flex flex-col">
@@ -112,9 +98,9 @@ const NewsletterSection = () => {
                   <div className="space-y-6 mt-auto">
                     <button
                       onClick={() => setShowNewsletterForm(true)}
-                      className="w-full inline-flex items-center justify-center rounded-full px-6 py-5 font-bold text-white bg-[#F2611D] hover:bg-[#F2611D]/80 shadow-lg hover:shadow-xl transition-all duration-200 text-lg border border-[#F2611D]"
+                      className="w-full inline-flex items-center justify-center rounded-lg px-6 py-4 font-bold text-white bg-[#F2611D] hover:bg-[#F2611D]/80 shadow-lg hover:shadow-xl transition-all duration-200 text-lg border border-[#F2611D]"
                     >
-                      Subscribe to Newsletter
+                      SUBSCRIBE TO NEWSLETTER
                     </button>
                     <p className={`${mode === 'light' || mode === 'light2' ? 'text-white/80' : getTextSecondaryClasses()} text-xs text-center`}>No spam, unsubscribe at any time</p>
                   </div>
@@ -127,7 +113,7 @@ const NewsletterSection = () => {
 
               <div className={`${
                 mode === 'light' || mode === 'light2' 
-                  ? 'bg-gradient-to-b from-[#1B3764] to-[#115B87] border-[#1B3764]/30' 
+                  ? 'bg-gradient-to-b from-[#293350] to-[#81899f] border-[#1B3764]/30' 
                   : 'bg-white/10 border-white/20 backdrop-blur-md'
               } rounded-2xl shadow-2xl overflow-hidden h-full flex flex-col relative z-10`}>
                 <div className="p-6 md:p-8 flex-1 flex flex-col">

@@ -84,11 +84,30 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				marquee: {
+					"0%": { transform: "translateX(0)" },
+					"100%": { transform: "translateX(-50%)" }
+				},
+				"marquee-reverse": {
+					"0%": { transform: "translateX(-50%)" },
+					"100%": { transform: "translateX(0)" }
+				},
+				"marquee-slow": {
+					"from": { transform: "translateX(0%)" },
+					"to": { transform: "translateX(-50%)" }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				marquee: 'marquee var(--marquee-duration, 20s) linear infinite',
+				'marquee-reverse': 'marquee-reverse var(--marquee-duration, 20s) linear infinite',
+				'marquee-slow': 'marquee-slow 20s linear infinite',
+				'marquee': 'marquee 15s linear infinite'
+			},
+			translate: {
+				'101': '101%',
 			},
 			fontFamily: {
 				'inter': ['Inter', 'sans-serif'],

@@ -46,45 +46,66 @@ const IndustriesSectionAlt = () => {
 
   return (
     <section className={`pt-4 ${
-      mode === 'light' || mode === 'light2'
-        ? 'bg-[#e8e8e8]'
-        : `bg-gradient-to-b from-[#1B3764] to-[#115B87]`
+      mode === 'light2'
+        ? 'bg-white'
+        : mode === 'light'
+          ? 'bg-[#e8e8e8]'
+          : `bg-gradient-to-b from-[#293350] to-[#81899f]`
     } w-full relative`}>
 
       {/* Edge triangles positioned at left and right viewport edges (like ProductsSection, but swapped images) */}
-      <EdgeTrianglesBackground
-        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles.png"
-        opacity={0.6}
-        scale={1.1}
-        leftRotation={265}
-        rightRotation={295}
-        leftFlipH={false}
-        rightFlipV={false}
-        blendMode="overlay"
-      />
+      {/* Hide triangles for light2 mode */}
+      {mode !== 'light2' && (
+        <EdgeTrianglesBackground
+          leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
+          rightImage="/Gradients and Triangles/Small Science Triangles.png"
+          opacity={0.6}
+          scale={1.1}
+          leftRotation={265}
+          rightRotation={295}
+          leftFlipH={false}
+          rightFlipV={false}
+          blendMode="overlay"
+        />
+      )}
       
       {/* Industries Header Section */}
-      <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
-        <div className="text-center relative z-10">
-          <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${
-            mode === 'light' || mode === 'light2'
-              ? 'text-[#1B3764]'
-              : getTextClasses()
-          } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
-            Better Built Bonds For All Industries
-          </h2>
+      {mode === 'light2' ? (
+        <div className="w-full bg-white pt-16 px-4 mx-auto max-w-7xl relative z-10">
+          <div className="text-center relative z-10">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-[#293350] mb-6 sm:mb-8 leading-tight font-poppins">
+              Better Built Bonds<br />
+              For All Industries
+            </h2>
+          </div>
+          <div className="text-center relative z-10">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-12 sm:mb-16 font-normal max-w-4xl mx-auto font-poppins">
+            At Forza, we're your trusted scientists and mentors - delivering innovative adhesive solutions that secure your success.
+            </p>
+          </div>
         </div>
-        <div className="text-center relative z-10">
-          <p className={`${
-            mode === 'light' || mode === 'light2'
-              ? 'text-[#1B3764]/80'
-              : getTextSecondaryClasses()
-          } text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto`}>
-          At Forza, we're your trusted experts and mentors - delivering innovative adhesive solutions that secure your success.
-          </p>
+      ) : (
+        <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
+          <div className="text-center relative z-10">
+            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${
+              mode === 'light'
+                ? 'text-[#293350]'
+                : getTextClasses()
+            } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
+              Better Built Bonds For All Industries
+            </h2>
+          </div>
+          <div className="text-center relative z-10">
+            <p className={`${
+              mode === 'light'
+                ? 'text-[#293350]/80'
+                : getTextSecondaryClasses()
+            } text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto`}>
+            At Forza, we're your trusted experts and mentors - delivering innovative adhesive solutions that secure your success.
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20">
         
@@ -104,12 +125,12 @@ const IndustriesSectionAlt = () => {
                   className="block w-full"
                 >
                   <Card
-                    className="shadow-lg rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87]"
+                    className="shadow-lg rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#293350] to-[#81899f]"
                     style={{
                       backgroundImage: 'none',
                       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
                       backgroundColor: mode === 'light' || mode === 'light2' ? 'transparent' : 'transparent',
-                      background: 'linear-gradient(to bottom, #1B3764, #115B87)'
+                      background: 'linear-gradient(to bottom, #293350, #81899f)'
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -196,7 +217,9 @@ const IndustriesSectionAlt = () => {
 
         {/* Desktop: Grid layout with 3 columns */}
         <div className="hidden md:flex w-full flex-col items-center">
-          <div className="grid grid-cols-3 gap-6 lg:gap-8 w-full max-w-7xl mb-4 mx-auto py-4 sm:py-6 lg:py-8">
+          <div className={`grid gap-6 lg:gap-8 w-full max-w-7xl mb-4 mx-auto py-4 sm:py-6 lg:py-8 ${
+            mode === 'light2' ? 'grid-cols-3' : 'grid-cols-3'
+          }`}>
             {industriesArr.map((industry: Industry, index: number) => (
               <div
                 key={industry.title}
@@ -207,10 +230,14 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87]"
+                    className={`rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl ${
+                      mode === 'light2' 
+                        ? 'aspect-[16/9] bg-white border-0 shadow-none' 
+                        : 'aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] text-white bg-gradient-to-b from-[#293350] to-[#81899f] border border-white/20 shadow-xl sm:shadow-2xl'
+                    }`}
                     style={{
                       backgroundImage: 'none',
-                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)'
+                      boxShadow: mode === 'light2' ? 'none' : '0 4px 8px rgba(0, 0, 0, 0.6)'
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -242,37 +269,56 @@ const IndustriesSectionAlt = () => {
                       >
                         <source src={industry.videoUrl} type="video/mp4" />
                       </video>
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
+                      {/* Conditional overlay based on mode */}
+                      {mode !== 'light2' && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
+                      )}
+                      
                       {/* Logo absolutely positioned at bottom right */}
+                      {/* Commented out for now - can be brought back later if needed
                       <div
-                        className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 pointer-events-none z-20"
+                        className={`absolute pointer-events-none z-20 ${
+                          mode === 'light2' 
+                            ? 'bottom-4 right-4' 
+                            : 'bottom-3 sm:bottom-4 right-3 sm:right-4'
+                        }`}
                       >
                         <img
                           src={industry.logo}
                           alt={industry.title + ' logo'}
-                          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 hover:rotate-5 hover:scale-110 transition-transform duration-150"
-                          style={{
+                          className={`transition-transform duration-150 ${
+                            mode === 'light2'
+                              ? 'w-16 h-16 sm:w-20 sm:h-20'
+                              : 'w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 hover:rotate-5 hover:scale-110'
+                          }`}
+                          style={mode !== 'light2' ? {
                             width: 'clamp(3rem, 5vw, 8rem)',
                             height: 'clamp(3rem, 5vw, 8rem)'
-                          }}
+                          } : {}}
                         />
                       </div>
+                      */}
                       
                       {/* Solid color bar at bottom with text only */}
                       <div
-                        className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none text-[#1B3764]"
+                        className={`absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none ${
+                          mode === 'light2' ? '' : ''
+                        }`}
                         style={{
                           zIndex: 10,
-                          backgroundColor: 'transparent'
+                          backgroundColor: mode === 'light2' ? 'transparent' : 'transparent',
+                          background: mode === 'light2' ? 'linear-gradient(to top, rgba(129, 137, 159, 0.15), transparent)' : 'none'
                         }}
                       >
                         <div className="flex items-center justify-between gap-1">
                           <h3
-                            className="font-black font-kallisto text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4"
+                            className={`font-normal text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4 ${
+                              mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                            }`}
                             style={{
-                              color: '#ffffff',
+                              color: mode === 'light2' ? '#ffffff' : '#ffffff',
                               fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
-                              textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
+                              textShadow: mode === 'light2' ? '1px 1px 0 rgba(0, 0, 0, 0.5)' : '1px 1px 0 rgba(0, 0, 0, 0.5)',
                             }}
                           >
                             {toTitleCase(industry.title)}
@@ -290,11 +336,13 @@ const IndustriesSectionAlt = () => {
         {/* Standalone CTA Section: Glassmorphic liquid shine */}
         <div className="w-full md:px-8 lg:px-20 mt-8 sm:mt-0 pb-12">
           <div className={`relative max-w-7xl mx-auto overflow-hidden rounded-2xl shadow-xl sm:shadow-2xl ${
-            mode === 'light' || mode === 'light2'
-              ? 'bg-gradient-to-r from-[#1B3764] to-[#115B87]' 
-              : 'border border-white/20 bg-white/10 backdrop-blur-xl'
+            mode === 'light2'
+              ? 'bg-gray-300 border border-gray-300' 
+              : mode === 'light'
+                ? 'bg-gradient-to-r from-[#293350] to-[#81899f]'
+                : 'border border-white/20 bg-white/10 backdrop-blur-xl'
           }`} style={{
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)'
+            boxShadow: mode === 'light2' ? '0 4px 12px rgba(0, 0, 0, 0.1)' : '0 4px 8px rgba(0, 0, 0, 0.6)'
           }}>
             {/* Static liquid shine overlay - only for dark mode */}
             {mode !== 'light' && mode !== 'light2' && (
@@ -309,10 +357,14 @@ const IndustriesSectionAlt = () => {
             <div className="relative z-10 p-5 sm:p-6 md:p-8 lg:p-10">
               <div className="flex flex-col items-center justify-center text-center gap-5">
                 <div className="max-w-2xl">
-                  <h3 className="text-white font-kallisto font-black text-xl sm:text-2xl md:text-3xl leading-tight">
+                  <h3 className={`font-normal text-xl sm:text-2xl md:text-3xl leading-tight ${
+                    mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-kallisto'
+                  }`}>
                     Don't see your industry?
                   </h3>
-                  <p className="mt-2 text-white/80 text-sm sm:text-base">
+                  <p className={`mt-2 text-sm sm:text-base ${
+                    mode === 'light2' ? 'text-gray-600 font-poppins' : 'text-white/80'
+                  }`}>
                     We can still provide purpose built solutions.
                   </p>
                 </div>

@@ -309,13 +309,13 @@ const ProductDetailPage: React.FC = () => {
                         {getIndustryLogo(product.industry) ? (
                           <img 
                             src={getIndustryLogo(product.industry)} 
-                            alt={`${product.industry} icon`}
+                            alt={`${Array.isArray(product.industry) ? (product.industry[0] || '') : product.industry} icon`}
                             className="h-4 w-4 object-contain"
                           />
                         ) : (
-                          <span className="capitalize">{product.industry.charAt(0)}</span>
+                          <span className="capitalize">{(Array.isArray(product.industry) ? (product.industry[0] || '') : product.industry).charAt(0)}</span>
                         )}
-                        <span className="capitalize">{product.industry}</span>
+                        <span className="capitalize">{Array.isArray(product.industry) ? (product.industry[0] || '') : product.industry}</span>
                       </Badge>
                     </div>
 

@@ -471,65 +471,7 @@ const IdealChemistrySection: React.FC = () => {
           />
         </div>
         
-        {/* Edge triangles positioned at left and right viewport edges - Top set */}
-        <EdgeTrianglesBackground 
-          leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
-          rightImage="/Gradients and Triangles/Small Science Triangles.png"
-          opacity={0.6}
-          scale={1.1}
-          leftRotation={265}
-          rightRotation={295}
-          leftFlipH={false}
-          rightFlipV={false}
-          blendMode="overlay"
-        />
         
-        {/* Custom positioned triangles for zig-zag pattern */}
-        <div className="absolute inset-0 pointer-events-none z-10">
-          {/* Second set - Middle left */}
-          <img
-            src="/Gradients and Triangles/Small Science Triangles.png"
-            alt="Middle Left Science Triangles"
-            className="absolute top-1/3 left-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-50"
-            style={{ 
-              mixBlendMode: 'overlay',
-              transform: 'translateX(-30%) translateY(-50%) scale(0.9) rotate(280deg)'
-            }}
-          />
-          
-          {/* Third set - Middle right */}
-          <img
-            src="/Gradients and Triangles/Small Science Triangles 2.png"
-            alt="Middle Right Science Triangles"
-            className="absolute top-2/3 right-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-50"
-            style={{ 
-              mixBlendMode: 'overlay',
-              transform: 'translateX(30%) translateY(-50%) scale(0.9) rotate(310deg)'
-            }}
-          />
-          
-          {/* Fourth set - Bottom left */}
-          <img
-            src="/Gradients and Triangles/Small Science Triangles 2.png"
-            alt="Bottom Left Science Triangles"
-            className="absolute bottom-1/4 left-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-40"
-            style={{ 
-              mixBlendMode: 'overlay',
-              transform: 'translateX(-30%) translateY(-50%) scale(0.8) rotate(250deg)'
-            }}
-          />
-          
-          {/* Fifth set - Bottom right */}
-          <img
-            src="/Gradients and Triangles/Small Science Triangles.png"
-            alt="Bottom Right Science Triangles"
-            className="absolute bottom-1/3 right-0 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 opacity-40"
-            style={{ 
-              mixBlendMode: 'overlay',
-              transform: 'translateX(30%) translateY(-50%) scale(0.8) rotate(325deg)'
-            }}
-          />
-        </div>
         
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-8 md:mb-12 relative z-10">
