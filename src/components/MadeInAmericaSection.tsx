@@ -5,10 +5,10 @@ const MadeInAmericaSection: React.FC = () => {
   const { mode } = useGradientMode();
 
   return (
-    <section className={`py-16 px-4 ${
+    <section className={`py-16 ${
       mode === 'light2' ? 'bg-white' : 'bg-white'
     }`}>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4">
         {/* Top Content Area - Text and Flag */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-12">
           {/* Left side - Text content on grey background */}
@@ -45,23 +45,24 @@ const MadeInAmericaSection: React.FC = () => {
         </div>
 
         {/* Bottom Content Area - Factory Video */}
-        <div className="w-full">
-          <div className="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg">
-            <video
-              src="https://videos.ctfassets.net/hdznx4p7ef81/10s1OuRSDAglRlWOWuKlyY/44aa091229bd400168477bd2c4a0cf16/ManufacturedinAmericaStinger_1.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className="w-full h-auto"
-              poster="https://images.ctfassets.net/hdznx4p7ef81/6uNXx70LW8jZoxCoOyfZ1K/e6b08291f567d425f146053925714b99/Manufacturing_2.jpg"
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
       </div>
+      
+      {/* Factory Video - Full Width */}
+      <div className="w-full">
+        <video
+          src="https://videos.ctfassets.net/hdznx4p7ef81/10s1OuRSDAglRlWOWuKlyY/44aa091229bd400168477bd2c4a0cf16/ManufacturedinAmericaStinger_1.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-auto"
+          poster="https://images.ctfassets.net/hdznx4p7ef81/6uNXx70LW8jZoxCoOyfZ1K/e6b08291f567d425f146053925714b99/Manufacturing_2.jpg"
+        >
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
     </section>
   );
 };

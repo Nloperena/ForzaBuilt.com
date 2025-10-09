@@ -21,6 +21,7 @@ import IdealChemistriesSection from '@/components/IdealChemistriesSection';
 import ChemistryOverviewSectionV6 from '@/components/ChemistryOverviewSectionV6';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import InteractiveProductsSection from '@/components/InteractiveProductsSection';
+import ApproachSection from '@/components/ApproachSection';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import GradientToggleModal from '@/components/GradientToggleModal';
@@ -108,10 +109,9 @@ const Index = () => {
               { src: "/product-images/fc-car.png", alt: "FC Car" },
               { src: "/product-images/frp.png", alt: "FRP" }
             ]}
-            speed={100}
+            speed={150}
             direction="left"
             className="py-10 md:py-16"
-            gapClass="gap-3 md:gap-6"
           />
         </section>
         
@@ -134,15 +134,25 @@ const Index = () => {
 
 
         {/* Made in America Section */}
-        <section className="relative">
-          <MadeInAmericaSection />
-        </section>
+        
 
         {/* Sticky Background Section */}
+        
         <StickyBackgroundSection>
           {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
           <section className="relative" style={{ zIndex: 20 }}>
+            
             <ChemistryOverviewSectionV6 />
+            <section className="relative">
+          <ApproachSection />
+        </section>
+        
+        {/* Approach Section - New component with flipped layout */}
+        
+        
+            <section className="relative">
+          <MadeInAmericaSection />
+        </section>
           </section>
 
           {/* Sticky Newsletter Section - Newsletter as background */}

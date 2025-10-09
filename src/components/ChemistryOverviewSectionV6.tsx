@@ -183,15 +183,10 @@ const ChemistryOverviewSectionV6: React.FC = () => {
         className="absolute inset-0 w-full h-full object-cover"
         style={{ zIndex: 1 }}
       >
-        <source src="/Moleculesubtle.mp4" type="video/mp4" />
+        <source src="/Moleculesubtle2.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       
-      {/* Frosted overlay for text readability */}
-      <div className="absolute inset-0" style={{ 
-        backgroundColor: 'rgb(41 55 103 / 66%)',
-        zIndex: 2 
-      }}></div>
       
       <div className="max-w-screen-2xl mx-auto relative z-10" style={{ zIndex: 3 }}>
         <h2

@@ -84,8 +84,7 @@ export default function ProductImageTicker({
         <div
           ref={trackRef}
           className={clsx(
-            "flex items-center whitespace-nowrap will-change-transform",
-            gapClass,
+            "flex items-center whitespace-nowrap will-change-transform gap-0",
             // Motion-safe animation; direction controlled by variant
             "motion-safe:[animation-duration:var(--marquee-duration)] motion-safe:animate-marquee",
             direction === "right" && "motion-safe:animate-marquee-reverse",
@@ -96,10 +95,10 @@ export default function ProductImageTicker({
           style={{ animationDuration: "var(--marquee-duration)" }}
         >
           {loopItems.map((it, i) => (
-            <figure key={`${it.src}-${i}`} className="shrink-0 mx-2">
+            <figure key={`${it.src}-${i}`} className="shrink-0">
               <div className="relative" style={{ 
-                width: 'clamp(6rem, 18vw, 24rem)', 
-                height: 'clamp(6rem, 18vw, 24rem)',
+                width: 'clamp(4.5rem, 14vw, 18rem)', 
+                height: 'clamp(4.5rem, 14vw, 18rem)',
                 aspectRatio: '1 / 1'
               }}>
                 <img
