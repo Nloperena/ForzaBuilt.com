@@ -20,6 +20,7 @@ const Header = () => {
     mobileMenuOpen,
     hoveredVideoUrl,
     isScrolled,
+    isHeaderHovered,
     navigation,
     
     // Refs
@@ -34,6 +35,7 @@ const Header = () => {
     openMobileMenu,
     closeMobileMenu,
     setHoveredVideoUrl,
+    setIsHeaderHovered,
   } = useHeaderState();
   
   const { mode } = useGradientMode();
@@ -45,7 +47,7 @@ const Header = () => {
         mode === 'light' 
           ? 'bg-white border-b border-gray-200 shadow-lg' 
           : mode === 'light2'
-          ? isScrolled 
+          ? (isScrolled || isHeaderHovered)
             ? 'bg-[#293350] border-b border-[#293350] shadow-lg'
             : 'bg-transparent border-b border-transparent shadow-none'
           : 'backdrop-blur-2xl bg-white/50 border-b border-white/60'
@@ -54,13 +56,19 @@ const Header = () => {
         mode === 'light' 
           ? { backgroundColor: '#ffffff' } 
           : mode === 'light2'
-          ? isScrolled 
+          ? (isScrolled || isHeaderHovered)
             ? { backgroundColor: '#293350' }
             : { backgroundColor: 'transparent' }
           : { backgroundColor: '#29335030' }
       }
-      onMouseEnter={handleOverlayEnter}
-      onMouseLeave={handleNavLeave}
+      onMouseEnter={() => {
+        setIsHeaderHovered(true);
+        handleOverlayEnter();
+      }}
+      onMouseLeave={() => {
+        setIsHeaderHovered(false);
+        handleNavLeave();
+      }}
     >
       <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
         {/* Always centered layout */}
@@ -114,48 +122,33 @@ const Header = () => {
       <AnimatePresence>
         {isOverlayOpen && (
           <motion.div
-            initial={{ opacity: 0, y: animationDirection === 'down' ? -20 : 20 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: animationDirection === 'up' ? -20 : 20 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className={`global-nav-overlay fixed left-0 w-full backdrop-blur-sm z-40 shadow-sm overflow-hidden font-kallisto ${
-              mode === 'light' || mode === 'light2'
-                ? 'bg-white'
-                : 'bg-[var(--forza-blue-velvet)] bg-opacity-90'
-            }`}
+            className="global-nav-overlay fixed left-0 w-full z-40 overflow-hidden font-kallisto flex justify-center"
             style={{ top: headerRef.current?.offsetHeight ?? 72 }}
             onMouseEnter={handleOverlayEnter}
             onMouseLeave={handleNavLeave}
             onClick={closeOverlay}
           >
-            {/* Default Gradient Background (when no video is hovered) - only for dark mode */}
-            {!hoveredVideoUrl && mode !== 'light' && mode !== 'light2' && (
-              <div className="absolute inset-0 bg-gradient-to-br from-[#293350] to-[#81899f] -z-20"></div>
-            )}
-            
-            {/* Background Video (only when hovered) */}
-            {hoveredVideoUrl && (
-              <>
-                <video
-                  key={hoveredVideoUrl}
-                  loop
-                  muted
-                  autoPlay
-                  playsInline
-                  className="absolute top-0 left-0 w-full h-full object-cover -z-20"
-                >
-                  <source src={hoveredVideoUrl} type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 bg-black/50 -z-10"></div>
-              </>
-            )}
+            <div className={`w-full max-w-[1400px] relative rounded-b-2xl overflow-hidden ${
+              mode === 'light' || mode === 'light2'
+                ? 'bg-white'
+                : 'bg-[var(--forza-blue-velvet)] bg-opacity-90'
+            }`}>
+              {/* Default Gradient Background - only for dark mode */}
+              {mode !== 'light' && mode !== 'light2' && (
+                <div className="absolute inset-0 bg-gradient-to-br from-[#293350] to-[#81899f] -z-20"></div>
+              )}
 
-            <div className="container mx-auto px-6 h-56 relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-              <OverlayContent
-                activeContent={activeOverlayContent}
-                slideDirection={slideDirection}
-                onVideoUrlChange={setHoveredVideoUrl}
-              />
+              <div className="px-6 h-56 relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                <OverlayContent
+                  activeContent={activeOverlayContent}
+                  slideDirection={slideDirection}
+                  onVideoUrlChange={setHoveredVideoUrl}
+                />
+              </div>
             </div>
           </motion.div>
         )}

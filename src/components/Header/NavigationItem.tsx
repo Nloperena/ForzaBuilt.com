@@ -41,7 +41,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
         <button
           type="button"
           onClick={() => onClick(item.name.toLowerCase())}
-          className={`flex items-center space-x-1 text-xl font-medium transition-colors hover:text-[#F2611D] ${
+          className={`flex items-center space-x-1 text-xl font-medium transition-all hover:text-[#F2611D] hover:font-bold ${
             isActive ? 'text-[#F2611D]' : defaultTextColor
           }`}
         >
@@ -65,7 +65,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   return (
     <Link
       to={item.href}
-      className={`text-xl font-medium transition-colors hover:text-[#F2611D] ${
+      className={`text-xl font-medium transition-all hover:text-[#F2611D] hover:font-bold ${
         location.pathname === item.href 
           ? 'text-[#F2611D] bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg' 
           : defaultTextColor

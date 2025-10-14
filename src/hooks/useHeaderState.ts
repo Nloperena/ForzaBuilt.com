@@ -31,6 +31,9 @@ export const useHeaderState = () => {
 
   // Scroll state
   const [isScrolled, setIsScrolled] = useState(false);
+  
+  // Header hover state
+  const [isHeaderHovered, setIsHeaderHovered] = useState(false);
 
   // Refs
   const headerRef = useRef<HTMLDivElement>(null);
@@ -116,11 +119,18 @@ export const useHeaderState = () => {
   }, [hoverTimeout, isOverlayOpen, activeOverlayContent]);
 
   const handleNavLeave = useCallback(() => {
-    // Keep the submenu open; do not auto-close on mouse leave
+    // Close submenu after 1 second delay
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
-      setHoverTimeout(null);
     }
+    
+    const timeout = setTimeout(() => {
+      setAnimationDirection('up');
+      setIsOverlayOpen(false);
+      setActiveOverlayContent(null);
+    }, 1000); // 1 second delay
+    
+    setHoverTimeout(timeout);
   }, [hoverTimeout]);
 
   const handleOverlayEnter = useCallback(() => {
@@ -149,6 +159,7 @@ export const useHeaderState = () => {
     mobileMenuOpen,
     hoveredVideoUrl,
     isScrolled,
+    isHeaderHovered,
     navigation,
     
     // Refs
@@ -167,5 +178,6 @@ export const useHeaderState = () => {
     openMobileMenu,
     closeMobileMenu,
     setHoveredVideoUrl,
+    setIsHeaderHovered,
   };
 }; 
