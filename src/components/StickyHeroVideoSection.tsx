@@ -95,7 +95,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4" style={{ zIndex: 3 }}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-regular text-white mb-6 sm:mb-8 font-poppins" style={{ lineHeight: '1.2' }}>
                 High-Performing<br />
-                Industrial Adhesives, Tape<br />
+                Industrial Adhesive, Tape<br />
                 & Sealant Solutions
               </h1>
               <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-full px-10 py-7 text-xl font-medium shadow-lg">
