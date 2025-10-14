@@ -168,10 +168,12 @@ export const getProductColors = (product: string) => {
 
 // Dynamic gradient function for industry backgrounds
 export const getIndustryGradient = (industry: string) => {
-  const industryColor = getIndustryColors(industry);
-  const mainBlue = brandColors.secondary.blueVelvet.hex; // #1b3764 - Forza blue
-  // 30% industry color, 70% Forza blue
-  return `${mainBlue} 0%, ${mainBlue} 70%, ${industryColor.primary} 100%`;
+  // Cool grey-blue gradient colors
+  const darkGreyBlue = '#293350'; // Dark grey-blue
+  const mediumGreyBlue = '#3d4e6f'; // Medium grey-blue
+  const lightGreyBlue = '#5a6a8a'; // Light grey-blue
+  // Gradient from dark to light grey-blue
+  return `${darkGreyBlue} 0%, ${mediumGreyBlue} 50%, ${lightGreyBlue} 100%`;
 };
 
 // Alternative gradient with more subtle transition

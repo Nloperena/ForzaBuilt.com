@@ -10,7 +10,6 @@ import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground
 import SplitText from '@/components/SplitText';
 import { generateSlugFromTitle } from '@/lib/utils';
 import type { BlogPost, ViewMode, SortOrder } from '@/types/Blog';
-import GradientToggleModal from '../components/GradientToggleModal';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const Blog = () => {
@@ -621,7 +620,6 @@ const Blog = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal />
     </div>
   );
 };

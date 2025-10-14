@@ -13,7 +13,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
-import GradientToggleModal from '@/components/GradientToggleModal';
 
 // Chemistry icon paths - updated to use regular Chemistry Products Icons (no white background)
 const CHEMISTRY_ICONS = {
@@ -861,10 +860,6 @@ const ProductDetailPage: React.FC = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal 
-        onModeChange={() => {}} 
-        currentMode="dark" 
-      />
     </div>
   );
 };

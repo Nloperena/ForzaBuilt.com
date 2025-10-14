@@ -52,8 +52,7 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <section className="relative isolate py-16 md:py-20 bg-[#f3f5f7] shadow-[inset_0_1px_0_rgba(255,255,255,.35)]">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_60rem_at_50%_-10%,rgba(41,51,80,.06),transparent_60%)]"></div>
+      <section className="relative py-16 md:py-20 bg-[#f3f5f7]">
         {/* Edge triangles positioned at left and right viewport edges */}
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
@@ -63,32 +62,32 @@ const NewsletterSection = () => {
             <p className="mt-4 text-gray-600 text-base md:text-lg max-w-2xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch max-w-[1500px] mx-auto">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-b from-[#293350] sm:from-[#344063] to-[#4a5a7a] border border-white/10">
+            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#4a5a7a] to-[#293350] border border-white/10">
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-8">
-                  <h3 className="text-white font-kallisto text-2xl md:text-3xl font-black">Join Our Newsletter</h3>
+                  <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Join Our Newsletter</h3>
                 </div>
 
                 <div className="space-y-6 mb-8 flex-1">
                   <div className="flex items-start gap-3">
-                    <svg className="mt-1 size-5 flex-shrink-0 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="mt-1 size-5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white/85 text-sm md:text-base">Early access to new product launches and innovations</p>
+                    <p className="text-white text-sm md:text-base">Early access to new product launches and innovations</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <svg className="mt-1 size-5 flex-shrink-0 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="mt-1 size-5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white/85 text-sm md:text-base">Exclusive industry insights and technical solutions</p>
+                    <p className="text-white text-sm md:text-base">Exclusive industry insights and technical solutions</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <svg className="mt-1 size-5 flex-shrink-0 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="mt-1 size-5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white/85 text-sm md:text-base">Expert tips and best practices for your applications</p>
+                    <p className="text-white text-sm md:text-base">Expert tips and best practices for your applications</p>
                   </div>
                 </div>
 
@@ -111,10 +110,10 @@ const NewsletterSection = () => {
                       {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                     </button>
                   </form>
-                  <p className="text-white/85 text-xs text-center">No spam, unsubscribe at any time</p>
+                  <p className="text-white text-xs text-center">No spam, unsubscribe at any time</p>
                   <button
                     onClick={() => setShowNewsletterForm(true)}
-                    className="text-white/70 hover:text-white text-xs underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                    className="text-white hover:text-white text-xs underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
                   >
                     Or use detailed form
                   </button>
@@ -123,10 +122,10 @@ const NewsletterSection = () => {
             </div>
 
             {/* Featured Blog Section - Secondary Focus */}
-            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-b from-[#293350] sm:from-[#344063] to-[#4a5a7a] border border-white/10">
+            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#4a5a7a] to-[#293350] border border-white/10">
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-8">
-                  <h3 className="text-white font-kallisto text-2xl md:text-3xl font-black">Featured Articles</h3>
+                  <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Featured Articles</h3>
                 </div>
 
                 <ul role="list" className="space-y-4 mb-8 flex-1">
@@ -151,9 +150,9 @@ const NewsletterSection = () => {
                               />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="text-xs font-semibold uppercase tracking-wide text-white/80 mb-1">{post.category}</div>
-                              <h4 className="text-white group-hover:text-white/80 font-bold leading-snug line-clamp-2 text-sm md:text-base transition-colors">{post.title}</h4>
-                              <div className="mt-1.5 text-white/75 text-xs md:text-sm line-clamp-3">{post.excerpt}</div>
+                              <div className="text-xs font-semibold uppercase tracking-wide text-white mb-1">{post.category}</div>
+                              <h4 className="text-white group-hover:text-white font-bold leading-snug line-clamp-2 text-sm md:text-base transition-colors">{post.title}</h4>
+                              <div className="mt-1.5 text-white text-xs md:text-sm line-clamp-3">{post.excerpt}</div>
                             </div>
                           </div>
                         </a>
@@ -165,7 +164,7 @@ const NewsletterSection = () => {
                 <div className="space-y-6 mt-auto">
                   <a
                     href="/blog"
-                    className="inline-flex items-center gap-2 self-start text-white/90 hover:text-white font-semibold text-sm px-3 py-2 rounded-lg hover:bg-white/10 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                    className="inline-flex items-center gap-2 self-start text-white hover:text-white font-semibold text-sm px-3 py-2 rounded-lg hover:bg-white/10 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
                     aria-label="Explore all blog articles"
                   >
                     Explore all articles
@@ -183,7 +182,7 @@ const NewsletterSection = () => {
 
       {/* Newsletter Signup Modal - Simple & Clean */}
       {showNewsletterForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 ">
           <div className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses()} animate-in zoom-in-95 duration-300`}>
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent z-10 pointer-events-none animate-pulse"></div>
@@ -193,7 +192,7 @@ const NewsletterSection = () => {
               <div className="flex justify-end mb-3">
                 <button 
                   onClick={handleCloseModal}
-                  className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                  className="p-2 hover:bg-white/25 rounded-full transition-colors"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-white">
                     <path d="M18 6 6 18"></path>
@@ -212,14 +211,14 @@ const NewsletterSection = () => {
               </div>
               
               <h2 className="text-xl md:text-2xl font-kallisto font-black text-white mb-2">Join Our Newsletter</h2>
-              <p className="text-white/80 text-sm">Stay connected with the latest industry insights and innovations</p>
+              <p className="text-white text-sm">Stay connected with the latest industry insights and innovations</p>
             </div>
 
             {/* Simple Form Content */}
-            <div className="p-4 md:p-6 bg-white/10 backdrop-blur-sm">
+            <div className="p-4 md:p-6 bg-white/15 ">
               <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="modalEmail" className="block text-sm font-medium text-white/90 mb-2">Email Address *</label>
+                  <label htmlFor="modalEmail" className="block text-sm font-medium text-white mb-2">Email Address *</label>
                   <input
                     type="email"
                     id="modalEmail"
@@ -227,7 +226,7 @@ const NewsletterSection = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
+                    className="w-full px-3 py-2 bg-white/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
                     placeholder="Email Address"
                   />
                 </div>
@@ -243,8 +242,8 @@ const NewsletterSection = () => {
             </div>
 
             {/* Footer */}
-            <div className="p-4 md:p-6 border-t border-white/20 bg-white/10 backdrop-blur-sm text-center">
-              <p className="text-white/60 text-sm">We'll never share your information. Unsubscribe at any time.</p>
+            <div className="p-4 md:p-6 border-t border-white/20 bg-white/15  text-center">
+              <p className="text-white text-sm">We'll never share your information. Unsubscribe at any time.</p>
             </div>
           </div>
         </div>

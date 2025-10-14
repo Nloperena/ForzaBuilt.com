@@ -16,20 +16,13 @@ interface GradientModeProviderProps {
 }
 
 export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ children }) => {
-  const [mode, setMode] = useState<GradientMode>('dark');
+  // Always use light2 mode - no switching allowed
+  const [mode] = useState<GradientMode>('light2');
 
-  // Load saved mode from localStorage on mount
+  // Clear any old theme preferences from localStorage
   useEffect(() => {
-    const savedMode = localStorage.getItem('gradientMode') as GradientMode;
-    if (savedMode && ['dark', 'light', 'light2'].includes(savedMode)) {
-      setMode(savedMode);
-    }
+    localStorage.removeItem('gradientMode');
   }, []);
-
-  // Save mode to localStorage when it changes
-  useEffect(() => {
-    localStorage.setItem('gradientMode', mode);
-  }, [mode]);
 
   const getGradientClasses = (industry?: string): string => {
     const baseGradients = {
@@ -88,7 +81,7 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
 
   const value: GradientModeContextType = {
     mode,
-    setMode,
+    setMode: () => {}, // No-op function - theme switching disabled
     getGradientClasses,
     getTextClasses,
     getTextSecondaryClasses

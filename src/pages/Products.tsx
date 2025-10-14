@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import ProductsSection from '../components/ProductsSection';
 import Footer from '../components/Footer';
 import SplitText from '../components/SplitText';
-import GradientToggleModal from '../components/GradientToggleModal';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 /* COMMENTED OUT - OLD PRODUCTS PAGE CONTENT (for later restoration)
@@ -49,7 +48,6 @@ const Products = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal onModeChange={setMode} currentMode={mode} />
     </div>
   );
 };

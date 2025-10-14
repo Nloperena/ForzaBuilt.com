@@ -11,7 +11,6 @@ import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import VideoSkeleton from '@/components/common/VideoSkeleton';
-import GradientToggleModal from '@/components/GradientToggleModal';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -356,7 +355,6 @@ const Contact = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal />
     </div>
   );
 };

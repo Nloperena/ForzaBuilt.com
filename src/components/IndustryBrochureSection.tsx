@@ -7,6 +7,7 @@ interface IndustryBrochureSectionProps {
   description?: string;
   brochureImage?: string;
   brochureLink?: string;
+  backgroundColor?: string;
 }
 
 const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
@@ -14,7 +15,8 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
   title,
   description,
   brochureImage,
-  brochureLink = '/downloads/forza-industry-brochure.pdf' // Default PDF link
+  brochureLink = '/downloads/forza-industry-brochure.pdf', // Default PDF link
+  backgroundColor
 }) => {
   // Industry-specific brochure images
   const brochureImages = {
@@ -76,9 +78,9 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
 
   return (
     <section 
-      className="w-full py-16 md:py-20 px-4 md:px-6 lg:px-8"
+      className={`w-full py-16 md:py-20 px-4 md:px-6 lg:px-8 ${backgroundColor === 'white' ? 'bg-white' : ''}`}
       style={{
-        background: `linear-gradient(to top, ${gradientColors})`
+        background: backgroundColor === 'white' ? 'white' : `linear-gradient(to top, ${gradientColors})`
       }}
     >
       <div className="max-w-7xl mx-auto">
@@ -89,21 +91,37 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
               <img
                 src={imageToUse}
                 alt={`Forza ${content.title} Cover`}
-                className="w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[28rem] rounded-xl shadow-2xl border-4 border-white/20 bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-3xl"
+                className={`w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[28rem] rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+                  backgroundColor === 'white'
+                    ? 'border-0 bg-white'
+                    : 'border-white/20 bg-white/10 border-4'
+                }`}
                 loading="lazy"
               />
               {/* Hover overlay effect */}
-              <div className="absolute inset-0 rounded-xl bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+              <div className={`absolute inset-0 rounded-2xl transition-all duration-300 ${
+                backgroundColor === 'white'
+                  ? 'bg-[#115B87]/0 group-hover:bg-[#115B87]/5'
+                  : 'bg-black/0 group-hover:bg-black/10'
+              }`}></div>
             </div>
           </div>
           
           {/* Right: Text and Button */}
           <div className="flex-1 text-center lg:text-left space-y-6 lg:space-y-8">
             <div className="space-y-4 lg:space-y-6">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold text-white font-kallisto drop-shadow-lg leading-tight">
+              <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-regular leading-tight ${
+                backgroundColor === 'white' 
+                  ? 'text-[#293350] font-poppins' 
+                  : 'text-white font-kallisto drop-shadow-lg'
+              }`}>
                 {title || content.title}
               </h2>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed ${
+                backgroundColor === 'white' 
+                  ? 'text-gray-600' 
+                  : 'text-white/90'
+              }`}>
                 {description || content.description}
               </p>
             </div>
@@ -113,7 +131,11 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
               <a
                 href={`/brochures/${industry.toLowerCase()}.pdf`}
                 download
-                className="group inline-flex items-center gap-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-bold text-sm sm:text-base md:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 border border-white/30 hover:border-white/50"
+                className={`group inline-flex items-center gap-3 font-bold text-sm sm:text-base md:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
+                  backgroundColor === 'white'
+                    ? 'bg-[#115B87] hover:bg-[#0d4666] text-white border border-[#115B87] hover:border-[#0d4666]'
+                    : 'bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/30 hover:border-white/50'
+                }`}
               >
                 <svg 
                   className="w-5 h-5 md:w-6 md:h-6 transition-transform duration-300 group-hover:translate-y-[-2px]" 

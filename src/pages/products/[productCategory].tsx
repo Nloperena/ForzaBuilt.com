@@ -13,7 +13,6 @@ import { industries as industriesData } from '@/data/industries';
 import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
-import GradientToggleModal from '@/components/GradientToggleModal';
 
 // Chemistry icon paths - using All White Chemistry Icons
 const CHEMISTRY_ICONS = {
@@ -1303,10 +1302,6 @@ const ProductCategoryPage: React.FC = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal 
-        onModeChange={() => {}} 
-        currentMode="dark" 
-      />
     </div>
   );
 };

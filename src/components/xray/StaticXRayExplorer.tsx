@@ -128,10 +128,10 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-2xl md:text-4xl font-bold text-[#1B3764] mb-8">
+            <h2 className="text-2xl md:text-4xl font-normal text-[#1B3764] mb-8 font-poppins">
               {industry.id.charAt(0).toUpperCase() + industry.id.slice(1)} X-Ray Explorer
             </h2>
-            <p className="text-gray-600">Loading X-Ray explorer...</p>
+            <p className="text-gray-600 font-normal font-poppins">Loading X-Ray explorer...</p>
           </div>
         </div>
       </section>
@@ -163,23 +163,13 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
           viewport={{ once: true }}
         >
           <h2 
-            className="text-2xl md:text-4xl font-bold text-[#1B3764] mb-4"
-            style={{ 
-              fontFamily: typography.headings.fontFamily, 
-              fontWeight: typography.headings.fontWeight,
-              lineHeight: typography.headings.lineHeight
-            }}
+            className="text-2xl md:text-4xl font-normal text-[#1B3764] mb-4 font-poppins"
           >
             {industry.id.charAt(0).toUpperCase() + industry.id.slice(1)} X-Ray Explorer
             {industry.xrays.length > 1 && ` (${xrayIndex + 1}/${industry.xrays.length})`}
           </h2>
           <p 
-            className="text-lg text-[#1B3764] max-w-2xl mx-auto"
-            style={{ 
-              fontFamily: typography.body.fontFamily, 
-              fontWeight: typography.body.fontWeight,
-              lineHeight: typography.body.lineHeight
-            }}
+            className="text-lg text-[#1B3764] max-w-2xl mx-auto font-normal font-poppins"
           >
             Hover over the highlighted areas to explore our comprehensive range of solutions for {industry.id} applications.
           </p>

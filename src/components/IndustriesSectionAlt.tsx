@@ -299,26 +299,31 @@ const IndustriesSectionAlt = () => {
                       </div>
                       */}
                       
-                      {/* Solid color bar at bottom with text only */}
+                      {/* Gradient overlay - transparent top, blue gradient bottom with larger spread */}
                       <div
-                        className={`absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none ${
-                          mode === 'light2' ? '' : ''
-                        }`}
+                        className="absolute inset-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
                         style={{
-                          zIndex: 10,
-                          backgroundColor: mode === 'light2' ? 'transparent' : 'transparent',
-                          background: mode === 'light2' ? 'linear-gradient(to top, rgba(129, 137, 159, 0.15), transparent)' : 'none'
+                          zIndex: 9,
+                          background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 10%, rgba(27, 55, 100, 0.5) 20%, rgba(27, 55, 100, 0.3) 30%, rgba(27, 55, 100, 0.15) 40%, transparent 50%)'
+                        }}
+                      />
+                      
+                      {/* Text container */}
+                      <div
+                        className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none"
+                        style={{
+                          zIndex: 10
                         }}
                       >
                         <div className="flex items-center justify-between gap-1">
                           <h3
-                            className={`font-normal text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4 ${
+                            className={`font-normal text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4 transition-all duration-300 group-hover:font-extrabold ${
                               mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                             }`}
                             style={{
-                              color: mode === 'light2' ? '#ffffff' : '#ffffff',
+                              color: '#ffffff',
                               fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
-                              textShadow: mode === 'light2' ? '1px 1px 0 rgba(0, 0, 0, 0.5)' : '1px 1px 0 rgba(0, 0, 0, 0.5)',
+                              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)',
                             }}
                           >
                             {toTitleCase(industry.title)}

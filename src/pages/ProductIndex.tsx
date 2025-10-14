@@ -9,7 +9,6 @@ import { getProducts } from '@/utils/products';
 import { brandColors, typography } from '@/styles/brandStandards';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import GradientToggleModal from '@/components/GradientToggleModal';
 
 // Helper to get product category logo
 const getProductCategoryLogo = (category: string) => {
@@ -254,7 +253,6 @@ const ProductIndex: React.FC = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal onModeChange={() => {}} currentMode="dark" />
     </div>
   );
 };

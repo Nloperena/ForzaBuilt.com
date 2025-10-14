@@ -21,10 +21,10 @@ import IdealChemistriesSection from '@/components/IdealChemistriesSection';
 import ChemistryOverviewSectionV6 from '@/components/ChemistryOverviewSectionV6';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import InteractiveProductsSection from '@/components/InteractiveProductsSection';
-import ApproachSection from '@/components/ApproachSection';
+import ApproachSectionV2 from '@/components/ApproachSectionV2';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
-import GradientToggleModal from '@/components/GradientToggleModal';
+import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 // Lazy load heavy components
@@ -138,13 +138,13 @@ const Index = () => {
 
         {/* Sticky Background Section */}
         
-        <StickyBackgroundSection>
+        {/* <StickyBackgroundSection> */}
           {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
           <section className="relative" style={{ zIndex: 20 }}>
             
             <ChemistryOverviewSectionV6 />
             <section className="relative">
-          <ApproachSection />
+          <ApproachSectionV2 />
         </section>
         
         {/* Approach Section - New component with flipped layout */}
@@ -155,9 +155,12 @@ const Index = () => {
         </section>
           </section>
 
+          {/* Factory Video Background Section */}
+          <MadeInAmericaSectionV2 />
+
           {/* Sticky Newsletter Section - Newsletter as background */}
           <StickyNewsletterSection />
-        </StickyBackgroundSection>
+        {/* </StickyBackgroundSection> */}
       </StickyHeroVideoSection>
 
       {/* Scroll Stack Cards Section (Grid Layout: 3-2-3-2) - COMMENTED OUT */}
@@ -193,19 +196,7 @@ const Index = () => {
         <IdealChemistrySection />
       </Suspense> */}
 
-      
-
-      
-
-
-
-      
-
-      {/* Gradient Toggle Modal */}
-      <GradientToggleModal 
-        currentMode={mode} 
-        onModeChange={setMode} 
-      />
+    
     </div>
   );
 };

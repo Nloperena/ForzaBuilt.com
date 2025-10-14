@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const ApproachSection = () => {
   const { mode } = useGradientMode();
   const [selectedItem, setSelectedItem] = useState(2); // Default to "GREENER CHEMISTRIES"
+  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const scrollProgress = -rect.top;
+        setScrollY(scrollProgress);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const approachItems = [
     "PRODUCT PORTFOLIO",
@@ -15,7 +30,7 @@ const ApproachSection = () => {
   ];
 
   return (
-    <section className="relative isolate overflow-visible">
+    <section ref={sectionRef} className="relative isolate overflow-visible">
       {/* Top Banner */}
       <div className="bg-white py-8 md:py-12">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
@@ -47,14 +62,18 @@ const ApproachSection = () => {
       </div>
 
       {/* Main Content Area - Flipped Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh] md:min-h-[70vh]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-stretch">
         {/* LEFT SECTION - Products Image (Now on left) */}
-        <div className="relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 flex items-center justify-center p-0 overflow-hidden">
+        <div className="relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 flex items-center justify-center p-0 overflow-hidden min-h-[400px]">
           {/* Main image - covers full square */}
           <img
             src="/approach-greener-chem.png"
             alt="Forza Industrial Products - Greener Chemistries"
             className="w-full h-full object-cover"
+            style={{
+              transform: `translateY(${scrollY * 0.3}px)`,
+              transition: 'transform 0.1s ease-out'
+            }}
           />
         </div>
 
@@ -62,12 +81,12 @@ const ApproachSection = () => {
         <div className="bg-[#293350] flex items-center p-8 md:p-12">
           <div className="w-full max-w-md">
             {/* Main values list */}
-            <div className="space-y-4 mb-8">
+            <div className="space-y-2 mb-8">
               {approachItems.map((item, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedItem(index)}
-                  className={`text-[clamp(28px,3.5vw,35px)] font-normal uppercase tracking-wide font-poppins transition-all duration-300 text-left hover:opacity-80 ${
+                  className={`text-[clamp(24px,3vw,32px)] font-normal uppercase tracking-wide font-poppins transition-all duration-300 text-left hover:scale-105 ${
                     selectedItem === index 
                       ? 'text-[#F2611D]' 
                       : 'text-white'
@@ -85,18 +104,18 @@ const ApproachSection = () => {
               }`}>
                 Innovation & Greener Chemistries
               </h4>
-              <ul className={`space-y-2 text-white text-[clamp(14px,1.2vw,16px)] leading-relaxed ${
+              <ul className={`space-y-2 text-white text-[clamp(16px,1.8vw,20px)] leading-relaxed ${
                 mode === 'light2' ? 'font-poppins' : ''
               }`}>
-                <li className="flex items-start">
+                <li className="flex items-start transition-all duration-300 hover:scale-105 cursor-pointer">
                   <span className="text-[#F2611D] mr-2">•</span>
                   Safer products & greener technologies.
                 </li>
-                <li className="flex items-start">
+                <li className="flex items-start transition-all duration-300 hover:scale-105 cursor-pointer">
                   <span className="text-[#F2611D] mr-2">•</span>
                   Made in the U.S.A. for sustainable supply chain.
                 </li>
-                <li className="flex items-start">
+                <li className="flex items-start transition-all duration-300 hover:scale-105 cursor-pointer">
                   <span className="text-[#F2611D] mr-2">•</span>
                   Always accelerating towards the future today.
                 </li>

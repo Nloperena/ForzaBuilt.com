@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useGradientMode } from '@/contexts/GradientModeContext';
@@ -40,9 +40,24 @@ const products: Product[] = [
 const InteractiveProductsSection = () => {
   const [selectedProduct, setSelectedProduct] = useState(0);
   const { mode } = useGradientMode();
+  const [scrollY, setScrollY] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const scrollProgress = -rect.top;
+        setScrollY(scrollProgress);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <section className="relative isolate overflow-visible">
+    <section ref={sectionRef} className="relative isolate overflow-visible">
       {/* background halves */}
       <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
         <div className="bg-[#293350]" />
@@ -60,7 +75,7 @@ const InteractiveProductsSection = () => {
             flex items-center justify-center
             [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
           ">
-            <div className="w-full max-w-[60ch]">
+            <div className="w-full">
               <div className="space-y-[var(--gap)] mb-[var(--gap)]">
                 {products.map((product, index) => (
                   <button
@@ -68,20 +83,20 @@ const InteractiveProductsSection = () => {
                     onClick={() => setSelectedProduct(index)}
                     className="w-full text-left transition-all duration-300"
                   >
-                    <h1 className={`font-normal leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
+                    <h3 className={`font-normal leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
                       selectedProduct === index
-                        ? 'text-[#F2611D] text-[clamp(36px,5.2vw,88px)]'
-                        : 'text-white text-[clamp(28px,4.4vw,64px)]'
+                        ? 'text-[#F2611D] text-[clamp(28px,4vw,64px)]'
+                        : 'text-white text-[clamp(22px,3.2vw,48px)]'
                     } hover:text-[#F2611D] transition-colors duration-300 ${
                       mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                     }`}>
                       {product.title}
-                    </h1>
+                    </h3>
                   </button>
                 ))}
               </div>
 
-              <p className={`text-white/85 text-[clamp(14px,1.25vw,18px)] leading-[var(--lh-body)] mb-[calc(var(--gap)*0.9)] ${
+              <p className={`text-white text-[clamp(14px,1.25vw,18px)] leading-[var(--lh-body)] mb-[calc(var(--gap)*0.9)] ${
                 mode === 'light2' ? 'font-poppins' : ''
               }`}>
                 {products[selectedProduct].description}
@@ -138,6 +153,10 @@ const InteractiveProductsSection = () => {
                 data-[inview=true]:opacity-100 data-[inview=true]:translate-y-0
               "
               data-inview="true" /* toggle this in your intersection observer */
+              style={{
+                transform: `translateY(${scrollY * 0.3}px)`,
+                transition: 'transform 0.1s ease-out'
+              }}
             />
           </div>
         </div>

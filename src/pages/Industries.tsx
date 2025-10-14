@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import IndustriesSectionClean from '../components/IndustriesSectionClean';
 import Footer from '../components/Footer';
 import SplitText from '../components/SplitText';
-import GradientToggleModal from '../components/GradientToggleModal';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 // Removed Explore by Product Category section and its dependencies
 
@@ -51,7 +50,6 @@ const Industries = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal onModeChange={setMode} currentMode={mode} />
     </div>
   );
 };

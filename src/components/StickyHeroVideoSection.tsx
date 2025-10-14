@@ -41,7 +41,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
         <section className={`bg-gradient-to-b ${getGradientClasses()} pt-16 sm:pt-20`}>
           <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 lg:py-16 [&:has(>div)]:max-w-[2000px]">
             <div className="text-center mx-auto">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-normal text-white mb-1 sm:mb-2 md:mb-4 leading-relaxed font-kallisto">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-normal text-white mb-1 sm:mb-2 md:mb-4 font-kallisto" style={{ lineHeight: '1.5' }}>
                 <span className="block">High-Performing Industrial Adhesive,</span>
                 <span className="block">Tape & Sealant Solutions</span>
               </h1>
@@ -50,8 +50,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
         </section>
       )}
 
-      {/* Sticky Video Background Section */}
-      <div className="relative">
+      
         <section className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#293350] to-[#81899f] shadow-2xl">
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
@@ -94,28 +93,24 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
           {/* Text Overlay for light2 mode */}
           {mode === 'light2' && (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4" style={{ zIndex: 3 }}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-semibold text-white mb-6 sm:mb-8 leading-tight font-poppins">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-regular text-white mb-6 sm:mb-8 font-poppins" style={{ lineHeight: '1.2' }}>
                 High-Performing<br />
                 Industrial Adhesives, Tape<br />
                 & Sealant Solutions
               </h1>
               <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-full px-10 py-7 text-xl font-medium shadow-lg">
-                <Link to="/products">Products</Link>
+                <Link to="/products">See Products</Link>
               </Button>
             </div>
           )}
 
           {/* Gradient overlays for depth */}
-          <div className="absolute inset-0" style={{ zIndex: 2 }}>
-            <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-black/30 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black/30 to-transparent"></div>
-          </div>
+         
         </section>
 
-        {/* Content that will slide over the sticky video background */}
-        <div className="relative" style={{ zIndex: 20 }}>
-          {children}
-        </div>
+      {/* Scrollable content that slides over the sticky video */}
+      <div className="relative z-10">
+        {children}
       </div>
     </>
   );

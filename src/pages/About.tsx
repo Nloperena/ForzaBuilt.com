@@ -4,7 +4,6 @@ import Footer from '@/components/Footer';
 import AboutIdentityCards from '@/components/AboutIdentityCards';
 import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
 import SplitText from '@/components/SplitText';
-import GradientToggleModal from '@/components/GradientToggleModal';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const About = () => {
@@ -116,7 +115,6 @@ const About = () => {
       <Footer />
       
       {/* Gradient Toggle Modal */}
-      <GradientToggleModal />
     </div>
   );
 };

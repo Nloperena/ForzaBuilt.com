@@ -18,7 +18,7 @@ type Props = {
 
 export default function ProductImageTicker({
   items,
-  speed = 60,
+  speed = 72,
   direction = "left",
   className,
   gapClass = "gap-4 md:gap-6 lg:gap-8",
@@ -114,7 +114,7 @@ export default function ProductImageTicker({
       </div>
 
       {/* Reduced motion fallback: horizontal scroll row */}
-      <style jsx>{`
+      <style>{`
         @media (prefers-reduced-motion: reduce) {
           [aria-label='Product image ticker'] div[class*='animate-'] {
             animation: none !important;

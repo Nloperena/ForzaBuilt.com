@@ -440,8 +440,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               {index === 0 ? (
                  <div className="text-center pt-0 mb-4 sm:mb-6 md:mb-6 lg:mb-8 px-3 sm:px-4 relative z-50">
                   <motion.h2 
-                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-black text-white mb-2 leading-none"
-                    style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white mb-2 leading-none"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
@@ -500,10 +499,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                       <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                         {/* Heading */}
                         <h2 
-                          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight"
+                          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal font-poppins text-white leading-tight"
                           style={{ 
-                            fontFamily: typography.headings.fontFamily, 
-                            fontWeight: typography.headings.fontWeight,
                             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
                           }}
                         >
@@ -631,10 +628,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     <div className="w-full lg:w-1/2 space-y-4 lg:space-y-6">
                       {/* Title */}
                       <h2 
-                        className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight"
+                        className="text-2xl md:text-3xl lg:text-4xl font-normal font-poppins text-white leading-tight"
                         style={{ 
-                          fontFamily: typography.headings.fontFamily,
-                          fontWeight: typography.headings.fontWeight,
                           textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
                         }}
                       >
