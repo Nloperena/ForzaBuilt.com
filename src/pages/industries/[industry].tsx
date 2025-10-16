@@ -722,7 +722,7 @@ const IndustryPage = () => {
                               setSelectedProduct(product);
                               setIsModalOpen(true);
                             }}
-                            className="flex-1 inline-flex items-center justify-center gap-2 bg-[#115B87] hover:bg-[#0d4a6d] text-white rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300"
+                            className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-[#4a5a7a] hover:bg-[#4a5a7a] text-[#4a5a7a] hover:text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
                           >
                             <span>Quick View</span>
                           </button>
@@ -731,7 +731,7 @@ const IndustryPage = () => {
                           <Link
                             to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="flex-1 inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300"
+                            className="flex-1 inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
                           >
                             <span>Product Details</span>
                             <ExternalLink className="h-3 w-3" />

@@ -122,14 +122,14 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
         <Card className={`
           overflow-hidden group
           ${isMobileFixed 
-            ? `shadow-lg border border-white/20 bg-gradient-to-r ${getIndustryColor(industry)} backdrop-blur-md rounded-2xl` 
-            : 'shadow-2xl border border-white/25 bg-white/15 backdrop-blur-md rounded-2xl'}
+            ? `shadow-lg border border-gray-200 bg-gray-100 rounded-2xl` 
+            : 'shadow-2xl border border-gray-200 bg-gray-100 rounded-2xl'}
           ${isMobile && !isMobileFixed ? 'rounded-t-2xl rounded-b-none' : 'rounded-2xl'}
         `}>
           {/* Amazon-style mobile layout */}
           {isMobileFixed && isProduct ? (
             <div 
-              className="flex gap-3 p-1.5 cursor-pointer hover:bg-white/20 transition-colors rounded-xl"
+              className="flex gap-3 p-1.5 cursor-pointer hover:bg-gray-200 transition-colors rounded-xl"
               onClick={() => onProductClick && onProductClick(hotspot.product)}
             >
               {/* Product Image - Left side - Height matches text content */}
@@ -144,15 +144,15 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
               
               {/* Product Details - Right side - Made smaller text */}
               <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-sm leading-tight line-clamp-2 text-white mb-0.5">
+                <h3 className="font-semibold text-sm leading-tight line-clamp-2 text-[#1B3764] mb-0.5">
                   {hotspot.product!.name}
                 </h3>
                 
-                <p className="text-xs text-white/80 mb-0.5">
+                <p className="text-xs text-[#1B3764]/80 mb-0.5">
                   SKU: {hotspot.product!.sku}
                 </p>
                 
-                <p className="text-xs text-white/90 line-clamp-2">
+                <p className="text-xs text-[#1B3764]/90 line-clamp-2">
                   {hotspot.product!.blurb}
                 </p>
               </div>
@@ -193,7 +193,7 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                   </div>
                   
                   {/* Product Title between image and content */}
-                  <div className="px-4 py-3 bg-white border-b border-gray-100">
+                  <div className="px-4 py-3 bg-gray-100 border-b border-gray-200">
                     <h3 className="font-semibold text-lg leading-tight line-clamp-2 text-[#1B3764]">
                       {hotspot.product!.name}
                     </h3>
@@ -202,11 +202,11 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
               )}
               
               {/* Content section */}
-              <div className="p-4 bg-white">
+              <div className="p-4 bg-gray-100">
                 <div className="space-y-3">
                   {isProduct && (
                     <>
-                      <p className="text-sm text-[#1B3764] line-clamp-2">
+                      <p className="text-sm text-[#1B3764] line-clamp-2 font-medium">
                         {hotspot.product!.blurb}
                       </p>
                       
@@ -239,7 +239,7 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                         </h3>
                       </div>
                       
-                      <p className="text-sm text-[#1B3764] line-clamp-3">
+                      <p className="text-sm text-[#1B3764] line-clamp-3 font-medium">
                         {hotspot.experience!.description}
                       </p>
                     </>

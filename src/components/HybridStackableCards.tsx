@@ -82,10 +82,30 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
 
   // Get industry-specific gradient colors for cards
   const getCardGradient = (cardIndex: number) => {
+    const industryLower = industry.toLowerCase();
+    
     if (cardIndex === 0) {
       return `from-orange-500 to-orange-700`; // First card - always orange for consistency
     } else {
-      return `from-blue-500 to-blue-700`; // Second card - blue
+      // Second card - use industry color
+      switch (industryLower) {
+        case 'marine':
+          return `from-[#137875] to-[#137875]`;
+        case 'industrial':
+          return `from-[#f16a26] to-[#f16a26]`;
+        case 'transportation':
+          return `from-[#b83d35] to-[#b83d35]`;
+        case 'construction':
+          return `from-[#fec770] to-[#fec770]`;
+        case 'composites':
+          return `from-[#c7c8c9] to-[#c7c8c9]`;
+        case 'insulation':
+          return `from-[#d0157d] to-[#d0157d]`;
+        case 'foam':
+          return `from-[#f16a26] to-[#f16a26]`;
+        default:
+          return `from-blue-500 to-blue-700`;
+      }
     }
   };
 

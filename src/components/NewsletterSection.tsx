@@ -71,23 +71,23 @@ const NewsletterSection = () => {
                 </div>
 
                 <div className="space-y-6 mb-8 flex-1">
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-1 size-5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  <div className="flex items-start gap-4">
+                    <svg className="mt-1 size-7 md:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-sm md:text-base">Early access to new product launches and innovations</p>
+                    <p className="text-white text-base md:text-lg font-medium">Early access to new product launches and innovations</p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-1 size-5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  <div className="flex items-start gap-4">
+                    <svg className="mt-1 size-7 md:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-sm md:text-base">Exclusive industry insights and technical solutions</p>
+                    <p className="text-white text-base md:text-lg font-medium">Exclusive industry insights and technical solutions</p>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-1 size-5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  <div className="flex items-start gap-4">
+                    <svg className="mt-1 size-7 md:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-sm md:text-base">Expert tips and best practices for your applications</p>
+                    <p className="text-white text-base md:text-lg font-medium">Expert tips and best practices for your applications</p>
                   </div>
                 </div>
 

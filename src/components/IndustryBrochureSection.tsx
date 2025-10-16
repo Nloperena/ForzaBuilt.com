@@ -131,10 +131,10 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
               <a
                 href={`/brochures/${industry.toLowerCase()}.pdf`}
                 download
-                className={`group inline-flex items-center gap-3 font-bold text-sm sm:text-base md:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
+                className={`group inline-flex items-center gap-3 font-bold text-sm sm:text-base md:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 rounded-full shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
                   backgroundColor === 'white'
-                    ? 'bg-[#115B87] hover:bg-[#0d4666] text-white border border-[#115B87] hover:border-[#0d4666]'
-                    : 'bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white border border-white/30 hover:border-white/50'
+                    ? 'border-2 border-[#4a5a7a] hover:bg-[#4a5a7a] text-[#4a5a7a] hover:text-white'
+                    : 'border-2 border-white/50 hover:bg-white/30 backdrop-blur-sm text-white hover:border-white/70'
                 }`}
               >
                 <svg 
@@ -156,7 +156,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
                 href={`/brochures/${industry.toLowerCase()}.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#F2611D] hover:bg-[#d94e0c] text-white font-bold text-sm sm:text-base md:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 rounded-xl shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#F2611D] hover:bg-[#d94e0c] text-white font-bold text-sm sm:text-base md:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 rounded-full shadow-lg transition-all duration-200 hover:shadow-xl hover:scale-105"
               >
                 <svg 
                   className="w-5 h-5 md:w-6 md:h-6" 

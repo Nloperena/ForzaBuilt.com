@@ -18,7 +18,7 @@ const approachItems: ApproachItem[] = [
       "One-stop solution for all bonding needs",
       "Saves time, money & reduces risk"
     ],
-    image: "/approach-greener-chem.png"
+    image: "/approach-images/Products Portfolio.jpg"
   },
   {
     title: "OPTIMIZATIONS",
@@ -28,7 +28,7 @@ const approachItems: ApproachItem[] = [
       "Application-specific recommendations",
       "Performance optimization"
     ],
-    image: "/approach-greener-chem.png"
+    image: "/approach-images/Construction Visit-2.jpg"
   },
   {
     title: "SUSTAINABILITY",
@@ -48,7 +48,7 @@ const approachItems: ApproachItem[] = [
       "Rapid product development",
       "Custom formulation capabilities"
     ],
-    image: "/approach-greener-chem.png"
+    image: "/approach-images/R&D image.jpg"
   },
   {
     title: "CLIENT FOCUS",
@@ -58,7 +58,7 @@ const approachItems: ApproachItem[] = [
       "Technical support team",
       "Long-term partnership focus"
     ],
-    image: "/approach-greener-chem.png"
+    image: "/approach-images/Receptionist at desk 1.jpg"
   },
   {
     title: "KNOWLEDGE",
