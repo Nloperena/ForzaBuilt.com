@@ -183,7 +183,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
         className="absolute inset-0 w-full h-full object-cover"
         style={{ zIndex: 1 }}
       >
-        <source src="/Moleculesubtle2.mp4" type="video/mp4" />
+        <source src="/Untitled Project.aep_AME\Pre-comp 1.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       
@@ -378,7 +378,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
 
                 {/* Features */}
                 <div className="mb-6">
-                  <ul className="text-sm md:text-base text-gray-700 list-disc list-inside text-left space-y-1 font-poppins">
+                  <ul className="text-sm md:text-base text-gray-700 list-disc list-outside text-left space-y-1 font-poppins pl-5">
                     {selectedChemistry.features.map((feature, index) => (
                       <li key={index}>{feature}</li>
                     ))}

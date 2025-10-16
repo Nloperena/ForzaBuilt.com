@@ -26,8 +26,8 @@ export default function ProductImageTicker({
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // Duplicate once to achieve seamless loop
-  const loopItems = useMemo(() => [...items, ...items], [items]);
+  // Triple the items for extra seamless infinite loop
+  const loopItems = useMemo(() => [...items, ...items, ...items], [items]);
 
   useEffect(() => {
     const el = trackRef.current;
@@ -36,10 +36,13 @@ export default function ProductImageTicker({
 
     // Compute duration from content width and desired speed
     const resize = () => {
-      const total = el.scrollWidth / 2; // width of one set
+      const total = el.scrollWidth / 3; // width of one set (we have 3 copies)
       const pxPerSec = speed; // pixels per second
       const duration = Math.max(6, total / pxPerSec); // seconds
+      
+      // Set CSS custom properties for pixel-based animation
       root.style.setProperty("--marquee-duration", `${duration}s`);
+      root.style.setProperty("--marquee-distance", `${total}px`);
     };
     const ro = new ResizeObserver(resize);
     ro.observe(el);
@@ -48,7 +51,6 @@ export default function ProductImageTicker({
     // Pause when off-screen
     const io = new IntersectionObserver(
       ([entry]) => {
-        root.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
         el.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
       },
       { threshold: 0.01 }
@@ -59,7 +61,7 @@ export default function ProductImageTicker({
       ro.disconnect();
       io.disconnect();
     };
-  }, [speed]);
+  }, [speed, direction]);
 
   return (
     <section
@@ -85,14 +87,12 @@ export default function ProductImageTicker({
           ref={trackRef}
           className={clsx(
             "flex items-center whitespace-nowrap will-change-transform gap-0",
-            // Motion-safe animation; direction controlled by variant
-            "motion-safe:[animation-duration:var(--marquee-duration)] motion-safe:animate-marquee",
-            direction === "right" && "motion-safe:animate-marquee-reverse",
             // Pause on hover for mouse/trackpad users
             "hover:[animation-play-state:paused]"
           )}
-          // Make it scrollable when reduced motion is preferred
-          style={{ animationDuration: "var(--marquee-duration)" }}
+          style={{ 
+            animation: `marquee-pixel-${direction} var(--marquee-duration, 20s) linear infinite`,
+          }}
         >
           {loopItems.map((it, i) => (
             <figure key={`${it.src}-${i}`} className="shrink-0">
@@ -113,8 +113,26 @@ export default function ProductImageTicker({
         </div>
       </div>
 
-      {/* Reduced motion fallback: horizontal scroll row */}
+      {/* Custom seamless marquee animation */}
       <style>{`
+        @keyframes marquee-pixel-left {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-1 * var(--marquee-distance, 0px)));
+          }
+        }
+        
+        @keyframes marquee-pixel-right {
+          0% {
+            transform: translateX(calc(-1 * var(--marquee-distance, 0px)));
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        
         @media (prefers-reduced-motion: reduce) {
           [aria-label='Product image ticker'] div[class*='animate-'] {
             animation: none !important;

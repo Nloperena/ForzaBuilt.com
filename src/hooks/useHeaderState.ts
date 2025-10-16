@@ -48,11 +48,24 @@ export const useHeaderState = () => {
       const scrollTop = window.scrollY;
       // Change background when scrolled past 100px (adjust as needed)
       setIsScrolled(scrollTop > 100);
+      
+      // Close overlay immediately when scrolling (even if hovering)
+      if (isOverlayOpen) {
+        setAnimationDirection('up');
+        setIsOverlayOpen(false);
+        setActiveOverlayContent(null);
+        
+        // Clear any pending hover timeout
+        if (hoverTimeout) {
+          clearTimeout(hoverTimeout);
+          setHoverTimeout(null);
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isOverlayOpen, hoverTimeout]);
 
   // Update video URL when overlay content changes
   useEffect(() => {

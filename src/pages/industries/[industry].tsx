@@ -436,7 +436,7 @@ const IndustryPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold font-poppins leading-none text-[#1b3764] break-words capitalize">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular font-poppins leading-none text-[#1b3764] break-words capitalize">
                 {industryData.title.toLowerCase()} Products
               </h2>
             </motion.div>
@@ -470,7 +470,7 @@ const IndustryPage = () => {
                 {/* Filter Panel */}
                 <div className="hidden lg:block bg-white shadow-lg rounded-xl border border-gray-300 overflow-hidden">
                   <div className="p-4 border-b border-gray-200">
-                    <h3 className="font-kallisto font-bold text-lg text-gray-900" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
+                    <h3 className="font-poppins font-regular text-lg text-gray-900" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                       Filter & Sort
                     </h3>
                   </div>
@@ -655,7 +655,7 @@ const IndustryPage = () => {
 
                     {/* Desktop: Product Title between image and content */}
                     <div className="hidden md:block px-4 py-3 absolute bottom-24 left-0 right-0">
-                      <h3 className="text-base font-kallisto font-bold leading-tight line-clamp-2 text-gray-900">
+                      <h3 className="text-base font-poppins font-bold text-xl leading-tight line-clamp-4 text-gray-900">
                         {product.name.split('–')[0].trim()}
                       </h3>
                     </div>

@@ -11,7 +11,7 @@ interface ApproachItem {
 
 const approachItems: ApproachItem[] = [
   {
-    title: "PRODUCT PORTFOLIO",
+    title: "PORTFOLIO",
     description: "Comprehensive range of industrial adhesives, sealants, tapes, and cleaners - all under one roof.",
     bulletPoints: [
       "World's most comprehensive portfolio",
@@ -21,7 +21,7 @@ const approachItems: ApproachItem[] = [
     image: "/approach-greener-chem.png"
   },
   {
-    title: "PRODUCT OPTIMIZATION",
+    title: "OPTIMIZATIONS",
     description: "Expert guidance to select and optimize the right products for your specific applications.",
     bulletPoints: [
       "Technical support and expertise",
@@ -31,7 +31,7 @@ const approachItems: ApproachItem[] = [
     image: "/approach-greener-chem.png"
   },
   {
-    title: "GREENER CHEMISTRIES",
+    title: "SUSTAINABILITY",
     description: "Innovation & Greener Chemistries leading the way to a sustainable future.",
     bulletPoints: [
       "Safer products & greener technologies.",
@@ -41,7 +41,7 @@ const approachItems: ApproachItem[] = [
     image: "/approach-greener-chem.png"
   },
   {
-    title: "R&D MANUFACTURING",
+    title: "R&D LAB",
     description: "Fully integrated manufacturing and R&D capabilities in the U.S.A.",
     bulletPoints: [
       "Full control over quality & consistency",
@@ -51,7 +51,7 @@ const approachItems: ApproachItem[] = [
     image: "/approach-greener-chem.png"
   },
   {
-    title: "CUSTOMER ATTENTION",
+    title: "CLIENT FOCUS",
     description: "Dedicated support and attention to every customer's unique needs.",
     bulletPoints: [
       "Responsive customer service",
@@ -61,7 +61,7 @@ const approachItems: ApproachItem[] = [
     image: "/approach-greener-chem.png"
   },
   {
-    title: "INDUSTRY KNOWLEDGE",
+    title: "KNOWLEDGE",
     description: "Deep expertise across all major industries and applications.",
     bulletPoints: [
       "Decades of industry experience",
@@ -74,22 +74,56 @@ const approachItems: ApproachItem[] = [
 
 const ApproachSectionV2 = () => {
   const [selectedItem, setSelectedItem] = useState(2); // Default to "GREENER CHEMISTRIES"
+  const [previousItem, setPreviousItem] = useState(2);
   const { mode } = useGradientMode();
   const [scrollY, setScrollY] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number>();
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const updateParallax = () => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
-        const scrollProgress = -rect.top;
-        setScrollY(scrollProgress);
+        const sectionHeight = sectionRef.current.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate scroll progress (0 to 1)
+        const scrollProgress = (windowHeight - rect.top) / (windowHeight + sectionHeight);
+        
+        // Very subtle parallax range (-15px to 15px)
+        const parallaxOffset = (scrollProgress - 0.5) * 30;
+        
+        setScrollY(parallaxOffset);
+      }
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        rafRef.current = requestAnimationFrame(updateParallax);
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
   }, []);
+
+  const handleItemChange = (index: number) => {
+    if (index !== selectedItem) {
+      setPreviousItem(selectedItem);
+      setSelectedItem(index);
+    }
+  };
 
   return (
     <section ref={sectionRef} className="relative isolate overflow-visible">
@@ -102,29 +136,41 @@ const ApproachSectionV2 = () => {
         <div className="bg-[#293350]" />
       </div>
 
-      <div className="relative mx-auto px-6 sm:px-8 lg:px-10 2xl:px-14 py-8 md:py-12 overflow-visible z-0">
+      <div className="relative overflow-visible z-0">
         {/* Two scalable squares */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-visible relative z-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden relative z-0">
           {/* LEFT SQUARE - Image */}
           <div className="
             relative
             min-h-[62svh] md:min-h-[68svh] lg:min-h-[74svh]
-            p-[clamp(14px,4vw,32px)]
             flex items-center justify-center
-            overflow-visible
-          " style={{ overflow: 'visible' }}>
-            {/* Product image */}
+            overflow-hidden
+          ">
+            {/* Previous approach image (stays in place) */}
             <img
+              src={approachItems[previousItem].image}
+              alt={approachItems[previousItem].title}
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{
+                objectPosition: 'center center',
+                transform: `translateY(${scrollY}px) translateZ(0) scale(1.15)`,
+                willChange: 'transform'
+              }}
+            />
+
+            {/* Current approach image (slides over) */}
+            <img
+              key={selectedItem}
               src={approachItems[selectedItem].image}
               alt={approachItems[selectedItem].title}
               className="
-                block w-full h-full object-cover
-                drop-shadow-2xl
-                opacity-100 translate-y-0 transition-all duration-700 will-change-transform
+                absolute inset-0 w-full h-full object-cover
+                animate-in slide-in-from-left duration-700
               "
               style={{
-                transform: `translateY(${scrollY * 0.3}px)`,
-                transition: 'transform 0.1s ease-out'
+                objectPosition: 'center center',
+                transform: `translateY(${scrollY}px) translateZ(0) scale(1.15)`,
+                willChange: 'transform'
               }}
             />
           </div>
@@ -133,7 +179,7 @@ const ApproachSectionV2 = () => {
           <div className="
             relative
             min-h-[62svh] md:min-h-[68svh] lg:min-h-[74svh]
-            p-[clamp(14px,4vw,32px)]
+            px-[clamp(14px,4vw,32px)] py-[clamp(32px,6vw,64px)]
             flex items-center justify-center
             [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
           ">
@@ -142,14 +188,14 @@ const ApproachSectionV2 = () => {
                 {approachItems.map((item, index) => (
                   <button
                     key={index}
-                    onClick={() => setSelectedItem(index)}
-                    className="w-full text-left transition-all duration-300"
+                    onClick={() => handleItemChange(index)}
+                    className="w-full text-left transition-all duration-500"
                   >
-                    <h3 className={`font-normal leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
+                    <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
                       selectedItem === index
-                        ? 'text-[#F2611D] text-[clamp(28px,4vw,64px)]'
-                        : 'text-white text-[clamp(22px,3.2vw,48px)]'
-                    } hover:text-[#F2611D] transition-colors duration-300 ${
+                        ? 'text-[#F2611D] text-[clamp(28px,4vw,64px)] font-bold'
+                        : 'text-white text-[clamp(22px,3.2vw,48px)] font-normal'
+                    } hover:text-[#F2611D] transition-all duration-500 ease-out ${
                       mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                     }`}>
                       {item.title}
@@ -159,18 +205,18 @@ const ApproachSectionV2 = () => {
               </div>
 
               <div className="border-t border-white/20 pt-6 mt-6">
-                <h4 className={`text-white text-[clamp(18px,2.2vw,22px)] font-bold mb-4 ${
+                <h4 className={`text-white text-[clamp(18px,2.2vw,22px)] font-bold mb-4 transition-all duration-500 ${
                   mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                 }`}>
                   {approachItems[selectedItem].title === 'GREENER CHEMISTRIES' 
                     ? 'Innovation & Greener Chemistries'
                     : approachItems[selectedItem].title}
                 </h4>
-                <ul className={`space-y-2 text-white text-[clamp(16px,1.8vw,20px)] ${
+                <ul className={`space-y-0 text-white text-[clamp(16px,1.8vw,20px)] ${
                   mode === 'light2' ? 'font-poppins' : ''
-                }`} style={{ lineHeight: '3.4' }}>
+                }`} style={{ lineHeight: '1.8' }}>
                   {approachItems[selectedItem].bulletPoints.map((point, idx) => (
-                    <li key={idx} className="flex items-start transition-all duration-300 hover:scale-105 cursor-pointer">
+                    <li key={`${selectedItem}-${idx}`} className="flex items-start animate-in fade-in slide-in-from-left-2 duration-500" style={{ animationDelay: `${idx * 100}ms` }}>
                       <span className="text-[#F2611D] mr-2">•</span>
                       {point}
                     </li>

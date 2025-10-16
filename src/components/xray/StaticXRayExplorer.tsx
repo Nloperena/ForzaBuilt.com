@@ -184,7 +184,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative w-full aspect-square bg-gray-100 rounded-2xl overflow-visible">
+            <div className="relative w-full aspect-square bg-transparent rounded-2xl overflow-visible">
               {/* Post X-Ray Image */}
               <img
                 src={xrayComponent.postSrc}
