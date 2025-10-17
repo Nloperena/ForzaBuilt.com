@@ -292,7 +292,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               id={`${industry.id}-xray-explorer`}
               className="text-3xl md:text-4xl font-bold text-foreground mb-4"
             >
-              {industry.id.charAt(0).toUpperCase() + industry.id.slice(1)} X-Ray Explorer
+              Product Application View
               {industry.xrays.length > 1 && ` (${xrayIndex + 1}/${industry.xrays.length})`}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

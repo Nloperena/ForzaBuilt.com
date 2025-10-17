@@ -129,9 +129,9 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <h2 className="text-2xl md:text-4xl font-normal text-[#1B3764] mb-8 font-poppins">
-              {industry.id.charAt(0).toUpperCase() + industry.id.slice(1)} X-Ray Explorer
+              Product Application View
             </h2>
-            <p className="text-gray-600 font-normal font-poppins">Loading X-Ray explorer...</p>
+            <p className="text-gray-600 font-normal font-poppins">Loading Product Application View...</p>
           </div>
         </div>
       </section>
@@ -165,8 +165,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
           <h2 
             className="text-2xl md:text-4xl font-normal text-[#1B3764] mb-4 font-poppins"
           >
-            {industry.id.charAt(0).toUpperCase() + industry.id.slice(1)} X-Ray Explorer
-            {industry.xrays.length > 1 && ` (${xrayIndex + 1}/${industry.xrays.length})`}
+            Product Application View
           </h2>
           <p 
             className="text-lg text-[#1B3764] max-w-2xl mx-auto font-normal font-poppins"
@@ -178,7 +177,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
         {/* Main Content - Centered X-Ray Image */}
         <div className="flex justify-center relative">
           <motion.div
-            className="relative max-w-4xl w-full x-ray-container"
+            className="relative max-w-7xl w-full x-ray-container"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -217,7 +216,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                             points={points}
                             fill={isHighlight ? "rgba(242,97,29,0.8)" : "rgba(27,55,100,0.9)"}
                             stroke={isHighlight ? "rgba(242,97,29,1)" : "rgba(27,55,100,0.9)"}
-                            strokeWidth="2"
+                            strokeWidth="0.5"
                             className="cursor-pointer transition-all duration-300"
                             style={{
                               filter: isHighlight ? 
@@ -242,7 +241,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                             d={points}
                             fill={isHighlight ? "rgba(242,97,29,0.8)" : "rgba(27,55,100,0.9)"}
                             stroke={isHighlight ? "rgba(242,97,29,1)" : "rgba(27,55,100,0.9)"}
-                            strokeWidth="2"
+                            strokeWidth="0.5"
                             className="cursor-pointer transition-all duration-300"
                             style={{
                               filter: isHighlight ? 
@@ -355,7 +354,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="fixed top-1/2 right-8 transform -translate-y-1/2 bg-gradient-to-br from-[#1B3764] to-[#2A4A7A] rounded-xl p-4 text-white shadow-2xl pointer-events-none z-50 w-80 max-h-[60vh] overflow-y-auto"
+                className="fixed top-1/2 right-8 transform -translate-y-1/2 bg-gradient-to-tr from-[#1B3764] to-[#c1d7f3] rounded-xl p-4 text-white shadow-2xl pointer-events-none z-50 w-80 max-h-[60vh] overflow-y-auto"
                 style={{
                   top: 'clamp(10vh, 50%, 90vh)',
                   transform: 'translateY(-50%)'

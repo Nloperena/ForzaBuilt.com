@@ -51,7 +51,7 @@ const Header = () => {
             ? 'bg-[#293350] border-b border-[#293350] shadow-lg'
             : 'bg-transparent border-b border-transparent shadow-none'
           : 'backdrop-blur-2xl bg-white/50 border-b border-white/60'
-      } shadow-2xl`}
+      }`}
       style={
         mode === 'light' 
           ? { backgroundColor: '#ffffff' } 

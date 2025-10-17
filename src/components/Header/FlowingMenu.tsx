@@ -192,7 +192,7 @@ const FlowingMenuItem: React.FC<MenuItemProps & {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="bg-white/95 backdrop-blur-sm border-t border-white/20"
+            className="bg-white/95 backdrop-blur-sm border-t border-white/20 shadow-2xl"
           >
             <div className="p-6">
               <div className="grid grid-cols-2 gap-4">

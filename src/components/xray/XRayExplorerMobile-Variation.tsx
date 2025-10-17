@@ -247,7 +247,7 @@ const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({
                 lineHeight: typography.headings.lineHeight
               }}
             >
-              {industry.id.charAt(0).toUpperCase() + industry.id.slice(1)} X-Ray Explorer
+              Product Application View
               {industry.xrays.length > 1 && ` (${xrayIndex + 1}/${industry.xrays.length})`}
             </h2>
             <p 
@@ -524,7 +524,7 @@ const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({
                 stiffness: 300,
                 duration: 0.6
               }}
-              className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[95vh] md:max-h-[90vh] overflow-hidden bg-gradient-to-r md:bg-gradient-to-b ${getIndustryColor(selectedProduct.industry)}`}
+              className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-7xl w-full max-h-[95vh] md:max-h-[90vh] overflow-hidden bg-gradient-to-r md:bg-gradient-to-b ${getIndustryColor(selectedProduct.industry)}`}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
