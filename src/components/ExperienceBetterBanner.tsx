@@ -10,7 +10,7 @@ const ExperienceBetterBanner = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8">
           {/* Left side - Main slogan */}
           <div className="space-y-1">
-            <h2 className={`text-[clamp(28px,4vw,48px)] font-bold text-[#115B87] leading-tight ${
+            <h2 className={`text-[clamp(28px,4vw,48px)] font-bold text-[#293350] leading-tight ${
               mode === 'light2' ? 'font-poppins' : 'font-kallisto'
             }`}>
               Experience Better.
@@ -24,7 +24,7 @@ const ExperienceBetterBanner = () => {
           
           {/* Right side - Mission statement */}
           <div className="md:max-w-md">
-            <p className={`text-[clamp(14px,1.2vw,16px)] text-gray-600 leading-relaxed ${
+            <p className={`text-[clamp(16px,2vw,22px)] text-[#293350] leading-relaxed ${
               mode === 'light2' ? 'font-poppins' : ''
             }`}>
               Creating New Standards & Raising Expectations for Performance, Solutions & Customer Experience.

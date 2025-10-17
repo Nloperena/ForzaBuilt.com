@@ -51,7 +51,7 @@ const ApproachSection = () => {
             
             {/* Right side - Mission statement */}
             <div className="md:max-w-md">
-              <p className={`text-[clamp(14px,1.2vw,16px)] text-gray-600 leading-relaxed ${
+              <p className={`text-[clamp(18px,2vw,22px)] text-gray-600 leading-relaxed ${
                 mode === 'light2' ? 'font-poppins' : ''
               }`}>
                 Creating New Standards & Raising Expectations for Performance, Solutions & Customer Experience.
@@ -104,7 +104,7 @@ const ApproachSection = () => {
               }`}>
                 Innovation & Greener Chemistries
               </h4>
-              <ul className={`space-y-2 text-white text-[clamp(16px,1.8vw,20px)] leading-relaxed ${
+              <ul className={`space-y-2 text-white text-[clamp(16px,2vw,22px)] leading-relaxed ${
                 mode === 'light2' ? 'font-poppins' : ''
               }`}>
                 <li className="flex items-start transition-all duration-300 hover:scale-105 cursor-pointer">

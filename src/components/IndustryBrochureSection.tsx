@@ -78,7 +78,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
 
   return (
     <section 
-      className={`w-full py-16 md:py-20 px-4 md:px-6 lg:px-8 ${backgroundColor === 'white' ? 'bg-white' : ''}`}
+      className={`w-full py-16 md:py-36 px-4 md:px-6 lg:px-8 ${backgroundColor === 'white' ? 'bg-white' : ''}`}
       style={{
         background: backgroundColor === 'white' ? 'white' : `linear-gradient(to top, ${gradientColors})`
       }}

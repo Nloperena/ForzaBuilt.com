@@ -24,6 +24,7 @@ import { typography } from '@/styles/brandStandards';
 
 import { motion, AnimatePresence } from 'framer-motion';
 import ImageSkeleton from '../../components/common/ImageSkeleton';
+import NewsletterSection from '@/components/NewsletterSection';
 
 // Chemistry icon paths - using Rebranded Chemistry Icons
 const CHEMISTRY_ICONS = {
@@ -941,6 +942,7 @@ const IndustryPage = () => {
                   
                   <p className="text-gray-600">
                     {selectedProduct.name.split('–')[1]?.trim() || selectedProduct.description}
+                   
                   </p>
                   
                   <div className="flex gap-2">
@@ -951,6 +953,7 @@ const IndustryPage = () => {
                       View Details
                     </Link>
                   </div>
+                  
                 </div>
               </div>
             </motion.div>
@@ -959,7 +962,7 @@ const IndustryPage = () => {
       </AnimatePresence>
 
  
-
+      <NewsletterSection /> 
       {/* Footer */}
       <Footer />
     </div>

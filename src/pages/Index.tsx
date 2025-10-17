@@ -12,6 +12,7 @@ import ApproachSectionV2 from '@/components/ApproachSectionV2';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
+import HeroVideoSectionV2 from '@/components/HeroVideoSectionV2';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const Index = () => {
@@ -100,7 +101,7 @@ const Index = () => {
         </section>
 
         {/* Hero Video Section V2 - Standalone (no sticky effect) */}
-        {/* <HeroVideoSectionV2 /> */}
+        <HeroVideoSectionV2 />
 
         {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
         <section className="relative" style={{ zIndex: 20 }}>

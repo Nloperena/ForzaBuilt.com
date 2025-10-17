@@ -28,7 +28,7 @@ const approachItems: ApproachItem[] = [
       "Application-specific recommendations",
       "Performance optimization"
     ],
-    image: "/approach-images/Construction Visit-2.jpg"
+    image: "/approach-images/Construction Visit.jpg"
   },
   {
     title: "SUSTAINABILITY",
@@ -38,7 +38,7 @@ const approachItems: ApproachItem[] = [
       "Made in the U.S.A. for sustainable supply chain.",
       "Always accelerating towards the future today."
     ],
-    image: "/approach-greener-chem.png"
+    image: "/approach-images/Sustainability Image for Web.jpg"
   },
   {
     title: "R&D LAB",
@@ -58,17 +58,17 @@ const approachItems: ApproachItem[] = [
       "Technical support team",
       "Long-term partnership focus"
     ],
-    image: "/approach-images/Receptionist at desk 1.jpg"
+    image: "/approach-images/Receptionist at desk.jpg"
   },
   {
-    title: "KNOWLEDGE",
+    title: "LEGACY",
     description: "Deep expertise across all major industries and applications.",
     bulletPoints: [
       "Decades of industry experience",
       "Application-specific knowledge",
       "Proven track record"
     ],
-    image: "/approach-greener-chem.png"
+    image: "/approach-images/Legacy Image.jpg"
   }
 ];
 

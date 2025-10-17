@@ -9,9 +9,9 @@ const MadeInAmericaSection: React.FC = () => {
       <section className={`${
         mode === 'light2' ? 'bg-white' : 'bg-white'
       }`}>
-        <div className="max-w-[120rem] mx-auto px-4 py-24">
+        <div className="max-w-[120rem] mx-auto px-4 lg:px-12 xl:px-16 2xl:px-20 py-24">
           {/* Top Content Area - Text and Flag */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center mb-12">
             {/* Left side - American Flag */}
             <div className="flex justify-center lg:justify-start">
               <div className="w-full h-full">

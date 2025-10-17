@@ -215,8 +215,8 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                           <motion.polygon
                             points={points}
                             fill={isHighlight ? "rgba(242,97,29,0.8)" : "rgba(27,55,100,0.9)"}
-                            stroke={isHighlight ? "rgba(242,97,29,1)" : "rgba(27,55,100,0.9)"}
-                            strokeWidth="0.5"
+                            stroke="none"
+                            strokeWidth="0"
                             className="cursor-pointer transition-all duration-300"
                             style={{
                               filter: isHighlight ? 
@@ -240,8 +240,8 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                           <motion.path
                             d={points}
                             fill={isHighlight ? "rgba(242,97,29,0.8)" : "rgba(27,55,100,0.9)"}
-                            stroke={isHighlight ? "rgba(242,97,29,1)" : "rgba(27,55,100,0.9)"}
-                            strokeWidth="0.5"
+                            stroke="none"
+                            strokeWidth="0"
                             className="cursor-pointer transition-all duration-300"
                             style={{
                               filter: isHighlight ? 
@@ -354,7 +354,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
-                className="fixed top-1/2 right-8 transform -translate-y-1/2 bg-gradient-to-tr from-[#1B3764] to-[#c1d7f3] rounded-xl p-4 text-white shadow-2xl pointer-events-none z-50 w-80 max-h-[60vh] overflow-y-auto"
+                className="fixed top-1/2 right-8 transform -translate-y-1/2 bg-[#D1D5DB] rounded-xl p-4 text-white shadow-2xl pointer-events-none z-50 w-80 max-h-[60vh] overflow-y-auto"
                 style={{
                   top: 'clamp(10vh, 50%, 90vh)',
                   transform: 'translateY(-50%)'
