@@ -35,7 +35,6 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
         >
           <div className="relative w-24 h-24 flex items-center justify-center mb-4 will-change-transform">
             <img src={industry.logo} alt={`${industry.title} Logo`} className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"/>
-            <div className="pointer-events-none absolute inset-x-4 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
           </div>
           <h3 className="text-xl font-normal font-poppins transition-all duration-300 group-hover/item:font-bold">{industry.title}</h3>
         </Link>
@@ -57,7 +56,6 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
             alt="Industrial Adhesives Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
-          <div className="pointer-events-none absolute inset-x-6 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
         </div>
         <div className="text-xl text-center font-poppins transition-all duration-300" style={{ fontWeight: 'normal' }}>
           <div className="group-hover/item:font-bold">INDUSTRIAL</div>
@@ -75,7 +73,6 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
             alt="Industrial Sealants Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
-          <div className="pointer-events-none absolute inset-x-6 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
         </div>
         <div className="text-xl text-center font-poppins transition-all duration-300" style={{ fontWeight: 'normal' }}>
           <div className="group-hover/item:font-bold">INDUSTRIAL</div>
@@ -93,7 +90,6 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
             alt="Industrial Tapes Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
-          <div className="pointer-events-none absolute inset-x-6 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
         </div>
         <div className="text-xl text-center font-poppins transition-all duration-300" style={{ fontWeight: 'normal' }}>
           <div className="group-hover/item:font-bold">INDUSTRIAL</div>
@@ -107,7 +103,6 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
           <img src="/products/brand-logos/product-line-brands-white-ruggedred.svg" alt="Rugged Red Logo" className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"/>
-          <div className="pointer-events-none absolute inset-x-6 bottom-1 h-2 rounded-full bg-[#F2611D] opacity-0 blur-md transition-all duration-300 group-hover/item:opacity-70 group-hover/item:scale-110"></div>
         </div>
         <div className="text-xl text-center font-poppins transition-all duration-300" style={{ fontWeight: 'normal' }}>
           <div className="group-hover/item:font-bold">INDUSTRIAL</div>

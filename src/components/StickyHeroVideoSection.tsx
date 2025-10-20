@@ -79,7 +79,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
               minHeight: '100%'
             }}
           >
-            <source src="/ForzaLionLoop-1-2.mp4" type="video/mp4" />
+            <source src="https://video-previews.elements.envatousercontent.com/adba67ed-69e8-4b91-8b79-f03dbf259b24/watermarked_preview/watermarked_preview.mp4" type="video/mp4" />
           </video>
 
           {/* Fallback background - always visible */}

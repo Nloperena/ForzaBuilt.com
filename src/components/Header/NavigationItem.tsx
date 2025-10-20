@@ -41,7 +41,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
         <button
           type="button"
           onClick={() => onClick(item.name.toLowerCase())}
-          className={`flex items-center space-x-1 text-xl font-medium transition-all hover:text-[#F2611D] hover:font-bold ${
+          className={`flex items-center space-x-1 text-xl font-medium transition-all hover:font-bold ${
             isActive ? 'text-[#F2611D]' : defaultTextColor
           }`}
         >

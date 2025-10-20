@@ -53,7 +53,7 @@ const InteractiveProductsSection = () => {
     <section className="relative isolate overflow-visible">
       {/* background halves */}
       <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
-        <div className="bg-[#293350]" />
+        <div className="bg-gradient-to-r from-[#4a5a7a] to-[#293350]" />
         <div className="bg-[#f3f5f7]" />
       </div>
 
@@ -78,7 +78,7 @@ const InteractiveProductsSection = () => {
                   >
                     <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
                       selectedProduct === index
-                        ? 'text-[#F2611D] text-[clamp(28px,4vw,64px)] font-bold'
+                        ? 'text-[#F2611D] text-[clamp(28px,4vw,128px)] font-bold'
                         : 'text-white text-[clamp(22px,3.2vw,48px)] font-normal'
                     } hover:text-[#F2611D] transition-all duration-500 ease-out ${
                       mode === 'light2' ? 'font-poppins' : 'font-kallisto'
@@ -89,7 +89,7 @@ const InteractiveProductsSection = () => {
                 ))}
               </div>
 
-              <p className={`text-white text-[clamp(14px,1.25vw,18px)] leading-relaxed mb-[calc(var(--gap)*0.9)] transition-all duration-500 animate-in fade-in slide-in-from-left-2 ${
+              <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed mb-[calc(var(--gap)*0.9)] transition-all duration-500 animate-in fade-in slide-in-from-left-2 ${
                 mode === 'light2' ? 'font-poppins' : ''
               }`} key={selectedProduct}>
                 {products[selectedProduct].description}

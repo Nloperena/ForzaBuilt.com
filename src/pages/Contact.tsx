@@ -138,7 +138,7 @@ const Contact = () => {
             style={{ opacity: isVideoLoaded ? 1 : 0, zIndex: 1 }}
           >
             <source 
-              src="/Lion_Walk.mp4" 
+              src="https://video-previews.elements.envatousercontent.com/adba67ed-69e8-4b91-8b79-f03dbf259b24/watermarked_preview/watermarked_preview.mp4" 
               type="video/mp4"
             />
             Your browser does not support the video tag.

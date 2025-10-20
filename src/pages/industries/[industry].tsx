@@ -78,6 +78,11 @@ const getIndustryColorHex = (industry: string | string[]) => {
   }
 };
 
+// Helper to convert text to title case
+const toTitleCase = (str: string) => {
+  return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
 const IndustryPage = () => {
   const { industry } = useParams();
   const industryData = industries.find(
@@ -333,7 +338,7 @@ const IndustryPage = () => {
             >
               {/* Icons removed per brand standards; title only */}
               <h3 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-center leading-none break-words font-poppins text-[#1b3764]"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-center leading-none break-words font-poppins text-[white]"
               >
                 {`Building High-Performance ${industryData.title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape & Sealant Solutions`}
               </h3>
@@ -427,8 +432,7 @@ const IndustryPage = () => {
       })()}
 
       {/* Product Cards Section - Uniform look with product pages */}
-      {industryProducts.length > 0 && (
-        <section className="bg-gray-100 text-gray-900 py-8 sm:py-12 md:py-16 relative z-[30]">
+      <section className="bg-gray-100 text-gray-900 py-8 sm:py-12 md:py-16 relative z-[30]">
           <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8">
             <motion.div 
               className="text-center mb-8 sm:mb-12"
@@ -446,32 +450,32 @@ const IndustryPage = () => {
               {/* Filter Sidebar */}
               <aside className="lg:w-64 xl:w-72 flex-shrink-0 lg:sticky lg:top-24 lg:self-start">
                 {/* Search Bar */}
-                <div className="bg-white rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
+                <div className="bg-gradient-to-r from-[#4a5a7a] to-[#293350] rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
                   <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-gray-100 p-1.5 rounded-full">
-                      <Search className="text-gray-600 h-4 w-4" />
+                    <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 p-1.5 rounded-full">
+                      <Search className="text-white h-4 w-4" />
                     </div>
                     <input
                       placeholder="Search products…"
                       value={search}
                       onChange={e => setSearch(e.target.value)}
-                      className="w-full bg-white text-gray-900 placeholder-gray-400 pl-12 py-3 text-sm border border-gray-300 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 rounded-xl"
+                      className="w-full bg-white/10 text-white placeholder-white/60 pl-12 py-3 text-sm border border-white/30 focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 rounded-xl"
                     />
                     {search && (
                       <button
                         onClick={() => setSearch('')}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 p-1.5 rounded-full transition-colors"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 p-1.5 rounded-full transition-colors"
                       >
-                        <X className="text-gray-600 h-3 w-3" />
+                        <X className="text-white h-3 w-3" />
                       </button>
                     )}
                   </div>
                 </div>
 
                 {/* Filter Panel */}
-                <div className="hidden lg:block bg-white shadow-lg rounded-xl border border-gray-300 overflow-hidden">
-                  <div className="p-4 border-b border-gray-200">
-                    <h3 className="font-poppins font-regular text-lg text-gray-900" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
+                <div className="hidden lg:block bg-gradient-to-r from-[#4a5a7a] to-[#293350] shadow-lg rounded-xl border border-gray-300 overflow-hidden">
+                  <div className="p-4 border-b border-white/20">
+                    <h3 className="font-poppins font-regular text-lg text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                       Filter & Sort
                     </h3>
                   </div>
@@ -480,13 +484,16 @@ const IndustryPage = () => {
                     {/* Product Category (Bond/Seal/Tape) */}
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-sm font-semibold text-gray-700">Product Category</h4>
+                        <h4 className="text-sm font-semibold text-white">Product Category</h4>
                       </div>
                       <div className="grid grid-cols-1 gap-2">
                         {(['bond','seal','tape'] as const).map(line => (
                           <button
                             key={line}
-                            onClick={() => setSelectedLine(line)}
+                            onClick={() => {
+                              setSelectedLine(line);
+                              setSelectedChemistries([]);
+                            }}
                             className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden ${
                               selectedLine === line ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
@@ -501,24 +508,24 @@ const IndustryPage = () => {
                     {/* Name Sort */}
                     <div className="space-y-3">
                       <div className="flex items-center">
-                        <ArrowUpDown className="text-gray-700 h-4 w-4 mr-2" />
-                        <h4 className="text-sm font-semibold text-gray-700">Sort By Name</h4>
+                        <ArrowUpDown className="text-white h-4 w-4 mr-2" />
+                        <h4 className="text-sm font-semibold text-white">Sort By Name</h4>
                       </div>
 
                       <div className="flex rounded-lg overflow-hidden">
                         <button
                           onClick={() => setNameSort('asc')}
-                          className={`flex-1 flex items-center justify-center gap-1 py-2 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                          className={`flex-1 flex items-center justify-center gap-1 py-2 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
                         >
-                          <ChevronUp className={`h-3 w-3 ${nameSort === 'asc' ? 'text-white' : 'text-gray-600'}`} />
+                          <ChevronUp className="h-3 w-3" />
                           <span className="text-xs font-medium">A-Z</span>
                         </button>
 
                         <button
                           onClick={() => setNameSort('desc')}
-                          className={`flex-1 flex items-center justify-center gap-1 py-2 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                          className={`flex-1 flex items-center justify-center gap-1 py-2 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
                         >
-                          <ChevronDown className={`h-3 w-3 ${nameSort === 'desc' ? 'text-white' : 'text-gray-600'}`} />
+                          <ChevronDown className="h-3 w-3" />
                           <span className="text-xs font-medium">Z-A</span>
                         </button>
                       </div>
@@ -526,16 +533,16 @@ const IndustryPage = () => {
 
                     {/* Chemistry Filter */}
                     {chemistryTypes.length > 0 && (
-                      <div className="space-y-3 border-t border-gray-200 pt-5">
+                      <div className="space-y-3 border-t border-white/20 pt-5">
                         <div className="flex justify-between items-center">
                           <div className="flex items-center">
-                            <FlaskConical className="text-gray-700 h-4 w-4 mr-2" />
-                            <h4 className="text-sm font-semibold text-gray-700">Chemistry</h4>
+                            <FlaskConical className="text-white h-4 w-4 mr-2" />
+                            <h4 className="text-sm font-semibold text-white">Chemistry</h4>
                           </div>
                           {selectedChemistries.length > 0 && (
                             <button
                               onClick={() => setSelectedChemistries([])}
-                              className="text-xs text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 py-1 px-2 rounded-md"
+                              className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-1 px-2 rounded-md"
                             >
                               Clear
                             </button>
@@ -555,7 +562,7 @@ const IndustryPage = () => {
                                 }}
                                 disabled={count === 0 && !isSelected}
                                 className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden border ${
-                                  isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md border-gray-200'
+                                  isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-white/10 text-white hover:bg-white/20 hover:shadow-md border-white/20'
                                 } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
                               >
                                 <div className="flex items-center gap-2 min-w-0 flex-1">
@@ -605,23 +612,27 @@ const IndustryPage = () => {
                   </div>
                 </div>
 
-                {/* Product Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
-              {industryProducts.map((product, idx) => (
-                <motion.div
-                  key={`${product.id}-${idx}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: Math.min(idx * 0.03, 0.3) }}
-                  className="group"
-                >
+                {/* Product Grid or Empty State */}
+                {industryProducts.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+                    <AnimatePresence mode="popLayout">
+                      {industryProducts.map((product, idx) => (
+                        <motion.div
+                          key={product.id}
+                          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                          transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }}
+                          layout
+                          className="group"
+                        >
                   <div 
-                    className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-white border border-gray-200 hover:border-gray-300 shadow-lg"
+                    className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-b from-[#4a5a7a] to-[#293350] border border-gray-200 hover:border-gray-300 shadow-lg"
                   >
                     {/* Desktop: Badge above image */}
                     <div className="absolute top-3 left-3 z-30 hidden md:block">
                       <div 
-                        className="px-4 py-2 rounded-full text-2xl font-bold uppercase tracking-wide flex items-center gap-2 bg-gray-100 text-gray-800"
+                        className="px-4 py-2 rounded-full text-2xl font-bold uppercase tracking-wide flex items-center gap-2 bg-transparent text-white"
                       >
                         {getIndustryLogo(product.industry?.[0] || '') ? (
                           <img 
@@ -654,17 +665,17 @@ const IndustryPage = () => {
                       />
                     </div>
 
-                    {/* Desktop: Product Title between image and content */}
-                    <div className="hidden md:block px-4 py-3 absolute bottom-24 left-0 right-0">
-                      <h3 className="text-base font-poppins font-bold text-xl leading-tight line-clamp-4 text-gray-900">
-                        {product.name.split('–')[0].trim()}
-                      </h3>
-                    </div>
-
                     {/* Mobile: Left side with image and basic info */}
-                    <div className="flex md:hidden items-center gap-4 flex-1 p-4">
+                    <div 
+                      className="flex md:hidden items-center gap-4 flex-1 p-4 cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedProduct(product);
+                        setIsModalOpen(true);
+                      }}
+                    >
                       {/* Mobile: Product Image */}
-                      <div className="w-[60px] h-[60px] rounded-xl overflow-hidden bg-gray-50 border border-gray-200 shadow-sm relative flex items-center justify-center">
+                      <div className="w-[100px] h-[100px] rounded-xl overflow-hidden bg-transparent relative flex items-center justify-center">
                         {/* Image Skeleton Loading State */}
                         {!imageLoadedStates[product.id] && (
                           <ImageSkeleton className="rounded-xl" />
@@ -683,11 +694,11 @@ const IndustryPage = () => {
                       
                       {/* Mobile: Product Info */}
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-sm font-kallisto font-bold mb-1 leading-tight line-clamp-1 text-gray-900">
+                        <h3 className="text-sm font-kallisto font-bold mb-1 leading-tight line-clamp-1 text-white">
                           {product.name.split('–')[0].trim()}
                         </h3>
-                        <p className="text-xs text-gray-600 line-clamp-2">
-                          {product.name.split('–')[1]?.trim() || product.description}
+                        <p className="text-xs text-white line-clamp-2">
+                          {toTitleCase(product.name.split('–')[1]?.trim() || product.description)}
                         </p>
                         {/* Mobile: Industry Badge */}
                         <div 
@@ -707,11 +718,14 @@ const IndustryPage = () => {
                       </div>
                     </div>
 
-                    {/* Desktop: Content Section */}
+                    {/* Desktop: Content Section with title and description */}
                     <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
-                      <div className="space-y-3">
-                        <p className="text-sm text-gray-600 line-clamp-3">
-                          {product.name.split('–')[1]?.trim() || product.description}
+                      <div className="space-y-1">
+                        <h3 className="text-base font-poppins font-bold text-xl leading-tight line-clamp-4 text-white">
+                          {product.name.split('–')[0].trim()}
+                        </h3>
+                        <p className="text-sm text-white line-clamp-3">
+                          {toTitleCase(product.name.split('–')[1]?.trim() || product.description)}
                         </p>
                         
                         {/* Button Row */}
@@ -723,7 +737,7 @@ const IndustryPage = () => {
                               setSelectedProduct(product);
                               setIsModalOpen(true);
                             }}
-                            className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-[#4a5a7a] hover:bg-[#4a5a7a] text-[#4a5a7a] hover:text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
+                            className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-[white] hover:bg-[#4a5a7a] text-[white] hover:text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
                           >
                             <span>Quick View</span>
                           </button>
@@ -767,8 +781,29 @@ const IndustryPage = () => {
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                      ))}
+                    </AnimatePresence>
                 </div>
+                ) : (
+                  /* Empty State */
+                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                    <div className="mb-4">
+                      <Search className="h-16 w-16 text-gray-400" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+                    <p className="text-gray-600 mb-6">Try adjusting your filters or search terms</p>
+                    <button
+                      onClick={() => {
+                        setSearch('');
+                        setSelectedChemistries([]);
+                        setSelectedLine('bond');
+                      }}
+                      className="px-6 py-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-sm font-medium transition-all duration-300"
+                    >
+                      Clear All Filters
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -827,7 +862,10 @@ const IndustryPage = () => {
                           {(['bond','seal','tape'] as const).map(line => (
                             <button
                               key={line}
-                              onClick={() => setSelectedLine(line)}
+                              onClick={() => {
+                                setSelectedLine(line);
+                                setSelectedChemistries([]);
+                              }}
                               className={`py-2 px-3 rounded-lg text-center text-sm font-medium ${selectedLine === line ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
                             >
                               {line}
@@ -884,7 +922,6 @@ const IndustryPage = () => {
             </AnimatePresence>
           </div>
         </section>
-      )}
 
       {/* Chemistries Section - match homepage version */}
       <div className="relative z-[30]">
@@ -917,43 +954,63 @@ const IndustryPage = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+              className="relative bg-gradient-to-r from-[#4a5a7a] to-[#293350] rounded-2xl md:rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-gray-200 shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-kallisto font-bold text-gray-900">
-                    {selectedProduct.name.split('–')[0].trim()}
-                  </h3>
-                  <button
-                    onClick={closeModal}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
+                {/* Close Button */}
+                <button
+                  onClick={closeModal}
+                  className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors z-10"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+
+                {/* Industry Badge */}
+                <div className="mb-4">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-base font-bold uppercase tracking-wide bg-transparent text-white">
+                    {getIndustryLogo(selectedProduct.industry?.[0] || '') ? (
+                      <img 
+                        src={getIndustryLogo(selectedProduct.industry?.[0] || '')} 
+                        alt={`${selectedProduct.industry?.[0] || ''} icon`}
+                        className="h-8 w-8 object-contain"
+                      />
+                    ) : (
+                      <span className="capitalize">{selectedProduct.industry?.[0]?.charAt(0) || ''}</span>
+                    )}
+                    <span className="capitalize">{selectedProduct.industry?.[0] || ''}</span>
+                  </div>
                 </div>
                 
-                <div className="space-y-4">
+                {/* Product Image */}
+                <div className="mb-4">
                   <img
                     src={selectedProduct.imageUrl}
                     alt={selectedProduct.name}
-                    className="w-full h-48 object-contain rounded-lg bg-gray-50"
+                    className="w-full h-64 object-contain"
                   />
+                </div>
+                
+                {/* Product Info */}
+                <div className="space-y-3">
+                  <h3 className="text-xl font-poppins font-bold text-white">
+                    {selectedProduct.name.split('–')[0].trim()}
+                  </h3>
                   
-                  <p className="text-gray-600">
-                    {selectedProduct.name.split('–')[1]?.trim() || selectedProduct.description}
-                   
+                  <p className="text-sm text-white">
+                    {toTitleCase(selectedProduct.name.split('–')[1]?.trim() || selectedProduct.description)}
                   </p>
                   
-                  <div className="flex gap-2">
+                  {/* Action Buttons */}
+                  <div className="flex gap-2 pt-2">
                     <Link
                       to={`/products/${selectedProduct.category?.toLowerCase() || 'bond'}/${selectedProduct.id}`}
-                      className="flex-1 bg-[#F2611D] hover:bg-[#E55B1C] text-white rounded-full px-4 py-2 text-sm font-medium transition-colors text-center"
+                      className="flex-1 inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
                     >
-                      View Details
+                      <span>Product Details</span>
+                      <ExternalLink className="h-3 w-3" />
                     </Link>
                   </div>
-                  
                 </div>
               </div>
             </motion.div>

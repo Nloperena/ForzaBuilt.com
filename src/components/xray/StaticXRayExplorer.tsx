@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IndustryData, XRayComponent, Hotspot } from '../../types/industry';
 import ProductTooltip from './ProductTooltip';
+import ProductTooltipCard from './ProductTooltipCard';
 import { typography } from '../../styles/brandStandards';
 import { useIsMobile } from '../../hooks/use-mobile';
 import { X } from 'lucide-react';
@@ -276,7 +277,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="mt-6 bg-gradient-to-br from-[#1B3764] to-[#2A4A7A] rounded-xl p-4 text-white shadow-xl"
+                className="mt-6 bg-[#D1D5DB] rounded-xl p-4 shadow-xl"
               >
                 {selectedHotspot.product ? (
                   <div className="space-y-4">
@@ -284,7 +285,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                       <img
                         src={selectedHotspot.product.thumb}
                         alt={selectedHotspot.product.name}
-                        className="w-64 h-64 object-contain bg-white rounded-lg p-2"
+                        className="w-64 h-64 object-contain rounded-lg p-2"
                       />
                     </div>
                     <div className="text-center">
@@ -300,20 +301,14 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                             }
                           }}
                         />
-                        <Badge 
-                          variant="secondary" 
-                          className="bg-[#F2611D] text-white text-xs"
-                        >
-                          {byProductLine(selectedHotspot.product.sku)}
-                        </Badge>
                       </div>
-                      <h3 className="font-bold text-lg mb-2">
+                      <h3 className="font-bold text-lg mb-2 text-[#1B3764]">
                         {selectedHotspot.product.sku}
                       </h3>
-                      <p className="text-sm text-gray-200 mb-3">
+                      <p className="text-sm text-[#1B3764] mb-3">
                         {selectedHotspot.product.name}
                       </p>
-                      <p className="text-sm text-gray-300 mb-4">
+                      <p className="text-sm text-[#1B3764] mb-4">
                         {selectedHotspot.product.blurb}
                       </p>
                     </div>
@@ -322,7 +317,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                         setSelectedProduct(selectedHotspot.product);
                         setIsModalOpen(true);
                       }}
-                      className="w-full bg-[#F2611D] hover:bg-[#E55B1C] text-white rounded-full px-6 py-3 font-medium transition-colors"
+                      className="w-full bg-[#1B3764] hover:bg-[#2A4A7A] text-white rounded-full px-6 py-3 font-medium transition-colors"
                     >
                       View Product Details
                     </button>
@@ -333,11 +328,11 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                       <span className="text-2xl">
                         {selectedHotspot.experience?.icon}
                       </span>
-                      <h3 className="font-bold text-xl">
+                      <h3 className="font-bold text-xl text-[#1B3764]">
                         {selectedHotspot.experience?.title}
                       </h3>
                     </div>
-                    <p className="text-gray-200">
+                    <p className="text-[#1B3764]">
                       {selectedHotspot.experience?.description}
                     </p>
                   </div>
@@ -346,91 +341,13 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
             )}
           </motion.div>
 
-          {/* Large Product Tooltip - appears to the right of the graphic */}
-          <AnimatePresence>
-            {hoveredHotspot && !isMobile && (
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="fixed top-1/2 right-8 transform -translate-y-1/2 bg-[#D1D5DB] rounded-xl p-4 text-white shadow-2xl pointer-events-none z-50 w-80 max-h-[60vh] overflow-y-auto"
-                style={{
-                  top: 'clamp(10vh, 50%, 90vh)',
-                  transform: 'translateY(-50%)'
-                }}
-              >
-                {hoveredHotspot.product ? (
-                  <div className="space-y-4">
-                    {/* Large Product Image - Focal Point */}
-                    <div className="flex justify-center">
-                      <img
-                        src={hoveredHotspot.product.thumb}
-                        alt={hoveredHotspot.product.name}
-                        className="w-40 h-40 object-contain bg-white rounded-lg p-3"
-                      />
-                    </div>
-                    
-                    {/* Compact Product Information */}
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-center gap-2">
-                        <img 
-                          src={`/logos/${industry.id.charAt(0).toUpperCase() + industry.id.slice(1)}-Icon.png`}
-                          alt={`${industry.id} industry`}
-                          className="w-5 h-5 object-contain"
-                          onError={(e) => {
-                            // Fallback for transportation which has different naming
-                            if (industry.id === 'transportation') {
-                              e.currentTarget.src = '/logos/Transportation-Icon-2.png';
-                            }
-                          }}
-                        />
-                        <Badge 
-                          variant="secondary" 
-                          className="bg-[#F2611D] text-white text-xs px-2 py-1"
-                        >
-                          {byProductLine(hoveredHotspot.product.sku)}
-                        </Badge>
-                      </div>
-                      
-                      <div className="text-center">
-                        <h3 className="font-bold text-xl mb-2 text-white">
-                          {hoveredHotspot.product.sku}
-                        </h3>
-                        <p className="text-sm text-gray-200 mb-3 leading-relaxed">
-                          {hoveredHotspot.product.name}
-                        </p>
-                        <p className="text-xs text-gray-300 mb-4 leading-relaxed line-clamp-3">
-                          {hoveredHotspot.product.blurb}
-                        </p>
-                      </div>
-
-                      {/* Compact Call to Action */}
-                      <div className="text-center pt-3 border-t border-white/20">
-                        <div className="text-xs text-gray-400">
-                          Click highlighted area for details
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-center gap-4 mb-4">
-                      <span className="text-4xl">
-                        {hoveredHotspot.experience?.icon}
-                      </span>
-                      <h3 className="font-bold text-2xl text-center">
-                        {hoveredHotspot.experience?.title}
-                      </h3>
-                    </div>
-                    <p className="text-base text-gray-200 leading-relaxed text-center">
-                      {hoveredHotspot.experience?.description}
-                    </p>
-                  </div>
-                )}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Product Tooltip Card - Sticky to bottom right */}
+          {!isMobile && (
+            <ProductTooltipCard 
+              product={hoveredHotspot?.product || null} 
+              isVisible={!!hoveredHotspot?.product} 
+            />
+          )}
         </div>
       </div>
 

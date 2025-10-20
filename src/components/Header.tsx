@@ -43,24 +43,11 @@ const Header = () => {
   return (
     <header 
       ref={headerRef} 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         mode === 'light' 
           ? 'bg-white border-b border-gray-200 shadow-lg' 
-          : mode === 'light2'
-          ? (isScrolled || isHeaderHovered)
-            ? 'bg-[#293350] border-b border-[#293350] shadow-lg'
-            : 'bg-transparent border-b border-transparent shadow-none'
-          : 'backdrop-blur-2xl bg-white/50 border-b border-white/60'
+          : 'bg-transparent'
       }`}
-      style={
-        mode === 'light' 
-          ? { backgroundColor: '#ffffff' } 
-          : mode === 'light2'
-          ? (isScrolled || isHeaderHovered)
-            ? { backgroundColor: '#293350' }
-            : { backgroundColor: 'transparent' }
-          : { backgroundColor: '#29335030' }
-      }
       onMouseEnter={() => {
         setIsHeaderHovered(true);
         handleOverlayEnter();
@@ -70,7 +57,16 @@ const Header = () => {
         handleNavLeave();
       }}
     >
-      <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      {/* Animated Gradient Background Layer */}
+      {mode !== 'light' && (
+        <div 
+          className={`absolute inset-0 bg-gradient-to-b from-[#4a5a7a] to-[#293350] transition-opacity duration-500 ${
+            (isScrolled || isHeaderHovered) ? 'opacity-100 shadow-lg' : 'opacity-0'
+          }`}
+          style={{ zIndex: -1 }}
+        />
+      )}
+      <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
         {/* Always centered layout */}
         <div className="flex items-center justify-between">
           {/* Left Navigation */}
@@ -135,12 +131,8 @@ const Header = () => {
             <div className={`w-full max-w-[1400px] relative rounded-b-2xl overflow-hidden ${
               mode === 'light' || mode === 'light2'
                 ? 'bg-white'
-                : 'bg-[var(--forza-blue-velvet)] bg-opacity-90'
+                : 'bg-gradient-to-t from-[#4a5a7a] to-[#293350]'
             }`}>
-              {/* Default Gradient Background - only for dark mode */}
-              {mode !== 'light' && mode !== 'light2' && (
-                <div className="absolute inset-0 bg-gradient-to-br from-[#293350] to-[#81899f] -z-20"></div>
-              )}
 
               <div className="px-6 h-56 relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
                 <OverlayContent

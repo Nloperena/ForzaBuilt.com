@@ -261,11 +261,11 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                             } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
                           >
                             <div className="flex items-center gap-2 min-w-0 flex-1">
-                              <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                              <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center">
                                 <img 
                                   src={CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]} 
                                   alt={chemistry}
-                                  className="w-6 h-6 object-contain chemistry-icon"
+                                  className="w-8 h-8 object-contain chemistry-icon"
                                 />
                               </div>
                               <span className="text-xs xl:text-sm font-medium truncate">{chemistry}</span>
@@ -608,6 +608,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
 };
 
 export default IndustryProductsSection;
+
 
 
 

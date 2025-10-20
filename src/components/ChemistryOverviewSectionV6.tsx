@@ -172,23 +172,10 @@ const ChemistryOverviewSectionV6: React.FC = () => {
 
   return (
     <section className="w-full relative overflow-hidden
-                        py-[clamp(40px,6vw,96px)] px-[clamp(16px,4vw,48px)]">
-      {/* Video Background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ zIndex: 1 }}
-      >
-        <source src="/Untitled Project.aep_AME\Pre-comp 1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+                        py-[clamp(40px,6vw,96px)] px-[clamp(16px,4vw,48px)]
+                        bg-gradient-to-bl from-[#4a5a7a] to-[#293350]">
       
-      
-      <div className="max-w-screen-2xl mx-auto relative z-10" style={{ zIndex: 3 }}>
+      <div className="max-w-screen-2xl mx-auto relative z-10">
         <h2
           className="font-poppins font-normal text-white text-center
                      text-[clamp(28px,6vw,56px)] md:text-[clamp(40px,4.5vw,64px)]
@@ -233,8 +220,8 @@ const ChemistryOverviewSectionV6: React.FC = () => {
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
                       className="
-                        w-[clamp(3.5rem,6.2vw,9rem)]
-                        h-[clamp(3.5rem,6.2vw,9rem)]
+                        w-[clamp(5.5rem,9vw,13rem)]
+                        h-[clamp(5.5rem,9vw,13rem)]
                         object-contain
                         drop-shadow-lg
                         group-hover:drop-shadow-[0_8px_20px_rgba(242,97,29,0.35)]
@@ -298,8 +285,8 @@ const ChemistryOverviewSectionV6: React.FC = () => {
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
                       className="
-                        w-[clamp(3.5rem,6.2vw,9rem)]
-                        h-[clamp(3.5rem,6.2vw,9rem)]
+                        w-[clamp(5.5rem,9vw,13rem)]
+                        h-[clamp(5.5rem,9vw,13rem)]
                         object-contain
                         drop-shadow-lg
                         group-hover:drop-shadow-[0_8px_20px_rgba(242,97,29,0.35)]
