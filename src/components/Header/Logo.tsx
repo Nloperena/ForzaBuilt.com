@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
-import forzaLogo from '@/assets/svg/Forza-Eagle-Logo-Blue.svg';
+import forzaLogo from '@/assets/SVG/Forza-Eagle-Logo-Blue.svg';
 
 interface LogoProps {
   className?: string;
@@ -28,6 +28,6 @@ const Logo: React.FC<LogoProps> = ({ className = 'h-10 w-auto', isScrolled = fal
       />
     </Link>
   );
-};
+};  
 
 export default Logo; 
