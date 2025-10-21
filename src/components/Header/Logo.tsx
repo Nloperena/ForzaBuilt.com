@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
-import forzaLogo from '@/assets/SVG/Forza-Eagle-Logo-Blue.svg';
 
 interface LogoProps {
   className?: string;

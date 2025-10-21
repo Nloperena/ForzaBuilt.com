@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import forzaLogo from '@/assets/SVG/Forza-Eagle-Logo-White.svg';
 import { brandColors, typography } from '@/styles/brandStandards';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
@@ -7,8 +6,8 @@ const Footer = () => {
   const [showNewsletterForm, setShowNewsletterForm] = useState(false);
   const { mode, getGradientClasses } = useGradientMode();
   
-  // Use white logo for all modes (as shown in the design)
-  const logoSrc = forzaLogo;
+  // Use white logo from public folder
+  const logoSrc = '/Forza-Eagle-Logo-White.svg';
 
   const handleCloseModal = () => {
     setShowNewsletterForm(false);
