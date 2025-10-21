@@ -13,6 +13,7 @@ interface NavigationItemProps {
   onMouseEnter: (content: string) => void;
   onMouseLeave: () => void;
   onClick: (content: string) => void;
+  isNavbarWhite?: boolean;
 }
 
 const NavigationItem: React.FC<NavigationItemProps> = ({
@@ -22,6 +23,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   onMouseEnter,
   onMouseLeave,
   onClick,
+  isNavbarWhite = false,
 }) => {
   const location = useLocation();
   const { mode } = useGradientMode();
@@ -29,8 +31,8 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
   const isActive = (isOverlayOpen && activeOverlayContent === item.name.toLowerCase()) || 
                    location.pathname.startsWith(item.href);
   
-  // Use white text for light2 mode, blue for light mode, white for dark mode
-  const defaultTextColor = mode === 'light2' ? 'text-white' : mode === 'light' ? 'text-[#293350]' : 'text-white';
+  // Use blue text when navbar is white, white text when transparent, blue for light mode
+  const defaultTextColor = isNavbarWhite ? 'text-[#293350]' : mode === 'light' ? 'text-[#293350]' : 'text-white';
 
   if (hasDropdown) {
     return (

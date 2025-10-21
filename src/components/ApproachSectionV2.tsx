@@ -77,8 +77,12 @@ const ApproachSectionV2 = () => {
   const [previousItem, setPreviousItem] = useState(2);
   const { mode } = useGradientMode();
   const [scrollY, setScrollY] = useState(0);
+  const [progress, setProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>();
+  const cycleTimerRef = useRef<NodeJS.Timeout>();
+  const progressIntervalRef = useRef<NodeJS.Timeout>();
+  const isUserInteractingRef = useRef(false);
 
   useEffect(() => {
     let ticking = false;
@@ -118,15 +122,55 @@ const ApproachSectionV2 = () => {
     };
   }, []);
 
+  useEffect(() => {
+    // Auto-cycle every 4 seconds
+    cycleTimerRef.current = setInterval(() => {
+      if (!isUserInteractingRef.current) {
+        setSelectedItem(prev => {
+          const nextIndex = (prev + 1) % approachItems.length;
+          setPreviousItem(prev);
+          return nextIndex;
+        });
+        setProgress(0);
+      }
+    }, 4000);
+
+    // Progress bar animation
+    progressIntervalRef.current = setInterval(() => {
+      if (!isUserInteractingRef.current) {
+        setProgress(prev => {
+          if (prev >= 100) return 0;
+          return prev + (100 / 40); // 100% over 4000ms (40 intervals of 100ms)
+        });
+      }
+    }, 100);
+
+    return () => {
+      if (cycleTimerRef.current) clearInterval(cycleTimerRef.current);
+      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
+    };
+  }, []);
+
   const handleItemChange = (index: number) => {
     if (index !== selectedItem) {
       setPreviousItem(selectedItem);
       setSelectedItem(index);
+      setProgress(0);
+      isUserInteractingRef.current = true;
+      // Reset auto-cycle after user interaction
+      if (cycleTimerRef.current) clearTimeout(cycleTimerRef.current);
+      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
+      cycleTimerRef.current = setTimeout(() => {
+        isUserInteractingRef.current = false;
+      }, 8000);
     }
   };
 
   return (
     <section ref={sectionRef} className="relative isolate overflow-visible">
+      {/* Progress bar */}
+      <div className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
+      
       {/* Top Banner */}
       <ExperienceBetterBanner />
 
@@ -165,7 +209,7 @@ const ApproachSectionV2 = () => {
               alt={approachItems[selectedItem].title}
               className="
                 absolute inset-0 w-full h-full object-cover
-                animate-in slide-in-from-left duration-700
+                animate-in slide-in-from-right duration-700
               "
               style={{
                 objectPosition: 'center center',

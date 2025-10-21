@@ -142,16 +142,34 @@ const IndustryPage = () => {
   };
 
   // Get products for the current industry with filtering
+  const [allLineProducts, setAllLineProducts] = useState<any[]>([]);
+  const [productsLoading, setProductsLoading] = useState(true);
+
+  // Load products when selected line changes
+  useEffect(() => {
+    const loadProducts = async () => {
+      setProductsLoading(true);
+      try {
+        const products = await byProductLine(selectedLine);
+        setAllLineProducts(products);
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        setAllLineProducts([]);
+      } finally {
+        setProductsLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, [selectedLine]);
+
   const industryProducts = useMemo(() => {
     if (!industryData) return [];
     
     const industryKey = industryData.title.toLowerCase();
     
-    // Get products from the selected product line
-    const allProducts = byProductLine(selectedLine);
-    
     // Filter by industry first
-    let filtered = allProducts.filter(product => {
+    let filtered = allLineProducts.filter(product => {
       if (!product.industry) return false;
       
       // Handle both array and string industry formats
@@ -186,7 +204,7 @@ const IndustryPage = () => {
     );
 
     return filtered;
-  }, [industryData, selectedLine, search, selectedChemistries, nameSort]);
+  }, [industryData, allLineProducts, search, selectedChemistries, nameSort]);
 
   // Get chemistry types for the current industry
   const chemistryTypes = useMemo(() => {
@@ -199,27 +217,36 @@ const IndustryPage = () => {
   }, [industryProducts]);
 
   // Get category counts for all products in this industry
-  const categoryCounts = useMemo(() => {
-    if (!industryData) return { bond: 0, seal: 0, tape: 0 };
-    
-    const industryKey = industryData.title.toLowerCase();
-    const counts = { bond: 0, seal: 0, tape: 0 };
-    
-    // Count all products for each category in this industry
-    (['bond', 'seal', 'tape'] as const).forEach(line => {
-      const products = byProductLine(line);
-      counts[line] = products.filter(product => {
-        if (!product.industry) return false;
-        const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
-        return industries.some(ind => 
-          ind.toLowerCase() === industryKey || 
-          ind.toLowerCase().includes(industryKey) ||
-          industryKey.includes(ind.toLowerCase())
-        );
-      }).length;
-    });
-    
-    return counts;
+  const [categoryCounts, setCategoryCounts] = useState({ bond: 0, seal: 0, tape: 0 });
+
+  useEffect(() => {
+    const loadCategoryCounts = async () => {
+      if (!industryData) {
+        setCategoryCounts({ bond: 0, seal: 0, tape: 0 });
+        return;
+      }
+      
+      const industryKey = industryData.title.toLowerCase();
+      const counts = { bond: 0, seal: 0, tape: 0 };
+      
+      // Count all products for each category in this industry
+      for (const line of ['bond', 'seal', 'tape'] as const) {
+        const products = await byProductLine(line);
+        counts[line] = products.filter(product => {
+          if (!product.industry) return false;
+          const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
+          return industries.some(ind => 
+            ind.toLowerCase() === industryKey || 
+            ind.toLowerCase().includes(industryKey) ||
+            industryKey.includes(ind.toLowerCase())
+          );
+        }).length;
+      }
+      
+      setCategoryCounts(counts);
+    };
+
+    loadCategoryCounts();
   }, [industryData]);
 
   const closeModal = () => {
@@ -721,7 +748,7 @@ const IndustryPage = () => {
                     {/* Desktop: Content Section with title and description */}
                     <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
                       <div className="space-y-1">
-                        <h3 className="text-base font-poppins font-bold text-xl leading-tight line-clamp-4 text-white">
+                        <h3 className="text-base font-poppins font-bold leading-tight line-clamp-4 text-white">
                           {product.name.split('–')[0].trim()}
                         </h3>
                         <p className="text-sm text-white line-clamp-3">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import forzaLogo from '@/assets/images/forza-logo-full.png';
+import forzaLogo from '@/assets/svg/Forza-Eagle-Logo-White.svg';
 import { brandColors, typography } from '@/styles/brandStandards';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 

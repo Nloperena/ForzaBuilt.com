@@ -1,7 +1,7 @@
 {
   "metadata": {
     "consolidatedAt": "2025-08-06T15:39:54.036Z",
-    "totalProducts": 145,
+    "totalProducts": 146,
     "source": "Consolidated from productsMerged.json and productsWithTdsLinks.json",
     "commonProducts": 145,
     "onlyInMerged": 0,
@@ -11267,6 +11267,65 @@
       "isActive": true,
       "createdAt": "2025-08-06T15:40:58.390Z",
       "updatedAt": "2025-08-06T15:52:29.475Z",
+      "version": 1
+    },
+    {
+      "id": "t-t246",
+      "name": "T-T246 – High Bond Acrylic Double-Sided Tape",
+      "description": "ForzaTape® T-T246 is a high bond acrylic double-sided tape, that can withstand a wide range of weathering and temperature conditions without losing adhesion.",
+      "category": "TAPE",
+      "industry": [
+        "industrial",
+        "transportation",
+        "construction",
+        "electronics"
+      ],
+      "productType": "Tape",
+      "chemistry": "Acrylic",
+      "technicalData": {
+        "appearance": "",
+        "shelfLife": "",
+        "solids": "",
+        "solvent": "",
+        "voc": "",
+        "viscosity": "",
+        "density": "",
+        "pH": "",
+        "color": "",
+        "odor": "",
+        "storageConditions": "",
+        "temperatureRange": "",
+        "adhesiveType": "Double-Sided",
+        "foamType": "",
+        "peelStrength": "",
+        "shearStrength": "",
+        "elongationRate": "800%"
+      },
+      "applications": "Bonds a wide variety of materials where permanent flexibility is needed, including plastics, metals, wood, and paper. Bonds parts where static load is high in the transportation, electronics, advertising, hardware, and construction industries. Also bonds parts in the solar PV and elevator industries.",
+      "benefits": [
+        "Can withstand a wide range of weathering and temperature conditions without losing adhesion",
+        "Reduces weight & replaces screw, riveting and welding",
+        "High strength bond resists moisture, chemicals, dust, and UV",
+        "Very flexible, with elongation rate of 800%",
+        "Instant high strength; bonds well to many surfaces",
+        "Long aging, resists hardening or embrittlement",
+        "Flexible and compressible",
+        "Excellent sealing, shockproof and soundproof characteristics",
+        "Adheres well to high and low surface energy substrates",
+        "Good peel and shear strength"
+      ],
+      "sizes": [
+        "5/8\" x 1/11\" x 108'"
+      ],
+      "imageUrl": "/product-images/t-t246.png",
+      "pdfLinks": [],
+      "standardTdsLink": "",
+      "hasTdsLink": false,
+      "searchKeywords": ["double-sided", "acrylic", "flexible", "high bond"],
+      "shortName": "T-T246",
+      "isActive": true,
+      "createdAt": "2025-01-27T00:00:00.000Z",
+      "updatedAt": "2025-01-27T00:00:00.000Z",
       "version": 1
     }
   ]

@@ -8,7 +8,7 @@ export type Product = {
   productType?: string;
   chemistry?: string;
   technicalData?: Record<string, string>;
-  applications?: string;
+  applications?: string[];
   benefits?: string[];
   sizes?: string[];
   imageUrl?: string;

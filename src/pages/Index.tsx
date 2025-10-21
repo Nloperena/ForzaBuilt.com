@@ -36,45 +36,85 @@ const Index = () => {
         <section className="relative">
           <ProductImageTicker
             items={[
-              { src: "/product-images/c-os9.png", alt: "OS9" },
-              { src: "/product-images/c130.png", alt: "C130" },
-              { src: "/product-images/c150.png", alt: "C150" },
-              { src: "/product-images/c331.png", alt: "C331" },
-              { src: "/product-images/ic933.png", alt: "IC933" },
-              { src: "/product-images/ic946.png", alt: "IC946" },
-              { src: "/product-images/os2.png", alt: "OS2" },
-              { src: "/product-images/os20.png", alt: "OS20" },
-              { src: "/product-images/os24.png", alt: "OS24" },
-              { src: "/product-images/os31.png", alt: "OS31" },
-              { src: "/product-images/os35.png", alt: "OS35" },
-              { src: "/product-images/os37.png", alt: "OS37" },
-              { src: "/product-images/os45.png", alt: "OS45" },
-              { src: "/product-images/os55.png", alt: "OS55" },
-              { src: "/product-images/r160.png", alt: "R160" },
-              { src: "/product-images/r221.png", alt: "R221" },
-              { src: "/product-images/r519.png", alt: "R519" },
-              { src: "/product-images/r529.png", alt: "R529" },
-              { src: "/product-images/t215.png", alt: "T215" },
-              { src: "/product-images/t220.png", alt: "T220" },
-              { src: "/product-images/t305.png", alt: "T305" },
-              { src: "/product-images/t350.png", alt: "T350" },
-              { src: "/product-images/t500.png", alt: "T500" },
-              { src: "/product-images/t600.png", alt: "T600" },
-              { src: "/product-images/t715.png", alt: "T715" },
-              { src: "/product-images/t900.png", alt: "T900" },
-              { src: "/product-images/t950.png", alt: "T950" },
-              { src: "/product-images/t970.png", alt: "T970" },
-              { src: "/product-images/mc722.png", alt: "MC722" },
-              { src: "/product-images/mc723.png", alt: "MC723" },
-              { src: "/product-images/mc724.png", alt: "MC724" },
-              { src: "/product-images/mc737.png", alt: "MC737" },
-              { src: "/product-images/mc739.png", alt: "MC739" },
-              { src: "/product-images/mc741.png", alt: "MC741" },
+              // BOND 1
               { src: "/product-images/tac-734g.png", alt: "TAC-734G" },
+              // SEAL 1
+              { src: "/product-images/c-os9.png", alt: "OS9" },
+              // TAPE 1
+              { src: "/product-images/t215.png", alt: "T215" },
+              // BOND 2
               { src: "/product-images/tac-735r.png", alt: "TAC-735R" },
+              // SEAL 2
+              { src: "/product-images/os2.png", alt: "OS2" },
+              // TAPE 2
+              { src: "/product-images/t220.png", alt: "T220" },
+              // BOND 3
               { src: "/product-images/tac-738r.png", alt: "TAC-738R" },
+              // SEAL 3
+              { src: "/product-images/os20.png", alt: "OS20" },
+              // TAPE 3
+              { src: "/product-images/t305.png", alt: "T305" },
+              // BOND 4
               { src: "/product-images/tac-739r.png", alt: "TAC-739R" },
+              // SEAL 4
+              { src: "/product-images/os31.png", alt: "OS31" },
+              // TAPE 4
+              { src: "/product-images/t350.png", alt: "T350" },
+              // BOND 5
+              { src: "/product-images/mc722.png", alt: "MC722" },
+              // SEAL 5
+              { src: "/product-images/os35.png", alt: "OS35" },
+              // TAPE 5
+              { src: "/product-images/t500.png", alt: "T500" },
+              // BOND 6
+              { src: "/product-images/mc723.png", alt: "MC723" },
+              // SEAL 6
+              { src: "/product-images/os37.png", alt: "OS37" },
+              // TAPE 6
+              { src: "/product-images/t600.png", alt: "T600" },
+              // BOND 7
+              { src: "/product-images/mc724.png", alt: "MC724" },
+              // SEAL 7
+              { src: "/product-images/os45.png", alt: "OS45" },
+              // TAPE 7
+              { src: "/product-images/t715.png", alt: "T715" },
+              // BOND 8
+              { src: "/product-images/mc737.png", alt: "MC737" },
+              // SEAL 8
+              { src: "/product-images/os55.png", alt: "OS55" },
+              // TAPE 8
+              { src: "/product-images/t900.png", alt: "T900" },
+              // BOND 9
+              { src: "/product-images/mc739.png", alt: "MC739" },
+              // TAPE 9
+              { src: "/product-images/t950.png", alt: "T950" },
+              // BOND 10
+              { src: "/product-images/mc741.png", alt: "MC741" },
+              // TAPE 10
+              { src: "/product-images/t970.png", alt: "T970" },
+              // BOND 11
+              { src: "/product-images/ic933.png", alt: "IC933" },
+              // BOND 12
+              { src: "/product-images/ic946.png", alt: "IC946" },
+              // BOND 13
+              { src: "/product-images/c130.png", alt: "C130" },
+              // BOND 14
+              { src: "/product-images/c150.png", alt: "C150" },
+              // BOND 15
+              { src: "/product-images/c331.png", alt: "C331" },
+              // BOND 16
+              { src: "/product-images/r160.png", alt: "R160" },
+              // BOND 17
+              { src: "/product-images/r221.png", alt: "R221" },
+              // BOND 18
+              { src: "/product-images/r519.png", alt: "R519" },
+              // BOND 19
+              { src: "/product-images/r529.png", alt: "R529" },
+              // BOND 20
+              { src: "/product-images/os24.png", alt: "OS24" },
+              // BOND 21
               { src: "/product-images/fc-car.png", alt: "FC Car" },
+              // BOND 22
               { src: "/product-images/frp.png", alt: "FRP" }
             ]}
             speed={95}

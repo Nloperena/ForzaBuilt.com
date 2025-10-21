@@ -49,74 +49,245 @@ export type ProductsData = {
 };
 
 // Constants
-const PRODUCTS_DATA_URL = '/productsSimplified.json';
+// Direct URL to Heroku API (CORS enabled on server)
+const PRODUCTS_DATA_URL = 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products';
 
 // Service functions
 export async function getAllProducts(): Promise<Product[]> {
-  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
-    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
-    : PRODUCTS_DATA_URL;
-  const data = await fetchData<ProductsData>(url);
-  const products = data.products || [];
-  
-  // Skip image validation for now to improve loading performance
-  // Images will be validated on-demand when needed
-  return products;
+  try {
+    const response = await fetch(PRODUCTS_DATA_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const apiData = await response.json();
+    
+    // Transform the API data to match your expected format
+    const products = apiData.map((apiProduct: any) => {
+      // Handle technical data - can be array or object
+      let technicalData = {};
+      if (apiProduct.technical) {
+        if (Array.isArray(apiProduct.technical)) {
+          // Technical is an array - convert to object
+          technicalData = apiProduct.technical.reduce((acc: any, item: any) => {
+            acc[item.property] = item.value;
+            return acc;
+          }, {});
+        } else if (typeof apiProduct.technical === 'object') {
+          // Technical is already an object - use as is
+          technicalData = apiProduct.technical;
+        }
+      }
+
+      // Handle sizing - can be array of strings or array of objects
+      let sizes: string[] = [];
+      if (apiProduct.sizing && Array.isArray(apiProduct.sizing)) {
+        sizes = apiProduct.sizing.map((size: any) => 
+          typeof size === 'string' ? size : size.size || ''
+        );
+      }
+
+      return {
+        id: apiProduct.product_id,
+        name: apiProduct.full_name || apiProduct.name,
+        shortName: apiProduct.name,
+        description: apiProduct.description,
+        category: apiProduct.brand === 'forza_bond' ? 'BOND' : 
+                  apiProduct.brand === 'forza_seal' ? 'SEAL' : 
+                  apiProduct.brand === 'forza_tape' ? 'TAPE' : 'BOND',
+        industry: [apiProduct.industry?.replace('_industry', '').replace('_', ' ') || 'industrial'],
+        productType: apiProduct.brand,
+        chemistry: apiProduct.chemistry,
+        technicalData: technicalData,
+        applications: Array.isArray(apiProduct.applications) 
+          ? apiProduct.applications 
+          : apiProduct.applications ? [apiProduct.applications] : [],
+        benefits: apiProduct.benefits || [],
+        sizes: sizes,
+        imageUrl: apiProduct.image,
+        pdfLinks: [], // Not in API response
+        standardTdsLink: '', // Not in API response
+        hasTdsLink: false, // Not in API response
+        searchKeywords: [], // Not in API response
+        isActive: apiProduct.published,
+        createdAt: apiProduct.created_at,
+        updatedAt: apiProduct.updated_at,
+        version: 1
+      };
+    });
+    
+    // Filter to only show published products
+    return products.filter(product => product.isActive === true);
+  } catch (error) {
+    console.error('Failed to fetch products from Heroku API, trying fallback:', error);
+    
+    // Fallback to local JSON file in development
+    if (import.meta.env.DEV) {
+      try {
+        const fallbackResponse = await fetch('/productsSimplified.json');
+        if (fallbackResponse.ok) {
+          const fallbackData = await fallbackResponse.json();
+          console.warn('Using fallback local JSON data');
+          return fallbackData.products || [];
+        }
+      } catch (fallbackError) {
+        console.error('Fallback also failed:', fallbackError);
+      }
+    }
+    
+    return [];
+  }
 }
 
 export async function getProductById(id: string): Promise<Product | null> {
-  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
-    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
-    : PRODUCTS_DATA_URL;
-  const data = await fetchData<ProductsData>(url);
-  const product = data.products.find(p => p.id === id) || null;
-  
-  // Skip image validation for now to improve loading performance
-  return product;
+  try {
+    const response = await fetch(PRODUCTS_DATA_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const apiData = await response.json();
+    const apiProduct = apiData.find((p: any) => p.product_id === id);
+    
+    if (!apiProduct) {
+      return null;
+    }
+    
+    // Handle technical data - can be array or object
+    let technicalData = {};
+    if (apiProduct.technical) {
+      if (Array.isArray(apiProduct.technical)) {
+        // Technical is an array - convert to object
+        technicalData = apiProduct.technical.reduce((acc: any, item: any) => {
+          acc[item.property] = item.value;
+          return acc;
+        }, {});
+      } else if (typeof apiProduct.technical === 'object') {
+        // Technical is already an object - use as is
+        technicalData = apiProduct.technical;
+      }
+    }
+
+    // Handle sizing - can be array of strings or array of objects
+    let sizes: string[] = [];
+    if (apiProduct.sizing && Array.isArray(apiProduct.sizing)) {
+      sizes = apiProduct.sizing.map((size: any) => 
+        typeof size === 'string' ? size : size.size || ''
+      );
+    }
+
+    // Transform the API data to match your expected format
+    const product = {
+      id: apiProduct.product_id,
+      name: apiProduct.full_name || apiProduct.name,
+      shortName: apiProduct.name,
+      description: apiProduct.description,
+      category: apiProduct.brand === 'forza_bond' ? 'BOND' : 
+                apiProduct.brand === 'forza_seal' ? 'SEAL' : 
+                apiProduct.brand === 'forza_tape' ? 'TAPE' : 'BOND',
+      industry: [apiProduct.industry?.replace('_industry', '').replace('_', ' ') || 'industrial'],
+      productType: apiProduct.brand,
+      chemistry: apiProduct.chemistry,
+      technicalData: technicalData,
+      applications: Array.isArray(apiProduct.applications) 
+        ? apiProduct.applications 
+        : apiProduct.applications ? [apiProduct.applications] : [],
+      benefits: apiProduct.benefits || [],
+      sizes: sizes,
+      imageUrl: apiProduct.image,
+      pdfLinks: [], // Not in API response
+      standardTdsLink: '', // Not in API response
+      hasTdsLink: false, // Not in API response
+      searchKeywords: [], // Not in API response
+      isActive: apiProduct.published,
+      createdAt: apiProduct.created_at,
+      updatedAt: apiProduct.updated_at,
+      version: 1
+    };
+    
+    return product;
+  } catch (error) {
+    console.error('Failed to fetch product by ID from Heroku API:', error);
+    return null;
+  }
 }
 
 export async function getProductsByCategory(category: string): Promise<Product[]> {
-  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
-    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
-    : PRODUCTS_DATA_URL;
-  const data = await fetchData<ProductsData>(url);
-  return data.products.filter(p => p.category === category);
+  try {
+    const allProducts = await getAllProducts();
+    return allProducts.filter(p => p.category === category);
+  } catch (error) {
+    console.error('Failed to fetch products by category:', error);
+    return [];
+  }
 }
 
 export async function getProductsByIndustry(industry: string): Promise<Product[]> {
-  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
-    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
-    : PRODUCTS_DATA_URL;
-  const data = await fetchData<ProductsData>(url);
-  return data.products.filter(p => p.industry && p.industry.includes(industry));
+  try {
+    const allProducts = await getAllProducts();
+    return allProducts.filter(p => p.industry && p.industry.includes(industry));
+  } catch (error) {
+    console.error('Failed to fetch products by industry:', error);
+    return [];
+  }
 }
 
 export async function getProductsByChemistry(chemistry: string): Promise<Product[]> {
-  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
-    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
-    : PRODUCTS_DATA_URL;
-  const data = await fetchData<ProductsData>(url);
-  return data.products.filter(p => p.chemistry === chemistry);
+  try {
+    const allProducts = await getAllProducts();
+    return allProducts.filter(p => p.chemistry === chemistry);
+  } catch (error) {
+    console.error('Failed to fetch products by chemistry:', error);
+    return [];
+  }
 }
 
 export async function searchProducts(term: string): Promise<Product[]> {
-  const url = import.meta.env && (import.meta as any).env && (import.meta as any).env.DEV
-    ? `${PRODUCTS_DATA_URL}?v=${Date.now()}`
-    : PRODUCTS_DATA_URL;
-  const data = await fetchData<ProductsData>(url);
-  const searchTerm = term.toLowerCase();
-  
-  return data.products.filter(product => 
-    product.name.toLowerCase().includes(searchTerm) ||
-    product.id.toLowerCase().includes(searchTerm) ||
-    product.shortName?.toLowerCase().includes(searchTerm) ||
-    product.description?.toLowerCase().includes(searchTerm)
-  );
+  try {
+    const allProducts = await getAllProducts();
+    const searchTerm = term.toLowerCase();
+    
+    return allProducts.filter(product => 
+      product.name.toLowerCase().includes(searchTerm) ||
+      product.id.toLowerCase().includes(searchTerm) ||
+      product.shortName?.toLowerCase().includes(searchTerm) ||
+      product.description?.toLowerCase().includes(searchTerm)
+    );
+  } catch (error) {
+    console.error('Failed to search products:', error);
+    return [];
+  }
 }
 
 export async function getProductsMetadata(): Promise<ProductsData['metadata']> {
-  const data = await fetchData<ProductsData>(PRODUCTS_DATA_URL);
-  return data.metadata;
+  try {
+    const allProducts = await getAllProducts();
+    return {
+      consolidatedAt: new Date().toISOString(),
+      totalProducts: allProducts.length,
+      source: 'heroku-api',
+      version: '1.0',
+      schema: {
+        requiredFields: ['id', 'name', 'category', 'industry'],
+        fieldTypes: {
+          id: 'string',
+          name: 'string',
+          category: 'string',
+          industry: 'array'
+        }
+      }
+    };
+  } catch (error) {
+    console.error('Failed to get products metadata:', error);
+    return {
+      consolidatedAt: new Date().toISOString(),
+      totalProducts: 0,
+      source: 'heroku-api',
+      version: '1.0',
+      schema: {
+        requiredFields: [],
+        fieldTypes: {}
+      }
+    };
+  }
 }
 
 // This would be a real API call in production
@@ -144,10 +315,11 @@ export async function deleteProduct(id: string): Promise<boolean> {
   });
 }
 
-// This would be a real API call in production
-export function exportProductsData(): void {
-  fetchData<ProductsData>(PRODUCTS_DATA_URL).then(data => {
-    const jsonStr = JSON.stringify(data, null, 2);
+// Export products data from Heroku API
+export async function exportProductsData(): Promise<void> {
+  try {
+    const products = await getAllProducts();
+    const jsonStr = JSON.stringify(products, null, 2);
     const dataBlob = new Blob([jsonStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
     
@@ -162,12 +334,14 @@ export function exportProductsData(): void {
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     }, 0);
-  });
+  } catch (error) {
+    console.error('Failed to export products data:', error);
+  }
 }
 
-export function generateProductStats() {
-  return fetchData<ProductsData>(PRODUCTS_DATA_URL).then(data => {
-    const products = data.products;
+export async function generateProductStats() {
+  try {
+    const products = await getAllProducts();
     const bondCount = products.filter(p => p.category === "BOND").length;
     const sealCount = products.filter(p => p.category === "SEAL").length;
     const tapeCount = products.filter(p => p.category === "TAPE").length;
@@ -206,5 +380,17 @@ export function generateProductStats() {
         .map(([name, count]) => ({ name, count }))
         .sort((a, b) => b.count - a.count),
     };
-  });
+  } catch (error) {
+    console.error('Failed to generate product stats:', error);
+    return {
+      total: 0,
+      bond: 0,
+      seal: 0,
+      tape: 0,
+      withImage: 0,
+      withPdf: 0,
+      industries: [],
+      chemistries: [],
+    };
+  }
 }

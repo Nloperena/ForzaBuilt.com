@@ -40,6 +40,9 @@ const Header = () => {
   
   const { mode } = useGradientMode();
 
+  // Determine if navbar has white background (light mode or scrolled/hovered in light2 mode)
+  const isNavbarWhite = mode === 'light' || (mode === 'light2' && (isScrolled || isHeaderHovered));
+
   return (
     <header 
       ref={headerRef} 
@@ -54,13 +57,13 @@ const Header = () => {
       }}
       onMouseLeave={() => {
         setIsHeaderHovered(false);
-        handleNavLeave();
+        closeOverlay();
       }}
     >
       {/* Animated Gradient Background Layer */}
       {mode !== 'light' && (
         <div 
-          className={`absolute inset-0 bg-gradient-to-b from-[#4a5a7a] to-[#293350] transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-gradient-to-b from-[white] to-[white] transition-opacity duration-500 ${
             (isScrolled || isHeaderHovered) ? 'opacity-100 shadow-lg' : 'opacity-0'
           }`}
           style={{ zIndex: -1 }}
@@ -80,13 +83,14 @@ const Header = () => {
                 onMouseEnter={handleNavHover}
                 onMouseLeave={handleNavLeave}
                 onClick={handleNavClick}
+                isNavbarWhite={isNavbarWhite}
               />
             ))}
           </div>
           
           {/* Centered Logo */}
           <div className="flex-shrink-0">
-            <Logo className="h-8 w-auto sm:h-[4.5rem]" isScrolled={isScrolled} />
+            <Logo className="h-8 w-auto sm:h-[4.5rem]" isScrolled={isScrolled} isWhiteBackground={isNavbarWhite} />
           </div>
           
           {/* Right Navigation */}
@@ -94,7 +98,7 @@ const Header = () => {
             {/* Desktop Right Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               <SearchBar />
-              <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-6 text-xl border border-[#F2611D]">
+              <Button asChild className={`${isNavbarWhite ? 'text-white bg-[#F2611D] hover:bg-[#F2611D]/80' : 'text-white bg-[#F2611D] hover:bg-[#F2611D]/80'} rounded-full px-8 py-6 text-xl border border-[#F2611D]`}>
                 <Link to="/contact">Contact Us</Link>
               </Button>
             </div>
@@ -102,7 +106,7 @@ const Header = () => {
             {/* Mobile Navigation Button */}
             <button 
               type="button"
-              className="lg:hidden p-2 transition-colors text-white hover:text-white/80"
+              className={`lg:hidden p-2 transition-colors ${isNavbarWhite ? 'text-[#1B3764] hover:text-[#1B3764]/70' : 'text-white hover:text-white/80'}`}
               onClick={openMobileMenu}
               aria-label="Open menu"
             >
@@ -120,8 +124,8 @@ const Header = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            exit={{ opacity: 0, y: -300 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="global-nav-overlay fixed left-0 w-full z-40 overflow-hidden font-kallisto flex justify-center"
             style={{ top: headerRef.current?.offsetHeight ?? 72 }}
             onMouseEnter={handleOverlayEnter}

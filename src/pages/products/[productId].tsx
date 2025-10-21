@@ -12,22 +12,21 @@ import { getProduct, getRelatedProducts } from '@/utils/products';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
-import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
 
 // Chemistry icon paths - updated to use regular Chemistry Products Icons (no white background)
 const CHEMISTRY_ICONS = {
-  acrylic: '/Chemistry%20Products%20Icons/acrylic%20icon.svg',
-  epoxy: '/Chemistry%20Products%20Icons/epoxy%20icon.svg',
-  modifiedEpoxy: '/Chemistry%20Products%20Icons/modified%20epoxy%20icon.svg',
-  silicone: '/Chemistry%20Products%20Icons/silicone%20icon.svg',
-  ms: '/Chemistry%20Products%20Icons/ms%20icon.svg',
-  waterbase: '/Chemistry%20Products%20Icons/water%20based%20icon.svg',
-  hotmelt: '/Chemistry%20Products%20Icons/hotmelt%20icon.svg',
-  solventbase: '/Chemistry%20Products%20Icons/solvent%20based%20icon.svg',
-  polyurethane: '/Chemistry%20Products%20Icons/polyurethane%20icon.svg',
-  cyanoacrylates: '/Chemistry%20Products%20Icons/cyanoacrylates%20icon.svg',
-  methacrylate: '/Chemistry%20Products%20Icons/methacrylate%20icon.svg',
-  rubberbased: '/Chemistry%20Products%20Icons/rubber%20based%20icon.svg'
+  acrylic: '/Rebranded%20Chemistry%20Icons/Acrylic%20icon.svg',
+  epoxy: '/Rebranded%20Chemistry%20Icons/Epoxy%20Icon.svg',
+  modifiedEpoxy: '/Rebranded%20Chemistry%20Icons/Modified%20Epoxy%20icon.svg',
+  silicone: '/Rebranded%20Chemistry%20Icons/Silicone%20icon.svg',
+  ms: '/Rebranded%20Chemistry%20Icons/MS%20icon.svg',
+  waterbase: '/Rebranded%20Chemistry%20Icons/Water%20Based%20icon.svg',
+  hotmelt: '/Rebranded%20Chemistry%20Icons/Hotmelt%20icon.svg',
+  solventbase: '/Rebranded%20Chemistry%20Icons/Solvent%20Based%20icon.svg',
+  polyurethane: '/Rebranded%20Chemistry%20Icons/Polyurethane%20icon.svg',
+  cyanoacrylates: '/Rebranded%20Chemistry%20Icons/Cyanoacrylates%20Icon.svg',
+  methacrylate: '/Rebranded%20Chemistry%20Icons/Methacrylate%20icon.svg',
+  rubberbased: '/Rebranded%20Chemistry%20Icons/rubber%20based%20icon.svg'
 };
 
 // Helper to get chemistry icon
@@ -107,6 +106,12 @@ const ProductDetailPage: React.FC = () => {
   const { productId, productCategory } = useParams<{ productId: string; productCategory?: string }>();
   const [activeTab, setActiveTab] = useState('applications');
   const tabsListRef = useRef<HTMLDivElement>(null);
+  
+  // Make navbar active immediately on this page
+  useEffect(() => {
+    // Trigger a scroll event to activate the navbar
+    window.dispatchEvent(new Event('scroll'));
+  }, []);
 
   // Function to scroll to the active tab
   const scrollToActiveTab = useCallback(() => {
@@ -195,14 +200,33 @@ const ProductDetailPage: React.FC = () => {
   }, [activeTab, setActiveTab]);
 
   // Find the product
-  const product = useMemo(() => {
-    return getProduct(productId);
-  }, [productId]);
+  const [product, setProduct] = useState<any>(null);
+  const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Get related products from the same industry
-  const relatedProducts = useMemo(() => {
-    if (!product) return [];
-    return getRelatedProducts(productId, 4);
+  useEffect(() => {
+    const loadProduct = async () => {
+      setLoading(true);
+      try {
+        const productData = await getProduct(productId);
+        setProduct(productData);
+        
+        if (productData) {
+          const related = await getRelatedProducts(productId, 4);
+          setRelatedProducts(related);
+        }
+      } catch (error) {
+        console.error('Failed to load product:', error);
+        setProduct(null);
+        setRelatedProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (productId) {
+      loadProduct();
+    }
   }, [productId]);
 
   // Normalize sizing/packaging into a single list for Sizing tab
@@ -234,16 +258,75 @@ const ProductDetailPage: React.FC = () => {
     return Array.from(new Set(merged));
   }, [product, normalizeToList]);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex flex-col">
+        <Header />
+        <main className="flex-1 pb-10">
+          {/* Hero Skeleton */}
+          <section className="mb-12 bg-gradient-to-r from-[#4a5a7a] to-[#293350] pt-5">
+            <div className="max-w-[1200px] mx-auto px-4 py-16">
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                {/* Left Side Skeleton */}
+                <div>
+                  <div className="flex gap-3 mb-6">
+                    <div className="h-10 w-24 bg-white/20 rounded-full animate-pulse"></div>
+                    <div className="h-10 w-32 bg-white/20 rounded-full animate-pulse"></div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="h-12 w-full bg-white/20 rounded-lg animate-pulse"></div>
+                    <div className="h-8 w-3/4 bg-white/20 rounded-lg animate-pulse"></div>
+                  </div>
+                </div>
+                {/* Right Side Skeleton */}
+                <div className="h-96 bg-white/10 rounded-xl animate-pulse"></div>
+              </div>
+            </div>
+          </section>
+
+          {/* Tabs Skeleton */}
+          <div className="max-w-[1200px] mx-auto px-4">
+            <div className="mb-12 bg-gradient-to-b from-[#4a5a7a] to-[#293350] rounded-2xl p-6 md:p-8">
+              {/* Tab Buttons Skeleton */}
+              <div className="flex gap-4 mb-8">
+                <div className="h-10 w-32 bg-white/20 rounded-full animate-pulse"></div>
+                <div className="h-10 w-32 bg-white/20 rounded-full animate-pulse"></div>
+                <div className="h-10 w-32 bg-white/20 rounded-full animate-pulse"></div>
+                <div className="h-10 w-32 bg-white/20 rounded-full animate-pulse"></div>
+              </div>
+
+              {/* Content Skeleton */}
+              <div className="space-y-4">
+                <div className="h-8 w-1/4 bg-white/20 rounded-lg animate-pulse"></div>
+                <div className="space-y-3">
+                  <div className="h-4 w-full bg-white/20 rounded animate-pulse"></div>
+                  <div className="h-4 w-full bg-white/20 rounded animate-pulse"></div>
+                  <div className="h-4 w-3/4 bg-white/20 rounded animate-pulse"></div>
+                </div>
+                <div className="pt-4 space-y-3">
+                  <div className="h-4 w-full bg-white/20 rounded animate-pulse"></div>
+                  <div className="h-4 w-full bg-white/20 rounded animate-pulse"></div>
+                  <div className="h-4 w-2/3 bg-white/20 rounded animate-pulse"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   if (!product) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[#1B3764] to-[#115B87] flex flex-col">
+      <div className="min-h-screen bg-white flex flex-col">
         <Header />
         <main className="flex-1 pt-20 pb-10">
           <div className="max-w-[1200px] mx-auto px-4 text-center">
-            <h1 className="text-4xl font-kallisto font-black text-white mb-4">Product Not Found</h1>
-            <p className="text-gray-300 mb-8">The product you're looking for doesn't exist.</p>
+            <h1 className="text-4xl font-kallisto font-black text-gray-900 mb-4">Product Not Found</h1>
+            <p className="text-gray-600 mb-8">The product you're looking for doesn't exist.</p>
             <Link to="/products">
-              <Button className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-8 py-6 text-xl border border-white/30">
+              <Button className="bg-gradient-to-r from-[#4a5a7a] to-[#293350] hover:from-[#3a4a6a] hover:to-[#1a2340] text-white rounded-full px-8 py-6 text-xl">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Products
               </Button>
@@ -256,7 +339,7 @@ const ProductDetailPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1B3764] to-[#115B87] flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <DynamicMetaTags
         title={product.name}
         description={product.description}
@@ -268,31 +351,17 @@ const ProductDetailPage: React.FC = () => {
         image={product.imageUrl || '/forza-logo-full.png'}
       />
       <Header />
-      <main className="flex-1 pt-20 pb-10">
-        {/* Hero Section - Contained within max-width */}
-        <section className="mb-12">
-          <div className="max-w-[1200px] mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="relative overflow-hidden shadow-2xl rounded-2xl"
-            >
-              {/* Light Blue to Dark Blue Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#1B3764] to-[#115B87] opacity-95"></div>
-              
-              {/* Edge triangles positioned at left and right viewport edges */}
-              <EdgeTrianglesBackground
-                leftImage="/Gradients and Triangles/Small Science Triangles.png"
-                rightImage="/Gradients and Triangles/Small Science Triangles 2.png"
-                opacity={0.6}
-                scale={1.1}
-                leftRotation={265}
-                rightRotation={295}
-                leftFlipH={false}
-                rightFlipV={false}
-                blendMode="overlay"
-              />
+      <main className="flex-1 pb-10">
+        {/* Hero Section - Full width background */}
+        <section className="mb-12 bg-gradient-to-r from-[#4a5a7a] to-[#293350]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative overflow-hidden"
+          >
+            {/* Content Container - Centered with max-width */}
+            <div className="max-w-[1200px] mx-auto px-4 py-16">
               
               {/* Content */}
               <div className="relative p-8 md:p-12 text-white">
@@ -301,10 +370,10 @@ const ProductDetailPage: React.FC = () => {
                   <div>
                     {/* Badges */}
                     <div className="flex gap-3 mb-6">
-                      <Badge className="bg-[#115B87] text-white border-0 px-4 py-2">
+                      <Badge className="bg-white text-gray-900 border-0 px-4 py-2 font-bold">
                         {product.category}
                       </Badge>
-                      <Badge className="bg-white/20 backdrop-blur-sm text-white border border-white/30 flex items-center gap-1 px-4 py-2">
+                      <Badge className="bg-white/10 backdrop-blur-sm text-white border border-white/20 flex items-center gap-1 px-4 py-2">
                         {getIndustryLogo(product.industry) ? (
                           <img 
                             src={getIndustryLogo(product.industry)} 
@@ -358,28 +427,32 @@ const ProductDetailPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </section>
 
         <div className="max-w-[1200px] mx-auto px-4">
           {/* Breadcrumb */}
           <nav className="mb-8">
-            <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <Link to="/products" className="hover:text-white transition-colors">
+            <div className="flex items-center gap-2 text-gray-600 text-sm">
+              <Link to="/products" className="hover:text-gray-900 transition-colors">
                 Products
               </Link>
               <span>/</span>
-              <Link to={`/products/${product.category.toLowerCase()}`} className="hover:text-white transition-colors">
+              <Link to={`/products/${product.category.toLowerCase()}`} className="hover:text-gray-900 transition-colors">
                 {product.category}
               </Link>
               <span>/</span>
-              <span className="text-white">{product.name}</span>
+              <span className="text-gray-900 font-semibold">{product.name}</span>
             </div>
           </nav>
 
           {/* Product Details Tabs */}
-          <section className="mb-12">
+          <motion.section 
+            className="mb-12 bg-gradient-to-b from-[#4a5a7a] to-[#293350] rounded-2xl p-6 md:p-8"
+            layout
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full relative">
               <div className="relative">
                 {/* Scroll indicators */}
@@ -408,32 +481,48 @@ const ProductDetailPage: React.FC = () => {
                 </div>
                 
                 <div className="flex justify-center mb-8">
-                  <TabsList className="flex bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 gap-1">
+                  <TabsList className="flex bg-white/5 backdrop-blur-sm border border-white/10 rounded-full p-1 gap-1 relative">
+                    {/* Animated sliding pill background */}
+                    <motion.div
+                      className="absolute bg-white rounded-full"
+                      animate={{
+                        left: activeTab === 'applications' ? 4 : 
+                               activeTab === 'benefits' ? 'calc(25% + 4px)' :
+                               activeTab === 'technical' ? 'calc(50% + 4px)' :
+                               'calc(75% + 4px)',
+                      }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      style={{
+                        top: 4,
+                        bottom: 4,
+                        width: 'calc(25% - 3px)',
+                      }}
+                    />
 
                     <TabsTrigger 
                       value="applications" 
-                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#115B87] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 relative z-10 data-[state=active]:text-[#4a5a7a] data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white"
                     >
                       <MapPin className="h-4 w-4" />
                       <span>Applications</span>
                     </TabsTrigger>
                     <TabsTrigger 
                       value="benefits" 
-                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#115B87] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 relative z-10 data-[state=active]:text-[#4a5a7a] data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white"
                     >
                       <Zap className="h-4 w-4" />
                       <span>Benefits</span>
                     </TabsTrigger>
                     <TabsTrigger 
                       value="technical" 
-                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#115B87] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 relative z-10 data-[state=active]:text-[#4a5a7a] data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white"
                     >
                       <Settings className="h-4 w-4" />
                       <span>Technical</span>
                     </TabsTrigger>
                     <TabsTrigger 
                       value="sizing" 
-                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#115B87] data-[state=active]:text-white data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white data-[state=inactive]:hover:bg-white/5"
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 relative z-10 data-[state=active]:text-[#4a5a7a] data-[state=inactive]:text-white/70 data-[state=inactive]:hover:text-white"
                     >
                       <Package className="h-4 w-4" />
                       <span>Sizing</span>
@@ -442,13 +531,26 @@ const ProductDetailPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-8 md:mt-8">
+              <motion.div 
+                className="mt-8 md:mt-8"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
 
 
 
 
                 <TabsContent value="applications" className="space-y-6">
-                  <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.5 }}
+                    layout
+                  >
+                  <motion.div layout transition={{ duration: 0.5 }}>
+                  <Card className="bg-gradient-to-r from-[#4a5a7a] to-[#293350] border border-gray-200 rounded-2xl">
                     <CardHeader className="px-4 md:px-6 py-3 md:py-4">
                       <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -458,9 +560,9 @@ const ProductDetailPage: React.FC = () => {
                     <CardContent className="px-4 md:px-6 py-3 md:py-4">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          {product.specifications?.applications ? (
+                          {product.applications && product.applications.length > 0 ? (
                             <ul className="space-y-2 text-white/80">
-                              {product.specifications.applications.map((app, index) => (
+                              {product.applications.map((app, index) => (
                                 <li key={index} className="flex items-start gap-2">
                                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                                   <span>{app}</span>
@@ -527,10 +629,20 @@ const ProductDetailPage: React.FC = () => {
                       </div>
                     </CardContent>
                   </Card>
+                  </motion.div>
+                  </motion.div>
                 </TabsContent>
 
                 <TabsContent value="benefits" className="space-y-6">
-                  <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.5 }}
+                    layout
+                  >
+                  <motion.div layout transition={{ duration: 0.5 }}>
+                  <Card className="bg-gradient-to-r from-[#4a5a7a] to-[#293350] border border-gray-200 rounded-2xl">
                     <CardHeader className="px-4 md:px-6 py-3 md:py-4">
                       <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -606,10 +718,20 @@ const ProductDetailPage: React.FC = () => {
                       )}
                     </CardContent>
                   </Card>
+                  </motion.div>
+                  </motion.div>
                 </TabsContent>
 
                 <TabsContent value="technical" className="space-y-6">
-                  <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.5 }}
+                    layout
+                  >
+                  <motion.div layout transition={{ duration: 0.5 }}>
+                  <Card className="bg-gradient-to-r from-[#4a5a7a] to-[#293350] border border-gray-200 rounded-2xl">
                     <CardHeader className="px-4 md:px-6 py-3 md:py-4">
                       <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -651,40 +773,15 @@ const ProductDetailPage: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Technical Data Table - 2 columns, 3 rows each */}
-                      {product.technicalData ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {/* Left Column - 3 rows */}
-                          <div className="space-y-3">
-                            <div className="flex justify-between py-3 border-b border-white/10">
-                              <span className="font-semibold text-white">Appearance:</span>
-                              <span className="text-white/80">{product.technicalData.appearance || 'N/A'}</span>
+                      {/* Technical Data Table - Dynamic display of all properties */}
+                      {product.technicalData && Object.keys(product.technicalData).length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {Object.entries(product.technicalData).map(([key, value]) => (
+                            <div key={key} className="flex justify-between py-3 border-b border-white/10">
+                              <span className="font-semibold text-white">{key}:</span>
+                              <span className="text-white/80">{String(value) || 'N/A'}</span>
                             </div>
-                            <div className="flex justify-between py-3 border-b border-white/10">
-                              <span className="font-semibold text-white">Shelf Life:</span>
-                              <span className="text-white/80">{product.technicalData.shelfLife || 'N/A'}</span>
-                            </div>
-                            <div className="flex justify-between py-3 border-b border-white/10">
-                              <span className="font-semibold text-white">Solids:</span>
-                              <span className="text-white/80">{product.technicalData.solids || 'N/A'}</span>
-                            </div>
-                          </div>
-
-                          {/* Right Column - 3 rows */}
-                          <div className="space-y-3">
-                            <div className="flex justify-between py-3 border-b border-white/10">
-                              <span className="font-semibold text-white">Solvent:</span>
-                              <span className="text-white/80">{product.technicalData.solvent || 'N/A'}</span>
-                            </div>
-                            <div className="flex justify-between py-3 border-b border-white/10">
-                              <span className="font-semibold text-white">VOC:</span>
-                              <span className="text-white/80">{product.technicalData.voc || 'N/A'}</span>
-                            </div>
-                            <div className="flex justify-between py-3 border-b border-white/10">
-                              <span className="font-semibold text-white">Viscosity:</span>
-                              <span className="text-white/80">{product.technicalData.viscosity || product.specifications?.viscosity || 'N/A'}</span>
-                            </div>
-                          </div>
+                          ))}
                         </div>
                       ) : (
                         <p className="text-white/70">No technical data available for this product.</p>
@@ -721,10 +818,20 @@ const ProductDetailPage: React.FC = () => {
                       )}
                      </CardContent>
                   </Card>
+                  </motion.div>
+                  </motion.div>
                 </TabsContent>
 
                 <TabsContent value="sizing" className="space-y-6">
-                  <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.5 }}
+                    layout
+                  >
+                  <motion.div layout transition={{ duration: 0.5 }}>
+                  <Card className="bg-gradient-to-r from-[#4a5a7a] to-[#293350] border border-gray-200 rounded-2xl">
                     <CardHeader className="px-4 md:px-6 py-3 md:py-4">
                       <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -759,20 +866,22 @@ const ProductDetailPage: React.FC = () => {
                       )}
                     </CardContent>
                   </Card>
+                  </motion.div>
+                  </motion.div>
                 </TabsContent>
-              </div>
+              </motion.div>
             </Tabs>
-          </section>
+          </motion.section>
 
           {/* Related Products */}
           {relatedProducts.length > 0 && (
-            <section className="mb-12">
+            <section className="mb-12 bg-gradient-to-b from-[#4a5a7a] to-[#293350] rounded-2xl p-6 md:p-8">
               <div className="mb-8">
                 <h2 className="text-3xl font-kallisto font-bold text-white mb-2" 
                     style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                   Related Products
                 </h2>
-                <p className="text-gray-300">More {product.industry} solutions</p>
+                <p className="text-white/80">More {product.industry} solutions</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -785,7 +894,7 @@ const ProductDetailPage: React.FC = () => {
                     className="group"
                   >
                     <Link to={`/products/${relatedProduct.category.toLowerCase()}/${relatedProduct.id}`}>
-                      <div className="relative h-[300px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#1B3764] to-[#115B87] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
+                      <div className="relative h-[300px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#4a5a7a] to-[#293350] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
                         {/* Background Image */}
                         <div className="absolute inset-0">
                           <img 
@@ -832,7 +941,7 @@ const ProductDetailPage: React.FC = () => {
 
           {/* Call to Action */}
           <section className="text-center">
-            <Card className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8">
+            <Card className="bg-gradient-to-r from-[#4a5a7a] to-[#293350] border border-gray-200 rounded-2xl p-8">
               <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
                 <h2 className="text-3xl font-kallisto font-bold text-white" 
                     style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>

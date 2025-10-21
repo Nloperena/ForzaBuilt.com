@@ -41,16 +41,60 @@ const InteractiveProductsSection = () => {
   const [selectedProduct, setSelectedProduct] = useState(0);
   const [previousProduct, setPreviousProduct] = useState(0);
   const { mode } = useGradientMode();
+  const [progress, setProgress] = useState(0);
+  const timerRef = useRef<NodeJS.Timeout>();
+  const progressIntervalRef = useRef<NodeJS.Timeout>();
+  const isUserInteractingRef = useRef(false);
 
   const handleProductChange = (index: number) => {
     if (index !== selectedProduct) {
       setPreviousProduct(selectedProduct);
       setSelectedProduct(index);
+      setProgress(0);
+      isUserInteractingRef.current = true;
+      // Reset auto-cycle after user interaction
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
+      timerRef.current = setTimeout(() => {
+        isUserInteractingRef.current = false;
+      }, 8000);
     }
   };
 
+  useEffect(() => {
+    // Auto-cycle every 4 seconds
+    timerRef.current = setInterval(() => {
+      if (!isUserInteractingRef.current) {
+        setSelectedProduct(prev => {
+          const nextIndex = (prev + 1) % products.length;
+          setPreviousProduct(prev);
+          return nextIndex;
+        });
+        setProgress(0);
+      }
+    }, 4000);
+
+    // Progress bar animation
+    progressIntervalRef.current = setInterval(() => {
+      if (!isUserInteractingRef.current) {
+        setProgress(prev => {
+          if (prev >= 100) return 0;
+          return prev + (100 / 40); // 100% over 4000ms (40 intervals of 100ms)
+        });
+      }
+    }, 100);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
+    };
+  }, []);
+
   return (
     <section className="relative isolate overflow-visible">
+      {/* Progress bar */}
+      <div className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
+      
       {/* background halves */}
       <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
         <div className="bg-gradient-to-r from-[#4a5a7a] to-[#293350]" />
@@ -150,7 +194,7 @@ const InteractiveProductsSection = () => {
               alt={products[selectedProduct].title}
               className="
                 absolute inset-0 w-full h-full object-cover
-                animate-in slide-in-from-right duration-700
+                animate-in slide-in-from-left duration-700
               "
               style={{
                 objectPosition: 'center 70%',

@@ -39,61 +39,12 @@ import Dashboard from './pages/Dashboard';
 import Stylesheet from './pages/Stylesheet';
 import Triangles from './pages/Triangles';
 
-import { initializeProducts } from "@/utils/products";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [productsLoaded, setProductsLoaded] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Defer product loading to improve initial page render
-    const timer = setTimeout(() => {
-      const loadProducts = async () => {
-        try {
-          await initializeProducts();
-          setProductsLoaded(true);
-        } catch (error) {
-          console.error("Failed to load products:", error);
-          setError(error instanceof Error ? error.message : "Failed to load products");
-        }
-      };
-      loadProducts();
-    }, 100); // Small delay to let page render first
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-[#115B87] flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-red-400 text-6xl mb-4">⚠️</div>
-          <h1 className="text-white text-2xl font-bold mb-2">Error Loading Products</h1>
-          <p className="text-gray-300 mb-4">{error}</p>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white px-6 py-3 rounded-lg"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  if (!productsLoaded) {
-    return (
-      <div className="min-h-screen bg-[#115B87] flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#F2611D] mx-auto mb-4"></div>
-          <p className="text-white text-lg">Loading products...</p>
-        </div>
-      </div>
-    );
-  }
+  // Products are now loaded on-demand in each page that needs them
 
   return (
     <HelmetProvider>

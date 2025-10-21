@@ -14,25 +14,29 @@ import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
 
-// Chemistry icon paths - using All White Chemistry Icons
+// Chemistry icon paths - using Rebranded Chemistry Icons
 const CHEMISTRY_ICONS = {
-  acrylic: '/All%20White%20Chemistry%20Icons/Acrylic%20icon.svg',
-  epoxy: '/All%20White%20Chemistry%20Icons/Epoxy%20icon.svg',
-  modifiedEpoxy: '/All%20White%20Chemistry%20Icons/Modified%20Epoxy%20Icon.svg',
-  silicone: '/All%20White%20Chemistry%20Icons/silicone%20icon.svg',
-  ms: '/All%20White%20Chemistry%20Icons/MS%20icon.svg',
-  waterbase: '/All%20White%20Chemistry%20Icons/Water%20based%20icon.svg',
-  hotmelt: '/All%20White%20Chemistry%20Icons/Hotmelt%20icon.svg',
-  solventbase: '/All%20White%20Chemistry%20Icons/Solvent%20based%20icon.svg',
-  polyurethane: '/All%20White%20Chemistry%20Icons/Pollyutherane%20icon.svg',
-  cyanoacrylates: '/All%20White%20Chemistry%20Icons/Cyanoacrylates%20icon.svg',
-  methacrylate: '/All%20White%20Chemistry%20Icons/Methacrylate%20icon.svg',
-  rubberbased: '/All%20White%20Chemistry%20Icons/rubber%20based%20icon.svg'
+  'Acrylic (incl. PSA)': '/Rebranded%20Chemistry%20Icons/Acrylic%20icon.svg',
+  'Epoxy': '/Rebranded%20Chemistry%20Icons/Epoxy%20Icon.svg',
+  'Modified Epoxy': '/Rebranded%20Chemistry%20Icons/Modified%20Epoxy%20icon.svg',
+  'Silicone': '/Rebranded%20Chemistry%20Icons/Silicone%20icon.svg',
+  'MS': '/Rebranded%20Chemistry%20Icons/MS%20icon.svg',
+  'Water Base': '/Rebranded%20Chemistry%20Icons/Water%20Based%20icon.svg',
+  'Hotmelt': '/Rebranded%20Chemistry%20Icons/Hotmelt%20icon.svg',
+  'Solvent Base': '/Rebranded%20Chemistry%20Icons/Solvent%20Based%20icon.svg',
+  'Polyurethane (PU)': '/Rebranded%20Chemistry%20Icons/Polyurethane%20icon.svg',
+  'Cyanoacrylates': '/Rebranded%20Chemistry%20Icons/Cyanoacrylates%20Icon.svg',
+  'Methacrylate/MMA': '/Rebranded%20Chemistry%20Icons/Methacrylate%20icon.svg',
+  'Rubber Based': '/Rebranded%20Chemistry%20Icons/rubber%20based%20icon.svg'
 };
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
-import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
+
+// Helper to convert text to title case
+const toTitleCase = (str: string) => {
+  return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+};
 
 // Helper to get industry logo from navbar data
 const getIndustryLogo = (industry: string | string[]) => {
@@ -49,11 +53,13 @@ const getProductCategoryImage = (category: string) => {
   const categoryLower = category.toLowerCase();
   switch (categoryLower) {
     case 'bond':
-      return '/Bond Heroic Image 1.png';
+      return '/product-hero-page-images/Forza Bond Hero Shot Header.jpg';
     case 'seal':
-      return '/Seal Heroic Image 1.png';
+      return '/product-hero-page-images/Forza Seal Hero Shot Header.jpg';
     case 'tape':
-      return '/Tape Heroic Image 1.png';
+      return '/product-hero-page-images/Forza Tape Hero Shot Header.jpg';
+    case 'ruggedred':
+      return '/product-hero-page-images/Forza Cleaners Hero Shot Header.jpg';
     default:
       return null;
   }
@@ -79,12 +85,14 @@ const getHeroImageClasses = (category: string) => {
   const cat = (category || '').toLowerCase();
   switch (cat) {
     case 'seal':
-      // Larger-than-life, pushed up so the section top crops it
-      return 'lg:scale-[1.35] lg:-translate-y-16 lg:-translate-x-2';
+      // Show full hero image without cropping
+      return '';
     case 'bond':
-      return 'lg:scale-[0.8] lg:-translate-y-0';
+      return '';
     case 'tape':
-      return 'lg:scale-100 lg:translate-y-0';
+      return '';
+    case 'ruggedred':
+      return '';
     default:
       return '';
   }
@@ -184,29 +192,29 @@ const getChemistryIcon = (chemistry: string) => {
   
   // Map chemistry names to icon paths
   if (chemistryLower.includes('acrylic') || chemistryLower.includes('psa')) {
-    return CHEMISTRY_ICONS.acrylic;
+    return CHEMISTRY_ICONS['Acrylic (incl. PSA)'];
   } else if (chemistryLower.includes('epoxy') && !chemistryLower.includes('modified')) {
-    return CHEMISTRY_ICONS.epoxy;
+    return CHEMISTRY_ICONS['Epoxy'];
   } else if (chemistryLower.includes('modified') && chemistryLower.includes('epoxy')) {
-    return CHEMISTRY_ICONS.modifiedEpoxy;
+    return CHEMISTRY_ICONS['Modified Epoxy'];
   } else if (chemistryLower.includes('silicone')) {
-    return CHEMISTRY_ICONS.silicone;
+    return CHEMISTRY_ICONS['Silicone'];
   } else if (chemistryLower.includes('ms') || chemistryLower.includes('hybrid') || chemistryLower.includes('polymer')) {
-    return CHEMISTRY_ICONS.ms;
+    return CHEMISTRY_ICONS['MS'];
   } else if (chemistryLower.includes('water') || chemistryLower.includes('waterbase')) {
-    return CHEMISTRY_ICONS.waterbase;
+    return CHEMISTRY_ICONS['Water Base'];
   } else if (chemistryLower.includes('hot') && chemistryLower.includes('melt')) {
-    return CHEMISTRY_ICONS.hotmelt;
+    return CHEMISTRY_ICONS['Hotmelt'];
   } else if (chemistryLower.includes('solvent')) {
-    return CHEMISTRY_ICONS.solventbase;
+    return CHEMISTRY_ICONS['Solvent Base'];
   } else if (chemistryLower.includes('polyurethane') || chemistryLower.includes('urethane')) {
-    return CHEMISTRY_ICONS.polyurethane;
+    return CHEMISTRY_ICONS['Polyurethane (PU)'];
   } else if (chemistryLower.includes('cyanoacrylate') || chemistryLower.includes('cyano')) {
-    return CHEMISTRY_ICONS.cyanoacrylates;
+    return CHEMISTRY_ICONS['Cyanoacrylates'];
   } else if (chemistryLower.includes('methacrylate')) {
-    return CHEMISTRY_ICONS.methacrylate;
+    return CHEMISTRY_ICONS['Methacrylate/MMA'];
   } else if (chemistryLower.includes('rubber')) {
-    return CHEMISTRY_ICONS.rubberbased;
+    return CHEMISTRY_ICONS['Rubber Based'];
   }
   
   return null;
@@ -305,9 +313,26 @@ const ProductCategoryPage: React.FC = () => {
   }, [productCategory]);
 
   // Get products for this category
-  const categoryProducts = useMemo(() => {
-    // Get products for this category - byProductLine already filters by category
-    return byProductLine(productCategory as 'bond' | 'seal' | 'tape');
+  const [categoryProducts, setCategoryProducts] = useState<any[]>([]);
+  const [productsLoading, setProductsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      setProductsLoading(true);
+      try {
+        const products = await byProductLine(productCategory as 'bond' | 'seal' | 'tape');
+        setCategoryProducts(products);
+      } catch (error) {
+        console.error('Failed to load products:', error);
+        setCategoryProducts([]);
+      } finally {
+        setProductsLoading(false);
+      }
+    };
+
+    if (productCategory) {
+      loadProducts();
+    }
   }, [productCategory]);
 
   // Get unique industries for this category
@@ -457,8 +482,35 @@ const ProductCategoryPage: React.FC = () => {
     return <div>Category not found</div>;
   }
 
+  // Show embed for ruggedred instead of products
+  if (productCategory.toLowerCase() === 'ruggedred') {
+    return (
+      <div className="min-h-screen bg-white flex flex-col">
+        <Header />
+        <main className="flex-1 pb-10">
+          {/* Full Viewport Rugged Red Products Section */}
+          <section className="relative w-full flex justify-center pt-0">
+            <div className="w-full max-w-full h-screen bg-white overflow-hidden">
+              {/* Full viewport iframe for immersive experience */}
+              <iframe
+                src="https://ruggedred.com/industrial/products#industrial-products"
+                title="Rugged Red Industrial Products"
+                className="w-full h-full border-0"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </section>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1B3764] to-[#115B87] flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       <DynamicMetaTags
         title={`${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Products`}
         description={`Discover our premium ${productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.`}
@@ -467,22 +519,8 @@ const ProductCategoryPage: React.FC = () => {
       />
       <Header />
       
-      {/* Edge triangles positioned at left and right viewport edges */}
-      <EdgeTrianglesBackground 
-        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles.png"
-        opacity={0.6}
-        scale={1.1}
-        leftRotation={280}
-        rightRotation={280}
-        leftFlipH={false}
-        rightFlipV={false}
-        blendMode="overlay"
-      />
       
-
-      
-      <main className="flex-1 pt-16 md:pt-20 pb-10">
+      <main className="flex-1 pb-10">
                 <AnimatePresence mode="wait">
           <motion.div
             key={productCategory}
@@ -492,93 +530,62 @@ const ProductCategoryPage: React.FC = () => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="w-full"
           >
-            {/* Hero Section */}
-            <section className="relative py-2 md:py-4 mb-2 bg-gradient-to-b from-[#1B3764] to-[#115B87] overflow-hidden min-h-[34px] md:min-h-[45px] lg:min-h-[72px]">
-              {/* Edge Triangles for Header - Animated */}
-              <EdgeTrianglesBackground 
-                leftImage={triangleAnimation.leftImage}
-                rightImage={triangleAnimation.rightImage}
-                opacity={triangleAnimation.opacity}
-                scale={triangleAnimation.scale}
-                leftRotation={triangleAnimation.leftRotation}
-                rightRotation={triangleAnimation.rightRotation}
-                leftFlipH={false}
-                rightFlipV={false}
-                blendMode="overlay"
-              />
-              <div className="max-w-7xl mx-auto px-6">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  {/* Text Content */}
-                  <motion.div 
-                    className="text-white relative z-20"
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
-                  >
-                    <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6 border border-white/30">
-                      <span className="text-sm font-medium uppercase tracking-wider">
-                        {productCategory.toUpperCase()} SOLUTIONS
-                      </span>
-                    </div>
-
-                    <h1 className="sr-only">
-                      {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
-                    </h1>
-                    {getProductCategoryLogo(productCategory) && (
-                      <img 
-                        src={getProductCategoryLogo(productCategory)} 
-                        alt={`Forza ${productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()} Product Line`}
-                        className="h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36 w-auto object-contain mt-2"
-                      />
-                    )}
-
-                    <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
-                      Discover our premium {productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.
-                    </p>
-                  </motion.div>
-
-                  {/* Category Image (background-style hero) */}
-                  {getProductCategoryImage(productCategory) && (
-                    <motion.div 
-                      className={`flex justify-center relative z-10 ${productCategory.toLowerCase() === 'seal' ? 'lg:self-start' : ''}`}
-                      initial={{ opacity: 0, x: 100 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 100 }}
-                      transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-                    >
-                      <img 
-                        src={getProductCategoryImage(productCategory)} 
-                        alt={`${productCategory} Category`}
-                        className={`w-full max-w-md lg:max-w-none lg:w-[760px] xl:w-[840px] object-contain drop-shadow-2xl transform ${getHeroImageClasses(productCategory)} ${productCategory.toLowerCase() === 'tape' ? 'lg:w-[800px] xl:w-[900px]' : ''}`}
-                      />
-                    </motion.div>
-                  )}
+            {/* Hero Section - Full Screen Image */}
+            <section className="relative w-full overflow-hidden bg-black/5">
+              {/* Full Screen Hero Image - allows container to expand to image height */}
+              {getProductCategoryImage(productCategory) && (
+                <motion.img
+                  src={getProductCategoryImage(productCategory)}
+                  alt={`${productCategory} Category Hero`}
+                  className="w-full h-auto block"
+                  initial={{ opacity: 0, y: -40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 40 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+              )}
+              
+              
+              {/* Hidden Text Content (for accessibility & animations) */}
+              <motion.div 
+                className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 0, x: 0 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+              >
+                <div className="text-white relative z-20 text-center">
+                  <h1 className="sr-only">
+                    {productCategory.charAt(0).toUpperCase() + productCategory.slice(1).toLowerCase()}
+                  </h1>
+                  <p className="sr-only">
+                    Discover our premium {productCategory.toLowerCase()} solutions engineered for performance and reliability across all industries.
+                  </p>
                 </div>
-              </div>
+              </motion.div>
             </section>
 
-        <div className="max-w-screen-2xl mx-auto px-4 md:px-6">
+        <div className="max-w-screen-2xl mx-auto px-4 md:px-6 pt-6">
           {/* Amazon-style Layout with Sidebar Filter and Product Grid */}
           <div className="flex flex-col lg:flex-row gap-6 mt-6">
             {/* Sidebar Filters - Hidden on Mobile, Visible on Desktop */}
             <aside className="lg:w-64 xl:w-72 flex-shrink-0 lg:sticky lg:top-24 lg:self-start">
               {/* Search Bar */}
-              <div className="bg-white/15 backdrop-blur-md rounded-xl shadow-lg border border-white/20 p-3 mb-4">
+              <div className="bg-gradient-to-r from-[#4a5a7a] to-[#293350] rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
                 <div className="relative">
-                  <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 p-1.5 rounded-full">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 p-1.5 rounded-full">
                     <Search className="text-white h-4 w-4" />
                   </div>
                   <input
                     placeholder="Search products…"
                     value={search}
                     onChange={e => setSearch(e.target.value)}
-                    className="w-full bg-white/10 text-white placeholder-white/50 pl-12 py-3 text-sm border border-white/20 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/10 rounded-xl"
+                    className="w-full bg-white/10 text-white placeholder-white/60 pl-12 py-3 text-sm border border-white/30 focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 rounded-xl"
                   />
                   {search && (
                     <button 
                       onClick={() => setSearch('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1.5 rounded-full transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 p-1.5 rounded-full transition-colors"
                     >
                       <X className="text-white h-3 w-3" />
                     </button>
@@ -587,9 +594,9 @@ const ProductCategoryPage: React.FC = () => {
               </div>
 
               {/* Filter Panel - Desktop Sidebar */}
-              <div className="hidden lg:block bg-white/10 backdrop-blur-md shadow-lg rounded-xl border border-white/20 overflow-hidden">
-                <div className="p-4 border-b border-white/10">
-                  <h3 className="font-kallisto font-bold text-lg text-white" 
+              <div className="hidden lg:block bg-gradient-to-r from-[#4a5a7a] to-[#293350] shadow-lg rounded-xl border border-gray-300 overflow-hidden">
+                <div className="p-4 border-b border-white/20">
+                  <h3 className="font-poppins font-regular text-lg text-white" 
                       style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                     Filter & Sort
                   </h3>
@@ -688,7 +695,7 @@ const ProductCategoryPage: React.FC = () => {
                   </div>
                   
                   {/* Chemistry Filter - Only shown for non-tape categories */}
-                  {productCategory !== 'tape' && (
+                  {chemistryTypes.length > 0 && (
                     <div className="space-y-3 border-t border-white/10 pt-5">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center">
@@ -763,14 +770,14 @@ const ProductCategoryPage: React.FC = () => {
 
             {/* Main Content Area */}
             <div className="flex-1">
-              {/* Results Info - Glassmorphic Badge */}
+              {/* Results Info */}
               <div className="flex justify-between items-center mb-6">
-                <div className="bg-white/10 backdrop-blur-xl px-4 py-2 rounded-full border border-white/20 shadow-lg">
-                  <p className="text-sm text-white/90">
-                    <span className="font-semibold text-white">
+                <div className="bg-gray-100 px-4 py-2 rounded-full border border-gray-300 shadow-sm">
+                  <p className="text-sm text-gray-700">
+                    <span className="font-semibold text-gray-900">
                       {isLoading ? (
                         <span className="inline-flex items-center">
-                          <svg className="animate-spin -ml-1 mr-1 h-3 w-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <svg className="animate-spin -ml-1 mr-1 h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
@@ -781,37 +788,35 @@ const ProductCategoryPage: React.FC = () => {
                       )}
                     </span> of {filteredProducts.length} found ({categoryProducts.length} total)
                     {selectedIndustries.length > 0 && (
-                      <span className="hidden sm:inline"> • <span className="font-semibold text-white">{selectedIndustries.length}</span> {selectedIndustries.length === 1 ? 'industry' : 'industries'}</span>
+                      <span className="hidden sm:inline"> • <span className="font-semibold text-gray-900">{selectedIndustries.length}</span> {selectedIndustries.length === 1 ? 'industry' : 'industries'}</span>
                     )}
                     {productCategory !== 'tape' && selectedChemistries.length > 0 && (
-                      <span className="hidden sm:inline"> • <span className="font-semibold text-white">{selectedChemistries.length}</span> {selectedChemistries.length === 1 ? 'chemistry' : 'chemistries'}</span>
+                      <span className="hidden sm:inline"> • <span className="font-semibold text-gray-900">{selectedChemistries.length}</span> {selectedChemistries.length === 1 ? 'chemistry' : 'chemistries'}</span>
                     )}
                   </p>
                 </div>
-                
-                {/* Mobile Sort Button */}
-                <button className="lg:hidden bg-white/10 backdrop-blur-xl p-2 rounded-full border border-white/20 shadow-lg">
-                  <ArrowUpDown className="text-white h-5 w-5" />
-                </button>
               </div>
 
               {/* Product Grid - Responsive with Progressive Loading */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
-                {filteredProducts.slice(0, Math.min(filteredProducts.length, visibleProductCount)).map((product, idx) => (
+                {productsLoading ? (
+                  // Loading skeleton
+                  Array.from({ length: 6 }).map((_, idx) => (
+                    <div key={`loading-${idx}`} className="bg-gray-200 animate-pulse rounded-lg h-96"></div>
+                  ))
+                ) : (
+                  filteredProducts.slice(0, Math.min(filteredProducts.length, visibleProductCount)).map((product, idx) => (
                   <motion.div
                     key={`${product.id}-${idx}-${selectedIndustries.join(',')}-${search}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.2, delay: Math.min(idx * 0.03, 0.3) }}
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                    transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }}
+                    layout
                     className="group"
                   >
                     <div 
-                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl backdrop-blur-xl border border-white/20 hover:border-white/30 shadow-2xl cursor-pointer"
-                      style={{
-                        background: `linear-gradient(to top, ${getIndustryColorHex(product.industry?.[0] || '')} 0%, ${getIndustryColorHex(product.industry?.[0] || '')} 15%, rgba(255, 255, 255, 0.15) 100%)`,
-                        filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))',
-                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-                      }}
+                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-b from-[#4a5a7a] to-[#293350] border border-gray-200 hover:border-gray-300 shadow-lg cursor-pointer"
                       onClick={() => {
                         setSelectedProduct(product);
                         setIsModalOpen(true);
@@ -820,18 +825,13 @@ const ProductCategoryPage: React.FC = () => {
                       {/* Desktop: Badge above image */}
                       <div className="absolute top-3 left-3 z-30 hidden md:block">
                         <div 
-                          className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1"
-                          style={{
-                            background: `rgba(255, 255, 255, 0.2)`,
-                            color: '#ffffff',
-                            textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)'
-                          }}
+                          className="px-4 py-2 rounded-full text-2xl font-bold uppercase tracking-wide flex items-center gap-2 bg-transparent text-white"
                         >
                           {getIndustryLogo(product.industry?.[0] || '') ? (
                             <img 
                               src={getIndustryLogo(product.industry?.[0] || '')} 
                               alt={`${product.industry?.[0] || ''} icon`}
-                              className="h-4 w-4 md:h-5 md:w-5 object-contain"
+                              className="h-10 w-10 md:h-12 md:w-12 object-contain"
                             />
                           ) : (
                             <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
@@ -841,7 +841,7 @@ const ProductCategoryPage: React.FC = () => {
                       </div>
 
                       {/* Desktop: Product Image - Full height to show whole image */}
-                      <div className="absolute inset-0 hidden md:block" style={{ transform: 'translateY(-7.5%)' }}>
+                      <div className="absolute inset-0 hidden md:block" style={{ transform: 'translateY(-7.5%) scale(0.74)' }}>
                         {/* Image Skeleton Loading State */}
                         {!imageLoadedStates[product.id] && (
                           <ImageSkeleton />
@@ -850,7 +850,7 @@ const ProductCategoryPage: React.FC = () => {
                         <img 
                           src={product.imageUrl} 
                           alt={product.name}
-                          className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-110 ${
+                          className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
                             imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                           }`}
                           onLoad={() => handleImageLoad(product.id)}
@@ -858,69 +858,14 @@ const ProductCategoryPage: React.FC = () => {
                         />
                       </div>
 
-                      {/* Desktop: Product Title between image and content */}
-                      <div className="hidden md:block px-4 py-3 absolute bottom-24 left-0 right-0">
-                        <h3 className="text-xl font-kallisto font-black leading-tight line-clamp-2 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
-                          {product.name.split('–')[0].trim()}
-                        </h3>
-                      </div>
-
-                      {/* Mobile: Centered content with image and basic info */}
-                      <div className="flex md:hidden items-center justify-center gap-4 flex-1 p-4">
-                        {/* Mobile: Product Image */}
-                        <div className="w-20 h-20 rounded-xl overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 hover:border-white/40 shadow-2xl relative flex-shrink-0" style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)' }}>
-                          {/* Image Skeleton Loading State */}
-                          {!imageLoadedStates[product.id] && (
-                            <ImageSkeleton className="rounded-xl" />
-                          )}
-                          
-                          <img 
-                            src={product.imageUrl} 
-                            alt={product.name}
-                            className={`w-full h-full object-cover transition-opacity duration-500 ${
-                              imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
-                            }`}
-                            onLoad={() => handleImageLoad(product.id)}
-                            onError={() => handleImageError(product.id)}
-                          />
-                        </div>
-                        
-                        {/* Mobile: Product Info - Centered */}
-                        <div className="flex-1 min-w-0 text-center">
-                          <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                      {/* Desktop: Content Section with title and description */}
+                      <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
+                        <div className="space-y-1">
+                          <h3 className="text-base font-poppins font-bold leading-tight line-clamp-4 text-white">
                             {product.name.split('–')[0].trim()}
                           </h3>
-                          <p className="text-xs text-white/90 line-clamp-2">
-                            {product.name.split('–')[1]?.trim() || product.description}
-                          </p>
-                          {/* Mobile: Industry Badge - Centered */}
-                          <div 
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wide mt-2"
-                            style={{
-                              background: `rgba(255, 255, 255, 0.2)`,
-                              color: '#ffffff',
-                              textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)'
-                            }}
-                          >
-                            {getIndustryLogo(product.industry?.[0] || '') ? (
-                              <img 
-                                src={getIndustryLogo(product.industry?.[0] || '')} 
-                                alt={`${product.industry?.[0] || ''} icon`}
-                                className="h-4 w-4 md:h-5 md:w-5 object-contain"
-                              />
-                            ) : (
-                              <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
-                            )}
-                            <span className="text-xs">{product.industry?.[0] || ''}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Desktop: Content Section */}
-                      <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
-                        <div className="space-y-3">
-                          <p className="text-sm text-white/90 line-clamp-3">
-                            {product.name.split('–')[1]?.trim() || product.description}
+                          <p className="text-sm text-white line-clamp-3">
+                            {toTitleCase(product.name.split('–')[1]?.trim() || product.description)}
                           </p>
                           
                           {/* Button Row */}
@@ -932,7 +877,7 @@ const ProductCategoryPage: React.FC = () => {
                                 setSelectedProduct(product);
                                 setIsModalOpen(true);
                               }}
-                              className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 border border-white/30"
+                              className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-[white] hover:bg-[#4a5a7a] text-[white] hover:text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
                             >
                               <span>Quick View</span>
                             </button>
@@ -941,11 +886,57 @@ const ProductCategoryPage: React.FC = () => {
                             <Link
                               to={`/products/${productCategory}/${product.id}`}
                               onClick={(e) => e.stopPropagation()}
-                              className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 border border-white/30"
+                              className="flex-1 inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
                             >
                               <span>Product Details</span>
                               <ExternalLink className="h-3 w-3" />
                             </Link>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Mobile: Centered content with image and basic info */}
+                      <div className="flex md:hidden items-center justify-center gap-4 flex-1 p-4">
+                        {/* Mobile: Product Image */}
+                        <div className="w-[100px] h-[100px] rounded-xl overflow-hidden bg-transparent relative flex items-center justify-center">
+                          {/* Image Skeleton Loading State */}
+                          {!imageLoadedStates[product.id] && (
+                            <ImageSkeleton className="rounded-xl" />
+                          )}
+                          
+                          <img 
+                            src={product.imageUrl} 
+                            alt={product.name}
+                            className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
+                              imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onLoad={() => handleImageLoad(product.id)}
+                            onError={() => handleImageError(product.id)}
+                          />
+                        </div>
+                        
+                        {/* Mobile: Product Info */}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-sm font-kallisto font-bold mb-1 leading-tight line-clamp-1 text-white">
+                            {product.name.split('–')[0].trim()}
+                          </h3>
+                          <p className="text-xs text-white line-clamp-2">
+                            {toTitleCase(product.name.split('–')[1]?.trim() || product.description)}
+                          </p>
+                          {/* Mobile: Industry Badge */}
+                          <div 
+                            className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-base font-bold uppercase tracking-wide mt-2 bg-gray-100 text-gray-800"
+                          >
+                            {getIndustryLogo(product.industry?.[0] || '') ? (
+                              <img 
+                                src={getIndustryLogo(product.industry?.[0] || '')} 
+                                alt={`${product.industry?.[0] || ''} icon`}
+                                className="h-8 w-8 object-contain"
+                              />
+                            ) : (
+                              <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
+                            )}
+                            <span className="text-xs">{product.industry?.[0] || ''}</span>
                           </div>
                         </div>
                       </div>
@@ -976,10 +967,11 @@ const ProductCategoryPage: React.FC = () => {
                       </div>
                     </div>
                   </motion.div>
-                ))}
+                  ))
+                )}
               </div>
 
-          {filteredProducts.length === 0 && (
+          {!productsLoading && filteredProducts.length === 0 && (
             <div className="text-center py-16 text-gray-400">
               <p className="text-lg mb-2">No products match your criteria.</p>
               <p className="text-sm">Try adjusting your search or filters.</p>
@@ -1244,7 +1236,7 @@ const ProductCategoryPage: React.FC = () => {
                   </div>
                   
                   {/* Chemistry Filter - 2 per row */}
-                  {productCategory !== 'tape' && chemistryTypes.length > 0 && (
+                  {chemistryTypes.length > 0 && (
                     <div className="bg-white/10 rounded-xl p-4 border border-white/10">
                       <h4 className="text-white font-bold text-sm uppercase mb-3">Chemistry</h4>
                       <div className="grid grid-cols-2 gap-2">
@@ -1268,7 +1260,7 @@ const ProductCategoryPage: React.FC = () => {
                               <div className="flex items-center gap-2 min-w-0 flex-1">
                                 <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
                                   {chemIcon ? (
-                                    <img src={chemIcon} alt={chemistry} className="w-4 h-4 object-contain filter brightness-0 invert" />
+                                    <img src={chemIcon} alt={chemistry} className="w-4 h-4 object-contain" />
                                   ) : (
                                     <FlaskConical className="w-3 h-3 text-white" />
                                   )}
@@ -1306,4 +1298,4 @@ const ProductCategoryPage: React.FC = () => {
   );
 };
 
-export default ProductCategoryPage; 
+export default ProductCategoryPage;

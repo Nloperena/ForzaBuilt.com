@@ -1,22 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
-import forzaLogo from '@/assets/images/forza-logo-full.png';
+import forzaLogo from '@/assets/svg/Forza-Eagle-Logo-Blue.svg';
 
 interface LogoProps {
   className?: string;
   isScrolled?: boolean;
+  isWhiteBackground?: boolean;
 }
 
-const Logo: React.FC<LogoProps> = ({ className = 'h-10 w-auto', isScrolled = false }) => {
+const Logo: React.FC<LogoProps> = ({ className = 'h-10 w-auto', isScrolled = false, isWhiteBackground = false }) => {
   const { mode } = useGradientMode();
   
-  // Use blue logo for light mode, white logo for light2 mode (always white for light2), regular logo for dark mode
+  // Use white logo when transparent, blue logo when white background
   const logoSrc = mode === 'light' 
-    ? '/forza-logo-blue.svg' 
+    ? isWhiteBackground ? '/Forza-Eagle-Logo-Blue.svg' : '/Forza-Eagle-Logo-White.svg'
     : mode === 'light2'
-    ? forzaLogo  // Always use white logo for light2 mode
-    : forzaLogo;
+    ? isWhiteBackground ? '/Forza-Eagle-Logo-Blue.svg' : '/Forza-Eagle-Logo-White.svg'
+    : '/Forza-Eagle-Logo-White.svg';
 
   return (
     <Link to="/" className="flex items-center">
