@@ -169,7 +169,7 @@ const ApproachSectionV2 = () => {
   return (
     <section ref={sectionRef} className="relative isolate overflow-visible">
       {/* Progress bar */}
-      <div className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
+      <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
       
       {/* Top Banner */}
       <ExperienceBetterBanner />
