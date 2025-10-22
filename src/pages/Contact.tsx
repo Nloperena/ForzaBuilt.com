@@ -149,14 +149,10 @@ const Contact = () => {
           </video>
           
           <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
-            <h1 className={`text-5xl md:text-7xl font-black mb-6 leading-none ${
-              mode === 'light2' ? 'font-poppins text-[#293350]' : 'font-kallisto text-white'
-            }`}>
+            <h1 className="text-5xl md:text-7xl font-normal mb-6 leading-none font-poppins text-white">
               Contact Us
             </h1>
-            <p className={`text-xl md:text-2xl ${
-              mode === 'light2' ? 'text-[#293350]/80 font-poppins' : 'text-white/90 font-poppins'
-            }`}>
+            <p className="text-xl md:text-2xl text-white/90 font-poppins">
               Ready to discuss your project? Let's find the right solution together.
             </p>
           </div>
