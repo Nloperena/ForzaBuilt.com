@@ -1,16 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
-import { MapPin, Phone, Mail, Clock, Linkedin } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import VideoSkeleton from '@/components/common/VideoSkeleton';
+import { useGradientMode } from '@/contexts/GradientModeContext';
+import DynamicMetaTags from '@/components/DynamicMetaTags';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +21,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { mode } = useGradientMode();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
@@ -113,13 +113,19 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className={`min-h-screen flex flex-col ${mode === 'light' || mode === 'light2' ? 'bg-white' : ''}`}>
+      <DynamicMetaTags
+        title="Contact ForzaBuilt - Get Expert Industrial Solutions"
+        description="Contact ForzaBuilt for expert guidance on industrial adhesives, sealants, and tapes. Our team provides technical support and custom solutions for your manufacturing needs."
+        url="/contact"
+        type="website"
+      />
       <Header />
       
       <div className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-96 flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1B3764]/90 to-[#115B87]/70 z-10"></div>
+        <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-[#293350]/90 to-[#4a5a7a]/70 z-10"></div>
           
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
@@ -145,41 +151,58 @@ const Contact = () => {
           </video>
           
           <div className="relative z-20 text-center max-w-4xl mx-auto px-6">
-            <h1 className="text-4xl md:text-4xl font-black text-white mb-4 leading-none font-kallisto">
+            <h1 className={`text-5xl md:text-7xl font-black mb-6 leading-none ${
+              mode === 'light2' ? 'font-poppins text-[#293350]' : 'font-kallisto text-white'
+            }`}>
               Contact Us
             </h1>
-            <p className="text-xl text-white/90 font-poppins">
+            <p className={`text-xl md:text-2xl ${
+              mode === 'light2' ? 'text-[#293350]/80 font-poppins' : 'text-white/90 font-poppins'
+            }`}>
               Ready to discuss your project? Let's find the right solution together.
             </p>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section className="py-20 bg-gradient-to-b from-[#1B3764] via-[#1B3764]/95 to-[#1B3764] relative overflow-hidden sticky top-0">
-          {/* Background Effects */}
-          <div className="absolute inset-0">
-            <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-white/5 blur-3xl"></div>
-            <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-[#F2611D]/10 blur-3xl"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-cyan-300/5 blur-3xl"></div>
+        <section className="relative isolate overflow-visible py-20">
+          {/* Background halves */}
+          <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2 -z-10">
+            <div className="bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50" />
+            <div className="bg-gradient-to-r from-[#293350] to-[#4a5a7a]" />
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-              {/* Contact Form */}
-              <div className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg overflow-hidden">
-                <div className="bg-gradient-to-r from-[#1B3764] to-[#F2611D] text-white p-6">
-                  <h3 className="text-2xl font-black font-kallisto">
-                    Get In Touch
-                  </h3>
-                  <p className="text-white/90 font-poppins">
-                    Fill out the form below and our team will get back to you within 24 hours.
-                  </p>
-                </div>
-                <div className="p-8">
+          <div className="relative overflow-visible z-0">
+            {/* Two scalable squares */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden relative z-0">
+              {/* LEFT SQUARE - Contact Form */}
+              <div className="
+                relative
+                min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh]
+                px-[clamp(14px,4vw,32px)] py-[clamp(32px,6vw,64px)]
+                flex items-center justify-center
+                [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
+              ">
+                <div className="w-full max-w-lg">
+                  <div className="space-y-[var(--gap)] mb-[var(--gap)]">
+                    <h2 className={`text-[clamp(32px,4vw,48px)] font-bold leading-[var(--lh-head)] tracking-[-0.01em] ${
+                      mode === 'light2' ? 'font-poppins text-[#293350]' : 'font-kallisto text-white'
+                    }`}>
+                      Get In Touch
+                    </h2>
+                    <p className={`text-[clamp(16px,1.8vw,20px)] leading-relaxed ${
+                      mode === 'light2' ? 'font-poppins text-[#293350]/80' : 'text-white/80 font-poppins'
+                    }`}>
+                      Fill out the form below and our team will get back to you within 24 hours.
+                    </p>
+                  </div>
+
                   <form className="space-y-6" onSubmit={handleSubmit}>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="firstName" className="text-sm font-semibold text-white font-poppins">
+                        <Label htmlFor="firstName" className={`text-sm font-semibold ${
+                          mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                        }`}>
                           First Name *
                         </Label>
                         <Input
@@ -188,13 +211,19 @@ const Contact = () => {
                           type="text"
                           value={formData.firstName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins text-white placeholder-white/50"
+                          className={`w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins ${
+                            mode === 'light2' 
+                              ? 'bg-white/80 border border-[#293350]/30 text-[#293350] placeholder-[#293350]/50' 
+                              : 'bg-white/20 border border-white/30 text-white placeholder-white/50'
+                          }`}
                           placeholder="John"
                           required
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="lastName" className="text-sm font-semibold text-white font-poppins">
+                        <Label htmlFor="lastName" className={`text-sm font-semibold ${
+                          mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                        }`}>
                           Last Name *
                         </Label>
                         <Input
@@ -203,7 +232,11 @@ const Contact = () => {
                           type="text"
                           value={formData.lastName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins text-white placeholder-white/50"
+                          className={`w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins ${
+                            mode === 'light2' 
+                              ? 'bg-white/80 border border-[#293350]/30 text-[#293350] placeholder-[#293350]/50' 
+                              : 'bg-white/20 border border-white/30 text-white placeholder-white/50'
+                          }`}
                           placeholder="Doe"
                           required
                         />
@@ -211,7 +244,9 @@ const Contact = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-semibold text-white font-poppins">
+                      <Label htmlFor="email" className={`text-sm font-semibold ${
+                        mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                      }`}>
                         Email Address *
                       </Label>
                       <Input
@@ -220,14 +255,20 @@ const Contact = () => {
                         type="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins text-white placeholder-white/50"
+                        className={`w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins ${
+                          mode === 'light2' 
+                            ? 'bg-white/80 border border-[#293350]/30 text-[#293350] placeholder-[#293350]/50' 
+                            : 'bg-white/20 border border-white/30 text-white placeholder-white/50'
+                        }`}
                         placeholder="john@company.com"
                         required
                       />
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="company" className="text-sm font-semibold text-white font-poppins">
+                      <Label htmlFor="company" className={`text-sm font-semibold ${
+                        mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                      }`}>
                         Company
                       </Label>
                       <Input
@@ -236,13 +277,19 @@ const Contact = () => {
                         type="text"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins text-white placeholder-white/50"
+                        className={`w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins ${
+                          mode === 'light2' 
+                            ? 'bg-white/80 border border-[#293350]/30 text-[#293350] placeholder-[#293350]/50' 
+                            : 'bg-white/20 border border-white/30 text-white placeholder-white/50'
+                        }`}
                         placeholder="Your Company"
                       />
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-sm font-semibold text-white font-poppins">
+                      <Label htmlFor="message" className={`text-sm font-semibold ${
+                        mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                      }`}>
                         Message *
                       </Label>
                       <textarea
@@ -251,7 +298,11 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleInputChange}
                         rows={6}
-                        className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent resize-none transition-all duration-200 font-poppins text-white placeholder-white/50"
+                        className={`w-full px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent resize-none transition-all duration-200 font-poppins ${
+                          mode === 'light2' 
+                            ? 'bg-white/80 border border-[#293350]/30 text-[#293350] placeholder-[#293350]/50' 
+                            : 'bg-white/20 border border-white/30 text-white placeholder-white/50'
+                        }`}
                         placeholder="Tell us about your project and how we can help..."
                         required
                       />
@@ -260,28 +311,64 @@ const Contact = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-[#F2611D] to-[#F2611D]/90 hover:from-[#F2611D]/80 hover:to-[#F2611D]/70 text-white py-3 px-6 rounded-lg font-bold transition-all duration-200 font-poppins text-lg shadow-lg hover:shadow-xl"
+                      className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white py-4 px-6 rounded-xl font-bold transition-all duration-200 font-poppins text-lg shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                     >
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                      {isSubmitting ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-5 w-5" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </form>
                 </div>
               </div>
 
-              {/* Contact Information */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-3xl font-black text-white mb-6 font-kallisto">
-                    Contact Information
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
+              {/* RIGHT SQUARE - Contact Information */}
+              <div className="
+                relative
+                min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh]
+                px-[clamp(14px,4vw,32px)] py-[clamp(32px,6vw,64px)]
+                flex items-center justify-center
+                [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
+              ">
+                <div className="w-full">
+                  <div className="space-y-[var(--gap)] mb-[var(--gap)]">
+                    <h2 className={`text-[clamp(32px,4vw,48px)] font-bold leading-[var(--lh-head)] tracking-[-0.01em] ${
+                      mode === 'light2' ? 'font-poppins text-[#293350]' : 'font-kallisto text-white'
+                    }`}>
+                      Contact Information
+                    </h2>
+                    <p className={`text-[clamp(16px,1.8vw,20px)] leading-relaxed ${
+                      mode === 'light2' ? 'font-poppins text-[#293350]/80' : 'text-white/80 font-poppins'
+                    }`}>
+                      Get in touch with our team for expert guidance and support.
+                    </p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div className={`flex items-start space-x-4 p-6 rounded-xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+                      mode === 'light2' 
+                        ? 'bg-white/80 border-[#293350]/20 hover:bg-white/90' 
+                        : 'bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/15'
+                    }`}>
                       <div className="flex-shrink-0">
                         <MapPin className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-white font-poppins text-base">HQ Address</h4>
-                        <p className="text-white/90 font-poppins text-sm">
+                        <h4 className={`font-bold text-base ${
+                          mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                        }`}>
+                          HQ Address
+                        </h4>
+                        <p className={`text-sm mt-1 ${
+                          mode === 'light2' ? 'text-[#293350]/80 font-poppins' : 'text-white/90 font-poppins'
+                        }`}>
                           <span className="font-bold text-[#F2611D]">Forza</span><br />
                           3211 Nebraska Ave, Suite 300<br />
                           Council Bluffs, Iowa 51501
@@ -289,52 +376,92 @@ const Contact = () => {
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <div className={`flex items-start space-x-4 p-6 rounded-xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+                      mode === 'light2' 
+                        ? 'bg-white/80 border-[#293350]/20 hover:bg-white/90' 
+                        : 'bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/15'
+                    }`}>
                       <div className="flex-shrink-0">
                         <Phone className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-white font-poppins text-base">Phone</h4>
-                        <p className="text-white/90 font-poppins text-sm">
+                        <h4 className={`font-bold text-base ${
+                          mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                        }`}>
+                          Phone
+                        </h4>
+                        <p className={`text-sm mt-1 ${
+                          mode === 'light2' ? 'text-[#293350]/80 font-poppins' : 'text-white/90 font-poppins'
+                        }`}>
                           <span className="font-bold">O. 402.731.9300</span>
                         </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <div className={`flex items-start space-x-4 p-6 rounded-xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+                      mode === 'light2' 
+                        ? 'bg-white/80 border-[#293350]/20 hover:bg-white/90' 
+                        : 'bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/15'
+                    }`}>
                       <div className="flex-shrink-0">
                         <Mail className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-white font-poppins text-base">Email</h4>
-                        <p className="text-white/90 font-poppins text-sm">
-                                      <a href="mailto:info@forza.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
-              info@forza.com
-            </a>
+                        <h4 className={`font-bold text-base ${
+                          mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                        }`}>
+                          Email
+                        </h4>
+                        <p className={`text-sm mt-1 ${
+                          mode === 'light2' ? 'text-[#293350]/80 font-poppins' : 'text-white/90 font-poppins'
+                        }`}>
+                          <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
+                            support@forzabuilt.com
+                          </a>
                         </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <div className={`flex items-start space-x-4 p-6 rounded-xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+                      mode === 'light2' 
+                        ? 'bg-white/80 border-[#293350]/20 hover:bg-white/90' 
+                        : 'bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/15'
+                    }`}>
                       <div className="flex-shrink-0">
                         <Clock className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-white font-poppins text-base">Business Hours</h4>
-                        <p className="text-white/90 font-poppins text-sm">
+                        <h4 className={`font-bold text-base ${
+                          mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                        }`}>
+                          Business Hours
+                        </h4>
+                        <p className={`text-sm mt-1 ${
+                          mode === 'light2' ? 'text-[#293350]/80 font-poppins' : 'text-white/90 font-poppins'
+                        }`}>
                           <span className="font-bold">Mon – Fri | 8:00 AM – 4:30 PM CST</span><br />
                           Saturday & Sunday: Closed
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4 p-4 bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <div className={`flex items-start space-x-4 p-6 rounded-xl shadow-lg border transition-all duration-300 hover:shadow-xl ${
+                      mode === 'light2' 
+                        ? 'bg-white/80 border-[#293350]/20 hover:bg-white/90' 
+                        : 'bg-white/10 backdrop-blur-xl border-white/20 hover:bg-white/15'
+                    }`}>
                       <div className="flex-shrink-0">
                         <Mail className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-white font-poppins text-base">Sales Inquiries</h4>
-                        <p className="text-white/90 font-poppins text-sm">
+                        <h4 className={`font-bold text-base ${
+                          mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-poppins'
+                        }`}>
+                          Sales Inquiries
+                        </h4>
+                        <p className={`text-sm mt-1 ${
+                          mode === 'light2' ? 'text-[#293350]/80 font-poppins' : 'text-white/90 font-poppins'
+                        }`}>
                           <a href="mailto:sales@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
                             sales@forzabuilt.com
                           </a><br />
@@ -344,8 +471,6 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
-                
-
               </div>
             </div>
           </div>
@@ -353,10 +478,8 @@ const Contact = () => {
       </div>
       
       <Footer />
-      
-      {/* Gradient Toggle Modal */}
     </div>
   );
 };
 
-export default Contact; 
+export default Contact;
