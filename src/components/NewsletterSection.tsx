@@ -52,14 +52,14 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <section className="relative py-16 md:py-20 bg-[#f3f5f7]">
+      <section className="relative py-16 md:py-20 bg-[#477197]">
         {/* Edge triangles positioned at left and right viewport edges */}
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-center mb-8 md:mb-12 relative">
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#293350] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance">Stay Ahead with Forza</h2>
-            <p className="mt-4 text-gray-600 text-base md:text-lg max-w-2xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-white font-poppins leading-tight break-words relative z-10 tracking-tight text-balance">Stay Ahead with Forza</h2>
+            <p className="mt-4 text-white/90 text-base md:text-lg max-w-2xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch max-w-[1500px] mx-auto">
