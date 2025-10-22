@@ -5,9 +5,9 @@ export const INSULATION_DATA: IndustryData = {
   xrays: [
     {
       id: 'insulation-xray-1',
-      preSrc: '/img/insulation/House Exterior.png',
-      postSrc: '/img/insulation/Final House Exploded Graphic.png',
-      svgOverlay: '/img/insulation/Final House Exploded Graphic.svg',
+      preSrc: '/img/insulation/pre-House Exterior.png',
+      postSrc: '/img/insulation/post-Final House Exploded Graphic.png',
+      svgOverlay: '/img/insulation/overlay-Final House Exploded Graphic.svg',
       width: 1080,
       height: 1080,
       hotspots: [
@@ -125,9 +125,9 @@ export const INSULATION_DATA: IndustryData = {
     },
     {
       id: 'insulation-xray-2',
-      preSrc: '/img/insulation/Pipe completely wrapped.png',
-      postSrc: '/img/insulation/Pipe Exploded Graphic.png',
-      svgOverlay: '/img/insulation/Pipe Exploded Graphic.svg',
+      preSrc: '/img/insulation/pre-Pipe completely wrapped.png',
+      postSrc: '/img/insulation/post-Pipe Exploded Graphic.png',
+      svgOverlay: '/img/insulation/overlay-Pipe Exploded Graphic.svg',
       width: 1080,
       height: 1080,
       hotspots: [

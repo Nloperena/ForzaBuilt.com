@@ -5,9 +5,9 @@ export const TRANSPORTATION_DATA: IndustryData = {
   xrays: [
     {
       id: 'transportation-rv-bus-xray',
-      preSrc: '/img/transportation/RV Bus PreX-Ray.png',
-      postSrc: '/img/transportation/RV Bus PostX-Ray.jpg',
-      svgOverlay: '/img/transportation/RV Bus Exploded.svg',
+      preSrc: '/img/transportation/pre-RV Bus PreX-Ray.png',
+      postSrc: '/img/transportation/post-RV Bus PostX-Ray.jpg',
+      svgOverlay: '/img/transportation/overlay-RV Bus Exploded.svg',
       width: 259.2,
       height: 259.2,
       hotspots: [
@@ -90,9 +90,9 @@ export const TRANSPORTATION_DATA: IndustryData = {
     },
     {
       id: 'transportation-trailer-xray',
-      preSrc: '/img/transportation/Trailer PreX-Ray.png',
-      postSrc: '/img/transportation/Trailer PostX-Ray.jpg',
-      svgOverlay: '/img/transportation/Trailer Exploded Graphic.svg',
+      preSrc: '/img/transportation/pre-Trailer PreX-Ray.png',
+      postSrc: '/img/transportation/post-Trailer PostX-Ray.jpg',
+      svgOverlay: '/img/transportation/overlay-Trailer Exploded Graphic.svg',
       width: 800,
       height: 600,
       hotspots: [

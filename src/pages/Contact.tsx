@@ -162,8 +162,8 @@ const Contact = () => {
         <section className="relative isolate overflow-visible">
           {/* background halves */}
           <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
-            <div className="bg-gradient-to-r from-[#4a5a7a] to-[#293350]" />
-            <div className="bg-[#477197]" />
+            <div className="bg-gradient-to-t from-[#477197] to-[#293350]" />
+            <div className="bg-[#f3f5f7]" />
           </div>
 
           <div className="relative overflow-visible">

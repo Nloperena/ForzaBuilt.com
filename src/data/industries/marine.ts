@@ -5,9 +5,9 @@ export const MARINE_DATA: IndustryData = {
   xrays: [
     {
       id: 'marine-xray-1',
-      preSrc: 'https://images.ctfassets.net/hdznx4p7ef81/6ouZLSgoHcLk2OWbaLla5o/5a0b49f23638ef42ae95237477fa2ad3/Marine_Boat.png',
-      postSrc: 'https://images.ctfassets.net/hdznx4p7ef81/5pUlDcvSsLIMeyC4HXQaK1/5acbb21568d484ffa5aa00506d499613/Marine_Exploded_Boat_Graphic.png',
-      svgOverlay: '/img/marine/marine-overlay.svg',
+      preSrc: '/img/marine/pre-Marine_Boat.png',
+      postSrc: '/img/marine/post-Marine_Exploded_Boat_Graphic.png',
+      svgOverlay: '/img/marine/overlay-marine-overlay.svg',
       width: 259.2,
       height: 259.2,
       hotspots: [
@@ -176,9 +176,9 @@ export const MARINE_DATA: IndustryData = {
     },
     {
       id: 'marine-xray-2',
-      preSrc: 'https://images.ctfassets.net/hdznx4p7ef81/6HWrpaU0ZzK2cBIqSHXXZS/1daedcc2cdfb0d366c5a8db29b592dcf/Pontoon_Boat__1_.png',
-      postSrc: 'https://images.ctfassets.net/hdznx4p7ef81/4pfvji0pqdNa39baRHeeDc/ecaa4157a51a62008a83f270467cbea1/Pontoon_Boat_Exploded_Graphic__1_.jpg',
-      svgOverlay: '/img/marine/Marine Pontoon2 SVG.svg',
+      preSrc: '/img/marine/pre-Pontoon_Boat__1_.png',
+      postSrc: '/img/marine/post-Pontoon_Boat_Exploded_Graphic__1_.jpg',
+      svgOverlay: '/img/marine/overlay-Marine Pontoon2 SVG.svg',
       width: 233.403,
       height: 191.162,
       hotspots: [

@@ -75,7 +75,7 @@ const ProductIndex: React.FC = () => {
   const productCategories = getProductCategories();
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#4a5a7a] to-[#293350] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#477197] to-[#293350] flex flex-col">
       <Header />
       <main className="flex-1 flex items-center justify-center px-4 pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 pb-20">
         <div className="max-w-7xl mx-auto w-full">

@@ -5,9 +5,9 @@ export const COMPOSITES_DATA: IndustryData = {
   xrays: [
     {
       id: 'composites-xray-1',
-      preSrc: 'https://images.ctfassets.net/hdznx4p7ef81/1lj8BtWRbtlZndHQr1wnR4/a4b1ea878ec216db4be3512917237060/Composites_Wind_Turbine.png',
-      postSrc: 'https://images.ctfassets.net/hdznx4p7ef81/5hKcPnDQaYkJNKVCUH30Jf/67fe0255a7c7e059391362624d6e9065/Wind_Turbine_Exploded_Graphic_Web.png',
-      svgOverlay: '/img/composites/composite-overlay-turbine.svg',
+      preSrc: '/img/composites/pre-Composites_Wind_Turbine.png',
+      postSrc: '/img/composites/post-Wind_Turbine_Exploded_Graphic_Web.png',
+      svgOverlay: '/img/composites/overlay-composite-overlay-turbine.svg',
       width: 4368,
       height: 2912,
       hotspots: [

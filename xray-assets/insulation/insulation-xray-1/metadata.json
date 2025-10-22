@@ -1,0 +1,19 @@
+{
+  "id": "insulation-xray-1",
+  "name": "Insulation House",
+  "industry": "Insulation",
+  "dimensions": {
+    "width": 1080,
+    "height": 1080
+  },
+  "files": {
+    "preImage": "pre-House Exterior.png",
+    "postImage": "post-Final House Exploded Graphic.png",
+    "svgOverlay": "overlay-Final House Exploded Graphic.svg"
+  },
+  "originalUrls": {
+    "preSrc": "/img/insulation/House Exterior.png",
+    "postSrc": "/img/insulation/Final House Exploded Graphic.png",
+    "svgOverlay": "/img/insulation/Final House Exploded Graphic.svg"
+  }
+}

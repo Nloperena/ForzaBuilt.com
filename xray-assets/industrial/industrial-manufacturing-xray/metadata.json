@@ -1,0 +1,19 @@
+{
+  "id": "industrial-manufacturing-xray",
+  "name": "Industrial Manufacturing",
+  "industry": "Industrial",
+  "dimensions": {
+    "width": 2592,
+    "height": 2592
+  },
+  "files": {
+    "preImage": "pre-Industrial-Manufacturing-Pre.png",
+    "postImage": "post-Industrial-Manufacturing-Post.png",
+    "svgOverlay": "overlay-Industrial-Manufacturing-Overlay.svg"
+  },
+  "originalUrls": {
+    "preSrc": "/img/industrial/Industrial-Manufacturing-Pre.png",
+    "postSrc": "/img/industrial/Industrial-Manufacturing-Post.png",
+    "svgOverlay": "/img/industrial/Industrial-Manufacturing-Overlay.svg"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "construction-commercial-xray",
+  "name": "Construction Commercial",
+  "industry": "Construction",
+  "dimensions": {
+    "width": 2592,
+    "height": 2592
+  },
+  "files": {
+    "preImage": "pre-Construction Commercial Exterior Graphic (1).png",
+    "postImage": "post-Construction Commercial PostXray.png",
+    "svgOverlay": "overlay-Construction Commercial Exploded Graphic Web.svg"
+  },
+  "originalUrls": {
+    "preSrc": "/img/construction/Construction Commercial Exterior Graphic (1).png",
+    "postSrc": "/img/construction/Construction Commercial PostXray.png",
+    "svgOverlay": "/img/construction/Construction Commercial Exploded Graphic Web.svg"
+  }
+}

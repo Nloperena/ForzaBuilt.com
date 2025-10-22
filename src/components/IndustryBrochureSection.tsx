@@ -133,7 +133,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
                 download
                 className={`group inline-flex items-center gap-3 font-bold text-sm sm:text-base md:text-lg px-6 md:px-8 lg:px-10 py-3 md:py-4 lg:py-5 rounded-full shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
                   backgroundColor === 'white'
-                    ? 'border-2 border-[#4a5a7a] hover:bg-[#4a5a7a] text-[#4a5a7a] hover:text-white'
+                    ? 'border-2 border-[#477197] hover:bg-[#477197] text-[#477197] hover:text-white'
                     : 'border-2 border-white/50 hover:bg-white/30 backdrop-blur-sm text-white hover:border-white/70'
                 }`}
               >

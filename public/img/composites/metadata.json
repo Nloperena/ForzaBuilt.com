@@ -1,0 +1,19 @@
+{
+  "id": "composites-xray-1",
+  "name": "Composites Wind Turbine",
+  "industry": "Composites",
+  "dimensions": {
+    "width": 4368,
+    "height": 2912
+  },
+  "files": {
+    "preImage": "pre-Composites_Wind_Turbine.png",
+    "postImage": "post-Wind_Turbine_Exploded_Graphic_Web.png",
+    "svgOverlay": "overlay-composite-overlay-turbine.svg"
+  },
+  "originalUrls": {
+    "preSrc": "https://images.ctfassets.net/hdznx4p7ef81/1lj8BtWRbtlZndHQr1wnR4/a4b1ea878ec216db4be3512917237060/Composites_Wind_Turbine.png",
+    "postSrc": "https://images.ctfassets.net/hdznx4p7ef81/5hKcPnDQaYkJNKVCUH30Jf/67fe0255a7c7e059391362624d6e9065/Wind_Turbine_Exploded_Graphic_Web.png",
+    "svgOverlay": "/img/composites/composite-overlay-turbine.svg"
+  }
+}

@@ -52,7 +52,7 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <section className="relative py-16 md:py-20 bg-[#477197]">
+      <section className="relative py-16 md:py-20 bg-[#f3f5f7]">
         {/* Edge triangles positioned at left and right viewport edges */}
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
@@ -64,7 +64,7 @@ const NewsletterSection = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch max-w-[1500px] mx-auto">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#4a5a7a] to-[#293350] border border-white/10">
+            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#293350] border border-white/10">
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-8">
                   <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Join Our Newsletter</h3>
@@ -122,7 +122,7 @@ const NewsletterSection = () => {
             </div>
 
             {/* Featured Blog Section - Secondary Focus */}
-            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#4a5a7a] to-[#293350] border border-white/10">
+            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#293350] border border-white/10">
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-8">
                   <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Featured Articles</h3>

@@ -70,9 +70,14 @@ const Header = () => {
         />
       )}
       <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
-        {/* Always centered layout */}
+        {/* Left-aligned layout */}
         <div className="flex items-center justify-between">
-          {/* Left Navigation */}
+          {/* Left Logo */}
+          <div className="flex-shrink-0">
+            <Logo className="h-8 w-auto sm:h-[4.5rem]" isScrolled={isScrolled} isWhiteBackground={isNavbarWhite} />
+          </div>
+          
+          {/* Center Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <NavigationItem
@@ -86,11 +91,6 @@ const Header = () => {
                 isNavbarWhite={isNavbarWhite}
               />
             ))}
-          </div>
-          
-          {/* Centered Logo */}
-          <div className="flex-shrink-0">
-            <Logo className="h-8 w-auto sm:h-[4.5rem]" isScrolled={isScrolled} isWhiteBackground={isNavbarWhite} />
           </div>
           
           {/* Right Navigation */}
@@ -135,7 +135,7 @@ const Header = () => {
             <div className={`w-full max-w-[1400px] relative rounded-b-2xl overflow-hidden ${
               mode === 'light' || mode === 'light2'
                 ? 'bg-white'
-                : 'bg-gradient-to-t from-[#4a5a7a] to-[#293350]'
+                : 'bg-gradient-to-t from-[#477197] to-[#293350]'
             }`}>
 
               <div className="px-6 h-56 relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>

@@ -201,7 +201,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
           {/* Blog Posts Section */}
           {blogResults.length > 0 && (
             <div>
-              <div className="px-4 py-2 bg-gradient-to-r from-[#293350] to-[#4a5a7a] text-white font-bold text-sm">
+              <div className="px-4 py-2 bg-gradient-to-r from-[#293350] to-[#477197] text-white font-bold text-sm">
                 Blog Posts ({blogResults.length})
               </div>
               {blogResults.map((result) => (

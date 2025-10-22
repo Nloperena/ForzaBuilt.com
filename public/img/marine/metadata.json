@@ -1,0 +1,19 @@
+{
+  "id": "marine-xray-2",
+  "name": "Marine Pontoon",
+  "industry": "Marine",
+  "dimensions": {
+    "width": 233.403,
+    "height": 191.162
+  },
+  "files": {
+    "preImage": "pre-Pontoon_Boat__1_.png",
+    "postImage": "post-Pontoon_Boat_Exploded_Graphic__1_.jpg",
+    "svgOverlay": "overlay-Marine Pontoon2 SVG.svg"
+  },
+  "originalUrls": {
+    "preSrc": "https://images.ctfassets.net/hdznx4p7ef81/6HWrpaU0ZzK2cBIqSHXXZS/1daedcc2cdfb0d366c5a8db29b592dcf/Pontoon_Boat__1_.png",
+    "postSrc": "https://images.ctfassets.net/hdznx4p7ef81/4pfvji0pqdNa39baRHeeDc/ecaa4157a51a62008a83f270467cbea1/Pontoon_Boat_Exploded_Graphic__1_.jpg",
+    "svgOverlay": "/img/marine/Marine Pontoon2 SVG.svg"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "generated": "2025-10-22T16:58:14.123Z",
+  "totalIndustries": 6,
+  "totalAssets": 10,
+  "industries": [
+    {
+      "key": "marine",
+      "name": "Marine",
+      "assetCount": 2,
+      "assets": [
+        {
+          "id": "marine-xray-1",
+          "name": "Marine Boat",
+          "path": "marine/marine-xray-1/"
+        },
+        {
+          "id": "marine-xray-2",
+          "name": "Marine Pontoon",
+          "path": "marine/marine-xray-2/"
+        }
+      ]
+    },
+    {
+      "key": "construction",
+      "name": "Construction",
+      "assetCount": 2,
+      "assets": [
+        {
+          "id": "construction-commercial-xray",
+          "name": "Construction Commercial",
+          "path": "construction/construction-commercial-xray/"
+        },
+        {
+          "id": "construction-house-xray",
+          "name": "Construction House",
+          "path": "construction/construction-house-xray/"
+        }
+      ]
+    },
+    {
+      "key": "industrial",
+      "name": "Industrial",
+      "assetCount": 1,
+      "assets": [
+        {
+          "id": "industrial-manufacturing-xray",
+          "name": "Industrial Manufacturing",
+          "path": "industrial/industrial-manufacturing-xray/"
+        }
+      ]
+    },
+    {
+      "key": "composites",
+      "name": "Composites",
+      "assetCount": 1,
+      "assets": [
+        {
+          "id": "composites-xray-1",
+          "name": "Composites Wind Turbine",
+          "path": "composites/composites-xray-1/"
+        }
+      ]
+    },
+    {
+      "key": "insulation",
+      "name": "Insulation",
+      "assetCount": 2,
+      "assets": [
+        {
+          "id": "insulation-xray-1",
+          "name": "Insulation House",
+          "path": "insulation/insulation-xray-1/"
+        },
+        {
+          "id": "insulation-xray-2",
+          "name": "Insulation Pipe",
+          "path": "insulation/insulation-xray-2/"
+        }
+      ]
+    },
+    {
+      "key": "transportation",
+      "name": "Transportation",
+      "assetCount": 2,
+      "assets": [
+        {
+          "id": "transportation-rv-bus-xray",
+          "name": "Transportation RV Bus",
+          "path": "transportation/transportation-rv-bus-xray/"
+        },
+        {
+          "id": "transportation-trailer-xray",
+          "name": "Transportation Trailer",
+          "path": "transportation/transportation-trailer-xray/"
+        }
+      ]
+    }
+  ]
+}

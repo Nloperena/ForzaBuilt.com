@@ -173,7 +173,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
   return (
     <section className="w-full relative overflow-hidden
                         py-[clamp(40px,6vw,96px)] px-[clamp(16px,4vw,48px)]
-                        bg-gradient-to-bl from-[#4a5a7a] to-[#293350]">
+                        bg-gradient-to-bl from-[#477197] to-[#293350]">
       
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <h2

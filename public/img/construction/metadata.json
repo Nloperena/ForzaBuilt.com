@@ -1,0 +1,19 @@
+{
+  "id": "construction-house-xray",
+  "name": "Construction House",
+  "industry": "Construction",
+  "dimensions": {
+    "width": 259.2,
+    "height": 259.2
+  },
+  "files": {
+    "preImage": "pre-Construction House Exterior Graphic Web.png",
+    "postImage": "post-Construction House PostXray.png",
+    "svgOverlay": "overlay-Construction House Exploded Graphic Web.svg"
+  },
+  "originalUrls": {
+    "preSrc": "/img/construction/Construction House Exterior Graphic Web.png",
+    "postSrc": "/img/construction/Construction House PostXray.png",
+    "svgOverlay": "/img/construction/Construction House Exploded Graphic Web.svg"
+  }
+}

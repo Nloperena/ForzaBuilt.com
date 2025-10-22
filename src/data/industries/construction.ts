@@ -5,9 +5,9 @@ export const CONSTRUCTION_DATA: IndustryData = {
   xrays: [
     {
       id: 'construction-commercial-xray',
-      preSrc: '/img/construction/Construction Commercial Exterior Graphic (1).png',
-      postSrc: '/img/construction/Construction Commercial PostXray.png',
-      svgOverlay: '/img/construction/Construction Commercial Exploded Graphic Web.svg',
+      preSrc: '/img/construction/pre-Construction Commercial Exterior Graphic (1).png',
+      postSrc: '/img/construction/post-Construction Commercial PostXray.png',
+      svgOverlay: '/img/construction/overlay-Construction Commercial Exploded Graphic Web.svg',
       width: 2592,
       height: 2592,
       hotspots: [
@@ -92,9 +92,9 @@ export const CONSTRUCTION_DATA: IndustryData = {
     },
     {
       id: 'construction-house-xray',
-      preSrc: '/img/construction/Construction House Exterior Graphic Web.png',
-      postSrc: '/img/construction/Construction House PostXray.png',
-      svgOverlay: '/img/construction/Construction House Exploded Graphic Web.svg',
+      preSrc: '/img/construction/pre-Construction House Exterior Graphic Web.png',
+      postSrc: '/img/construction/post-Construction House PostXray.png',
+      svgOverlay: '/img/construction/overlay-Construction House Exploded Graphic Web.svg',
       width: 259.2,
       height: 259.2,
       hotspots: [

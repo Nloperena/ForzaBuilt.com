@@ -171,7 +171,7 @@ export const getIndustryGradient = (industry: string) => {
   // Cool grey-blue gradient colors
   const darkGreyBlue = '#293350'; // Dark grey-blue
   const mediumGreyBlue = '#3d4e6f'; // Medium grey-blue
-  const lightGreyBlue = '#5a6a8a'; // Light grey-blue
+  const lightGreyBlue = '#477197'; // Updated to new color
   // Gradient from dark to light grey-blue
   return `${darkGreyBlue} 0%, ${mediumGreyBlue} 50%, ${lightGreyBlue} 100%`;
 };
