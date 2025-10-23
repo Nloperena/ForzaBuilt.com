@@ -92,7 +92,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
       id: 'transportation-trailer-xray',
       preSrc: '/img/transportation/pre-Trailer PreX-Ray.png',
       postSrc: '/img/transportation/Trailer PostX-Ray.png',
-      svgOverlay: '/img/transportation/overlay-Trailer Exploded Graphic.svg',
+      svgOverlay: '/img/transportation/Trailer Exploded Graphic2.svg',
       width: 800,
       height: 600,
       hotspots: [
@@ -119,7 +119,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
           },
         },
         {
-          id: 'Replacing_Mechanical_Fasteners_Riveting_on_Side_Panels',
+          id: 'Replacing_Mechanical_Fasteners__x2F__Riveting__x2F__on_Side_Panels',
           points: [450, 300], // Center point for numbering
           product: {
             sku: 'TAC-735R',
@@ -141,7 +141,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
           },
         },
         {
-          id: 'Plastic_Laminate_Metal_Laminate',
+          id: 'Plastic_Laminate__x26__Metal_Laminate',
           points: [320, 220], // Center point for numbering
           product: {
             sku: 'TAC-734G',
