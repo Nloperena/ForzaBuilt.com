@@ -1,23 +1,21 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
+import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import StaticXRayExplorerV2 from '../../components/xray/StaticXRayExplorerV2';
 import { TRANSPORTATION_V2_DATA } from '../../data/industries/transportationV2';
 
-interface TransportationV2PageProps {
-  industry: typeof TRANSPORTATION_V2_DATA;
-}
-
-const TransportationV2Page: React.FC<TransportationV2PageProps> = ({ industry }) => {
+const TransportationV2Page: React.FC = () => {
   return (
     <>
-      <Head>
+      <Helmet>
         <title>Transportation Industry - V2 X-Ray Explorer | ForzaBuilt</title>
         <meta name="description" content="Explore transportation industry solutions with our interactive V2 X-Ray explorer featuring single SVG assets." />
-      </Head>
+      </Helmet>
 
       <div className="min-h-screen bg-white">
+        <Header />
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-b from-[#477197] to-[#2c476e] text-white">
           <div className="max-w-7xl mx-auto px-4">
@@ -41,7 +39,7 @@ const TransportationV2Page: React.FC<TransportationV2PageProps> = ({ industry })
         </section>
 
         {/* V2 X-Ray Explorer */}
-        <StaticXRayExplorerV2 industry={industry} xrayIndex={0} />
+        <StaticXRayExplorerV2 industry={TRANSPORTATION_V2_DATA} xrayIndex={0} />
 
         {/* Comparison Section */}
         <section className="py-16 bg-gray-50">
@@ -129,17 +127,11 @@ const TransportationV2Page: React.FC<TransportationV2PageProps> = ({ industry })
             </div>
           </div>
         </section>
+        
+        <Footer />
       </div>
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {
-      industry: TRANSPORTATION_V2_DATA,
-    },
-  };
 };
 
 export default TransportationV2Page;
