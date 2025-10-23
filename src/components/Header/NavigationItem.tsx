@@ -32,7 +32,7 @@ const NavigationItem: React.FC<NavigationItemProps> = ({
                    location.pathname.startsWith(item.href);
   
   // Use blue text when navbar is white, white text when transparent, blue for light mode
-  const defaultTextColor = isNavbarWhite ? 'text-[#293350]' : mode === 'light' ? 'text-[#293350]' : 'text-white';
+  const defaultTextColor = isNavbarWhite ? 'text-[#2c476e]' : mode === 'light' ? 'text-[#2c476e]' : 'text-white';
 
   if (hasDropdown) {
     return (

@@ -177,7 +177,7 @@ const ApproachSectionV2 = () => {
       {/* Background halves */}
       <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2 -z-10" style={{ top: '100px' }}>
         <div className="bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50" />
-        <div className="bg-gradient-to-r from-[#293350] to-[#477197]" />
+        <div className="bg-gradient-to-r from-[#2c476e] to-[#477197]" />
       </div>
 
       <div className="relative overflow-visible z-0">

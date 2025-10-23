@@ -142,7 +142,7 @@ const Contact = () => {
             style={{ opacity: isVideoLoaded ? 1 : 0, zIndex: 1 }}
           >
             <source 
-              src="https://video-previews.elements.envatousercontent.com/adba67ed-69e8-4b91-8b79-f03dbf259b24/watermarked_preview/watermarked_preview.mp4" 
+              src="/Eagle Header Video.mp4" 
               type="video/mp4"
             />
             Your browser does not support the video tag.
@@ -162,7 +162,7 @@ const Contact = () => {
         <section className="relative isolate overflow-visible">
           {/* background halves */}
           <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
-            <div className="bg-gradient-to-t from-[#477197] to-[#293350]" />
+            <div className="bg-gradient-to-b from-[#477197] to-[#2c476e]" />
             <div className="bg-[#f3f5f7]" />
           </div>
 
@@ -299,6 +299,7 @@ const Contact = () => {
                 min-h-[62svh] md:min-h-[68svh] lg:min-h-[74svh]
                 flex items-center justify-center
                 overflow-hidden
+                rounded-bl-3xl
               ">
                 {/* subtle radial depth */}
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_0%,transparent_70%)] z-20" />
@@ -306,12 +307,12 @@ const Contact = () => {
                 {/* Contact Info Content */}
                 <div className="relative z-30 px-[clamp(14px,4vw,32px)] py-[clamp(32px,6vw,64px)] w-full">
                   <div className="space-y-[var(--gap)] mb-[var(--gap)]">
-                    <h2 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] text-[#293350] text-[clamp(28px,4vw,64px)] font-bold ${
+                    <h2 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] text-[#2c476e] text-[clamp(28px,4vw,64px)] font-bold ${
                       mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                     }`}>
                       Contact Information
                     </h2>
-                    <p className={`text-[#293350]/80 text-[clamp(14px,1.25vw,24px)] leading-relaxed ${
+                    <p className={`text-[#2c476e]/80 text-[clamp(14px,1.25vw,24px)] leading-relaxed ${
                       mode === 'light2' ? 'font-poppins' : ''
                     }`}>
                       Get in touch with our team for expert guidance and support.
@@ -319,13 +320,13 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-6">
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#293350]/20 hover:bg-white/90 transition-all duration-300">
+                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#2c476e]/20 hover:bg-white/90 transition-all duration-300">
                       <div className="flex-shrink-0">
                         <MapPin className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#293350] font-poppins text-base">HQ Address</h4>
-                        <p className="text-[#293350]/80 font-poppins text-sm mt-1">
+                        <h4 className="font-bold text-[#2c476e] font-poppins text-base">HQ Address</h4>
+                        <p className="text-[#2c476e]/80 font-poppins text-sm mt-1">
                           <span className="font-bold text-[#F2611D]">Forza</span><br />
                           3211 Nebraska Ave, Suite 300<br />
                           Council Bluffs, Iowa 51501
@@ -333,25 +334,25 @@ const Contact = () => {
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#293350]/20 hover:bg-white/90 transition-all duration-300">
+                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#2c476e]/20 hover:bg-white/90 transition-all duration-300">
                       <div className="flex-shrink-0">
                         <Phone className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#293350] font-poppins text-base">Phone</h4>
-                        <p className="text-[#293350]/80 font-poppins text-sm mt-1">
+                        <h4 className="font-bold text-[#2c476e] font-poppins text-base">Phone</h4>
+                        <p className="text-[#2c476e]/80 font-poppins text-sm mt-1">
                           <span className="font-bold">O. 402.731.9300</span>
                         </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#293350]/20 hover:bg-white/90 transition-all duration-300">
+                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#2c476e]/20 hover:bg-white/90 transition-all duration-300">
                       <div className="flex-shrink-0">
                         <Mail className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#293350] font-poppins text-base">Email</h4>
-                        <p className="text-[#293350]/80 font-poppins text-sm mt-1">
+                        <h4 className="font-bold text-[#2c476e] font-poppins text-base">Email</h4>
+                        <p className="text-[#2c476e]/80 font-poppins text-sm mt-1">
                           <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
                             support@forzabuilt.com
                           </a>
@@ -359,26 +360,26 @@ const Contact = () => {
                       </div>
                     </div>
                     
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#293350]/20 hover:bg-white/90 transition-all duration-300">
+                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#2c476e]/20 hover:bg-white/90 transition-all duration-300">
                       <div className="flex-shrink-0">
                         <Clock className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#293350] font-poppins text-base">Business Hours</h4>
-                        <p className="text-[#293350]/80 font-poppins text-sm mt-1">
+                        <h4 className="font-bold text-[#2c476e] font-poppins text-base">Business Hours</h4>
+                        <p className="text-[#2c476e]/80 font-poppins text-sm mt-1">
                           <span className="font-bold">Mon – Fri | 8:00 AM – 4:30 PM CST</span><br />
                           Saturday & Sunday: Closed
                         </p>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#293350]/20 hover:bg-white/90 transition-all duration-300">
+                    <div className="flex items-start space-x-4 p-6 bg-white/80 backdrop-blur-xl rounded-xl shadow-2xl border border-[#2c476e]/20 hover:bg-white/90 transition-all duration-300">
                       <div className="flex-shrink-0">
                         <Mail className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#293350] font-poppins text-base">Sales Inquiries</h4>
-                        <p className="text-[#293350]/80 font-poppins text-sm mt-1">
+                        <h4 className="font-bold text-[#2c476e] font-poppins text-base">Sales Inquiries</h4>
+                        <p className="text-[#2c476e]/80 font-poppins text-sm mt-1">
                           <a href="mailto:sales@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
                             sales@forzabuilt.com
                           </a><br />

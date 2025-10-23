@@ -97,11 +97,11 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({ isOpen, onClose, items = [] }
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-b from-[#293350] to-[#81899f] shadow-2xl"
+            className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl"
             style={{ height: '90vh' }}
           >
             {/* Header */}
-            <div className="flex justify-between items-center p-4 border-b border-white/20 bg-[#293350]">
+            <div className="flex justify-between items-center p-4 border-b border-white/20 bg-[#2c476e]">
               <div className="flex items-center space-x-3">
                 <img 
                   src="/forza-logo-full.png" 

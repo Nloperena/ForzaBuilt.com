@@ -31,7 +31,7 @@ const MadeInAmericaSection: React.FC = () => {
             <div className="p-8">
               <div className="space-y-6">
                 <h2 className={`text-4xl md:text-5xl lg:text-6xl font-normal leading-tight ${
-                  mode === 'light2' ? 'text-[#293350]' : 'text-[#293350]'
+                  mode === 'light2' ? 'text-[#2c476e]' : 'text-[#2c476e]'
                 } font-poppins`}>
                   Proudly Manufactured<br>
                   </br> in America

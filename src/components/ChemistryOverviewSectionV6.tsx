@@ -173,7 +173,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
   return (
     <section className="w-full relative overflow-hidden
                         py-[clamp(40px,6vw,96px)] px-[clamp(16px,4vw,48px)]
-                        bg-gradient-to-bl from-[#477197] to-[#293350]">
+                        bg-gradient-to-bl from-[#477197] to-[#2c476e]">
       
       <div className="max-w-screen-2xl mx-auto relative z-10">
         <h2
@@ -355,7 +355,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
 
                 {/* Content */}
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl md:text-3xl font-normal text-[#293350] mb-2 font-poppins">
+                  <h3 className="text-2xl md:text-3xl font-normal text-[#2c476e] mb-2 font-poppins">
                     {selectedChemistry.name}
                   </h3>
                   <p className="text-sm md:text-base text-gray-600 font-normal font-poppins">
@@ -374,7 +374,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
 
                 {/* Products */}
                 <div className="text-left">
-                  <h4 className="font-normal text-[#293350] mb-2 text-base md:text-lg font-poppins">Products</h4>
+                  <h4 className="font-normal text-[#2c476e] mb-2 text-base md:text-lg font-poppins">Products</h4>
                   <div className="space-y-1">
                     {selectedChemistry.products.map((product, index) => (
                       <div key={index} className="text-sm md:text-base text-gray-700 font-poppins">

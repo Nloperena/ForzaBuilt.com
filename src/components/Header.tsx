@@ -135,7 +135,7 @@ const Header = () => {
             <div className={`w-full max-w-[1400px] relative rounded-b-2xl overflow-hidden ${
               mode === 'light' || mode === 'light2'
                 ? 'bg-white'
-                : 'bg-gradient-to-t from-[#477197] to-[#293350]'
+                : 'bg-gradient-to-t from-[#477197] to-[#2c476e]'
             }`}>
 
               <div className="px-6 h-56 relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>

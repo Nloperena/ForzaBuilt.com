@@ -78,7 +78,7 @@ const ApproachSection = () => {
         </div>
 
         {/* RIGHT SECTION - Values List (Now on right) */}
-        <div className="bg-[#293350] flex items-center p-8 md:p-12">
+        <div className="bg-[#2c476e] flex items-center p-8 md:p-12">
           <div className="w-full max-w-md">
             {/* Main values list */}
             <div className="space-y-2 mb-8">

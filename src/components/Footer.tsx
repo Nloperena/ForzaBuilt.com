@@ -14,7 +14,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative py-12 px-6 overflow-hidden bg-gradient-to-b from-[#477197] to-[#293350] text-white">
+    <footer className="relative py-12 px-6 overflow-hidden bg-gradient-to-t from-[#477197] to-[#2c476e] text-white">
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">

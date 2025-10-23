@@ -169,7 +169,7 @@ export const getProductColors = (product: string) => {
 // Dynamic gradient function for industry backgrounds
 export const getIndustryGradient = (industry: string) => {
   // Cool grey-blue gradient colors
-  const darkGreyBlue = '#293350'; // Dark grey-blue
+  const darkGreyBlue = '#2c476e'; // Dark grey-blue
   const mediumGreyBlue = '#3d4e6f'; // Medium grey-blue
   const lightGreyBlue = '#477197'; // Updated to new color
   // Gradient from dark to light grey-blue

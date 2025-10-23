@@ -27,7 +27,7 @@ const HeroVideoSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="relative h-[70svh] overflow-hidden bg-gradient-to-b from-[#293350] to-[#81899f] shadow-2xl">
+    <section className="relative h-[70svh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
       {/* Video Skeleton Loading State */}
       {!isVideoLoaded && (
         <VideoSkeleton />
@@ -59,7 +59,7 @@ const HeroVideoSectionV2: React.FC = () => {
       </video>
 
       {/* Fallback background - always visible */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#293350] to-[#81899f]" style={{ zIndex: 0 }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
     </section>
   );
 };

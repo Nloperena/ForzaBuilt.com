@@ -112,7 +112,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
             <div className="space-y-4 lg:space-y-6">
               <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-regular leading-tight ${
                 backgroundColor === 'white' 
-                  ? 'text-[#293350] font-poppins' 
+                  ? 'text-[#2c476e] font-poppins' 
                   : 'text-white font-kallisto drop-shadow-lg'
               }`}>
                 {title || content.title}

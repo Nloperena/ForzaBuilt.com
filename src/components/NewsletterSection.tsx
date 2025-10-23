@@ -58,13 +58,13 @@ const NewsletterSection = () => {
         <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-center mb-8 md:mb-12 relative">
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#293350] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance">Stay Ahead with Forza</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#2c476e] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance">Stay Ahead with Forza</h2>
             <p className="mt-4 text-gray-600 text-base md:text-lg max-w-2xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch max-w-[1500px] mx-auto">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#293350] border border-white/10">
+            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-8">
                   <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Join Our Newsletter</h3>
@@ -100,7 +100,7 @@ const NewsletterSection = () => {
                       onChange={handleInputChange}
                       required
                       placeholder="you@company.com"
-                      className="h-11 px-4 rounded-lg bg-white text-[#293350] placeholder:text-slate-400 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                      className="h-11 px-4 rounded-lg bg-white text-[#2c476e] placeholder:text-slate-400 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
                     />
                     <button
                       type="submit"
@@ -122,7 +122,7 @@ const NewsletterSection = () => {
             </div>
 
             {/* Featured Blog Section - Secondary Focus */}
-            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#293350] border border-white/10">
+            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-8">
                   <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Featured Articles</h3>

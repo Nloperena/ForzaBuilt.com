@@ -264,7 +264,7 @@ const ProductDetailPage: React.FC = () => {
         <Header />
         <main className="flex-1 pb-10">
           {/* Hero Skeleton */}
-          <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#293350] pt-5">
+          <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#2c476e] pt-5">
             <div className="max-w-[1200px] mx-auto px-4 py-16">
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 {/* Left Side Skeleton */}
@@ -286,7 +286,7 @@ const ProductDetailPage: React.FC = () => {
 
           {/* Tabs Skeleton */}
           <div className="max-w-[1200px] mx-auto px-4">
-            <div className="mb-12 bg-gradient-to-b from-[#477197] to-[#293350] rounded-2xl p-6 md:p-8">
+            <div className="mb-12 bg-gradient-to-b from-[#477197] to-[#2c476e] rounded-2xl p-6 md:p-8">
               {/* Tab Buttons Skeleton */}
               <div className="flex gap-4 mb-8">
                 <div className="h-10 w-32 bg-white/20 rounded-full animate-pulse"></div>
@@ -326,7 +326,7 @@ const ProductDetailPage: React.FC = () => {
             <h1 className="text-4xl font-kallisto font-black text-gray-900 mb-4">Product Not Found</h1>
             <p className="text-gray-600 mb-8">The product you're looking for doesn't exist.</p>
             <Link to="/products">
-              <Button className="bg-gradient-to-r from-[#477197] to-[#293350] hover:from-[#3a4a6a] hover:to-[#1a2340] text-white rounded-full px-8 py-6 text-xl">
+              <Button className="bg-gradient-to-r from-[#477197] to-[#2c476e] hover:from-[#3a4a6a] hover:to-[#1a2340] text-white rounded-full px-8 py-6 text-xl">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Products
               </Button>
@@ -353,7 +353,7 @@ const ProductDetailPage: React.FC = () => {
       <Header />
       <main className="flex-1 pb-10">
         {/* Hero Section - Full width background */}
-        <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#293350]">
+        <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#2c476e]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -449,7 +449,7 @@ const ProductDetailPage: React.FC = () => {
 
           {/* Product Details Tabs */}
           <motion.section 
-            className="mb-12 bg-gradient-to-b from-[#477197] to-[#293350] rounded-2xl p-6 md:p-8"
+            className="mb-12 bg-gradient-to-b from-[#477197] to-[#2c476e] rounded-2xl p-6 md:p-8"
             layout
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
@@ -550,7 +550,7 @@ const ProductDetailPage: React.FC = () => {
                     layout
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
-                  <Card className="bg-gradient-to-r from-[#477197] to-[#293350] border border-gray-200 rounded-2xl">
+                  <Card className="bg-gradient-to-r from-[#477197] to-[#2c476e] border border-gray-200 rounded-2xl">
                     <CardHeader className="px-4 md:px-6 py-3 md:py-4">
                       <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -642,7 +642,7 @@ const ProductDetailPage: React.FC = () => {
                     layout
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
-                  <Card className="bg-gradient-to-r from-[#477197] to-[#293350] border border-gray-200 rounded-2xl">
+                  <Card className="bg-gradient-to-r from-[#477197] to-[#2c476e] border border-gray-200 rounded-2xl">
                     <CardHeader className="px-4 md:px-6 py-3 md:py-4">
                       <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -731,7 +731,7 @@ const ProductDetailPage: React.FC = () => {
                     layout
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
-                  <Card className="bg-gradient-to-r from-[#477197] to-[#293350] border border-gray-200 rounded-2xl">
+                  <Card className="bg-gradient-to-r from-[#477197] to-[#2c476e] border border-gray-200 rounded-2xl">
                     <CardHeader className="px-4 md:px-6 py-3 md:py-4">
                       <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -831,7 +831,7 @@ const ProductDetailPage: React.FC = () => {
                     layout
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
-                  <Card className="bg-gradient-to-r from-[#477197] to-[#293350] border border-gray-200 rounded-2xl">
+                  <Card className="bg-gradient-to-r from-[#477197] to-[#2c476e] border border-gray-200 rounded-2xl">
                     <CardHeader className="px-4 md:px-6 py-3 md:py-4">
                       <CardTitle className="text-white text-xl md:text-2xl font-kallisto font-bold" 
                                  style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -875,7 +875,7 @@ const ProductDetailPage: React.FC = () => {
 
           {/* Related Products */}
           {relatedProducts.length > 0 && (
-            <section className="mb-12 bg-gradient-to-b from-[#477197] to-[#293350] rounded-2xl p-6 md:p-8">
+            <section className="mb-12 bg-gradient-to-b from-[#477197] to-[#2c476e] rounded-2xl p-6 md:p-8">
               <div className="mb-8">
                 <h2 className="text-3xl font-kallisto font-bold text-white mb-2" 
                     style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -894,7 +894,7 @@ const ProductDetailPage: React.FC = () => {
                     className="group"
                   >
                     <Link to={`/products/${relatedProduct.category.toLowerCase()}/${relatedProduct.id}`}>
-                      <div className="relative h-[300px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#477197] to-[#293350] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
+                      <div className="relative h-[300px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#477197] to-[#2c476e] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
                         {/* Background Image */}
                         <div className="absolute inset-0">
                           <img 
@@ -941,7 +941,7 @@ const ProductDetailPage: React.FC = () => {
 
           {/* Call to Action */}
           <section className="text-center">
-            <Card className="bg-gradient-to-r from-[#477197] to-[#293350] border border-gray-200 rounded-2xl p-8">
+            <Card className="bg-gradient-to-r from-[#477197] to-[#2c476e] border border-gray-200 rounded-2xl p-8">
               <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
                 <h2 className="text-3xl font-kallisto font-bold text-white" 
                     style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>

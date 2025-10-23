@@ -23,7 +23,7 @@ const StickyBackgroundSection: React.FC<StickyBackgroundSectionProps> = ({ child
   return (
     <div className="relative">
       {/* Sticky Video Background Section */}
-      <section className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#293350] to-[#81899f] shadow-2xl">
+      <section className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
         {/* Fallback background */}
         {(!isVideoLoaded || videoError) && (
           <div 

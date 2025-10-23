@@ -51,7 +51,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
       )}
 
       
-        <section className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#293350] to-[#81899f] shadow-2xl">
+        <section className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
             <VideoSkeleton />
@@ -79,15 +79,15 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
               minHeight: '100%'
             }}
           >
-            <source src="/Bald-Ealge-is-My-Hero.mp4" type="video/mp4" />
+            <source src="/Eagle Header Video.mp4" type="video/mp4" />
           </video>
 
           {/* Fallback background - always visible */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#293350] to-[#81899f]" style={{ zIndex: 0 }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
 
           {/* Thin blue overlay for text readability (light2 mode only) */}
           {mode === 'light2' && (
-            <div className="absolute inset-0 bg-[#293350]/40" style={{ zIndex: 2 }} />
+            <div className="absolute inset-0 bg-[#2c476e]/40" style={{ zIndex: 2 }} />
           )}
 
           {/* Text Overlay for light2 mode */}

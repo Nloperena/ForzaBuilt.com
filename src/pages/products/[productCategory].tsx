@@ -571,7 +571,7 @@ const ProductCategoryPage: React.FC = () => {
             {/* Sidebar Filters - Hidden on Mobile, Visible on Desktop */}
             <aside className="lg:w-64 xl:w-72 flex-shrink-0 lg:sticky lg:top-24 lg:self-start">
               {/* Search Bar */}
-              <div className="bg-gradient-to-r from-[#477197] to-[#293350] rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
+              <div className="bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
                 <div className="relative">
                   <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 p-1.5 rounded-full">
                     <Search className="text-white h-4 w-4" />
@@ -594,7 +594,7 @@ const ProductCategoryPage: React.FC = () => {
               </div>
 
               {/* Filter Panel - Desktop Sidebar */}
-              <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#293350] shadow-lg rounded-xl border border-gray-300 overflow-hidden">
+              <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-xl border border-gray-300 overflow-hidden">
                 <div className="p-4 border-b border-white/20">
                   <h3 className="font-poppins font-regular text-lg text-white" 
                       style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
@@ -816,7 +816,7 @@ const ProductCategoryPage: React.FC = () => {
                     className="group"
                   >
                     <div 
-                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-b from-[#477197] to-[#293350] border border-gray-200 hover:border-gray-300 shadow-lg cursor-pointer"
+                      className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg cursor-pointer"
                       onClick={() => {
                         setSelectedProduct(product);
                         setIsModalOpen(true);

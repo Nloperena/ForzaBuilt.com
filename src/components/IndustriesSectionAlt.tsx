@@ -50,7 +50,7 @@ const IndustriesSectionAlt = () => {
         ? 'bg-white'
         : mode === 'light'
           ? 'bg-[#e8e8e8]'
-          : `bg-gradient-to-b from-[#293350] to-[#81899f]`
+          : `bg-gradient-to-b from-[#2c476e] to-[#81899f]`
     } w-full relative`}>
 
       {/* Edge triangles positioned at left and right viewport edges (like ProductsSection, but swapped images) */}
@@ -73,7 +73,7 @@ const IndustriesSectionAlt = () => {
       {mode === 'light2' ? (
         <div className="w-full bg-white pt-16 px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-[#293350] mb-6 sm:mb-8 leading-tight font-poppins">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins">
               Better Built Bonds<br />
               For All Industries
             </h2>
@@ -89,7 +89,7 @@ const IndustriesSectionAlt = () => {
           <div className="text-center relative z-10">
             <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${
               mode === 'light'
-                ? 'text-[#293350]'
+                ? 'text-[#2c476e]'
                 : getTextClasses()
             } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
               Better Built Bonds For All Industries
@@ -98,7 +98,7 @@ const IndustriesSectionAlt = () => {
           <div className="text-center relative z-10">
             <p className={`${
               mode === 'light'
-                ? 'text-[#293350]/80'
+                ? 'text-[#2c476e]/80'
                 : getTextSecondaryClasses()
             } text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto`}>
             At Forza, we're your trusted experts and mentors - delivering innovative adhesive solutions that secure your success.
@@ -125,12 +125,12 @@ const IndustriesSectionAlt = () => {
                   className="block w-full"
                 >
                   <Card
-                    className="shadow-lg rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#293350] to-[#81899f]"
+                    className="shadow-lg rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#2c476e] to-[#81899f]"
                     style={{
                       backgroundImage: 'none',
                       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
                       backgroundColor: mode === 'light' || mode === 'light2' ? 'transparent' : 'transparent',
-                      background: 'linear-gradient(to bottom, #293350, #81899f)'
+                      background: 'linear-gradient(to bottom, #2c476e, #81899f)'
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -233,7 +233,7 @@ const IndustriesSectionAlt = () => {
                     className={`rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl ${
                       mode === 'light2' 
                         ? 'aspect-[16/9] bg-white border-0 shadow-none' 
-                        : 'aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] text-white bg-gradient-to-b from-[#293350] to-[#81899f] border border-white/20 shadow-xl sm:shadow-2xl'
+                        : 'aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] text-white bg-gradient-to-b from-[#2c476e] to-[#81899f] border border-white/20 shadow-xl sm:shadow-2xl'
                     }`}
                     style={{
                       backgroundImage: 'none',
@@ -344,7 +344,7 @@ const IndustriesSectionAlt = () => {
             mode === 'light2'
               ? 'bg-gray-300 border border-gray-300' 
               : mode === 'light'
-                ? 'bg-gradient-to-r from-[#293350] to-[#81899f]'
+                ? 'bg-gradient-to-r from-[#2c476e] to-[#81899f]'
                 : 'border border-white/20 bg-white/10 backdrop-blur-xl'
           }`} style={{
             boxShadow: mode === 'light2' ? '0 4px 12px rgba(0, 0, 0, 0.1)' : '0 4px 8px rgba(0, 0, 0, 0.6)'
@@ -363,7 +363,7 @@ const IndustriesSectionAlt = () => {
               <div className="flex flex-col items-center justify-center text-center gap-5">
                 <div className="max-w-2xl">
                   <h3 className={`font-normal text-xl sm:text-2xl md:text-3xl leading-tight ${
-                    mode === 'light2' ? 'text-[#293350] font-poppins' : 'text-white font-kallisto'
+                    mode === 'light2' ? 'text-[#2c476e] font-poppins' : 'text-white font-kallisto'
                   }`}>
                     Don't see your industry?
                   </h3>

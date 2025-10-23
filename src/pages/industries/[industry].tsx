@@ -477,7 +477,7 @@ const IndustryPage = () => {
               {/* Filter Sidebar */}
               <aside className="lg:w-64 xl:w-72 flex-shrink-0 lg:sticky lg:top-24 lg:self-start">
                 {/* Search Bar */}
-                <div className="bg-gradient-to-r from-[#477197] to-[#293350] rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
+                <div className="bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
                   <div className="relative">
                     <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 p-1.5 rounded-full">
                       <Search className="text-white h-4 w-4" />
@@ -500,7 +500,7 @@ const IndustryPage = () => {
                 </div>
 
                 {/* Filter Panel */}
-                <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#293350] shadow-lg rounded-xl border border-gray-300 overflow-hidden">
+                <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-xl border border-gray-300 overflow-hidden">
                   <div className="p-4 border-b border-white/20">
                     <h3 className="font-poppins font-regular text-lg text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                       Filter & Sort
@@ -654,7 +654,7 @@ const IndustryPage = () => {
                           className="group"
                         >
                   <div 
-                    className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-b from-[#477197] to-[#293350] border border-gray-200 hover:border-gray-300 shadow-lg"
+                    className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg"
                   >
                     {/* Desktop: Badge above image */}
                     <div className="absolute top-3 left-3 z-30 hidden md:block">
@@ -981,7 +981,7 @@ const IndustryPage = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative bg-gradient-to-r from-[#477197] to-[#293350] rounded-2xl md:rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-gray-200 shadow-lg"
+              className="relative bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-2xl md:rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto border border-gray-200 shadow-lg"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6">

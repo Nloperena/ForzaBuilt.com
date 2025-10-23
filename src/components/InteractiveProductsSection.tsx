@@ -97,7 +97,7 @@ const InteractiveProductsSection = () => {
       
       {/* background halves */}
       <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
-        <div className="bg-gradient-to-r from-[#477197] to-[#293350]" />
+        <div className="bg-gradient-to-r from-[#477197] to-[#2c476e]" />
         <div className="bg-[#f3f5f7]" />
       </div>
 

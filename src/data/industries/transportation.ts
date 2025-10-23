@@ -6,7 +6,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
     {
       id: 'transportation-rv-bus-xray',
       preSrc: '/img/transportation/pre-RV Bus PreX-Ray.png',
-      postSrc: '/img/transportation/post-RV Bus PostX-Ray.jpg',
+      postSrc: '/img/transportation/post-RV Bus PostX-Ray.png',
       svgOverlay: '/img/transportation/overlay-RV Bus Exploded.svg',
       width: 259.2,
       height: 259.2,
@@ -91,7 +91,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
     {
       id: 'transportation-trailer-xray',
       preSrc: '/img/transportation/pre-Trailer PreX-Ray.png',
-      postSrc: '/img/transportation/post-Trailer PostX-Ray.jpg',
+      postSrc: '/img/transportation/Trailer PostX-Ray.png',
       svgOverlay: '/img/transportation/overlay-Trailer Exploded Graphic.svg',
       width: 800,
       height: 600,
