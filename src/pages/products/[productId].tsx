@@ -420,6 +420,16 @@ const ProductDetailPage: React.FC = () => {
                         style={{
                           filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.1)) brightness(1.2) contrast(1.1)'
                         }}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          // Try fallback to product-images folder
+                          if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                            const filename = product.id.toLowerCase() + '.png';
+                            target.src = `/product-images/${filename}`;
+                          } else if (!target.src.includes('placeholder')) {
+                            target.src = '/placeholder.svg';
+                          }
+                        }}
                       />
                     </div>
                     
@@ -901,6 +911,16 @@ const ProductDetailPage: React.FC = () => {
                             src={relatedProduct.imageUrl || relatedProduct.image} 
                             alt={relatedProduct.name}
                             className="w-full h-full object-cover opacity-100 transition-transform duration-700 group-hover:scale-110"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              // Try fallback to product-images folder
+                              if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                                const filename = relatedProduct.id.toLowerCase() + '.png';
+                                target.src = `/product-images/${filename}`;
+                              } else if (!target.src.includes('placeholder') && !target.src.includes('product-images')) {
+                                target.src = '/placeholder.svg';
+                              }
+                            }}
                           />
                         </div>
 

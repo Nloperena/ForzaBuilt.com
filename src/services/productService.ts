@@ -55,14 +55,16 @@ const PRODUCTS_DATA_URL = 'https://forza-product-managementsystem-b7c3ff8d3d2d.h
 // Service functions
 export async function getAllProducts(): Promise<Product[]> {
   try {
+    console.log('🔵 Fetching products from Heroku API...');
     const response = await fetch(PRODUCTS_DATA_URL);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const apiData = await response.json();
+    console.log(`✅ Fetched ${apiData.length} products from API`);
     
     // Transform the API data to match your expected format
-    const products = apiData.map((apiProduct: any) => {
+    const products = apiData.map((apiProduct: any, index: number) => {
       // Handle technical data - can be array or object
       let technicalData = {};
       if (apiProduct.technical) {
@@ -86,7 +88,7 @@ export async function getAllProducts(): Promise<Product[]> {
         );
       }
 
-      return {
+      const product = {
         id: apiProduct.product_id,
         name: apiProduct.full_name || apiProduct.name,
         shortName: apiProduct.name,
@@ -103,7 +105,7 @@ export async function getAllProducts(): Promise<Product[]> {
           : apiProduct.applications ? [apiProduct.applications] : [],
         benefits: apiProduct.benefits || [],
         sizes: sizes,
-        imageUrl: apiProduct.image,
+        imageUrl: apiProduct.image ? (apiProduct.image.startsWith('/') || apiProduct.image.startsWith('http') ? apiProduct.image : `/product-images/${apiProduct.image}`) : undefined,
         pdfLinks: [], // Not in API response
         standardTdsLink: '', // Not in API response
         hasTdsLink: false, // Not in API response
@@ -113,10 +115,19 @@ export async function getAllProducts(): Promise<Product[]> {
         updatedAt: apiProduct.updated_at,
         version: 1
       };
+      
+      // Debug first few products with images
+      if (index < 3) {
+        console.log(`🖼️ Product ${product.id}: imageUrl = ${product.imageUrl}`);
+      }
+      
+      return product;
     });
     
     // Filter to only show published products
-    return products.filter(product => product.isActive === true);
+    const publishedProducts = products.filter(product => product.isActive === true);
+    console.log(`✅ Returning ${publishedProducts.length} published products`);
+    return publishedProducts;
   } catch (error) {
     console.error('Failed to fetch products from Heroku API, trying fallback:', error);
     
@@ -192,7 +203,7 @@ export async function getProductById(id: string): Promise<Product | null> {
         : apiProduct.applications ? [apiProduct.applications] : [],
       benefits: apiProduct.benefits || [],
       sizes: sizes,
-      imageUrl: apiProduct.image,
+      imageUrl: apiProduct.image ? (apiProduct.image.startsWith('/') || apiProduct.image.startsWith('http') ? apiProduct.image : `/product-images/${apiProduct.image}`) : undefined,
       pdfLinks: [], // Not in API response
       standardTdsLink: '', // Not in API response
       hasTdsLink: false, // Not in API response

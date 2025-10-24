@@ -234,7 +234,9 @@ const ProductCategoryPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
   const [imageLoadedStates, setImageLoadedStates] = useState<{ [key: string]: boolean }>({});
+  const [imageFailedStates, setImageFailedStates] = useState<{ [key: string]: boolean }>({});
   const [modalImageLoaded, setModalImageLoaded] = useState(false);
+  const [hideProductsWithoutImages, setHideProductsWithoutImages] = useState(true);
   const [triangleAnimation, setTriangleAnimation] = useState({
     leftRotation: 300,
     rightRotation: 260,
@@ -249,11 +251,21 @@ const ProductCategoryPage: React.FC = () => {
       ...prev,
       [productId]: true
     }));
+    // Clear any error state when image loads successfully
+    setImageFailedStates(prev => ({
+      ...prev,
+      [productId]: false
+    }));
   };
 
   const handleImageError = (productId: string) => {
-    // Mark as loaded even on error to hide skeleton
+    // Mark as loaded to hide skeleton
     handleImageLoad(productId);
+    // Track that this image failed to load
+    setImageFailedStates(prev => ({
+      ...prev,
+      [productId]: true
+    }));
   };
 
   const handleModalImageLoad = () => {
@@ -413,7 +425,7 @@ const ProductCategoryPage: React.FC = () => {
   // Reset visible product count when filters change
   useEffect(() => {
     setVisibleProductCount(12);
-  }, [selectedIndustries, selectedChemistries, search, nameSort]);
+  }, [selectedIndustries, selectedChemistries, search, nameSort, hideProductsWithoutImages]);
 
   // Handle page transition animation when productCategory changes
   useEffect(() => {
@@ -452,8 +464,12 @@ const ProductCategoryPage: React.FC = () => {
         }
       }
       
+      // Image filter - hide products with failed images if enabled
+      const imageDidNotFail = !imageFailedStates[product.id];
+      const matchImage = !hideProductsWithoutImages || imageDidNotFail;
+      
       // Product must match all active filters
-      return matchIndustry && matchSearch && matchChemistry;
+      return matchIndustry && matchSearch && matchChemistry && matchImage;
     });
 
     // Apply sorting (only by name, ascending or descending)
@@ -464,7 +480,7 @@ const ProductCategoryPage: React.FC = () => {
     });
 
     return filtered;
-  }, [categoryProducts, selectedIndustries, selectedChemistries, search, nameSort]);
+  }, [categoryProducts, selectedIndustries, selectedChemistries, search, nameSort, hideProductsWithoutImages, imageFailedStates]);
 
   // Modal handlers
   const openProductModal = (product: any) => {
@@ -752,6 +768,38 @@ const ProductCategoryPage: React.FC = () => {
                       </div>
                     </div>
                   )}
+                  
+                  {/* Display Options */}
+                  <div className="space-y-3 border-t border-white/10 pt-5">
+                    <h4 className="text-sm font-semibold text-white/90">Display Options</h4>
+                    
+                    <label className="flex items-center justify-between p-3 rounded-lg bg-[#3f5275]/40 border border-white/20 cursor-pointer hover:bg-[#3f5275]/60 transition-all group">
+                      <div className="flex items-center gap-2">
+                        {hideProductsWithoutImages ? (
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                            <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                            <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                            <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                            <line x1="2" x2="22" y1="2" y2="22"/>
+                          </svg>
+                        ) : (
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                          </svg>
+                        )}
+                        <span className="text-xs xl:text-sm font-medium text-white/90">
+                          {hideProductsWithoutImages ? 'Hiding' : 'Showing'} products without images
+                        </span>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={hideProductsWithoutImages}
+                        onChange={(e) => setHideProductsWithoutImages(e.target.checked)}
+                        className="w-4 h-4 rounded border-white/30 bg-white/10 text-[#F2611D] focus:ring-[#F2611D] focus:ring-offset-0 cursor-pointer"
+                      />
+                    </label>
+                  </div>
                 </div>
               </div>
               
@@ -854,7 +902,22 @@ const ProductCategoryPage: React.FC = () => {
                             imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                           }`}
                           onLoad={() => handleImageLoad(product.id)}
-                          onError={() => handleImageError(product.id)}
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            // Try fallback to product-images folder only once
+                            if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                              const filename = product.id.toLowerCase() + '.png';
+                              target.src = `/product-images/${filename}`;
+                            } else if (!target.src.includes('placeholder') && !target.src.includes('product-images')) {
+                              // Final fallback failed - mark as error
+                              handleImageError(product.id);
+                              target.src = '/placeholder.svg';
+                            } else if (target.src.includes('product-images')) {
+                              // Local image also failed - mark as error
+                              handleImageError(product.id);
+                              target.src = '/placeholder.svg';
+                            }
+                          }}
                         />
                       </div>
 
@@ -911,7 +974,22 @@ const ProductCategoryPage: React.FC = () => {
                               imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                             }`}
                             onLoad={() => handleImageLoad(product.id)}
-                            onError={() => handleImageError(product.id)}
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              // Try fallback to product-images folder only once
+                              if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                                const filename = product.id.toLowerCase() + '.png';
+                                target.src = `/product-images/${filename}`;
+                              } else if (!target.src.includes('placeholder') && !target.src.includes('product-images')) {
+                                // Final fallback failed - mark as error
+                                handleImageError(product.id);
+                                target.src = '/placeholder.svg';
+                              } else if (target.src.includes('product-images')) {
+                                // Local image also failed - mark as error
+                                handleImageError(product.id);
+                                target.src = '/placeholder.svg';
+                              }
+                            }}
                           />
                         </div>
                         
@@ -1274,6 +1352,38 @@ const ProductCategoryPage: React.FC = () => {
                       </div>
                     </div>
                   )}
+                  
+                  {/* Display Options - Mobile */}
+                  <div className="bg-white/10 rounded-xl p-4 border border-white/10">
+                    <h4 className="text-white font-bold text-sm uppercase mb-3">Display Options</h4>
+                    
+                    <label className="flex items-center justify-between p-3 rounded-lg bg-white/10 border border-white/20 cursor-pointer hover:bg-white/20 transition-all">
+                      <div className="flex items-center gap-2">
+                        {hideProductsWithoutImages ? (
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                            <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                            <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                            <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                            <line x1="2" x2="22" y1="2" y2="22"/>
+                          </svg>
+                        ) : (
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white/90">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                          </svg>
+                        )}
+                        <span className="text-sm font-medium text-white">
+                          {hideProductsWithoutImages ? 'Hiding' : 'Showing'} products without images
+                        </span>
+                      </div>
+                      <input
+                        type="checkbox"
+                        checked={hideProductsWithoutImages}
+                        onChange={(e) => setHideProductsWithoutImages(e.target.checked)}
+                        className="w-5 h-5 rounded border-white/30 bg-white/10 text-[#F2611D] focus:ring-[#F2611D] focus:ring-offset-0 cursor-pointer"
+                      />
+                    </label>
+                  </div>
                   
                   {/* Apply Filters Button */}
                   <div className="pt-2 pb-6">

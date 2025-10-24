@@ -1,0 +1,120 @@
+{
+  "scrapedAt": "2025-10-24T17:00:26.046Z",
+  "total": 16,
+  "successful": 12,
+  "failed": 4,
+  "results": [
+    {
+      "id": "frp",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "i1000",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "oa75",
+      "success": false,
+      "hasImage": false,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "oa99",
+      "success": false,
+      "hasImage": false,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "r529",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "s228",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "os31",
+      "success": false,
+      "hasImage": false,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "os45",
+      "success": false,
+      "hasImage": false,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "t350",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "t461",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "t600",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "t715",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "t900",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "t950",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "t970",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    },
+    {
+      "id": "c150",
+      "success": true,
+      "hasImage": true,
+      "hasApplications": false,
+      "hasBenefits": false
+    }
+  ]
+}
