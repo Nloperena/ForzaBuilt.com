@@ -217,9 +217,7 @@ const IndustriesSectionAlt = () => {
 
         {/* Desktop: Grid layout with 3 columns */}
         <div className="hidden md:flex w-full flex-col items-center">
-          <div className={`grid gap-6 lg:gap-8 w-full max-w-7xl mb-4 mx-auto py-4 sm:py-6 lg:py-8 ${
-            mode === 'light2' ? 'grid-cols-3' : 'grid-cols-3'
-          }`}>
+          <div className="grid grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1800px] mb-4 mx-auto py-4 sm:py-6 lg:py-8">
             {industriesArr.map((industry: Industry, index: number) => (
               <div
                 key={industry.title}
@@ -230,14 +228,9 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className={`rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl ${
-                      mode === 'light2' 
-                        ? 'aspect-[16/9] bg-white border-0 shadow-none' 
-                        : 'aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] text-white bg-gradient-to-b from-[#2c476e] to-[#81899f] border border-white/20 shadow-xl sm:shadow-2xl'
-                    }`}
+                    className="aspect-[16/9] rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
                     style={{
-                      backgroundImage: 'none',
-                      boxShadow: mode === 'light2' ? 'none' : '0 4px 8px rgba(0, 0, 0, 0.6)'
+                      backgroundImage: 'none'
                     }}
                     onMouseEnter={() => {
                       videoRefs.current[index]?.play();
@@ -275,7 +268,6 @@ const IndustriesSectionAlt = () => {
                       )}
                       
                       {/* Logo absolutely positioned at bottom right */}
-                      {/* Commented out for now - can be brought back later if needed
                       <div
                         className={`absolute pointer-events-none z-20 ${
                           mode === 'light2' 
@@ -297,7 +289,6 @@ const IndustriesSectionAlt = () => {
                           } : {}}
                         />
                       </div>
-                      */}
                       
                       {/* Gradient overlay - transparent top, blue gradient bottom with larger spread */}
                       <div
@@ -338,52 +329,18 @@ const IndustriesSectionAlt = () => {
           </div>
         </div>
 
-        {/* Standalone CTA Section: Glassmorphic liquid shine */}
-        <div className="w-full md:px-8 lg:px-20 mt-8 sm:mt-0 pb-12">
-          <div className={`relative max-w-7xl mx-auto overflow-hidden rounded-2xl shadow-xl sm:shadow-2xl ${
-            mode === 'light2'
-              ? 'bg-gray-300 border border-gray-300' 
-              : mode === 'light'
-                ? 'bg-gradient-to-r from-[#2c476e] to-[#81899f]'
-                : 'border border-white/20 bg-white/10 backdrop-blur-xl'
-          }`} style={{
-            boxShadow: mode === 'light2' ? '0 4px 12px rgba(0, 0, 0, 0.1)' : '0 4px 8px rgba(0, 0, 0, 0.6)'
-          }}>
-            {/* Static liquid shine overlay - only for dark mode */}
-            {mode !== 'light' && mode !== 'light2' && (
-              <div
-                className="pointer-events-none absolute -inset-x-1/2 -inset-y-1/2"
-                style={{
-                  background: 'radial-gradient(60% 40% at 50% 50%, rgba(255,255,255,0.15), rgba(255,255,255,0) 60%)',
-                }}
-              />
-            )}
-
-            <div className="relative z-10 p-5 sm:p-6 md:p-8 lg:p-10">
-              <div className="flex flex-col items-center justify-center text-center gap-5">
-                <div className="max-w-2xl">
-                  <h3 className={`font-normal text-xl sm:text-2xl md:text-3xl leading-tight ${
-                    mode === 'light2' ? 'text-[#2c476e] font-poppins' : 'text-white font-kallisto'
-                  }`}>
-                    Don't see your industry?
-                  </h3>
-                  <p className={`mt-2 text-sm sm:text-base ${
-                    mode === 'light2' ? 'text-gray-600 font-poppins' : 'text-white/80'
-                  }`}>
-                    We can still provide purpose built solutions.
-                  </p>
-                </div>
-                <div className="mt-4">
-                  <a
-                    href="/contact"
-                    className="inline-flex items-center justify-center bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-8 py-3 text-xl border border-[#F2611D] transition-all duration-300"
-                  >
-                    <span>Contact Us</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Subtle afterthought text */}
+        <div className="w-full text-center mt-8 pb-16">
+          <p className="text-base md:text-lg text-gray-600 font-normal font-poppins">
+            Don't see your industry?{' '}
+            <a
+              href="/contact"
+              className="text-[#F2611D] hover:text-[#F2611D]/80 font-medium transition-colors hover:underline underline-offset-4"
+            >
+              Contact us
+            </a>
+            {' '}— we can still provide purpose-built solutions.
+          </p>
         </div>
       </div>
     </section>

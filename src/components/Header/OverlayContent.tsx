@@ -12,17 +12,20 @@ interface OverlayContentProps {
   activeContent: string | null;
   slideDirection: number;
   onVideoUrlChange: (url: string | null) => void;
+  isScrolled?: boolean;
 }
 
 const OverlayContent: React.FC<OverlayContentProps> = ({
   activeContent,
   slideDirection,
   onVideoUrlChange,
+  isScrolled = false,
 }) => {
   const productsData = getProducts();
   const { mode } = useGradientMode();
-  const linkTextClass = mode === 'light' || mode === 'light2' ? 'text-[#1B3764]' : 'text-white';
-  const linkTextStyle = { color: mode === 'light' || mode === 'light2' ? '#1B3764' : 'white' } as React.CSSProperties;
+  // Use white text when at top (not scrolled) with transparent background, dark text when scrolled or in light mode
+  const linkTextClass = mode === 'light' || (mode === 'light2' && isScrolled) ? 'text-[#1B3764]' : 'text-white';
+  const linkTextStyle = { color: mode === 'light' || (mode === 'light2' && isScrolled) ? '#1B3764' : 'white' } as React.CSSProperties;
   
   const renderIndustriesContent = () => (
     <div className="group/menu flex flex-row items-start justify-center space-x-12 text-center">
@@ -52,7 +55,7 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/forza-bond-mb-color.svg' : '/products/brand-logos/product-line-brands-white-bond.svg'} 
+            src={mode === 'light' || (mode === 'light2' && isScrolled) ? '/logos/forza-bond-mb-color.svg' : '/products/brand-logos/product-line-brands-white-bond.svg'} 
             alt="Industrial Adhesives Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
@@ -69,7 +72,7 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/forza-seal-mb-color.svg' : '/products/brand-logos/product-line-brands-white-seal.svg'} 
+            src={mode === 'light' || (mode === 'light2' && isScrolled) ? '/logos/forza-seal-mb-color.svg' : '/products/brand-logos/product-line-brands-white-seal.svg'} 
             alt="Industrial Sealants Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />
@@ -86,7 +89,7 @@ const OverlayContent: React.FC<OverlayContentProps> = ({
       >
         <div className="relative w-40 h-24 flex items-center justify-center will-change-transform">
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/forza-tape-mb-color.svg' : '/products/brand-logos/product-line-brands-white-tape.svg'} 
+            src={mode === 'light' || (mode === 'light2' && isScrolled) ? '/logos/forza-tape-mb-color.svg' : '/products/brand-logos/product-line-brands-white-tape.svg'} 
             alt="Industrial Tapes Logo" 
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 group-hover/item:scale-110"
           />

@@ -14,25 +14,25 @@ const products: Product[] = [
   {
     title: "ADHESIVES",
     description: "Discover our premium industrial adhesive solutions engineered for performance and reliability across all industries.",
-    image: "/ProductHeroPhotos-Homepage/Forza Bond Hero Shot.jpg",
+    image: "/images/homepage-heroes/Forza Bond Hero Shot.jpg",
     slug: "bond"
   },
   {
     title: "SEALANTS", 
     description: "Discover our premium industrial seal solutions engineered for performance and reliability across all industries.",
-    image: "/ProductHeroPhotos-Homepage/Forza Seal Hero Shot.jpg",
+    image: "/images/homepage-heroes/Forza Seal Hero Shot.jpg",
     slug: "seal"
   },
   {
     title: "TAPES",
     description: "Discover our premium industrial tape solutions engineered for performance and reliability across all industries.",
-    image: "/ProductHeroPhotos-Homepage/Forza Tape Hero Shot.jpg",
+    image: "/images/homepage-heroes/Forza Tape Hero Shot.jpg",
     slug: "tape"
   },
   {
     title: "CLEANERS",
     description: "Discover our premium industrial cleaning solutions engineered for performance and reliability across all industries.",
-    image: "/ProductHeroPhotos-Homepage/Forza Cleaners Hero Shot.jpg",
+    image: "/images/homepage-heroes/Forza Cleaners Hero Shot.jpg",
     slug: "ruggedred"
   }
 ];

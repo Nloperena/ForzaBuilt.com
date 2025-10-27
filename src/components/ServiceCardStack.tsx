@@ -41,11 +41,11 @@ const ServiceCardStack: React.FC = () => {
     {
       title: 'Purpose-Built',
       icon: '⭐',
-      image: '/Forza-lion-logo.png',
+      image: '/logos/Forza-lion-logo.png',
       columns: [
         {
           title: 'Decades of Real-World Know-How',
-          image: '/static-approach-page-SVGs/Decades of Real Work Know How icon.svg',
+          image: '/images/approach-svgs/Decades of Real Work Know How icon.svg',
           items: [
             'We\'ve seen it all. With over 30 years in the field, we don\'t guess—we get it right.',
             'We understand how adhesives & sealants behave in real-world conditions, not just in lab tests.',
@@ -55,7 +55,7 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'PURPOSE-BUILT PRODUCT SOLUTIONS DESIGNED FOR YOUR PRECISE APPLICATIONS',
-          image: '/static-approach-page-SVGs/Purpose Built Product Solutions icon.svg',
+          image: '/images/approach-svgs/Purpose Built Product Solutions icon.svg',
           items: [
             'Our solutions are never one-size-fits-all.',
             'We engineer adhesives and sealants for the exact needs our customers face—so they perform exactly as needed, the first time.',
@@ -73,7 +73,7 @@ const ServiceCardStack: React.FC = () => {
        
         {
           title: 'INTENSE INDUSTRY FOCUS, ENGINEERED FOR PERFORMANCE',
-          image: '/static-approach-page-SVGs/Intense Industry Focus Engineered Icon.svg',
+          image: '/images/approach-svgs/Intense Industry Focus Engineered Icon.svg',
           items: [
             'Always Insightful. Never limited in expertise or offerings.',
             'We don\'t try to serve everyone. We serve the industries we know best—like transportation, industrial manufacturing, construction, marine, and insulation.',
@@ -83,7 +83,7 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'PRODUCT PORTFOLIO THAT GIVES YOU ALL YOU NEED & NOTHING YOU DON\'T',
-          image: '/static-approach-page-SVGs/Product Portfolio icon.svg',
+          image: '/images/approach-svgs/Product Portfolio icon.svg',
           items: [
             'Most complete and comprehensive portfolio available.',
             'Our product line covers everything from core adhesives and sealants to niche products and specialty tapes.',
@@ -101,7 +101,7 @@ const ServiceCardStack: React.FC = () => {
       columns: [
         {
           title: 'INNOVATION FROM SCIENCE AND COMMON SENSE',
-          image: '/static-approach-page-SVGs/Innovation From Science icon.svg',
+          image: '/images/approach-svgs/Innovation From Science icon.svg',
           items: [
             'We innovate with a purpose, blending cutting-edge science with in-field common sense.',
             'Our R&D teams are always improving what works—and tossing out what doesn\'t.',
@@ -111,7 +111,7 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'FULLY INTEGRATED FACTORY - PROUDLY MANUFACTURED IN THE USA',
-          image: '/static-approach-page-SVGs/Proudly Manufactured in USA icon.svg',
+          image: '/images/approach-svgs/Proudly Manufactured in USA icon.svg',
           items: [
             'Real people, making real products, making a real difference!',
             'We don\'t just resell & re-label someone else\'s products, we actually make them.',
@@ -121,7 +121,7 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'ONSITE R&D TECHNICAL EXPERTISE DELIVERS RIGHT SOLUTION - RIGHT ON TIME',
-          image: '/static-approach-page-SVGs/Onsite R&D icon.svg',
+          image: '/images/approach-svgs/Onsite R&D icon.svg',
           items: [
             'Guaranteed performance with our in-house lab.',
             'No wasted time. No off-the-shelf guesswork. Just the right product, right away—proven and validated.',
@@ -139,7 +139,7 @@ const ServiceCardStack: React.FC = () => {
         
         {
           title: 'SUSTAINABLE THINKING THAT WORKS',
-          image: '/static-approach-page-SVGs/Sustainable Thinking Icon.svg',
+          image: '/images/approach-svgs/Sustainable Thinking Icon.svg',
           items: [
             'We build stronger, safer products without sacrificing performance.',
             'We\'re pushing for a cleaner, more sustainable future—but never at the cost of quality.'
@@ -147,7 +147,7 @@ const ServiceCardStack: React.FC = () => {
         },
         {
           title: 'CUSTOMER EXPERIENCE THAT\'S TRULY AN EXPERIENCE',
-          image: '/static-approach-page-SVGs/Customer Experience Icon.svg',
+          image: '/images/approach-svgs/Customer Experience Icon.svg',
           items: [
             'We answer the phone. We know your name. We help you get the job done.',
             'Our owners and tech teams are hands-on and accessible—no call centers, no runaround, no delays.',

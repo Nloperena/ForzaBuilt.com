@@ -4,7 +4,7 @@ export const INDUSTRIAL_DATA: IndustryData = {
   id: 'industrial',
   title: 'Industrial Manufacturing Solutions',
   description: 'High-performance industrial adhesives, sealants, and bonding solutions for manufacturing, equipment assembly, and industrial applications',
-  videoUrl: '/Final-Industrial-Page-Banner-Video.mp4',
+  videoUrl: '/videos/backgrounds/Final-Industrial-Page-Banner-Video.mp4',
   logo: '/logos/Industrial-Icon.png',
   color: '#f16a26',
   xrays: [

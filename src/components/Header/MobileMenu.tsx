@@ -24,8 +24,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   
   // Use blue logo for light modes, regular logo for dark modes
   const logoSrc = mode === 'light' || mode === 'light2' 
-    ? '/forza-logo-blue.svg' 
-    : '/forza-logo-full.png';
+    ? '/logos/forza-logo-blue.svg' 
+    : '/logos/forza-logo-full.png';
 
   const handleSubmenuToggle = (itemName: string) => {
     setActiveSubmenu(activeSubmenu === itemName ? null : itemName);

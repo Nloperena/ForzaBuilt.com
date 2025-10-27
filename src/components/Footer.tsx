@@ -7,7 +7,7 @@ const Footer = () => {
   const { mode, getGradientClasses } = useGradientMode();
   
   // Use white logo from public folder
-  const logoSrc = '/Forza-Eagle-Logo-White.svg';
+  const logoSrc = '/logos/Forza-Eagle-Logo-White.svg';
 
   const handleCloseModal = () => {
     setShowNewsletterForm(false);
@@ -135,7 +135,7 @@ const Footer = () => {
               {/* Forza Lion Logo */}
               <div className="flex justify-center mb-4">
                 <img
-                  src="/Forza-lion-logo.png"
+                  src="/logos/Forza-lion-logo.png"
                   alt="Forza Built Lion Logo"
                   className="w-20 h-20 md:w-24 md:h-24 object-contain animate-in fade-in-50 duration-500 delay-200"
                 />

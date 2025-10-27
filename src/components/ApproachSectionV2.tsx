@@ -18,7 +18,7 @@ const approachItems: ApproachItem[] = [
       "One-stop solution for all bonding needs",
       "Saves time, money & reduces risk"
     ],
-    image: "/approach-images/Products Portfolio.jpg"
+    image: "/images/approach/Products Portfolio.jpg"
   },
   {
     title: "OPTIMIZATIONS",
@@ -28,7 +28,7 @@ const approachItems: ApproachItem[] = [
       "Application-specific recommendations",
       "Performance optimization"
     ],
-    image: "/approach-images/Construction Visit.jpg"
+    image: "/images/approach/Construction Visit.jpg"
   },
   {
     title: "SUSTAINABILITY",
@@ -38,7 +38,7 @@ const approachItems: ApproachItem[] = [
       "Made in the U.S.A. for sustainable supply chain.",
       "Always accelerating towards the future today."
     ],
-    image: "/approach-images/Sustainability Image for Web.jpg"
+    image: "/images/approach/Sustainability Image for Web.jpg"
   },
   {
     title: "R&D LAB",
@@ -48,7 +48,7 @@ const approachItems: ApproachItem[] = [
       "Rapid product development",
       "Custom formulation capabilities"
     ],
-    image: "/approach-images/R&D image.jpg"
+    image: "/images/approach/R&D image.jpg"
   },
   {
     title: "CLIENT FOCUS",
@@ -58,7 +58,7 @@ const approachItems: ApproachItem[] = [
       "Technical support team",
       "Long-term partnership focus"
     ],
-    image: "/approach-images/Receptionist at desk.jpg"
+    image: "/images/approach/Receptionist at desk.jpg"
   },
   {
     title: "LEGACY",
@@ -68,7 +68,7 @@ const approachItems: ApproachItem[] = [
       "Application-specific knowledge",
       "Proven track record"
     ],
-    image: "/approach-images/Legacy Image.jpg"
+    image: "/images/approach/Legacy Image.jpg"
   }
 ];
 

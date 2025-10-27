@@ -13,20 +13,20 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 
-// Chemistry icon paths - updated to use regular Chemistry Products Icons (no white background)
+// Chemistry icon paths - updated to use organized chemistry icons
 const CHEMISTRY_ICONS = {
-  acrylic: '/Rebranded%20Chemistry%20Icons/Acrylic%20icon.svg',
-  epoxy: '/Rebranded%20Chemistry%20Icons/Epoxy%20Icon.svg',
-  modifiedEpoxy: '/Rebranded%20Chemistry%20Icons/Modified%20Epoxy%20icon.svg',
-  silicone: '/Rebranded%20Chemistry%20Icons/Silicone%20icon.svg',
-  ms: '/Rebranded%20Chemistry%20Icons/MS%20icon.svg',
-  waterbase: '/Rebranded%20Chemistry%20Icons/Water%20Based%20icon.svg',
-  hotmelt: '/Rebranded%20Chemistry%20Icons/Hotmelt%20icon.svg',
-  solventbase: '/Rebranded%20Chemistry%20Icons/Solvent%20Based%20icon.svg',
-  polyurethane: '/Rebranded%20Chemistry%20Icons/Polyurethane%20icon.svg',
-  cyanoacrylates: '/Rebranded%20Chemistry%20Icons/Cyanoacrylates%20Icon.svg',
-  methacrylate: '/Rebranded%20Chemistry%20Icons/Methacrylate%20icon.svg',
-  rubberbased: '/Rebranded%20Chemistry%20Icons/rubber%20based%20icon.svg'
+  acrylic: '/images/icons/chemistry/Acrylic icon.svg',
+  epoxy: '/images/icons/chemistry/Epoxy Icon.svg',
+  modifiedEpoxy: '/images/icons/chemistry/Modified Epoxy icon.svg',
+  silicone: '/images/icons/chemistry/Silicone icon.svg',
+  ms: '/images/icons/chemistry/MS icon.svg',
+  waterbase: '/images/icons/chemistry/Water Based icon.svg',
+  hotmelt: '/images/icons/chemistry/Hotmelt icon.svg',
+  solventbase: '/images/icons/chemistry/Solvent Based icon.svg',
+  polyurethane: '/images/icons/chemistry/Polyurethane icon.svg',
+  cyanoacrylates: '/images/icons/chemistry/Cyanoacrylates Icon.svg',
+  methacrylate: '/images/icons/chemistry/Methacrylate icon.svg',
+  rubberbased: '/images/icons/chemistry/rubber based icon.svg'
 };
 
 // Helper to get chemistry icon

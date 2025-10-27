@@ -55,7 +55,7 @@ const HeroVideoSectionV2: React.FC = () => {
           minHeight: '100%'
         }}
       >
-        <source src="/Forza Slogan Slam Final 1.mp4" type="video/mp4" />
+        <source src="/videos/misc/Forza Slogan Slam Final 1.mp4" type="video/mp4" />
       </video>
 
       {/* Fallback background - always visible */}

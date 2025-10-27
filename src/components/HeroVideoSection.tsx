@@ -54,7 +54,7 @@ const HeroVideoSection = () => {
         }`}
         style={{ zIndex: 1 }}
       >
-        <source src="/Eagle Header Video.mp4" type="video/mp4" />
+        <source src="/videos/backgrounds/Eagle Header Video.mp4" type="video/mp4" />
       </video>
     </section>
   );

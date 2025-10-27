@@ -67,7 +67,7 @@ const ApproachSection = () => {
         <div className="relative bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 flex items-center justify-center p-0 overflow-hidden min-h-[400px]">
           {/* Main image - covers full square */}
           <img
-            src="/approach-greener-chem.png"
+            src="/images/misc/approach-greener-chem.png"
             alt="Forza Industrial Products - Greener Chemistries"
             className="w-full h-full object-cover"
             style={{

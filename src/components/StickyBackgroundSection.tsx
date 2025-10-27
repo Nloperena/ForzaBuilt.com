@@ -52,7 +52,7 @@ const StickyBackgroundSection: React.FC<StickyBackgroundSectionProps> = ({ child
             zIndex: 1
           }}
         >
-          <source src="/Forza Slogan Slam Final 1.mp4" type="video/mp4" />
+          <source src="/videos/misc/Forza Slogan Slam Final 1.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         

@@ -28,7 +28,7 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({ isOpen, onClose, items = [] }
     {
       link: '/products',
       text: 'Products',
-      image: '/Bond Heroic Image 1.png',
+      image: '/images/heroes/Bond Heroic Image 1.png',
       hasSubmenu: true,
       submenuItems: [
         {
@@ -56,7 +56,7 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({ isOpen, onClose, items = [] }
     {
       link: '/industries',
       text: 'Industries',
-      image: '/Final-Construction-Page-Banner-Video-1.mp4',
+      image: '/videos/backgrounds/Final-Construction-Page-Banner-Video-1.mp4',
       hasSubmenu: true,
       submenuItems: industriesData.slice(0, 6).map(industry => ({
         link: `/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`,
@@ -65,15 +65,15 @@ const FlowingMenu: React.FC<FlowingMenuProps> = ({ isOpen, onClose, items = [] }
       }))
     },
     {
-      link: '/blog',
-      text: 'Blog',
-      image: '/Forza Slogan Slam Final 1.mp4',
+      link: '/about',
+      text: 'About',
+      image: '/videos/misc/ForzaLionLoop-1-2.mp4',
       hasSubmenu: false
     },
     {
-      link: '/about',
-      text: 'About',
-      image: '/ForzaLionLoop-1-2.mp4',
+      link: '/blog',
+      text: 'Blog',
+      image: '/videos/misc/Forza Slogan Slam Final 1.mp4',
       hasSubmenu: false
     }
   ];

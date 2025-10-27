@@ -24,7 +24,7 @@ const Tools = () => {
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex justify-center mb-8">
               <img 
-                src="/Forza-lion-logo.png" 
+                src="/logos/Forza-lion-logo.png" 
                 alt="ForzaBuilt Lion Logo" 
                 className="w-60 h-60 object-contain"
               />
@@ -58,7 +58,7 @@ const Tools = () => {
                     {/* Gradient Background for Icon */}
                     <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#1B3764] to-[#F16022] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 relative overflow-hidden">
                       <img 
-                        src="/Forza-lion-logo.png" 
+                        src="/logos/Forza-lion-logo.png" 
                         alt="ForzaBuilt Lion Logo"
                         className="w-32 h-32 object-contain"
                       />

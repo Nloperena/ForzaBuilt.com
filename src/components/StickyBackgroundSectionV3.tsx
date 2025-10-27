@@ -33,7 +33,7 @@ const StickyBackgroundSectionV3 = () => {
           <div className="flex justify-center mt-6">
             <div className="w-48 md:w-64 lg:w-80">
               <video
-                src="/American%20Flag.mp4"
+                src="/videos/backgrounds/American Flag.mp4"
                 autoPlay
                 loop
                 muted

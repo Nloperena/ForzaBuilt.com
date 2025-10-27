@@ -51,7 +51,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
       )}
 
       
-        <section className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
+        <section className="sticky top-0 h-[80vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
             <VideoSkeleton />
@@ -79,7 +79,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
               minHeight: '100%'
             }}
           >
-            <source src="/Eagle Header Video.mp4" type="video/mp4" />
+            <source src="/videos/backgrounds/Eagle Header Video.mp4" type="video/mp4" />
           </video>
 
           {/* Fallback background - always visible */}

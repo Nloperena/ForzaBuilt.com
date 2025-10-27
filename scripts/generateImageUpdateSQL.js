@@ -36,3 +36,4 @@ console.log(`\n✅ SQL file saved: ${sqlFile}`);
 console.log(`   Total updates: ${updates.length}`);
 console.log('\n📌 Run these SQL statements in your Heroku database to use WordPress images temporarily');
 
+

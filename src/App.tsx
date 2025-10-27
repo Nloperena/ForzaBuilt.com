@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { GradientModeProvider } from "@/contexts/GradientModeContext";
+import { BookViewerProvider } from "@/contexts/BookViewerContext";
 import ScrollToTop from "@/components/ScrollToTop";
 import { HelmetProvider } from 'react-helmet-async';
 import Index from "./pages/Index";
@@ -52,7 +53,8 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <GradientModeProvider>
-            <TooltipProvider>
+            <BookViewerProvider>
+              <TooltipProvider>
             <PerformanceMonitor />
             <Toaster />
             <Sonner />
@@ -95,7 +97,8 @@ const App = () => {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
-            </TooltipProvider>
+              </TooltipProvider>
+            </BookViewerProvider>
           </GradientModeProvider>
         </AuthProvider>
       </QueryClientProvider>

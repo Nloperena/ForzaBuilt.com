@@ -8,7 +8,6 @@ interface ChemistryData {
   name: string;
   description: string;
   features: string[];
-  products: string[];
   iconSrc: string;
 }
 
@@ -17,143 +16,132 @@ const chemistryData: ChemistryData[] = [
     id: 'acrylic',
     abbreviation: 'Ac',
     name: 'Acrylic',
-    iconSrc: '/Rebranded Chemistry Icons/Acrylic icon.svg',
+    iconSrc: '/images/icons/chemistry/Acrylic icon.svg',
     description: 'Durable, UV Resistant, Flexible',
     features: [
       'Best for metals, glass, plastics, rubber',
       'High/low temperature tolerant',
       'Moisture, UV-resistant',
       'Quick handling & fast strength'
-    ],
-    products: ['ForzaTAPE T215', 'ForzaTAPE T220', 'ForzaTAPE T446']
+    ]
   },
   {
     id: 'epoxy',
     abbreviation: 'Ep',
     name: 'Epoxy',
-    iconSrc: '/Rebranded Chemistry Icons/Epoxy Icon.svg',
+    iconSrc: '/images/icons/chemistry/Epoxy Icon.svg',
     description: 'High Strength & Durability, Rigid, Excellent Chemical Resistance',
     features: [
       'Best for metals, composites, concrete, wood, plastics',
       'High/low temperatures, minimal flex',
       'Slow to moderate cure time'
     ],
-    products: ['ForzaBOND R160']
   },
   {
     id: 'modified-epoxy',
     abbreviation: 'Mo',
     name: 'Modified Epoxy',
-    iconSrc: '/Rebranded Chemistry Icons/Modified Epoxy icon.svg',
+    iconSrc: '/images/icons/chemistry/Modified Epoxy icon.svg',
     description: 'Combines Epoxy Strength, Improved Flexibility & Speed',
     features: [
       'Best for metals, composites needing more flexibility or peel strength'
     ],
-    products: ['ForzaBOND R221', 'ForzaBOND R220']
   },
   {
     id: 'cyanoacrylates',
     abbreviation: 'Cy',
     name: 'Cyanoacrylates',
-    iconSrc: '/Rebranded Chemistry Icons/Cyanoacrylates Icon.svg',
+    iconSrc: '/images/icons/chemistry/Cyanoacrylates Icon.svg',
     description: 'Instant Bond, High Strength, Precision Application',
     features: [
       'Fast-curing adhesives for immediate bonding',
       'Excellent for small, precise applications',
       'Works on plastics, rubber, metal, and ceramics'
     ],
-    products: ['ForzaBOND CA100', 'ForzaBOND CA110']
   },
   {
     id: 'hot-melt',
     abbreviation: 'Ho',
     name: 'Hot Melt',
-    iconSrc: '/Rebranded Chemistry Icons/Hotmelt icon.svg',
+    iconSrc: '/images/icons/chemistry/Hotmelt icon.svg',
     description: 'Fast Setting, No VOCs, High Production',
     features: [
       'Fast-setting thermoplastic adhesives with instant bonds',
       'Great for high-speed production applications',
       'No solvents or VOCs for safer handling'
     ],
-    products: ['ForzaBOND H500', 'ForzaBOND H510']
   },
   {
     id: 'methacrylate',
     abbreviation: 'Me',
     name: 'Methacrylate',
-    iconSrc: '/Rebranded Chemistry Icons/Methacrylate icon.svg',
+    iconSrc: '/images/icons/chemistry/Methacrylate icon.svg',
     description: 'High Performance, Structural, Temperature Resistant',
     features: [
       'Two-part structural adhesives for demanding applications',
       'Excellent temperature and chemical resistance',
       'Ideal for metal, composite, and plastic bonding'
     ],
-    products: ['ForzaBOND M200', 'ForzaBOND M210']
   },
   {
     id: 'ms',
     abbreviation: 'Ms',
     name: 'MS',
-    iconSrc: '/Rebranded Chemistry Icons/MS icon.svg',
+    iconSrc: '/images/icons/chemistry/MS icon.svg',
     description: 'Weatherproof, Flexible, Low VOC',
     features: [
       'Modified silane polymers for flexible, strong bonds',
       'Excellent weatherability with no off-gassing',
       'Good for many substrates including difficult surfaces'
     ],
-    products: ['ForzaSEAL S330', 'ForzaSEAL S360']
   },
   {
     id: 'polyurethane',
     abbreviation: 'Po',
     name: 'Polyurethane',
-    iconSrc: '/Rebranded Chemistry Icons/Polyurethane icon.svg',
+    iconSrc: '/images/icons/chemistry/Polyurethane icon.svg',
     description: 'Abrasion Resistant, Impact Resistant, Paintable',
     features: [
       'Strong and elastic adhesives that handle movement',
       'Resist weather and moisture for flexible joints',
       'Ideal for structural bonding with movement'
     ],
-    products: ['ForzaBOND P300', 'ForzaSEAL P310']
   },
   {
     id: 'silicone',
     abbreviation: 'Si',
     name: 'Silicone',
-    iconSrc: '/Rebranded Chemistry Icons/Silicone icon.svg',
+    iconSrc: '/images/icons/chemistry/Silicone icon.svg',
     description: 'Heat Resistant, Waterproof, Flexible',
     features: [
       'Extreme temperature stability from -65°F to 500°F',
       'Excellent UV, chemical, and weather resistance',
       'Ideal for sealing and waterproofing applications'
     ],
-    products: ['ForzaSEAL S100', 'ForzaSEAL S110']
   },
   {
     id: 'solvent-based',
     abbreviation: 'So',
     name: 'Solvent Based',
-    iconSrc: '/Rebranded Chemistry Icons/Solvent Based icon.svg',
+    iconSrc: '/images/icons/chemistry/Solvent Based icon.svg',
     description: 'Fast Drying, High Initial Tack, Versatile',
     features: [
       'Fast-drying polymer solutions for quick application',
       'Excellent initial tack for immediate hold',
       'Works on both flexible and rigid applications'
     ],
-    products: ['ForzaCLEAN C400', 'ForzaPRIME P450']
   },
   {
     id: 'water-based',
     abbreviation: 'Wa',
     name: 'Water Based',
-    iconSrc: '/Rebranded Chemistry Icons/Water Based icon.svg',
+    iconSrc: '/images/icons/chemistry/Water Based icon.svg',
     description: 'Environmentally Friendly, Quick Drying, Versatile',
     features: [
       'Non-toxic, water-based adhesives for a healthier environment',
       'Quick drying polymer solutions for immediate hold',
       'Works on a wide range of surfaces'
     ],
-    products: ['ForzaCLEAN C400', 'ForzaPRIME P450']
   }
 ];
 
@@ -370,18 +358,6 @@ const ChemistryOverviewSectionV6: React.FC = () => {
                       <li key={index}>{feature}</li>
                     ))}
                   </ul>
-                </div>
-
-                {/* Products */}
-                <div className="text-left">
-                  <h4 className="font-normal text-[#2c476e] mb-2 text-base md:text-lg font-poppins">Products</h4>
-                  <div className="space-y-1">
-                    {selectedChemistry.products.map((product, index) => (
-                      <div key={index} className="text-sm md:text-base text-gray-700 font-poppins">
-                        {product}
-                      </div>
-                    ))}
-                  </div>
                 </div>
               </motion.div>
             </motion.div>

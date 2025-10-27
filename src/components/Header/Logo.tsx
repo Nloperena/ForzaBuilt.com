@@ -13,10 +13,10 @@ const Logo: React.FC<LogoProps> = ({ className = 'h-10 w-auto', isScrolled = fal
   
   // Use white logo when transparent, blue logo when white background
   const logoSrc = mode === 'light' 
-    ? isWhiteBackground ? '/Forza-Eagle-Logo-Blue.svg' : '/Forza-Eagle-Logo-White.svg'
+    ? isWhiteBackground ? '/logos/Forza-Eagle-Logo-Blue.svg' : '/logos/Forza-Eagle-Logo-White.svg'
     : mode === 'light2'
-    ? isWhiteBackground ? '/Forza-Eagle-Logo-Blue.svg' : '/Forza-Eagle-Logo-White.svg'
-    : '/Forza-Eagle-Logo-White.svg';
+    ? isWhiteBackground ? '/logos/Forza-Eagle-Logo-Blue.svg' : '/logos/Forza-Eagle-Logo-White.svg'
+    : '/logos/Forza-Eagle-Logo-White.svg';
 
   return (
     <Link to="/" className="flex items-center">

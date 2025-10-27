@@ -4,17 +4,17 @@ import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const CHEMISTRY_ICONS = {
-  acrylic: '/Chemistry%20Products%20Icons/acrylic%20icon.svg',
-  epoxy: '/Chemistry%20Products%20Icons/epoxy%20icon.svg',
-  modifiedEpoxy: '/Chemistry%20Products%20Icons/modified%20epoxy%20icon.svg',
-  polyurethane: '/Chemistry%20Products%20Icons/polyurethane%20icon.svg',
-  ms: '/Chemistry%20Products%20Icons/ms%20icon.svg',
-  silicone: '/Chemistry%20Products%20Icons/silicone%20icon.svg',
-  hotMelt: '/Chemistry%20Products%20Icons/hotmelt%20icon.svg',
-  solventBase: '/Chemistry%20Products%20Icons/solvent%20based%20icon.svg',
-  waterBased: '/Chemistry%20Products%20Icons/water%20based%20icon.svg',
-  cyanoacrylates: '/Chemistry%20Products%20Icons/cyanoacrylates%20icon.svg',
-  methacrylate: '/Chemistry%20Products%20Icons/methacrylate%20icon.svg',
+  acrylic: '/images/icons/chemistry/Acrylic icon.svg',
+  epoxy: '/images/icons/chemistry/Epoxy Icon.svg',
+  modifiedEpoxy: '/images/icons/chemistry/Modified Epoxy icon.svg',
+  polyurethane: '/images/icons/chemistry/Polyurethane icon.svg',
+  ms: '/images/icons/chemistry/MS icon.svg',
+  silicone: '/images/icons/chemistry/Silicone icon.svg',
+  hotMelt: '/images/icons/chemistry/Hotmelt icon.svg',
+  solventBase: '/images/icons/chemistry/Solvent Based icon.svg',
+  waterBased: '/images/icons/chemistry/Water Based icon.svg',
+  cyanoacrylates: '/images/icons/chemistry/Cyanoacrylates Icon.svg',
+  methacrylate: '/images/icons/chemistry/Methacrylate icon.svg',
 };
 
 const chemistries = [

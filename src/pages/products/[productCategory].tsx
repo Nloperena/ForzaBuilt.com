@@ -14,20 +14,20 @@ import { byProductLine, getProduct } from '@/utils/products';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
 
-// Chemistry icon paths - using Rebranded Chemistry Icons
+// Chemistry icon paths - using organized chemistry icons
 const CHEMISTRY_ICONS = {
-  'Acrylic (incl. PSA)': '/Rebranded%20Chemistry%20Icons/Acrylic%20icon.svg',
-  'Epoxy': '/Rebranded%20Chemistry%20Icons/Epoxy%20Icon.svg',
-  'Modified Epoxy': '/Rebranded%20Chemistry%20Icons/Modified%20Epoxy%20icon.svg',
-  'Silicone': '/Rebranded%20Chemistry%20Icons/Silicone%20icon.svg',
-  'MS': '/Rebranded%20Chemistry%20Icons/MS%20icon.svg',
-  'Water Base': '/Rebranded%20Chemistry%20Icons/Water%20Based%20icon.svg',
-  'Hotmelt': '/Rebranded%20Chemistry%20Icons/Hotmelt%20icon.svg',
-  'Solvent Base': '/Rebranded%20Chemistry%20Icons/Solvent%20Based%20icon.svg',
-  'Polyurethane (PU)': '/Rebranded%20Chemistry%20Icons/Polyurethane%20icon.svg',
-  'Cyanoacrylates': '/Rebranded%20Chemistry%20Icons/Cyanoacrylates%20Icon.svg',
-  'Methacrylate/MMA': '/Rebranded%20Chemistry%20Icons/Methacrylate%20icon.svg',
-  'Rubber Based': '/Rebranded%20Chemistry%20Icons/rubber%20based%20icon.svg'
+  'Acrylic (incl. PSA)': '/images/icons/chemistry/Acrylic icon.svg',
+  'Epoxy': '/images/icons/chemistry/Epoxy Icon.svg',
+  'Modified Epoxy': '/images/icons/chemistry/Modified Epoxy icon.svg',
+  'Silicone': '/images/icons/chemistry/Silicone icon.svg',
+  'MS': '/images/icons/chemistry/MS icon.svg',
+  'Water Base': '/images/icons/chemistry/Water Based icon.svg',
+  'Hotmelt': '/images/icons/chemistry/Hotmelt icon.svg',
+  'Solvent Base': '/images/icons/chemistry/Solvent Based icon.svg',
+  'Polyurethane (PU)': '/images/icons/chemistry/Polyurethane icon.svg',
+  'Cyanoacrylates': '/images/icons/chemistry/Cyanoacrylates Icon.svg',
+  'Methacrylate/MMA': '/images/icons/chemistry/Methacrylate icon.svg',
+  'Rubber Based': '/images/icons/chemistry/rubber based icon.svg'
 };
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -53,13 +53,13 @@ const getProductCategoryImage = (category: string) => {
   const categoryLower = category.toLowerCase();
   switch (categoryLower) {
     case 'bond':
-      return '/product-hero-page-images/Forza Bond Hero Shot Header.jpg';
+      return '/images/product-heroes/Forza Bond Hero Shot Header.jpg';
     case 'seal':
-      return '/product-hero-page-images/Forza Seal Hero Shot Header.jpg';
+      return '/images/product-heroes/Forza Seal Hero Shot Header.jpg';
     case 'tape':
-      return '/product-hero-page-images/Forza Tape Hero Shot Header.jpg';
+      return '/images/product-heroes/Forza Tape Hero Shot Header.jpg';
     case 'ruggedred':
-      return '/product-hero-page-images/Forza Cleaners Hero Shot Header.jpg';
+      return '/images/product-heroes/Forza Cleaners Hero Shot Header.jpg';
     default:
       return null;
   }

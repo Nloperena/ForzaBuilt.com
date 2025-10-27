@@ -21,15 +21,15 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
   
   // Use blue logo for light modes, regular logo for dark modes
   const logoSrc = mode === 'light' || mode === 'light2' 
-    ? '/forza-logo-blue.svg' 
-    : '/forza-logo-full.png';
+    ? '/logos/forza-logo-blue.svg' 
+    : '/logos/forza-logo-full.png';
   
   // Main navigation matching desktop
   const navigation = [
     { name: 'Products', href: '/products', hasSubmenu: true },
     { name: 'Industries', href: '/industries', hasSubmenu: true },
-    { name: 'Blog', href: '/blog', hasSubmenu: false },
     { name: 'About', href: '/about', hasSubmenu: false },
+    { name: 'Blog', href: '/blog', hasSubmenu: false },
   ];
 
   const productsData = getProducts();
@@ -44,7 +44,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
           className="flex flex-col items-center p-4 bg-[#1B3764]/5 hover:bg-[#1B3764]/10 rounded-xl transition-all duration-200 border border-[#1B3764]/10"
         >
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/forza-bond-mb-color.svg' : '/products/brand-logos/product-line-brands-white-bond.svg'} 
+            src={mode === 'light' || mode === 'light2' ? '/logos/forza-bond-mb-color.svg' : '/products/brand-logos/product-line-brands-white-bond.svg'} 
             alt="Industrial Adhesives" 
             className="h-12 w-auto mb-2"
           />
@@ -56,7 +56,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
           className="flex flex-col items-center p-4 bg-[#1B3764]/5 hover:bg-[#1B3764]/10 rounded-xl transition-all duration-200 border border-[#1B3764]/10"
         >
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/forza-seal-mb-color.svg' : '/products/brand-logos/product-line-brands-white-seal.svg'} 
+            src={mode === 'light' || mode === 'light2' ? '/logos/forza-seal-mb-color.svg' : '/products/brand-logos/product-line-brands-white-seal.svg'} 
             alt="Industrial Sealants" 
             className="h-12 w-auto mb-2"
           />
@@ -68,7 +68,7 @@ const MobileMenuSimple: React.FC<MobileMenuSimpleProps> = ({
           className="flex flex-col items-center p-4 bg-[#1B3764]/5 hover:bg-[#1B3764]/10 rounded-xl transition-all duration-200 border border-[#1B3764]/10"
         >
           <img 
-            src={mode === 'light' || mode === 'light2' ? '/forza-tape-mb-color.svg' : '/products/brand-logos/product-line-brands-white-tape.svg'} 
+            src={mode === 'light' || mode === 'light2' ? '/logos/forza-tape-mb-color.svg' : '/products/brand-logos/product-line-brands-white-tape.svg'} 
             alt="Industrial Tapes" 
             className="h-12 w-auto mb-2"
           />

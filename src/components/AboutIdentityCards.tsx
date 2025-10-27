@@ -18,7 +18,7 @@ const AboutIdentityCards = () => {
           <div className="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-2xl md:rounded-3xl"></div>
           <div className="relative z-10 flex flex-col items-center justify-center text-center h-full">
             <img
-              src="/Forza-lion-logo.png"
+              src="/logos/Forza-lion-logo.png"
               alt="Forza lion logo"
               className="w-28 md:w-32 h-auto mb-3 md:mb-4"
             />

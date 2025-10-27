@@ -16,7 +16,7 @@ const MadeInAmericaSection: React.FC = () => {
             <div className="flex justify-center lg:justify-start">
               <div className="w-full h-full">
                 <video
-                  src="/American Flag.mp4"
+                  src="/videos/backgrounds/American Flag.mp4"
                   autoPlay
                   loop
                   muted

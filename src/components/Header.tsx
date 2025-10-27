@@ -9,6 +9,7 @@ import FlowingMenu from './Header/FlowingMenu';
 import OverlayContent from './Header/OverlayContent';
 import SearchBar from './Header/SearchBar';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import { useBookViewer } from '@/contexts/BookViewerContext';
 
 const Header = () => {
   const {
@@ -39,9 +40,15 @@ const Header = () => {
   } = useHeaderState();
   
   const { mode } = useGradientMode();
+  const { isBookOpen } = useBookViewer();
 
-  // Determine if navbar has white background (light mode or scrolled/hovered in light2 mode)
-  const isNavbarWhite = mode === 'light' || (mode === 'light2' && (isScrolled || isHeaderHovered));
+  // Determine if navbar has white background (light mode or scrolled in light2 mode)
+  const isNavbarWhite = mode === 'light' || (mode === 'light2' && isScrolled);
+
+  // Hide header when book is open
+  if (isBookOpen) {
+    return null;
+  }
 
   return (
     <header 
@@ -64,17 +71,17 @@ const Header = () => {
       {mode !== 'light' && (
         <div 
           className={`absolute inset-0 bg-gradient-to-b from-[white] to-[white] transition-opacity duration-500 ${
-            (isScrolled || isHeaderHovered) ? 'opacity-100 shadow-lg' : 'opacity-0'
+            isScrolled ? 'opacity-100 shadow-lg' : 'opacity-0'
           }`}
           style={{ zIndex: -1 }}
         />
       )}
-      <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
+      <nav className="max-w-[2000px] mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
         {/* Left-aligned layout */}
         <div className="flex items-center justify-between">
           {/* Left Logo */}
           <div className="flex-shrink-0">
-            <Logo className="h-8 w-auto sm:h-[4.5rem]" isScrolled={isScrolled} isWhiteBackground={isNavbarWhite} />
+            <Logo className="h-32 w-auto" isScrolled={isScrolled} isWhiteBackground={isNavbarWhite} />
           </div>
           
           {/* Center Navigation */}
@@ -134,7 +141,7 @@ const Header = () => {
           >
             <div className={`w-full max-w-[1400px] relative rounded-b-2xl overflow-hidden ${
               mode === 'light' || mode === 'light2'
-                ? 'bg-white'
+                ? isScrolled ? 'bg-white' : 'bg-transparent backdrop-blur-sm'
                 : 'bg-gradient-to-t from-[#477197] to-[#2c476e]'
             }`}>
 
@@ -143,6 +150,7 @@ const Header = () => {
                   activeContent={activeOverlayContent}
                   slideDirection={slideDirection}
                   onVideoUrlChange={setHoveredVideoUrl}
+                  isScrolled={isScrolled}
                 />
               </div>
             </div>

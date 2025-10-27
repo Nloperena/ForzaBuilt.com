@@ -32,7 +32,7 @@ const ThirtyYearsTrustSection: React.FC = () => {
           <div className="flex justify-center lg:justify-end lg:pr-4">
             <motion.div style={{ scale: badgeScale, rotate: badgeRotate }} className="relative">
               <div className="relative w-[14rem] sm:w-[18rem] md:w-[22rem] lg:w-[22rem]">
-                <img src="/30 Years Badge.svg" alt="30 Years of Experience" className="w-full h-auto drop-shadow-2xl" />
+                <img src="/logos/30 Years Badge.svg" alt="30 Years of Experience" className="w-full h-auto drop-shadow-2xl" />
               </div>
             </motion.div>
           </div>
