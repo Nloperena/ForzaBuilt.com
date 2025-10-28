@@ -132,7 +132,7 @@ export const useHeaderState = () => {
   }, [hoverTimeout, isOverlayOpen, activeOverlayContent]);
 
   const handleNavLeave = useCallback(() => {
-    // Close submenu after 1 second delay
+    // Close submenu after delay to allow easy movement between nav items and into the drawer
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
     }
@@ -141,7 +141,7 @@ export const useHeaderState = () => {
       setAnimationDirection('up');
       setIsOverlayOpen(false);
       setActiveOverlayContent(null);
-    }, 1000); // 1 second delay
+    }, 400); // 400ms delay prevents drawer from closing when moving between nav items
     
     setHoverTimeout(timeout);
   }, [hoverTimeout]);

@@ -328,7 +328,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                     {/* Desktop: Badge above image */}
                     <div className="absolute top-3 left-3 z-30 hidden md:block">
                       <div 
-                        className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide flex items-center gap-1"
+                        className="px-3 py-1 rounded-full text-lg font-bold uppercase tracking-wide flex items-center gap-1.5"
                         style={{
                           background: `rgba(255, 255, 255, 0.2)`,
                           color: '#ffffff',
@@ -339,7 +339,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                           <img 
                             src={getIndustryLogo(product.industry?.[0] || '')} 
                             alt={`${product.industry?.[0] || ''} icon`}
-                            className="h-4 w-4 md:h-5 md:w-5 object-contain"
+                            className="h-7 w-7 object-contain"
                           />
                         ) : (
                           <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
@@ -365,7 +365,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
 
                     {/* Desktop: Product Title between image and content */}
                     <div className="hidden md:block px-4 py-3 absolute bottom-24 left-0 right-0">
-                      <h3 className="text-xl font-kallisto font-black leading-tight line-clamp-2 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                      <h3 className="text-3xl font-kallisto font-black leading-tight line-clamp-2 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                         {product.name.split('–')[0].trim()}
                       </h3>
                     </div>

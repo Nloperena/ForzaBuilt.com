@@ -67,7 +67,7 @@ export default function ProductImageTicker({
     <section
       aria-label="Product image ticker"
       className={clsx(
-        "relative w-full py-8 md:py-12",
+        "relative w-full py-8 md:py-12 z-20",
         "bg-white",
         className
       )}

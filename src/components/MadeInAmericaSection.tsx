@@ -9,35 +9,44 @@ const MadeInAmericaSection: React.FC = () => {
       <section className={`${
         mode === 'light2' ? 'bg-white' : 'bg-white'
       }`}>
-        <div className="max-w-[120rem] mx-auto px-4 lg:px-12 xl:px-16 2xl:px-20 py-24">
+        <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24">
           {/* Top Content Area - Text and Flag */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center mb-12">
-            {/* Left side - American Flag */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[1.3fr_1fr] gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 items-center">
+            {/* Left side - Made in America Video - Takes up more space */}
             <div className="flex justify-center lg:justify-start">
-              <div className="w-full h-full">
+              <div className="w-full aspect-video lg:aspect-auto">
                 <video
-                  src="/videos/backgrounds/American Flag.mp4"
+                  src="/videos/backgrounds/Made in America Video 1.mp4"
                   autoPlay
                   loop
                   muted
                   playsInline
                   preload="auto"
-                  className="w-full h-full object-cover object-left rounded-lg shadow-lg"
+                  className="w-full h-full object-cover rounded-lg shadow-lg"
                 />
               </div>
             </div>
 
-            {/* Right side - Text content */}
-            <div className="p-8">
-              <div className="space-y-6">
-                <h2 className={`text-4xl md:text-5xl lg:text-6xl font-normal leading-tight ${
+            {/* Right side - Text content - Scales down on smaller screens */}
+            <div className="p-0 sm:p-2 lg:p-4 xl:p-6">
+              <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
+                {/* American Flag Icon with Asterisk - Smaller size */}
+                <div className="flex justify-start -mb-1 sm:-mb-2">
+                  <img 
+                    src="/images/misc/Flag Icon with asterisk 1.png" 
+                    alt="Made in USA" 
+                    className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 h-auto object-contain"
+                  />
+                </div>
+                
+                <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-normal leading-tight ${
                   mode === 'light2' ? 'text-[#2c476e]' : 'text-[#2c476e]'
                 } font-poppins`}>
-                  Proudly Manufactured<br>
-                  </br> in America
+                  Proudly Manufactured<br />
+                  in America
                 </h2>
                 
-                <p className={`text-lg md:text-xl leading-relaxed ${
+                <p className={`text-xs sm:text-sm md:text-base lg:text-base leading-relaxed ${
                   mode === 'light2' ? 'text-gray-600' : 'text-gray-600'
                 } font-poppins`}>
                   Real people, making real products, making a real difference! We don't just resell & re-label someone else's products, we actually make them. <br/>

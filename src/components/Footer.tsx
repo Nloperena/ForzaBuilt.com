@@ -70,9 +70,9 @@ const Footer = () => {
           <div className="space-y-4">
             <div>
               <img 
-                src="/Flag Icon with asterisk 1.png"
+                src="/images/misc/Flag Icon with asterisk 1.png"
                 alt="PROUDLY MADE IN AMERICA"
-                className="w-48 h-auto object-cover"
+                className="w-[48rem] h-auto object-cover"
               />
             </div>
           </div>

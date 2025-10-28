@@ -34,12 +34,12 @@ const Index = () => {
         {/* All content that should slide over the video */}
 
         {/* Product Image Ticker - New Product Divider */}
-        <section className="relative -mt-32 md:-mt-40">
+        <section className="relative -mt-32 md:-mt-40 z-20">
           <ProductImageTicker
             items={[
               // Pattern: BOND, SEAL, BOND, SEAL, TAPE
               // Cycle 1
-              { src: "/product-images/tac-734g.png", alt: "TAC-734G" }, // BOND
+              { src: "/product-images/ic932.png", alt: "IC932" }, // BOND
               { src: "/product-images/c-os9.png", alt: "OS9" }, // SEAL
               { src: "/product-images/tac-735r.png", alt: "TAC-735R" }, // BOND
               { src: "/product-images/os2.png", alt: "OS2" }, // SEAL
@@ -56,7 +56,7 @@ const Index = () => {
               { src: "/product-images/mc723.png", alt: "MC723" }, // BOND
               { src: "/product-images/os37.png", alt: "OS37" }, // SEAL
               { src: "/product-images/t305.png", alt: "T305" }, // TAPE
-              // Cycle 4
+              // Cycle 4  
               { src: "/product-images/mc724.png", alt: "MC724" }, // BOND
               { src: "/product-images/os45.png", alt: "OS45" }, // SEAL
               { src: "/product-images/mc737.png", alt: "MC737" }, // BOND
@@ -106,7 +106,7 @@ const Index = () => {
         </section>
 
         {/* Industries Section (same as Industries page) */}
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden z-20">
           {/* Optimized Gradient Background (Mirrored) */}
           <OptimizedGradient variant="mirrored" opacity={0.8} />
 
@@ -114,7 +114,7 @@ const Index = () => {
         </section>
 
         {/* Products Section Row */}
-        <section className="relative">
+        <section className="relative z-20">
           {mode === 'light2' ? (
             <InteractiveProductsSection />
           ) : (
@@ -123,7 +123,9 @@ const Index = () => {
         </section>
 
         {/* Hero Video Section V2 - Standalone (no sticky effect) */}
-        <HeroVideoSectionV2 />
+        <div className="relative z-20">
+          <HeroVideoSectionV2 />
+        </div>
 
         {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
         <section className="relative" style={{ zIndex: 20 }}>
@@ -131,18 +133,20 @@ const Index = () => {
         </section>
 
         {/* Approach Section */}
-        <section className="relative">
+        <section className="relative z-20">
           <ApproachSectionV2 />
         </section>
 
         {/* Made in America Sections */}
-        <section className="relative">
+        <section className="relative z-20">
           <MadeInAmericaSectionV2 />
           <MadeInAmericaSection />
         </section>
 
         {/* Newsletter Section */}
-        <StickyNewsletterSection />
+        <div className="relative z-20">
+          <StickyNewsletterSection />
+        </div>
       </StickyHeroVideoSection>
 
     </div>

@@ -51,7 +51,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
       )}
 
       
-        <section className="sticky top-0 h-[80vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
+        <section className="sticky top-0 h-[80vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl z-[5]">
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
             <VideoSkeleton />
@@ -109,7 +109,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
         </section>
 
       {/* Scrollable content that slides over the sticky video */}
-      <div className="relative z-10">
+      <div className="relative z-20">
         {children}
       </div>
     </>

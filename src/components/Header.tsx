@@ -6,7 +6,7 @@ import { useHeaderState } from '@/hooks/useHeaderState';
 import Logo from './Header/Logo';
 import NavigationItem from './Header/NavigationItem';
 import FlowingMenu from './Header/FlowingMenu';
-import OverlayContent from './Header/OverlayContent';
+import DrawerContentV2 from './Header/DrawerContentV2';
 import SearchBar from './Header/SearchBar';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import { useBookViewer } from '@/contexts/BookViewerContext';
@@ -41,6 +41,18 @@ const Header = () => {
   
   const { mode } = useGradientMode();
   const { isBookOpen } = useBookViewer();
+
+  // Keyboard support for closing drawer
+  React.useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOverlayOpen) {
+        closeOverlay();
+      }
+    };
+    
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOverlayOpen, closeOverlay]);
 
   // Determine if navbar has white background (light mode or scrolled in light2 mode)
   const isNavbarWhite = mode === 'light' || (mode === 'light2' && isScrolled);
@@ -125,34 +137,42 @@ const Header = () => {
         </div>
       </nav>
 
-      {/* Navigation Overlay */}
+      {/* Premium App Drawer V2 */}
       <AnimatePresence>
         {isOverlayOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -300 }}
-            transition={{ duration: 0.4, ease: 'easeInOut' }}
-            className="global-nav-overlay fixed left-0 w-full z-40 overflow-hidden font-kallisto flex justify-center"
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+            className="fixed left-0 right-0 z-40 overflow-hidden"
             style={{ top: headerRef.current?.offsetHeight ?? 72 }}
             onMouseEnter={handleOverlayEnter}
             onMouseLeave={handleNavLeave}
-            onClick={closeOverlay}
           >
-            <div className={`w-full max-w-[1400px] relative rounded-b-2xl overflow-hidden ${
-              mode === 'light' || mode === 'light2'
-                ? isScrolled ? 'bg-white' : 'bg-transparent backdrop-blur-sm'
-                : 'bg-gradient-to-t from-[#477197] to-[#2c476e]'
-            }`}>
-
-              <div className="px-6 h-56 relative flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-                <OverlayContent
-                  activeContent={activeOverlayContent}
-                  slideDirection={slideDirection}
-                  onVideoUrlChange={setHoveredVideoUrl}
-                  isScrolled={isScrolled}
-                />
+            {/* Premium Gradient Background with Glass Morphism */}
+            <div className="relative w-full">
+              {/* Main Drawer Container */}
+              <div className="relative bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 backdrop-blur-xl shadow-2xl">
+                {/* Content Container */}
+                <div className="relative overflow-hidden" onClick={(e) => e.stopPropagation()}>
+                  <div className="relative min-h-[300px]">
+                    <DrawerContentV2
+                      activeContent={activeOverlayContent}
+                      slideDirection={slideDirection}
+                    />
+                  </div>
+                </div>
+                
+                {/* Bottom Shadow Gradient for Depth */}
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               </div>
+              
+              {/* Backdrop Blur Overlay */}
+              <div 
+                className="fixed inset-0 bg-black/20 backdrop-blur-[2px] -z-10"
+                onClick={closeOverlay}
+              />
             </div>
           </motion.div>
         )}

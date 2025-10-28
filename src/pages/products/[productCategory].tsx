@@ -873,13 +873,13 @@ const ProductCategoryPage: React.FC = () => {
                       {/* Desktop: Badge above image */}
                       <div className="absolute top-3 left-3 z-30 hidden md:block">
                         <div 
-                          className="px-4 py-2 rounded-full text-2xl font-bold uppercase tracking-wide flex items-center gap-2 bg-transparent text-white"
+                          className="px-3 py-1 rounded-full text-lg font-bold uppercase tracking-wide flex items-center gap-1.5 bg-transparent text-white"
                         >
                           {getIndustryLogo(product.industry?.[0] || '') ? (
                             <img 
                               src={getIndustryLogo(product.industry?.[0] || '')} 
                               alt={`${product.industry?.[0] || ''} icon`}
-                              className="h-10 w-10 md:h-12 md:w-12 object-contain"
+                              className="h-7 w-7 object-contain"
                             />
                           ) : (
                             <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
@@ -924,10 +924,10 @@ const ProductCategoryPage: React.FC = () => {
                       {/* Desktop: Content Section with title and description */}
                       <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
                         <div className="space-y-1">
-                          <h3 className="text-base font-poppins font-bold leading-tight line-clamp-4 text-white">
+                          <h3 className="text-2xl font-poppins font-bold leading-tight line-clamp-2 text-white">
                             {product.name.split('–')[0].trim()}
                           </h3>
-                          <p className="text-sm text-white line-clamp-3">
+                          <p className="text-sm text-white line-clamp-2">
                             {toTitleCase(product.name.split('–')[1]?.trim() || product.description)}
                           </p>
                           
@@ -1003,13 +1003,13 @@ const ProductCategoryPage: React.FC = () => {
                           </p>
                           {/* Mobile: Industry Badge */}
                           <div 
-                            className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-base font-bold uppercase tracking-wide mt-2 bg-gray-100 text-gray-800"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-sm font-bold uppercase tracking-wide mt-2 bg-gray-100 text-gray-800"
                           >
                             {getIndustryLogo(product.industry?.[0] || '') ? (
                               <img 
                                 src={getIndustryLogo(product.industry?.[0] || '')} 
                                 alt={`${product.industry?.[0] || ''} icon`}
-                                className="h-8 w-8 object-contain"
+                                className="h-5 w-5 object-contain"
                               />
                             ) : (
                               <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>

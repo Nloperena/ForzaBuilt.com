@@ -51,7 +51,7 @@ const IndustriesSectionAlt = () => {
         : mode === 'light'
           ? 'bg-[#e8e8e8]'
           : `bg-gradient-to-b from-[#2c476e] to-[#81899f]`
-    } w-full relative`}>
+    } w-full relative z-20`}>
 
       {/* Edge triangles positioned at left and right viewport edges (like ProductsSection, but swapped images) */}
       {/* Hide triangles for light2 mode */}
