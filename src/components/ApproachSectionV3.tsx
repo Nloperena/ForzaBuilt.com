@@ -134,40 +134,8 @@ const ApproachSectionV3 = () => {
         {/* Progress bar */}
         <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
-        {/* Background Image Layer */}
-        <div className="hidden lg:block relative pointer-events-none z-[3]">
-          <div className="absolute inset-0 grid grid-cols-2">
-            {/* Left half - Locked background images */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50">
-              {/* Previous image */}
-              <img
-                src={approachItems[previousItem].image}
-                alt={approachItems[previousItem].title}
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{
-                  objectPosition: 'center center',
-                  transform: 'scale(1.15)'
-                }}
-              />
-              {/* Current image */}
-              <img
-                key={selectedItem}
-                src={approachItems[selectedItem].image}
-                alt={approachItems[selectedItem].title}
-                className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
-                style={{
-                  objectPosition: 'center center',
-                  transform: 'scale(1.15)'
-                }}
-              />
-            </div>
-            {/* Right half - background for text content */}
-            <div className="relative bg-gradient-to-r from-[#2c476e] to-[#477197]"></div>
-          </div>
-        </div>
-
-        {/* Scrollable Content - Acts as window over overlay (keep above overlay) */}
-        <div className="relative z-20">
+        {/* Scrollable Content */}
+        <div className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
           {/* LEFT - Transparent window on desktop, normal image on mobile */}
           <div className="
@@ -176,8 +144,8 @@ const ApproachSectionV3 = () => {
             flex items-center justify-center
             overflow-hidden lg:overflow-visible
           ">
-            {/* Mobile only - inline image */}
-            <div className="lg:hidden absolute inset-0">
+              {/* Inline image (all breakpoints) */}
+              <div className="absolute inset-0">
               <img
                 key={selectedItem}
                 src={approachItems[selectedItem].image}
