@@ -72,55 +72,14 @@ const approachItems: ApproachItem[] = [
   }
 ];
 
-const ApproachSectionV2 = () => {
-  const [selectedItem, setSelectedItem] = useState(2); // Default to "GREENER CHEMISTRIES"
+const ApproachSectionV3 = () => {
+  const [selectedItem, setSelectedItem] = useState(2);
   const [previousItem, setPreviousItem] = useState(2);
   const { mode } = useGradientMode();
-  const [scrollY, setScrollY] = useState(0);
   const [progress, setProgress] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number>();
   const cycleTimerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
-
-  useEffect(() => {
-    let ticking = false;
-
-    const updateParallax = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const sectionHeight = sectionRef.current.offsetHeight;
-        const windowHeight = window.innerHeight;
-        
-        // Calculate scroll progress (0 to 1)
-        const scrollProgress = (windowHeight - rect.top) / (windowHeight + sectionHeight);
-        
-        // Very subtle parallax range (-15px to 15px)
-        const parallaxOffset = (scrollProgress - 0.5) * 30;
-        
-        setScrollY(parallaxOffset);
-      }
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        rafRef.current = requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    };
-
-    handleScroll(); // Initial call
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     // Auto-cycle every 4 seconds
@@ -140,7 +99,7 @@ const ApproachSectionV2 = () => {
       if (!isUserInteractingRef.current) {
         setProgress(prev => {
           if (prev >= 100) return 0;
-          return prev + (100 / 40); // 100% over 4000ms (40 intervals of 100ms)
+          return prev + (100 / 40);
         });
       }
     }, 100);
@@ -157,7 +116,6 @@ const ApproachSectionV2 = () => {
       setSelectedItem(index);
       setProgress(0);
       isUserInteractingRef.current = true;
-      // Reset auto-cycle after user interaction
       if (cycleTimerRef.current) clearTimeout(cycleTimerRef.current);
       if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
       cycleTimerRef.current = setTimeout(() => {
@@ -167,60 +125,80 @@ const ApproachSectionV2 = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative isolate overflow-visible">
-      {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
-      
-      {/* Top Banner */}
+    <>
+      {/* Top Banner - Outside the sticky container */}
       <ExperienceBetterBanner />
 
-      {/* Background halves */}
-      <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2 -z-10" style={{ top: '100px' }}>
-        <div className="bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50" />
-        <div className="bg-gradient-to-r from-[#2c476e] to-[#477197]" />
-      </div>
+      {/* Isolated Section Container - Contains sticky background */}
+      <section className="relative isolate">
+        {/* Progress bar */}
+        <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
-      <div className="relative overflow-visible z-0">
-        {/* Two scalable squares */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden relative z-0">
-          {/* LEFT SQUARE - Sticky Background Image */}
-          <div className="relative lg:sticky lg:top-0 lg:h-screen flex items-center justify-center overflow-hidden">
-            {/* Previous approach image (stays in place) */}
-            <img
-              src={approachItems[previousItem].image}
-              alt={approachItems[previousItem].title}
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{
-                objectPosition: 'center center',
-                transform: `scale(1.15)`,
-                willChange: 'transform'
-              }}
-            />
-
-            {/* Current approach image (slides over) */}
-            <img
-              key={selectedItem}
-              src={approachItems[selectedItem].image}
-              alt={approachItems[selectedItem].title}
-              className="
-                absolute inset-0 w-full h-full object-cover
-                animate-in slide-in-from-right duration-700
-              "
-              style={{
-                objectPosition: 'center center',
-                transform: `scale(1.15)`,
-                willChange: 'transform'
-              }}
-            />
+        {/* Sticky Background Image Layer - LOCKED IN PLACE within this section */}
+        <div className="hidden lg:block sticky top-0 h-screen pointer-events-none z-[3]">
+          <div className="absolute inset-0 grid grid-cols-2">
+            {/* Left half - Locked background images */}
+            <div className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50">
+              {/* Previous image */}
+              <img
+                src={approachItems[previousItem].image}
+                alt={approachItems[previousItem].title}
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{
+                  objectPosition: 'center center',
+                  transform: 'scale(1.15)'
+                }}
+              />
+              {/* Current image */}
+              <img
+                key={selectedItem}
+                src={approachItems[selectedItem].image}
+                alt={approachItems[selectedItem].title}
+                className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
+                style={{
+                  objectPosition: 'center center',
+                  transform: 'scale(1.15)'
+                }}
+              />
+            </div>
+            {/* Right half - background for text content */}
+            <div className="relative bg-gradient-to-r from-[#2c476e] to-[#477197]"></div>
           </div>
+        </div>
 
-          {/* RIGHT SQUARE - Text */}
+        {/* Scrollable Content - Acts as window over sticky background */}
+        <div className="relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          {/* LEFT - Transparent window on desktop, normal image on mobile */}
           <div className="
             relative
-            min-h-[62svh] md:min-h-[68svh] lg:min-h-[74svh]
+            min-h-[62svh] md:min-h-[68svh] lg:min-h-[100vh]
+            flex items-center justify-center
+            overflow-hidden lg:overflow-visible
+          ">
+            {/* Mobile only - inline image */}
+            <div className="lg:hidden absolute inset-0">
+              <img
+                key={selectedItem}
+                src={approachItems[selectedItem].image}
+                alt={approachItems[selectedItem].title}
+                className="w-full h-full object-cover animate-in slide-in-from-right duration-700"
+                style={{
+                  objectPosition: 'center center',
+                  transform: 'scale(1.15)'
+                }}
+              />
+            </div>
+          </div>
+
+          {/* RIGHT - Scrollable text content */}
+          <div className="
+            relative
+            min-h-[62svh] md:min-h-[68svh] lg:min-h-[100vh]
             px-[clamp(14px,4vw,32px)] py-[clamp(32px,6vw,64px)]
             flex items-center justify-center
             [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
+            bg-gradient-to-r from-[#2c476e] to-[#477197]
           ">
             <div className="w-full">
               <div className="space-y-[var(--gap)] mb-[var(--gap)]">
@@ -265,10 +243,11 @@ const ApproachSectionV2 = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
 
-export default ApproachSectionV2;
+export default ApproachSectionV3;
 
