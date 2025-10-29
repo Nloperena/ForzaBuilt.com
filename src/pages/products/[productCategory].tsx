@@ -753,11 +753,7 @@ const ProductCategoryPage: React.FC = () => {
                             >
                               <div className="flex items-center gap-2 min-w-0 flex-1">
                                 <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                                  {chemIcon ? (
-                                    <img src={chemIcon} alt={chemistry} className="w-6 h-6 object-contain chemistry-icon" />
-                                  ) : (
-                                    <FlaskConical className="w-4 h-4 text-white" />
-                                  )}
+                                  <FlaskConical className="w-4 h-4 text-white" />
                                 </div>
                                 <span className="text-xs xl:text-sm font-medium truncate">{chemistry}</span>
                               </div>
@@ -1337,11 +1333,7 @@ const ProductCategoryPage: React.FC = () => {
                             >
                               <div className="flex items-center gap-2 min-w-0 flex-1">
                                 <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                                  {chemIcon ? (
-                                    <img src={chemIcon} alt={chemistry} className="w-4 h-4 object-contain" />
-                                  ) : (
-                                    <FlaskConical className="w-3 h-3 text-white" />
-                                  )}
+                                  <FlaskConical className="w-3 h-3 text-white" />
                                 </div>
                                 <span className="text-xs font-medium truncate">{chemistry}</span>
                               </div>
