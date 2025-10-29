@@ -134,8 +134,8 @@ const ApproachSectionV3 = () => {
         {/* Progress bar */}
         <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
-        {/* Sticky Background Image Layer - LOCKED IN PLACE within this section */}
-        <div className="hidden lg:block sticky top-0 h-screen pointer-events-none z-[3]">
+        {/* Background Image Layer - non-sticky */}
+        <div className="hidden lg:block relative pointer-events-none z-[3]">
           <div className="absolute inset-0 grid grid-cols-2">
             {/* Left half - Locked background images */}
             <div className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50">
