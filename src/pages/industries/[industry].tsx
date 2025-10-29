@@ -751,7 +751,7 @@ const IndustryPage = () => {
                         <h3 className="text-base font-poppins font-bold leading-tight line-clamp-4 text-white">
                           {product.name.split('–')[0].trim()}
                         </h3>
-                        <p className="text-sm text-white line-clamp-3">
+                        <p className="text-sm text-white line-clamp-3 min-h-[3.75rem]">
                           {toTitleCase(product.name.split('–')[1]?.trim() || product.description)}
                         </p>
                         

@@ -421,7 +421,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                     {/* Desktop: Content Section */}
                     <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
                       <div className="space-y-3">
-                        <p className="text-sm text-white/90 line-clamp-3">
+                        <p className="text-sm text-white/90 line-clamp-3 min-h-[3.75rem]">
                           {product.name.split('–')[1]?.trim() || product.description}
                         </p>
                         

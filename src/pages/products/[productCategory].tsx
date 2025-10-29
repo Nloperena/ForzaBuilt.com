@@ -927,7 +927,7 @@ const ProductCategoryPage: React.FC = () => {
                           <h3 className="text-2xl font-poppins font-bold leading-tight line-clamp-2 text-white">
                             {product.name.split('–')[0].trim()}
                           </h3>
-                          <p className="text-sm text-white line-clamp-2">
+                          <p className="text-sm text-white line-clamp-2 min-h-[2.5rem]">
                             {toTitleCase(product.name.split('–')[1]?.trim() || product.description)}
                           </p>
                           
