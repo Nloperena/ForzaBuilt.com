@@ -138,25 +138,36 @@ const ApproachSectionV3 = () => {
         <div className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
           {/* LEFT - Transparent window on desktop, normal image on mobile */}
-          <div className="
+            <div className="
             relative
             min-h-[62svh] md:min-h-[68svh] lg:min-h-[100vh]
             flex items-center justify-center
             overflow-hidden lg:overflow-visible
           ">
-              {/* Inline image (all breakpoints) */}
-              <div className="absolute inset-0">
-              <img
-                key={selectedItem}
-                src={approachItems[selectedItem].image}
-                alt={approachItems[selectedItem].title}
-                className="w-full h-full object-cover animate-in slide-in-from-right duration-700"
-                style={{
-                  objectPosition: 'center center',
-                  transform: 'scale(1.15)'
-                }}
-              />
-            </div>
+              {/* Inline image (all breakpoints) with solid background to avoid hero flash */}
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50">
+                {/* Previous image (beneath) */}
+                <img
+                  src={approachItems[previousItem].image}
+                  alt={approachItems[previousItem].title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{
+                    objectPosition: 'center center',
+                    transform: 'scale(1.15)'
+                  }}
+                />
+                {/* Current image (on top) */}
+                <img
+                  key={selectedItem}
+                  src={approachItems[selectedItem].image}
+                  alt={approachItems[selectedItem].title}
+                  className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
+                  style={{
+                    objectPosition: 'center center',
+                    transform: 'scale(1.15)'
+                  }}
+                />
+              </div>
           </div>
 
           {/* RIGHT - Scrollable text content */}
