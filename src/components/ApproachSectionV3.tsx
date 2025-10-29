@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+import ApproachOverlayWindow from '@/components/ApproachOverlayWindow';
 
 interface ApproachItem {
   title: string;
@@ -126,11 +127,20 @@ const ApproachSectionV3 = () => {
 
   return (
     <>
-      {/* Top Banner - Outside the sticky container */}
+      {/* Top Banner - Outside the sticky container */
       <ExperienceBetterBanner />
 
-      {/* Isolated Section Container - Contains sticky background */}
-      <section className="relative isolate">
+      {/* Fixed overlay window that appears above the sticky hero when this section is in view */}
+      <ApproachOverlayWindow
+        items={approachItems.map(it => ({ image: it.image, title: it.title }))}
+        selectedIndex={selectedItem}
+        previousIndex={previousItem}
+        targetId="approach-window-trigger"
+        zIndexClassName="z-[12]"
+      />
+
+      {/* Isolated Section Container - Provides trigger target and scrollable content */}
+      <section id="approach-window-trigger" className="relative isolate">
         {/* Progress bar */}
         <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
@@ -166,8 +176,8 @@ const ApproachSectionV3 = () => {
           </div>
         </div>
 
-        {/* Scrollable Content - Acts as window over sticky background */}
-        <div className="relative z-10">
+        {/* Scrollable Content - Acts as window over overlay (keep above overlay) */}
+        <div className="relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
           {/* LEFT - Transparent window on desktop, normal image on mobile */}
           <div className="
