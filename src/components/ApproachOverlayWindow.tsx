@@ -46,12 +46,12 @@ const ApproachOverlayWindow: React.FC<ApproachOverlayWindowProps> = ({
     return () => observerRef.current?.disconnect();
   }, [targetId]);
 
+  // Only render the overlay while visible to avoid any faded layer covering other sections
+  if (!isVisible) return null;
+
   return (
     <div
-      className={
-        `fixed inset-0 ${zIndexClassName} pointer-events-none hidden lg:block transition-opacity duration-300` +
-        (isVisible ? ' opacity-100' : ' opacity-0')
-      }
+      className={`fixed inset-0 ${zIndexClassName} pointer-events-none hidden lg:block`}
       aria-hidden="true"
     >
       {/* Two-column overlay mimicking the approach layout */}
