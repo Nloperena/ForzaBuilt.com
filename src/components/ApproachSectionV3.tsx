@@ -127,7 +127,7 @@ const ApproachSectionV3 = () => {
 
   return (
     <>
-      {/* Top Banner - Outside the sticky container */
+      {/* Top Banner - Outside the sticky container */}
       <ExperienceBetterBanner />
 
       {/* Fixed overlay window that appears above the sticky hero when this section is in view */}
