@@ -71,7 +71,7 @@ const IndustriesSectionAlt = () => {
       
       {/* Industries Header Section */}
       {mode === 'light2' ? (
-        <div className="w-full bg-white pt-16 px-4 mx-auto max-w-7xl relative z-10">
+        <div className="w-full bg-white pt-0 md:pt-2 px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins">
               Better Built Bonds<br />
@@ -79,7 +79,7 @@ const IndustriesSectionAlt = () => {
             </h2>
           </div>
           <div className="text-center relative z-10">
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-12 sm:mb-16 font-normal max-w-4xl mx-auto font-poppins">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-12 sm:mb-16 font-normal max-w-4xl mx-auto font-poppins invisible">
             At Forza, we're your trusted scientists and mentors - delivering innovative adhesive solutions that secure your success.
             </p>
           </div>
