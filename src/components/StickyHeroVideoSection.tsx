@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+ 
 import VideoSkeleton from './common/VideoSkeleton';
+import HeroVideoBackground from '@/components/HeroVideoBackground';
 import { useGradientMode } from '@/contexts/GradientModeContext';
-import { Button } from '@/components/ui/button';
+ 
 
 interface StickyHeroVideoSectionProps {
   children?: React.ReactNode;
@@ -51,44 +52,22 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
       )}
 
       
-        <section className="sticky top-0 h-[80vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl z-[5]">
+        <section className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl z-[5]">
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
             <VideoSkeleton />
           )}
-          
-          {/* Background Video */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            onLoadedData={handleVideoLoad}
-            onCanPlay={handleVideoLoad}
+
+          {/* Background Video via reusable component */}
+          <HeroVideoBackground
+            src="/videos/backgrounds/Eagle Header Video.mp4"
+            onLoaded={handleVideoLoad}
             onError={handleVideoError}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-              isVideoLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            style={{ 
-              zIndex: 1,
-              objectFit: 'cover',
-              width: '100%',
-              height: '100%',
-              minWidth: '100%',
-              minHeight: '100%'
-            }}
-          >
-            <source src="/videos/backgrounds/Eagle Header Video.mp4" type="video/mp4" />
-          </video>
+            overlayClassName={mode === 'light2' ? 'bg-[#2c476e]/40' : undefined}
+          />
 
-          {/* Fallback background - always visible */}
+          {/* Fallback gradient behind video */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
-
-          {/* Thin blue overlay for text readability (light2 mode only) */}
-          {mode === 'light2' && (
-            <div className="absolute inset-0 bg-[#2c476e]/40" style={{ zIndex: 2 }} />
-          )}
 
           {/* Text Overlay for light2 mode */}
           {mode === 'light2' && (
@@ -98,9 +77,6 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
                 Industrial Adhesive, Tape<br />
                 & Sealant Solutions
               </h1>
-              <Button asChild className="bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-full px-10 py-7 text-xl font-medium shadow-lg">
-                <Link to="/products">See Products</Link>
-              </Button>
             </div>
           )}
 

@@ -34,7 +34,7 @@ const Index = () => {
         {/* All content that should slide over the video */}
 
         {/* Product Image Ticker - New Product Divider */}
-        <section className="relative -mt-32 md:-mt-40 z-20">
+        <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-72 z-20">
           <ProductImageTicker
             items={[
               // Pattern: BOND, SEAL, BOND, SEAL, TAPE
@@ -101,7 +101,7 @@ const Index = () => {
             ]}
             speed={95}
             direction="left"
-            className="py-10 md:py-16"
+            className="pt-0 pb-10 md:pt-0 md:pb-16"
           />
         </section>
 
