@@ -56,7 +56,11 @@ const PRODUCTS_DATA_URL = 'https://forza-product-managementsystem-b7c3ff8d3d2d.h
 export async function getAllProducts(): Promise<Product[]> {
   try {
     console.log('🔵 Fetching products from Heroku API...');
-    const response = await fetch(PRODUCTS_DATA_URL);
+    const response = await fetch(PRODUCTS_DATA_URL, {
+      headers: {
+        'Accept': 'application/json; charset=utf-8',
+      }
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -151,7 +155,11 @@ export async function getAllProducts(): Promise<Product[]> {
 
 export async function getProductById(id: string): Promise<Product | null> {
   try {
-    const response = await fetch(PRODUCTS_DATA_URL);
+    const response = await fetch(PRODUCTS_DATA_URL, {
+      headers: {
+        'Accept': 'application/json; charset=utf-8',
+      }
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
