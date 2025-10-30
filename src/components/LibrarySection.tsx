@@ -173,6 +173,13 @@ const LibrarySection = () => {
                   }}
                 />
               </div>
+
+              {/* Name label overlapping shelf (no layout shift) */}
+              <div
+                className="absolute -bottom-3 md:-bottom-4 left-1/2 -translate-x-1/2 bg-white/90 text-gray-800 px-2 py-0.5 rounded-sm font-poppins text-xs md:text-sm pointer-events-none z-30"
+              >
+                {brochure.label}
+              </div>
             </motion.div>
 
             {/* Label below brochure removed per request */}
