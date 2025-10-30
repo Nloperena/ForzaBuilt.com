@@ -74,6 +74,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
      : isLight
        ? 'bg-white/90 backdrop-blur-md'
        : 'bg-[#1b3764]/70 backdrop-blur-md';
+  const baseNavText = isHome && !isScrolled ? 'text-white' : 'text-[#1B3764]';
    const headerShadow = isScrolled ? 'shadow-sm' : '';
 
   const positionClass = isHome && !isScrolled ? 'fixed' : 'sticky';
@@ -84,14 +85,15 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
          <div className="h-24 md:h-28 flex items-center justify-between">
           {/* Left logo */}
           <div className="flex items-center">
-             <Logo className="h-16 md:h-20 lg:h-24 w-auto" isWhiteBackground={isScrolled || isLight} />
+            {/* Use white logo on transparent home top; blue when scrolled/white bg */}
+            <Logo className="h-16 md:h-20 lg:h-24 w-auto" isWhiteBackground={! (isHome && !isScrolled) && (isLight || isScrolled)} />
           </div>
 
           {/* Center nav */}
           <div className="hidden lg:flex items-center gap-6 relative">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Products ▾</Link>
+              <Link to="/products" className={`px-4 py-2 rounded-md font-normal text-[17px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent`}>Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
                   <HoverDropdown items={productsItems} widthClass="w-[880px]" />
@@ -101,7 +103,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Industries ▾</Link>
+              <Link to="/industries" className={`px-4 py-2 rounded-md font-normal text-[17px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent`}>Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
                   <HoverDropdown items={industriesItems} widthClass="w-[1200px]" variant="industries" />
@@ -109,8 +111,8 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               </div>
             </div>
 
-            <Link to="/about" className="px-3 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] hover:text-[#1B3764]/80 hover:font-bold">About</Link>
-            <Link to="/blog" className="px-3 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] hover:text-[#1B3764]/80 hover:font-bold">Blog</Link>
+            <Link to="/about" className={`px-3 py-2 rounded-md font-normal text-[17px] capitalize ${baseNavText} hover:font-bold`}>About</Link>
+            <Link to="/blog" className={`px-3 py-2 rounded-md font-normal text-[17px] capitalize ${baseNavText} hover:font-bold`}>Blog</Link>
           </div>
 
           {/* Right actions */}
