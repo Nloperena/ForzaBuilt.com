@@ -76,8 +76,10 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
        : 'bg-[#1b3764]/70 backdrop-blur-md';
    const headerShadow = isScrolled ? 'shadow-sm' : '';
 
-   return (
-     <header className={`sticky top-0 z-50 transition-colors duration-200 ${headerBg} ${headerShadow}`}> 
+  const positionClass = isHome && !isScrolled ? 'fixed' : 'sticky';
+
+  return (
+    <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-colors duration-200 ${headerBg} ${headerShadow}`}> 
        <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4">
          <div className="h-24 md:h-28 flex items-center justify-between">
           {/* Left logo */}
