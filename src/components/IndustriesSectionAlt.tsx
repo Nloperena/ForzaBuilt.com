@@ -339,7 +339,7 @@ const IndustriesSectionAlt = () => {
             >
               Contact us
             </a>
-            {' '}— we can still provide purpose-built solutions.
+            {''}
           </p>
         </div>
       </div>
