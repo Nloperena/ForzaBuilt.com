@@ -27,12 +27,12 @@ const industriesItems: MenuItem[] = industriesData.slice(0, 6).map((ind) => ({
 const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?: 'default' | 'industries' }> = ({ items, widthClass = 'w-[760px]', variant = 'default' }) => {
   return (
     <div className={`absolute left-1/2 -translate-x-1/2 top-full -mt-2 ${widthClass} rounded-lg bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden z-20`}> 
-      {variant === 'industries' ? (
+              {variant === 'industries' ? (
         <div className="grid grid-cols-6">
           {items.map((it, idx) => (
             <Link key={it.label} to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
               {it.iconSrc ? (
-                <img src={it.iconSrc} alt="" className="w-12 h-12 object-contain rounded-full bg-white/10 p-1" />
+                <img src={it.iconSrc} alt="" className="w-14 h-14 object-contain" />
               ) : null}
               <span className="font-poppins text-xl font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
               {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
