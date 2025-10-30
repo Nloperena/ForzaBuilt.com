@@ -75,7 +75,8 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
      : isLight
        ? 'bg-white/90 backdrop-blur-md'
        : 'bg-[#1b3764]/70 backdrop-blur-md';
-  const baseNavText = isHome && !isScrolled ? 'text-white' : 'text-[#1B3764]';
+  const isTransparent = (isHome || isIndustry) && !isScrolled;
+  const baseNavText = isTransparent ? 'text-white' : 'text-[#1B3764]';
    const headerShadow = isScrolled ? 'shadow-sm' : '';
 
   // Keep header fixed on transparent routes to avoid layout jumps
@@ -88,7 +89,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
           {/* Left logo */}
           <div className="flex items-center">
             {/* Use white logo on transparent home top; blue when scrolled/white bg */}
-            <Logo className="h-16 md:h-20 lg:h-24 w-auto" isWhiteBackground={! (isHome && !isScrolled) && (isLight || isScrolled)} />
+            <Logo className="h-16 md:h-20 lg:h-24 w-auto" isWhiteBackground={!isTransparent && (isLight || isScrolled)} />
           </div>
 
           {/* Center nav */}
