@@ -217,7 +217,7 @@ const IndustriesSectionAlt = () => {
         </div>
 
         {/* Desktop: Grid layout with 3 columns */}
-        <div className="hidden md:flex w-full flex-col items-center">
+        <div className="sr-only md:not-sr-only md:flex w-full flex-col items-center">
           <div className="grid grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1800px] mb-4 mx-auto py-4 sm:py-6 lg:py-8">
             {industriesArr.map((industry: Industry, index: number) => (
               <div
