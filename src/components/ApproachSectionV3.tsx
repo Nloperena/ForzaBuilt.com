@@ -185,6 +185,7 @@ const ApproachSectionV3 = () => {
                   <button
                     key={index}
                     onClick={() => handleItemChange(index)}
+                    onMouseEnter={() => handleItemChange(index)}
                     className="w-full text-left transition-all duration-500"
                   >
                     <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
