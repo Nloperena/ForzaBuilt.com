@@ -229,7 +229,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className="aspect-[16/9] rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
+                    className="aspect-[4/5] rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
                     style={{
                       backgroundImage: 'none'
                     }}
