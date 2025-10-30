@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { industrialDatasheet } from '@/data/industrialDatasheet';
 import { getProducts } from '@/utils/products';
 import { brandColors, typography } from '@/styles/brandStandards';
-import Header from '@/components/Header';
+import HeaderV2 from '@/components/Header/HeaderV2';
 import Footer from '@/components/Footer';
 
 // Helper to get product category logo

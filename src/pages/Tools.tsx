@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import Header from '@/components/Header';
+import HeaderV2 from '@/components/Header/HeaderV2';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 

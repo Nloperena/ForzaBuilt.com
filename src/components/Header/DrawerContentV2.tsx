@@ -14,28 +14,38 @@ const DrawerContentV2: React.FC<DrawerContentV2Props> = ({
 }) => {
   
   const renderIndustriesContent = () => (
-    <div className="w-full max-w-[1600px] mx-auto px-0 py-0">
-      <div className="grid grid-cols-6 bg-[#2c476e] shadow-xl">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6">
         {industriesData.map((industry, index) => (
           <Link
             key={industry.title}
             to={`/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`}
-            className="group relative flex flex-col items-center justify-center py-6 lg:py-7 text-white transition-colors hover:bg-[#F2611D]"
+            className="group relative"
           >
+            {/* Premium Card with Glass Morphism */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.03, duration: 0.25 }}
-              className="flex flex-col items-center justify-center"
+              transition={{ delay: index * 0.05, duration: 0.3 }}
+              className="relative overflow-hidden rounded-xl sm:rounded-2xl bg-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:scale-105"
             >
-              <img src={industry.logo} alt={`${industry.title} Logo`} className="w-12 h-12 object-contain mb-3" />
-              <span className="font-poppins text-lg font-normal group-hover:font-bold">
-                {industry.title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())}
-              </span>
+              {/* Card Content */}
+              <div className="p-6 sm:p-8 flex flex-col items-center justify-center text-center min-h-[120px] sm:min-h-[140px]">
+                {/* Industry Icon */}
+                <div className="w-16 h-16 sm:w-20 sm:h-20 mb-3 sm:mb-4 flex items-center justify-center">
+                  <img 
+                    src={industry.logo} 
+                    alt={`${industry.title} Logo`} 
+                    className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
+                
+                {/* Title */}
+                <h3 className="text-white text-lg sm:text-xl font-bold font-poppins group-hover:text-[#F2611D] transition-colors px-2 whitespace-normal break-words">
+                  {industry.title}
+                </h3>
+              </div>
             </motion.div>
-            {index < industriesData.length - 1 && (
-              <span className="absolute right-0 top-3 bottom-3 w-px bg-white/20" aria-hidden />
-            )}
           </Link>
         ))}
       </div>
@@ -75,25 +85,30 @@ const DrawerContentV2: React.FC<DrawerContentV2Props> = ({
     ];
 
     return (
-      <div className="w-full max-w-[1200px] mx-auto px-0 py-0">
-        <div className="grid grid-cols-4 bg-[#2c476e] shadow-xl">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {products.map((product, index) => (
             <Link
               key={product.title}
               to={product.link}
-              className="group relative flex items-center justify-center py-5 lg:py-6 text-white transition-colors hover:bg-[#F2611D]"
+              className="group relative"
             >
-              <motion.span
-                initial={{ opacity: 0, y: 8 }}
+              {/* Premium Large Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.04, duration: 0.25 }}
-                className="font-poppins text-xl font-normal group-hover:font-bold"
+                transition={{ delay: index * 0.08, duration: 0.4 }}
+                className="relative overflow-visible rounded-2xl sm:rounded-3xl bg-white/5 backdrop-blur-sm transition-all duration-500 hover:bg-white/10 hover:scale-105"
               >
-                {product.title}
-              </motion.span>
-              {index < products.length - 1 && (
-                <span className="absolute right-0 top-3 bottom-3 w-px bg-white/20" aria-hidden />
-              )}
+                {/* Card Content */}
+                <div className="p-8 sm:p-10 lg:p-12 flex flex-col items-center justify-center text-center min-h-[120px] sm:min-h-[130px]">
+                  {/* Title */}
+                  <h3 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold font-poppins group-hover:text-[#F2611D] transition-colors leading-tight px-4 whitespace-normal break-words">
+                    {product.title}
+                  </h3>
+                </div>
+                
+              </motion.div>
             </Link>
           ))}
         </div>

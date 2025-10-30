@@ -56,17 +56,31 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   );
 };
 
-const HeaderV2: React.FC = () => {
-  const { mode } = useGradientMode();
-  const isLight = mode === 'light' || mode === 'light2';
+ const HeaderV2: React.FC = () => {
+   const { mode } = useGradientMode();
+   const [isScrolled, setIsScrolled] = React.useState(false);
+   React.useEffect(() => {
+     const onScroll = () => setIsScrolled(window.scrollY > 8);
+     onScroll();
+     window.addEventListener('scroll', onScroll, { passive: true });
+     return () => window.removeEventListener('scroll', onScroll);
+   }, []);
+   const isLight = mode === 'light' || mode === 'light2';
 
-  return (
-    <header className={`sticky top-0 z-50 ${isLight ? 'bg-white/90 backdrop-blur-md' : 'bg-[#1b3764]/70 backdrop-blur-md'} shadow-sm`}> 
-      <nav className="max-w-[1400px] xl:max-w-[1600px] mx-auto px-4">
-        <div className="h-20 md:h-24 flex items-center justify-between">
+   const headerBg = !isScrolled
+     ? 'bg-transparent'
+     : isLight
+       ? 'bg-white/90 backdrop-blur-md'
+       : 'bg-[#1b3764]/70 backdrop-blur-md';
+   const headerShadow = isScrolled ? 'shadow-sm' : '';
+
+   return (
+     <header className={`sticky top-0 z-50 transition-colors duration-200 ${headerBg} ${headerShadow}`}> 
+       <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4">
+         <div className="h-24 md:h-28 flex items-center justify-between">
           {/* Left logo */}
           <div className="flex items-center">
-            <Logo className="h-16 md:h-20 lg:h-24 w-auto" isWhiteBackground={isLight} />
+             <Logo className="h-16 md:h-20 lg:h-24 w-auto" isWhiteBackground={isScrolled || isLight} />
           </div>
 
           {/* Center nav */}

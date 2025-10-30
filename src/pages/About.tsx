@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '@/components/Header';
+import HeaderV2 from '@/components/Header/HeaderV2';
 import Footer from '@/components/Footer';
 import AboutIdentityCards from '@/components/AboutIdentityCards';
 import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
@@ -11,7 +11,7 @@ const About = () => {
   
   return (
     <div className={`bg-gradient-to-b ${getGradientClasses()} min-h-screen`}>
-      <Header />
+      <HeaderV2 />
       
       <div className="flex-1 text-white relative">
 
