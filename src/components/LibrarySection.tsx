@@ -190,22 +190,14 @@ const LibrarySection = () => {
           ))}
         </div>
 
-        {/* Shelf Surface positioned below brochures */}
-        <div 
-          className="absolute bottom-0 left-0 right-0 h-12 md:h-16 rounded-lg"
-          style={{
-            background: 'linear-gradient(to bottom, #e5e7eb 0%, #d1d5db 50%, #9ca3af 100%)',
-            boxShadow: 'none',
-            zIndex: 1
-          }}
-        >
-          {/* Shelf edge highlight */}
-          <div 
-            className="absolute top-0 left-0 right-0 h-1 rounded-t-lg"
-            style={{ background: 'transparent' }}
-          />
-          {/* Shadows removed intentionally */}
-        </div>
+        {/* Shelf Surface positioned below brochures (SVG asset) */}
+        <img
+          src="/Final Resource Files/Shelf.svg"
+          alt="Shelf"
+          className="absolute bottom-0 left-0 right-0 w-full h-12 md:h-16"
+          style={{ zIndex: 1 }}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/Final Resource Files/Shelf.png'; }}
+        />
       </div>
     </div>
   );
