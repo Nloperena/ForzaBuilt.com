@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import Logo from '@/components/Header/Logo';
 import SearchBar from '@/components/Header/SearchBar';
+import { industries as industriesData } from '@/data/industries';
 
 type MenuItem = { label: string; href: string; iconSrc?: string };
 
@@ -13,29 +14,40 @@ const productsItems: MenuItem[] = [
   { label: 'Cleaners', href: '/products/ruggedred' },
 ];
 
-const industriesItems: MenuItem[] = [
-  { label: 'Industrial', href: '/industries/industrial', iconSrc: '/products/brand-logos/product-line-brands-white-bond.svg' },
-  { label: 'Transportation', href: '/industries/transportation', iconSrc: '/img/industries/transportation.png' },
-  { label: 'Marine', href: '/industries/marine', iconSrc: '/img/industries/marine.png' },
-  { label: 'Composites', href: '/industries/composites', iconSrc: '/img/industries/composites.png' },
-  { label: 'Construction', href: '/industries/construction', iconSrc: '/img/industries/construction.png' },
-  { label: 'Insulation', href: '/industries/insulation', iconSrc: '/img/industries/insulation.png' },
-];
+const industriesItems: MenuItem[] = industriesData.slice(0, 6).map((ind) => ({
+  label: ind.title,
+  href: `/industries/${ind.title.toLowerCase().replace(/ /g, '-')}`,
+  iconSrc: ind.logo,
+}));
 
-const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string }> = ({ items, widthClass = 'w-[760px]' }) => {
+const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?: 'default' | 'industries' }> = ({ items, widthClass = 'w-[760px]', variant = 'default' }) => {
   return (
     <div className={`absolute left-1/2 -translate-x-1/2 top-full ${widthClass} rounded-lg bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden`}> 
-      <div className="grid grid-cols-4 divide-x divide-white/20">
-        {items.map((it) => (
-          <Link key={it.label} to={it.href} className="group relative flex items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
-            {it.iconSrc ? (
-              <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
-            ) : null}
-            <span className="font-poppins text-lg">{it.label}</span>
-            <span className="absolute right-0 top-0 h-full w-px bg-white/20" aria-hidden />
-          </Link>
-        ))}
-      </div>
+      {variant === 'industries' ? (
+        <div className="grid grid-cols-6">
+          {items.map((it, idx) => (
+            <Link key={it.label} to={it.href} className="group relative flex flex-col items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
+              {it.iconSrc ? (
+                <img src={it.iconSrc} alt="" className="w-12 h-12 object-contain rounded-full bg-white/10 p-1" />
+              ) : null}
+              <span className="font-poppins text-xl font-semibold">{it.label}</span>
+              {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-4 divide-x divide-white/20">
+          {items.map((it) => (
+            <Link key={it.label} to={it.href} className="group relative flex items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
+              {it.iconSrc ? (
+                <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
+              ) : null}
+              <span className="font-poppins text-lg">{it.label}</span>
+              <span className="absolute right-0 top-0 h-full w-px bg-white/20" aria-hidden />
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
@@ -70,7 +82,7 @@ const HeaderV2: React.FC = () => {
               <Link to="/industries" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
-                  <HoverDropdown items={industriesItems} widthClass="w-[1120px]" />
+                  <HoverDropdown items={industriesItems} widthClass="w-[1200px]" variant="industries" />
                 </div>
               </div>
             </div>
