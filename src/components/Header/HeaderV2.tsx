@@ -60,6 +60,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   const { mode } = useGradientMode();
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const isIndustry = location.pathname.startsWith('/industries');
    const [isScrolled, setIsScrolled] = React.useState(false);
    React.useEffect(() => {
      const onScroll = () => setIsScrolled(window.scrollY > 8);
@@ -69,7 +70,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
    }, []);
    const isLight = mode === 'light' || mode === 'light2';
 
-  const headerBg = isHome && !isScrolled
+  const headerBg = (isHome || isIndustry) && !isScrolled
     ? 'bg-transparent'
      : isLight
        ? 'bg-white/90 backdrop-blur-md'
@@ -77,8 +78,8 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   const baseNavText = isHome && !isScrolled ? 'text-white' : 'text-[#1B3764]';
    const headerShadow = isScrolled ? 'shadow-sm' : '';
 
-  // Keep header fixed on the homepage to avoid layout jumps when background appears
-  const positionClass = isHome ? 'fixed' : 'sticky';
+  // Keep header fixed on transparent routes to avoid layout jumps
+  const positionClass = (isHome || isIndustry) ? 'fixed' : 'sticky';
 
   return (
     <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow}`}> 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { industries } from '../../data/industries';
-import Header from '../../components/Header';
+import HeaderV2 from '../../components/Header/HeaderV2';
 import Footer from '../../components/Footer';
 import IdealChemistrySection from '../../components/IdealChemistrySection';
 import HybridStackableCards from '../../components/HybridStackableCards';
@@ -282,7 +282,7 @@ const IndustryPage = () => {
 
   return (
     <div className="bg-[#115B87] min-h-screen flex flex-col relative">
-      <Header />
+      <HeaderV2 />
       
       <AnimatePresence mode="wait">
         <motion.div

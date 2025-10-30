@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Header from '@/components/Header';
+import HeaderV2 from '@/components/Header/HeaderV2';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
@@ -35,7 +35,7 @@ const RuggedRed = () => {
         url="/products/ruggedred"
         type="website"
       />
-      <Header />
+      <HeaderV2 />
       
       {/* Edge triangles positioned at left and right viewport edges */}
       <EdgeTrianglesBackground 
