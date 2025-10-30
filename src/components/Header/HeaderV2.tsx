@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import Logo from '@/components/Header/Logo';
 
 type MenuItem = { label: string; href: string; iconSrc?: string };
 
@@ -22,7 +23,7 @@ const industriesItems: MenuItem[] = [
 
 const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string }> = ({ items, widthClass = 'w-[760px]' }) => {
   return (
-    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 ${widthClass} rounded-lg bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden`}> 
+    <div className={`absolute left-1/2 -translate-x-1/2 top-full ${widthClass} rounded-lg bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden`}> 
       <div className="grid grid-cols-4 divide-x divide-white/20">
         {items.map((it) => (
           <Link key={it.label} to={it.href} className="group relative flex items-center justify-center gap-3 py-6 px-6 hover:bg-white/10 transition-colors">
@@ -45,27 +46,31 @@ const HeaderV2: React.FC = () => {
   return (
     <header className={`sticky top-0 z-50 ${isLight ? 'bg-white/90 backdrop-blur-md' : 'bg-[#1b3764]/70 backdrop-blur-md'} shadow-sm`}> 
       <nav className="max-w-7xl mx-auto px-4">
-        <div className="h-16 flex items-center justify-between">
+        <div className="h-20 flex items-center justify-between">
           {/* Left logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img src={isLight ? '/logos/forza-logo-blue.svg' : '/logos/forza-logo-full.png'} alt="Forza" className="h-8 w-auto" />
-          </Link>
+          <div className="flex items-center">
+            <Logo className="h-10 md:h-12 w-auto" isWhiteBackground={isLight} />
+          </div>
 
           {/* Center nav */}
           <div className="hidden lg:flex items-center gap-6 relative">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className="px-3 py-2 rounded-md font-medium text-[17px] text-[#1B3764] hover:text-[#1B3764]/80">Products ▾</Link>
+              <Link to="/products" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-20 border border-transparent group-hover:border-white/60">Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
-                <HoverDropdown items={productsItems} widthClass="w-[880px]" />
+                <div className="mt-0">
+                  <HoverDropdown items={productsItems} widthClass="w-[880px]" />
+                </div>
               </div>
             </div>
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className="px-3 py-2 rounded-md font-medium text-[17px] text-[#1B3764] hover:text-[#1B3764]/80">Industries ▾</Link>
+              <Link to="/industries" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-20 border border-transparent group-hover:border-white/60">Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
-                <HoverDropdown items={industriesItems} widthClass="w-[1120px]" />
+                <div className="mt-0">
+                  <HoverDropdown items={industriesItems} widthClass="w-[1120px]" />
+                </div>
               </div>
             </div>
 
