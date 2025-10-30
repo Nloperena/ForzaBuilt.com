@@ -192,26 +192,23 @@ const FlowingMenuItem: React.FC<MenuItemProps & {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="bg-[#2c476e] text-white border-t border-white/10 shadow-2xl"
+            className="bg-white/95 backdrop-blur-sm border-t border-white/20 shadow-2xl"
           >
-            <div className="p-4">
-              <div className={`grid ${submenuItems.length >= 6 ? 'grid-cols-6' : 'grid-cols-4'} divide-x divide-white/20`}>
+            <div className="p-6">
+              <div className="grid grid-cols-2 gap-4">
                 {submenuItems.map((subItem, idx) => (
                   <Link
                     key={idx}
                     to={subItem.link}
                     onClick={onClose}
-                    className="group relative flex flex-col items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]"
+                    className="flex flex-col items-center p-4 bg-white/90 hover:bg-white rounded-xl transition-all duration-200 border border-white/30 group shadow-sm"
                   >
-                    {subItem.image ? (
-                      <img 
-                        src={subItem.image} 
-                        alt={subItem.text} 
-                        className="w-12 h-12 object-contain rounded-full bg-white/10 p-1"
-                      />
-                    ) : null}
-                    <span className="font-poppins text-base md:text-lg font-normal group-hover:font-bold text-white text-center">{subItem.text?.toLowerCase().replace(/\b\w/g, (c: string) => c.toUpperCase())}</span>
-                    {idx < submenuItems.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
+                    <img 
+                      src={subItem.image} 
+                      alt={subItem.text} 
+                      className="h-20 w-auto mb-3 group-hover:scale-110 transition-transform duration-200"
+                    />
+                    <span className="text-sm font-medium text-[#1B3764] text-center">{subItem.text}</span>
                   </Link>
                 ))}
               </div>

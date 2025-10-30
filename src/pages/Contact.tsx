@@ -120,7 +120,7 @@ const Contact = () => {
         url="/contact"
         type="website"
       />
-        <Header />
+      <Header />
       
       <div className="flex-1">
         {/* Hero Section - No overlay */}

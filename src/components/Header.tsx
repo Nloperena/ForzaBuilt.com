@@ -88,7 +88,7 @@ const Header = () => {
           style={{ zIndex: -1 }}
         />
       )}
-      <nav className="max-w-[2000px] mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
+      <nav className="max-w-[2200px] mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
         {/* Left-aligned layout */}
         <div className="flex items-center justify-between">
           {/* Left Logo */}
