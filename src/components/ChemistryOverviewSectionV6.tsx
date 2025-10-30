@@ -16,7 +16,7 @@ const chemistryData: ChemistryData[] = [
     id: 'acrylic',
     abbreviation: 'Ac',
     name: 'Acrylic',
-    iconSrc: '/images/icons/chemistry/Acrylic icon.svg',
+    iconSrc: '/Chemistry Icons/acrylic icon.svg',
     description: 'Durable, UV Resistant, Flexible',
     features: [
       'Best for metals, glass, plastics, rubber',
@@ -29,7 +29,7 @@ const chemistryData: ChemistryData[] = [
     id: 'epoxy',
     abbreviation: 'Ep',
     name: 'Epoxy',
-    iconSrc: '/images/icons/chemistry/Epoxy Icon.svg',
+    iconSrc: '/Chemistry Icons/epoxy icon.svg',
     description: 'High Strength & Durability, Rigid, Excellent Chemical Resistance',
     features: [
       'Best for metals, composites, concrete, wood, plastics',
@@ -41,7 +41,7 @@ const chemistryData: ChemistryData[] = [
     id: 'modified-epoxy',
     abbreviation: 'Mo',
     name: 'Modified Epoxy',
-    iconSrc: '/images/icons/chemistry/Modified Epoxy icon.svg',
+    iconSrc: '/Chemistry Icons/modified epoxy icon.svg',
     description: 'Combines Epoxy Strength, Improved Flexibility & Speed',
     features: [
       'Best for metals, composites needing more flexibility or peel strength'
@@ -51,7 +51,7 @@ const chemistryData: ChemistryData[] = [
     id: 'cyanoacrylates',
     abbreviation: 'Cy',
     name: 'Cyanoacrylates',
-    iconSrc: '/images/icons/chemistry/Cyanoacrylates Icon.svg',
+    iconSrc: '/Chemistry Icons/cyanoacrylates icon.svg',
     description: 'Instant Bond, High Strength, Precision Application',
     features: [
       'Fast-curing adhesives for immediate bonding',
@@ -63,7 +63,7 @@ const chemistryData: ChemistryData[] = [
     id: 'hot-melt',
     abbreviation: 'Ho',
     name: 'Hot Melt',
-    iconSrc: '/images/icons/chemistry/Hotmelt icon.svg',
+    iconSrc: '/Chemistry Icons/hotmelt icon.svg',
     description: 'Fast Setting, No VOCs, High Production',
     features: [
       'Fast-setting thermoplastic adhesives with instant bonds',
@@ -75,7 +75,7 @@ const chemistryData: ChemistryData[] = [
     id: 'methacrylate',
     abbreviation: 'Me',
     name: 'Methacrylate',
-    iconSrc: '/images/icons/chemistry/Methacrylate icon.svg',
+    iconSrc: '/Chemistry Icons/methacrylate icon.svg',
     description: 'High Performance, Structural, Temperature Resistant',
     features: [
       'Two-part structural adhesives for demanding applications',
@@ -87,7 +87,7 @@ const chemistryData: ChemistryData[] = [
     id: 'ms',
     abbreviation: 'Ms',
     name: 'MS',
-    iconSrc: '/images/icons/chemistry/MS icon.svg',
+    iconSrc: '/Chemistry Icons/ms icon.svg',
     description: 'Weatherproof, Flexible, Low VOC',
     features: [
       'Modified silane polymers for flexible, strong bonds',
@@ -99,7 +99,7 @@ const chemistryData: ChemistryData[] = [
     id: 'polyurethane',
     abbreviation: 'Po',
     name: 'Polyurethane',
-    iconSrc: '/images/icons/chemistry/Polyurethane icon.svg',
+    iconSrc: '/Chemistry Icons/polyurethane icon.svg',
     description: 'Abrasion Resistant, Impact Resistant, Paintable',
     features: [
       'Strong and elastic adhesives that handle movement',
@@ -111,7 +111,7 @@ const chemistryData: ChemistryData[] = [
     id: 'silicone',
     abbreviation: 'Si',
     name: 'Silicone',
-    iconSrc: '/images/icons/chemistry/Silicone icon.svg',
+    iconSrc: '/Chemistry Icons/silicone icon.svg',
     description: 'Heat Resistant, Waterproof, Flexible',
     features: [
       'Extreme temperature stability from -65°F to 500°F',
@@ -123,7 +123,7 @@ const chemistryData: ChemistryData[] = [
     id: 'solvent-based',
     abbreviation: 'So',
     name: 'Solvent Based',
-    iconSrc: '/images/icons/chemistry/Solvent Based icon.svg',
+    iconSrc: '/Chemistry Icons/solvent based icon.svg',
     description: 'Fast Drying, High Initial Tack, Versatile',
     features: [
       'Fast-drying polymer solutions for quick application',
@@ -135,7 +135,7 @@ const chemistryData: ChemistryData[] = [
     id: 'water-based',
     abbreviation: 'Wa',
     name: 'Water Based',
-    iconSrc: '/images/icons/chemistry/Water Based icon.svg',
+    iconSrc: '/Chemistry Icons/water based icon.svg',
     description: 'Environmentally Friendly, Quick Drying, Versatile',
     features: [
       'Non-toxic, water-based adhesives for a healthier environment',
