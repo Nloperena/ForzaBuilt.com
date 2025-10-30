@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+import MSHeroBanner from '@/components/MSHeroBanner';
 
 interface ApproachItem {
   title: string;
@@ -126,6 +127,9 @@ const ApproachSectionV3 = () => {
 
   return (
     <>
+      {/* MS Hero Banner - Above ExperienceBetterBanner */}
+      <MSHeroBanner />
+      
       {/* Top Banner - Outside the sticky container */}
       <ExperienceBetterBanner />
 

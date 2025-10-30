@@ -13,12 +13,12 @@ const ExperienceBetterBanner = () => {
             <h2 className={`text-[clamp(28px,4vw,48px)] font-bold text-[#2c476e] leading-tight ${
               mode === 'light2' ? 'font-poppins' : 'font-kallisto'
             }`}>
-              Experience Better.
+              Performance.
             </h2>
             <h2 className={`text-[clamp(28px,4vw,48px)] font-bold text-[#F2611D] leading-tight ${
               mode === 'light2' ? 'font-poppins' : 'font-kallisto'
             }`}>
-              Today.
+              Elevated.
             </h2>
           </div>
           
