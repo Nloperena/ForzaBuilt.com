@@ -13,25 +13,25 @@ interface Product {
 const products: Product[] = [
   {
     title: "ADHESIVES",
-    description: "Discover our premium industrial adhesive solutions engineered for performance and reliability across all industries.",
+    description: "Engineered for strength and speed — our industrial adhesives create lasting bonds that keep your production moving.",
     image: "/images/homepage-heroes/Forza Bond Hero Shot.jpg",
     slug: "bond"
   },
   {
     title: "SEALANTS", 
-    description: "Discover our premium industrial seal solutions engineered for performance and reliability across all industries.",
+    description: "Dependable sealing solutions designed to protect, perform, and endure in even the toughest manufacturing environments.",
     image: "/images/homepage-heroes/Forza Seal Hero Shot.jpg",
     slug: "seal"
   },
   {
     title: "TAPES",
-    description: "Discover our premium industrial tape solutions engineered for performance and reliability across all industries.",
+    description: "Precision tapes that deliver clean application, consistent performance, and unmatched versatility across industries.",
     image: "/images/homepage-heroes/Forza Tape Hero Shot.jpg",
     slug: "tape"
   },
   {
     title: "CLEANERS",
-    description: "Discover our premium industrial cleaning solutions engineered for performance and reliability across all industries.",
+    description: "Industrial-grade cleaners formulated to cut through residue fast — keeping your equipment and processes running at peak efficiency.",
     image: "/images/homepage-heroes/Forza Cleaners Hero Shot.jpg",
     slug: "ruggedred"
   }

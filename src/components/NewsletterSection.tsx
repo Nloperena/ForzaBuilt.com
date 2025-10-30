@@ -58,7 +58,7 @@ const NewsletterSection = () => {
         <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-center mb-8 md:mb-12 relative">
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#2c476e] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance">Stay Ahead with Forza</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#2c476e] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance">Built to Keep You Ahead</h2>
             <p className="mt-4 text-gray-600 text-base md:text-lg max-w-2xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 

@@ -170,8 +170,8 @@ const ChemistryOverviewSectionV6: React.FC = () => {
                      leading-[1.12] md:leading-[1.12]
                      mb-[clamp(18px,3.5vw,40px)]
                      [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
-          Ideal Chemistry For Your <br className="hidden md:block" />
-          Specific Application
+          Chemistries We Manufacture <br className="hidden md:block" />
+          In-House
         </h2>
         
         {/* Chemistry Grid - Single responsive grid */}
