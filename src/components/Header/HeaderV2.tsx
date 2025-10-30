@@ -46,11 +46,11 @@ const HeaderV2: React.FC = () => {
 
   return (
     <header className={`sticky top-0 z-50 ${isLight ? 'bg-white/90 backdrop-blur-md' : 'bg-[#1b3764]/70 backdrop-blur-md'} shadow-sm`}> 
-      <nav className="max-w-7xl mx-auto px-4">
-        <div className="h-24 flex items-center justify-between">
+      <nav className="max-w-[1400px] xl:max-w-[1600px] mx-auto px-4">
+        <div className="h-20 md:h-24 flex items-center justify-between">
           {/* Left logo */}
           <div className="flex items-center">
-            <Logo className="h-32 w-auto" isWhiteBackground={isLight} />
+            <Logo className="h-16 md:h-20 lg:h-24 w-auto" isWhiteBackground={isLight} />
           </div>
 
           {/* Center nav */}
