@@ -5,6 +5,10 @@ import Logo from '@/components/Header/Logo';
 import SearchBar from '@/components/Header/SearchBar';
 import { industries as industriesData } from '@/data/industries';
 
+const toTitleCase = (text: string) => text
+  ? text.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
+  : text;
+
 type MenuItem = { label: string; href: string; iconSrc?: string };
 
 const productsItems: MenuItem[] = [
@@ -30,7 +34,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               {it.iconSrc ? (
                 <img src={it.iconSrc} alt="" className="w-12 h-12 object-contain rounded-full bg-white/10 p-1" />
               ) : null}
-              <span className="font-poppins text-xl font-normal group-hover:font-bold capitalize">{it.label}</span>
+              <span className="font-poppins text-xl font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
               {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
             </Link>
           ))}
@@ -42,7 +46,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               {it.iconSrc ? (
                 <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
               ) : null}
-              <span className="font-poppins text-lg font-normal group-hover:font-bold capitalize">{it.label}</span>
+              <span className="font-poppins text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
               <span className="absolute right-0 top-0 h-full w-px bg-white/20" aria-hidden />
             </Link>
           ))}
