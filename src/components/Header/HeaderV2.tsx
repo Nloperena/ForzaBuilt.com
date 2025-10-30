@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import Logo from '@/components/Header/Logo';
+import SearchBar from '@/components/Header/SearchBar';
 
 type MenuItem = { label: string; href: string; iconSrc?: string };
 
@@ -46,19 +47,19 @@ const HeaderV2: React.FC = () => {
   return (
     <header className={`sticky top-0 z-50 ${isLight ? 'bg-white/90 backdrop-blur-md' : 'bg-[#1b3764]/70 backdrop-blur-md'} shadow-sm`}> 
       <nav className="max-w-7xl mx-auto px-4">
-        <div className="h-20 flex items-center justify-between">
+        <div className="h-24 flex items-center justify-between">
           {/* Left logo */}
           <div className="flex items-center">
-            <Logo className="h-10 md:h-12 w-auto" isWhiteBackground={isLight} />
+            <Logo className="h-32 w-auto" isWhiteBackground={isLight} />
           </div>
 
           {/* Center nav */}
           <div className="hidden lg:flex items-center gap-6 relative">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-20 border border-transparent">Products ▾</Link>
+              <Link to="/products" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
-                <div className="mt-0">
+                <div className="mt-0 z-10 relative">
                   <HoverDropdown items={productsItems} widthClass="w-[880px]" />
                 </div>
               </div>
@@ -66,9 +67,9 @@ const HeaderV2: React.FC = () => {
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-20 border border-transparent">Industries ▾</Link>
+              <Link to="/industries" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
-                <div className="mt-0">
+                <div className="mt-0 z-10 relative">
                   <HoverDropdown items={industriesItems} widthClass="w-[1120px]" />
                 </div>
               </div>
@@ -79,7 +80,8 @@ const HeaderV2: React.FC = () => {
           </div>
 
           {/* Right actions */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-6">
+            <SearchBar />
             <Link to="/contact" className="rounded-full bg-[#F2611D] text-white px-6 py-3 text-base font-medium hover:bg-[#F2611D]/90">Contact Us</Link>
           </div>
 
