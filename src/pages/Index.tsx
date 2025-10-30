@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderV2 from '@/components/Header/HeaderV2';
+import Header from '@/components/Header';
 import StickyHeroVideoSection from '@/components/StickyHeroVideoSection';
 import IndustriesSectionAlt from '@/components/IndustriesSectionAlt';
 import StickyNewsletterSection from '@/components/StickyNewsletterSection';
@@ -27,7 +27,7 @@ const Index = () => {
         url="/"
         type="website"
       />
-      <HeaderV2 />
+      <Header />
 
       {/* Sticky Hero Video Section - video stays while content slides over */}
       <StickyHeroVideoSection>

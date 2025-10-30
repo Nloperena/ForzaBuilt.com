@@ -29,7 +29,7 @@ const CHEMISTRY_ICONS = {
   'Methacrylate/MMA': '/images/icons/chemistry/Methacrylate icon.svg',
   'Rubber Based': '/images/icons/chemistry/rubber based icon.svg'
 };
-import HeaderV2 from '@/components/Header/HeaderV2';
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 
@@ -502,7 +502,7 @@ const ProductCategoryPage: React.FC = () => {
   if (productCategory.toLowerCase() === 'ruggedred') {
     return (
       <div className="min-h-screen bg-white flex flex-col">
-        <HeaderV2 />
+        <Header />
         <main className="flex-1 pb-10">
           {/* Full Viewport Rugged Red Products Section */}
           <section className="relative w-full flex justify-center pt-0">
@@ -533,7 +533,7 @@ const ProductCategoryPage: React.FC = () => {
         url={`/products/${productCategory}`}
         type="website"
       />
-      <HeaderV2 />
+      <Header />
       
       
       <main className="flex-1 pb-10">

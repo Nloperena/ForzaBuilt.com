@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { industries as industriesData } from '@/data/industries';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 import { getProduct, getRelatedProducts } from '@/utils/products';
-import HeaderV2 from '@/components/Header/HeaderV2';
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 
@@ -261,7 +261,7 @@ const ProductDetailPage: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex flex-col">
-        <HeaderV2 />
+        <Header />
         <main className="flex-1 pb-10">
           {/* Hero Skeleton */}
           <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#2c476e] pt-5">
@@ -320,7 +320,7 @@ const ProductDetailPage: React.FC = () => {
   if (!product) {
     return (
       <div className="min-h-screen bg-white flex flex-col">
-        <HeaderV2 />
+        <Header />
         <main className="flex-1 pt-20 pb-10">
           <div className="max-w-[1200px] mx-auto px-4 text-center">
             <h1 className="text-4xl font-kallisto font-black text-gray-900 mb-4">Product Not Found</h1>
@@ -350,7 +350,7 @@ const ProductDetailPage: React.FC = () => {
         productChemistry={product.chemistry}
         image={product.imageUrl || '/forza-logo-full.png'}
       />
-      <HeaderV2 />
+      <Header />
       <main className="flex-1 pb-10">
         {/* Hero Section - Full width background */}
         <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#2c476e]">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Download, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import HeaderV2 from '@/components/Header/HeaderV2';
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const PdfViewer: React.FC = () => {
