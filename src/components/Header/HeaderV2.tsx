@@ -73,7 +73,7 @@ const HeaderV2: React.FC = () => {
           <div className="hidden lg:flex items-center gap-6 relative">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Products ▾</Link>
+              <Link to="/products" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-xl hover:-mb-2 hover:relative hover:z-30 border border-transparent">Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
                   <HoverDropdown items={productsItems} widthClass="w-[880px]" />
@@ -83,7 +83,7 @@ const HeaderV2: React.FC = () => {
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Industries ▾</Link>
+              <Link to="/industries" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all hover:bg-[#2c476e] hover:text:white hover:font-bold hover:shadow-xl hover:-mb-2 hover:relative hover:z-30 border border-transparent">Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
                   <HoverDropdown items={industriesItems} widthClass="w-[1200px]" variant="industries" />
