@@ -176,7 +176,10 @@ const LibrarySection = () => {
 
               {/* Name label overlapping shelf (no layout shift) */}
               <div
-                className="absolute -bottom-3 md:-bottom-4 left-1/2 -translate-x-1/2 bg-white/90 text-gray-800 px-2 py-0.5 rounded-sm font-poppins text-xs md:text-sm pointer-events-none z-30"
+                className="absolute -bottom-3 md:-bottom-4 left-1/2 -translate-x-1/2 font-poppins text-[10px] md:text-xs text-slate-700 tracking-wide pointer-events-none z-30"
+                style={{
+                  textShadow: '0 1px 0 rgba(255,255,255,0.7)'
+                }}
               >
                 {brochure.label}
               </div>
