@@ -128,7 +128,7 @@ const LibrarySection = () => {
   const renderShelf = (shelfBrochures: Brochure[], shelfIndex: number) => (
     <div key={shelfIndex} className="relative mb-16 md:mb-20">
       {/* Container with brochures positioned above shelf */}
-      <div className="relative pb-8 md:pb-12">
+      <div className="relative pb-12 md:pb-16">
         {/* Brochures positioned above shelf */}
         <div className="flex items-end justify-center gap-4 md:gap-6 lg:gap-8 px-4 relative z-10" style={{ marginBottom: '0' }}>
         {shelfBrochures.map((brochure, index) => (
@@ -177,7 +177,7 @@ const LibrarySection = () => {
 
             {/* Label below brochure */}
             <motion.div
-              className="mt-3 md:mt-4 mb-6 md:mb-8 text-center"
+              className="mt-3 md:mt-4 mb-2 md:mb-3 text-center relative z-20"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: (shelfIndex * 0.1) + (index * 0.1) + 0.3 }}
