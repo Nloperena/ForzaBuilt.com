@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import Logo from '@/components/Header/Logo';
 import SearchBar from '@/components/Header/SearchBar';
@@ -57,7 +57,9 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
 };
 
  const HeaderV2: React.FC = () => {
-   const { mode } = useGradientMode();
+  const { mode } = useGradientMode();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
    const [isScrolled, setIsScrolled] = React.useState(false);
    React.useEffect(() => {
      const onScroll = () => setIsScrolled(window.scrollY > 8);
@@ -67,8 +69,8 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
    }, []);
    const isLight = mode === 'light' || mode === 'light2';
 
-   const headerBg = !isScrolled
-     ? 'bg-transparent'
+  const headerBg = isHome && !isScrolled
+    ? 'bg-transparent'
      : isLight
        ? 'bg-white/90 backdrop-blur-md'
        : 'bg-[#1b3764]/70 backdrop-blur-md';
