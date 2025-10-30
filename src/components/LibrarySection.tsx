@@ -175,17 +175,7 @@ const LibrarySection = () => {
               </div>
             </motion.div>
 
-            {/* Label below brochure */}
-            <motion.div
-              className="mt-3 md:mt-4 mb-2 md:mb-3 text-center relative z-20"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: (shelfIndex * 0.1) + (index * 0.1) + 0.3 }}
-            >
-              <p className="text-sm md:text-base text-gray-700 font-bold font-poppins">
-                {brochure.label}
-              </p>
-            </motion.div>
+            {/* Label below brochure removed per request */}
             </motion.div>
           ))}
         </div>
