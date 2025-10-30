@@ -8,7 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 import { Lock, User, Mail, Eye, EyeOff, ArrowRight, Shield, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
-import Header from '@/components/Header';
+import HeaderV2 from '@/components/Header/HeaderV2';
 import Footer from '@/components/Footer';
 import forzaLogo from '@/assets/images/Forza-lion-logo.png';
 

@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import Header from '@/components/Header';
+import HeaderV2 from '@/components/Header/HeaderV2';
 import Footer from '@/components/Footer';
 import VideoSkeleton from '@/components/common/VideoSkeleton';
 import { useGradientMode } from '@/contexts/GradientModeContext';
@@ -120,7 +120,7 @@ const Contact = () => {
         url="/contact"
         type="website"
       />
-      <Header />
+      <HeaderV2 />
       
       <div className="flex-1">
         {/* Hero Section - No overlay */}
