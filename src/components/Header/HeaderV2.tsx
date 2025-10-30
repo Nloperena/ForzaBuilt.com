@@ -26,7 +26,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string }> = ({ i
     <div className={`absolute left-1/2 -translate-x-1/2 top-full ${widthClass} rounded-lg bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden`}> 
       <div className="grid grid-cols-4 divide-x divide-white/20">
         {items.map((it) => (
-          <Link key={it.label} to={it.href} className="group relative flex items-center justify-center gap-3 py-6 px-6 hover:bg-white/10 transition-colors">
+          <Link key={it.label} to={it.href} className="group relative flex items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
             {it.iconSrc ? (
               <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
             ) : null}
@@ -56,7 +56,7 @@ const HeaderV2: React.FC = () => {
           <div className="hidden lg:flex items-center gap-6 relative">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-20 border border-transparent group-hover:border-white/60">Products ▾</Link>
+              <Link to="/products" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-20 border border-transparent">Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0">
                   <HoverDropdown items={productsItems} widthClass="w-[880px]" />
@@ -66,7 +66,7 @@ const HeaderV2: React.FC = () => {
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-20 border border-transparent group-hover:border-white/60">Industries ▾</Link>
+              <Link to="/industries" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-20 border border-transparent">Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0">
                   <HoverDropdown items={industriesItems} widthClass="w-[1120px]" />
