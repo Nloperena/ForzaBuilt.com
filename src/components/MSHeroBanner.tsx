@@ -31,12 +31,12 @@ const MSHeroBanner = () => {
         {/* Right side - Image */}
         <div className="relative w-full h-[400px] lg:h-auto min-h-[400px]">
           <img
-            src="/images/approach/Products Portfolio.jpg"
+            src="/MS Page Images/Forza MS Page Header.jpg"
             alt="MS Technology - Industrial Adhesive Mixing"
             className="w-full h-full object-cover"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = '/images/approach/Innovation.jpg';
+              target.src = '/MS Page Images/MS Construction.jpg';
             }}
           />
         </div>
