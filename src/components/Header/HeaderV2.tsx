@@ -30,7 +30,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               {it.iconSrc ? (
                 <img src={it.iconSrc} alt="" className="w-12 h-12 object-contain rounded-full bg-white/10 p-1" />
               ) : null}
-              <span className="font-poppins text-xl font-semibold">{it.label}</span>
+              <span className="font-poppins text-xl font-normal group-hover:font-bold capitalize">{it.label}</span>
               {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
             </Link>
           ))}
@@ -42,7 +42,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               {it.iconSrc ? (
                 <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
               ) : null}
-              <span className="font-poppins text-lg">{it.label}</span>
+              <span className="font-poppins text-lg font-normal group-hover:font-bold capitalize">{it.label}</span>
               <span className="absolute right-0 top-0 h-full w-px bg-white/20" aria-hidden />
             </Link>
           ))}
@@ -69,7 +69,7 @@ const HeaderV2: React.FC = () => {
           <div className="hidden lg:flex items-center gap-6 relative">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Products ▾</Link>
+              <Link to="/products" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
                   <HoverDropdown items={productsItems} widthClass="w-[880px]" />
@@ -79,7 +79,7 @@ const HeaderV2: React.FC = () => {
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className="px-4 py-2 rounded-md font-semibold text-[17px] text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Industries ▾</Link>
+              <Link to="/industries" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
                   <HoverDropdown items={industriesItems} widthClass="w-[1200px]" variant="industries" />
@@ -87,8 +87,8 @@ const HeaderV2: React.FC = () => {
               </div>
             </div>
 
-            <Link to="/about" className="px-3 py-2 rounded-md font-medium text-[17px] text-[#1B3764] hover:text-[#1B3764]/80">About</Link>
-            <Link to="/blog" className="px-3 py-2 rounded-md font-medium text-[17px] text-[#1B3764] hover:text-[#1B3764]/80">Blog</Link>
+            <Link to="/about" className="px-3 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] hover:text-[#1B3764]/80 hover:font-bold">About</Link>
+            <Link to="/blog" className="px-3 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] hover:text-[#1B3764]/80 hover:font-bold">Blog</Link>
           </div>
 
           {/* Right actions */}
