@@ -26,11 +26,11 @@ const industriesItems: MenuItem[] = industriesData.slice(0, 6).map((ind) => ({
 
 const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?: 'default' | 'industries' }> = ({ items, widthClass = 'w-[760px]', variant = 'default' }) => {
   return (
-    <div className={`absolute left-1/2 -translate-x-1/2 top-full ${widthClass} rounded-lg bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden`}> 
+    <div className={`absolute left-1/2 -translate-x-1/2 top-full -mt-2 ${widthClass} rounded-lg bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden z-20`}> 
       {variant === 'industries' ? (
         <div className="grid grid-cols-6">
           {items.map((it, idx) => (
-            <Link key={it.label} to={it.href} className="group relative flex flex-col items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
+            <Link key={it.label} to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
               {it.iconSrc ? (
                 <img src={it.iconSrc} alt="" className="w-12 h-12 object-contain rounded-full bg-white/10 p-1" />
               ) : null}
@@ -42,7 +42,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
       ) : (
         <div className="grid grid-cols-4 divide-x divide-white/20">
           {items.map((it) => (
-            <Link key={it.label} to={it.href} className="group relative flex items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
+            <Link key={it.label} to={it.href} className="group relative z-30 flex items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
               {it.iconSrc ? (
                 <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
               ) : null}
@@ -73,7 +73,7 @@ const HeaderV2: React.FC = () => {
           <div className="hidden lg:flex items-center gap-6 relative">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-xl hover:-mb-2 hover:relative hover:z-30 border border-transparent">Products ▾</Link>
+              <Link to="/products" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
                   <HoverDropdown items={productsItems} widthClass="w-[880px]" />
@@ -83,7 +83,7 @@ const HeaderV2: React.FC = () => {
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all hover:bg-[#2c476e] hover:text:white hover:font-bold hover:shadow-xl hover:-mb-2 hover:relative hover:z-30 border border-transparent">Industries ▾</Link>
+              <Link to="/industries" className="px-4 py-2 rounded-md font-normal text-[17px] capitalize text-[#1B3764] transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:-mb-2 group-hover:relative group-hover:z-30 border border-transparent">Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-10 relative">
                   <HoverDropdown items={industriesItems} widthClass="w-[1200px]" variant="industries" />
