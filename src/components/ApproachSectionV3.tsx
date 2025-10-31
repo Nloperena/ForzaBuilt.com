@@ -13,17 +13,6 @@ interface ApproachItem {
 
 const approachItems: ApproachItem[] = [
   {
-    title: "COMPLETE PORTFOLIO",
-    description: "Comprehensive range of industrial adhesives, sealants, tapes, and cleaners - all under one roof.",
-    bulletPoints: [
-      "World's most comprehensive portfolio",
-      "One-stop solution for all bonding needs",
-      "Saves time, money & reduces risk"
-    ],
-    image: "/images/approach/Products Portfolio.jpg",
-    video: "/approach-videos/Product Performance.mp4"
-  },
-  {
     title: "REAL KNOW HOW",
     description: "Expert guidance to select and optimize the right products for your specific applications.",
     bulletPoints: [
@@ -35,6 +24,38 @@ const approachItems: ApproachItem[] = [
     video: "/approach-videos/Real Know How.mp4"
   },
   {
+    title: "PRODUCT PERFORMANCE",
+    description: "Superior quality products engineered for maximum performance and reliability.",
+    bulletPoints: [
+      "Rigorous testing and quality control",
+      "Performance-tested in real-world conditions",
+      "Built to exceed industry standards"
+    ],
+    image: "/images/approach/Products Portfolio.jpg",
+    video: "/approach-videos/Product Performance.mp4"
+  },
+  {
+    title: "INDUSTRY-FOCUSED",
+    description: "Deep expertise across all major industries and applications.",
+    bulletPoints: [
+      "Decades of industry experience",
+      "Application-specific knowledge",
+      "Proven track record"
+    ],
+    image: "/images/approach/Legacy Image.jpg",
+    video: "/approach-videos/Industry Focused.mp4"
+  },
+  {
+    title: "COMPLETE PORTFOLIO",
+    description: "Comprehensive range of industrial adhesives, sealants, tapes, and cleaners - all under one roof.",
+    bulletPoints: [
+      "World's most comprehensive portfolio",
+      "One-stop solution for all bonding needs",
+      "Saves time, money & reduces risk"
+    ],
+    image: "/images/approach/Products Portfolio.jpg"
+  },
+  {
     title: "REAL INNOVATION",
     description: "Innovation & Greener Chemistries leading the way to a sustainable future.",
     bulletPoints: [
@@ -43,6 +64,16 @@ const approachItems: ApproachItem[] = [
       "Always accelerating towards the future today."
     ],
     image: "/images/approach/Sustainability Image for Web.jpg"
+  },
+  {
+    title: "MADE IN USA",
+    description: "Proudly manufactured in America with domestic and international components.",
+    bulletPoints: [
+      "American-made quality and craftsmanship",
+      "Supporting the U.S. economy",
+      "Reliable domestic supply chain"
+    ],
+    image: "/images/approach/R&D image.jpg"
   },
   {
     title: "R&D LEADERSHIP",
@@ -63,23 +94,12 @@ const approachItems: ApproachItem[] = [
       "Long-term partnership focus"
     ],
     image: "/images/approach/Receptionist at desk.jpg"
-  },
-  {
-    title: "INDUSTRY-FOCUSED",
-    description: "Deep expertise across all major industries and applications.",
-    bulletPoints: [
-      "Decades of industry experience",
-      "Application-specific knowledge",
-      "Proven track record"
-    ],
-    image: "/images/approach/Legacy Image.jpg",
-    video: "/approach-videos/Industry Focused.mp4"
   }
 ];
 
 const ApproachSectionV3 = () => {
-  const [selectedItem, setSelectedItem] = useState(2);
-  const [previousItem, setPreviousItem] = useState(2);
+  const [selectedItem, setSelectedItem] = useState(1);
+  const [previousItem, setPreviousItem] = useState(1);
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
   const [videoLoadedMap, setVideoLoadedMap] = useState<Record<number, boolean>>({});
