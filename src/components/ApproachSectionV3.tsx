@@ -88,6 +88,7 @@ const ApproachSectionV3 = () => {
   const isUserInteractingRef = useRef(false);
   const sectionRef = useRef<HTMLElement>(null);
   const currentVideoRef = useRef<HTMLVideoElement>(null);
+  const previousVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Auto-cycle every 4 seconds
@@ -122,8 +123,9 @@ const ApproachSectionV3 = () => {
   // Handle video loading and playback
   useEffect(() => {
     const currentItem = approachItems[selectedItem];
+    const previousItemObj = approachItems[previousItem];
 
-    // Load current video if it has one
+    // Load and play current video if it has one
     if (currentItem.video && currentVideoRef.current) {
       const video = currentVideoRef.current;
       
@@ -140,7 +142,25 @@ const ApproachSectionV3 = () => {
         video.removeEventListener('loadeddata', handleLoadedData);
       };
     }
-  }, [selectedItem]);
+
+    // Load and play previous video if it has one
+    if (previousItemObj.video && previousVideoRef.current) {
+      const video = previousVideoRef.current;
+      
+      const handlePrevLoadedData = () => {
+        setVideoLoadedMap(prev => ({ ...prev, [previousItem]: true }));
+        video.play().catch(() => {
+          // Auto-play failed, video will show poster image
+        });
+      };
+
+      video.addEventListener('loadeddata', handlePrevLoadedData);
+      
+      return () => {
+        video.removeEventListener('loadeddata', handlePrevLoadedData);
+      };
+    }
+  }, [selectedItem, previousItem]);
 
   const handleItemChange = (index: number) => {
     if (index !== selectedItem) {
@@ -180,11 +200,27 @@ const ApproachSectionV3 = () => {
           ">
               {/* Inline image (all breakpoints) with solid background to avoid hero flash */}
               <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 overflow-hidden">
-                {/* Previous content (beneath) - image only as fallback */}
+                {/* Previous content (beneath) - image or video */}
+                {approachItems[previousItem].video ? (
+                  <video
+                    key={`prev-video-${previousItem}`}
+                    ref={previousVideoRef}
+                    poster={approachItems[previousItem].image}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src={approachItems[previousItem].video} type="video/mp4" />
+                  </video>
+                ) : null}
                 <img
                   src={approachItems[previousItem].image}
                   alt={approachItems[previousItem].title}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className={`absolute inset-0 w-full h-full object-cover ${
+                    approachItems[previousItem].video && videoLoadedMap[previousItem] ? 'opacity-0' : 'opacity-100'
+                  }`}
                 />
                 
                 {/* Current content (on top) - image or video */}
