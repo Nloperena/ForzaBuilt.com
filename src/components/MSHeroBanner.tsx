@@ -5,8 +5,10 @@ import { useGradientMode } from '@/contexts/GradientModeContext';
 const MSHeroBanner = () => {
   const { mode } = useGradientMode();
   const [isSticky, setIsSticky] = useState(false);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +22,10 @@ const MSHeroBanner = () => {
         } else {
           setIsSticky(false);
         }
+
+        // Calculate parallax offset
+        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - sectionRect.top) / window.innerHeight));
+        setParallaxOffset(scrollProgress * 80); // Strong parallax effect (80px max offset)
       }
     };
 
@@ -53,11 +59,16 @@ const MSHeroBanner = () => {
         </div>
         
         {/* Right side - Sticky Image */}
-        <div ref={imageRef} className={`relative w-full h-[676px] lg:h-auto min-h-[676px] transition-transform duration-300 ${isSticky ? 'lg:sticky lg:top-0' : ''}`}>
+        <div ref={imageRef} className={`relative w-full h-[676px] lg:h-auto min-h-[676px] transition-transform duration-300 ${isSticky ? 'lg:sticky lg:top-0' : ''} overflow-hidden`}>
           <img
+            ref={imgRef}
             src="/MS Page Images/Forza MS Page Header.jpg"
             alt="MS Technology - Industrial Adhesive Mixing"
             className="w-full h-full object-cover"
+            style={{
+              transform: `translateY(${parallaxOffset}px)`,
+              transition: 'transform 0.1s ease-out'
+            }}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.src = '/MS Page Images/MS Construction.jpg';
