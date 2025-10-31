@@ -83,12 +83,24 @@ const ApproachSectionV3 = () => {
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
   const [videoLoadedMap, setVideoLoadedMap] = useState<Record<number, boolean>>({});
+  const [videoErrorMap, setVideoErrorMap] = useState<Record<number, boolean>>({});
   const cycleTimerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
   const sectionRef = useRef<HTMLElement>(null);
   const currentVideoRef = useRef<HTMLVideoElement>(null);
   const previousVideoRef = useRef<HTMLVideoElement>(null);
+  const videoLoadedMapRef = useRef<Record<number, boolean>>({});
+  const videoErrorMapRef = useRef<Record<number, boolean>>({});
+
+  // Keep refs in sync with state
+  useEffect(() => {
+    videoLoadedMapRef.current = videoLoadedMap;
+  }, [videoLoadedMap]);
+
+  useEffect(() => {
+    videoErrorMapRef.current = videoErrorMap;
+  }, [videoErrorMap]);
 
   useEffect(() => {
     // Auto-cycle every 4 seconds
@@ -128,36 +140,80 @@ const ApproachSectionV3 = () => {
     // Load and play current video if it has one
     if (currentItem.video && currentVideoRef.current) {
       const video = currentVideoRef.current;
+      let timeout: NodeJS.Timeout;
       
       const handleLoadedData = () => {
+        clearTimeout(timeout);
         setVideoLoadedMap(prev => ({ ...prev, [selectedItem]: true }));
+        setVideoErrorMap(prev => {
+          const newMap = { ...prev };
+          delete newMap[selectedItem];
+          return newMap;
+        });
         video.play().catch(() => {
-          // Auto-play failed, video will show poster image
+          // Auto-play failed, but video is loaded so we'll still use it
         });
       };
 
+      const handleError = () => {
+        clearTimeout(timeout);
+        setVideoErrorMap(prev => ({ ...prev, [selectedItem]: true }));
+      };
+
+      // Set timeout for video loading (5 seconds)
+      timeout = setTimeout(() => {
+        if (!videoLoadedMapRef.current[selectedItem] && !videoErrorMapRef.current[selectedItem]) {
+          handleError();
+        }
+      }, 5000);
+
       video.addEventListener('loadeddata', handleLoadedData);
+      video.addEventListener('error', handleError);
       
       return () => {
+        clearTimeout(timeout);
         video.removeEventListener('loadeddata', handleLoadedData);
+        video.removeEventListener('error', handleError);
       };
     }
 
     // Load and play previous video if it has one
     if (previousItemObj.video && previousVideoRef.current) {
       const video = previousVideoRef.current;
+      let timeout: NodeJS.Timeout;
       
       const handlePrevLoadedData = () => {
+        clearTimeout(timeout);
         setVideoLoadedMap(prev => ({ ...prev, [previousItem]: true }));
+        setVideoErrorMap(prev => {
+          const newMap = { ...prev };
+          delete newMap[previousItem];
+          return newMap;
+        });
         video.play().catch(() => {
-          // Auto-play failed, video will show poster image
+          // Auto-play failed, but video is loaded so we'll still use it
         });
       };
 
+      const handlePrevError = () => {
+        clearTimeout(timeout);
+        setVideoErrorMap(prev => ({ ...prev, [previousItem]: true }));
+      };
+
+      // Set timeout for video loading (5 seconds)
+      timeout = setTimeout(() => {
+        if (!videoLoadedMapRef.current[previousItem] && !videoErrorMapRef.current[previousItem]) {
+          handlePrevError();
+        }
+      }, 5000);
+
       video.addEventListener('loadeddata', handlePrevLoadedData);
+      video.addEventListener('error', handlePrevError);
       
       return () => {
+        clearTimeout(timeout);
         video.removeEventListener('loadeddata', handlePrevLoadedData);
+        video.removeEventListener('error', handlePrevError);
       };
     }
   }, [selectedItem, previousItem]);
@@ -201,11 +257,10 @@ const ApproachSectionV3 = () => {
               {/* Inline image (all breakpoints) with solid background to avoid hero flash */}
               <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 overflow-hidden">
                 {/* Previous content (beneath) - image or video */}
-                {approachItems[previousItem].video ? (
+                {approachItems[previousItem].video && !videoErrorMap[previousItem] && (
                   <video
                     key={`prev-video-${previousItem}`}
                     ref={previousVideoRef}
-                    poster={approachItems[previousItem].image}
                     className="absolute inset-0 w-full h-full object-cover"
                     muted
                     loop
@@ -214,21 +269,21 @@ const ApproachSectionV3 = () => {
                   >
                     <source src={approachItems[previousItem].video} type="video/mp4" />
                   </video>
-                ) : null}
-                <img
-                  src={approachItems[previousItem].image}
-                  alt={approachItems[previousItem].title}
-                  className={`absolute inset-0 w-full h-full object-cover ${
-                    approachItems[previousItem].video && videoLoadedMap[previousItem] ? 'opacity-0' : 'opacity-100'
-                  }`}
-                />
+                )}
+                {/* Only show image if video failed or doesn't exist */}
+                {(!approachItems[previousItem].video || videoErrorMap[previousItem]) && (
+                  <img
+                    src={approachItems[previousItem].image}
+                    alt={approachItems[previousItem].title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
                 
                 {/* Current content (on top) - image or video */}
-                {approachItems[selectedItem].video ? (
+                {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && (
                   <video
                     key={`video-${selectedItem}`}
                     ref={currentVideoRef}
-                    poster={approachItems[selectedItem].image}
                     className={`absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700 ${
                       videoLoadedMap[selectedItem] ? 'opacity-100' : 'opacity-0'
                     }`}
@@ -240,15 +295,16 @@ const ApproachSectionV3 = () => {
                   >
                     <source src={approachItems[selectedItem].video} type="video/mp4" />
                   </video>
-                ) : null}
-                <img
-                  key={`img-${selectedItem}`}
-                  src={approachItems[selectedItem].image}
-                  alt={approachItems[selectedItem].title}
-                  className={`absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700 ${
-                    approachItems[selectedItem].video && videoLoadedMap[selectedItem] ? 'opacity-0' : 'opacity-100'
-                  }`}
-                />
+                )}
+                {/* Only show image if no video or video failed */}
+                {(!approachItems[selectedItem].video || videoErrorMap[selectedItem]) && (
+                  <img
+                    key={`img-${selectedItem}`}
+                    src={approachItems[selectedItem].image}
+                    alt={approachItems[selectedItem].title}
+                    className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
+                  />
+                )}
                 
                 {/* Very light dark overlay over the entire photo */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent z-10"></div>
