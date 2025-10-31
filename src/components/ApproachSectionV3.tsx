@@ -82,7 +82,6 @@ const ApproachSectionV3 = () => {
   const [previousItem, setPreviousItem] = useState(2);
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
-  const [parallaxOffset, setParallaxOffset] = useState(0);
   const [videoLoadedMap, setVideoLoadedMap] = useState<Record<number, boolean>>({});
   const cycleTimerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
@@ -119,20 +118,6 @@ const ApproachSectionV3 = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
-        setParallaxOffset(scrollProgress * 40); // More noticeable parallax for Approach section
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
-    
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Handle video loading and playback
   useEffect(() => {
@@ -200,10 +185,6 @@ const ApproachSectionV3 = () => {
                   src={approachItems[previousItem].image}
                   alt={approachItems[previousItem].title}
                   className="absolute inset-0 w-full h-full object-cover"
-                  style={{
-                    objectPosition: 'center center',
-                    transform: `scale(1.15) translateY(${parallaxOffset}px)`
-                  }}
                 />
                 
                 {/* Current content (on top) - image or video */}
@@ -215,10 +196,6 @@ const ApproachSectionV3 = () => {
                     className={`absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700 ${
                       videoLoadedMap[selectedItem] ? 'opacity-100' : 'opacity-0'
                     }`}
-                    style={{
-                      objectPosition: 'center center',
-                      transform: `scale(1.15) translateY(${parallaxOffset}px)`
-                    }}
                     muted
                     loop
                     playsInline
@@ -235,10 +212,6 @@ const ApproachSectionV3 = () => {
                   className={`absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700 ${
                     approachItems[selectedItem].video && videoLoadedMap[selectedItem] ? 'opacity-0' : 'opacity-100'
                   }`}
-                  style={{
-                    objectPosition: 'center center',
-                    transform: `scale(1.15) translateY(${parallaxOffset}px)`
-                  }}
                 />
                 
                 {/* Very light dark overlay over the entire photo */}
