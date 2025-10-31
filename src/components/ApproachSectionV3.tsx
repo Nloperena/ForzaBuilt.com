@@ -53,7 +53,8 @@ const approachItems: ApproachItem[] = [
       "One-stop solution for all bonding needs",
       "Saves time, money & reduces risk"
     ],
-    image: "/images/approach/Products Portfolio.jpg"
+    image: "/images/approach/Products Portfolio.jpg",
+    video: "/approach-videos/Complete Portfolio.mp4"
   },
   {
     title: "REAL INNOVATION",
@@ -112,6 +113,7 @@ const ApproachSectionV3 = () => {
   const previousVideoRef = useRef<HTMLVideoElement>(null);
   const videoLoadedMapRef = useRef<Record<number, boolean>>({});
   const videoErrorMapRef = useRef<Record<number, boolean>>({});
+  const videoRefsMap = useRef<Map<number, HTMLVideoElement>>(new Map());
 
   // Keep refs in sync with state
   useEffect(() => {
@@ -160,6 +162,13 @@ const ApproachSectionV3 = () => {
     // Load and play current video if it has one
     if (currentItem.video && currentVideoRef.current) {
       const video = currentVideoRef.current;
+      
+      // If video element already has a different src, we need to reload it
+      const source = video.querySelector('source');
+      if (source && source.src !== currentItem.video) {
+        video.load(); // Reload video when source changes
+      }
+      
       let timeout: NodeJS.Timeout;
       
       const handleLoadedData = () => {
@@ -200,6 +209,13 @@ const ApproachSectionV3 = () => {
     // Load and play previous video if it has one
     if (previousItemObj.video && previousVideoRef.current) {
       const video = previousVideoRef.current;
+      
+      // If video element already has a different src, we need to reload it
+      const source = video.querySelector('source');
+      if (source && source.src !== previousItemObj.video) {
+        video.load(); // Reload video when source changes
+      }
+      
       let timeout: NodeJS.Timeout;
       
       const handlePrevLoadedData = () => {
@@ -279,15 +295,15 @@ const ApproachSectionV3 = () => {
                 {/* Previous content (beneath) - image or video */}
                 {approachItems[previousItem].video && !videoErrorMap[previousItem] && (
                   <video
-                    key={`prev-video-${previousItem}`}
                     ref={previousVideoRef}
+                    key="previous-video"
                     className="absolute inset-0 w-full h-full object-cover"
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload="none"
                   >
-                    <source src={approachItems[previousItem].video} type="video/mp4" />
+                    <source key={approachItems[previousItem].video} src={approachItems[previousItem].video} type="video/mp4" />
                   </video>
                 )}
                 {/* Only show image if video failed or doesn't exist */}
@@ -302,8 +318,8 @@ const ApproachSectionV3 = () => {
                 {/* Current content (on top) - image or video */}
                 {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && (
                   <video
-                    key={`video-${selectedItem}`}
                     ref={currentVideoRef}
+                    key="current-video"
                     className={`absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700 ${
                       videoLoadedMap[selectedItem] ? 'opacity-100' : 'opacity-0'
                     }`}
@@ -313,13 +329,13 @@ const ApproachSectionV3 = () => {
                     autoPlay
                     preload="metadata"
                   >
-                    <source src={approachItems[selectedItem].video} type="video/mp4" />
+                    <source key={approachItems[selectedItem].video} src={approachItems[selectedItem].video} type="video/mp4" />
                   </video>
                 )}
                 {/* Only show image if no video or video failed */}
                 {(!approachItems[selectedItem].video || videoErrorMap[selectedItem]) && (
                   <img
-                    key={`img-${selectedItem}`}
+                    key="current-image"
                     src={approachItems[selectedItem].image}
                     alt={approachItems[selectedItem].title}
                     className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
@@ -382,7 +398,7 @@ const ApproachSectionV3 = () => {
                   </li>
                 </ul>
               </div>
-              <div className="space-y-[clamp(16px,3vw,32px)]">
+              <div className="space-y-[clamp(8px,1.5vw,16px)]">
                 {approachItems.map((item, index) => (
                   <button
                     key={index}
