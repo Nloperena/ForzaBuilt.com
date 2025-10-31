@@ -25,7 +25,7 @@ const MSHeroBanner = () => {
 
         // Calculate parallax offset
         const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - sectionRect.top) / window.innerHeight));
-        setParallaxOffset(scrollProgress * 80); // Strong parallax effect (80px max offset)
+        setParallaxOffset(scrollProgress * 120); // Very strong parallax effect (120px max offset)
       }
     };
 
@@ -66,7 +66,7 @@ const MSHeroBanner = () => {
             alt="MS Technology - Industrial Adhesive Mixing"
             className="w-full h-full object-cover"
             style={{
-              transform: `translateY(${parallaxOffset}px)`,
+              transform: `scale(1.15) translateY(${parallaxOffset}px)`,
               transition: 'transform 0.1s ease-out'
             }}
             onError={(e) => {
