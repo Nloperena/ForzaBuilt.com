@@ -36,7 +36,7 @@ const MSHeroBanner = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-white w-full relative">
+    <section ref={sectionRef} className="bg-gray-50 w-full relative">
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
         {/* Left side - Text content */}
         <div className="flex items-center justify-center p-8 md:p-20 lg:p-24 bg-gray-50 relative z-10">
