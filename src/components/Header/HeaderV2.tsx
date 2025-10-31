@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import Logo from '@/components/Header/Logo';
 import SearchBar from '@/components/Header/SearchBar';
@@ -30,25 +31,41 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               {variant === 'industries' ? (
         <div className="grid grid-cols-6">
           {items.map((it, idx) => (
-            <Link key={it.label} to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
-              {it.iconSrc ? (
-                <img src={it.iconSrc} alt="" className="w-14 h-14 object-contain" />
-              ) : null}
-              <span className="font-poppins text-xl font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
-              {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
-            </Link>
+            <motion.div
+              key={it.label}
+              initial={{ opacity: 0, y: -20, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.9 }}
+              transition={{ duration: 0.3, delay: idx * 0.05 }}
+            >
+              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
+                {it.iconSrc ? (
+                  <img src={it.iconSrc} alt="" className="w-14 h-14 object-contain" />
+                ) : null}
+                <span className="font-poppins text-xl font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
+                {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
+              </Link>
+            </motion.div>
           ))}
         </div>
       ) : (
         <div className="grid grid-cols-4 divide-x divide-white/20">
-          {items.map((it) => (
-            <Link key={it.label} to={it.href} className="group relative z-30 flex items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
-              {it.iconSrc ? (
-                <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
-              ) : null}
-              <span className="font-poppins text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
-              <span className="absolute right-0 top-0 h-full w-px bg-white/20" aria-hidden />
-            </Link>
+          {items.map((it, idx) => (
+            <motion.div
+              key={it.label}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.3, delay: idx * 0.05 }}
+            >
+              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
+                {it.iconSrc ? (
+                  <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
+                ) : null}
+                <span className="font-poppins text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
+                <span className="absolute right-0 top-0 h-full w-px bg-white/20" aria-hidden />
+              </Link>
+            </motion.div>
           ))}
         </div>
       )}
