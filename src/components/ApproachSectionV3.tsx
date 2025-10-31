@@ -194,7 +194,7 @@ const ApproachSectionV3 = () => {
           {/* LEFT - Transparent window on desktop, normal image on mobile */}
             <div className="
             relative
-            min-h-[62svh] md:min-h-[68svh] lg:min-h-[100vh]
+            min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
             flex items-center justify-center
             overflow-hidden lg:overflow-visible
           ">
@@ -254,16 +254,16 @@ const ApproachSectionV3 = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent z-10"></div>
                 
                 {/* Overlay bullet points */}
-                <div className="absolute inset-0 z-20 flex items-end justify-start p-8 md:p-12">
+                <div className="absolute inset-0 z-20 flex items-end justify-start p-6 md:p-8">
                   <div className="max-w-md">
-                    <h4 className={`text-white text-[clamp(18px,2.2vw,22px)] font-bold mb-4 transition-all duration-500 ${
+                    <h4 className={`text-white text-[clamp(16px,2vw,20px)] font-bold mb-3 transition-all duration-500 ${
                       mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                     }`}>
                       {approachItems[selectedItem].title === 'GREENER CHEMISTRIES' 
                         ? 'Innovation & Greener Chemistries'
                         : approachItems[selectedItem].title}
                     </h4>
-                    <ul className={`space-y-2 text-white text-[clamp(16px,1.8vw,20px)] ${
+                    <ul className={`space-y-1.5 text-white text-[clamp(14px,1.6vw,18px)] ${
                       mode === 'light2' ? 'font-poppins' : ''
                     }`}>
                       {approachItems[selectedItem].bulletPoints.map((point, idx) => (
@@ -281,8 +281,8 @@ const ApproachSectionV3 = () => {
           {/* RIGHT - Scrollable text content */}
           <div className="
             relative
-            min-h-[62svh] md:min-h-[68svh] lg:min-h-[100vh]
-            px-[clamp(14px,4vw,32px)] py-[clamp(32px,6vw,64px)]
+            min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
+            px-[clamp(14px,4vw,32px)] py-[clamp(24px,5vw,48px)]
             flex items-center justify-center
             [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
             bg-gradient-to-r from-[#2c476e] to-[#477197]
@@ -290,18 +290,18 @@ const ApproachSectionV3 = () => {
             <div className="w-full">
               {/* VALUE PROPOSITION Heading */}
               <div className="mb-6">
-                <h2 className="text-white text-[clamp(28px,4vw,64px)] font-normal mb-4 font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em]">
+                <h2 className="text-white text-[clamp(22px,3vw,48px)] font-normal mb-3 font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em]">
                   VALUE PROPOSITION
                 </h2>
                 {/* VALUE PROPOSITION Bullet Points */}
-                <ul className="space-y-2 mb-6">
-                  <li className="text-white text-[clamp(16px,1.8vw,20px)] font-poppins">
+                <ul className="space-y-1.5 mb-6">
+                  <li className="text-white text-[clamp(14px,1.5vw,18px)] font-poppins">
                     Big-Picture Expertise. Small-Town Care
                   </li>
-                  <li className="text-white text-[clamp(16px,1.8vw,20px)] font-poppins">
+                  <li className="text-white text-[clamp(14px,1.5vw,18px)] font-poppins">
                     We unleash the strength and spirit of America's Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.
                   </li>
-                  <li className="text-white text-[clamp(16px,1.8vw,20px)] font-poppins">
+                  <li className="text-white text-[clamp(14px,1.5vw,18px)] font-poppins">
                     Purpose-Built Performance. Guaranteed Strength.
                   </li>
                 </ul>
@@ -316,8 +316,8 @@ const ApproachSectionV3 = () => {
                   >
                     <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
                       selectedItem === index
-                        ? 'text-[#F2611D] text-[clamp(28px,4vw,64px)] font-bold'
-                        : 'text-white text-[clamp(22px,3.2vw,48px)] font-normal'
+                        ? 'text-[#F2611D] text-[clamp(22px,3vw,48px)] font-bold'
+                        : 'text-white text-[clamp(18px,2.5vw,36px)] font-normal'
                     } hover:text-[#F2611D] transition-all duration-500 ease-out ${
                       mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                     }`}>
