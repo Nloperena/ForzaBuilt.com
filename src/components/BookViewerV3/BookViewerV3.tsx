@@ -172,13 +172,13 @@ const BookViewerV3: React.FC<BookViewerV3Props> = ({
         stiffness: 300,
         mass: 0.8,
       }}
-      className="fixed bottom-0 top-12 md:top-16 z-[9999] flex flex-col rounded-t-3xl shadow-2xl overflow-hidden left-4 right-4 md:left-8 md:right-8"
+      className="fixed bottom-0 top-0 z-[9999] flex flex-col overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, rgba(30, 58, 95, 0.98) 0%, rgba(44, 71, 110, 0.98) 50%, rgba(30, 48, 80, 0.98) 100%)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        border: '1px solid rgba(255, 255, 255, 0.15)',
-        borderBottom: 'none',
+        background: 'rgba(255, 255, 255, 0.08)',
+        backdropFilter: 'blur(24px) saturate(160%)',
+        WebkitBackdropFilter: 'blur(24px) saturate(160%)',
+        border: '1px solid rgba(255, 255, 255, 0.2)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
       }}
     >
       {/* Drawer Handle Indicator */}
@@ -194,12 +194,12 @@ const BookViewerV3: React.FC<BookViewerV3Props> = ({
       {/* Minimal Top Bar - Only show when not in zoom mode */}
       {!isZoomed && (
         <div 
-          className="flex justify-between items-center px-3 py-2 text-white shrink-0"
+          className="flex justify-between items-center px-4 py-3 text-white shrink-0"
           style={{
-            background: 'rgba(255, 255, 255, 0.08)',
+            background: 'rgba(255, 255, 255, 0.06)',
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
           }}
         >
           <div>

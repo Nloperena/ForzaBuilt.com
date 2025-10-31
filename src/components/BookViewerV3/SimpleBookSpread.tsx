@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Page } from 'react-pdf';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -55,26 +55,6 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
     setDragStart({ x: e.clientX, y: e.clientY });
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    const deltaX = e.clientX - dragStart.x;
-    const deltaY = e.clientY - dragStart.y;
-    setPosition(prev => ({
-      x: prev.x + deltaX,
-      y: prev.y + deltaY
-    }));
-    setDragStart({ x: e.clientX, y: e.clientY });
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  // Handle mouse leave to stop dragging
-  const handleMouseLeave = () => {
-    setIsDragging(false);
-  };
-
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     e.preventDefault();
     const delta = e.deltaY;
@@ -86,17 +66,41 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
     });
   };
 
+  // Global mouse move and up handlers for smooth dragging
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      const deltaX = e.clientX - dragStart.x;
+      const deltaY = e.clientY - dragStart.y;
+      setPosition(prev => ({
+        x: prev.x + deltaX,
+        y: prev.y + deltaY
+      }));
+      setDragStart({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleGlobalMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    document.addEventListener('mousemove', handleGlobalMouseMove);
+    document.addEventListener('mouseup', handleGlobalMouseUp);
+
+    return () => {
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+    };
+  }, [isDragging, dragStart]);
+
   return (
     <div className="relative flex items-center justify-center w-full h-full overflow-hidden" style={{ perspective: '2000px' }}>
       {/* Book Container */}
       <div 
         ref={containerRef}
         onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
         onWheel={handleWheel}
-        className={`relative flex shadow-2xl overflow-visible bg-white ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+        className={`relative flex shadow-2xl overflow-visible bg-white select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
         style={{
           transformStyle: 'preserve-3d',
           borderRadius: '4px',
