@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import { useBookViewer } from '@/contexts/BookViewerContext';
 import Logo from '@/components/Header/Logo';
 import SearchBar from '@/components/Header/SearchBar';
 import { industries as industriesData } from '@/data/industries';
@@ -74,13 +75,14 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
 };
 
  const HeaderV2: React.FC = () => {
-  const { mode } = useGradientMode();
-  const location = useLocation();
-  const isHome = location.pathname === '/';
-  const isIndustry = location.pathname.startsWith('/industries');
-   const [isScrolled, setIsScrolled] = React.useState(false);
-   const [isScrollingUp, setIsScrollingUp] = React.useState(false);
-   const [lastScrollY, setLastScrollY] = React.useState(0);
+   const { mode } = useGradientMode();
+   const { isBookOpen } = useBookViewer();
+   const location = useLocation();
+   const isHome = location.pathname === '/';
+   const isIndustry = location.pathname.startsWith('/industries');
+    const [isScrolled, setIsScrolled] = React.useState(false);
+    const [isScrollingUp, setIsScrollingUp] = React.useState(false);
+    const [lastScrollY, setLastScrollY] = React.useState(0);
    
    React.useEffect(() => {
      const onScroll = () => {
@@ -118,9 +120,12 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   
   // Desktop: hide navbar when scrolling up past 100px
   const shouldHideOnDesktop = isScrollingUp && lastScrollY > 100;
+  
+  // Hide navbar when PDF viewer is open
+  const shouldHideForPDF = isBookOpen;
 
   return (
-    <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''}`}> 
+    <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''}`}> 
        <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4">
          <div className="h-24 md:h-28 flex items-center justify-between">
           {/* Left logo */}

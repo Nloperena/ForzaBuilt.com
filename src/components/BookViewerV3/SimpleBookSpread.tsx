@@ -21,6 +21,7 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const leftPage = currentPage;
@@ -74,6 +75,17 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
     setIsDragging(false);
   };
 
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const delta = e.deltaY;
+    const zoomFactor = delta > 0 ? 0.9 : 1.1;
+    setScale(prev => {
+      const newScale = prev * zoomFactor;
+      // Limit zoom between 0.5x and 3x
+      return Math.max(0.5, Math.min(3, newScale));
+    });
+  };
+
   return (
     <div className="relative flex items-center justify-center w-full h-full overflow-hidden" style={{ perspective: '2000px' }}>
       {/* Book Container */}
@@ -83,12 +95,13 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
+        onWheel={handleWheel}
         className={`relative flex shadow-2xl overflow-visible bg-white ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
         style={{
           transformStyle: 'preserve-3d',
           borderRadius: '4px',
-          transform: `translate(${position.x}px, ${position.y}px)`,
-          transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+          transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+          transition: isDragging ? 'transform 0.1s ease-out' : 'transform 0.3s ease-out'
         }}
       >
         {/* Left Page - Static or flipping backward */}
