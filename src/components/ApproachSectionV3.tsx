@@ -8,6 +8,7 @@ interface ApproachItem {
   description: string;
   bulletPoints: string[];
   image: string;
+  video?: string;
 }
 
 const approachItems: ApproachItem[] = [
@@ -19,7 +20,8 @@ const approachItems: ApproachItem[] = [
       "One-stop solution for all bonding needs",
       "Saves time, money & reduces risk"
     ],
-    image: "/images/approach/Products Portfolio.jpg"
+    image: "/images/approach/Products Portfolio.jpg",
+    video: "/approach-videos/Product Performance.mp4"
   },
   {
     title: "REAL KNOW HOW",
@@ -29,7 +31,8 @@ const approachItems: ApproachItem[] = [
       "Application-specific recommendations",
       "Performance optimization"
     ],
-    image: "/images/approach/Construction Visit.jpg"
+    image: "/images/approach/Construction Visit.jpg",
+    video: "/approach-videos/Real Know How.mp4"
   },
   {
     title: "REAL INNOVATION",
@@ -69,7 +72,8 @@ const approachItems: ApproachItem[] = [
       "Application-specific knowledge",
       "Proven track record"
     ],
-    image: "/images/approach/Legacy Image.jpg"
+    image: "/images/approach/Legacy Image.jpg",
+    video: "/approach-videos/Industry Focused.mp4"
   }
 ];
 
@@ -79,10 +83,12 @@ const ApproachSectionV3 = () => {
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [videoLoadedMap, setVideoLoadedMap] = useState<Record<number, boolean>>({});
   const cycleTimerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const currentVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Auto-cycle every 4 seconds
@@ -128,6 +134,29 @@ const ApproachSectionV3 = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle video loading and playback
+  useEffect(() => {
+    const currentItem = approachItems[selectedItem];
+
+    // Load current video if it has one
+    if (currentItem.video && currentVideoRef.current) {
+      const video = currentVideoRef.current;
+      
+      const handleLoadedData = () => {
+        setVideoLoadedMap(prev => ({ ...prev, [selectedItem]: true }));
+        video.play().catch(() => {
+          // Auto-play failed, video will show poster image
+        });
+      };
+
+      video.addEventListener('loadeddata', handleLoadedData);
+      
+      return () => {
+        video.removeEventListener('loadeddata', handleLoadedData);
+      };
+    }
+  }, [selectedItem]);
+
   const handleItemChange = (index: number) => {
     if (index !== selectedItem) {
       setPreviousItem(selectedItem);
@@ -166,7 +195,7 @@ const ApproachSectionV3 = () => {
           ">
               {/* Inline image (all breakpoints) with solid background to avoid hero flash */}
               <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 overflow-hidden">
-                {/* Previous image (beneath) */}
+                {/* Previous content (beneath) - image only as fallback */}
                 <img
                   src={approachItems[previousItem].image}
                   alt={approachItems[previousItem].title}
@@ -176,17 +205,42 @@ const ApproachSectionV3 = () => {
                     transform: `scale(1.15) translateY(${parallaxOffset}px)`
                   }}
                 />
-                {/* Current image (on top) */}
+                
+                {/* Current content (on top) - image or video */}
+                {approachItems[selectedItem].video ? (
+                  <video
+                    key={`video-${selectedItem}`}
+                    ref={currentVideoRef}
+                    poster={approachItems[selectedItem].image}
+                    className={`absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700 ${
+                      videoLoadedMap[selectedItem] ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{
+                      objectPosition: 'center center',
+                      transform: `scale(1.15) translateY(${parallaxOffset}px)`
+                    }}
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                    preload="metadata"
+                  >
+                    <source src={approachItems[selectedItem].video} type="video/mp4" />
+                  </video>
+                ) : null}
                 <img
-                  key={selectedItem}
+                  key={`img-${selectedItem}`}
                   src={approachItems[selectedItem].image}
                   alt={approachItems[selectedItem].title}
-                  className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
+                  className={`absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700 ${
+                    approachItems[selectedItem].video && videoLoadedMap[selectedItem] ? 'opacity-0' : 'opacity-100'
+                  }`}
                   style={{
                     objectPosition: 'center center',
                     transform: `scale(1.15) translateY(${parallaxOffset}px)`
                   }}
                 />
+                
                 {/* Very light dark overlay over the entire photo */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent z-10"></div>
                 
