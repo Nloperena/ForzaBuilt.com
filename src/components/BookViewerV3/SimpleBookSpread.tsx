@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Page } from 'react-pdf';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -18,6 +18,10 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
   const [isFlipping, setIsFlipping] = useState(false);
   const [hoveredSide, setHoveredSide] = useState<'left' | 'right' | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const leftPage = currentPage;
   const rightPage = currentPage + 1 <= numPages ? currentPage + 1 : null;
@@ -44,14 +48,47 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
     }
   };
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return; // Only left mouse button
+    setIsDragging(true);
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - dragStart.x;
+    const deltaY = e.clientY - dragStart.y;
+    setPosition(prev => ({
+      x: prev.x + deltaX,
+      y: prev.y + deltaY
+    }));
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Handle mouse leave to stop dragging
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
   return (
-    <div className="relative flex items-center justify-center w-full h-full" style={{ perspective: '2000px' }}>
+    <div className="relative flex items-center justify-center w-full h-full overflow-hidden" style={{ perspective: '2000px' }}>
       {/* Book Container */}
       <div 
-        className="relative flex shadow-2xl overflow-visible bg-white"
+        ref={containerRef}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        className={`relative flex shadow-2xl overflow-visible bg-white ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
         style={{
           transformStyle: 'preserve-3d',
           borderRadius: '4px',
+          transform: `translate(${position.x}px, ${position.y}px)`,
+          transition: isDragging ? 'none' : 'transform 0.3s ease-out'
         }}
       >
         {/* Left Page - Static or flipping backward */}
