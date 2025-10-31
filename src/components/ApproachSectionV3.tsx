@@ -12,7 +12,7 @@ interface ApproachItem {
 
 const approachItems: ApproachItem[] = [
   {
-    title: "PORTFOLIO",
+    title: "COMPLETE PORTFOLIO",
     description: "Comprehensive range of industrial adhesives, sealants, tapes, and cleaners - all under one roof.",
     bulletPoints: [
       "World's most comprehensive portfolio",
@@ -22,7 +22,7 @@ const approachItems: ApproachItem[] = [
     image: "/images/approach/Products Portfolio.jpg"
   },
   {
-    title: "OPTIMIZATIONS",
+    title: "REAL KNOW HOW",
     description: "Expert guidance to select and optimize the right products for your specific applications.",
     bulletPoints: [
       "Technical support and expertise",
@@ -32,7 +32,7 @@ const approachItems: ApproachItem[] = [
     image: "/images/approach/Construction Visit.jpg"
   },
   {
-    title: "SUSTAINABILITY",
+    title: "REAL INNOVATION",
     description: "Innovation & Greener Chemistries leading the way to a sustainable future.",
     bulletPoints: [
       "Safer products & greener technologies.",
@@ -42,7 +42,7 @@ const approachItems: ApproachItem[] = [
     image: "/images/approach/Sustainability Image for Web.jpg"
   },
   {
-    title: "R&D LAB",
+    title: "R&D LEADERSHIP",
     description: "Fully integrated manufacturing and R&D capabilities in the U.S.A.",
     bulletPoints: [
       "Full control over quality & consistency",
@@ -52,7 +52,7 @@ const approachItems: ApproachItem[] = [
     image: "/images/approach/R&D image.jpg"
   },
   {
-    title: "CLIENT FOCUS",
+    title: "CUSTOMER-OBSESSED",
     description: "Dedicated support and attention to every customer's unique needs.",
     bulletPoints: [
       "Responsive customer service",
@@ -62,7 +62,7 @@ const approachItems: ApproachItem[] = [
     image: "/images/approach/Receptionist at desk.jpg"
   },
   {
-    title: "LEGACY",
+    title: "INDUSTRY-FOCUSED",
     description: "Deep expertise across all major industries and applications.",
     bulletPoints: [
       "Decades of industry experience",
@@ -78,9 +78,11 @@ const ApproachSectionV3 = () => {
   const [previousItem, setPreviousItem] = useState(2);
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
   const cycleTimerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     // Auto-cycle every 4 seconds
@@ -111,6 +113,21 @@ const ApproachSectionV3 = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
+        setParallaxOffset(scrollProgress * 40); // More noticeable parallax for Approach section
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleItemChange = (index: number) => {
     if (index !== selectedItem) {
       setPreviousItem(selectedItem);
@@ -127,14 +144,13 @@ const ApproachSectionV3 = () => {
 
   return (
     <>
-      {/* MS Hero Banner - Above ExperienceBetterBanner */}
-      <MSHeroBanner />
+
       
-      {/* Top Banner - Outside the sticky container */}
-      <ExperienceBetterBanner />
+      {/* MS Hero Banner */}
+      <MSHeroBanner />
 
       {/* Isolated Section Container */}
-      <section className="relative isolate">
+      <section ref={sectionRef} className="relative isolate">
         {/* Progress bar */}
         <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
@@ -149,7 +165,7 @@ const ApproachSectionV3 = () => {
             overflow-hidden lg:overflow-visible
           ">
               {/* Inline image (all breakpoints) with solid background to avoid hero flash */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 overflow-hidden">
                 {/* Previous image (beneath) */}
                 <img
                   src={approachItems[previousItem].image}
@@ -157,7 +173,7 @@ const ApproachSectionV3 = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                   style={{
                     objectPosition: 'center center',
-                    transform: 'scale(1.15)'
+                    transform: `scale(1.15) translateY(${parallaxOffset}px)`
                   }}
                 />
                 {/* Current image (on top) */}
@@ -168,9 +184,34 @@ const ApproachSectionV3 = () => {
                   className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
                   style={{
                     objectPosition: 'center center',
-                    transform: 'scale(1.15)'
+                    transform: `scale(1.15) translateY(${parallaxOffset}px)`
                   }}
                 />
+                {/* Very light dark overlay over the entire photo */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent z-10"></div>
+                
+                {/* Overlay bullet points */}
+                <div className="absolute inset-0 z-20 flex items-end justify-start p-8 md:p-12">
+                  <div className="max-w-md">
+                    <h4 className={`text-white text-[clamp(18px,2.2vw,22px)] font-bold mb-4 transition-all duration-500 ${
+                      mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                    }`}>
+                      {approachItems[selectedItem].title === 'GREENER CHEMISTRIES' 
+                        ? 'Innovation & Greener Chemistries'
+                        : approachItems[selectedItem].title}
+                    </h4>
+                    <ul className={`space-y-2 text-white text-[clamp(16px,1.8vw,20px)] ${
+                      mode === 'light2' ? 'font-poppins' : ''
+                    }`}>
+                      {approachItems[selectedItem].bulletPoints.map((point, idx) => (
+                        <li key={`${selectedItem}-${idx}`} className="flex items-start animate-in fade-in slide-in-from-left-2 duration-500" style={{ animationDelay: `${idx * 100}ms` }}>
+                          <span className="text-[#F2611D] mr-2 font-bold">•</span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
           </div>
 
@@ -184,7 +225,25 @@ const ApproachSectionV3 = () => {
             bg-gradient-to-r from-[#2c476e] to-[#477197]
           ">
             <div className="w-full">
-              <div className="space-y-[var(--gap)] mb-[var(--gap)]">
+              {/* VALUE PROPOSITION Heading */}
+              <div className="mb-6">
+                <h2 className="text-white text-[clamp(28px,4vw,64px)] font-normal mb-4 font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em]">
+                  VALUE PROPOSITION
+                </h2>
+                {/* VALUE PROPOSITION Bullet Points */}
+                <ul className="space-y-2 mb-6">
+                  <li className="text-white text-[clamp(16px,1.8vw,20px)] font-poppins">
+                    Big-Picture Expertise. Small-Town Care
+                  </li>
+                  <li className="text-white text-[clamp(16px,1.8vw,20px)] font-poppins">
+                    We unleash the strength and spirit of America's Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.
+                  </li>
+                  <li className="text-white text-[clamp(16px,1.8vw,20px)] font-poppins">
+                    Purpose-Built Performance. Guaranteed Strength.
+                  </li>
+                </ul>
+              </div>
+              <div className="space-y-[clamp(16px,3vw,32px)]">
                 {approachItems.map((item, index) => (
                   <button
                     key={index}
@@ -203,26 +262,6 @@ const ApproachSectionV3 = () => {
                     </h3>
                   </button>
                 ))}
-              </div>
-
-              <div className="border-t border-white/20 pt-6 mt-6">
-                <h4 className={`text-white text-[clamp(18px,2.2vw,22px)] font-bold mb-4 transition-all duration-500 ${
-                  mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-                }`}>
-                  {approachItems[selectedItem].title === 'GREENER CHEMISTRIES' 
-                    ? 'Innovation & Greener Chemistries'
-                    : approachItems[selectedItem].title}
-                </h4>
-                <ul className={`space-y-0 text-white text-[clamp(16px,1.8vw,20px)] ${
-                  mode === 'light2' ? 'font-poppins' : ''
-                }`} style={{ lineHeight: '1.8' }}>
-                  {approachItems[selectedItem].bulletPoints.map((point, idx) => (
-                    <li key={`${selectedItem}-${idx}`} className="flex items-start animate-in fade-in slide-in-from-left-2 duration-500" style={{ animationDelay: `${idx * 100}ms` }}>
-                      <span className="text-[#F2611D] mr-2">•</span>
-                      {point}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
           </div>

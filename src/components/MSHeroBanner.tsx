@@ -1,35 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const MSHeroBanner = () => {
   const { mode } = useGradientMode();
+  const [isSticky, setIsSticky] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current && imageRef.current) {
+        const sectionRect = sectionRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Only apply sticky when section is in viewport
+        if (sectionRect.top < windowHeight && sectionRect.bottom > 0) {
+          setIsSticky(true);
+        } else {
+          setIsSticky(false);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <section className="bg-white w-full">
+    <section ref={sectionRef} className="bg-white w-full relative">
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
         {/* Left side - Text content */}
-        <div className="flex items-center justify-center p-8 md:p-12 lg:p-16 bg-gray-50">
+        <div className="flex items-center justify-center p-8 md:p-20 lg:p-24 bg-gray-50 relative z-10">
           <div className="max-w-2xl w-full">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2c476e] mb-6 leading-tight font-poppins">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal text-[#2c476e] mb-6 leading-tight font-poppins">
               MS: The Future of
               <br />
               Adhesive Chemistry
-            </h1>
+            </h3>
             <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed font-poppins">
               Engineered for today's toughest applications, MS technology delivers powerful adhesion, superior flexibility, and lasting durability—without isocyanates, shrinkage, or compromise.
             </p>
             <Link
               to="/products/ms"
-              className="inline-block bg-[#F2611D] text-white font-semibold px-8 py-4 rounded-md hover:bg-[#E05A17] transition-colors uppercase tracking-wide"
+              className="inline-block bg-[#F2611D] text-white font-semibold px-8 py-4 rounded-full hover:bg-[#E05A17] transition-colors uppercase tracking-wide"
             >
               Learn More
             </Link>
           </div>
         </div>
         
-        {/* Right side - Image */}
-        <div className="relative w-full h-[400px] lg:h-auto min-h-[400px]">
+        {/* Right side - Sticky Image */}
+        <div ref={imageRef} className={`relative w-full h-[676px] lg:h-auto min-h-[676px] transition-transform duration-300 ${isSticky ? 'lg:sticky lg:top-0' : ''}`}>
           <img
             src="/MS Page Images/Forza MS Page Header.jpg"
             alt="MS Technology - Industrial Adhesive Mixing"

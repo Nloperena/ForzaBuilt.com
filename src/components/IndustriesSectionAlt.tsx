@@ -78,11 +78,6 @@ const IndustriesSectionAlt = () => {
               INDUSTRY SOLUTIONS
             </h2>
           </div>
-          <div className="text-center relative z-10">
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-12 sm:mb-16 font-normal max-w-4xl mx-auto font-poppins invisible">
-            At Forza, we're your trusted scientists and mentors - delivering innovative adhesive solutions that secure your success.
-            </p>
-          </div>
         </div>
       ) : (
         <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
@@ -95,15 +90,6 @@ const IndustriesSectionAlt = () => {
               PURPOSE-BUILT<br />
               INDUSTRY SOLUTIONS
             </h2>
-          </div>
-          <div className="text-center relative z-10">
-            <p className={`${
-              mode === 'light'
-                ? 'text-[#2c476e]/80'
-                : getTextSecondaryClasses()
-            } text-xs sm:text-base md:text-lg mb-6 sm:mb-8 font-light max-w-xl mx-auto`}>
-            At Forza, we're your trusted experts and mentors - delivering innovative adhesive solutions that secure your success.
-            </p>
           </div>
         </div>
       )}

@@ -42,9 +42,11 @@ const InteractiveProductsSection = () => {
   const [previousProduct, setPreviousProduct] = useState(0);
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
   const timerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const handleProductChange = (index: number) => {
     if (index !== selectedProduct) {
@@ -90,8 +92,23 @@ const InteractiveProductsSection = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
+        setParallaxOffset(scrollProgress * 15);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <section className="relative isolate overflow-visible">
+    <section ref={sectionRef} className="relative isolate overflow-visible">
       {/* Progress bar */}
       <div className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
       
@@ -184,7 +201,7 @@ const InteractiveProductsSection = () => {
               className="absolute inset-0 w-full h-full object-cover"
               style={{
                 objectPosition: 'center 70%',
-                transform: 'translateZ(0) scale(1.05)'
+                transform: `translateZ(0) scale(1.05) translateY(${parallaxOffset}px)`
               }}
             />
 
@@ -199,7 +216,7 @@ const InteractiveProductsSection = () => {
               "
               style={{
                 objectPosition: 'center 70%',
-                transform: 'translateZ(0) scale(1.05)'
+                transform: `translateZ(0) scale(1.05) translateY(${parallaxOffset}px)`
               }}
             />
           </div>

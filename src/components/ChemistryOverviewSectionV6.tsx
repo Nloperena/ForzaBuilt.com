@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 
 interface ChemistryData {
   id: string;
@@ -159,7 +160,9 @@ const ChemistryOverviewSectionV6: React.FC = () => {
   };
 
   return (
-    <section className="w-full relative overflow-hidden
+    <>
+      <ExperienceBetterBanner />
+      <section className="w-full relative overflow-hidden
                         py-[clamp(40px,6vw,96px)] px-[clamp(16px,4vw,48px)]
                         bg-gradient-to-bl from-[#477197] to-[#2c476e]">
       
@@ -170,7 +173,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
                      leading-[1.12] md:leading-[1.12]
                      mb-[clamp(18px,3.5vw,40px)]
                      [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
-          Chemistries We Manufacture <br className="hidden md:block" />
+          Chemistries We <br className="hidden md:block" />Manufacture 
           In-House
         </h2>
         
@@ -321,7 +324,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
                 initial={{ scale: 0.8, opacity: 0, y: 50 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.8, opacity: 0, y: 50 }}
-                className="bg-white rounded-2xl p-6 md:p-8 max-w-md w-full mx-4 relative shadow-2xl"
+                className="bg-white rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] p-6 md:p-8 max-w-md w-full mx-4 relative shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close Button */}
@@ -365,6 +368,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
         </AnimatePresence>
       </div>
     </section>
+    </>
   );
 };
 

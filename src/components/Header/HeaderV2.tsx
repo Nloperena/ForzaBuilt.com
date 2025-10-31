@@ -26,7 +26,7 @@ const industriesItems: MenuItem[] = industriesData.slice(0, 6).map((ind) => ({
 
 const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?: 'default' | 'industries' }> = ({ items, widthClass = 'w-[760px]', variant = 'default' }) => {
   return (
-    <div className={`absolute left-1/2 -translate-x-1/2 top-full -mt-2 ${widthClass} rounded-lg bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden z-20`}> 
+    <div className={`absolute left-1/2 -translate-x-1/2 top-full -mt-2 ${widthClass} rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] bg-[#2c476e] text-white shadow-2xl border border-white/10 overflow-hidden z-20`}> 
               {variant === 'industries' ? (
         <div className="grid grid-cols-6">
           {items.map((it, idx) => (
@@ -62,12 +62,29 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   const isHome = location.pathname === '/';
   const isIndustry = location.pathname.startsWith('/industries');
    const [isScrolled, setIsScrolled] = React.useState(false);
+   const [isScrollingUp, setIsScrollingUp] = React.useState(false);
+   const [lastScrollY, setLastScrollY] = React.useState(0);
+   
    React.useEffect(() => {
-     const onScroll = () => setIsScrolled(window.scrollY > 8);
+     const onScroll = () => {
+       const currentScrollY = window.scrollY;
+       setIsScrolled(currentScrollY > 8);
+       
+       // For desktop only: hide navbar when scrolling up
+       if (window.innerWidth >= 1024) {
+         if (currentScrollY > lastScrollY && currentScrollY > 100) {
+           setIsScrollingUp(false);
+         } else if (currentScrollY < lastScrollY) {
+           setIsScrollingUp(true);
+         }
+       }
+       
+       setLastScrollY(currentScrollY);
+     };
      onScroll();
      window.addEventListener('scroll', onScroll, { passive: true });
      return () => window.removeEventListener('scroll', onScroll);
-   }, []);
+   }, [lastScrollY]);
    const isLight = mode === 'light' || mode === 'light2';
 
   const headerBg = (isHome || isIndustry) && !isScrolled
@@ -81,9 +98,12 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
 
   // Keep header fixed on transparent routes to avoid layout jumps
   const positionClass = (isHome || isIndustry) ? 'fixed' : 'sticky';
+  
+  // Desktop: hide navbar when scrolling up past 100px
+  const shouldHideOnDesktop = isScrollingUp && lastScrollY > 100;
 
   return (
-    <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow}`}> 
+    <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''}`}> 
        <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4">
          <div className="h-24 md:h-28 flex items-center justify-between">
           {/* Left logo */}

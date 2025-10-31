@@ -157,7 +157,7 @@ const LibrarySection = () => {
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               <div
-                className="relative rounded-lg overflow-hidden"
+                className="relative overflow-hidden"
                 style={{
                   transformStyle: 'preserve-3d',
                   boxShadow: 'none'

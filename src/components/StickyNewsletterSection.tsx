@@ -1,6 +1,6 @@
 import React from 'react';
 import NewsletterSection from './NewsletterSection';
-import Footer from './Footer';
+import FooterV2 from './FooterV2';
 import LibrarySection from './LibrarySection';
 
 interface StickyNewsletterSectionProps {
@@ -12,9 +12,11 @@ const StickyNewsletterSection: React.FC<StickyNewsletterSectionProps> = ({ child
     <>
       {/* Newsletter and Footer Section - Seamlessly connected */}
       <div className="relative">
+      <LibrarySection />
         <NewsletterSection />
-        <LibrarySection />
-        <Footer />
+     
+        
+        <FooterV2 />
       </div>
     </>
   );

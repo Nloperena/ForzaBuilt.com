@@ -64,7 +64,7 @@ const NewsletterSection = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch max-w-[1500px] mx-auto">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
+            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-8">
                   <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Join Our Newsletter</h3>
@@ -122,7 +122,7 @@ const NewsletterSection = () => {
             </div>
 
             {/* Featured Blog Section - Secondary Focus */}
-            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
+            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
               <div className="p-6 md:p-8 flex-1 flex flex-col">
                 <div className="mb-8">
                   <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Featured Articles</h3>
@@ -183,7 +183,7 @@ const NewsletterSection = () => {
       {/* Newsletter Signup Modal - Simple & Clean */}
       {showNewsletterForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 ">
-          <div className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses()} animate-in zoom-in-95 duration-300`}>
+          <div className={`relative rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses()} animate-in zoom-in-95 duration-300`}>
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent z-10 pointer-events-none animate-pulse"></div>
             
