@@ -66,8 +66,9 @@ const MSHeroBanner = () => {
             alt="MS Technology - Industrial Adhesive Mixing"
             className="w-full h-full object-cover"
             style={{
-              transform: `scale(1.15) translateY(${parallaxOffset}px)`,
-              transition: 'transform 0.1s ease-out'
+              transform: `scale(1.3) translateY(${parallaxOffset}px)`,
+              transition: 'transform 0.1s ease-out',
+              objectPosition: 'center 30%'
             }}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
