@@ -172,7 +172,7 @@ const BookViewerV3: React.FC<BookViewerV3Props> = ({
         stiffness: 300,
         mass: 0.8,
       }}
-      className="fixed inset-x-0 bottom-0 top-12 md:top-16 z-[9999] flex flex-col rounded-t-3xl shadow-2xl overflow-hidden"
+      className="fixed bottom-0 top-12 md:top-16 z-[9999] flex flex-col rounded-t-3xl shadow-2xl overflow-hidden left-4 right-4 md:left-8 md:right-8"
       style={{
         background: 'linear-gradient(135deg, rgba(30, 58, 95, 0.98) 0%, rgba(44, 71, 110, 0.98) 50%, rgba(30, 48, 80, 0.98) 100%)',
         backdropFilter: 'blur(20px)',
