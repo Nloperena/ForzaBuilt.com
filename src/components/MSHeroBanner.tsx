@@ -5,7 +5,6 @@ import { useGradientMode } from '@/contexts/GradientModeContext';
 const MSHeroBanner = () => {
   const { mode } = useGradientMode();
   const [isSticky, setIsSticky] = useState(false);
-  const [parallaxOffset, setParallaxOffset] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -22,10 +21,6 @@ const MSHeroBanner = () => {
         } else {
           setIsSticky(false);
         }
-
-        // Calculate parallax offset
-        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - sectionRect.top) / window.innerHeight));
-        setParallaxOffset(scrollProgress * 120); // Very strong parallax effect (120px max offset)
       }
     };
 
@@ -66,7 +61,7 @@ const MSHeroBanner = () => {
             alt="MS Technology - Industrial Adhesive Mixing"
             className="w-full h-full object-cover"
             style={{
-              transform: `scale(1.3) translateY(${parallaxOffset}px)`,
+              transform: 'scale(1.3)',
               transition: 'transform 0.1s ease-out',
               objectPosition: 'center 30%'
             }}

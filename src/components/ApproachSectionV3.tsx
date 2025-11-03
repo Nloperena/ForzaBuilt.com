@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import MSHeroBanner from '@/components/MSHeroBanner';
@@ -359,10 +360,20 @@ const ApproachSectionV3 = () => {
                       mode === 'light2' ? 'font-poppins' : ''
                     }`}>
                       {approachItems[selectedItem].bulletPoints.map((point, idx) => (
-                        <li key={`${selectedItem}-${idx}`} className="flex items-start animate-in fade-in slide-in-from-left-2 duration-500" style={{ animationDelay: `${idx * 100}ms` }}>
+                        <motion.li
+                          key={`${selectedItem}-${idx}`}
+                          className="flex items-start"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            duration: 0.5,
+                            delay: idx * 0.1,
+                            ease: 'easeOut'
+                          }}
+                        >
                           <span className="text-[#F2611D] mr-2 font-bold">•</span>
                           {point}
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
@@ -382,8 +393,8 @@ const ApproachSectionV3 = () => {
             <div className="w-full">
               {/* VALUE PROPOSITION Heading */}
               <div className="mb-6">
-                <h2 className="text-white text-[clamp(22px,3vw,48px)] font-normal mb-3 font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em]">
-                  VALUE PROPOSITION
+                <h2 className="text-white text-[clamp(22px,3vw,64px)] font-normal mb-3 font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em]">
+                  Value Proposition
                 </h2>
                 {/* VALUE PROPOSITION Bullet Points */}
                 <ul className="space-y-1.5 mb-6">

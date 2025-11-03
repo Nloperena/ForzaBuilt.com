@@ -172,22 +172,22 @@ const LibrarySection = () => {
                     objectFit: 'contain'
                   }}
                 />
-              </div>
-
+                    </div>
+                    
               {/* Name label overlapping shelf (no layout shift) */}
-              <div
-                className="absolute -bottom-3 md:-bottom-4 left-1/2 -translate-x-1/2 font-poppins text-[10px] md:text-xs text-slate-700 tracking-wide whitespace-nowrap uppercase pointer-events-none z-30"
-                style={{
+                    <div 
+                className="absolute -bottom-1 md:bottom-0 left-1/2 -translate-x-1/2 font-poppins font-bold text-[10px] md:text-xs text-slate-700 tracking-wide whitespace-nowrap uppercase pointer-events-none z-30"
+                      style={{
                   textShadow: '0 1px 0 rgba(255,255,255,0.7)'
-                }}
-              >
+                      }}
+                    >
                 {brochure.label}
-              </div>
-            </motion.div>
+                  </div>
+                </motion.div>
 
             {/* Label below brochure removed per request */}
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
         </div>
 
         {/* Shelf Surface positioned below brochures (SVG asset) */}

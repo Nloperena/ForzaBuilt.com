@@ -57,7 +57,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
           {!isVideoLoaded && (
             <VideoSkeleton />
           )}
-
+          
           {/* Background Video via reusable component */}
           <HeroVideoBackground
             src="/videos/backgrounds/Eagle Header Video.mp4"

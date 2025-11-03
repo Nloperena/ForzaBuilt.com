@@ -89,14 +89,14 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
        const currentScrollY = window.scrollY;
        setIsScrolled(currentScrollY > 8);
        
-       // For desktop only: hide navbar when scrolling up
-       if (window.innerWidth >= 1024) {
-         if (currentScrollY > lastScrollY && currentScrollY > 100) {
-           setIsScrollingUp(false);
-         } else if (currentScrollY < lastScrollY) {
-           setIsScrollingUp(true);
-         }
-       }
+      // For desktop only: hide navbar when scrolling down
+      if (window.innerWidth >= 1024) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsScrollingUp(true); // Actually means scrolling down
+        } else if (currentScrollY < lastScrollY) {
+          setIsScrollingUp(false); // Actually means scrolling up
+        }
+      }
        
        setLastScrollY(currentScrollY);
      };
@@ -118,7 +118,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   // Keep header fixed on transparent routes to avoid layout jumps
   const positionClass = (isHome || isIndustry) ? 'fixed' : 'sticky';
   
-  // Desktop: hide navbar when scrolling up past 100px
+  // Desktop: hide navbar when scrolling down past 100px
   const shouldHideOnDesktop = isScrollingUp && lastScrollY > 100;
   
   // Hide navbar when PDF viewer is open

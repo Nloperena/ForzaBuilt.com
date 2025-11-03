@@ -6,9 +6,7 @@ const MadeInAmericaSection: React.FC = () => {
 
   return (
     <>
-      <section className={`${
-        mode === 'light2' ? 'bg-white' : 'bg-white'
-      }`}>
+      <section className="bg-[rgb(243_245_247)]">
         <div className="max-w-[120rem] mx-auto px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-20 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24">
           {/* Top Content Area - Text and Flag */}
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] xl:grid-cols-[1.3fr_1fr] gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 items-center">
@@ -35,11 +33,11 @@ const MadeInAmericaSection: React.FC = () => {
                   <img 
                     src="/images/misc/Flag Icon with asterisk 1.png" 
                     alt="Made in USA" 
-                    className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 h-auto object-contain"
+                    className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-64 h-auto object-contain"
                   />
                 </div>
                 
-                <h2 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-normal leading-tight ${
+                <h2 className={`text-[clamp(22px,3vw,64px)] font-normal leading-tight max-w-none ${
                   mode === 'light2' ? 'text-[#2c476e]' : 'text-[#2c476e]'
                 } font-poppins`}>
                   Proudly Manufactured<br />
