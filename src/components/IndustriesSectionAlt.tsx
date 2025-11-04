@@ -73,7 +73,7 @@ const IndustriesSectionAlt = () => {
       {mode === 'light2' ? (
         <div className="w-full bg-white pt-0 md:pt-2 px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-normal text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-normal text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins">
               Purpose-Built<br />
               Industry Solutions
             </h2>
