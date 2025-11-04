@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import MSHeroBanner from '@/components/MSHeroBanner';
+import HeroVideoSectionV2 from './HeroVideoSectionV2';
 
 interface ApproachItem {
   title: string;
@@ -330,6 +331,9 @@ const ApproachSectionV3 = () => {
       
       {/* MS Hero Banner */}
       <MSHeroBanner />
+      <div className="relative z-20">
+          <HeroVideoSectionV2 />
+        </div>
 
       {/* Isolated Section Container */}
       <section ref={sectionRef} className="relative isolate">
