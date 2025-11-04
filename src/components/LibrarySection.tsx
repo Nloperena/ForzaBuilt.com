@@ -128,9 +128,10 @@ const LibrarySection = () => {
   const renderShelf = (shelfBrochures: Brochure[], shelfIndex: number) => (
     <div key={shelfIndex} className="relative mb-16 md:mb-20">
       {/* Container with brochures positioned above shelf */}
-      <div className="relative pb-12 md:pb-16">
+      <div className="relative pb-24">
         {/* Brochures positioned above shelf */}
-        <div className="flex items-end justify-center gap-4 md:gap-6 lg:gap-8 px-4 relative z-10" style={{ marginBottom: '0' }}>
+        <div className="flex items-end justify-center gap-4 md:gap-6 lg:gap-8 px-4 relative z-10" style={{ 
+marginBottom: '0' }}>
         {shelfBrochures.map((brochure, index) => (
           <motion.div
             key={brochure.id}
@@ -176,7 +177,7 @@ const LibrarySection = () => {
                     
               {/* Name label below brochure */}
                     <div 
-                className="absolute -bottom-5.5 md:-bottom-4.5 left-1/2 -translate-x-1/2 font-poppins font-bold text-[10px] md:text-xs text-slate-700 tracking-wide whitespace-nowrap uppercase pointer-events-none z-30"
+                className="absolute -bottom-5.5 md:-bottom-4.5 left-1/2 -translate-x-1/2 font-poppins font-bold text-sm md:text-base lg:text-lg text-slate-700 tracking-wide whitespace-nowrap uppercase pointer-events-none z-30"
                       style={{
                   textShadow: '0 1px 0 rgba(255,255,255,0.7)'
                       }}
@@ -194,7 +195,7 @@ const LibrarySection = () => {
         <img
           src="/Final Resource Files/Shelf.svg"
           alt="Shelf"
-          className="absolute bottom-0 left-0 right-0 w-full h-12 md:h-16"
+          className="absolute bottom-0 left-0 right-0 w-full h-24"
           style={{ zIndex: 1 }}
           onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/Final Resource Files/Shelf.png'; }}
         />

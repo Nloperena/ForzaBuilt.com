@@ -15,7 +15,7 @@ interface ApproachItem {
 const approachItems: ApproachItem[] = [
   {
     title: "REAL KNOW HOW",
-    description: "Expert guidance to select and optimize the right products for your specific applications.",
+    description: "Expert guidance to select and optimize the right products for your specific applications. Our technical team provides recommendations and support every step of the way.",
     bulletPoints: [
       "Technical support and expertise",
       "Application-specific recommendations",
@@ -26,7 +26,7 @@ const approachItems: ApproachItem[] = [
   },
   {
     title: "PRODUCT PERFORMANCE",
-    description: "Superior quality products engineered for maximum performance and reliability.",
+    description: "Superior quality products engineered for maximum performance and reliability. Every product undergoes rigorous testing to ensure it meets and exceeds industry standards.",
     bulletPoints: [
       "Rigorous testing and quality control",
       "Performance-tested in real-world conditions",
@@ -37,7 +37,7 @@ const approachItems: ApproachItem[] = [
   },
   {
     title: "INDUSTRY-FOCUSED",
-    description: "Deep expertise across all major industries and applications.",
+    description: "Deep expertise across all major industries and applications built on decades of experience. Our proven track record demonstrates our ability to solve complex challenges.",
     bulletPoints: [
       "Decades of industry experience",
       "Application-specific knowledge",
@@ -48,7 +48,7 @@ const approachItems: ApproachItem[] = [
   },
   {
     title: "COMPLETE PORTFOLIO",
-    description: "Comprehensive range of industrial adhesives, sealants, tapes, and cleaners - all under one roof.",
+    description: "Comprehensive range of industrial adhesives, sealants, tapes, and cleaners - all under one roof. This one-stop solution saves time, money, and reduces supply chain risk.",
     bulletPoints: [
       "World's most comprehensive portfolio",
       "One-stop solution for all bonding needs",
@@ -59,18 +59,18 @@ const approachItems: ApproachItem[] = [
   },
   {
     title: "REAL INNOVATION",
-    description: "Innovation & Greener Chemistries leading the way to a sustainable future.",
+    description: "Safer products and greener technologies designed for today's sustainability challenges. Our commitment to innovation drives us to continuously develop better solutions for the future.",
     bulletPoints: [
       "Safer products & greener technologies.",
       "Made in the U.S.A. for sustainable supply chain.",
       "Always accelerating towards the future today."
     ],
     image: "/images/approach/Sustainability Image for Web.jpg",
-    video: "/approach-videos/Sustainable Solutions.mp4"
+    video: "/approach-videos/Real Innovation.mp4"
   },
   {
     title: "MADE IN USA",
-    description: "Proudly manufactured in America with domestic and international components.",
+    description: "Proudly manufactured in America with domestic and international components ensuring quality. Supporting the U.S. economy through reliable domestic supply chain management.",
     bulletPoints: [
       "American-made quality and craftsmanship",
       "Supporting the U.S. economy",
@@ -81,7 +81,7 @@ const approachItems: ApproachItem[] = [
   },
   {
     title: "R&D LEADERSHIP",
-    description: "Fully integrated manufacturing and R&D capabilities in the U.S.A.",
+    description: "Fully integrated manufacturing and R&D capabilities in the U.S.A. give us complete control over quality and consistency. This integrated approach enables rapid product development and custom formulation capabilities.",
     bulletPoints: [
       "Full control over quality & consistency",
       "Rapid product development",
@@ -92,7 +92,7 @@ const approachItems: ApproachItem[] = [
   },
   {
     title: "CUSTOMER-OBSESSED",
-    description: "Dedicated support and attention to every customer's unique needs.",
+    description: "Dedicated support and attention to every customer's unique needs throughout their partnership with us. Our responsive team provides technical expertise and long-term commitment to your success.",
     bulletPoints: [
       "Responsive customer service",
       "Technical support team",
@@ -102,6 +102,37 @@ const approachItems: ApproachItem[] = [
     video: "/approach-videos/Customer Obsessed-1.mp4"
   }
 ];
+
+// Function to convert ALL CAPS titles to proper Title Case
+const toTitleCase = (str: string): string => {
+  // Handle special cases first
+  if (str === 'GREENER CHEMISTRIES') {
+    return 'Innovation & Greener Chemistries';
+  }
+  
+  // Split by spaces and hyphens, preserving the separators
+  const parts = str.split(/([\s-])/);
+  
+  return parts
+    .map((part, index) => {
+      // If it's a separator (space or hyphen), keep it as is
+      if (part === ' ' || part === '-') {
+        return part;
+      }
+      
+      // Convert to lowercase first
+      const lower = part.toLowerCase();
+      
+      // Preserve R&D
+      if (lower === 'r&d') return 'R&D';
+      // Preserve USA
+      if (lower === 'usa') return 'USA';
+      
+      // Capitalize first letter of each word
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    })
+    .join('');
+};
 
 const ApproachSectionV3 = () => {
   const [selectedItem, setSelectedItem] = useState(1);
@@ -378,19 +409,32 @@ const ApproachSectionV3 = () => {
                   />
                 )}
                 
-                {/* Very light dark overlay over the entire photo */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent z-10"></div>
+                                  {/* Uniform greyish dark blue overlay */}
+                  <div className="absolute inset-0 bg-[#3a4a6b]/75 z-10"></div>
                 
-                {/* Overlay bullet points - moved to top */}
-                <div className="absolute inset-0 z-20 flex items-start justify-start p-6 md:p-8">
-                  <div className="max-w-md">
-                    <h4 className={`text-white text-[clamp(16px,2vw,20px)] font-bold mb-3 transition-all duration-500 ${
-                      mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                {/* Overlay content - flexbox layout with items at bottom */}
+                <div className="absolute inset-0 z-20 flex flex-col justify-between p-6 md:p-8">
+                  {/* Top section - empty for spacing */}
+                  <div></div>
+                  
+                  {/* Bottom section - bullet points and description */}
+                  <div className="space-y-3">
+                    {/* Orange bar and title */}
+                    <div className="space-y-1">
+                      <div className="w-24 h-1 bg-[#F2611D] opacity-70"></div>
+                      <h4 className="text-white text-[clamp(18px,2.2vw,22px)] font-semibold font-poppins transition-all duration-500">
+                        {toTitleCase(approachItems[selectedItem].title)}
+                      </h4>
+                    </div>
+                    
+                    {/* Paragraph text */}
+                    <p className={`text-white text-[clamp(14px,1.6vw,18px)] leading-relaxed max-w-2xl ${
+                      mode === 'light2' ? 'font-poppins' : ''
                     }`}>
-                      {approachItems[selectedItem].title === 'GREENER CHEMISTRIES' 
-                        ? 'Innovation & Greener Chemistries'
-                        : approachItems[selectedItem].title}
-                    </h4>
+                      {approachItems[selectedItem].description}
+                    </p>
+                    
+                    {/* Bullet points */}
                     <ul className={`space-y-1.5 text-white text-[clamp(14px,1.6vw,18px)] ${
                       mode === 'light2' ? 'font-poppins' : ''
                     }`}>

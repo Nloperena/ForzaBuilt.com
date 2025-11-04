@@ -365,7 +365,7 @@ const IndustryPage = () => {
             >
               {/* Icons removed per brand standards; title only */}
               <h3 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-center leading-none break-words font-poppins text-[white]"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-center leading-none break-words font-poppins text-[#1b3764]"
               >
                 {`Building High-Performance ${industryData.title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape & Sealant Solutions`}
               </h3>

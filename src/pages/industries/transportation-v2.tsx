@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import StaticXRayExplorerV3 from '../../components/xray/StaticXRayExplorerV3';
 
 const TransportationV2Page: React.FC = () => {
   return (
@@ -37,11 +36,19 @@ const TransportationV2Page: React.FC = () => {
           </div>
         </section>
 
-        {/* V3 X-Ray Explorer - RV Bus Graphic */}
-        <StaticXRayExplorerV3 svgPath="/img/transportation/RV Bus Exploded-NEW.svg" />
-        
-        {/* V3 X-Ray Explorer - Trailer Graphic */}
-        <StaticXRayExplorerV3 svgPath="/img/transportation/Trailer Exploded Graphic2.svg" />
+        {/* V2 X-Ray Explorer - Starting Fresh */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1B3764] mb-8 font-poppins">
+                V2 X-Ray Explorer
+              </h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto font-poppins">
+                Ready to build the new V2 component from scratch with the correct PNG image.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Comparison Section */}
         <section className="py-16 bg-gray-50">

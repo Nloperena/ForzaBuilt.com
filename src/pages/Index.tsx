@@ -122,10 +122,7 @@ const Index = () => {
           )}
         </section>
 
-        {/* Hero Video Section V2 - Standalone (no sticky effect) */}
-        <div className="relative z-20">
-          <HeroVideoSectionV2 />
-        </div>
+        
 
         {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
         <section className="relative" style={{ zIndex: 20 }}>
@@ -136,6 +133,11 @@ const Index = () => {
         <section className="relative z-20">
           <ApproachSectionV3 />
         </section>
+
+          {/* Hero Video Section V2 - Standalone (no sticky effect) */}
+        <div className="relative z-20">
+          <HeroVideoSectionV2 />
+        </div>
 
         {/* Made in America Sections */}
         <section className="relative z-20">
