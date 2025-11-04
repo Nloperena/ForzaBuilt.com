@@ -77,7 +77,7 @@ const approachItems: ApproachItem[] = [
       "Reliable domestic supply chain"
     ],
     image: "/images/approach/R&D image.jpg",
-    video: "/approach-videos/Made in USA-2.mp4"
+    video: "/approach-videos/Made in USA-2_1.mp4"
   },
   {
     title: "R&D LEADERSHIP",
