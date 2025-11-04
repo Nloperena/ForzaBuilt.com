@@ -25,7 +25,8 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const leftPage = currentPage;
-  const rightPage = currentPage + 1 <= numPages ? currentPage + 1 : null;
+  // Show first page as cover only (no right page)
+  const rightPage = currentPage === 1 ? null : (currentPage + 1 <= numPages ? currentPage + 1 : null);
 
   const handleNext = () => {
     if (currentPage + 2 <= numPages && !isFlipping) {
@@ -64,6 +65,11 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
       // Limit zoom between 0.5x and 3x
       return Math.max(0.5, Math.min(3, newScale));
     });
+  };
+
+  const handleReset = () => {
+    setPosition({ x: 0, y: 0 });
+    setScale(1);
   };
 
   // Global mouse move and up handlers for smooth dragging
@@ -328,6 +334,35 @@ const SimpleBookSpread: React.FC<SimpleBookSpreadProps> = ({
           background: 'radial-gradient(ellipse, rgba(0,0,0,0.5) 0%, transparent 70%)',
         }}
       />
+
+      {/* Reset button */}
+      {(position.x !== 0 || position.y !== 0 || scale !== 1) && (
+        <button
+          onClick={handleReset}
+          className="absolute top-4 right-4 p-2 text-white rounded-lg shadow-lg hover:brightness-110 transition-all z-20"
+          style={{
+            background: 'rgba(44, 71, 110, 0.25)',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+            border: '1px solid rgba(71, 113, 151, 0.3)',
+          }}
+          title="Reset position and zoom"
+        >
+          <svg
+            className="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

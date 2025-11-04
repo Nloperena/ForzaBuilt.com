@@ -22,7 +22,7 @@ const approachItems: ApproachItem[] = [
       "Performance optimization"
     ],
     image: "/images/approach/Construction Visit.jpg",
-    video: "/approach-videos/Real Know How.mp4"
+    video: "/approach-videos/Real Know How-2.mp4"
   },
   {
     title: "PRODUCT PERFORMANCE",
@@ -33,7 +33,7 @@ const approachItems: ApproachItem[] = [
       "Built to exceed industry standards"
     ],
     image: "/images/approach/Products Portfolio.jpg",
-    video: "/approach-videos/Product Performance.mp4"
+    video: "/approach-videos/Product Performance-2.mp4"
   },
   {
     title: "INDUSTRY-FOCUSED",
@@ -44,7 +44,7 @@ const approachItems: ApproachItem[] = [
       "Proven track record"
     ],
     image: "/images/approach/Legacy Image.jpg",
-    video: "/approach-videos/Industry Focused.mp4"
+    video: "/approach-videos/Industry Focused-2.mp4"
   },
   {
     title: "COMPLETE PORTFOLIO",
@@ -55,7 +55,7 @@ const approachItems: ApproachItem[] = [
       "Saves time, money & reduces risk"
     ],
     image: "/images/approach/Products Portfolio.jpg",
-    video: "/approach-videos/Complete Portfolio.mp4"
+    video: "/approach-videos/Complete Portfolio-2.mp4"
   },
   {
     title: "REAL INNOVATION",
@@ -65,7 +65,8 @@ const approachItems: ApproachItem[] = [
       "Made in the U.S.A. for sustainable supply chain.",
       "Always accelerating towards the future today."
     ],
-    image: "/images/approach/Sustainability Image for Web.jpg"
+    image: "/images/approach/Sustainability Image for Web.jpg",
+    video: "/approach-videos/Sustainable Solutions.mp4"
   },
   {
     title: "MADE IN USA",
@@ -75,7 +76,8 @@ const approachItems: ApproachItem[] = [
       "Supporting the U.S. economy",
       "Reliable domestic supply chain"
     ],
-    image: "/images/approach/R&D image.jpg"
+    image: "/images/approach/R&D image.jpg",
+    video: "/approach-videos/Made in USA-2.mp4"
   },
   {
     title: "R&D LEADERSHIP",
@@ -85,7 +87,8 @@ const approachItems: ApproachItem[] = [
       "Rapid product development",
       "Custom formulation capabilities"
     ],
-    image: "/images/approach/R&D image.jpg"
+    image: "/images/approach/R&D image.jpg",
+    video: "/approach-videos/R&D Leadership.mp4"
   },
   {
     title: "CUSTOMER-OBSESSED",
@@ -95,7 +98,8 @@ const approachItems: ApproachItem[] = [
       "Technical support team",
       "Long-term partnership focus"
     ],
-    image: "/images/approach/Receptionist at desk.jpg"
+    image: "/images/approach/Receptionist at desk.jpg",
+    video: "/approach-videos/Customer Obsessed-1.mp4"
   }
 ];
 
@@ -154,6 +158,26 @@ const ApproachSectionV3 = () => {
     };
   }, []);
 
+  // Preload adjacent videos for smoother transitions
+  useEffect(() => {
+    const preloadIndices = [
+      (selectedItem + 1) % approachItems.length,
+      (selectedItem - 1 + approachItems.length) % approachItems.length,
+    ];
+
+    preloadIndices.forEach((index) => {
+      const item = approachItems[index];
+      if (item.video && !videoLoadedMap[index] && !videoErrorMap[index]) {
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.src = item.video;
+        video.muted = true;
+        video.playsInline = true;
+        // Preload in background
+        video.load();
+      }
+    });
+  }, [selectedItem, videoLoadedMap, videoErrorMap]);
 
   // Handle video loading and playback
   useEffect(() => {
@@ -172,7 +196,7 @@ const ApproachSectionV3 = () => {
       
       let timeout: NodeJS.Timeout;
       
-      const handleLoadedData = () => {
+      const handleCanPlayThrough = () => {
         clearTimeout(timeout);
         setVideoLoadedMap(prev => ({ ...prev, [selectedItem]: true }));
         setVideoErrorMap(prev => {
@@ -197,12 +221,12 @@ const ApproachSectionV3 = () => {
         }
       }, 5000);
 
-      video.addEventListener('loadeddata', handleLoadedData);
+      video.addEventListener('canplaythrough', handleCanPlayThrough);
       video.addEventListener('error', handleError);
       
       return () => {
         clearTimeout(timeout);
-        video.removeEventListener('loadeddata', handleLoadedData);
+        video.removeEventListener('canplaythrough', handleCanPlayThrough);
         video.removeEventListener('error', handleError);
       };
     }
@@ -219,7 +243,7 @@ const ApproachSectionV3 = () => {
       
       let timeout: NodeJS.Timeout;
       
-      const handlePrevLoadedData = () => {
+      const handlePrevCanPlayThrough = () => {
         clearTimeout(timeout);
         setVideoLoadedMap(prev => ({ ...prev, [previousItem]: true }));
         setVideoErrorMap(prev => {
@@ -244,12 +268,12 @@ const ApproachSectionV3 = () => {
         }
       }, 5000);
 
-      video.addEventListener('loadeddata', handlePrevLoadedData);
+      video.addEventListener('canplaythrough', handlePrevCanPlayThrough);
       video.addEventListener('error', handlePrevError);
       
       return () => {
         clearTimeout(timeout);
-        video.removeEventListener('loadeddata', handlePrevLoadedData);
+        video.removeEventListener('canplaythrough', handlePrevCanPlayThrough);
         video.removeEventListener('error', handlePrevError);
       };
     }
@@ -292,13 +316,15 @@ const ApproachSectionV3 = () => {
             overflow-hidden lg:overflow-visible
           ">
               {/* Inline image (all breakpoints) with solid background to avoid hero flash */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#2c476e] to-[#477197] overflow-hidden">
                 {/* Previous content (beneath) - image or video */}
                 {approachItems[previousItem].video && !videoErrorMap[previousItem] && (
                   <video
                     ref={previousVideoRef}
                     key="previous-video"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                      videoLoadedMap[selectedItem] && selectedItem !== previousItem ? 'opacity-0' : 'opacity-100'
+                    }`}
                     muted
                     loop
                     playsInline
@@ -312,18 +338,24 @@ const ApproachSectionV3 = () => {
                   <img
                     src={approachItems[previousItem].image}
                     alt={approachItems[previousItem].title}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                      videoLoadedMap[selectedItem] && selectedItem !== previousItem ? 'opacity-0' : 'opacity-100'
+                    }`}
                   />
                 )}
                 
                 {/* Current content (on top) - image or video */}
                 {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && (
-                  <video
+                  <motion.video
                     ref={currentVideoRef}
-                    key="current-video"
-                    className={`absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700 ${
-                      videoLoadedMap[selectedItem] ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    key={`current-video-${selectedItem}`}
+                    initial={{ opacity: 0, x: 32 }}
+                    animate={{ 
+                      opacity: videoLoadedMap[selectedItem] ? 1 : 0,
+                      x: videoLoadedMap[selectedItem] ? 0 : 32
+                    }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    className="absolute inset-0 w-full h-full object-cover"
                     muted
                     loop
                     playsInline
@@ -331,23 +363,26 @@ const ApproachSectionV3 = () => {
                     preload="metadata"
                   >
                     <source key={approachItems[selectedItem].video} src={approachItems[selectedItem].video} type="video/mp4" />
-                  </video>
+                  </motion.video>
                 )}
                 {/* Only show image if no video or video failed */}
                 {(!approachItems[selectedItem].video || videoErrorMap[selectedItem]) && (
-                  <img
-                    key="current-image"
+                  <motion.img
+                    key={`current-image-${selectedItem}`}
                     src={approachItems[selectedItem].image}
                     alt={approachItems[selectedItem].title}
-                    className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
+                    initial={{ opacity: 0, x: 32 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 )}
                 
                 {/* Very light dark overlay over the entire photo */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent z-10"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent z-10"></div>
                 
-                {/* Overlay bullet points */}
-                <div className="absolute inset-0 z-20 flex items-end justify-start p-6 md:p-8">
+                {/* Overlay bullet points - moved to top */}
+                <div className="absolute inset-0 z-20 flex items-start justify-start p-6 md:p-8">
                   <div className="max-w-md">
                     <h4 className={`text-white text-[clamp(16px,2vw,20px)] font-bold mb-3 transition-all duration-500 ${
                       mode === 'light2' ? 'font-poppins' : 'font-kallisto'
