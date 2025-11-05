@@ -163,7 +163,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
     <>
       <ExperienceBetterBanner />
       <section className="w-full relative overflow-hidden
-                        py-[clamp(40px,6vw,96px)] px-[clamp(16px,4vw,48px)]
+                        pt-0 pb-[clamp(40px,6vw,96px)] px-[clamp(16px,4vw,48px)]
                         bg-gradient-to-bl from-[#477197] to-[#2c476e]">
       
       <div className="max-w-screen-2xl mx-auto relative z-10">
@@ -171,10 +171,9 @@ const ChemistryOverviewSectionV6: React.FC = () => {
           className="font-poppins font-normal text-white text-center
                      text-[clamp(28px,6vw,56px)] md:text-[clamp(40px,4.5vw,64px)]
                      leading-[1.12] md:leading-[1.12]
-                     mb-[clamp(18px,3.5vw,40px)]
+                     mt-0 mb-[clamp(18px,3.5vw,40px)]
                      [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]">
-          Chemistries We <br className="hidden md:block" />Manufacture 
-          In-House
+          Product Chemistries
         </h2>
         
         {/* Chemistry Grid - Single responsive grid */}

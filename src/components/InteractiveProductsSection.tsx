@@ -129,14 +129,15 @@ const InteractiveProductsSection = () => {
             flex items-center justify-center
             [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
           ">
-            <div className="w-full relative flex flex-col h-full">
+              <div className="w-full relative flex flex-col h-full">
               <div className="flex-1 flex flex-col">
-                <div className="space-y-[var(--gap)] mb-[var(--gap)] flex-shrink-0">
+                <div className="flex flex-col justify-evenly h-full flex-shrink-0">
                 {products.map((product, index) => (
-                  <button
+                  <Link
                     key={index}
+                    to={`/products/${product.slug}`}
                     onClick={() => handleProductChange(index)}
-                      onMouseEnter={() => handleProductChange(index)}
+                    onMouseEnter={() => handleProductChange(index)}
                     className="w-full text-left transition-all duration-500"
                   >
                     <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
@@ -148,24 +149,21 @@ const InteractiveProductsSection = () => {
                     }`}>
                       {product.title}
                     </h3>
-                  </button>
+                  </Link>
                 ))}
               </div>
+              </div>
 
-                <div className="mb-6 flex-shrink-0">
-                  <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-left-2 ${
+              {/* Button and description fixed at bottom - doesn't move */}
+              <div className="mt-auto pt-4 flex-shrink-0 space-y-4">
+                <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-left-2 ${
                 mode === 'light2' ? 'font-poppins' : ''
               }`} key={selectedProduct}>
                 {products[selectedProduct].description}
               </p>
-                </div>
-              </div>
-
-              {/* Button fixed at bottom - doesn't move */}
-              <div className="mt-auto pt-4 flex-shrink-0">
                 <Button asChild className="inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg">
                 <Link to={`/products/${products[selectedProduct].slug}`}>
-                  SEE PRODUCTS
+                  SEE PRODUCT LINES
                 </Link>
               </Button>
               </div>
