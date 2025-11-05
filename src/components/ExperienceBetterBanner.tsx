@@ -17,7 +17,8 @@ const ExperienceBetterBanner = () => {
               <motion.span 
                 className="text-[#2c476e] inline-block"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: "-100px" }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
                 Performance.
@@ -26,7 +27,8 @@ const ExperienceBetterBanner = () => {
               <motion.span 
                 className="text-[#F2611D] inline-block"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
               >
                 Elevated.
