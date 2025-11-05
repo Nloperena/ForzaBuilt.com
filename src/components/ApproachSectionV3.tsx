@@ -330,21 +330,56 @@ const ApproachSectionV3 = () => {
 
       
       {/* MS Hero Banner */}
-      <MSHeroBanner />
+   
       <div className="relative z-20">
           <HeroVideoSectionV2 />
         </div>
 
       {/* Isolated Section Container */}
       <section ref={sectionRef} className="relative isolate">
+        
+
         {/* Progress bar */}
         <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
         {/* Scrollable Content */}
         <div className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-          {/* LEFT - Transparent window on desktop, normal image on mobile */}
-            <div className="
+          {/* LEFT - Titles and blue background */}
+          <div className="
+            relative
+            min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
+            px-[clamp(14px,4vw,32px)] py-[clamp(24px,5vw,48px)]
+            flex items-center justify-center
+            [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
+            bg-gradient-to-r from-[#2c476e] to-[#477197]
+          ">
+            <div className="w-full">
+              <div className="space-y-[clamp(8px,1.5vw,16px)]">
+                {approachItems.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleItemChange(index)}
+                    onMouseEnter={() => handleItemChange(index)}
+                    className="w-full text-left transition-all duration-500"
+                  >
+                    <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
+                      selectedItem === index
+                        ? 'text-[#F2611D] text-[clamp(22px,3vw,48px)] font-bold'
+                        : 'text-white text-[clamp(18px,2.5vw,36px)] font-normal'
+                    } hover:text-[#F2611D] transition-all duration-500 ease-out ${
+                      mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                    }`}>
+                      {item.title}
+                    </h3>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT - Videos with description */}
+          <div className="
             relative
             min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
             flex items-center justify-center
@@ -464,56 +499,6 @@ const ApproachSectionV3 = () => {
               </div>
           </div>
 
-          {/* RIGHT - Scrollable text content */}
-          <div className="
-            relative
-            min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
-            px-[clamp(14px,4vw,32px)] py-[clamp(24px,5vw,48px)]
-            flex items-center justify-center
-            [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
-            bg-gradient-to-r from-[#2c476e] to-[#477197]
-          ">
-            <div className="w-full">
-              {/* VALUE PROPOSITION Heading */}
-              <div className="mb-6">
-                <h2 className="text-white text-[clamp(22px,3vw,64px)] font-normal mb-3 font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em]">
-                  Value Proposition
-                </h2>
-                {/* VALUE PROPOSITION Bullet Points */}
-                <ul className="space-y-1.5 mb-6">
-                  <li className="text-white text-[clamp(14px,1.5vw,18px)] font-poppins">
-                    Big-Picture Expertise. Small-Town Care
-                  </li>
-                  <li className="text-white text-[clamp(14px,1.5vw,18px)] font-poppins">
-                    We unleash the strength and spirit of America's Heartland to build high-performance adhesives and sealants—while delivering the kind of customer care that big companies forgot how to give.
-                  </li>
-                  <li className="text-white text-[clamp(14px,1.5vw,18px)] font-poppins">
-                    Purpose-Built Performance. Guaranteed Strength.
-                  </li>
-                </ul>
-              </div>
-              <div className="space-y-[clamp(8px,1.5vw,16px)]">
-                {approachItems.map((item, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleItemChange(index)}
-                    onMouseEnter={() => handleItemChange(index)}
-                    className="w-full text-left transition-all duration-500"
-                  >
-                    <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
-                      selectedItem === index
-                        ? 'text-[#F2611D] text-[clamp(22px,3vw,48px)] font-bold'
-                        : 'text-white text-[clamp(18px,2.5vw,36px)] font-normal'
-                    } hover:text-[#F2611D] transition-all duration-500 ease-out ${
-                      mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-                    }`}>
-                      {item.title}
-                    </h3>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
         </div>
         </div>
       </section>

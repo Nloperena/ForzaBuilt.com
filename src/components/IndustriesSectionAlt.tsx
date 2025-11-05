@@ -73,22 +73,22 @@ const IndustriesSectionAlt = () => {
       {mode === 'light2' ? (
         <div className="w-full bg-white pt-0 md:pt-2 px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-normal text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins">
-              Purpose-Built<br />
-              Industry Solutions
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins">
+              Purpose-Built
+              Solutions
             </h2>
           </div>
         </div>
       ) : (
         <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
-            <h2 className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black ${
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black ${
               mode === 'light'
                 ? 'text-[#2c476e]'
                 : getTextClasses()
             } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
-              PURPOSE-BUILT<br />
-              INDUSTRY SOLUTIONS
+              Purpose-Built
+              Solutions
             </h2>
           </div>
         </div>
@@ -118,15 +118,6 @@ const IndustriesSectionAlt = () => {
                       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
                       backgroundColor: mode === 'light' || mode === 'light2' ? 'transparent' : 'transparent',
                       background: 'linear-gradient(to bottom, #2c476e, #81899f)'
-                    }}
-                    onMouseEnter={() => {
-                      videoRefs.current[index]?.play();
-                    }}
-                    onMouseLeave={() => {
-                      if (videoRefs.current[index]) {
-                        videoRefs.current[index].pause();
-                        videoRefs.current[index].currentTime = 0;
-                      }
                     }}
                   >
                     <div className="flex h-28 sm:h-32">
@@ -162,26 +153,38 @@ const IndustriesSectionAlt = () => {
                           <source src={industry.videoUrl} type="video/mp4" />
                         </video>
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
-                        <img
-                          src={industry.logo}
-                          alt={industry.title + ' logo'}
-                          className="absolute right-1 bottom-1 z-20 transform transition-all duration-150 pointer-events-none h-8 sm:h-10 w-auto hover:rotate-5 hover:scale-110"
-                          style={{ filter: 'drop-shadow(0px 0px 0px rgba(242, 97, 29, 0))' }}
-                        />
                       </div>
                       
                       {/* Content Section */}
                       <div className="flex-1 flex flex-col justify-center px-4 sm:px-5 py-4">
-                        <h3
-                          className="font-black font-kallisto text-lg sm:text-xl text-left w-full mb-1"
-                          style={{
-                            lineHeight: 1.1,
-                            textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
-                            color: '#ffffff'
-                          }}
-                        >
-                          {toTitleCase(industry.title)}
-                        </h3>
+                        <div className="flex items-center gap-2">
+                          <img
+                            src={industry.logo}
+                            alt={industry.title + ' logo'}
+                            className="h-6 sm:h-8 w-auto transform transition-all duration-150"
+                            style={{ filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8)) brightness(1.2) contrast(1.2)' }}
+                          />
+                          <h3
+                            className="font-black font-kallisto text-lg sm:text-xl text-left cursor-pointer"
+                            style={{
+                              lineHeight: 1.1,
+                              textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
+                              color: '#ffffff',
+                              fontWeight: 900
+                            }}
+                            onMouseEnter={() => {
+                              videoRefs.current[index]?.play();
+                            }}
+                            onMouseLeave={() => {
+                              if (videoRefs.current[index]) {
+                                videoRefs.current[index].pause();
+                                videoRefs.current[index].currentTime = 0;
+                              }
+                            }}
+                          >
+                            {toTitleCase(industry.title)}
+                          </h3>
+                        </div>
                         <p className="text-xs sm:text-sm font-light text-white/90">
                           Specialized solutions for {industry.title.toLowerCase()} applications
                         </p>
@@ -219,15 +222,6 @@ const IndustriesSectionAlt = () => {
                     style={{
                       backgroundImage: 'none'
                     }}
-                    onMouseEnter={() => {
-                      videoRefs.current[index]?.play();
-                    }}
-                    onMouseLeave={() => {
-                      if (videoRefs.current[index]) {
-                        videoRefs.current[index].pause();
-                        videoRefs.current[index].currentTime = 0;
-                      }
-                    }}
                   >
                     <div className="relative w-full h-full overflow-hidden">
                       {/* Video Skeleton Loading State */}
@@ -254,28 +248,6 @@ const IndustriesSectionAlt = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
                       )}
                       
-                      {/* Logo absolutely positioned at bottom right */}
-                      <div
-                        className={`absolute pointer-events-none z-20 ${
-                          mode === 'light2' 
-                            ? 'bottom-4 right-4' 
-                            : 'bottom-3 sm:bottom-4 right-3 sm:right-4'
-                        }`}
-                      >
-                        <img
-                          src={industry.logo}
-                          alt={industry.title + ' logo'}
-                          className={`transition-transform duration-150 ${
-                            mode === 'light2'
-                              ? 'w-16 h-16 sm:w-20 sm:h-20'
-                              : 'w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 hover:rotate-5 hover:scale-110'
-                          }`}
-                          style={mode !== 'light2' ? {
-                            width: 'clamp(3rem, 5vw, 8rem)',
-                            height: 'clamp(3rem, 5vw, 8rem)'
-                          } : {}}
-                        />
-                      </div>
                       
                       {/* Gradient overlay - transparent top, blue gradient bottom with larger spread */}
                       <div
@@ -286,22 +258,42 @@ const IndustriesSectionAlt = () => {
                         }}
                       />
                       
-                      {/* Text container */}
+                      {/* Text and Icon container - bottom left */}
                       <div
-                        className="absolute bottom-0 left-0 right-0 p-0.5 sm:p-1 md:p-1 lg:p-1.5 pointer-events-none"
+                        className="absolute bottom-0 left-0 p-3 sm:p-4 md:p-4 lg:p-5"
                         style={{
                           zIndex: 10
                         }}
                       >
-                        <div className="flex items-center justify-between gap-1">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <img
+                            src={industry.logo}
+                            alt={industry.title + ' logo'}
+                            className="transition-transform duration-150"
+                            style={{
+                              width: 'clamp(2rem, 3vw, 4rem)',
+                              height: 'clamp(2rem, 3vw, 4rem)',
+                              filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8)) brightness(1.2) contrast(1.2)'
+                            }}
+                          />
                           <h3
-                            className={`font-normal text-left leading-none flex-1 min-w-0 truncate pl-3 sm:pl-4 pt-3 sm:pt-4 pb-3 sm:pb-4 transition-all duration-300 group-hover:font-extrabold ${
+                            className={`font-black text-left leading-none cursor-pointer ${
                               mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                             }`}
                             style={{
                               color: '#ffffff',
-                              fontSize: 'clamp(0.75rem, 2vw, 1.5rem)',
+                              fontSize: 'clamp(0.875rem, 2vw, 1.75rem)',
                               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)',
+                              fontWeight: 900
+                            }}
+                            onMouseEnter={() => {
+                              videoRefs.current[index]?.play();
+                            }}
+                            onMouseLeave={() => {
+                              if (videoRefs.current[index]) {
+                                videoRefs.current[index].pause();
+                                videoRefs.current[index].currentTime = 0;
+                              }
                             }}
                           >
                             {toTitleCase(industry.title)}
@@ -318,7 +310,7 @@ const IndustriesSectionAlt = () => {
 
         {/* Subtle afterthought text */}
         <div className="w-full text-center mt-8 pb-16">
-          <p className="text-base md:text-lg text-gray-600 font-normal font-poppins">
+          <p className="text-xl md:text-3xl text-gray-600 font-normal font-poppins">
             Don't see your industry?{' '}
             <a
               href="/contact"

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const ExperienceBetterBanner = () => {
@@ -9,16 +10,27 @@ const ExperienceBetterBanner = () => {
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-8">
           {/* Left side - Main slogan */}
-          <div className="space-y-1">
-            <h2 className={`text-[clamp(28px,4vw,48px)] font-bold text-[#2c476e] leading-tight ${
+          <div>
+            <h2 className={`text-[clamp(28px,4vw,48px)] font-bold leading-tight ${
               mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-            }`}>
-              Performance.
-            </h2>
-            <h2 className={`text-[clamp(28px,4vw,48px)] font-bold text-[#F2611D] leading-tight ${
-              mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-            }`}>
-              Elevated.
+            }`} style={{ fontWeight: 700 }}>
+              <motion.span 
+                className="text-[#2c476e] inline-block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                Performance.
+              </motion.span>
+              {' '}
+              <motion.span 
+                className="text-[#F2611D] inline-block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              >
+                Elevated.
+              </motion.span>
             </h2>
           </div>
           

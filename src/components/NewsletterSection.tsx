@@ -1,6 +1,4 @@
-import React, { useMemo, useState } from 'react';
-import blogPostsData from '@/data/blogPosts.json';
-import { generateSlugFromTitle } from '@/lib/utils';
+import React, { useState } from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 const NewsletterSection = () => {
@@ -9,11 +7,7 @@ const NewsletterSection = () => {
     email: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { mode, getGradientClasses, getTextClasses, getTextSecondaryClasses } = useGradientMode();
-
-  const recentPosts = useMemo(() => {
-    return blogPostsData.slice(0, 2);
-  }, []);
+  const { mode, getGradientClasses } = useGradientMode();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -121,58 +115,30 @@ const NewsletterSection = () => {
               </div>
             </div>
 
-            {/* Featured Blog Section - Secondary Focus */}
+            {/* Follow Our LinkedIn Section - Secondary Focus */}
             <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
-              <div className="p-6 md:p-8 flex-1 flex flex-col">
-                <div className="mb-8">
-                  <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Featured Articles</h3>
-                </div>
+              <div className="p-6 md:p-8 flex-1 flex flex-col items-center justify-center">
+                <div className="text-center">
+                  <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold mb-6">Follow Our LinkedIn</h3>
+                  
+                  <div className="mb-8">
+                    <a
+                      href="https://linkedin.com/company/forzabuilt"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-white hover:bg-white/90 text-[#2c476e] font-bold text-lg rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+                      aria-label="Follow ForzaBuilt on LinkedIn"
+                    >
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      <span>Follow Us</span>
+                    </a>
+                  </div>
 
-                <ul role="list" className="space-y-4 mb-8 flex-1">
-                  {recentPosts.map((post, index) => {
-                    const slug = generateSlugFromTitle(post.title);
-                    return (
-                      <li key={post.id}>
-                        <a
-                          href={`/blog/${slug}`}
-                          className="group rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 hover:border-white/30 transition ring-0 hover:ring-1 hover:ring-white/40 backdrop-blur-sm block p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-                          aria-label={`Read article: ${post.title}`}
-                        >
-                          <div className="flex gap-4">
-                            <div className="aspect-square w-24 sm:w-28 overflow-hidden rounded-lg bg-white/20 flex-shrink-0">
-                              <img
-                                src={post.image}
-                                alt={post.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                onError={(e) => {
-                                  (e.currentTarget as HTMLImageElement).src = '/products/IC933-bundle-1024x1024.png';
-                                }}
-                              />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="text-xs font-semibold uppercase tracking-wide text-white mb-1">{post.category}</div>
-                              <h4 className="text-white group-hover:text-white font-bold leading-snug line-clamp-2 text-sm md:text-base transition-colors">{post.title}</h4>
-                              <div className="mt-1.5 text-white text-xs md:text-sm line-clamp-3">{post.excerpt}</div>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-
-                <div className="space-y-6 mt-auto">
-                  <a
-                    href="/blog"
-                    className="inline-flex items-center gap-2 self-start text-white hover:text-white font-semibold text-sm px-3 py-2 rounded-lg hover:bg-white/10 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-                    aria-label="Explore all blog articles"
-                  >
-                    Explore all articles
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
-                  </a>
+                  <p className="text-white/90 text-base md:text-lg max-w-md mx-auto">
+                    Stay connected with industry insights, company updates, and product innovations on LinkedIn.
+                  </p>
                 </div>
               </div>
             </div>

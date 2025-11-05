@@ -2,12 +2,12 @@ import React from 'react';
 
 const FooterV2 = () => {
   return (
-    <footer className="relative py-6 px-6 overflow-hidden bg-gradient-to-t from-[#477197] to-[#2c476e] text-white">
+    <footer className="relative py-8 px-6 overflow-hidden bg-gradient-to-t from-[#477197] to-[#2c476e] text-white">
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Mobile/Tablet Layout */}
-        <div className="lg:hidden flex flex-col gap-3 mb-4">
+        <div className="lg:hidden flex flex-col gap-4 mb-5">
           {/* Logo and Social Media */}
           <div className="flex items-center justify-between">
             <img 
@@ -38,7 +38,7 @@ const FooterV2 = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid grid-cols-5 gap-4 mb-4">
+        <div className="hidden lg:grid grid-cols-5 gap-5 mb-5">
           {/* Logo Column - Spans more space on desktop */}
           <div className="col-span-2">
             <img 
@@ -49,9 +49,9 @@ const FooterV2 = () => {
           </div>
 
           {/* Company Column */}
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <h3 className="text-white font-bold text-base font-poppins">Company</h3>
-            <ul className="space-y-0.5">
+            <ul className="space-y-1">
               <li><a href="/products" className="text-white hover:text-white/80 transition-colors font-poppins leading-tight">Products</a></li>
               <li><a href="/industries" className="text-white hover:text-white/80 transition-colors font-poppins leading-tight">Industries</a></li>
               <li><a href="/blog" className="text-white hover:text-white/80 transition-colors font-poppins leading-tight">Blogs</a></li>
@@ -60,9 +60,9 @@ const FooterV2 = () => {
           </div>
           
           {/* HQ Column */}
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <h3 className="text-white font-bold text-base font-poppins">HQ</h3>
-            <div className="text-white space-y-0.5">
+            <div className="text-white space-y-1">
               <p className="font-poppins leading-tight">Forza</p>
               <p className="font-poppins leading-tight">3211 Nebraska Ave</p>
               <p className="font-poppins leading-tight">Suite 300</p>
@@ -72,9 +72,9 @@ const FooterV2 = () => {
           </div>
           
           {/* Contact Column */}
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <h3 className="text-white font-bold text-base font-poppins">Contact</h3>
-            <div className="text-white space-y-0.5">
+            <div className="text-white space-y-1">
               <p className="font-poppins leading-tight">O. 402.731.9300</p>
               <p className="font-poppins leading-tight"><a href="mailto:support@forzabuilt.com" className="hover:underline">support@forzabuilt.com</a></p>
               <p className="font-poppins leading-tight">Mon-Fri | 8 AM - 4:30 PM</p>
@@ -84,7 +84,7 @@ const FooterV2 = () => {
         </div>
 
         {/* Divider Line */}
-        <div className="border-t border-white/30 mb-4"></div>
+        <div className="border-t border-white/30 mb-5"></div>
 
         {/* Bottom Section with Made in USA Badge, Copyright, and Follow Us */}
         <div className="flex items-center gap-4 flex-wrap">
