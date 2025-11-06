@@ -161,11 +161,11 @@ const IndustriesSectionAlt = () => {
                           <img
                             src={industry.logo}
                             alt={industry.title + ' logo'}
-                            className="h-6 sm:h-8 w-auto transform transition-all duration-150"
-                            style={{ filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8)) brightness(1.2) contrast(1.2)' }}
+                            className="h-10 sm:h-12 w-auto transform transition-all duration-150"
+                            style={{ filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))' }}
                           />
                           <h3
-                            className="font-black font-kallisto text-lg sm:text-xl text-left cursor-pointer"
+                            className="font-black font-kallisto text-xl sm:text-2xl text-left cursor-pointer"
                             style={{
                               lineHeight: 1.1,
                               textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
@@ -260,7 +260,7 @@ const IndustriesSectionAlt = () => {
                       
                       {/* Text and Icon container - bottom left */}
                       <div
-                        className="absolute bottom-0 left-0 p-3 sm:p-4 md:p-4 lg:p-5"
+                        className="absolute bottom-0 left-0 pt-3 sm:pt-4 md:pt-4 lg:pt-5 pr-3 sm:pr-4 md:pr-4 lg:pr-5 pb-0 pl-0"
                         style={{
                           zIndex: 10
                         }}
@@ -269,11 +269,9 @@ const IndustriesSectionAlt = () => {
                           <img
                             src={industry.logo}
                             alt={industry.title + ' logo'}
-                            className="transition-transform duration-150"
+                            className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 transition-transform duration-150"
                             style={{
-                              width: 'clamp(2rem, 3vw, 4rem)',
-                              height: 'clamp(2rem, 3vw, 4rem)',
-                              filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8)) brightness(1.2) contrast(1.2)'
+                              filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))'
                             }}
                           />
                           <h3
@@ -282,7 +280,7 @@ const IndustriesSectionAlt = () => {
                             }`}
                             style={{
                               color: '#ffffff',
-                              fontSize: 'clamp(0.875rem, 2vw, 1.75rem)',
+                              fontSize: 'clamp(1rem, 2.5vw, 2rem)',
                               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)',
                               fontWeight: 900
                             }}
