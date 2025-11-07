@@ -5,7 +5,7 @@ const ExperienceBetterBanner = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const performanceRef = useRef<HTMLSpanElement>(null);
   const elevatedRef = useRef<HTMLSpanElement>(null);
-  const [fontSize, setFontSize] = useState('clamp(2rem, 5vw, 8rem)');
+  const [fontSize, setFontSize] = useState('clamp(1.6rem, 4vw, 6.5rem)');
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const ExperienceBetterBanner = () => {
         if (textWidth > 0 && availableWidth > 0) {
           // Calculate the font size needed to fit with breathing room
           const ratio = availableWidth / textWidth;
-          const calculatedSize = 200 * ratio;
+          const calculatedSize = 200 * ratio * 0.88; // stronger reduction to prevent clipping
           setFontSize(`${calculatedSize}px`);
         }
         
@@ -147,17 +147,16 @@ const ExperienceBetterBanner = () => {
         }
       `}</style>
       <div className="bg-white py-8 md:py-12 relative w-full overflow-x-hidden" style={{ zIndex: 5 }}>
-        <div className="w-full h-full flex items-center overflow-x-hidden">
+        <div className="w-full h-full flex items-center justify-center overflow-x-hidden">
           <div
             ref={containerRef}
-            className="flex items-center performance-elevated-container"
+            className="flex items-center justify-center performance-elevated-container"
             style={{ 
               width: '100%',
               paddingLeft: '1vw',
               paddingRight: '1vw',
               boxSizing: 'border-box',
               height: 'fit-content',
-              justifyContent: 'flex-start',
               position: 'relative',
               maxWidth: '100%'
             }}
@@ -170,6 +169,7 @@ const ExperienceBetterBanner = () => {
                 whiteSpace: 'nowrap',
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 width: 'fit-content',
                 minWidth: 0,
                 maxWidth: '100%',

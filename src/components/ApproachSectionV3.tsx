@@ -492,7 +492,7 @@ const ApproachSectionV3 = () => {
             paddingLeft: 'clamp(14px, 4vw, 32px)'
           }}>
             <h2 className="text-white font-normal font-poppins leading-tight" style={{
-              fontSize: 'clamp(28px, 3vw + 0.5rem, 56px)',
+              fontSize: 'clamp(28px, 2.5vw + 0.5rem, 72px)',
               lineHeight: '1.1',
               textAlign: 'left'
             }}>
@@ -529,7 +529,7 @@ const ApproachSectionV3 = () => {
                           : 'text-white font-normal'
                       }`}
                       style={{
-                        fontSize: 'clamp(16px, 2vw + 0.5rem, 36px)',
+                        fontSize: 'clamp(16px, 1.7vw + 0.5rem, 48px)',
                         transform: 'none'
                       }}
                     >
@@ -626,7 +626,7 @@ const ApproachSectionV3 = () => {
                     <div className="space-y-1">
                       <div className="w-24 h-1 bg-[#F2611D] opacity-70"></div>
                       <h4 className="text-white font-semibold font-poppins transition-all duration-500" style={{
-                        fontSize: 'clamp(18px, 2vw + 0.5rem, 28px)',
+                        fontSize: 'clamp(18px, 1.7vw + 0.5rem, 36px)',
                         lineHeight: '1.2'
                       }}>
                         {toTitleCase(approachItems[selectedItem].title)}
