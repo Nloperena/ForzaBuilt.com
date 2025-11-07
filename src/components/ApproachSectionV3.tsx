@@ -491,13 +491,16 @@ const ApproachSectionV3 = () => {
           <div className="absolute top-[clamp(24px,4vw,48px)] left-0 w-full text-left px-[clamp(14px,4vw,32px)] z-30 pointer-events-none" style={{
             paddingLeft: 'clamp(14px, 4vw, 32px)'
           }}>
-            <h2 className="text-white font-normal font-poppins leading-tight" style={{
-              fontSize: 'clamp(28px, 2.5vw + 0.5rem, 72px)',
-              lineHeight: '1.1',
-              textAlign: 'left'
-            }}>
-              Powerful Approach To Customer Success
-            </h2>
+            <div className="inline-flex flex-col items-start gap-[clamp(8px,1.5vw,18px)]">
+              <h2 className="text-white font-normal font-poppins leading-tight" style={{
+                fontSize: 'clamp(28px, 2.5vw + 0.5rem, 72px)',
+                lineHeight: '1.1',
+                textAlign: 'left'
+              }}>
+                Powerful Approach To Customer Success
+              </h2>
+              <div className="h-[3px] bg-[#F2611D]" style={{ width: '50%' }} />
+            </div>
           </div>
           
           {/* LEFT - Titles and blue background */}
