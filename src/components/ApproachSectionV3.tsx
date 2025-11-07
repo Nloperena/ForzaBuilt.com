@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
@@ -32,7 +32,7 @@ const approachItems: ApproachItem[] = [
     bulletPoints: [
       "Our solutions are never one-size-fits-all.",
       "We engineer adhesives and sealants for the exact needs our customers face—so they perform exactly as needed, the first time.",
-      "Our products deliver guaranteed performance."
+      "Our products deliver guaranteed performance"
     ],
     image: "/images/approach/Products Portfolio.jpg",
     video: "/approach-videos/Product Performance-2.mp4"
@@ -41,7 +41,7 @@ const approachItems: ApproachItem[] = [
     title: "INDUSTRY FOCUSED",
     description: "Deep expertise across all major industries and applications built on decades of experience. Our proven track record demonstrates our ability to solve complex challenges.",
     bulletPoints: [
-      "Always Insightful. Never limited in expertise or offerings.",
+      "Always Insightful. Never limited in expertise or offerings",
       "We don't try to serve everyone. We serve the industries we know best—like transportation, construction, marine, and manufacturing.",
       "That's why our formulas, testing, and compliance know-how are second to none.",
       "If it's important to you, it's important to us."
@@ -53,7 +53,7 @@ const approachItems: ApproachItem[] = [
     title: "EXPANSIVE PRODUCT PORTFOLIO",
     description: "Comprehensive range of industrial adhesives, sealants, tapes, and cleaners - all under one roof. This one-stop solution saves time, money, and reduces supply chain risk.",
     bulletPoints: [
-      "Most complete and comprehensive portfolio available.",
+      "Most complete and comprehensive portfolio available",
       "Our product line covers everything from core adhesives and sealants to niche products and specialty tapes.",
       "We don't just cover one or two of your needs, we do them all!",
       "If it bonds, seals, or sticks—we probably make it. If we don't, we'll help you find it."
@@ -158,6 +158,9 @@ const ApproachSectionV3 = () => {
   const [progress, setProgress] = useState(0);
   const [videoLoadedMap, setVideoLoadedMap] = useState<Record<number, boolean>>({});
   const [videoErrorMap, setVideoErrorMap] = useState<Record<number, boolean>>({});
+  const [titleFontSizes, setTitleFontSizes] = useState<Record<number, string>>({});
+  const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+  const titlesContainerRef = useRef<HTMLDivElement>(null);
   const cycleTimerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
@@ -341,6 +344,97 @@ const ApproachSectionV3 = () => {
     }
   };
 
+  // Dynamic font size calculation to prevent wrapping
+  const updateTitleFontSizes = useCallback(() => {
+    if (!titlesContainerRef.current) return;
+
+    const containerWidth = titlesContainerRef.current.offsetWidth;
+    if (containerWidth === 0) return;
+
+    // Get padding (clamp(14px,4vw,32px) on each side)
+    const paddingLeft = parseFloat(getComputedStyle(titlesContainerRef.current).paddingLeft) || 0;
+    const paddingRight = parseFloat(getComputedStyle(titlesContainerRef.current).paddingRight) || 0;
+    const availableWidth = containerWidth - paddingLeft - paddingRight;
+
+    const newFontSizes: Record<number, string> = {};
+
+    titleRefs.current.forEach((titleRef, index) => {
+      if (!titleRef) return;
+
+      const isSelected = selectedItem === index;
+      // Lower base sizes: selected 20px-48px, unselected 18px-40px
+      const baseMinSize = isSelected ? 20 : 18;
+      const baseMaxSize = isSelected ? 48 : 40;
+      
+      // Use a reference font size for measurement
+      const tempFontSize = '200px';
+      const originalFontSize = titleRef.style.fontSize;
+      const originalDisplay = titleRef.style.display;
+      
+      // Temporarily set styles for measurement
+      titleRef.style.fontSize = tempFontSize;
+      titleRef.style.whiteSpace = 'nowrap';
+      titleRef.style.display = 'inline-block';
+      titleRef.style.visibility = 'hidden';
+      
+      // Force reflow
+      void titleRef.offsetWidth;
+      
+      const textWidth = titleRef.scrollWidth;
+      
+      if (textWidth > 0 && availableWidth > 0) {
+        const ratio = availableWidth / textWidth;
+        const calculatedSize = 200 * ratio * 0.95; // 95% to add breathing room
+        
+        // Clamp between min and max sizes
+        const clampedSize = Math.max(baseMinSize, Math.min(baseMaxSize, calculatedSize));
+        newFontSizes[index] = `${clampedSize}px`;
+      } else {
+        // Fallback to clamp
+        newFontSizes[index] = isSelected ? 'clamp(20px,3vw,48px)' : 'clamp(18px,2.5vw,40px)';
+      }
+      
+      // Restore original styles
+      titleRef.style.fontSize = originalFontSize;
+      titleRef.style.whiteSpace = '';
+      titleRef.style.display = originalDisplay;
+      titleRef.style.visibility = '';
+    });
+
+    setTitleFontSizes(newFontSizes);
+  }, [selectedItem]);
+
+  // Recalculate font sizes on mount, resize, and selection change
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      updateTitleFontSizes();
+    }, 100);
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateTitleFontSizes();
+    });
+
+    if (titlesContainerRef.current) {
+      resizeObserver.observe(titlesContainerRef.current);
+    }
+
+    window.addEventListener('resize', updateTitleFontSizes);
+
+    return () => {
+      clearTimeout(timeoutId);
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', updateTitleFontSizes);
+    };
+  }, [updateTitleFontSizes]);
+
+  // Recalculate when selectedItem changes
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      updateTitleFontSizes();
+    }, 100);
+    return () => clearTimeout(timeoutId);
+  }, [selectedItem, updateTitleFontSizes]);
+
   return (
     <>
 
@@ -369,7 +463,9 @@ const ApproachSectionV3 = () => {
           </div>
           
           {/* LEFT - Titles and blue background */}
-          <div className="
+          <div 
+            ref={titlesContainerRef}
+            className="
             relative
             min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
             px-[clamp(14px,4vw,32px)] pt-[clamp(120px,15vw,180px)] pb-[clamp(24px,5vw,48px)]
@@ -386,11 +482,17 @@ const ApproachSectionV3 = () => {
                     onMouseEnter={() => handleItemChange(index)}
                     className="w-full text-left transition-all duration-500"
                   >
-                    <h3 className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
-                      selectedItem === index
-                        ? 'text-[#F2611D] text-[clamp(28px,4vw,64px)] font-bold'
-                        : 'text-white text-[clamp(24px,3.5vw,48px)] font-normal'
-                    } hover:text-[#F2611D] transition-all duration-500 ease-out`}>
+                    <h3 
+                      ref={(el) => { titleRefs.current[index] = el; }}
+                      className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap ${
+                        selectedItem === index
+                          ? 'text-[#F2611D] font-bold'
+                          : 'text-white font-normal'
+                      } hover:text-[#F2611D] transition-all duration-500 ease-out`}
+                      style={{
+                        fontSize: titleFontSizes[index] || (selectedItem === index ? 'clamp(20px,3vw,48px)' : 'clamp(18px,2.5vw,40px)')
+                      }}
+                    >
                       {item.title}
                     </h3>
                   </button>
