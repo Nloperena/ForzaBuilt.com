@@ -362,20 +362,22 @@ const ApproachSectionV3 = () => {
       if (!titleRef) return;
 
       const isSelected = selectedItem === index;
-      // Lower base sizes: selected 20px-48px, unselected 18px-40px
-      const baseMinSize = isSelected ? 20 : 18;
-      const baseMaxSize = isSelected ? 48 : 40;
+      // Uniform base sizes: selected 16px-48px, unselected 14px-44px (closer in size)
+      const baseMinSize = isSelected ? 16 : 14;
+      const baseMaxSize = isSelected ? 48 : 44;
       
       // Use a reference font size for measurement
       const tempFontSize = '200px';
       const originalFontSize = titleRef.style.fontSize;
       const originalDisplay = titleRef.style.display;
+      const originalWhiteSpace = titleRef.style.whiteSpace;
       
       // Temporarily set styles for measurement
       titleRef.style.fontSize = tempFontSize;
       titleRef.style.whiteSpace = 'nowrap';
       titleRef.style.display = 'inline-block';
       titleRef.style.visibility = 'hidden';
+      titleRef.style.width = 'auto';
       
       // Force reflow
       void titleRef.offsetWidth;
@@ -383,22 +385,37 @@ const ApproachSectionV3 = () => {
       const textWidth = titleRef.scrollWidth;
       
       if (textWidth > 0 && availableWidth > 0) {
-        const ratio = availableWidth / textWidth;
-        const calculatedSize = 200 * ratio * 0.95; // 95% to add breathing room
+        // Calculate ratio - use 98% to ensure it fits with a small safety margin
+        const ratio = (availableWidth / textWidth) * 0.98;
+        const calculatedSize = 200 * ratio;
         
         // Clamp between min and max sizes
-        const clampedSize = Math.max(baseMinSize, Math.min(baseMaxSize, calculatedSize));
+        let clampedSize = Math.max(baseMinSize, Math.min(baseMaxSize, calculatedSize));
+        
+        // Verify the calculated size actually fits by testing it
+        titleRef.style.fontSize = `${clampedSize}px`;
+        void titleRef.offsetWidth;
+        const actualWidth = titleRef.scrollWidth;
+        
+        // If it still doesn't fit, shrink further
+        if (actualWidth > availableWidth) {
+          const adjustmentRatio = availableWidth / actualWidth;
+          clampedSize = clampedSize * adjustmentRatio * 0.98; // Extra 2% safety margin
+          clampedSize = Math.max(baseMinSize, clampedSize); // Don't go below minimum
+        }
+        
         newFontSizes[index] = `${clampedSize}px`;
       } else {
-        // Fallback to clamp
-        newFontSizes[index] = isSelected ? 'clamp(20px,3vw,48px)' : 'clamp(18px,2.5vw,40px)';
+        // Fallback to clamp - uniform sizes
+        newFontSizes[index] = isSelected ? 'clamp(16px, 2.5vw + 0.5rem, 48px)' : 'clamp(14px, 2.3vw + 0.5rem, 44px)';
       }
       
       // Restore original styles
       titleRef.style.fontSize = originalFontSize;
-      titleRef.style.whiteSpace = '';
+      titleRef.style.whiteSpace = originalWhiteSpace;
       titleRef.style.display = originalDisplay;
       titleRef.style.visibility = '';
+      titleRef.style.width = '';
     });
 
     setTitleFontSizes(newFontSizes);
@@ -410,20 +427,35 @@ const ApproachSectionV3 = () => {
       updateTitleFontSizes();
     }, 100);
 
+    let resizeTimeoutId: NodeJS.Timeout | null = null;
+
     const resizeObserver = new ResizeObserver(() => {
-      updateTitleFontSizes();
+      // Debounce resize events
+      if (resizeTimeoutId) {
+        clearTimeout(resizeTimeoutId);
+      }
+      resizeTimeoutId = setTimeout(() => {
+        updateTitleFontSizes();
+      }, 50);
     });
 
     if (titlesContainerRef.current) {
       resizeObserver.observe(titlesContainerRef.current);
     }
 
-    window.addEventListener('resize', updateTitleFontSizes);
+    const handleResize = () => {
+      updateTitleFontSizes();
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
       clearTimeout(timeoutId);
+      if (resizeTimeoutId) {
+        clearTimeout(resizeTimeoutId);
+      }
       resizeObserver.disconnect();
-      window.removeEventListener('resize', updateTitleFontSizes);
+      window.removeEventListener('resize', handleResize);
     };
   }, [updateTitleFontSizes]);
 
@@ -456,8 +488,14 @@ const ApproachSectionV3 = () => {
         <div className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
           {/* Main Title - overlays both columns */}
-          <div className="absolute top-[clamp(24px,4vw,48px)] left-0 right-0 w-full text-center px-[clamp(14px,4vw,32px)] z-30 pointer-events-none">
-            <h2 className="text-white text-[clamp(32px,5vw,72px)] font-normal font-poppins leading-tight">
+          <div className="absolute top-[clamp(24px,4vw,48px)] left-0 w-full text-left px-[clamp(14px,4vw,32px)] z-30 pointer-events-none" style={{
+            paddingLeft: 'clamp(14px, 4vw, 32px)'
+          }}>
+            <h2 className="text-white font-normal font-poppins leading-tight" style={{
+              fontSize: 'clamp(28px, 3vw + 0.5rem, 56px)',
+              lineHeight: '1.1',
+              textAlign: 'left'
+            }}>
               Powerful Approach To Customer Success
             </h2>
           </div>
@@ -480,7 +518,8 @@ const ApproachSectionV3 = () => {
                     key={index}
                     onClick={() => handleItemChange(index)}
                     onMouseEnter={() => handleItemChange(index)}
-                    className="w-full text-left transition-all duration-500"
+                    className="w-full text-left"
+                    style={{ transform: 'none' }}
                   >
                     <h3 
                       ref={(el) => { titleRefs.current[index] = el; }}
@@ -488,9 +527,10 @@ const ApproachSectionV3 = () => {
                         selectedItem === index
                           ? 'text-[#F2611D] font-bold'
                           : 'text-white font-normal'
-                      } hover:text-[#F2611D] transition-all duration-500 ease-out`}
+                      }`}
                       style={{
-                        fontSize: titleFontSizes[index] || (selectedItem === index ? 'clamp(20px,3vw,48px)' : 'clamp(18px,2.5vw,40px)')
+                        fontSize: 'clamp(16px, 2vw + 0.5rem, 36px)',
+                        transform: 'none'
                       }}
                     >
                       {item.title}
@@ -585,22 +625,31 @@ const ApproachSectionV3 = () => {
                     {/* Orange bar and title */}
                     <div className="space-y-1">
                       <div className="w-24 h-1 bg-[#F2611D] opacity-70"></div>
-                      <h4 className="text-white text-[clamp(24px,3vw,32px)] font-semibold font-poppins transition-all duration-500">
+                      <h4 className="text-white font-semibold font-poppins transition-all duration-500" style={{
+                        fontSize: 'clamp(18px, 2vw + 0.5rem, 28px)',
+                        lineHeight: '1.2'
+                      }}>
                         {toTitleCase(approachItems[selectedItem].title)}
                       </h4>
                     </div>
                     
                     {/* Paragraph text */}
-                    <p className={`text-white text-[clamp(14px,1.6vw,18px)] leading-relaxed max-w-2xl ${
+                    <p className={`text-white leading-relaxed max-w-2xl ${
                       mode === 'light2' ? 'font-poppins' : ''
-                    }`}>
+                    }`} style={{
+                      fontSize: 'clamp(13px, 1.4vw + 0.25rem, 18px)',
+                      lineHeight: '1.6'
+                    }}>
                       {approachItems[selectedItem].description}
                     </p>
                     
                     {/* Bullet points */}
-                    <ul className={`space-y-1.5 text-white text-[clamp(14px,1.6vw,18px)] ${
+                    <ul className={`space-y-1.5 text-white ${
                       mode === 'light2' ? 'font-poppins' : ''
-                    }`}>
+                    }`} style={{
+                      fontSize: 'clamp(13px, 1.4vw + 0.25rem, 18px)',
+                      lineHeight: '1.6'
+                    }}>
                       {approachItems[selectedItem].bulletPoints.map((point, idx) => (
                         <motion.li
                           key={`${selectedItem}-${idx}`}
