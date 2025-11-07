@@ -165,12 +165,11 @@ const IndustriesSectionAlt = () => {
                             style={{ filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))' }}
                           />
                           <h3
-                            className="font-black font-kallisto text-xl sm:text-2xl text-left cursor-pointer"
+                            className="font-poppins text-xl sm:text-2xl text-left cursor-pointer transition-all duration-300 group-hover:font-bold"
                             style={{
                               lineHeight: 1.1,
                               textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
-                              color: '#ffffff',
-                              fontWeight: 900
+                              color: '#ffffff'
                             }}
                             onMouseEnter={() => {
                               videoRefs.current[index]?.play();
@@ -275,14 +274,11 @@ const IndustriesSectionAlt = () => {
                             }}
                           />
                           <h3
-                            className={`font-black text-left leading-none cursor-pointer ${
-                              mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-                            }`}
+                            className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold"
                             style={{
                               color: '#ffffff',
                               fontSize: 'clamp(1rem, 2.5vw, 2rem)',
-                              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)',
-                              fontWeight: 900
+                              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
                             }}
                             onMouseEnter={() => {
                               videoRefs.current[index]?.play();

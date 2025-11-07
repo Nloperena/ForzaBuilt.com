@@ -59,29 +59,29 @@ const NewsletterSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-stretch max-w-[1500px] mx-auto">
             {/* Newsletter Signup - Primary Focus */}
             <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
-              <div className="p-6 md:p-8 flex-1 flex flex-col">
+              <div className="p-8 md:p-10 lg:p-12 flex-1 flex flex-col">
                 <div className="mb-8">
-                  <h3 className="text-white font-poppins text-2xl md:text-3xl font-bold">Join Our Newsletter</h3>
+                  <h3 className="text-white font-poppins text-3xl md:text-4xl lg:text-5xl font-bold">Join Our Newsletter</h3>
                 </div>
 
-                <div className="space-y-6 mb-8 flex-1">
+                <div className="space-y-8 mb-8 flex-1">
                   <div className="flex items-start gap-4">
                     <svg className="mt-1 size-7 md:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-base md:text-lg font-medium">Early access to new product launches and innovations</p>
+                    <p className="text-white text-lg md:text-xl lg:text-2xl font-medium">Early access to new product launches and innovations</p>
                   </div>
                   <div className="flex items-start gap-4">
                     <svg className="mt-1 size-7 md:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-base md:text-lg font-medium">Exclusive industry insights and technical solutions</p>
+                    <p className="text-white text-lg md:text-xl lg:text-2xl font-medium">Exclusive industry insights and technical solutions</p>
                   </div>
                   <div className="flex items-start gap-4">
                     <svg className="mt-1 size-7 md:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-base md:text-lg font-medium">Expert tips and best practices for your applications</p>
+                    <p className="text-white text-lg md:text-xl lg:text-2xl font-medium">Expert tips and best practices for your applications</p>
                   </div>
                 </div>
 
@@ -123,18 +123,16 @@ const NewsletterSection = () => {
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#F2611D] rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
               </div>
               
-              <div className="p-8 md:p-10 lg:p-12 flex-1 flex flex-col items-center justify-center relative z-10">
-                <div className="text-center w-full">
+              <div className="p-8 md:p-10 lg:p-12 flex-1 flex flex-col relative z-10">
+                <div className="w-full">
                   {/* Large LinkedIn Icon */}
                   <div className="mb-8 flex justify-center">
-                    <div className="p-6 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
-                      <svg className="w-16 h-16 md:w-20 md:h-20 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                      </svg>
-                    </div>
+                    <svg className="w-16 h-16 md:w-20 md:h-20 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
                   </div>
 
-                  <h3 className="text-white font-poppins text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Follow Our LinkedIn</h3>
+                  <h3 className="text-white font-poppins text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center">Follow Our LinkedIn</h3>
                   
                   <p className="text-white/90 text-lg md:text-xl lg:text-2xl mb-8 max-w-lg mx-auto leading-relaxed">
                     Join our professional network for exclusive industry insights, behind-the-scenes content, and expert knowledge.
@@ -143,19 +141,19 @@ const NewsletterSection = () => {
                   {/* Benefits List */}
                   <div className="mb-10 space-y-4 max-w-md mx-auto">
                     <div className="flex items-start gap-4 text-left">
-                      <svg className="mt-1 size-6 md:size-7 flex-shrink-0 text-[#F2611D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="mt-1 size-6 md:size-7 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
                       <p className="text-white text-base md:text-lg font-medium">Industry insights and market trends</p>
                     </div>
                     <div className="flex items-start gap-4 text-left">
-                      <svg className="mt-1 size-6 md:size-7 flex-shrink-0 text-[#F2611D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="mt-1 size-6 md:size-7 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
                       <p className="text-white text-base md:text-lg font-medium">Product launches and innovations</p>
                     </div>
                     <div className="flex items-start gap-4 text-left">
-                      <svg className="mt-1 size-6 md:size-7 flex-shrink-0 text-[#F2611D]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="mt-1 size-6 md:size-7 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
                       <p className="text-white text-base md:text-lg font-medium">Expert tips and best practices</p>
@@ -163,17 +161,14 @@ const NewsletterSection = () => {
                   </div>
                   
                   {/* Large CTA Button */}
-                  <div>
+                  <div className="flex justify-center">
                     <a
                       href="https://linkedin.com/company/forzabuilt"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-4 w-full sm:w-auto px-10 py-5 md:px-12 md:py-6 bg-white hover:bg-white/95 text-[#2c476e] font-bold text-xl md:text-2xl rounded-full transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 transform"
+                      className="inline-flex items-center justify-center w-full sm:w-auto px-10 py-5 md:px-12 md:py-6 bg-white hover:bg-white/95 text-[#2c476e] font-bold text-xl md:text-2xl rounded-full transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 transform"
                       aria-label="Follow ForzaBuilt on LinkedIn"
                     >
-                      <svg className="w-8 h-8 md:w-10 md:h-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                      </svg>
                       <span>Connect on LinkedIn</span>
                     </a>
                   </div>

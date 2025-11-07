@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { BookViewerV3 } from './BookViewerV3';
+import { Link } from 'react-router-dom';
+import PDFViewerV2 from './PDFViewerV2';
 import { useBookViewer } from '@/contexts/BookViewerContext';
 
 interface Brochure {
@@ -10,6 +11,8 @@ interface Brochure {
   coverImage: string;
   pdfUrl: string;
   shelf: 'top' | 'bottom';
+  type?: 'brochure' | 'blog';
+  linkUrl?: string;
 }
 
 type AnimationState = 'idle' | 'reading';
@@ -32,6 +35,11 @@ const LibrarySection = () => {
   }, [animationState]);
 
   const openModal = (brochure: Brochure, event: React.MouseEvent) => {
+    // If it's a blog item, navigate to blog page instead
+    if (brochure.type === 'blog' && brochure.linkUrl) {
+      window.location.href = brochure.linkUrl;
+      return;
+    }
     setSelectedBrochure(brochure);
     setAnimationState('reading');
     setIsBookOpen(true);
@@ -122,8 +130,20 @@ const LibrarySection = () => {
     }
   ];
 
+  // Blog shelf item
+  const blogItem: Brochure = {
+    id: 'articles',
+    title: 'ARTICLES',
+    label: 'Articles & Blog Posts',
+    coverImage: '/Final Resource Files/Articles Brochure Mockup.png',
+    pdfUrl: '',
+    shelf: 'bottom',
+    type: 'blog',
+    linkUrl: '/blog'
+  };
+
   const topShelfBrochures = brochures.filter(b => b.shelf === 'top');
-  const bottomShelfBrochures = brochures.filter(b => b.shelf === 'bottom');
+  const bottomShelfBrochures = [...brochures.filter(b => b.shelf === 'bottom'), blogItem];
 
   const renderShelf = (shelfBrochures: Brochure[], shelfIndex: number) => (
     <div key={shelfIndex} className="relative mb-16 md:mb-20">
@@ -132,17 +152,9 @@ const LibrarySection = () => {
         {/* Brochures positioned above shelf */}
         <div className="flex items-end justify-center gap-4 md:gap-6 lg:gap-8 px-4 relative z-10" style={{ 
 marginBottom: '0' }}>
-        {shelfBrochures.map((brochure, index) => (
-          <motion.div
-            key={brochure.id}
-            className="relative group cursor-pointer flex flex-col items-center"
-            onClick={(e) => openModal(brochure, e)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: (shelfIndex * 0.1) + (index * 0.1), duration: 0.5 }}
-            onMouseEnter={() => setHoveredBrochure(brochure.id)}
-            onMouseLeave={() => setHoveredBrochure(null)}
-          >
+        {shelfBrochures.map((brochure, index) => {
+          const content = (
+            <>
             {/* Brochure Cover */}
             <motion.div
               className="relative"
@@ -173,22 +185,43 @@ marginBottom: '0' }}>
                     objectFit: 'contain'
                   }}
                 />
-                    </div>
-                    
+              </div>
+              
               {/* Name label below brochure */}
-                    <div 
+              <div 
                 className="absolute -bottom-5.5 md:-bottom-4.5 left-1/2 -translate-x-1/2 font-poppins font-bold text-sm md:text-base lg:text-lg text-slate-700 tracking-wide whitespace-nowrap uppercase pointer-events-none z-30"
-                      style={{
+                style={{
                   textShadow: '0 1px 0 rgba(255,255,255,0.7)'
-                      }}
-                    >
+                }}
+              >
                 {brochure.label}
-                  </div>
-                </motion.div>
+              </div>
+            </motion.div>
+            </>
+          );
 
-            {/* Label below brochure removed per request */}
-              </motion.div>
-            ))}
+          return (
+            <motion.div
+              key={brochure.id}
+              className="relative group cursor-pointer flex flex-col items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: (shelfIndex * 0.1) + (index * 0.1), duration: 0.5 }}
+              onMouseEnter={() => setHoveredBrochure(brochure.id)}
+              onMouseLeave={() => setHoveredBrochure(null)}
+            >
+              {brochure.type === 'blog' && brochure.linkUrl ? (
+                <Link to={brochure.linkUrl} className="flex flex-col items-center">
+                  {content}
+                </Link>
+              ) : (
+                <div onClick={(e) => openModal(brochure, e)} className="flex flex-col items-center">
+                  {content}
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
         </div>
 
         {/* Shelf Surface positioned below brochures (SVG asset) */}
@@ -239,10 +272,10 @@ marginBottom: '0' }}>
         )}
       </AnimatePresence>
 
-      {/* Book Viewer - Shows only during reading state */}
+      {/* PDF Viewer - Shows only during reading state */}
       <AnimatePresence>
         {animationState === 'reading' && selectedBrochure && (
-          <BookViewerV3
+          <PDFViewerV2
             pdfUrl={selectedBrochure.pdfUrl}
             bookTitle={selectedBrochure.title}
             bookSubtitle={selectedBrochure.label}

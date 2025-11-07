@@ -3,13 +3,16 @@ import React, { useEffect, useRef, useState } from 'react';
 const ExperienceBetterBanner = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const performanceRef = useRef<HTMLSpanElement>(null);
+  const elevatedRef = useRef<HTMLSpanElement>(null);
   const [fontSize, setFontSize] = useState('clamp(2rem, 5vw, 8rem)');
   const [isVisible, setIsVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     const updateFontSize = () => {
       if (containerRef.current && textRef.current) {
-        // Get the actual container width (should be 100vw)
+        // Get the actual container width
         const containerWidth = containerRef.current.offsetWidth || window.innerWidth;
         if (containerWidth === 0) return;
         
@@ -46,6 +49,29 @@ const ExperienceBetterBanner = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true);
+            setIsAnimating(true);
+            
+            // Restart animations by removing and re-adding animation class
+            if (performanceRef.current && elevatedRef.current) {
+              // Remove animating class first
+              performanceRef.current.classList.remove('animating');
+              elevatedRef.current.classList.remove('animating');
+              
+              // Force reflow
+              void performanceRef.current.offsetWidth;
+              void elevatedRef.current.offsetWidth;
+              
+              // Re-add animating class to restart animation
+              setTimeout(() => {
+                if (performanceRef.current) {
+                  performanceRef.current.classList.add('animating');
+                }
+                if (elevatedRef.current) {
+                  elevatedRef.current.classList.add('animating');
+                }
+              }, 10);
+            }
+            
             // Recalculate font size after animation starts
             setTimeout(() => {
               updateFontSize();
@@ -58,6 +84,31 @@ const ExperienceBetterBanner = () => {
 
     if (containerRef.current) {
       observer.observe(containerRef.current);
+      
+      // Check if already in view on mount
+      const rect = containerRef.current.getBoundingClientRect();
+      const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (isInView) {
+        setIsVisible(true);
+        setIsAnimating(true);
+        // Trigger animation after a brief delay
+        setTimeout(() => {
+          if (performanceRef.current && elevatedRef.current) {
+            performanceRef.current.classList.remove('animating');
+            elevatedRef.current.classList.remove('animating');
+            void performanceRef.current.offsetWidth;
+            void elevatedRef.current.offsetWidth;
+            setTimeout(() => {
+              if (performanceRef.current) {
+                performanceRef.current.classList.add('animating');
+              }
+              if (elevatedRef.current) {
+                elevatedRef.current.classList.add('animating');
+              }
+            }, 10);
+          }
+        }, 100);
+      }
     }
 
     // Initial calculation
@@ -122,37 +173,37 @@ const ExperienceBetterBanner = () => {
         }
         
         .performance-word {
+          opacity: 1;
+        }
+        
+        .performance-word.animating {
           animation: fadeInSlideUp 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
           opacity: 0;
         }
         
-        .performance-word.visible {
+        .elevated-word {
           opacity: 1;
         }
         
-        .elevated-word {
-          animation: fadeInSlideUp 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.15s forwards;
+        .elevated-word.animating {
+          animation: fadeInSlideUp 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards;
           opacity: 0;
         }
-        
-        .elevated-word.visible {
-          opacity: 1;
-        }
       `}</style>
-      <div className="bg-white py-8 md:py-12 relative w-full" style={{ overflow: 'visible', zIndex: 5 }}>
-        <div className="w-full h-full flex items-center" style={{ paddingLeft: 0, paddingRight: 0, width: '100vw', overflow: 'visible' }}>
+      <div className="bg-white py-8 md:py-12 relative w-full overflow-x-hidden" style={{ zIndex: 5 }}>
+        <div className="w-full h-full flex items-center overflow-x-hidden">
           <div
             ref={containerRef}
             className={`flex items-center performance-elevated-container ${isVisible ? 'visible' : ''}`}
             style={{ 
-              width: '100vw',
+              width: '100%',
               paddingLeft: '1vw',
               paddingRight: '1vw',
               boxSizing: 'border-box',
               height: 'fit-content',
               justifyContent: 'flex-start',
               position: 'relative',
-              overflow: 'visible'
+              maxWidth: '100%'
             }}
           >
             <div
@@ -164,11 +215,14 @@ const ExperienceBetterBanner = () => {
                 display: 'flex',
                 alignItems: 'center',
                 width: 'fit-content',
-                minWidth: 0
+                minWidth: 0,
+                maxWidth: '100%',
+                overflow: 'hidden'
               }}
             >
               <span
-                className={`text-[#2c476e] font-poppins font-bold leading-[1] inline-block performance-word ${isVisible ? 'visible' : ''}`}
+                ref={performanceRef}
+                className={`text-[#2c476e] font-poppins font-bold leading-[1] inline-block performance-word ${isVisible && isAnimating ? 'animating' : ''}`}
                 style={{
                   fontSize: '1em',
                   fontWeight: 700,
@@ -180,7 +234,8 @@ const ExperienceBetterBanner = () => {
                 Performance
               </span>
               <span
-                className={`text-[#F2611D] font-poppins font-bold leading-[1] inline-block elevated-word ${isVisible ? 'visible' : ''}`}
+                ref={elevatedRef}
+                className={`text-[#F2611D] font-poppins font-bold leading-[1] inline-block elevated-word ${isVisible && isAnimating ? 'animating' : ''}`}
                 style={{
                   fontSize: '1em',
                   fontWeight: 700,

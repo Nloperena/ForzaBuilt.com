@@ -2,7 +2,7 @@ import React from 'react';
 
 const FooterV2 = () => {
   return (
-    <footer className="relative py-8 px-6 overflow-hidden bg-gradient-to-t from-[#477197] to-[#2c476e] text-white">
+    <footer className="relative py-10 md:py-12 px-6 overflow-hidden bg-gradient-to-t from-[#477197] to-[#2c476e] text-white">
       
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -13,7 +13,7 @@ const FooterV2 = () => {
             <img 
               src="/logos/Forza-Eagle-Logo-White.svg"
               alt="Forza Logo"
-              className="h-12 w-auto"
+              className="h-14 w-auto"
             />
             {/* Social Media Icons */}
             <div className="flex items-center gap-2">
@@ -44,7 +44,7 @@ const FooterV2 = () => {
             <img 
               src="/logos/Forza-Eagle-Logo-White.svg"
               alt="Forza Logo"
-              className="h-24 w-auto"
+              className="h-28 w-auto"
             />
           </div>
 

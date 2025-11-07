@@ -14,7 +14,7 @@ const MadeInAmericaSection: React.FC = () => {
             <div className="flex justify-center lg:justify-start h-full">
               <div className="w-full h-full aspect-video lg:aspect-auto overflow-hidden rounded-[3rem] shadow-lg">
                 <video
-                  src="videos\backgrounds\Made in America Video 1.mp4"
+                  src="videos\backgrounds\Manufactured in America.mp4"
                   autoPlay
                   loop
                   muted
