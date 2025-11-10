@@ -5,53 +5,15 @@ const ExperienceBetterBanner = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const performanceRef = useRef<HTMLSpanElement>(null);
   const elevatedRef = useRef<HTMLSpanElement>(null);
-  const [fontSize, setFontSize] = useState('clamp(1.6rem, 4vw, 6.5rem)');
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
-    const updateFontSize = () => {
-      if (containerRef.current && textRef.current) {
-        // Get the actual container width
-        const containerWidth = containerRef.current.offsetWidth || window.innerWidth;
-        if (containerWidth === 0) return;
-        
-        // Reserve space for breathing room (1% on each side for balance)
-        const sidePadding = containerWidth * 0.01;
-        const availableWidth = containerWidth - (sidePadding * 2);
-        
-        // Temporarily set a large font size to measure the full text width
-        const tempFontSize = '200px';
-        const originalFontSize = textRef.current.style.fontSize;
-        textRef.current.style.fontSize = tempFontSize;
-        
-        // Force a reflow to ensure accurate measurement
-        void textRef.current.offsetWidth;
-        
-        // Measure the full width including both words and spacing
-        const textWidth = textRef.current.scrollWidth;
-        
-        if (textWidth > 0 && availableWidth > 0) {
-          // Calculate the font size needed to fit with breathing room
-          const ratio = availableWidth / textWidth;
-          const calculatedSize = 200 * ratio * 0.88; // stronger reduction to prevent clipping
-          setFontSize(`${calculatedSize}px`);
-        }
-        
-        // Restore original font size temporarily (will be overridden by state)
-        textRef.current.style.fontSize = originalFontSize;
-      }
-    };
-
     // Intersection Observer for scroll-triggered animation
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
-            // Recalculate font size after entering view
-            setTimeout(() => {
-              updateFontSize();
-            }, 100);
           } else {
             setIsInView(false);
             // Reset when leaving viewport so it can re-animate when entering again
@@ -71,33 +33,9 @@ const ExperienceBetterBanner = () => {
         setIsInView(true);
       }
     }
-
-    // Initial calculation
-    const timeoutId1 = setTimeout(() => {
-      updateFontSize();
-    }, 100);
-    
-    const timeoutId2 = setTimeout(() => {
-      updateFontSize();
-    }, 300);
-
-    // Resize observer for font size updates
-    const resizeObserver = new ResizeObserver(() => {
-      updateFontSize();
-    });
-
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current);
-    }
-
-    window.addEventListener('resize', updateFontSize);
     
     return () => {
-      clearTimeout(timeoutId1);
-      clearTimeout(timeoutId2);
       observer.disconnect();
-      resizeObserver.disconnect();
-      window.removeEventListener('resize', updateFontSize);
     };
   }, []);
 
@@ -163,9 +101,8 @@ const ExperienceBetterBanner = () => {
           >
             <div
               ref={textRef}
-              className="performance-elevated-text"
+              className="performance-elevated-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl"
               style={{
-                fontSize: fontSize,
                 whiteSpace: 'nowrap',
                 display: 'flex',
                 alignItems: 'center',
