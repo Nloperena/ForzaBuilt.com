@@ -74,7 +74,8 @@ const IndustriesSectionAlt = () => {
         <div className="w-full bg-white pt-0 md:pt-2 px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
             <h2
-              className="text-fluid-heading font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins"
+              className="font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins"
+              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
             >
               Purpose-Built
               Solutions
@@ -85,11 +86,12 @@ const IndustriesSectionAlt = () => {
         <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
             <h2
-              className={`text-fluid-heading font-black ${
+              className={`font-black ${
                 mode === 'light'
                   ? 'text-[#2c476e]'
                   : getTextClasses()
               } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-snug break-words block`}
+              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
             >
               Purpose-Built
               Solutions
@@ -116,7 +118,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full"
                 >
                   <Card
-                    className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#2c476e] to-[#81899f]"
+                    className="shadow-lg rounded-xl lg:rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#2c476e] to-[#81899f]"
                     style={{
                       backgroundImage: 'none',
                       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
@@ -221,7 +223,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className="aspect-[6/4] rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
+                    className="aspect-[6/4] rounded-xl lg:rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
                     style={{
                       backgroundImage: 'none'
                     }}

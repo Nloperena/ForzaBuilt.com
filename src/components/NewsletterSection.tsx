@@ -55,17 +55,17 @@ const NewsletterSection = () => {
               className="text-fluid-heading font-normal text-[#2c476e] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance"
               style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 48px)' }}
             >
-              Built to Keep You Ahead
+              Elevate Your Performance
             </h2>
-            <p className="mt-2 lg:mt-3 text-gray-600 text-xs md:text-sm lg:text-sm max-w-xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
+            
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-stretch max-w-[1000px] mx-auto">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1 h-full flex flex-col rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
+            <div className="order-2 lg:order-1 h-full flex flex-col rounded-xl lg:rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
               <div className="p-4 md:p-5 lg:p-6 flex-1 flex flex-col items-center text-center">
                 {/* Newsletter Icon */}
-                <div className="mb-3 flex justify-center">
+                <div className="mb-3 flex justify-start">
                   <img 
                     src="/images/Newspaper icon.svg" 
                     alt="Newsletter" 
@@ -78,19 +78,19 @@ const NewsletterSection = () => {
                 </div>
 
                 <div className="space-y-2.5 md:space-y-3 mb-5 flex-1 w-full">
-                  <div className="flex items-start gap-2 justify-center">
+                  <div className="flex items-start gap-2 justify-start">
                     <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                     <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Early access to new product launches and innovations</p>
                   </div>
-                  <div className="flex items-start gap-2 justify-center">
+                  <div className="flex items-start gap-2 justify-start">
                     <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                     <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Exclusive industry insights and technical solutions</p>
                   </div>
-                  <div className="flex items-start gap-2 justify-center">
+                  <div className="flex items-start gap-2 justify-start">
                     <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
@@ -111,7 +111,7 @@ const NewsletterSection = () => {
             </div>
 
             {/* Follow Our LinkedIn Section - Secondary Focus */}
-            <div className="order-1 lg:order-2 h-full flex flex-col rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10 relative">
+            <div className="order-1 lg:order-2 h-full flex flex-col rounded-xl lg:rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10 relative">
               {/* Decorative background elements */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
@@ -130,20 +130,20 @@ const NewsletterSection = () => {
                   <h3 className="text-white font-poppins text-lg md:text-xl lg:text-xl font-bold mb-4 text-center">Follow Our LinkedIn</h3>
                   
                   {/* Benefits List */}
-                  <div className="mb-5 space-y-2.5 md:space-y-3 max-w-sm mx-auto">
-                    <div className="flex items-start gap-2 justify-center">
+                  <div className="mb-5 space-y-2.5 md:space-y-3 w-full">
+                    <div className="flex items-start gap-2 justify-start">
                       <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
                       <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Industry insights and market trends</p>
                     </div>
-                    <div className="flex items-start gap-2 justify-center">
+                    <div className="flex items-start gap-2 justify-start">
                       <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
                       <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Product launches and innovations</p>
                     </div>
-                    <div className="flex items-start gap-2 justify-center">
+                    <div className="flex items-start gap-2 justify-start">
                       <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
@@ -173,7 +173,7 @@ const NewsletterSection = () => {
       {/* Newsletter Signup Modal - Simple & Clean */}
       {showNewsletterForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 ">
-          <div className={`relative rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses()} animate-in zoom-in-95 duration-300`}>
+          <div className={`relative rounded-xl lg:rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses()} animate-in zoom-in-95 duration-300`}>
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent z-10 pointer-events-none animate-pulse"></div>
             
