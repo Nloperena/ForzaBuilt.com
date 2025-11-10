@@ -5,7 +5,7 @@ import IndustriesSectionAlt from '@/components/IndustriesSectionAlt';
 import StickyNewsletterSection from '@/components/StickyNewsletterSection';
 import OptimizedGradient from '@/components/common/OptimizedGradient';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
-import ChemistryOverviewSectionV6 from '@/components/ChemistryOverviewSectionV6';
+import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import InteractiveProductsSection from '@/components/InteractiveProductsSection';
 import ApproachSectionV3 from '@/components/ApproachSectionV3';
@@ -20,7 +20,7 @@ const Index = () => {
   const { mode } = useGradientMode();
 
   return (
-    <div className={`relative ${mode === 'light' || mode === 'light2' ? 'bg-white' : ''}`}>
+    <div className={`relative overflow-x-hidden ${mode === 'light' || mode === 'light2' ? 'bg-white' : ''}`}>
       <DynamicMetaTags
         title="ForzaBuilt - Industrial Adhesives, Sealants, Tapes & Cleaning Solutions"
         description="ForzaBuilt delivers premium industrial solutions across transportation, marine, construction, and manufacturing. Expert adhesives, sealants, tapes, and cleaning products for demanding applications."
@@ -124,14 +124,14 @@ const Index = () => {
 
         
 
-        {/* Chemistry Overview Section - Mobile optimized 4-4-3 layout */}
+        {/* Chemistry Overview Section - Mobile optimized unified grid */}
         <section className="relative" style={{ zIndex: 20 }}>
-          <ChemistryOverviewSectionV6 />
+          <ChemistryOverviewSectionV7 />
         </section>
         
 
         {/* Approach Section */}
-        <section className="relative z-20">
+        <section className="relative z-20 mt-0 sm:mt-[-100px]">
           <ApproachSectionV3 />
         </section>
 

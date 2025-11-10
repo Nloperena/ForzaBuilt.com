@@ -42,7 +42,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
         <section className={`bg-gradient-to-b ${getGradientClasses()} pt-16 sm:pt-20`}>
           <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 lg:py-16 [&:has(>div)]:max-w-[2000px]">
             <div className="text-center mx-auto">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-normal text-white mb-1 sm:mb-2 md:mb-4 font-kallisto" style={{ lineHeight: '1.5' }}>
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display font-normal text-white mb-1 sm:mb-2 md:mb-4 font-kallisto leading-snug">
                 <span className="block">High-Performing Industrial Adhesive,</span>
                 <span className="block">Tape & Sealant Solutions</span>
               </h1>
@@ -52,7 +52,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
       )}
 
       
-        <section className="sticky top-0 h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl z-[5]">
+        <section className="sticky top-0 h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl z-[5]">
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
             <VideoSkeleton />
@@ -72,7 +72,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
           {/* Text Overlay for light2 mode */}
           {mode === 'light2' && (
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4" style={{ zIndex: 3 }}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-regular text-white mb-6 sm:mb-8 font-poppins" style={{ lineHeight: '1.2' }}>
+              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display font-regular text-white mb-6 sm:mb-8 font-poppins leading-snug">
                 High-Performing<br />
                 Industrial Adhesive, Tape<br />
                 & Sealant Solutions

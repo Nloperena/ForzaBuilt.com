@@ -45,7 +45,7 @@ const IndustriesSectionAlt = () => {
 
 
   return (
-    <section className={`pt-4 ${
+    <section className={`pt-2 md:pt-3 lg:pt-4 ${
       mode === 'light2'
         ? 'bg-white'
         : mode === 'light'
@@ -73,7 +73,9 @@ const IndustriesSectionAlt = () => {
       {mode === 'light2' ? (
         <div className="w-full bg-white pt-0 md:pt-2 px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins">
+            <h2
+              className="text-fluid-heading font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins"
+            >
               Purpose-Built
               Solutions
             </h2>
@@ -82,11 +84,13 @@ const IndustriesSectionAlt = () => {
       ) : (
         <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black ${
-              mode === 'light'
-                ? 'text-[#2c476e]'
-                : getTextClasses()
-            } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-none break-words block`}>
+            <h2
+              className={`text-fluid-heading font-black ${
+                mode === 'light'
+                  ? 'text-[#2c476e]'
+                  : getTextClasses()
+              } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-snug break-words block`}
+            >
               Purpose-Built
               Solutions
             </h2>
@@ -94,11 +98,11 @@ const IndustriesSectionAlt = () => {
         </div>
       )}
 
-      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-20">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32">
         
         {/* Mobile: Single column list layout */}
         <div className="block md:hidden">
-          <div className="space-y-3 sm:space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
             {industriesArr.map((industry: Industry, index: number) => (
               <div
                 key={industry.title}
@@ -156,7 +160,7 @@ const IndustriesSectionAlt = () => {
                       </div>
                       
                       {/* Content Section */}
-                      <div className="flex-1 flex flex-col justify-center px-4 sm:px-5 py-4">
+                      <div className="flex-1 flex flex-col justify-center px-3 sm:px-4 md:px-5 py-3 sm:py-4">
                         <div className="flex items-center gap-2">
                           <img
                             src={industry.logo}
@@ -165,7 +169,7 @@ const IndustriesSectionAlt = () => {
                             style={{ filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))' }}
                           />
                           <h3
-                            className="font-poppins text-xl sm:text-2xl text-left cursor-pointer transition-all duration-300 group-hover:font-bold"
+                            className="font-poppins text-base sm:text-lg lg:text-xl text-left cursor-pointer transition-all duration-300 group-hover:font-bold"
                             style={{
                               lineHeight: 1.1,
                               textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
@@ -184,7 +188,7 @@ const IndustriesSectionAlt = () => {
                             {toTitleCase(industry.title)}
                           </h3>
                         </div>
-                        <p className="text-xs sm:text-sm font-light text-white/90">
+                        <p className="hidden sm:block text-xs sm:text-sm font-light text-white/90">
                           Specialized solutions for {industry.title.toLowerCase()} applications
                         </p>
                         
@@ -206,7 +210,7 @@ const IndustriesSectionAlt = () => {
 
         {/* Desktop: Grid layout with 3 columns */}
         <div className="sr-only md:not-sr-only md:flex w-full flex-col items-center">
-          <div className="grid grid-cols-3 gap-6 lg:gap-8 w-full max-w-[1800px] mb-4 mx-auto py-4 sm:py-6 lg:py-8">
+          <div className="grid grid-cols-3 gap-3 md:gap-4 lg:gap-4 xl:gap-5 w-full max-w-[1400px] lg:max-w-[1500px] xl:max-w-[1600px] mb-3 md:mb-4 mx-auto py-2 sm:py-3 md:py-3 lg:py-4">
             {industriesArr.map((industry: Industry, index: number) => (
               <div
                 key={industry.title}
@@ -259,16 +263,16 @@ const IndustriesSectionAlt = () => {
                       
                       {/* Text and Icon container - bottom left */}
                       <div
-                        className="absolute bottom-0 left-0 pt-3 sm:pt-4 md:pt-4 lg:pt-5 pr-3 sm:pr-4 md:pr-4 lg:pr-5 pb-0 pl-0"
+                        className="absolute bottom-0 left-0 pt-1.5 sm:pt-2 md:pt-2.5 lg:pt-3 pr-1.5 sm:pr-2 md:pr-2.5 lg:pr-3 pb-0 pl-0"
                         style={{
                           zIndex: 10
                         }}
                       >
-                        <div className="flex items-center gap-2 sm:gap-3">
+                        <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 lg:gap-2.5">
                           <img
                             src={industry.logo}
                             alt={industry.title + ' logo'}
-                            className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 transition-transform duration-150"
+                            className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-16 xl:h-16 2xl:w-20 2xl:h-20 transition-transform duration-150"
                             style={{
                               filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))'
                             }}
@@ -277,7 +281,7 @@ const IndustriesSectionAlt = () => {
                             className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold"
                             style={{
                               color: '#ffffff',
-                              fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+                              fontSize: 'clamp(0.75rem, 1.5vw, 1.25rem)',
                               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
                             }}
                             onMouseEnter={() => {
@@ -303,8 +307,8 @@ const IndustriesSectionAlt = () => {
         </div>
 
         {/* Subtle afterthought text */}
-        <div className="w-full text-center mt-8 pb-16">
-          <p className="text-xl md:text-3xl text-gray-600 font-normal font-poppins">
+        <div className="w-full text-center mt-4 md:mt-6 lg:mt-6 pb-8 md:pb-12 lg:pb-14">
+          <p className="text-lg md:text-2xl lg:text-2xl xl:text-3xl text-gray-600 font-normal font-poppins">
             Don't see your industry?{' '}
             <a
               href="/contact"

@@ -97,7 +97,7 @@ const ThreeColumnServiceCard: React.FC<ThreeColumnServiceCardProps> = ({
         {/* Remove the white glass overlay */}
         <div className="relative z-10">
 
-          <div className="w-full max-w-[1000px] xl:max-w-[1100px] mx-auto flex items-center justify-center px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12 py-12 md:py-14 lg:py-16">
+          <div className="w-full max-w-[1000px] xl:max-w-[1100px] mx-auto flex items-center justify-center px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12 py-8 md:py-10 lg:py-12">
             <div className={cn("grid grid-cols-1 gap-5", displayedColumns.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3")}>
               {displayedColumns.map((col, idx) => {
                 return (

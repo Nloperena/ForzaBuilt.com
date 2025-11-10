@@ -515,7 +515,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     </div>
                     
                     {/* Content Section */}
-                    <div className="w-full lg:w-1/2 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center bg-white/20 backdrop-blur-sm">
+                    <div className="w-full lg:w-1/2 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-center bg-white/20 backdrop-blur-sm">
                       <div className="space-y-3 sm:space-y-4 lg:space-y-6">
                         {/* Heading */}
                         <h2 

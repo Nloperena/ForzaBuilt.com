@@ -137,7 +137,7 @@ const GenericCard: React.FC<GenericCardProps> = ({
     if (!card.imageUrl) {
       // Fallback content when no image is provided
       return (
-        <div className="w-full h-full flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 2xl:p-16 3xl:p-20">
+        <div className="w-full h-full flex items-center justify-center p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
           <div className="text-center">
                             <div className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl 3xl:text-10xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 xl:mb-5 2xl:mb-6 3xl:mb-8">{card.icon}</div>
                 <h3 className={`text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl font-bold ${themeStyles.text} mb-0.5 sm:mb-1 md:mb-2 xl:mb-3 2xl:mb-4 3xl:mb-5`}>{card.title}</h3>
@@ -198,7 +198,7 @@ const GenericCard: React.FC<GenericCardProps> = ({
         }}
       >
         <Card className="w-full h-full backdrop-blur-lg border-white/20 shadow-2xl overflow-hidden rounded-3xl" style={{ background: themeStyles.background }}>
-          <div className="flex flex-col items-center justify-center h-full p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 2xl:p-16 3xl:p-24 text-center">
+          <div className="flex flex-col items-center justify-center h-full p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 text-center">
             {renderContent()}
             {card.imageUrl && (
               <div className="mt-4 md:mt-8 w-full max-w-md">
@@ -223,12 +223,12 @@ const GenericCard: React.FC<GenericCardProps> = ({
       <Card className="w-full h-full backdrop-blur-lg border-white/20 shadow-2xl overflow-hidden rounded-3xl" style={{ background: themeStyles.background }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
           {/* Left Panel */}
-          <div className={`p-3 sm:p-4 md:p-6 lg:p-8 xl:p-16 2xl:p-20 3xl:p-24 flex items-center ${isReversed ? '' : 'bg-white/10'}`}>
+          <div className={`p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 flex items-center ${isReversed ? '' : 'bg-white/10'}`}>
             {isReversed ? renderImage() : renderContent()}
           </div>
 
           {/* Right Panel */}
-          <div className={`p-3 sm:p-4 md:p-6 lg:p-8 xl:p-16 2xl:p-20 3xl:p-24 flex flex-col justify-center ${isReversed ? 'bg-white/10' : ''}`}>
+          <div className={`p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 flex flex-col justify-center ${isReversed ? 'bg-white/10' : ''}`}>
             {isReversed ? renderContent() : renderImage()}
           </div>
         </div>

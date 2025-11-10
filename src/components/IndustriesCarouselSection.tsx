@@ -193,7 +193,7 @@ export const IndustriesCarouselSection = () => {
   }, [isMobile]);
 
   return (
-    <section className="relative py-20 sm:py-28 md:py-36 lg:py-44 xl:py-52 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #1b3764 0%, #1b3764 70%, #F2611D 100%)' }}>
+    <section className="relative py-8 md:py-12 lg:py-16 xl:py-20 w-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #1b3764 0%, #1b3764 70%, #F2611D 100%)' }}>
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#1b3764]/80 via-[#1b3764]/60 to-[#1b3764]/80"></div>
       <div className="absolute -top-[61%] -right-[85%] w-[150%] h-[100vh] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#F2611D] via-[#F2611D]/90 to-transparent blur-[60px] pointer-events-none" />

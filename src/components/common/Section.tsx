@@ -25,10 +25,10 @@ const Section: React.FC<SectionProps> = ({
   };
 
   const paddingClasses = {
-    sm: 'py-8',
-    md: 'py-12',
-    lg: 'py-16',
-    xl: 'py-20',
+    sm: 'py-6',
+    md: 'py-8',
+    lg: 'py-12',
+    xl: 'py-16',
   };
 
   const maxWidthClasses = {

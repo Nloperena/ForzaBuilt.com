@@ -492,8 +492,8 @@ const ApproachSectionV3 = () => {
             paddingLeft: 'clamp(14px, 4vw, 32px)'
           }}>
             <div className="inline-flex flex-col items-start gap-[clamp(8px,1.5vw,18px)]">
-              <h2 className="text-white font-normal font-poppins leading-tight" style={{
-                fontSize: 'clamp(28px, 2.5vw + 0.5rem, 72px)',
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-normal font-poppins leading-tight" style={{
+                fontSize: 'clamp(24px, 2.5vw + 0.5rem, 64px)',
                 lineHeight: '1.1',
                 textAlign: 'left'
               }}>
@@ -629,7 +629,7 @@ const ApproachSectionV3 = () => {
                     <div className="space-y-1">
                       <div className="w-24 h-1 bg-[#F2611D] opacity-70"></div>
                       <h4 className="text-white font-semibold font-poppins transition-all duration-500" style={{
-                        fontSize: 'clamp(18px, 1.7vw + 0.5rem, 36px)',
+                        fontSize: 'clamp(16px, 1.5vw + 0.5rem, 32px)',
                         lineHeight: '1.2'
                       }}>
                         {toTitleCase(approachItems[selectedItem].title)}
@@ -640,7 +640,7 @@ const ApproachSectionV3 = () => {
                     <p className={`text-white leading-relaxed max-w-2xl ${
                       mode === 'light2' ? 'font-poppins' : ''
                     }`} style={{
-                      fontSize: 'clamp(13px, 1.4vw + 0.25rem, 18px)',
+                      fontSize: 'clamp(12px, 1.2vw + 0.25rem, 16px)',
                       lineHeight: '1.6'
                     }}>
                       {approachItems[selectedItem].description}
@@ -650,7 +650,7 @@ const ApproachSectionV3 = () => {
                     <ul className={`space-y-1.5 text-white ${
                       mode === 'light2' ? 'font-poppins' : ''
                     }`} style={{
-                      fontSize: 'clamp(13px, 1.4vw + 0.25rem, 18px)',
+                      fontSize: 'clamp(12px, 1.2vw + 0.25rem, 16px)',
                       lineHeight: '1.6'
                     }}>
                       {approachItems[selectedItem].bulletPoints.map((point, idx) => (

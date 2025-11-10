@@ -101,7 +101,7 @@ const ExperienceBetterBanner = () => {
           >
             <div
               ref={textRef}
-              className="performance-elevated-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl"
+              className="performance-elevated-text text-fluid-display"
               style={{
                 whiteSpace: 'nowrap',
                 display: 'flex',

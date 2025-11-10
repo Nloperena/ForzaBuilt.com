@@ -121,6 +121,10 @@ export default {
 			maxWidth: {
 				'6xl': '135rem',
 			},
+			fontSize: {
+				'fluid-display': 'clamp(2.5rem, 6vw + 1rem, 4.5rem)', // For main page titles
+				'fluid-heading': 'clamp(2rem, 4vw + 1rem, 3rem)',    // For secondary section titles
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],

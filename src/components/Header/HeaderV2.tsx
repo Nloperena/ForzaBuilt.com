@@ -27,8 +27,13 @@ const industriesItems: MenuItem[] = industriesData.slice(0, 6).map((ind) => ({
 }));
 
 const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?: 'default' | 'industries' }> = ({ items, widthClass = 'w-[760px]', variant = 'default' }) => {
+  // Determine responsive width based on variant
+  const responsiveWidth = variant === 'industries' 
+    ? 'w-[1000px] lg:w-[1000px] xl:w-[1200px]'
+    : 'w-[700px] lg:w-[700px] xl:w-[880px]';
+  
   return (
-    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${widthClass} ${variant === 'default' ? 'rounded-lg' : 'rounded-lg'} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-20`}> 
+    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${responsiveWidth} ${variant === 'default' ? 'rounded-lg' : 'rounded-lg'} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-20`}> 
               {variant === 'industries' ? (
         <div className="grid grid-cols-6">
           {items.map((it, idx) => (
@@ -39,11 +44,11 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-3 py-6 px-6 transition-colors hover:bg-[#F2611D]">
+              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-2 lg:gap-2.5 xl:gap-3 py-4 lg:py-5 xl:py-6 px-4 lg:px-5 xl:px-6 transition-colors hover:bg-[#F2611D]">
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="w-14 h-14 object-contain" />
+                  <img src={it.iconSrc} alt="" className="w-12 h-12 lg:w-14 lg:h-14 object-contain" />
                 ) : null}
-                <span className="font-poppins text-xl font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
+                <span className="font-poppins text-lg lg:text-xl font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
               </Link>
             </motion.div>
@@ -59,11 +64,11 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-3 py-6 px-6 min-h-[120px] transition-colors hover:bg-[#F2611D]">
+              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-2 lg:gap-2.5 xl:gap-3 py-4 lg:py-5 xl:py-6 px-4 lg:px-5 xl:px-6 min-h-[100px] lg:min-h-[110px] xl:min-h-[120px] transition-colors hover:bg-[#F2611D]">
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="hidden md:block w-8 h-8 object-contain" />
+                  <img src={it.iconSrc} alt="" className="hidden md:block w-7 h-7 lg:w-8 lg:h-8 object-contain" />
                 ) : null}
-                <span className="font-poppins text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
+                <span className="font-poppins text-base lg:text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
                 <span className="absolute right-0 top-0 h-full w-px bg-white/20" aria-hidden />
               </Link>
             </motion.div>
@@ -127,43 +132,43 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   return (
     <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''}`}> 
        <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4">
-         <div className="h-24 md:h-28 flex items-center justify-between">
+         <div className="h-20 md:h-24 lg:h-20 xl:h-28 flex items-center justify-between">
           {/* Left logo */}
           <div className="flex items-center">
             {/* Use white logo on transparent home top; blue when scrolled/white bg */}
-            <Logo className="h-16 md:h-20 lg:h-24 w-auto mt-2 md:mt-3" isWhiteBackground={!isTransparent && (isLight || isScrolled)} />
+            <Logo className="h-14 md:h-16 lg:h-16 xl:h-24 w-auto mt-2 md:mt-3" isWhiteBackground={!isTransparent && (isLight || isScrolled)} />
           </div>
 
           {/* Center nav */}
-          <div className="hidden lg:flex items-center gap-6 relative">
+          <div className="hidden lg:flex items-center gap-3 lg:gap-4 xl:gap-6 relative">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className={`px-4 py-2 rounded-md font-normal text-[17px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Products ▾</Link>
+              <Link to="/products" className={`px-2 lg:px-3 xl:px-4 py-1.5 lg:py-2 rounded-md font-normal text-[14px] lg:text-[15px] xl:text-[17px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-20 relative">
-                  <HoverDropdown items={productsItems} widthClass="w-[880px]" />
+                  <HoverDropdown items={productsItems} variant="default" />
                 </div>
               </div>
             </div>
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className={`px-4 py-2 rounded-md font-normal text-[17px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Industries ▾</Link>
+              <Link to="/industries" className={`px-2 lg:px-3 xl:px-4 py-1.5 lg:py-2 rounded-md font-normal text-[14px] lg:text-[15px] xl:text-[17px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-20 relative">
-                  <HoverDropdown items={industriesItems} widthClass="w-[1200px]" variant="industries" />
+                  <HoverDropdown items={industriesItems} variant="industries" />
                 </div>
               </div>
             </div>
 
-            <Link to="/about" className={`px-3 py-2 rounded-md font-normal text-[17px] capitalize ${baseNavText} hover:font-bold`}>About</Link>
-            <Link to="/blog" className={`px-3 py-2 rounded-md font-normal text-[17px] capitalize ${baseNavText} hover:font-bold`}>Blog</Link>
+            <Link to="/about" className={`px-1.5 lg:px-2 xl:px-3 py-1.5 lg:py-2 rounded-md font-normal text-[14px] lg:text-[15px] xl:text-[17px] capitalize ${baseNavText} hover:font-bold`}>About</Link>
+            <Link to="/blog" className={`px-1.5 lg:px-2 xl:px-3 py-1.5 lg:py-2 rounded-md font-normal text-[14px] lg:text-[15px] xl:text-[17px] capitalize ${baseNavText} hover:font-bold`}>Blog</Link>
           </div>
 
           {/* Right actions */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-3 lg:gap-4 xl:gap-6">
             <SearchBar />
-            <Link to="/contact" className="rounded-full bg-[#F2611D] text-white px-6 py-3 text-base font-medium hover:bg-[#F2611D]/90">Contact Us</Link>
+            <Link to="/contact" className="rounded-full bg-[#F2611D] text-white px-3 lg:px-4 xl:px-6 py-1.5 lg:py-2 xl:py-3 text-xs lg:text-sm xl:text-base font-medium hover:bg-[#F2611D]/90">Contact Us</Link>
           </div>
 
           {/* Mobile */}

@@ -146,12 +146,27 @@ const LibrarySection = () => {
   const bottomShelfBrochures = [...brochures.filter(b => b.shelf === 'bottom'), blogItem];
 
   const renderShelf = (shelfBrochures: Brochure[], shelfIndex: number) => (
-    <div key={shelfIndex} className="relative mb-16 md:mb-20">
+    <div key={shelfIndex} className="relative" style={{ marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
       {/* Container with brochures positioned above shelf */}
-      <div className="relative pb-24">
-        {/* Brochures positioned above shelf */}
-        <div className="flex items-end justify-center gap-4 md:gap-6 lg:gap-8 px-4 relative z-10" style={{ 
-marginBottom: '0' }}>
+      <div className="relative">
+        {/* Shelf Surface positioned at bottom */}
+        <img
+          src="/Final Resource Files/Shelf.svg"
+          alt="Shelf"
+          className="absolute bottom-0 left-0 right-0 w-full"
+          style={{ 
+            zIndex: 1,
+            height: 'clamp(4rem, 8vw, 6rem)',
+            objectFit: 'cover'
+          }}
+          onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/Final Resource Files/Shelf.png'; }}
+        />
+        
+        {/* Brochures positioned to sit on shelf */}
+        <div className="flex items-end justify-center px-4 relative z-10" style={{ 
+          paddingBottom: 'clamp(4rem, 8vw, 6rem)',
+          gap: 'clamp(1rem, 2vw, 2rem)'
+        }}>
         {shelfBrochures.map((brochure, index) => {
           const content = (
             <>
@@ -159,7 +174,7 @@ marginBottom: '0' }}>
             <motion.div
               className="relative"
               style={{
-                width: 'clamp(160px, 18vw, 240px)',
+                width: 'clamp(120px, 15vw, 240px)',
                 perspective: '1000px'
               }}
               animate={{
@@ -170,7 +185,7 @@ marginBottom: '0' }}>
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               <div
-                className="relative overflow-hidden"
+                className="relative overflow-hidden aspect-[3/4]"
                 style={{
                   transformStyle: 'preserve-3d',
                   boxShadow: 'none'
@@ -180,17 +195,16 @@ marginBottom: '0' }}>
                 <img
                   src={brochure.coverImage}
                   alt={brochure.label}
-                  className="w-full h-auto block"
-                  style={{
-                    objectFit: 'contain'
-                  }}
+                  className="w-full h-full object-contain block"
                 />
               </div>
               
               {/* Name label below brochure */}
               <div 
-                className="absolute -bottom-5.5 md:-bottom-4.5 left-1/2 -translate-x-1/2 font-poppins font-bold text-sm md:text-base lg:text-lg text-slate-700 tracking-wide whitespace-nowrap uppercase pointer-events-none z-30"
+                className="absolute left-1/2 -translate-x-1/2 font-poppins font-bold text-slate-700 tracking-wide whitespace-nowrap uppercase pointer-events-none z-30"
                 style={{
+                  bottom: 'clamp(-1.5rem, -3vw, -1.25rem)',
+                  fontSize: 'clamp(0.75rem, 1.2vw, 1rem)',
                   textShadow: '0 1px 0 rgba(255,255,255,0.7)'
                 }}
               >
@@ -223,30 +237,19 @@ marginBottom: '0' }}>
           );
         })}
         </div>
-
-        {/* Shelf Surface positioned below brochures (SVG asset) */}
-        <img
-          src="/Final Resource Files/Shelf.svg"
-          alt="Shelf"
-          className="absolute bottom-0 left-0 right-0 w-full h-24"
-          style={{ zIndex: 1 }}
-          onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/Final Resource Files/Shelf.png'; }}
-        />
       </div>
     </div>
   );
 
   return (
-    <section className="relative bg-white py-16 md:py-20 px-4 overflow-hidden">
+    <section className="relative bg-white py-8 md:py-12 lg:py-16 px-4 overflow-hidden">
       {/* Section Header */}
       <div className="max-w-7xl mx-auto text-center mb-12 md:mb-16">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal text-[#2c476e] mb-4 font-poppins">
+        <h2
+          className="text-fluid-heading font-normal text-[#2c476e] mb-4 font-poppins"
+        >
           Resource Library
         </h2>
-        <div className="text-base md:text-lg lg:text-xl text-gray-600 font-normal font-poppins max-w-3xl mx-auto space-y-1">
-          <p>Explore our industry brochures and technical resources.</p>
-          <p>Click any brochure to view or download.</p>
-        </div>
       </div>
 
       {/* Shelves Container */}
