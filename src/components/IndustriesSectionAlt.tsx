@@ -123,6 +123,15 @@ const IndustriesSectionAlt = () => {
                       backgroundColor: mode === 'light' || mode === 'light2' ? 'transparent' : 'transparent',
                       background: 'linear-gradient(to bottom, #2c476e, #81899f)'
                     }}
+                    onMouseEnter={() => {
+                      videoRefs.current[index]?.play();
+                    }}
+                    onMouseLeave={() => {
+                      if (videoRefs.current[index]) {
+                        videoRefs.current[index].pause();
+                        videoRefs.current[index].currentTime = 0;
+                      }
+                    }}
                   >
                     <div className="flex h-28 sm:h-32">
                       {/* Video/Image Section */}
@@ -175,15 +184,6 @@ const IndustriesSectionAlt = () => {
                               textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
                               color: '#ffffff'
                             }}
-                            onMouseEnter={() => {
-                              videoRefs.current[index]?.play();
-                            }}
-                            onMouseLeave={() => {
-                              if (videoRefs.current[index]) {
-                                videoRefs.current[index].pause();
-                                videoRefs.current[index].currentTime = 0;
-                              }
-                            }}
                           >
                             {toTitleCase(industry.title)}
                           </h3>
@@ -224,6 +224,15 @@ const IndustriesSectionAlt = () => {
                     className="aspect-[6/4] rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
                     style={{
                       backgroundImage: 'none'
+                    }}
+                    onMouseEnter={() => {
+                      videoRefs.current[index]?.play();
+                    }}
+                    onMouseLeave={() => {
+                      if (videoRefs.current[index]) {
+                        videoRefs.current[index].pause();
+                        videoRefs.current[index].currentTime = 0;
+                      }
                     }}
                   >
                     <div className="relative w-full h-full overflow-hidden">
@@ -283,15 +292,6 @@ const IndustriesSectionAlt = () => {
                               color: '#ffffff',
                               fontSize: 'clamp(0.75rem, 1.5vw, 1.25rem)',
                               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
-                            }}
-                            onMouseEnter={() => {
-                              videoRefs.current[index]?.play();
-                            }}
-                            onMouseLeave={() => {
-                              if (videoRefs.current[index]) {
-                                videoRefs.current[index].pause();
-                                videoRefs.current[index].currentTime = 0;
-                              }
                             }}
                           >
                             {toTitleCase(industry.title)}
