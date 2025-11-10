@@ -7,8 +7,9 @@ import OptimizedGradient from '@/components/common/OptimizedGradient';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
-import InteractiveProductsSection from '@/components/InteractiveProductsSection';
+import InteractiveProductsSectionV4 from '@/components/InteractiveProductsSectionV4';
 import ApproachSectionV3 from '@/components/ApproachSectionV3';
+import ApproachHeading from '@/components/ApproachHeading';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
@@ -116,7 +117,7 @@ const Index = () => {
         {/* Products Section Row */}
         <section className="relative z-20">
           {mode === 'light2' ? (
-            <InteractiveProductsSection />
+            <InteractiveProductsSectionV4 />
           ) : (
             <ProductsSectionRow />
           )}
@@ -130,8 +131,11 @@ const Index = () => {
         </section>
         
 
+        {/* Approach Heading */}
+        <ApproachHeading />
+
         {/* Approach Section */}
-        <section className="relative z-20 mt-0 sm:mt-[-100px]">
+        <section className="relative z-20">
           <ApproachSectionV3 />
         </section>
 

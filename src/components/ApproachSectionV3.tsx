@@ -487,29 +487,13 @@ const ApproachSectionV3 = () => {
         {/* Scrollable Content */}
         <div className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
-          {/* Main Title - overlays both columns */}
-          <div className="absolute top-[clamp(24px,4vw,48px)] left-0 w-full text-left px-[clamp(14px,4vw,32px)] z-30 pointer-events-none" style={{
-            paddingLeft: 'clamp(14px, 4vw, 32px)'
-          }}>
-            <div className="inline-flex flex-col items-start gap-[clamp(8px,1.5vw,18px)]">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-normal font-poppins leading-tight" style={{
-                fontSize: 'clamp(24px, 2.5vw + 0.5rem, 64px)',
-                lineHeight: '1.1',
-                textAlign: 'left'
-              }}>
-                Powerful Approach To Customer Success
-              </h2>
-              <div className="h-[3px] bg-[#F2611D]" style={{ width: '50%' }} />
-            </div>
-          </div>
-          
           {/* LEFT - Titles and blue background */}
           <div 
             ref={titlesContainerRef}
             className="
             relative
             min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
-            px-[clamp(14px,4vw,32px)] pt-[clamp(120px,15vw,180px)] pb-[clamp(24px,5vw,48px)]
+            px-[clamp(14px,4vw,32px)] 
             flex items-center justify-center
             [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
             bg-gradient-to-r from-[#2c476e] to-[#477197]

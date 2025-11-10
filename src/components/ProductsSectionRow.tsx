@@ -91,7 +91,7 @@ const ProductsSectionRow = () => {
         </div>
         
         {/* Desktop Row Layout - hidden on mobile */}
-        <div className="hidden md:flex flex-row gap-4 md:gap-5 lg:gap-6 xl:gap-8 justify-center items-center relative z-10">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:flex 2xl:flex-row gap-4 md:gap-5 lg:gap-6 xl:gap-8 justify-center items-start relative z-10 max-w-6xl mx-auto lg:h-[40vh]">
           {products.map((product, index) => {
             const isHovered = hoveredIndex === index;
             const isTapes = product.title === 'TAPES';
@@ -103,14 +103,14 @@ const ProductsSectionRow = () => {
                 <a
                   key={index}
                   href={product.link}
-                  className="group flex-shrink-0"
+                  className="group w-full aspect-square"
                   target="_blank"
                   rel="noopener noreferrer"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10 w-72 h-72 md:w-80 md:h-80 lg:w-80 lg:h-80 flex-shrink-0"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-square group cursor-pointer w-full h-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
                       boxShadow: 'rgba(0, 0, 0, 0.6) 0px 4px 8px',
@@ -238,12 +238,12 @@ const ProductsSectionRow = () => {
                 <Link
                   key={index}
                   to={`/products/${product.slug}`}
-                  className="group flex-shrink-0"
+                  className="group w-full aspect-square"
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-[3/4] lg:aspect-[4/5] xl:aspect-[1/1] group cursor-pointer w-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10 w-96 h-96 flex-shrink-0"
+                    className="shadow-xl sm:shadow-2xl rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-square group cursor-pointer w-full h-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
                       boxShadow: 'rgba(0, 0, 0, 0.6) 0px 4px 8px',
