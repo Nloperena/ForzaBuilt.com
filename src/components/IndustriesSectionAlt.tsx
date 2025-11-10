@@ -308,7 +308,17 @@ const IndustriesSectionAlt = () => {
 
         {/* Subtle afterthought text */}
         <div className="w-full text-center mt-4 md:mt-6 lg:mt-6 pb-8 md:pb-12 lg:pb-14">
-          <p className="text-lg md:text-2xl lg:text-2xl xl:text-3xl text-gray-600 font-normal font-poppins">
+          <p className="text-base sm:text-lg lg:text-xl font-poppins text-gray-600 font-normal md:hidden">
+            Don't see your industry?{' '}
+            <a
+              href="/contact"
+              className="text-[#F2611D] hover:text-[#F2611D]/80 font-medium transition-colors hover:underline underline-offset-4"
+            >
+              Contact us
+            </a>
+            {''}
+          </p>
+          <p className="hidden md:block font-poppins text-gray-600 font-normal" style={{ fontSize: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
             Don't see your industry?{' '}
             <a
               href="/contact"

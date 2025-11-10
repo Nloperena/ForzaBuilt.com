@@ -3,10 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 const ExperienceBetterBanner = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const typeIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const [isInView, setIsInView] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
   const fullText = 'Performance. Elevated.';
-  const typingSpeed = 100; // milliseconds per character
+  const typingSpeed = 100; // milliseconds per character (standard typewriter speed)
 
   useEffect(() => {
     // Intersection Observer for scroll-triggered animation
@@ -45,23 +46,37 @@ const ExperienceBetterBanner = () => {
   useEffect(() => {
     if (!isInView) {
       setDisplayedText('');
+      if (typeIntervalRef.current) {
+        clearInterval(typeIntervalRef.current);
+        typeIntervalRef.current = null;
+      }
       return;
     }
 
-    let currentIndex = 0;
-    const typeInterval = setInterval(() => {
-      if (currentIndex < fullText.length) {
-        setDisplayedText(fullText.substring(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        clearInterval(typeInterval);
-      }
-    }, typingSpeed);
+    // Add 1 second delay before starting typewriter effect
+    const delayTimeout = setTimeout(() => {
+      let currentIndex = 0;
+      typeIntervalRef.current = setInterval(() => {
+        if (currentIndex < fullText.length) {
+          setDisplayedText(fullText.substring(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          if (typeIntervalRef.current) {
+            clearInterval(typeIntervalRef.current);
+            typeIntervalRef.current = null;
+          }
+        }
+      }, typingSpeed);
+    }, 1000); // 1 second delay
 
     return () => {
-      clearInterval(typeInterval);
+      clearTimeout(delayTimeout);
+      if (typeIntervalRef.current) {
+        clearInterval(typeIntervalRef.current);
+        typeIntervalRef.current = null;
+      }
     };
-  }, [isInView, fullText]);
+  }, [isInView, fullText, typingSpeed]);
 
   // Split the displayed text into "Performance." and "Elevated." parts
   const performanceText = displayedText.substring(0, 13); // "Performance."
@@ -79,49 +94,49 @@ const ExperienceBetterBanner = () => {
           opacity: 1;
         }
       `}</style>
-      <div className="bg-white py-8 md:py-12 relative w-full overflow-x-hidden" style={{ zIndex: 5 }}>
-        <div className="w-full h-full flex items-center justify-center overflow-x-hidden">
+      <div className="bg-white py-8 md:py-12 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
+        <div className="w-full h-full flex items-center justify-center overflow-x-hidden" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <div
             ref={containerRef}
             className="flex items-center justify-center performance-elevated-container"
             style={{ 
               width: '100%',
-              paddingLeft: '1vw',
-              paddingRight: '1vw',
+              maxWidth: '100%',
+              paddingLeft: 'clamp(1rem, 2vw, 2rem)',
+              paddingRight: 'clamp(1rem, 2vw, 2rem)',
               boxSizing: 'border-box',
               height: 'fit-content',
               position: 'relative',
-              maxWidth: '100%'
+              overflowX: 'hidden'
             }}
           >
             <div
               ref={textRef}
-              className="performance-elevated-text text-fluid-display"
+              className="performance-elevated-text"
               style={{
-                whiteSpace: 'nowrap',
+                width: '100%',
+                maxWidth: '100%',
+                overflow: 'hidden',
+                position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                minWidth: 0,
-                maxWidth: '100%',
-                overflow: 'hidden'
+                justifyContent: 'center'
               }}
             >
               {/* Invisible full text placeholder - reserves space to prevent container resize */}
               <span
-                className="text-[#2c476e] font-poppins font-bold leading-[1] inline-block"
+                className="text-[#2c476e] font-poppins font-bold leading-[1]"
                 style={{
-                  fontSize: '1em',
+                  fontSize: 'clamp(1.25rem, 3.5vw + 0.5rem, 3rem)',
                   fontWeight: 700,
                   letterSpacing: '-0.02em',
                   lineHeight: 1,
-                  flexShrink: 0,
                   opacity: 0,
                   pointerEvents: 'none',
-                  position: 'relative',
+                  whiteSpace: 'nowrap',
+                  display: 'inline-block',
                   width: '100%',
-                  height: 'auto'
+                  textAlign: 'center'
                 }}
               >
                 Performance. Elevated.
@@ -131,35 +146,39 @@ const ExperienceBetterBanner = () => {
               <div
                 style={{
                   position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   width: '100%',
-                  height: '100%'
+                  overflow: 'hidden'
                 }}
               >
                 <span
-                  className="text-[#2c476e] font-poppins font-bold leading-[1] inline-block"
+                  className="text-[#2c476e] font-poppins font-bold leading-[1]"
                   style={{
-                    fontSize: '1em',
+                    fontSize: 'clamp(1.25rem, 3.5vw + 0.5rem, 3rem)',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
                     lineHeight: 1,
-                    flexShrink: 0
+                    whiteSpace: 'nowrap'
                   }}
                 >
                   {performanceText}
                 </span>
                 {elevatedText && (
                   <span
-                    className="text-[#F2611D] font-poppins font-bold leading-[1] inline-block"
+                    className="text-[#F2611D] font-poppins font-bold leading-[1]"
                     style={{
-                      fontSize: '1em',
+                      fontSize: 'clamp(1.25rem, 3.5vw + 0.5rem, 3rem)',
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
                       lineHeight: 1,
                       marginLeft: '0.15em',
-                      flexShrink: 0
+                      whiteSpace: 'nowrap'
                     }}
                   >
                     {elevatedText}

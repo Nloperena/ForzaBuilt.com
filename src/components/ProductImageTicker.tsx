@@ -67,12 +67,13 @@ export default function ProductImageTicker({
     <section
       aria-label="Product image ticker"
       className={clsx(
-        "relative w-full py-8 md:py-12 z-20",
+        "relative w-full pt-8 md:pt-12 pb-0 z-20",
         "bg-white",
         className
       )}
       style={{
-        background: 'linear-gradient(to bottom, transparent 0%, transparent 50%, #fff 50%, #fff 100%)'
+        background: 'linear-gradient(to bottom, transparent 0%, transparent 50%, #fff 50%, #fff 100%)',
+        paddingBottom: 0
       }}
     >
       <div

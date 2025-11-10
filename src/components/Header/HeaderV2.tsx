@@ -44,18 +44,18 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-2 lg:gap-2.5 xl:gap-3 py-4 lg:py-5 xl:py-6 px-4 lg:px-5 xl:px-6 transition-colors hover:bg-[#F2611D]">
+              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-1 lg:gap-1.5 xl:gap-2 py-4 lg:py-5 xl:py-6 px-4 lg:px-5 xl:px-6 transition-colors hover:bg-[#F2611D]">
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="w-12 h-12 lg:w-14 lg:h-14 object-contain" />
+                  <img src={it.iconSrc} alt="" className="w-8 h-8 lg:w-10 lg:h-10 object-contain" />
                 ) : null}
-                <span className="font-poppins text-lg lg:text-xl font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
+                <span className="font-poppins text-base lg:text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
               </Link>
             </motion.div>
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-4 divide-x divide-white/20">
+        <div className="grid grid-cols-4">
           {items.map((it, idx) => (
             <motion.div
               key={it.label}
@@ -69,7 +69,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
                   <img src={it.iconSrc} alt="" className="hidden md:block w-7 h-7 lg:w-8 lg:h-8 object-contain" />
                 ) : null}
                 <span className="font-poppins text-base lg:text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
-                <span className="absolute right-0 top-0 h-full w-px bg-white/20" aria-hidden />
+                {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
               </Link>
             </motion.div>
           ))}

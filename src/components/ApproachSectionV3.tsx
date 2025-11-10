@@ -483,7 +483,7 @@ const ApproachSectionV3 = () => {
         
 
         {/* Progress bar */}
-        <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
+        <div className="absolute bottom-0 t-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
         {/* Scrollable Content */}
         <div className="relative z-10">
@@ -500,7 +500,7 @@ const ApproachSectionV3 = () => {
             bg-gradient-to-r from-[#2c476e] to-[#477197]
           ">
             <div className="w-full">
-              <div className="space-y-[clamp(8px,1.5vw,36px)]">
+              <div className="space-y-[clamp(8px,1.5vw,10px)]">
                 {approachItems.map((item, index) => (
                   <button
                     key={index}

@@ -19,7 +19,7 @@ const Logo: React.FC<LogoProps> = ({ className = 'h-10 w-auto', isScrolled = fal
     : '/logos/Forza-Eagle-Logo-White.svg';
 
   return (
-    <Link to="/" className="flex items-center">
+    <Link to="/" className="flex items-center pb-1 md:pb-1.5">
       <img 
         src={logoSrc}
         alt="Forza Logo"
