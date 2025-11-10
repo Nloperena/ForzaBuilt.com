@@ -164,7 +164,7 @@ const ChemistryOverviewSectionV7: React.FC = () => {
       <ExperienceBetterBanner />
       <section className="w-full relative overflow-hidden
                         pt-8 sm:pt-10 md:pt-12 lg:pt-16
-                        pb-12 sm:pb-14 md:pb-16 lg:pb-20 xl:pb-24
+                        pb-4 sm:pb-6 md:pb-8 lg:pb-10
                         px-2 sm:px-4 md:px-6 lg:px-8
                         bg-gradient-to-bl from-[#477197] to-[#2c476e]">
       
@@ -203,7 +203,7 @@ const ChemistryOverviewSectionV7: React.FC = () => {
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
                     className="
-                      w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20
+                      w-9 h-9 sm:w-11 sm:h-11 md:w-16 md:h-16 lg:w-24 lg:h-24 xl:w-32 xl:h-32
                       object-contain
                       drop-shadow-lg
                       group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)]

@@ -131,8 +131,7 @@ const Index = () => {
         </section>
         
 
-        {/* Approach Heading */}
-        <ApproachHeading />
+       
 
         {/* Approach Section */}
         <section className="relative z-20">

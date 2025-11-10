@@ -116,7 +116,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full"
                 >
                   <Card
-                    className="shadow-lg rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#2c476e] to-[#81899f]"
+                    className="shadow-lg rounded-lg border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#2c476e] to-[#81899f]"
                     style={{
                       backgroundImage: 'none',
                       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
@@ -221,7 +221,7 @@ const IndustriesSectionAlt = () => {
                   className="block w-full h-full"
                 >
                   <Card
-                    className="aspect-[6/4] rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
+                    className="aspect-[6/4] rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
                     style={{
                       backgroundImage: 'none'
                     }}
@@ -272,7 +272,7 @@ const IndustriesSectionAlt = () => {
                           <img
                             src={industry.logo}
                             alt={industry.title + ' logo'}
-                            className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-16 xl:h-16 2xl:w-20 2xl:h-20 transition-transform duration-150"
+                            className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-14 xl:h-14 2xl:w-16 2xl:h-16 transition-transform duration-150"
                             style={{
                               filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))'
                             }}

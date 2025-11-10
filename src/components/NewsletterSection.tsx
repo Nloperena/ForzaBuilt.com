@@ -14,8 +14,7 @@ const NewsletterSection = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleNewsletterSubmitInline = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleNewsletterSubmitInline = async () => {
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -46,134 +45,122 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <section className="relative py-8 sm:py-12 lg:py-10 xl:py-16 bg-[#f3f5f7]">
+      <section className="relative py-4 sm:py-6 md:py-8 lg:py-10 bg-[#f3f5f7]">
         {/* Edge triangles positioned at left and right viewport edges */}
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-6">
-          <div className="text-center mb-6 md:mb-8 lg:mb-10 relative">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-4 md:mb-6 lg:mb-8 relative">
 
             <h2
               className="text-fluid-heading font-normal text-[#2c476e] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance"
+              style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 48px)' }}
             >
               Built to Keep You Ahead
             </h2>
-            <p className="mt-3 lg:mt-4 text-gray-600 text-sm md:text-base lg:text-base max-w-2xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
+            <p className="mt-2 lg:mt-3 text-gray-600 text-xs md:text-sm lg:text-sm max-w-xl mx-auto font-poppins relative z-10">Get exclusive access to industry insights, product innovations, and expert application tips delivered to your inbox.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 lg:gap-6 items-stretch max-w-[1500px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-stretch max-w-[1000px] mx-auto">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1 h-full flex flex-col rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
-              <div className="p-4 md:p-6 lg:p-7 xl:p-9 flex-1 flex flex-col">
-                <div className="mb-6 lg:mb-7 xl:mb-8">
-                  <h3 className="text-white font-poppins text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold">Join Our Newsletter</h3>
+            <div className="order-2 lg:order-1 h-full flex flex-col rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
+              <div className="p-4 md:p-5 lg:p-6 flex-1 flex flex-col items-center text-center">
+                {/* Newsletter Icon */}
+                <div className="mb-3 flex justify-center">
+                  <img 
+                    src="/images/Newspaper icon.svg" 
+                    alt="Newsletter" 
+                    className="w-10 h-10 md:w-12 md:h-12 text-white"
+                  />
                 </div>
 
-                <div className="space-y-5 lg:space-y-6 xl:space-y-8 mb-6 lg:mb-7 xl:mb-8 flex-1">
-                  <div className="flex items-start gap-3 lg:gap-3.5 xl:gap-4">
-                    <svg className="mt-1 size-6 md:size-6.5 lg:size-7 xl:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div className="mb-4">
+                  <h3 className="text-white font-poppins text-lg md:text-xl lg:text-xl font-bold">Join Our Newsletter</h3>
+                </div>
+
+                <div className="space-y-2.5 md:space-y-3 mb-5 flex-1 w-full">
+                  <div className="flex items-start gap-2 justify-center">
+                    <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-medium">Early access to new product launches and innovations</p>
+                    <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Early access to new product launches and innovations</p>
                   </div>
-                  <div className="flex items-start gap-3 lg:gap-3.5 xl:gap-4">
-                    <svg className="mt-1 size-6 md:size-6.5 lg:size-7 xl:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="flex items-start gap-2 justify-center">
+                    <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-medium">Exclusive industry insights and technical solutions</p>
+                    <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Exclusive industry insights and technical solutions</p>
                   </div>
-                  <div className="flex items-start gap-3 lg:gap-3.5 xl:gap-4">
-                    <svg className="mt-1 size-6 md:size-6.5 lg:size-7 xl:size-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="flex items-start gap-2 justify-center">
+                    <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-medium">Expert tips and best practices for your applications</p>
+                    <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Expert tips and best practices for your applications</p>
                   </div>
                 </div>
 
-                <div className="space-y-4 lg:space-y-5 xl:space-y-6 mt-auto">
-                  <form onSubmit={handleNewsletterSubmitInline} className="mt-2 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2.5 lg:gap-3">
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      placeholder="you@company.com"
-                      className="h-10 lg:h-11 px-3 lg:px-4 rounded-lg bg-white text-[#2c476e] placeholder:text-slate-400 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 text-sm lg:text-base"
-                    />
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="h-10 lg:h-11 px-4 lg:px-5 rounded-lg bg-[#F2611D] text-white font-bold hover:bg-[#F2611D]/90 shadow-md transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 disabled:opacity-50 text-sm lg:text-base"
-                    >
-                      {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-                    </button>
-                  </form>
-                  <p className="text-white text-xs lg:text-xs text-center">No spam, unsubscribe at any time</p>
+                <div className="mt-auto w-full flex justify-center">
                   <button
-                    onClick={() => setShowNewsletterForm(true)}
-                    className="text-white hover:text-white text-xs underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                    onClick={handleNewsletterSubmitInline}
+                    disabled={isSubmitting}
+                    className="rounded-full bg-[#F2611D] text-white px-3 lg:px-4 xl:px-6 py-1.5 lg:py-2 xl:py-3 text-xs lg:text-sm xl:text-base font-medium hover:bg-[#F2611D]/90 transition-all duration-300 disabled:opacity-50"
                   >
-                    Or use detailed form
+                    {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Follow Our LinkedIn Section - Secondary Focus */}
-            <div className="order-1 lg:order-2 h-full flex flex-col rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10 relative">
+            <div className="order-1 lg:order-2 h-full flex flex-col rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10 relative">
               {/* Decorative background elements */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#F2611D] rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
               </div>
               
-              <div className="p-4 md:p-6 lg:p-7 xl:p-9 flex-1 flex flex-col relative z-10">
+              <div className="p-4 md:p-5 lg:p-6 flex-1 flex flex-col items-center text-center relative z-10">
                 <div className="w-full">
                   {/* Large LinkedIn Icon */}
-                  <div className="mb-6 lg:mb-7 xl:mb-8 flex justify-center">
-                      <svg className="w-14 h-14 md:w-16 md:h-16 lg:w-16 lg:h-16 xl:w-20 xl:h-20 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="mb-3 flex justify-center">
+                      <svg className="w-10 h-10 md:w-12 md:h-12 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                       </svg>
                   </div>
 
-                  <h3 className="text-white font-poppins text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold mb-3 lg:mb-4 text-center">Follow Our LinkedIn</h3>
+                  <h3 className="text-white font-poppins text-lg md:text-xl lg:text-xl font-bold mb-4 text-center">Follow Our LinkedIn</h3>
                   
-                  <p className="text-white/90 text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-6 lg:mb-7 xl:mb-8 max-w-lg mx-auto leading-relaxed">
-                    Join our professional network for exclusive industry insights, behind-the-scenes content, and expert knowledge.
-                  </p>
-
                   {/* Benefits List */}
-                  <div className="mb-8 lg:mb-9 xl:mb-10 grid grid-cols-2 gap-x-3 lg:gap-x-4 gap-y-2.5 lg:gap-y-3 max-w-md mx-auto">
-                    <div className="flex items-start gap-2 text-left">
-                      <svg className="mt-1 size-4.5 md:size-5 lg:size-5 xl:size-6 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="mb-5 space-y-2.5 md:space-y-3 max-w-sm mx-auto">
+                    <div className="flex items-start gap-2 justify-center">
+                      <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg font-medium">Industry insights and market trends</p>
+                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Industry insights and market trends</p>
                     </div>
-                    <div className="flex items-start gap-2 text-left">
-                      <svg className="mt-1 size-4.5 md:size-5 lg:size-5 xl:size-6 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div className="flex items-start gap-2 justify-center">
+                      <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg font-medium">Product launches and innovations</p>
+                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Product launches and innovations</p>
                     </div>
-                    <div className="flex items-start gap-2 text-left col-span-2 md:col-span-1">
-                      <svg className="mt-1 size-4.5 md:size-5 lg:size-5 xl:size-6 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div className="flex items-start gap-2 justify-center">
+                      <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg font-medium">Expert tips and best practices</p>
+                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Expert tips and best practices</p>
                     </div>
                   </div>
                   
                   {/* Large CTA Button */}
-                  <div className="flex justify-center">
+                  <div className="flex justify-center mt-auto">
                     <a
                       href="https://linkedin.com/company/forzabuilt"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 md:px-10 md:py-4.5 lg:px-10 lg:py-5 xl:px-12 xl:py-6 bg-white hover:bg-white/95 text-[#2c476e] font-bold text-lg md:text-xl lg:text-xl xl:text-2xl rounded-full transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 transform"
+                      className="rounded-full bg-[#F2611D] text-white px-3 lg:px-4 xl:px-6 py-1.5 lg:py-2 xl:py-3 text-xs lg:text-sm xl:text-base font-medium hover:bg-[#F2611D]/90 transition-all duration-300"
                       aria-label="Follow ForzaBuilt on LinkedIn"
                     >
-                      <span>Connect on LinkedIn</span>
+                      Follow Us
                     </a>
                   </div>
                 </div>
@@ -186,7 +173,7 @@ const NewsletterSection = () => {
       {/* Newsletter Signup Modal - Simple & Clean */}
       {showNewsletterForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 ">
-          <div className={`relative rounded-2xl sm:rounded-3xl md:rounded-[2rem] lg:rounded-[2.5rem] shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses()} animate-in zoom-in-95 duration-300`}>
+          <div className={`relative rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses()} animate-in zoom-in-95 duration-300`}>
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent z-10 pointer-events-none animate-pulse"></div>
             

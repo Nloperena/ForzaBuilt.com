@@ -4,6 +4,7 @@ import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import MSHeroBanner from '@/components/MSHeroBanner';
 import HeroVideoSectionV2 from './HeroVideoSectionV2';
+import ApproachHeading from './ApproachHeading';
 
 interface ApproachItem {
   title: string;
@@ -471,12 +472,12 @@ const ApproachSectionV3 = () => {
     <>
 
       
-      {/* MS Hero Banner */}
    
       <div className="relative z-20">
           <HeroVideoSectionV2 />
         </div>
-
+ {/* Approach Heading */}
+ <ApproachHeading />
       {/* Isolated Section Container */}
       <section ref={sectionRef} className="relative isolate">
         
@@ -499,7 +500,7 @@ const ApproachSectionV3 = () => {
             bg-gradient-to-r from-[#2c476e] to-[#477197]
           ">
             <div className="w-full">
-              <div className="space-y-[clamp(8px,1.5vw,16px)]">
+              <div className="space-y-[clamp(8px,1.5vw,36px)]">
                 {approachItems.map((item, index) => (
                   <button
                     key={index}
