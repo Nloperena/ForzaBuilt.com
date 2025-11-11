@@ -7,7 +7,7 @@ const ExperienceBetterBanner = () => {
   const [isInView, setIsInView] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
   const fullText = 'Performance. Elevated.';
-  const typingSpeed = 100; // milliseconds per character (standard typewriter speed)
+  const typingSpeed = 50; // milliseconds per character (2x faster: was 100ms, now 50ms)
 
   useEffect(() => {
     // Intersection Observer for scroll-triggered animation
@@ -53,7 +53,7 @@ const ExperienceBetterBanner = () => {
       return;
     }
 
-    // Add 1 second delay before starting typewriter effect
+    // Add 0.5 second delay before starting typewriter effect (2x faster: was 1000ms, now 500ms)
     const delayTimeout = setTimeout(() => {
       let currentIndex = 0;
       typeIntervalRef.current = setInterval(() => {
@@ -67,7 +67,7 @@ const ExperienceBetterBanner = () => {
           }
         }
       }, typingSpeed);
-    }, 1000); // 1 second delay
+    }, 500); // 0.5 second delay (2x faster)
 
     return () => {
       clearTimeout(delayTimeout);

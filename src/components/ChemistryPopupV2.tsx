@@ -126,44 +126,44 @@ const ChemistryPopupV2: React.FC<ChemistryPopupV2Props> = ({
             }}
             className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 max-w-md w-full mx-auto shadow-2xl pointer-events-auto relative"
           >
-              {/* Close Button */}
-              <button
-                onClick={handleClose}
-                className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700 text-xl sm:text-2xl font-bold z-10 cursor-pointer transition-colors"
-                aria-label="Close"
-              >
-                ×
-              </button>
+            {/* Close Button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700 text-xl sm:text-2xl font-bold z-10 cursor-pointer transition-colors"
+              aria-label="Close"
+            >
+              ×
+            </button>
 
-              {/* Icon */}
-              <div className="flex justify-center mb-4 sm:mb-6">
-                <img 
-                  src={chemistry.iconSrc} 
-                  alt={chemistry.name} 
-                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
-                />
-              </div>
+            {/* Icon */}
+            <div className="flex justify-center mb-4 sm:mb-6">
+              <img 
+                src={chemistry.iconSrc} 
+                alt={chemistry.name} 
+                className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
+              />
+            </div>
 
-              {/* Content */}
-              <div className="text-center mb-4 sm:mb-6">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-normal text-[#2c476e] mb-2 font-poppins">
-                  {chemistry.name}
-                </h3>
-                <p className="text-xs sm:text-sm md:text-base text-gray-600 font-normal font-poppins">
-                  {chemistry.description}
-                </p>
-              </div>
+            {/* Content */}
+            <div className="text-center mb-4 sm:mb-6">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-normal text-[#2c476e] mb-2 font-poppins">
+                {chemistry.name}
+              </h3>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600 font-normal font-poppins">
+                {chemistry.description}
+              </p>
+            </div>
 
-              {/* Features */}
-              <div className="mb-4 sm:mb-6">
-                <ul className="text-xs sm:text-sm md:text-base text-gray-700 list-disc list-outside text-left space-y-1 font-poppins pl-5">
-                  {chemistry.features.map((feature, index) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+            {/* Features */}
+            <div className="mb-4 sm:mb-6">
+              <ul className="text-xs sm:text-sm md:text-base text-gray-700 list-disc list-outside text-left space-y-1 font-poppins pl-5">
+                {chemistry.features.map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
+        </motion.div>
       )}
     </AnimatePresence>
   );

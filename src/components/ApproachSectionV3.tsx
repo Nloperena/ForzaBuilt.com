@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import MSHeroBanner from '@/components/MSHeroBanner';
-import HeroVideoSectionV2 from './HeroVideoSectionV2';
+import ScalableHeroVideo from './ScalableHeroVideo';
 import ApproachHeading from './ApproachHeading';
 
 interface ApproachItem {
@@ -474,7 +474,7 @@ const ApproachSectionV3 = () => {
       
    
       <div className="relative z-20">
-          <HeroVideoSectionV2 />
+          <ScalableHeroVideo />
         </div>
  {/* Approach Heading */}
  <ApproachHeading />
@@ -493,7 +493,7 @@ const ApproachSectionV3 = () => {
             ref={titlesContainerRef}
             className="
             relative
-            min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
+            min-h-[100vh] md:min-h-[100vh] lg:min-h-[75vh] xl:min-h-[70vh] 2xl:min-h-[70vh]
             px-[clamp(14px,4vw,32px)] 
             py-[clamp(24px,4vw,40px)]
             flex items-center justify-center
@@ -534,7 +534,7 @@ const ApproachSectionV3 = () => {
           {/* RIGHT - Videos with description and blue gradient */}
           <div className="
             relative
-            min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
+            min-h-[100vh] md:min-h-[100vh] lg:min-h-[75vh] xl:min-h-[70vh] 2xl:min-h-[70vh]
             py-[clamp(24px,4vw,40px)]
             flex items-center justify-center
             overflow-hidden lg:overflow-visible

@@ -323,8 +323,8 @@ const InteractiveProductsSectionV4 = () => {
                           {products[displayedProduct].description}
                         </p>
                         <Button asChild className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg">
-                          <Link to={`/products/${products[selectedProduct].slug}`}>
-                            {getButtonText(products[selectedProduct].title)}
+                          <Link to={`/products/${products[displayedProduct].slug}`}>
+                            {getButtonText(products[displayedProduct].title)}
                           </Link>
                         </Button>
                       </>

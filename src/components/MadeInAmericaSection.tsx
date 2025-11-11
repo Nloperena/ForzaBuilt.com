@@ -35,7 +35,7 @@ const MadeInAmericaSection: React.FC = () => {
                       mode === 'light2' ? 'text-[#2c476e]' : 'text-[#2c476e]'
                     } font-poppins`}
                     style={{ 
-                      fontSize: 'clamp(18px, 2vw + 0.3rem, 42px)',
+                      fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)',
                       lineHeight: '1.1'
                     }}
                   >
@@ -55,7 +55,7 @@ const MadeInAmericaSection: React.FC = () => {
                   <img 
                     src="/images/misc/Flag Icon with asterisk 1.png" 
                     alt="Made in USA" 
-                    className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-48 h-auto object-contain"
+                    className="h-16 w-auto object-contain"
                   />
                 </div>
               </div>
