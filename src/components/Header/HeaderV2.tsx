@@ -27,10 +27,10 @@ const industriesItems: MenuItem[] = industriesData.slice(0, 6).map((ind) => ({
 }));
 
 const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?: 'default' | 'industries' }> = ({ items, widthClass = 'w-[760px]', variant = 'default' }) => {
-  // Determine responsive width based on variant
+  // Determine responsive width based on variant - scaled for larger displays
   const responsiveWidth = variant === 'industries' 
-    ? 'w-[1000px] lg:w-[1000px] xl:w-[1200px]'
-    : 'w-[700px] lg:w-[700px] xl:w-[880px]';
+    ? 'w-[420px] md:w-[460px] lg:w-[500px] xl:w-[800px] 2xl:w-[900px]'
+    : 'w-[280px] md:w-[320px] lg:w-[340px] xl:w-[560px] 2xl:w-[640px]';
   
   return (
     <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${responsiveWidth} ${variant === 'default' ? 'rounded-lg' : 'rounded-lg'} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-20`}> 
@@ -44,11 +44,11 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-1 lg:gap-1.5 xl:gap-2 py-4 lg:py-5 xl:py-6 px-4 lg:px-5 xl:px-6 transition-colors hover:bg-[#F2611D]">
+              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-0.5 py-0.5 lg:py-1 xl:py-2 2xl:py-2.5 px-0.5 lg:px-0.5 xl:px-1.5 2xl:px-2 min-h-[50px] lg:min-h-[55px] xl:min-h-[90px] 2xl:min-h-[100px] transition-colors hover:bg-[#F2611D]">
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="w-8 h-8 lg:w-10 lg:h-10 object-contain" />
+                  <img src={it.iconSrc} alt="" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 object-contain" />
                 ) : null}
-                <span className="font-poppins text-base lg:text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
+                <span className="font-poppins text-[8px] lg:text-[9px] xl:text-[12px] 2xl:text-[13px] font-normal group-hover:font-bold text-center leading-tight">{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
               </Link>
             </motion.div>
@@ -64,11 +64,11 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-2 lg:gap-2.5 xl:gap-3 py-4 lg:py-5 xl:py-6 px-4 lg:px-5 xl:px-6 min-h-[100px] lg:min-h-[110px] xl:min-h-[120px] transition-colors hover:bg-[#F2611D]">
+              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-0.5 lg:gap-1 xl:gap-3 2xl:gap-3.5 py-0.5 lg:py-1 xl:py-2 2xl:py-2.5 px-0.5 lg:px-0.5 xl:px-1.5 2xl:px-2 min-h-[50px] lg:min-h-[55px] xl:min-h-[90px] 2xl:min-h-[100px] transition-colors hover:bg-[#F2611D]">
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="hidden md:block w-7 h-7 lg:w-8 lg:h-8 object-contain" />
+                  <img src={it.iconSrc} alt="" className="hidden md:block w-4 h-4 lg:w-5 lg:h-5 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 object-contain" />
                 ) : null}
-                <span className="font-poppins text-base lg:text-lg font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
+                <span className="font-poppins text-[8px] lg:text-[9px] xl:text-[12px] 2xl:text-[13px] font-normal group-hover:font-bold leading-tight">{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
               </Link>
             </motion.div>
@@ -132,18 +132,18 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   return (
     <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''}`}> 
        <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto px-4">
-         <div className="h-20 md:h-24 lg:h-20 xl:h-28 flex items-center justify-between">
+         <div className="h-16 md:h-20 lg:h-16 xl:h-22 2xl:h-24 flex items-center justify-between">
           {/* Left logo */}
-          <div className="flex items-center">
+          <div className="flex items-center relative z-30">
             {/* Use white logo on transparent home top; blue when scrolled/white bg */}
-            <Logo className="h-14 md:h-16 lg:h-16 xl:h-24 w-auto mt-2 md:mt-3" isWhiteBackground={!isTransparent && (isLight || isScrolled)} />
+            <Logo className="h-11 md:h-13 lg:h-14 xl:h-19 2xl:h-22 w-auto mt-1.5 md:mt-2" isWhiteBackground={!isTransparent && (isLight || isScrolled)} />
           </div>
 
           {/* Center nav */}
-          <div className="hidden lg:flex items-center gap-3 lg:gap-4 xl:gap-6 relative">
+          <div className="hidden lg:flex items-center gap-1.5 lg:gap-2.5 xl:gap-3 2xl:gap-4 relative z-20">
             {/* Products */}
             <div className="relative group">
-              <Link to="/products" className={`px-2 lg:px-3 xl:px-4 py-1.5 lg:py-2 rounded-md font-normal text-[14px] lg:text-[15px] xl:text-[17px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Products ▾</Link>
+              <Link to="/products" className={`px-1.5 lg:px-2 xl:px-2.5 2xl:px-3 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Products ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-20 relative">
                   <HoverDropdown items={productsItems} variant="default" />
@@ -153,7 +153,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
 
             {/* Industries */}
             <div className="relative group">
-              <Link to="/industries" className={`px-2 lg:px-3 xl:px-4 py-1.5 lg:py-2 rounded-md font-normal text-[14px] lg:text-[15px] xl:text-[17px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Industries ▾</Link>
+              <Link to="/industries" className={`px-1.5 lg:px-2 xl:px-2.5 2xl:px-3 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Industries ▾</Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-20 relative">
                   <HoverDropdown items={industriesItems} variant="industries" />
@@ -161,14 +161,14 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               </div>
             </div>
 
-            <Link to="/about" className={`px-1.5 lg:px-2 xl:px-3 py-1.5 lg:py-2 rounded-md font-normal text-[14px] lg:text-[15px] xl:text-[17px] capitalize ${baseNavText} hover:font-bold`}>About</Link>
-            <Link to="/blog" className={`px-1.5 lg:px-2 xl:px-3 py-1.5 lg:py-2 rounded-md font-normal text-[14px] lg:text-[15px] xl:text-[17px] capitalize ${baseNavText} hover:font-bold`}>Blog</Link>
+            <Link to="/about" className={`px-1 lg:px-1.5 xl:px-2 py-1 lg:py-1.5 xl:py-2 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} hover:font-bold`}>About</Link>
+            <Link to="/blog" className={`px-1 lg:px-1.5 xl:px-2 py-1 lg:py-1.5 xl:py-2 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} hover:font-bold`}>Blog</Link>
           </div>
 
           {/* Right actions */}
-          <div className="hidden lg:flex items-center gap-3 lg:gap-4 xl:gap-6">
+          <div className="hidden lg:flex items-center gap-2 lg:gap-3 xl:gap-4 2xl:gap-5 relative z-30">
             <SearchBar />
-            <Link to="/contact" className="rounded-full bg-[#F2611D] text-white px-3 lg:px-4 xl:px-6 py-1.5 lg:py-2 xl:py-3 text-xs lg:text-sm xl:text-base font-medium hover:bg-[#F2611D]/90">Contact Us</Link>
+            <Link to="/contact" className="rounded-full bg-[#F2611D] text-white px-2.5 lg:px-3 xl:px-5 2xl:px-6 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 text-xs lg:text-xs xl:text-sm 2xl:text-base font-medium hover:bg-[#F2611D]/90">Contact Us</Link>
           </div>
 
           {/* Mobile */}

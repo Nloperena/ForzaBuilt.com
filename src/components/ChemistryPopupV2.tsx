@@ -26,6 +26,7 @@ const ChemistryPopupV2: React.FC<ChemistryPopupV2Props> = ({
 }) => {
   const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null);
   const popupRef = useRef<HTMLDivElement>(null);
+  const lastScrollYRef = useRef<number>(0);
 
   useEffect(() => {
     // Clear any existing timer
@@ -48,6 +49,29 @@ const ChemistryPopupV2: React.FC<ChemistryPopupV2Props> = ({
       }
     };
   }, [chemistry, shouldStartTimer, onClose, autoCloseDelay]);
+
+  // Handle scroll to close modal
+  useEffect(() => {
+    if (!chemistry) return;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      // Close modal if user scrolls (any scroll movement)
+      if (Math.abs(currentScrollY - lastScrollYRef.current) > 5) {
+        onClose();
+      }
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    // Set initial scroll position
+    lastScrollYRef.current = window.scrollY;
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [chemistry, onClose]);
 
   const handleClose = () => {
     // Clear timer when manually closed

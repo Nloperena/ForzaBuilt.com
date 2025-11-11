@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -73,10 +73,22 @@ const getProductCategories = () => {
 
 const ProductIndex: React.FC = () => {
   const productCategories = getProductCategories();
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  
+  // Get button text based on category
+  const getButtonText = (categoryName: string) => {
+    const buttonTextMap: { [key: string]: string } = {
+      'BOND': 'See Adhesive Products',
+      'SEAL': 'See Sealant Products',
+      'TAPE': 'See Tape Products',
+      'RUGGEDRED': 'Visit RuggedRed.com'
+    };
+    return buttonTextMap[categoryName] || `See ${categoryName} Products`;
+  };
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#477197] to-[#2c476e] flex flex-col">
-      <Header />
+      <HeaderV2 />
       <main className="flex-1 flex items-center justify-center px-4 pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48 pb-20">
         <div className="max-w-7xl mx-auto w-full">
           {/* Hero Section */}
@@ -149,47 +161,53 @@ const ProductIndex: React.FC = () => {
                     </Card>
                   </a>
                 ) : (
-                  <Link to={`/products/${category.id}`}>
-                    <Card className="h-60 md:h-80 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 overflow-hidden bg-white/10 backdrop-blur-sm relative">
-                      {/* Background Logo */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-40">
-                        {getProductCategoryLogo(category.id) && (
-                          <img 
-                            src={getProductCategoryLogo(category.id)} 
-                            alt={`${category.name} logo`}
-                            className="w-full h-full object-contain p-4 md:p-8"
-                          />
-                        )}
+                  <Card 
+                    className="h-60 md:h-80 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border-0 overflow-hidden bg-white/10 backdrop-blur-sm relative"
+                    onMouseEnter={() => setHoveredCategory(category.id)}
+                    onMouseLeave={() => setHoveredCategory(null)}
+                  >
+                    {/* Background Logo */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-40">
+                      {getProductCategoryLogo(category.id) && (
+                        <img 
+                          src={getProductCategoryLogo(category.id)} 
+                          alt={`${category.name} logo`}
+                          className="w-full h-full object-contain p-4 md:p-8"
+                        />
+                      )}
+                    </div>
+
+                    {/* Gradient Overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-70`}></div>
+
+                    {/* Content */}
+                    <CardContent className="relative z-10 h-full flex flex-col justify-center items-center text-center p-4 md:p-8 text-white">
+                      {/* Header */}
+                      <div className="mb-6">
+                        <h3 
+                          className="text-xl md:text-3xl lg:text-4xl font-kallisto font-bold mb-2 md:mb-3 drop-shadow-lg select-none pointer-events-none" 
+                          style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}
+                        >
+                          {category.name}
+                        </h3>
+                        <p className="text-sm md:text-lg text-white/90 mb-1 md:mb-2 drop-shadow-md">{category.title}</p>
+                        <p className="text-xs md:text-base text-white/80 leading-relaxed drop-shadow-md">
+                          {category.description}
+                        </p>
                       </div>
 
-                      {/* Gradient Overlay */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-70`}></div>
-
-                      {/* Content */}
-                      <CardContent className="relative z-10 h-full flex flex-col justify-center items-center text-center p-4 md:p-8 text-white">
-                        {/* Header */}
-                        <div className="mb-6">
-                          <h3 className="text-xl md:text-3xl lg:text-4xl font-kallisto font-bold mb-2 md:mb-3 drop-shadow-lg" 
-                              style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                            {category.name}
-                          </h3>
-                          <p className="text-sm md:text-lg text-white/90 mb-1 md:mb-2 drop-shadow-md">{category.title}</p>
-                          <p className="text-xs md:text-base text-white/80 leading-relaxed drop-shadow-md">
-                            {category.description}
-                          </p>
-                        </div>
-
-                        {/* CTA */}
-                        <div className="flex justify-center">
+                      {/* CTA */}
+                      <div className="flex justify-center">
+                        <Link to={`/products/${category.id}`}>
                           <Button className="bg-[#F2611D] hover:bg-[#F2611D]/80 text-white border border-[#F2611D] rounded-full px-3 md:px-6 py-2 md:py-3 text-sm md:text-lg font-semibold transition-all duration-300 drop-shadow-lg">
-                            <span className="hidden md:inline">Explore {category.name}</span>
-                            <span className="md:hidden">Explore</span>
+                            <span className="hidden md:inline">{getButtonText(category.name)}</span>
+                            <span className="md:hidden">{getButtonText(category.name).replace('See ', '').replace(' Products', '')}</span>
                             <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
                           </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                        </Link>
+                      </div>
+                    </CardContent>
+                  </Card>
                 )}
               </motion.div>
             ))}

@@ -35,7 +35,7 @@ const MadeInAmericaSection: React.FC = () => {
                       mode === 'light2' ? 'text-[#2c476e]' : 'text-[#2c476e]'
                     } font-poppins`}
                     style={{ 
-                      fontSize: 'clamp(24px, 2.5vw + 0.4rem, 56px)',
+                      fontSize: 'clamp(18px, 2vw + 0.3rem, 42px)',
                       lineHeight: '1.1'
                     }}
                   >
@@ -43,7 +43,7 @@ const MadeInAmericaSection: React.FC = () => {
                     in America
                   </h2>
                   {/* Paragraph text */}
-                  <p className={`mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed ${
+                  <p className={`mb-2 sm:mb-3 md:mb-4 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed ${
                     mode === 'light2' ? 'text-[#2c476e]/90' : 'text-[#2c476e]/90'
                   } font-poppins`}>
                     Real people, making real products, making a real difference! We don't just resell & re-label someone else's products, we actually make them.<br /><br />We proudly manufacture our products in the USA*, in America's heartland. From R&D to manufacturing, our vertical integration gives us full control over quality, consistency, and availability.

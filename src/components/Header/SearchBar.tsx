@@ -130,11 +130,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
 
   const baseClasses = mobile 
     ? `py-2 px-4 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-sm transition-all duration-300 border ${borderColor}`
-    : `py-2.5 lg:py-3 xl:py-3.5 px-6 lg:px-7 xl:px-8 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-sm lg:text-base transition-all duration-300 ease-in-out border ${borderColor}`;
+    : `py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 px-2.5 lg:px-3 xl:px-5 2xl:px-6 rounded-full ${bgColor} ${textColor} ${placeholderColor} focus:outline-none focus:ring-2 focus:ring-[#F2611D] text-xs lg:text-xs xl:text-sm 2xl:text-base transition-all duration-300 ease-in-out border ${borderColor}`;
 
   const widthClasses = mobile
     ? "w-full"
-    : isSearchFocused ? 'w-56 lg:w-60 xl:w-64' : 'w-32 lg:w-36 xl:w-40';
+    : isSearchFocused ? 'w-56 lg:w-60 xl:w-72 2xl:w-80' : 'w-32 lg:w-36 xl:w-44 2xl:w-48';
 
   // Group results by type
   const productResults = searchResults.filter(r => r.type === 'Product');

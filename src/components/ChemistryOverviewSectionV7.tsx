@@ -204,15 +204,15 @@ const ChemistryOverviewSectionV7: React.FC = () => {
     <>
       <ExperienceBetterBanner />
       <section className="w-full relative overflow-hidden
-                        pt-8 sm:pt-10 md:pt-12 lg:pt-16
-                        pb-4 sm:pb-6 md:pb-8 lg:pb-10
+                        pt-5 sm:pt-6 md:pt-8 lg:pt-10
+                        pb-3 sm:pb-4 md:pb-5 lg:pb-6
                         px-2 sm:px-4 md:px-6 lg:px-8
                         bg-gradient-to-bl from-[#477197] to-[#2c476e]">
       
       <div className="max-w-7xl mx-auto relative z-10">
         <h2
           className="font-poppins font-normal text-white text-center leading-tight
-                     mb-6 sm:mb-8 md:mb-10 lg:mb-12
+                     mb-4 sm:mb-5 md:mb-6 lg:mb-8
                      [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]"
           style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
         >
@@ -222,7 +222,7 @@ const ChemistryOverviewSectionV7: React.FC = () => {
         {/* Top Row - 6 items */}
         <div className="flex justify-center items-center
                         gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
-                        w-full mb-4 sm:mb-6 md:mb-8
+                        w-full mb-3 sm:mb-4 md:mb-5
                         flex-wrap">
           {topRowChemistries.map((chemistry) => (
             <motion.div
@@ -281,7 +281,7 @@ const ChemistryOverviewSectionV7: React.FC = () => {
         {/* Bottom Row - 5 items */}
         <div className="flex justify-center items-center
                         gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
-                        w-full mb-4 sm:mb-6 md:mb-8
+                        w-full mb-3 sm:mb-4 md:mb-5
                         flex-wrap">
           {bottomRowChemistries.map((chemistry) => (
             <motion.div

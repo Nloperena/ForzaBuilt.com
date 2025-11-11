@@ -152,7 +152,7 @@ const toTitleCase = (str: string): string => {
     .join('');
 };
 
-const ApproachSectionV3 = () => {
+const ApproachSectionV3Alt = () => {
   const [selectedItem, setSelectedItem] = useState(1);
   const [previousItem, setPreviousItem] = useState(1);
   const { mode } = useGradientMode();
@@ -470,77 +470,72 @@ const ApproachSectionV3 = () => {
 
   return (
     <>
-
-      
-   
       <div className="relative z-20">
-          <HeroVideoSectionV2 />
-        </div>
- {/* Approach Heading */}
- <ApproachHeading />
+        <HeroVideoSectionV2 />
+      </div>
+      {/* Approach Heading */}
+      <ApproachHeading />
       {/* Isolated Section Container */}
       <section ref={sectionRef} className="relative isolate">
-        
-
         {/* Progress bar */}
         <div className="absolute bottom-0 t-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
         {/* Scrollable Content */}
         <div className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
-          {/* LEFT - Titles with blue gradient */}
-          <div 
-            ref={titlesContainerRef}
-            className="
-            relative
-            min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
-            px-[clamp(14px,4vw,32px)] 
-            py-[clamp(24px,4vw,40px)]
-            flex items-center justify-center
-            [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
-            bg-gradient-to-r from-[#2c476e] to-[#477197]
-          ">
-            <div className="w-full flex flex-col items-start">
-              <div className="space-y-[clamp(10px,1.8vw,12px)] w-full">
-                {approachItems.map((item, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleItemChange(index)}
-                    onMouseEnter={() => handleItemChange(index)}
-                    className="block text-left"
-                    style={{ transform: 'none', width: 'fit-content' }}
-                  >
-                    <h3 
-                      ref={(el) => { titleRefs.current[index] = el; }}
-                      className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap block ${
-                        selectedItem === index
-                          ? 'text-white font-bold'
-                          : 'text-white font-normal'
-                      }`}
-                      style={{
-                        fontSize: 'clamp(14px, 1.5vw + 0.4rem, 36px)',
-                        transform: 'none',
-                        display: 'block'
-                      }}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
+            {/* LEFT - Titles with white to grey gradient */}
+            <div 
+              ref={titlesContainerRef}
+              className="
+              relative
+              min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
+              px-[clamp(14px,4vw,32px)] 
+              py-[clamp(24px,4vw,40px)]
+              flex items-center justify-center
+              [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
+              bg-gradient-to-b from-white to-gray-200
+            ">
+              <div className="w-full flex flex-col items-start">
+                <div className="space-y-[clamp(6px,1.2vw,8px)] w-full">
+                  {approachItems.map((item, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleItemChange(index)}
+                      onMouseEnter={() => handleItemChange(index)}
+                      className="block text-left"
+                      style={{ transform: 'none', width: 'fit-content' }}
                     >
-                      {item.title}
-                    </h3>
-                  </button>
-                ))}
+                      <h3 
+                        ref={(el) => { titleRefs.current[index] = el; }}
+                        className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap px-3 py-1.5 rounded block ${
+                          selectedItem === index
+                            ? 'text-[#2c476e] font-bold bg-gray-300'
+                            : 'text-[#2c476e] font-normal bg-gray-100'
+                        }`}
+                        style={{
+                          fontSize: 'clamp(14px, 1.5vw + 0.4rem, 36px)',
+                          transform: 'none',
+                          display: 'block'
+                        }}
+                      >
+                        {item.title}
+                      </h3>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* RIGHT - Videos with description and blue gradient */}
-          <div className="
-            relative
-            min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
-            py-[clamp(24px,4vw,40px)]
-            flex items-center justify-center
-            overflow-hidden lg:overflow-visible
-          ">
+            {/* RIGHT - Videos with description and blue gradient */}
+            <div className="
+              relative
+              min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
+              py-[clamp(24px,4vw,40px)]
+              flex items-center justify-center
+              overflow-hidden lg:overflow-visible
+            ">
               {/* Inline image (all breakpoints) with blue gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#2c476e] to-[#477197] overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-bl from-[#477197] to-[#2c476e] overflow-hidden">
                 {/* Previous content (beneath) - image or video */}
                 {approachItems[previousItem].video && !videoErrorMap[previousItem] && (
                   <video
@@ -602,11 +597,11 @@ const ApproachSectionV3 = () => {
                   />
                 )}
                 
-                                  {/* Uniform greyish dark blue overlay */}
-                  <div className="absolute inset-0 bg-[#3a4a6b]/75 z-10"></div>
+                {/* Uniform greyish dark blue overlay */}
+                <div className="absolute inset-0 bg-[#3a4a6b]/75 z-10"></div>
                 
                 {/* Overlay content - flexbox layout with items at bottom */}
-                <div className="absolute inset-0 z-20 flex flex-col justify-between px-6 pb-6 pt-4 md:px-8 md:pb-8 md:pt-[22px]">
+                <div className="absolute inset-0 z-20 flex flex-col justify-between p-6 md:p-8">
                   {/* Top section - empty for spacing */}
                   <div></div>
                   
@@ -616,7 +611,7 @@ const ApproachSectionV3 = () => {
                     <div className="space-y-1">
                       <div className="w-24 h-1 bg-[#F2611D] opacity-70"></div>
                       <h4 className="text-white font-semibold font-poppins transition-all duration-500" style={{
-                        fontSize: 'clamp(12px, 1.1vw + 0.35rem, 24px)',
+                        fontSize: 'clamp(16px, 1.5vw + 0.5rem, 32px)',
                         lineHeight: '1.2'
                       }}>
                         {toTitleCase(approachItems[selectedItem].title)}
@@ -627,17 +622,17 @@ const ApproachSectionV3 = () => {
                     <p className={`text-white leading-relaxed max-w-2xl ${
                       mode === 'light2' ? 'font-poppins' : ''
                     }`} style={{
-                      fontSize: 'clamp(10px, 1vw + 0.2rem, 14px)',
+                      fontSize: 'clamp(12px, 1.2vw + 0.25rem, 16px)',
                       lineHeight: '1.6'
                     }}>
                       {approachItems[selectedItem].description}
                     </p>
                     
                     {/* Bullet points */}
-                    <ul className={`space-y-2.5 text-white ${
+                    <ul className={`space-y-1.5 text-white ${
                       mode === 'light2' ? 'font-poppins' : ''
                     }`} style={{
-                      fontSize: 'clamp(10px, 1vw + 0.2rem, 14px)',
+                      fontSize: 'clamp(12px, 1.2vw + 0.25rem, 16px)',
                       lineHeight: '1.6'
                     }}>
                       {approachItems[selectedItem].bulletPoints.map((point, idx) => (
@@ -660,14 +655,13 @@ const ApproachSectionV3 = () => {
                   </div>
                 </div>
               </div>
+            </div>
           </div>
-
-        </div>
         </div>
       </section>
     </>
   );
 };
 
-export default ApproachSectionV3;
+export default ApproachSectionV3Alt;
 

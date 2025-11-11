@@ -34,31 +34,126 @@ export default function ProductImageTicker({
     const root = containerRef.current;
     if (!el || !root) return;
 
+    let ro: ResizeObserver | null = null;
+    let rafId: number | null = null;
+    let isInitialized = false;
+    let isVisible = false;
+    let startTimeoutId: ReturnType<typeof setTimeout> | null = null;
+    let hasEnteredViewport = false;
+    let viewportEntryTime: number | null = null;
+
+    // Set initial default values to start animation immediately
+    const defaultDuration = 20; // fallback duration
+    root.style.setProperty("--marquee-duration", `${defaultDuration}s`);
+    root.style.setProperty("--marquee-distance", "0px");
+    
+    // Start animation paused initially
+    el.style.animationPlayState = "paused";
+
+    // Function to start the animation
+    const startAnimation = () => {
+      el.style.animationPlayState = "running";
+      el.classList.add("will-change-transform");
+    };
+
+    // Function to check if we should start animation (after delay)
+    const checkAndStartAnimation = () => {
+      if (isInitialized && isVisible && viewportEntryTime !== null) {
+        const timeSinceEntry = Date.now() - viewportEntryTime;
+        const delayMs = 200; // 0.2 second delay
+        if (timeSinceEntry >= delayMs) {
+          // Delay has passed, start immediately
+          startAnimation();
+        } else {
+          // Delay hasn't passed yet, wait for remaining time
+          const remainingTime = delayMs - timeSinceEntry;
+          if (startTimeoutId) clearTimeout(startTimeoutId);
+          startTimeoutId = setTimeout(() => {
+            if (isInitialized && isVisible) {
+              startAnimation();
+            }
+          }, remainingTime);
+        }
+      }
+    };
+
     // Compute duration from content width and desired speed
     const resize = () => {
-      const total = el.scrollWidth / 3; // width of one set (we have 3 copies)
-      const pxPerSec = speed; // pixels per second
-      const duration = Math.max(6, total / pxPerSec); // seconds
+      if (rafId) cancelAnimationFrame(rafId);
       
-      // Set CSS custom properties for pixel-based animation
-      root.style.setProperty("--marquee-duration", `${duration}s`);
-      root.style.setProperty("--marquee-distance", `${total}px`);
+      rafId = requestAnimationFrame(() => {
+        const total = el.scrollWidth / 3; // width of one set (we have 3 copies)
+        if (total > 0) {
+          const pxPerSec = speed; // pixels per second
+          const duration = Math.max(6, total / pxPerSec); // seconds
+          
+          // Set CSS custom properties for pixel-based animation
+          root.style.setProperty("--marquee-duration", `${duration}s`);
+          root.style.setProperty("--marquee-distance", `${total}px`);
+          
+          // Mark as initialized once we have valid dimensions
+          if (!isInitialized) {
+            isInitialized = true;
+            // Check if we should start animation now (delay may have already passed)
+            checkAndStartAnimation();
+          }
+        }
+        rafId = null;
+      });
     };
-    const ro = new ResizeObserver(resize);
-    ro.observe(el);
-    resize();
 
-    // Pause when off-screen
+    // Use IntersectionObserver to defer setup until visible
     const io = new IntersectionObserver(
       ([entry]) => {
-        el.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
+        isVisible = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          // Initialize ResizeObserver only when visible
+          if (!ro) {
+            ro = new ResizeObserver(resize);
+            ro.observe(el);
+            // Initial calculation deferred to next frame
+            resize();
+          }
+          
+          // Start animation 0.2 seconds after entering viewport (only once)
+          if (!hasEnteredViewport) {
+            hasEnteredViewport = true;
+            viewportEntryTime = Date.now();
+            // Clear any existing timeout
+            if (startTimeoutId) {
+              clearTimeout(startTimeoutId);
+            }
+            // Start animation after 0.2 second delay
+            startTimeoutId = setTimeout(() => {
+              if (isInitialized && isVisible) {
+                startAnimation();
+              }
+            }, 200);
+          } else if (isInitialized) {
+            // If already entered viewport and initialized, check delay
+            checkAndStartAnimation();
+          }
+        } else {
+          // Pause animation when leaving viewport
+          el.style.animationPlayState = "paused";
+          // Clear timeout if component leaves viewport before delay completes
+          if (startTimeoutId) {
+            clearTimeout(startTimeoutId);
+            startTimeoutId = null;
+          }
+          // Reset viewport entry tracking so delay restarts on re-entry
+          hasEnteredViewport = false;
+          viewportEntryTime = null;
+        }
       },
       { threshold: 0.01 }
     );
     io.observe(root);
 
     return () => {
-      ro.disconnect();
+      if (rafId) cancelAnimationFrame(rafId);
+      if (startTimeoutId) clearTimeout(startTimeoutId);
+      if (ro) ro.disconnect();
       io.disconnect();
     };
   }, [speed, direction]);
@@ -87,19 +182,18 @@ export default function ProductImageTicker({
         <div
           ref={trackRef}
           className={clsx(
-            "flex items-center whitespace-nowrap will-change-transform gap-0",
+            "flex items-center whitespace-nowrap gap-0",
             // Pause on hover for mouse/trackpad users
             "hover:[animation-play-state:paused]"
           )}
           style={{ 
             animation: `marquee-pixel-${direction} var(--marquee-duration, 20s) linear infinite`,
+            animationPlayState: "paused",
           }}
         >
           {loopItems.map((it, i) => (
             <figure key={`${it.src}-${i}`} className="shrink-0">
-              <div className="relative" style={{ 
-                width: 'clamp(4.5rem, 14vw, 18rem)', 
-                height: 'clamp(4.5rem, 14vw, 18rem)',
+              <div className="relative w-[clamp(4.5rem,14vw,18rem)] h-[clamp(4.5rem,28vw,18rem)] lg:w-[clamp(6.5rem,16vw,22rem)] lg:h-[clamp(6.5rem,20vw,22rem)] xl:w-[clamp(4.5rem,14vw,18rem)] xl:h-[clamp(4.5rem,18vw,18rem)]" style={{ 
                 aspectRatio: '1 / 1'
               }}>
                 <img

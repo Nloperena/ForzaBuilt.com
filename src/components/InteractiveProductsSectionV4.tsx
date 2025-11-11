@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useGradientMode } from '@/contexts/GradientModeContext';
@@ -38,7 +38,8 @@ const products: Product[] = [
 ];
 
 const InteractiveProductsSectionV4 = () => {
-  const [selectedProduct, setSelectedProduct] = useState(0);
+  const [selectedProduct, setSelectedProduct] = useState(0); // For button/link/text
+  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null); // For image on hover
   const [previousProduct, setPreviousProduct] = useState(0);
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
@@ -48,18 +49,54 @@ const InteractiveProductsSectionV4 = () => {
   const isUserInteractingRef = useRef(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const handleProductChange = (index: number) => {
+  // Get button text based on product title
+  const getButtonText = (title: string) => {
+    const buttonTextMap: { [key: string]: string } = {
+      'ADHESIVES': 'See Adhesive Products',
+      'SEALANTS': 'See Sealant Products',
+      'TAPES': 'See Tape Products',
+      'CLEANERS': 'See Cleaner Products'
+    };
+    return buttonTextMap[title] || `See ${title} Products`;
+  };
+
+  const resetTimer = useCallback(() => {
+    // Clear existing timeout
+    if (timerRef.current) clearTimeout(timerRef.current);
+    
+    // Set flag to pause auto-cycling
+    isUserInteractingRef.current = true;
+    
+    // Restart auto-cycling after 10 seconds
+    timerRef.current = setTimeout(() => {
+      isUserInteractingRef.current = false;
+      setProgress(0);
+    }, 10000);
+  }, []);
+
+  // Handle click - only updates button/link/text
+  const handleProductClick = (index: number) => {
     if (index !== selectedProduct) {
       setPreviousProduct(selectedProduct);
       setSelectedProduct(index);
       setProgress(0);
-      isUserInteractingRef.current = true;
-      // Reset auto-cycle after user interaction
-      if (timerRef.current) clearTimeout(timerRef.current);
-      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
-      timerRef.current = setTimeout(() => {
-        isUserInteractingRef.current = false;
-      }, 8000);
+      resetTimer();
+    }
+  };
+
+  // Handle hover - only updates image
+  const handleProductHover = (index: number | null) => {
+    if (index !== null && index !== hoveredProduct) {
+      // When starting to hover, save the current displayed product as previous
+      const currentDisplayed = hoveredProduct ?? selectedProduct;
+      if (currentDisplayed !== index) {
+        setPreviousProduct(currentDisplayed);
+      }
+      setHoveredProduct(index);
+    } else if (index === null && hoveredProduct !== null) {
+      // When mouse leaves, save the hovered product as previous and revert to selected
+      setPreviousProduct(hoveredProduct);
+      setHoveredProduct(null);
     }
   };
 
@@ -107,6 +144,31 @@ const InteractiveProductsSectionV4 = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // IntersectionObserver to detect viewport visibility
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Component entered viewport - restart timer after 10 seconds
+          resetTimer();
+        } else {
+          // Component left viewport - pause auto-cycling
+          isUserInteractingRef.current = true;
+          if (timerRef.current) clearTimeout(timerRef.current);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    io.observe(sectionRef.current);
+
+    return () => {
+      io.disconnect();
+    };
+  }, [resetTimer]);
+
   return (
     <section ref={sectionRef} className="relative z-20">
       <section className="relative isolate overflow-visible">
@@ -126,7 +188,7 @@ const InteractiveProductsSectionV4 = () => {
             <div className="
               relative
 
-              min-h-[50svh] sm:min-h-[60svh] md:min-h-[65svh] lg:min-h-[62svh] xl:min-h-[68svh] 2xl:min-h-[74svh]
+              min-h-[35svh] sm:min-h-[42svh] md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh]
 
               flex items-center justify-center
 
@@ -146,7 +208,10 @@ const InteractiveProductsSectionV4 = () => {
                 <div className={`font-bold text-[#F2611D] text-[clamp(16px,1.4vw,22px)] ${
                   mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                 }`}>
-                  <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{products[selectedProduct].title === 'SEALANTS' ? 'SEAL' : products[selectedProduct].title}</span>
+                  <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{(() => {
+                    const displayedProduct = hoveredProduct ?? selectedProduct;
+                    return products[displayedProduct].title === 'SEALANTS' ? 'SEAL' : products[displayedProduct].title;
+                  })()}</span>
                 </div>
                 <div className={`text-white text-[clamp(10px,0.95vw,14px)] ${
                   mode === 'light2' ? 'font-poppins' : ''
@@ -155,42 +220,54 @@ const InteractiveProductsSectionV4 = () => {
                 </div>
               </div>
 
-              {/* Previous product image (stays in place) */}
-              <img
-                src={products[previousProduct].image}
-                alt={products[previousProduct].title}
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{
-                  objectPosition: 'center 70%',
-                  transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`
-                }}
-              />
+              {(() => {
+                const displayedProduct = hoveredProduct ?? selectedProduct;
+                // Previous displayed product: if hovering, use what was displayed before hover; otherwise use previousProduct
+                const previousDisplayedProduct = hoveredProduct !== null 
+                  ? (previousProduct !== null ? previousProduct : selectedProduct)
+                  : previousProduct;
+                
+                return (
+                  <>
+                    {/* Previous product image (stays in place) */}
+                    <img
+                      src={products[previousDisplayedProduct].image}
+                      alt={products[previousDisplayedProduct].title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{
+                        objectPosition: 'center 70%',
+                        transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`
+                      }}
+                    />
 
-              {/* Current product image (slides over) */}
-              <img
-                key={selectedProduct}
-                src={products[selectedProduct].image}
-                alt={products[selectedProduct].title}
-                className="
-                  absolute inset-0 w-full h-full object-cover
+                    {/* Current product image (slides over) */}
+                    <img
+                      key={displayedProduct}
+                      src={products[displayedProduct].image}
+                      alt={products[displayedProduct].title}
+                      className="
+                        absolute inset-0 w-full h-full object-cover
 
-                  animate-in slide-in-from-right duration-700
+                        animate-in slide-in-from-right duration-700
 
-                "
-                style={{
-                  objectPosition: 'center 70%',
-                  transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`
-                }}
-              />
+                      "
+                      style={{
+                        objectPosition: 'center 70%',
+                        transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`
+                      }}
+                    />
+                  </>
+                );
+              })()}
             </div>
 
             {/* RIGHT SIDE - Titles, description, and button */}
             <div className="
               relative
 
-              min-h-[50svh] sm:min-h-[60svh] md:min-h-[65svh] lg:min-h-[62svh] xl:min-h-[68svh] 2xl:min-h-[74svh]
+              min-h-[35svh] sm:min-h-[42svh] md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh]
 
-              px-[clamp(14px,4vw,32px)] py-[clamp(32px,6vw,64px)]
+              px-[clamp(14px,4vw,32px)] py-[clamp(24px,4vw,48px)]
 
               flex items-center justify-center
 
@@ -201,46 +278,58 @@ const InteractiveProductsSectionV4 = () => {
                 {/* Product list - centered and spaced evenly */}
                 <div className="flex-1 flex flex-col">
                   <div className="flex flex-col justify-evenly h-full flex-shrink-0">
-                    {products.map((product, index) => (
-                      <Link
-                        key={index}
-                        to={`/products/${product.slug}`}
-                        onClick={() => handleProductChange(index)}
-                        onMouseEnter={() => handleProductChange(index)}
-                        className="w-full text-left transition-all duration-500"
-                      >
-                        <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
-                          selectedProduct === index
-                            ? 'text-[#F2611D] font-bold'
-                            : 'text-white font-normal'
-                        } hover:text-[#F2611D] transition-all duration-500 ease-out ${
-                          mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-                        }`}
-                        style={{
-                          fontSize: selectedProduct === index 
-                            ? 'clamp(28px, 4vw, 128px)'
-                            : 'clamp(22px, 3.2vw, 48px)',
-                        }}>
-                          {product.title}
-                        </h3>
-                      </Link>
-                    ))}
+                    {products.map((product, index) => {
+                      const displayedProduct = hoveredProduct ?? selectedProduct;
+                      const isActive = displayedProduct === index;
+                      
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => handleProductClick(index)}
+                          onMouseEnter={() => handleProductHover(index)}
+                          onMouseLeave={() => handleProductHover(null)}
+                          className="w-full text-left transition-all duration-500 cursor-pointer"
+                        >
+                          <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
+                            isActive
+                              ? 'text-[#F2611D] font-bold'
+                              : 'text-white font-normal'
+                          } hover:text-[#F2611D] transition-all duration-500 ease-out ${
+                            mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                          }`}
+                          style={{
+                            fontSize: isActive 
+                              ? 'clamp(28px, 4vw, 128px)'
+                              : 'clamp(22px, 3.2vw, 48px)',
+                          }}>
+                            {product.title}
+                          </h3>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
                 {/* Button and description fixed at bottom */}
                 <div className="mt-auto pt-4 flex-shrink-0 space-y-4">
-                  <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-right-2 ${
-                    mode === 'light2' ? 'font-poppins' : ''
-                  }`}
-                  key={selectedProduct}>
-                    {products[selectedProduct].description}
-                  </p>
-                  <Button asChild className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg">
-                    <Link to={`/products/${products[selectedProduct].slug}`}>
-                      SEE PRODUCT LINES
-                    </Link>
-                  </Button>
+                  {(() => {
+                    const displayedProduct = hoveredProduct ?? selectedProduct;
+                    return (
+                      <>
+                        <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-right-2 ${
+                          mode === 'light2' ? 'font-poppins' : ''
+                        }`}
+                        key={displayedProduct}>
+                          {products[displayedProduct].description}
+                        </p>
+                        <Button asChild className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg">
+                          <Link to={`/products/${products[selectedProduct].slug}`}>
+                            {getButtonText(products[selectedProduct].title)}
+                          </Link>
+                        </Button>
+                      </>
+                    );
+                  })()}
                 </div>
               </div>
             </div>
