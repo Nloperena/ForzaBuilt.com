@@ -488,16 +488,17 @@ const ApproachSectionV3 = () => {
         {/* Scrollable Content */}
         <div className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
-          {/* LEFT - Titles and blue background */}
+          {/* LEFT - Titles with white to grey gradient */}
           <div 
             ref={titlesContainerRef}
             className="
             relative
             min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
             px-[clamp(14px,4vw,32px)] 
+            py-[clamp(40px,8vw,80px)]
             flex items-center justify-center
             [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
-            bg-gradient-to-r from-[#2c476e] to-[#477197]
+            bg-gradient-to-b from-white to-gray-200
           ">
             <div className="w-full">
               <div className="space-y-[clamp(8px,1.5vw,10px)]">
@@ -511,10 +512,10 @@ const ApproachSectionV3 = () => {
                   >
                     <h3 
                       ref={(el) => { titleRefs.current[index] = el; }}
-                      className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap ${
+                      className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap px-3 py-2 rounded ${
                         selectedItem === index
-                          ? 'text-[#F2611D] font-bold'
-                          : 'text-white font-normal'
+                          ? 'text-[#2c476e] font-bold bg-gray-300'
+                          : 'text-[#2c476e] font-normal bg-gray-100'
                       }`}
                       style={{
                         fontSize: 'clamp(16px, 1.7vw + 0.5rem, 48px)',
@@ -529,16 +530,16 @@ const ApproachSectionV3 = () => {
             </div>
           </div>
 
-          {/* RIGHT - Videos with description */}
+          {/* RIGHT - Videos with description and blue gradient */}
           <div className="
             relative
             min-h-[50svh] md:min-h-[55svh] lg:min-h-[75vh]
-            pt-[clamp(120px,15vw,180px)]
+            py-[clamp(40px,8vw,80px)]
             flex items-center justify-center
             overflow-hidden lg:overflow-visible
           ">
-              {/* Inline image (all breakpoints) with solid background to avoid hero flash */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#2c476e] to-[#477197] overflow-hidden">
+              {/* Inline image (all breakpoints) with blue gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-bl from-[#477197] to-[#2c476e] overflow-hidden">
                 {/* Previous content (beneath) - image or video */}
                 {approachItems[previousItem].video && !videoErrorMap[previousItem] && (
                   <video
