@@ -439,20 +439,9 @@ const InteractiveProductsSectionV4 = () => {
                       {selectedOverlayProduct.productCode && (
                         <p className="text-[#F2611D] font-semibold text-xs mb-2 uppercase tracking-wider">{selectedOverlayProduct.productCode}</p>
                       )}
-                      <h3 className={`text-3xl font-bold text-white leading-tight mb-4 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                      <h3 className={`text-3xl font-bold text-white leading-tight ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
                         {selectedOverlayProduct.name}
                       </h3>
-                      
-                      {/* Category Navigation Button */}
-                      <Link 
-                        to={`/products/${products[selectedProduct].slug}`}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-[#F2611D] hover:bg-white/20 rounded-lg font-semibold text-sm transition-all duration-300 border border-[#F2611D]/30 hover:border-[#F2611D]/60"
-                      >
-                        <span>View All {products[selectedProduct].title}</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      </Link>
                     </div>
 
                     {/* Large Product Image */}
@@ -505,16 +494,24 @@ const InteractiveProductsSectionV4 = () => {
                       </div>
                     )}
 
-                    {/* CTA Button with Icon */}
-                    <Link 
-                      to={`/products/${selectedOverlayProduct.productCode?.toLowerCase().replace(/\s+/g, '-') || 'product'}`}
-                      className="mt-auto pt-3 w-full px-4 py-3 bg-[#F2611D] text-white rounded-lg font-semibold text-sm hover:bg-[#E6540D] transition-all duration-300 text-center flex items-center justify-center gap-2 flex-shrink-0 shadow-lg hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
-                    >
-                      <span>View Full Details</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </Link>
+                    {/* Category Navigation Button */}
+                    <div className="flex gap-3 mt-auto pt-4">
+                      <Link 
+                        to={`/products/${selectedOverlayProduct.productCode?.toLowerCase().replace(/\s+/g, '-') || 'product'}`}
+                        className="flex-1 px-4 py-2 bg-white/10 text-white rounded-lg font-semibold text-sm hover:bg-white/20 transition-all duration-300 text-center animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
+                      >
+                        Details
+                      </Link>
+                      <Link 
+                        to={`/products/${products[selectedProduct].slug}`}
+                        className="flex-1 px-4 py-3 bg-[#F2611D] text-white rounded-lg font-semibold text-sm hover:bg-[#E6540D] transition-all duration-300 text-center flex items-center justify-center gap-2 shadow-lg hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
+                      >
+                        <span>View All {products[selectedProduct].title}</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 ) : (
                   <div className="flex items-center justify-center h-full text-white/60 text-sm">
