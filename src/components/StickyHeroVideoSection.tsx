@@ -52,7 +52,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
       )}
 
       
-        <section className="sticky top-0 h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
+        <section className="sticky top-0 h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl pointer-events-none">
           {/* Video Skeleton Loading State */}
           {!isVideoLoaded && (
             <VideoSkeleton />
@@ -67,7 +67,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
           />
 
           {/* Fallback gradient behind video */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
 
           {/* Text Overlay for light2 mode */}
           {mode === 'light2' && (
@@ -85,7 +85,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
         </section>
 
       {/* Scrollable content that slides over the sticky video */}
-      <div className="relative">
+      <div className="relative pointer-events-auto">
         {children}
       </div>
     </>
