@@ -435,13 +435,24 @@ const InteractiveProductsSectionV4 = () => {
                 {selectedOverlayProduct ? (
                   <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                     {/* Product Header with Code */}
-                    <div className="mb-4">
+                    <div className="mb-6">
                       {selectedOverlayProduct.productCode && (
-                        <p className="text-[#F2611D] font-semibold text-xs mb-1 uppercase tracking-wider">{selectedOverlayProduct.productCode}</p>
+                        <p className="text-[#F2611D] font-semibold text-xs mb-2 uppercase tracking-wider">{selectedOverlayProduct.productCode}</p>
                       )}
-                      <h3 className={`text-xl font-bold text-white leading-tight ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                      <h3 className={`text-3xl font-bold text-white leading-tight mb-4 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
                         {selectedOverlayProduct.name}
                       </h3>
+                      
+                      {/* Category Navigation Button */}
+                      <Link 
+                        to={`/products/${products[selectedProduct].slug}`}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 text-[#F2611D] hover:bg-white/20 rounded-lg font-semibold text-sm transition-all duration-300 border border-[#F2611D]/30 hover:border-[#F2611D]/60"
+                      >
+                        <span>View All {products[selectedProduct].title}</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </Link>
                     </div>
 
                     {/* Large Product Image */}
