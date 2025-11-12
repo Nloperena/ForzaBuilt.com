@@ -54,6 +54,7 @@ const InteractiveProductsSectionV4 = () => {
   const [showOverlay, setShowOverlay] = useState(false);
   const [overlayProducts, setOverlayProducts] = useState<DBProduct[]>([]);
   const [selectedOverlayProduct, setSelectedOverlayProduct] = useState<DBProduct | null>(null);
+  const [scrollStartY, setScrollStartY] = useState(0);
   const timerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
@@ -116,6 +117,7 @@ const InteractiveProductsSectionV4 = () => {
         setSelectedOverlayProduct(products_list[0]);
       }
       setShowOverlay(true);
+      setScrollStartY(window.scrollY);
     } catch (error) {
       console.error('Failed to load overlay products:', error);
     }
@@ -189,6 +191,21 @@ const InteractiveProductsSectionV4 = () => {
       io.disconnect();
     };
   }, [resetTimer]);
+
+  // Close overlay on scroll
+  useEffect(() => {
+    if (!showOverlay) return;
+
+    const handleScroll = () => {
+      const scrollDelta = Math.abs(window.scrollY - scrollStartY);
+      if (scrollDelta > 20) {
+        setShowOverlay(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showOverlay, scrollStartY]);
 
   return (
     <section ref={sectionRef} className="relative z-20">
