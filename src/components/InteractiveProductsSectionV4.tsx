@@ -404,7 +404,7 @@ const InteractiveProductsSectionV4 = () => {
             {/* Content Grid - Two Columns */}
             <div className="flex-1 overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-0">
               {/* Left - Product List */}
-              <div className="overflow-y-auto border-r border-white/10 bg-[#1b3764]/40 p-4">
+              <div className="overflow-y-auto border-r border-white/10 bg-[#1b3764]/40 p-4 scrollbar-hide hover:scrollbar-visible [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#F2611D]/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#F2611D]/60 [&::-webkit-scrollbar-thumb]:transition-colors">
                 <h3 className={`text-base font-bold text-white mb-3 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
                   {products[selectedProduct].title}
                 </h3>
@@ -413,10 +413,10 @@ const InteractiveProductsSectionV4 = () => {
                     <button
                       key={product.id}
                       onClick={() => setSelectedOverlayProduct(product)}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-all duration-300 ${
+                      className={`w-full text-left px-3 py-2 rounded-lg transition-all duration-300 transform ${
                         selectedOverlayProduct?.id === product.id
-                          ? 'bg-[#F2611D] text-white font-semibold'
-                          : 'text-white hover:bg-white/10'
+                          ? 'bg-[#F2611D] text-white font-semibold scale-105 shadow-lg'
+                          : 'text-white hover:bg-white/10 hover:scale-102'
                       }`}
                     >
                       <p className={`text-xs truncate ${mode === 'light2' ? 'font-poppins' : ''}`}>
@@ -431,9 +431,9 @@ const InteractiveProductsSectionV4 = () => {
               </div>
 
               {/* Right - Product Details */}
-              <div className="overflow-y-auto p-5 flex flex-col bg-[#1b3764]/20">
+              <div className="overflow-y-auto p-5 flex flex-col bg-[#1b3764]/20 scrollbar-hide hover:scrollbar-visible [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#F2611D]/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#F2611D]/60 [&::-webkit-scrollbar-thumb]:transition-colors">
                 {selectedOverlayProduct ? (
-                  <>
+                  <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                     {/* Product Header with Code */}
                     <div className="mb-4">
                       {selectedOverlayProduct.productCode && (
@@ -446,7 +446,7 @@ const InteractiveProductsSectionV4 = () => {
 
                     {/* Large Product Image */}
                     {selectedOverlayProduct?.imageUrl && (
-                      <div className="mb-5 rounded-xl overflow-hidden bg-gradient-to-b from-[#0f2132] to-[#1b3764] h-48 flex items-center justify-center flex-shrink-0 shadow-lg border border-white/10">
+                      <div className="mb-5 rounded-xl overflow-hidden bg-gradient-to-b from-[#0f2132] to-[#1b3764] h-48 flex items-center justify-center flex-shrink-0 shadow-lg border border-white/10 animate-in zoom-in-95 duration-300 delay-75">
                         <img 
                           src={selectedOverlayProduct.imageUrl}
                           alt={selectedOverlayProduct.name}
@@ -457,20 +457,20 @@ const InteractiveProductsSectionV4 = () => {
 
                     {/* Product Description */}
                     {selectedOverlayProduct.description && (
-                      <p className={`text-white/90 leading-relaxed text-sm mb-4 ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                      <p className={`text-white/90 leading-relaxed text-sm mb-4 animate-in fade-in duration-300 delay-100 ${mode === 'light2' ? 'font-poppins' : ''}`}>
                         {selectedOverlayProduct.description}
                       </p>
                     )}
 
                     {/* Key Features Section */}
                     {selectedOverlayProduct.features && selectedOverlayProduct.features.length > 0 && (
-                      <div className="mb-4">
+                      <div className="mb-4 animate-in fade-in duration-300 delay-150">
                         <h4 className={`text-sm font-bold text-white mb-2 uppercase tracking-wide ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
                           Key Features
                         </h4>
                         <ul className="space-y-1.5">
                           {selectedOverlayProduct.features.slice(0, 4).map((feature, idx) => (
-                            <li key={idx} className={`text-white/80 flex items-start gap-2 text-xs leading-relaxed ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                            <li key={idx} className={`text-white/80 flex items-start gap-2 text-xs leading-relaxed animate-in fade-in duration-300 ${mode === 'light2' ? 'font-poppins' : ''}`} style={{ animationDelay: `${200 + idx * 50}ms` }}>
                               <span className="text-[#F2611D] font-bold flex-shrink-0 mt-0.5">●</span>
                               <span>{feature}</span>
                             </li>
@@ -481,7 +481,7 @@ const InteractiveProductsSectionV4 = () => {
 
                     {/* Key Specifications */}
                     {selectedOverlayProduct.chemistry && (
-                      <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10">
+                      <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10 animate-in fade-in duration-300 delay-200">
                         <h4 className={`text-xs font-bold text-white mb-2 uppercase tracking-wide ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
                           Key Specifications
                         </h4>
@@ -497,14 +497,14 @@ const InteractiveProductsSectionV4 = () => {
                     {/* CTA Button with Icon */}
                     <Link 
                       to={`/products/${selectedOverlayProduct.productCode?.toLowerCase().replace(/\s+/g, '-') || 'product'}`}
-                      className="mt-auto pt-3 w-full px-4 py-3 bg-[#F2611D] text-white rounded-lg font-semibold text-sm hover:bg-[#E6540D] transition-all duration-300 text-center flex items-center justify-center gap-2 flex-shrink-0 shadow-lg hover:shadow-xl"
+                      className="mt-auto pt-3 w-full px-4 py-3 bg-[#F2611D] text-white rounded-lg font-semibold text-sm hover:bg-[#E6540D] transition-all duration-300 text-center flex items-center justify-center gap-2 flex-shrink-0 shadow-lg hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
                     >
                       <span>View Full Details</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
                     </Link>
-                  </>
+                  </div>
                 ) : (
                   <div className="flex items-center justify-center h-full text-white/60 text-sm">
                     Select a product to view details
