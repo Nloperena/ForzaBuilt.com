@@ -33,7 +33,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
     : 'w-[280px] md:w-[320px] lg:w-[340px] xl:w-[560px] 2xl:w-[640px]';
   
   return (
-    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${responsiveWidth} ${variant === 'default' ? 'rounded-lg' : 'rounded-lg'} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-20`}> 
+    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 ${responsiveWidth} ${variant === 'default' ? 'rounded-lg' : 'rounded-lg'} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-20`}> 
               {variant === 'industries' ? (
         <div className="grid grid-cols-6">
           {items.map((it, idx) => (
