@@ -375,9 +375,11 @@ const InteractiveProductsSectionV4 = () => {
           </div>
         </div>
 
-        {/* Product Overlay - Positioned over right side, animated in */}
+        {/* Product Overlay - Positioned over right side, animated in/out */}
         {showOverlay && (
-          <div className="absolute top-0 right-0 bottom-0 w-full lg:w-1/2 bg-gradient-to-br from-[#477197] to-[#2c476e] overflow-hidden flex flex-col shadow-2xl animate-in slide-in-from-right duration-500 z-40">
+          <div className={`absolute top-0 right-0 bottom-0 w-full lg:w-1/2 bg-gradient-to-br from-[#477197] to-[#2c476e] overflow-hidden flex flex-col shadow-2xl z-40 transition-all duration-500 ${
+            showOverlay ? 'animate-in slide-in-from-right' : 'animate-out slide-out-to-right'
+          }`}>
             {/* Header with Logo and Close Button */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 flex-shrink-0">
               <div className="flex items-center gap-4">
@@ -388,8 +390,10 @@ const InteractiveProductsSectionV4 = () => {
                 />
               </div>
               <button
-                onClick={() => setShowOverlay(false)}
-                className="text-white hover:text-white/70 transition-colors p-2 hover:bg-white/10 rounded-lg flex-shrink-0"
+                onClick={() => {
+                  setShowOverlay(false);
+                }}
+                className="text-white hover:text-white/70 transition-colors p-2 hover:bg-white/10 rounded-lg flex-shrink-0 hover:scale-110 transition-transform"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
