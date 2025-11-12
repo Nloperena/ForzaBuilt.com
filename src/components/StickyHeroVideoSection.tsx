@@ -1,40 +1,13 @@
-import React, { useState, useEffect } from 'react';
- 
-import VideoSkeleton from './common/VideoSkeleton';
-import HeroVideoBackground from '@/components/HeroVideoBackground';
+import React from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
- 
+import EagleHeroVideo from './EagleHeroVideo';
 
 interface StickyHeroVideoSectionProps {
   children?: React.ReactNode;
 }
 
 const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ children }) => {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const { getGradientClasses, mode } = useGradientMode();
-  
-  useEffect(() => {
-    // Fallback timeout to prevent infinite loading on slow connections
-    const timeout = setTimeout(() => {
-      if (!isVideoLoaded) {
-        console.warn('Video took too long to load, showing fallback');
-        setIsVideoLoaded(true);
-      }
-    }, 5000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [isVideoLoaded]);
-
-  const handleVideoLoad = () => {
-    setIsVideoLoaded(true);
-  };
-
-  const handleVideoError = () => {
-    console.warn('Video failed to load, showing fallback');
-    setIsVideoLoaded(true);
-  };
 
   return (
     <>
@@ -53,37 +26,19 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
       )}
 
       
-        <section className="sticky top-0 h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
-          {/* Video Skeleton Loading State */}
-          {!isVideoLoaded && (
-            <VideoSkeleton />
-          )}
-          
-          {/* Background Video via reusable component */}
-          <HeroVideoBackground
-            src="/videos/backgrounds/Eagle Header Video.mp4"
-            onLoaded={handleVideoLoad}
-            onError={handleVideoError}
-            overlayClassName={mode === 'light2' ? 'bg-[#2c476e]/40' : undefined}
-          />
+      {/* Eagle Hero Video - Simple non-sticky version */}
+      <EagleHeroVideo />
 
-          {/* Fallback gradient behind video */}
-          <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
-
-          {/* Text Overlay for light2 mode */}
-          {mode === 'light2' && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4" style={{ zIndex: 3 }}>
-              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display font-regular text-white mb-6 sm:mb-8 font-poppins leading-snug">
-                High-Performing<br />
-                Industrial Adhesive, Tape<br />
-                & Sealant Solutions
-              </h1>
-            </div>
-          )}
-
-          {/* Gradient overlays for depth */}
-         
-        </section>
+      {/* Text Overlay for light2 mode */}
+      {mode === 'light2' && (
+        <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 40 }}>
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display font-regular text-white mb-6 sm:mb-8 font-poppins leading-snug">
+            High-Performing<br />
+            Industrial Adhesive, Tape<br />
+            & Sealant Solutions
+          </h1>
+        </div>
+      )}
 
       {/* Scrollable content that slides over the sticky video */}
       <div className="relative pointer-events-auto">
