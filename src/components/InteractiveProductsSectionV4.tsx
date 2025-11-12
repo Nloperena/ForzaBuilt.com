@@ -2,12 +2,19 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import { byProductLine } from '@/utils/products';
+import type { Product as DBProduct } from '@/types/products';
 
 interface Product {
   title: string;
   description: string;
   image: string;
   slug: string;
+}
+
+interface ProductOverlayProps {
+  category: 'bond' | 'seal' | 'tape';
+  isOpen: boolean;
 }
 
 const products: Product[] = [
@@ -44,6 +51,9 @@ const InteractiveProductsSectionV4 = () => {
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [overlayProducts, setOverlayProducts] = useState<DBProduct[]>([]);
+  const [selectedOverlayProduct, setSelectedOverlayProduct] = useState<DBProduct | null>(null);
   const timerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
@@ -84,19 +94,30 @@ const InteractiveProductsSectionV4 = () => {
     }
   };
 
-  // Handle hover - only updates image
+  // Handle hover - only change color to orange, don't change image if something is selected
   const handleProductHover = (index: number | null) => {
-    if (index !== null && index !== hoveredProduct) {
-      // When starting to hover, save the current displayed product as previous
-      const currentDisplayed = hoveredProduct ?? selectedProduct;
-      if (currentDisplayed !== index) {
-        setPreviousProduct(currentDisplayed);
+    // Don't change the image on hover if something is already selected
+    // This means we only show color change on hover, no image swap
+  };
+
+  // Load products for overlay
+  const loadOverlayProducts = async (category: 'bond' | 'seal' | 'tape') => {
+    try {
+      const categoryMap: { [key: string]: 'bond' | 'seal' | 'tape' } = {
+        'ADHESIVES': 'bond',
+        'SEALANTS': 'seal',
+        'TAPES': 'tape',
+        'CLEANERS': 'seal' // Reuse sealants for cleaners/RR
+      };
+      const categorySlug = categoryMap[products[selectedProduct].title] || 'bond';
+      const products_list = await byProductLine(categorySlug);
+      setOverlayProducts(products_list);
+      if (products_list.length > 0) {
+        setSelectedOverlayProduct(products_list[0]);
       }
-      setHoveredProduct(index);
-    } else if (index === null && hoveredProduct !== null) {
-      // When mouse leaves, save the hovered product as previous and revert to selected
-      setPreviousProduct(hoveredProduct);
-      setHoveredProduct(null);
+      setShowOverlay(true);
+    } catch (error) {
+      console.error('Failed to load overlay products:', error);
     }
   };
 
@@ -322,10 +343,11 @@ const InteractiveProductsSectionV4 = () => {
                         key={displayedProduct}>
                           {products[displayedProduct].description}
                         </p>
-                        <Button asChild className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg">
-                          <Link to={`/products/${products[displayedProduct].slug}`}>
-                            {getButtonText(products[displayedProduct].title)}
-                          </Link>
+                        <Button 
+                          onClick={() => loadOverlayProducts('bond')}
+                          className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                        >
+                          Browse Products
                         </Button>
                       </>
                     );
@@ -335,6 +357,149 @@ const InteractiveProductsSectionV4 = () => {
             </div>
           </div>
         </div>
+
+        {/* Product Overlay */}
+        {showOverlay && (
+          <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
+            <div className="bg-gradient-to-br from-[#477197] to-[#2c476e] rounded-2xl w-full max-w-6xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+              {/* Header with Logo */}
+              <div className="flex items-center justify-between px-8 py-6 border-b border-white/10">
+                <div className="flex items-center gap-6">
+                  <img 
+                    src="/logos/Forza-Eagle-Logo-White.svg"
+                    alt="Forza Logo"
+                    className="h-24 w-auto"
+                  />
+                </div>
+                <button
+                  onClick={() => setShowOverlay(false)}
+                  className="text-white hover:text-white/70 transition-colors p-2 hover:bg-white/10 rounded-lg"
+                >
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Content Grid */}
+              <div className="flex-1 overflow-hidden grid grid-cols-3 gap-0">
+                {/* Left - Product List */}
+                <div className="col-span-1 overflow-y-auto border-r border-white/10 bg-[#1b3764]/30 p-4">
+                  <h3 className={`text-lg font-bold text-white mb-4 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                    {products[selectedProduct].title}
+                  </h3>
+                  <div className="space-y-2">
+                    {overlayProducts.map((product) => (
+                      <button
+                        key={product.id}
+                        onClick={() => setSelectedOverlayProduct(product)}
+                        className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
+                          selectedOverlayProduct?.id === product.id
+                            ? 'bg-[#F2611D] text-white font-semibold'
+                            : 'text-white hover:bg-white/10'
+                        }`}
+                      >
+                        <p className={`text-sm truncate ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                          {product.name || product.productCode}
+                        </p>
+                        {product.productCode && (
+                          <p className="text-xs text-white/60 truncate">{product.productCode}</p>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Center - Product Image */}
+                <div className="col-span-1 overflow-hidden bg-[#0f2132] flex items-center justify-center p-6">
+                  {selectedOverlayProduct?.imageUrl ? (
+                    <img 
+                      src={selectedOverlayProduct.imageUrl}
+                      alt={selectedOverlayProduct.name}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-white/40">
+                      <div className="text-center">
+                        <svg className="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <p className="text-sm">No image available</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Right - Product Details */}
+                <div className="col-span-1 overflow-y-auto p-6 flex flex-col bg-[#1b3764]/20">
+                  {selectedOverlayProduct ? (
+                    <>
+                      {/* Product Header */}
+                      <div className="mb-6">
+                        <h3 className={`text-2xl font-bold text-white mb-1 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                          {selectedOverlayProduct.name}
+                        </h3>
+                        {selectedOverlayProduct.productCode && (
+                          <p className="text-[#F2611D] font-semibold text-sm">{selectedOverlayProduct.productCode}</p>
+                        )}
+                      </div>
+
+                      {/* Product Description */}
+                      <div className="space-y-4 flex-1">
+                        {selectedOverlayProduct.description && (
+                          <p className={`text-white/90 leading-relaxed text-sm ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                            {selectedOverlayProduct.description}
+                          </p>
+                        )}
+
+                        {/* Key Features */}
+                        {selectedOverlayProduct.features && selectedOverlayProduct.features.length > 0 && (
+                          <div>
+                            <h4 className={`text-sm font-bold text-white mb-2 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                              Key Features
+                            </h4>
+                            <ul className="space-y-1.5">
+                              {selectedOverlayProduct.features.map((feature, idx) => (
+                                <li key={idx} className={`text-white/80 flex items-start gap-2 text-xs ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                                  <span className="text-[#F2611D] font-bold flex-shrink-0">•</span>
+                                  <span>{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        {/* Chemistry */}
+                        {selectedOverlayProduct.chemistry && (
+                          <div>
+                            <h4 className={`text-xs font-semibold text-[#F2611D] mb-1 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                              Chemistry
+                            </h4>
+                            <p className={`text-white/80 text-xs ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                              {selectedOverlayProduct.chemistry}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* CTA Button */}
+                      <Link 
+                        to={`/products/${selectedOverlayProduct.productCode?.toLowerCase().replace(/\s+/g, '-') || 'product'}`}
+                        className="mt-6 inline-block px-4 py-2 bg-[#F2611D] text-white rounded-full font-semibold text-sm hover:bg-[#F2611D]/90 transition-colors text-center"
+                      >
+                        View Details
+                      </Link>
+                    </>
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-white/60 text-sm">
+                      Select a product
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     </section>
   );

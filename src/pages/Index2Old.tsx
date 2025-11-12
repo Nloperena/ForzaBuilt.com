@@ -9,13 +9,16 @@ import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7'
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import InteractiveProductsSectionV4 from '@/components/InteractiveProductsSectionV4';
 import ApproachSectionV3Alt from '@/components/ApproachSectionV3Alt';
+// import ApproachSectionV3 from '@/components/ApproachSectionV3';
 import ApproachHeading from '@/components/ApproachHeading';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
+import HeroVideoSectionV2 from '@/components/HeroVideoSectionV2';
+import LibrarySection from '@/components/LibrarySection';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
-const Index = () => {
+const Index2Old = () => {
   const { mode } = useGradientMode();
 
   return (
@@ -33,7 +36,7 @@ const Index = () => {
         {/* All content that should slide over the video */}
 
         {/* Product Image Ticker - New Product Divider */}
-        <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-72">
+        <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-72 z-20">
           <ProductImageTicker
             items={[
               // Pattern: BOND, SEAL, BOND, SEAL, TAPE
@@ -104,14 +107,16 @@ const Index = () => {
           />
         </section>
 
-        {/* Industries Section */}
-        <section className="relative overflow-hidden">
+        {/* Industries Section (same as Industries page) */}
+        <section className="relative overflow-hidden z-20">
+          {/* Optimized Gradient Background (Mirrored) */}
           <OptimizedGradient variant="mirrored" opacity={0.8} />
+
           <IndustriesSectionAlt />
         </section>
 
-        {/* Products Section */}
-        <section className="relative">
+        {/* Products Section Row */}
+        <section className="relative z-20">
           {mode === 'light2' ? (
             <InteractiveProductsSectionV4 />
           ) : (
@@ -119,29 +124,40 @@ const Index = () => {
           )}
         </section>
 
-        {/* Chemistry Overview Section */}
-        <section className="relative">
+        
+
+        {/* Chemistry Overview Section - Mobile optimized unified grid */}
+        <section className="relative" style={{ zIndex: 20 }}>
           <ChemistryOverviewSectionV7 />
         </section>
+        
+
+       
 
         {/* Approach Section */}
-        <section className="relative">
+        <section className="relative z-20">
           <ApproachSectionV3Alt />
+          {/* <ApproachSectionV3 /> */}
         </section>
 
+          {/* Hero Video Section V2 - Standalone (no sticky effect) */}
+        
+
         {/* Made in America Sections */}
-        <section className="relative">
+        <section className="relative z-20">
           <MadeInAmericaSectionV2 />
           <MadeInAmericaSection />
         </section>
 
         {/* Newsletter Section */}
-        <section className="relative">
+        <div className="relative z-20">
           <StickyNewsletterSection />
-        </section>
+        </div>
       </StickyHeroVideoSection>
+
     </div>
   );
 };
 
-export default Index;
+export default Index2Old;
+
