@@ -52,6 +52,7 @@ const InteractiveProductsSectionV4 = () => {
   const [progress, setProgress] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const [overlayProducts, setOverlayProducts] = useState<DBProduct[]>([]);
   const [selectedOverlayProduct, setSelectedOverlayProduct] = useState<DBProduct | null>(null);
   const [scrollStartY, setScrollStartY] = useState(0);
@@ -59,6 +60,7 @@ const InteractiveProductsSectionV4 = () => {
   const progressIntervalRef = useRef<NodeJS.Timeout>();
   const isUserInteractingRef = useRef(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout>();
 
   // Get button text based on product title
   const getButtonText = (title: string) => {
@@ -117,11 +119,22 @@ const InteractiveProductsSectionV4 = () => {
         setSelectedOverlayProduct(products_list[0]);
       }
       setShowOverlay(true);
+      setIsClosing(false);
       setScrollStartY(window.scrollY);
     } catch (error) {
       console.error('Failed to load overlay products:', error);
     }
   };
+
+  // Close overlay with slide-out animation
+  const closeOverlay = useCallback(() => {
+    setIsClosing(true);
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    closeTimeoutRef.current = setTimeout(() => {
+      setShowOverlay(false);
+      setIsClosing(false);
+    }, 300); // Match animation duration
+  }, []);
 
   useEffect(() => {
     // Auto-cycle every 4 seconds
@@ -194,18 +207,18 @@ const InteractiveProductsSectionV4 = () => {
 
   // Close overlay on scroll
   useEffect(() => {
-    if (!showOverlay) return;
+    if (!showOverlay || isClosing) return;
 
     const handleScroll = () => {
       const scrollDelta = Math.abs(window.scrollY - scrollStartY);
       if (scrollDelta > 20) {
-        setShowOverlay(false);
+        closeOverlay();
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [showOverlay, scrollStartY]);
+  }, [showOverlay, scrollStartY, isClosing, closeOverlay]);
 
   return (
     <section ref={sectionRef} className="relative z-20">
@@ -377,25 +390,24 @@ const InteractiveProductsSectionV4 = () => {
 
         {/* Product Overlay - Positioned over right side, animated in/out */}
         {showOverlay && (
-          <div className={`absolute top-0 right-0 bottom-0 w-full lg:w-1/2 bg-gradient-to-br from-[#477197] to-[#2c476e] overflow-hidden flex flex-col shadow-2xl z-40 transition-all duration-500 ${
-            showOverlay ? 'animate-in slide-in-from-right' : 'animate-out slide-out-to-right'
+          <div className={`absolute top-0 right-0 bottom-0 w-full lg:w-1/2 bg-gradient-to-br from-[#477197] to-[#2c476e] overflow-hidden flex flex-col shadow-2xl z-40 ${
+            isClosing ? 'animate-out slide-out-to-right duration-300' : 'animate-in slide-in-from-right duration-300'
           }`}>
             {/* Header with Logo and Close Button */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 flex-shrink-0">
-              <div className="flex items-center gap-4">
+            <div className="flex items-center justify-between px-3 md:px-6 py-2 md:py-4 border-b border-white/10 flex-shrink-0">
+              <div className="flex items-center gap-2 md:gap-4">
                 <img 
                   src="/logos/Forza-Eagle-Logo-White.svg"
                   alt="Forza Logo"
-                  className="h-16 w-auto"
+                  className="h-10 md:h-16 w-auto"
                 />
               </div>
               <button
-                onClick={() => {
-                  setShowOverlay(false);
-                }}
-                className="text-white hover:text-white/70 transition-colors p-2 hover:bg-white/10 rounded-lg flex-shrink-0 hover:scale-110 transition-transform"
+                onClick={closeOverlay}
+                className="text-white hover:text-white/70 transition-colors p-2 hover:bg-white/10 rounded-lg flex-shrink-0 hover:scale-110 transition-transform flex items-center gap-1"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="text-sm font-semibold">on</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -404,26 +416,26 @@ const InteractiveProductsSectionV4 = () => {
             {/* Content Grid - Two Columns */}
             <div className="flex-1 overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-0">
               {/* Left - Product List */}
-              <div className="overflow-y-auto border-r border-white/10 bg-[#1b3764]/40 p-4 scrollbar-hide hover:scrollbar-visible [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#F2611D]/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#F2611D]/60 [&::-webkit-scrollbar-thumb]:transition-colors">
-                <h3 className={`text-base font-bold text-white mb-3 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+              <div className="overflow-y-auto border-r border-white/10 bg-[#1b3764]/40 p-2 md:p-4 scrollbar-hide hover:scrollbar-visible [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#F2611D]/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#F2611D]/60 [&::-webkit-scrollbar-thumb]:transition-colors">
+                <h3 className={`text-xs md:text-base lg:text-xs xl:text-sm 2xl:text-base font-bold text-white mb-2 md:mb-3 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
                   {products[selectedProduct].title}
                 </h3>
-                <div className="space-y-2">
+                <div className="space-y-1 md:space-y-2 lg:space-y-1.5">
                   {overlayProducts.map((product) => (
                     <button
                       key={product.id}
                       onClick={() => setSelectedOverlayProduct(product)}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-all duration-300 transform ${
+                      className={`w-full text-left px-2 md:px-3 lg:px-2.5 xl:px-3 py-1.5 md:py-2 lg:py-2 xl:py-2.5 2xl:py-3 rounded transition-all duration-300 transform ${
                         selectedOverlayProduct?.id === product.id
                           ? 'bg-[#F2611D] text-white font-semibold scale-105 shadow-lg'
                           : 'text-white hover:bg-white/10 hover:scale-102'
                       }`}
                     >
-                      <p className={`text-xs truncate ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                      <p className={`text-xs md:text-sm lg:text-xs xl:text-sm 2xl:text-base truncate ${mode === 'light2' ? 'font-poppins' : ''}`}>
                         {product.name || product.productCode}
                       </p>
                       {product.productCode && (
-                        <p className="text-xs text-white/60 truncate">{product.productCode}</p>
+                        <p className="text-xs lg:text-[10px] xl:text-xs 2xl:text-sm text-white/60 truncate">{product.productCode}</p>
                       )}
                     </button>
                   ))}
@@ -431,47 +443,47 @@ const InteractiveProductsSectionV4 = () => {
               </div>
 
               {/* Right - Product Details */}
-              <div className="overflow-y-auto p-5 flex flex-col bg-[#1b3764]/20 scrollbar-hide hover:scrollbar-visible [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#F2611D]/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#F2611D]/60 [&::-webkit-scrollbar-thumb]:transition-colors">
+              <div className="overflow-y-auto p-2 md:p-5 lg:p-1.5 flex flex-col bg-[#1b3764]/20 scrollbar-hide hover:scrollbar-visible [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#F2611D]/40 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#F2611D]/60 [&::-webkit-scrollbar-thumb]:transition-colors">
                 {selectedOverlayProduct ? (
                   <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                     {/* Product Header with Code */}
-                    <div className="mb-6">
+                    <div className="mb-3 md:mb-6 lg:mb-1 xl:mb-2 2xl:mb-3">
                       {selectedOverlayProduct.productCode && (
-                        <p className="text-[#F2611D] font-semibold text-xs mb-2 uppercase tracking-wider">{selectedOverlayProduct.productCode}</p>
+                        <p className="text-[#F2611D] font-semibold text-xs mb-1 lg:mb-0.5 lg:text-[10px] xl:text-xs 2xl:text-sm uppercase tracking-wider">{selectedOverlayProduct.productCode}</p>
                       )}
-                      <h3 className={`text-3xl font-bold text-white leading-tight ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                      <h3 className={`text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl font-bold text-white leading-tight ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
                         {selectedOverlayProduct.name}
                       </h3>
                     </div>
 
                     {/* Large Product Image */}
                     {selectedOverlayProduct?.imageUrl && (
-                      <div className="mb-5 rounded-xl overflow-hidden bg-gradient-to-b from-[#0f2132] to-[#1b3764] h-48 flex items-center justify-center flex-shrink-0 shadow-lg border border-white/10 animate-in zoom-in-95 duration-300 delay-75">
+                      <div className="mb-3 md:mb-5 lg:mb-1.5 xl:mb-3 2xl:mb-4 rounded-lg md:rounded-xl overflow-hidden bg-gradient-to-b from-[#0f2132] to-[#1b3764] h-24 md:h-48 lg:h-20 xl:h-48 2xl:h-56 flex items-center justify-center flex-shrink-0 shadow-lg border border-white/10 animate-in zoom-in-95 duration-300 delay-75">
                         <img 
                           src={selectedOverlayProduct.imageUrl}
                           alt={selectedOverlayProduct.name}
-                          className="w-full h-full object-contain p-4"
+                          className="w-full h-full object-contain p-2 lg:p-1.5 xl:p-3 2xl:p-4"
                         />
                       </div>
                     )}
 
                     {/* Product Description */}
                     {selectedOverlayProduct.description && (
-                      <p className={`text-white/90 leading-relaxed text-sm mb-4 animate-in fade-in duration-300 delay-100 ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                      <p className={`text-white/90 leading-relaxed text-xs md:text-sm lg:text-[11px] xl:text-sm 2xl:text-base mb-2 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-3 animate-in fade-in duration-300 delay-100 ${mode === 'light2' ? 'font-poppins' : ''}`}>
                         {selectedOverlayProduct.description}
                       </p>
                     )}
 
                     {/* Key Features Section */}
                     {selectedOverlayProduct.features && selectedOverlayProduct.features.length > 0 && (
-                      <div className="mb-4 animate-in fade-in duration-300 delay-150">
-                        <h4 className={`text-sm font-bold text-white mb-2 uppercase tracking-wide ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
-                          Key Features
+                      <div className="mb-2 md:mb-4 lg:mb-1 xl:mb-2 2xl:mb-3 animate-in fade-in duration-300 delay-150">
+                        <h4 className={`text-xs md:text-sm lg:text-[10px] xl:text-xs 2xl:text-sm font-bold text-white mb-1 md:mb-2 lg:mb-0.5 xl:mb-1 2xl:mb-2 uppercase tracking-wide ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                          Features
                         </h4>
-                        <ul className="space-y-1.5">
-                          {selectedOverlayProduct.features.slice(0, 4).map((feature, idx) => (
-                            <li key={idx} className={`text-white/80 flex items-start gap-2 text-xs leading-relaxed animate-in fade-in duration-300 ${mode === 'light2' ? 'font-poppins' : ''}`} style={{ animationDelay: `${200 + idx * 50}ms` }}>
-                              <span className="text-[#F2611D] font-bold flex-shrink-0 mt-0.5">●</span>
+                        <ul className="space-y-1 lg:space-y-0.5 xl:space-y-1 2xl:space-y-1.5">
+                          {selectedOverlayProduct.features.slice(0, 2).map((feature, idx) => (
+                            <li key={idx} className={`text-white/80 flex items-start gap-1 text-xs lg:text-[10px] xl:text-xs 2xl:text-sm leading-tight animate-in fade-in duration-300 ${mode === 'light2' ? 'font-poppins' : ''}`} style={{ animationDelay: `${200 + idx * 50}ms` }}>
+                              <span className="text-[#F2611D] font-bold flex-shrink-0">●</span>
                               <span>{feature}</span>
                             </li>
                           ))}
@@ -481,11 +493,11 @@ const InteractiveProductsSectionV4 = () => {
 
                     {/* Key Specifications */}
                     {selectedOverlayProduct.chemistry && (
-                      <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10 animate-in fade-in duration-300 delay-200">
-                        <h4 className={`text-xs font-bold text-white mb-2 uppercase tracking-wide ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
-                          Key Specifications
+                      <div className="mb-2 md:mb-4 lg:mb-1.5 xl:mb-2.5 2xl:mb-3 p-2 md:p-3 lg:p-1.5 xl:p-2.5 2xl:p-3.5 bg-white/5 rounded border md:rounded-lg border-white/10 animate-in fade-in duration-300 delay-200">
+                        <h4 className={`text-xs lg:text-[10px] xl:text-xs 2xl:text-sm font-bold text-white mb-1 lg:mb-0.5 xl:mb-1 2xl:mb-1.5 uppercase tracking-wide ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                          Specs
                         </h4>
-                        <div className="space-y-1.5 text-xs">
+                        <div className="text-xs lg:text-[10px] xl:text-xs 2xl:text-sm">
                           <div className="flex justify-between">
                             <span className="text-white/60">Chemistry:</span>
                             <span className="text-[#F2611D] font-semibold">{selectedOverlayProduct.chemistry}</span>
@@ -495,19 +507,20 @@ const InteractiveProductsSectionV4 = () => {
                     )}
 
                     {/* Category Navigation Button */}
-                    <div className="flex gap-3 mt-auto pt-4">
+                    <div className="flex gap-2 mt-auto pt-2 md:pt-4 lg:pt-1.5 xl:pt-2.5 2xl:pt-3">
                       <Link 
                         to={`/products/${selectedOverlayProduct.productCode?.toLowerCase().replace(/\s+/g, '-') || 'product'}`}
-                        className="flex-1 px-4 py-2 bg-white/10 text-white rounded-lg font-semibold text-sm hover:bg-white/20 transition-all duration-300 text-center animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
+                        className="flex-1 px-2 md:px-4 lg:px-1.5 xl:px-3 2xl:px-4 py-2 lg:py-1 xl:py-1.5 2xl:py-2 bg-white/10 text-white rounded text-xs lg:text-[10px] xl:text-xs 2xl:text-sm hover:bg-white/20 transition-all duration-300 text-center animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
                       >
                         Details
                       </Link>
                       <Link 
                         to={`/products/${products[selectedProduct].slug}`}
-                        className="flex-1 px-4 py-3 bg-[#F2611D] text-white rounded-lg font-semibold text-sm hover:bg-[#E6540D] transition-all duration-300 text-center flex items-center justify-center gap-2 shadow-lg hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
+                        className="flex-1 px-2 md:px-4 lg:px-1.5 xl:px-3 2xl:px-4 py-2 lg:py-1 xl:py-1.5 2xl:py-2 bg-[#F2611D] text-white rounded text-xs lg:text-[10px] xl:text-xs 2xl:text-sm hover:bg-[#E6540D] transition-all duration-300 text-center flex items-center justify-center gap-1 shadow-lg hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
                       >
-                        <span>View All {products[selectedProduct].title}</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span className="hidden md:inline">View All</span>
+                        <span className="md:hidden">View</span>
+                        <svg className="w-3 md:w-4 lg:w-2.5 xl:w-3.5 2xl:w-4 h-3 md:h-4 lg:h-2.5 xl:h-3.5 2xl:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                       </Link>
