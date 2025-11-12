@@ -149,7 +149,7 @@ const HeaderV3: React.FC = () => {
           {/* Left logo */}
           <div className="flex items-center relative z-30 py-3 md:pt-12 md:pb-4 2xl:py-3">
             <Logo 
-              className="h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24 w-auto" 
+              className="h-12 md:h-14 lg:h-12 xl:h-20 2xl:h-24 w-auto" 
               isWhiteBackground={!isTransparent && (isLight || isScrolled)} 
             />
           </div>
