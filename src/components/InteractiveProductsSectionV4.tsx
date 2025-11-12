@@ -290,12 +290,12 @@ const InteractiveProductsSectionV4 = () => {
                           onMouseLeave={() => handleProductHover(null)}
                           className="w-full text-left transition-all duration-500 cursor-pointer"
                         >
-                          <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] ${
+                          <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] transition-all duration-500 ease-out ${
+                            mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                          } ${
                             isActive
                               ? 'text-[#F2611D] font-bold'
-                              : 'text-white font-normal'
-                          } hover:text-[#F2611D] transition-all duration-500 ease-out ${
-                            mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                              : 'text-white font-normal hover:text-[#F2611D]'
                           }`}
                           style={{
                             fontSize: isActive 

@@ -8,7 +8,8 @@ import DynamicMetaTags from '@/components/DynamicMetaTags';
 import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import InteractiveProductsSectionV4 from '@/components/InteractiveProductsSectionV4';
-import ApproachSectionV3 from '@/components/ApproachSectionV3';
+import ApproachSectionV3Alt from '@/components/ApproachSectionV3Alt';
+// import ApproachSectionV3 from '@/components/ApproachSectionV3';
 import ApproachHeading from '@/components/ApproachHeading';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
@@ -135,7 +136,8 @@ const Index = () => {
 
         {/* Approach Section */}
         <section className="relative z-20">
-          <ApproachSectionV3 />
+          <ApproachSectionV3Alt />
+          {/* <ApproachSectionV3 /> */}
         </section>
 
           {/* Hero Video Section V2 - Standalone (no sticky effect) */}

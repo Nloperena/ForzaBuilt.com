@@ -408,7 +408,7 @@ const ApproachSectionV3 = () => {
         newFontSizes[index] = `${clampedSize}px`;
       } else {
         // Fallback to clamp - smaller sizes to fit all items
-        newFontSizes[index] = isSelected ? 'clamp(14px, 2vw + 0.4rem, 36px)' : 'clamp(12px, 1.8vw + 0.4rem, 32px)';
+        newFontSizes[index] = isSelected ? 'clamp(14px, 1.6vw + 0.4rem, 24px)' : 'clamp(12px, 1.4vw + 0.4rem, 20px)';
       }
       
       // Restore original styles
@@ -518,7 +518,7 @@ const ApproachSectionV3 = () => {
                           : 'text-white font-normal'
                       }`}
                       style={{
-                        fontSize: 'clamp(14px, 1.5vw + 0.4rem, 36px)',
+                        fontSize: 'clamp(14px, 1.2vw + 0.4rem, 24px)',
                         transform: 'none',
                         display: 'block'
                       }}

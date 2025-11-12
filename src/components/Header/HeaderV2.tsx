@@ -136,7 +136,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
           {/* Left logo */}
           <div className="flex items-center relative z-30">
             {/* Use white logo on transparent home top; blue when scrolled/white bg */}
-            <Logo className="h-11 md:h-13 lg:h-14 xl:h-19 2xl:h-22 w-auto mt-1.5 md:mt-2" isWhiteBackground={!isTransparent && (isLight || isScrolled)} />
+            <Logo className="h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24 w-auto mt-1.5 md:mt-2" isWhiteBackground={!isTransparent && (isLight || isScrolled)} />
           </div>
 
           {/* Center nav */}

@@ -13,7 +13,7 @@ const FooterV2 = () => {
             <img 
               src="/logos/Forza-Eagle-Logo-White.svg"
               alt="Forza Logo"
-              className="h-14 w-auto"
+              className="h-16 w-auto"
             />
             {/* Social Media Icons */}
             <div className="flex items-center gap-2">
@@ -44,7 +44,7 @@ const FooterV2 = () => {
             <img 
               src="/logos/Forza-Eagle-Logo-White.svg"
               alt="Forza Logo"
-              className="h-28 w-auto"
+              className="h-24 w-auto"
             />
           </div>
 
