@@ -20,7 +20,7 @@ const HeroVideoBackground: React.FC<HeroVideoBackgroundProps> = ({
   overlayClassName
 }) => {
   return (
-    <div className={`absolute inset-0 pointer-events-none ${className ?? ''}`} style={{ zIndex: 0 }}>
+    <div className={`absolute inset-0 ${className ?? ''}`} style={{ zIndex: 0 }}>
       <video
         autoPlay
         loop
@@ -30,7 +30,7 @@ const HeroVideoBackground: React.FC<HeroVideoBackgroundProps> = ({
         onLoadedData={onLoaded}
         onCanPlay={onLoaded}
         onError={onError}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{ width: '100%', height: '100%' }}
       >
         <source src={src} type="video/mp4" />
@@ -38,7 +38,7 @@ const HeroVideoBackground: React.FC<HeroVideoBackgroundProps> = ({
 
       {/* Optional overlay layer above video but below content */}
       {overlayClassName ? (
-        <div className={`absolute inset-0 ${overlayClassName}`} style={{ zIndex: 1 }} />
+        <div className={`absolute inset-0 pointer-events-none ${overlayClassName}`} style={{ zIndex: 1 }} />
       ) : null}
     </div>
   );
