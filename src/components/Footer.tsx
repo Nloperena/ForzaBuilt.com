@@ -23,7 +23,7 @@ const Footer = () => {
           <img 
             src={logoSrc}
             alt="Forza Logo"
-            className="h-32 w-auto"
+            className="h-12 md:h-14 lg:h-16 xl:h-16 2xl:h-24 w-auto"
           />
         </div>
 
