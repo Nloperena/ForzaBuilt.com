@@ -560,13 +560,17 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
               <div className="p-4 md:p-6 max-h-[70vh] md:max-h-[60vh] overflow-y-auto bg-white/10 backdrop-blur-sm">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
                   {/* Product Image */}
-                  <div className="space-y-3 md:space-y-4">
+                  <div className="flex items-center justify-center">
                     <img 
                       src={selectedProduct.thumb || selectedProduct.imageUrl || selectedProduct.image} 
                       alt={selectedProduct.name}
-                      className="w-full h-[300px] md:h-[500px] object-contain rounded-xl md:rounded-2xl shadow-lg bg-white/10"
+                      className="w-full h-[300px] md:h-[500px] object-contain rounded-xl md:rounded-2xl shadow-lg"
                     />
-                    <p className="text-white/90 text-sm md:text-base">
+                  </div>
+                  
+                  {/* Product Description */}
+                  <div className="flex flex-col justify-start">
+                    <p className="text-white/90 text-sm md:text-base mb-6">
                       {selectedProduct.blurb || selectedProduct.description}
                     </p>
                   </div>

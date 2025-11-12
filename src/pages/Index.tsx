@@ -7,7 +7,7 @@ import OptimizedGradient from '@/components/common/OptimizedGradient';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
-import InteractiveProductsSectionV4 from '@/components/InteractiveProductsSectionV4';
+import InteractiveProductsSectionV5 from '@/components/InteractiveProductsSectionV5';
 import ApproachSectionV3Alt from '@/components/ApproachSectionV3Alt';
 import ApproachHeading from '@/components/ApproachHeading';
 import ProductImageTicker from '@/components/ProductImageTicker';
@@ -113,7 +113,7 @@ const Index = () => {
         {/* Products Section */}
         <section className="relative">
           {mode === 'light2' ? (
-            <InteractiveProductsSectionV4 />
+            <InteractiveProductsSectionV5 />
           ) : (
             <ProductsSectionRow />
           )}
