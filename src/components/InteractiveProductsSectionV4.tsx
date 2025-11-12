@@ -427,76 +427,83 @@ const InteractiveProductsSectionV4 = () => {
               </div>
 
               {/* Right - Product Details */}
-              <div className="overflow-y-auto p-4 flex flex-col bg-[#1b3764]/20">
+              <div className="overflow-y-auto p-5 flex flex-col bg-[#1b3764]/20">
                 {selectedOverlayProduct ? (
                   <>
-                    {/* Product Header */}
+                    {/* Product Header with Code */}
                     <div className="mb-4">
-                      <h3 className={`text-lg font-bold text-white mb-1 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                      {selectedOverlayProduct.productCode && (
+                        <p className="text-[#F2611D] font-semibold text-xs mb-1 uppercase tracking-wider">{selectedOverlayProduct.productCode}</p>
+                      )}
+                      <h3 className={`text-xl font-bold text-white leading-tight ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
                         {selectedOverlayProduct.name}
                       </h3>
-                      {selectedOverlayProduct.productCode && (
-                        <p className="text-[#F2611D] font-semibold text-xs">{selectedOverlayProduct.productCode}</p>
-                      )}
                     </div>
 
-                    {/* Product Image Thumbnail */}
+                    {/* Large Product Image */}
                     {selectedOverlayProduct?.imageUrl && (
-                      <div className="mb-4 rounded-lg overflow-hidden bg-[#0f2132] h-32 flex items-center justify-center flex-shrink-0">
+                      <div className="mb-5 rounded-xl overflow-hidden bg-gradient-to-b from-[#0f2132] to-[#1b3764] h-48 flex items-center justify-center flex-shrink-0 shadow-lg border border-white/10">
                         <img 
                           src={selectedOverlayProduct.imageUrl}
                           alt={selectedOverlayProduct.name}
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-contain p-4"
                         />
                       </div>
                     )}
 
                     {/* Product Description */}
-                    <div className="space-y-3 flex-1 text-xs">
-                      {selectedOverlayProduct.description && (
-                        <p className={`text-white/90 leading-relaxed ${mode === 'light2' ? 'font-poppins' : ''}`}>
-                          {selectedOverlayProduct.description}
-                        </p>
-                      )}
+                    {selectedOverlayProduct.description && (
+                      <p className={`text-white/90 leading-relaxed text-sm mb-4 ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                        {selectedOverlayProduct.description}
+                      </p>
+                    )}
 
-                      {/* Key Features */}
-                      {selectedOverlayProduct.features && selectedOverlayProduct.features.length > 0 && (
-                        <div>
-                          <h4 className={`text-xs font-bold text-white mb-1 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
-                            Features
-                          </h4>
-                          <ul className="space-y-1">
-                            {selectedOverlayProduct.features.slice(0, 3).map((feature, idx) => (
-                              <li key={idx} className={`text-white/80 flex items-start gap-1 ${mode === 'light2' ? 'font-poppins' : ''}`}>
-                                <span className="text-[#F2611D] font-bold flex-shrink-0">•</span>
-                                <span className="text-xs">{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
+                    {/* Key Features Section */}
+                    {selectedOverlayProduct.features && selectedOverlayProduct.features.length > 0 && (
+                      <div className="mb-4">
+                        <h4 className={`text-sm font-bold text-white mb-2 uppercase tracking-wide ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                          Key Features
+                        </h4>
+                        <ul className="space-y-1.5">
+                          {selectedOverlayProduct.features.slice(0, 4).map((feature, idx) => (
+                            <li key={idx} className={`text-white/80 flex items-start gap-2 text-xs leading-relaxed ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                              <span className="text-[#F2611D] font-bold flex-shrink-0 mt-0.5">●</span>
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Key Specifications */}
+                    {selectedOverlayProduct.chemistry && (
+                      <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10">
+                        <h4 className={`text-xs font-bold text-white mb-2 uppercase tracking-wide ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                          Key Specifications
+                        </h4>
+                        <div className="space-y-1.5 text-xs">
+                          <div className="flex justify-between">
+                            <span className="text-white/60">Chemistry:</span>
+                            <span className="text-[#F2611D] font-semibold">{selectedOverlayProduct.chemistry}</span>
+                          </div>
                         </div>
-                      )}
+                      </div>
+                    )}
 
-                      {/* Chemistry */}
-                      {selectedOverlayProduct.chemistry && (
-                        <div>
-                          <h4 className={`text-xs font-semibold text-[#F2611D] mb-1 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
-                            Chemistry: {selectedOverlayProduct.chemistry}
-                          </h4>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* CTA Button */}
+                    {/* CTA Button with Icon */}
                     <Link 
                       to={`/products/${selectedOverlayProduct.productCode?.toLowerCase().replace(/\s+/g, '-') || 'product'}`}
-                      className="mt-4 inline-block px-3 py-2 bg-[#F2611D] text-white rounded-full font-semibold text-xs hover:bg-[#F2611D]/90 transition-colors text-center flex-shrink-0"
+                      className="mt-auto pt-3 w-full px-4 py-3 bg-[#F2611D] text-white rounded-lg font-semibold text-sm hover:bg-[#E6540D] transition-all duration-300 text-center flex items-center justify-center gap-2 flex-shrink-0 shadow-lg hover:shadow-xl"
                     >
-                      View Details
+                      <span>View Full Details</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
                     </Link>
                   </>
                 ) : (
-                  <div className="flex items-center justify-center h-full text-white/60 text-xs">
-                    Select a product
+                  <div className="flex items-center justify-center h-full text-white/60 text-sm">
+                    Select a product to view details
                   </div>
                 )}
               </div>
