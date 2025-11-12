@@ -17,9 +17,10 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
     // Fallback timeout to prevent infinite loading on slow connections
     const timeout = setTimeout(() => {
       if (!isVideoLoaded) {
+        console.warn('Video took too long to load, showing fallback');
         setIsVideoLoaded(true);
       }
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearTimeout(timeout);

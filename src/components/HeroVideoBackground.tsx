@@ -26,14 +26,16 @@ const HeroVideoBackground: React.FC<HeroVideoBackgroundProps> = ({
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         onLoadedData={onLoaded}
         onCanPlay={onLoaded}
         onError={onError}
+        onLoadStart={() => console.log('Video loading started:', src)}
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         style={{ width: '100%', height: '100%' }}
       >
         <source src={src} type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
 
       {/* Optional overlay layer above video but below content */}
