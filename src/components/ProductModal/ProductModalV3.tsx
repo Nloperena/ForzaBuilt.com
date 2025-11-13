@@ -13,6 +13,41 @@ import { X, ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import type { Product } from '@/types/products';
 
+// Industry icon paths - same as used throughout the site
+const INDUSTRY_ICONS: { [key: string]: string } = {
+  'marine': '/logos/Marine-Icon.png',
+  'construction': '/logos/Construction-Icon.png',
+  'transportation': '/logos/Transportation-Icon-2.png',
+  'industrial': '/logos/Industrial-Icon.png',
+  'composites': '/logos/Composite-Icon.png',
+  'insulation': '/logos/Insulation-Icon.png',
+  'foam': '/logos/Foam-Icon.png',
+};
+
+// Chemistry data - same as used in ChemistryOverviewSectionV7
+interface ChemistryData {
+  id: string;
+  name: string;
+  iconSrc: string;
+}
+
+const CHEMISTRY_DATA: { [key: string]: ChemistryData } = {
+  'acrylic (incl. psa)': { id: 'acrylic', name: 'Acrylic', iconSrc: '/images/icons/chemistry/Acrylic icon.svg' },
+  'epoxy': { id: 'epoxy', name: 'Epoxy', iconSrc: '/images/icons/chemistry/Epoxy Icon.svg' },
+  'modified epoxy': { id: 'modified-epoxy', name: 'Modified Epoxy', iconSrc: '/images/icons/chemistry/Modified Epoxy icon.svg' },
+  'cyanoacrylates': { id: 'cyanoacrylates', name: 'Cyanoacrylates', iconSrc: '/images/icons/chemistry/Cyanoacrylates Icon.svg' },
+  'hotmelt': { id: 'hot-melt', name: 'Hot Melt', iconSrc: '/images/icons/chemistry/Hotmelt icon.svg' },
+  'methacrylate/mma': { id: 'methacrylate', name: 'Methacrylate', iconSrc: '/images/icons/chemistry/Methacrylate icon.svg' },
+  'methacrylate': { id: 'methacrylate', name: 'Methacrylate', iconSrc: '/images/icons/chemistry/Methacrylate icon.svg' },
+  'ms': { id: 'ms', name: 'MS', iconSrc: '/images/icons/chemistry/MS icon.svg' },
+  'modified silane': { id: 'ms', name: 'MS', iconSrc: '/images/icons/chemistry/MS icon.svg' },
+  'polyurethane (pu)': { id: 'polyurethane', name: 'Polyurethane', iconSrc: '/images/icons/chemistry/Polyurethane icon.svg' },
+  'polyurethane': { id: 'polyurethane', name: 'Polyurethane', iconSrc: '/images/icons/chemistry/Polyurethane icon.svg' },
+  'silicone': { id: 'silicone', name: 'Silicone', iconSrc: '/images/icons/chemistry/Silicone icon.svg' },
+  'solvent base': { id: 'solvent-based', name: 'Solvent Based', iconSrc: '/images/icons/chemistry/Solvent Based icon.svg' },
+  'water base': { id: 'water-based', name: 'Water Based', iconSrc: '/images/icons/chemistry/Water Based icon.svg' },
+};
+
 // ============================================================================
 // TYPES
 // ============================================================================
@@ -25,6 +60,20 @@ interface ProductModalV3Props {
   onClose: () => void;
   categorySlug: string;
 }
+
+// Helper to get first industry icon for a product
+const getIndustryIcon = (industries?: string[]): string | null => {
+  if (!industries || industries.length === 0) return null;
+  const industry = industries[0].toLowerCase();
+  return INDUSTRY_ICONS[industry] || null;
+};
+
+// Helper to get chemistry data
+const getChemistryData = (chemistry?: string): ChemistryData | null => {
+  if (!chemistry) return null;
+  const chemistryKey = chemistry.toLowerCase().trim();
+  return CHEMISTRY_DATA[chemistryKey] || null;
+};
 
 // ============================================================================
 // FULLSCREEN IMAGE COMPONENT
@@ -172,22 +221,34 @@ const ProductModalV3: React.FC<ProductModalV3Props> = ({
     }
   }, [isOpen, isRendered]);
 
-  // Lock body scroll when rendered
+  // Lock body scroll and hide header when modal is rendered
   useEffect(() => {
     if (isRendered) {
       document.body.style.overflow = 'hidden';
+      // Hide header/navigation
+      const header = document.querySelector('[data-component="header"]');
+      if (header) {
+        (header as HTMLElement).style.display = 'none';
+      }
       return () => {
         document.body.style.overflow = 'unset';
+        // Show header again
+        const header = document.querySelector('[data-component="header"]');
+        if (header) {
+          (header as HTMLElement).style.display = '';
+        }
       };
     }
   }, [isRendered]);
 
-  // Update image when product changes
+  // Update image when product changes - prefer product-images folder
   useEffect(() => {
-    if (selectedProduct?.imageUrl) {
-      setSelectedImageUrl(selectedProduct.imageUrl);
+    if (selectedProduct?.id) {
+      // First try loading from product-images folder
+      const localImagePath = `/product-images/${selectedProduct.id.toLowerCase()}.png`;
+      setSelectedImageUrl(localImagePath);
     }
-  }, [selectedProduct?.imageUrl]);
+  }, [selectedProduct?.id]);
 
   // ========================================================================
   // HANDLERS
@@ -302,26 +363,38 @@ const ProductModalV3: React.FC<ProductModalV3Props> = ({
             </h3>
 
             <div className="space-y-1 md:space-y-2 lg:space-y-1.5">
-              {products.map((product) => (
-                <button
-                  key={product.id}
-                  onClick={() => onProductSelect(product)}
-                  className={`w-full text-left px-2 md:px-3 lg:px-2.5 xl:px-3 py-1.5 md:py-2 lg:py-2 xl:py-2.5 2xl:py-3 rounded transition-all duration-300 transform ${
-                    selectedProduct?.id === product.id
-                      ? 'bg-[#F2611D] text-white font-semibold scale-105 shadow-lg'
-                      : 'text-white hover:bg-white/10 hover:scale-102'
-                  }`}
-                >
-                  <p className={`text-xs md:text-sm lg:text-xs xl:text-sm 2xl:text-base truncate ${mode === 'light2' ? 'font-poppins' : ''}`}>
-                    {product.name || product.shortName || product.id}
-                  </p>
-                  {product.productCode && (
-                    <p className="text-xs lg:text-[10px] xl:text-xs 2xl:text-sm text-white/60 truncate">
-                      {product.productCode}
-                    </p>
-                  )}
-                </button>
-              ))}
+              {products.map((product) => {
+                const industryIcon = getIndustryIcon(product.industry);
+                return (
+                  <button
+                    key={product.id}
+                    onClick={() => onProductSelect(product)}
+                    className={`w-full text-left px-2 md:px-3 lg:px-2.5 xl:px-3 py-1.5 md:py-2 lg:py-2 xl:py-2.5 2xl:py-3 rounded transition-all duration-300 transform flex items-center gap-2 ${
+                      selectedProduct?.id === product.id
+                        ? 'bg-[#F2611D] text-white font-semibold scale-105 shadow-lg'
+                        : 'text-white hover:bg-white/10 hover:scale-102'
+                    }`}
+                  >
+                    {industryIcon && (
+                      <img
+                        src={industryIcon}
+                        alt={product.industry?.[0] || ''}
+                        className="w-8 h-8 flex-shrink-0"
+                      />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className={`text-xs md:text-sm lg:text-xs xl:text-sm 2xl:text-base truncate ${mode === 'light2' ? 'font-poppins' : ''}`}>
+                        {product.name || product.shortName || product.id}
+                      </p>
+                      {product.productCode && (
+                        <p className="text-xs lg:text-[10px] xl:text-xs 2xl:text-sm text-white/60 truncate">
+                          {product.productCode}
+                        </p>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -336,10 +409,23 @@ const ProductModalV3: React.FC<ProductModalV3Props> = ({
                   </p>
                 )}
 
-                {/* Product Name */}
-                <h3 className={`text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl font-bold text-white leading-tight mb-3 md:mb-6 lg:mb-1 xl:mb-2 2xl:mb-3 ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
-                  {selectedProduct.name}
-                </h3>
+                {/* Product Name with Chemistry Icon */}
+                <div className="flex items-center gap-2 mb-3 md:mb-6 lg:mb-1 xl:mb-2 2xl:mb-3">
+                  {selectedProduct.chemistry && getChemistryData(selectedProduct.chemistry) && (
+                    <img
+                      src={getChemistryData(selectedProduct.chemistry)!.iconSrc}
+                      alt={selectedProduct.chemistry || ''}
+                      className="w-12 h-12 lg:w-10 lg:h-10 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 flex-shrink-0 object-contain"
+                      onError={(e) => {
+                        const img = e.target as HTMLImageElement;
+                        console.error('Chemistry icon failed to load:', img.src);
+                      }}
+                    />
+                  )}
+                  <h3 className={`text-xl md:text-3xl lg:text-lg xl:text-2xl 2xl:text-3xl font-bold text-white leading-tight ${mode === 'light2' ? 'font-poppins' : 'font-kallisto'}`}>
+                    {selectedProduct.name}
+                  </h3>
+                </div>
 
                 {/* Product Image */}
                 {selectedImageUrl && (
@@ -352,6 +438,13 @@ const ProductModalV3: React.FC<ProductModalV3Props> = ({
                         src={selectedImageUrl}
                         alt={selectedProduct.name}
                         className="w-full h-full object-contain p-2 lg:p-1.5 xl:p-3 2xl:p-4 transition-transform duration-300 group-hover:scale-105"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          // Fallback to vercel blob if product-images fails
+                          if (!target.src.includes('vercel') && selectedProduct?.imageUrl) {
+                            target.src = selectedProduct.imageUrl;
+                          }
+                        }}
                       />
 
                       <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/40 transition-all duration-300 rounded-lg md:rounded-xl">

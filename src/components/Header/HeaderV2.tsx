@@ -1,4 +1,5 @@
 import React from 'react';
+// This component can be hidden by modals using data-component="header" selector
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
@@ -130,7 +131,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   const shouldHideForPDF = isBookOpen;
 
   return (
-    <header className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''}`}> 
+    <header data-component="header" className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''}`}> 
       <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto p-4">
         <div className="h-16 md:h-20 lg:h-16 xl:h-20 2xl:h-24 flex items-center justify-between">
           {/* Left logo */}
