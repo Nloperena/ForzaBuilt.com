@@ -37,80 +37,84 @@ const approachItems: ApproachItem[] = [
   },
   {
     title: "INDUSTRY FOCUSED",
-    description: "Specialized expertise tailored to your industry's unique challenges. Our proven solutions have been developed and refined across transportation, marine, construction, manufacturing, and more.",
+    description: "Deep expertise across all major industries and applications built on decades of experience. Our proven track record demonstrates our ability to solve complex challenges.",
     bulletPoints: [
-      "We don't believe in generic solutions.",
-      "Our technical experts work within your specific industry to develop solutions that overcome its particular challenges.",
-      "Each industry demands specific performance characteristics, and we engineer products to meet those requirements exactly"
+      "Always Insightful. Never limited in expertise or offerings",
+      "We don't try to serve everyone. We serve the industries we know best—like transportation, construction, marine, and manufacturing.",
+      "That's why our formulas, testing, and compliance know-how are second to none.",
+      "If it's important to you, it's important to us."
     ],
-    image: "/images/approach/Industry Focused.jpg",
+    image: "/images/approach/Legacy Image.jpg",
     video: "/approach-videos/Industry Focused-2.mp4"
   },
   {
     title: "EXPANSIVE PRODUCT PORTFOLIO",
-    description: "Over 140 different formulations across adhesives, sealants, and tapes. This extensive range ensures we have the perfect solution for virtually any application.",
+    description: "Comprehensive range of industrial adhesives, sealants, tapes, and cleaners - all under one roof. This one-stop solution saves time, money, and reduces supply chain risk.",
     bulletPoints: [
-      "With 140+ products, we have solutions for virtually every application.",
-      "Our broad portfolio means we can find the exact chemistry and performance characteristics needed.",
-      "Don't settle for close enough—find the perfect fit from our extensive selection"
+      "Most complete and comprehensive portfolio available",
+      "Our product line covers everything from core adhesives and sealants to niche products and specialty tapes.",
+      "We don't just cover one or two of your needs, we do them all!",
+      "If it bonds, seals, or sticks—we probably make it. If we don't, we'll help you find it."
     ],
-    image: "/images/approach/Product Portfolio.jpg",
-    video: "/approach-videos/Expansive Portfolio-2.mp4"
+    image: "/images/approach/Products Portfolio.jpg",
+    video: "/approach-videos/Complete Portfolio-2.mp4"
   },
   {
     title: "COMMON SENSE INNOVATION",
-    description: "Practical, efficient solutions designed to solve real customer problems. We innovate based on decades of field experience, not just lab theory.",
+    description: "Safer products and greener technologies designed for today's sustainability challenges. Our commitment to innovation drives us to continuously develop better solutions for the future.",
     bulletPoints: [
-      "We innovate where it matters—in products that solve real problems.",
-      "Our R&D process is grounded in field reality and customer feedback.",
-      "We focus on meaningful improvements that make a real difference in your applications"
+      "We Innovate with a purpose, blending cutting-edge science with in-field common sense.",
+      "Our R&D teams are always improving what works—and tossing out what doesn't.",
+      "We blend great science with great practicality. To create products that aren't just great in theory but that are actually great in use.",
+      "Less waste, better chemistries, faster applications, and safer ingredients. Always for the customer."
     ],
-    image: "/images/approach/Innovation.jpg",
-    video: "/approach-videos/Common Sense Innovation-2.mp4"
+    image: "/images/approach/Sustainability Image for Web.jpg",
+    video: "/approach-videos/Real Innovation.mp4"
   },
   {
     title: "MADE IN THE USA",
-    description: "Quality American manufacturing at our modern facility. We control our entire supply chain to ensure consistent excellence in every batch.",
+    description: "Proudly manufactured in America with domestic and international components ensuring quality. Supporting the U.S. economy through reliable domestic supply chain management.",
     bulletPoints: [
-      "We manufacture at our own facility in the USA, maintaining full control and quality.",
-      "This allows us to ensure consistent quality and fast response times.",
-      "American-made means you can count on consistency and reliability"
+      "Real people, making real products, making a real difference!",
+      "We don't just resell & re-label someone else's products, we actually make them.",
+      "We proudly manufacture our products in the USA, in America's heartland.",
+      "From R&D to manufacturing, our vertical integration gives us full control over quality, consistency, and availability."
     ],
-    image: "/images/approach/USA Factory.jpg",
-    video: "/approach-videos/Made in USA-2.mp4"
+    image: "/images/approach/R&D image.jpg",
+    video: "/approach-videos/Made in USA-2_1.mp4"
   },
   {
     title: "CONSULTATIVE R&D",
-    description: "Our technical team works closely with your team to develop custom formulations and solutions tailored to your specific needs and challenges.",
+    description: "Fully integrated manufacturing and R&D capabilities in the U.S.A. give us complete control over quality and consistency. This integrated approach enables rapid product development and custom formulation capabilities.",
     bulletPoints: [
-      "When off-the-shelf solutions aren't enough, we develop custom formulations.",
-      "Our R&D team works directly with your engineers to create solutions that fit your exact requirements.",
-      "Custom doesn't mean slow or expensive—it means tailored to your success"
+      "Guaranteed performance with our in-house lab",
+      "No wasted time. No off-the-shelf guesswork. Just the right product, right away – proven and validated.",
+      "When a product doesn't exist to meet your need, our in-house chemists & testing teams can create & validate custom formulas tailored to your application—fast."
     ],
-    image: "/images/approach/RnD.jpg",
-    video: "/approach-videos/Consultative RnD-2.mp4"
+    image: "/images/approach/R&D image.jpg",
+    video: "/approach-videos/R&D Leadership.mp4"
   },
   {
     title: "SUSTAINABILITY THAT WORKS",
-    description: "Environmental responsibility integrated into our products and processes. We develop sustainable solutions without compromising performance.",
+    description: "Practical sustainability solutions that deliver real environmental benefits without compromising performance. Our approach balances ecological responsibility with operational excellence.",
     bulletPoints: [
-      "Sustainability isn't a compromise on performance.",
-      "We've developed eco-friendly formulations that deliver the same reliability our customers expect.",
-      "Doing good for the environment and your bottom line go hand in hand"
+      "We build stronger, safer products without sacrificing performance.",
+      "We're pushing for a cleaner, more sustainable future—but never at the cost of quality."
     ],
-    image: "/images/approach/Sustainability.jpg",
-    video: "/approach-videos/Sustainability-2.mp4"
+    image: "/images/approach/Sustainability Image for Web.jpg",
+    video: "/approach-videos/Sustainable Solutions.mp4"
   },
   {
     title: "CUSTOMER OBSESSED",
-    description: "Your success is our success. We're committed to providing exceptional service, technical support, and partnerships that drive real results.",
+    description: "Dedicated support and attention to every customer's unique needs throughout their partnership with us. Our responsive team provides technical expertise and long-term commitment to your success.",
     bulletPoints: [
-      "Every decision we make is focused on customer success.",
-      "From technical support to custom development, we're here to help you succeed.",
-      "Our customers' wins are our wins—that's the ForzaBuilt difference"
+      "We answer the phone. We know your name. We help you get the job done.",
+      "Our owners and tech teams are hands-on and accessible—no call centers, no runaround, no delays.",
+      "Real people. Real care. Real expertise.",
+      "We provide the quality & performance of a Fortune 500 company with the service, know-how, & personalized care of a family-owned, corner grocery store."
     ],
-    image: "/images/approach/Customer Success.jpg",
-    video: "/approach-videos/Customer Obsessed-2.mp4"
+    image: "/images/approach/Receptionist at desk.jpg",
+    video: "/approach-videos/Customer Obsessed-1.mp4"
   }
 ];
 
@@ -195,21 +199,15 @@ const ApproachSectionUnified = () => {
         <HeroVideoSectionV2 />
       </div>
 
-      {/* UNIFIED COLOR WRAPPER - Contains both heading and approach content - matches products section */}
-      <div className="relative">
-        {/* Background color grid matching products section */}
-        <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
-          <div className="bg-[#f3f5f7]"></div>
-          <div className="bg-gradient-to-r from-[#477197] to-[#2c476e]"></div>
-        </div>
-        <div className="relative z-10">
+      {/* UNIFIED WRAPPER - Base gradient background with everything layered on top */}
+      <div className="relative bg-gradient-to-br from-[#477197] to-[#2c476e] lg:bg-gradient-to-br lg:from-[#477197] lg:via-50% lg:to-[#2c476e]">
         
-        {/* HEADING SECTION */}
+        {/* HEADING SECTION - transparent, on top of gradient */}
         <div className="relative pt-[clamp(20px,4vw,40px)] pb-[clamp(20px,4vw,40px)]">
           <div className="w-full px-[clamp(14px,4vw,32px)]">
             <div className="flex flex-col items-center gap-2">
               <h2 
-                className="font-normal font-poppins leading-tight text-[#2c476e]" 
+                className="font-normal font-poppins leading-tight text-[white]" 
                 style={{
                   fontSize: 'clamp(28px, 3vw, 56px)',
                   lineHeight: '1.1',
@@ -227,10 +225,10 @@ const ApproachSectionUnified = () => {
           {/* Progress bar */}
           <div className="absolute bottom-0 t-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
-          {/* Scrollable Content */}
-          <div className="relative z-10">
+          {/* Scrollable Content - transparent background */}
+          <div className="relative">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
-              {/* LEFT - Titles */}
+              {/* LEFT - Titles - transparent background */}
               <div 
                 ref={titlesContainerRef}
                 className="
@@ -253,10 +251,10 @@ const ApproachSectionUnified = () => {
                       >
                         <h3 
                           ref={(el) => { titleRefs.current[index] = el; }}
-                          className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap px-3 py-1.5 rounded block ${
+                          className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap block ${
                             selectedItem === index
-                              ? 'text-white font-bold bg-white/20'
-                              : 'text-white font-normal bg-white/10'
+                              ? 'text-white font-bold'
+                              : 'text-white font-normal'
                           }`}
                           style={{
                             fontSize: 'clamp(14px, 1.5vw + 0.4rem, 36px)',
@@ -393,7 +391,6 @@ const ApproachSectionUnified = () => {
             </div>
           </div>
         </section>
-        </div>
       </div>
     </>
   );
