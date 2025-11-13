@@ -17,7 +17,7 @@ interface Brochure {
 
 type AnimationState = 'idle' | 'reading';
 
-const LibrarySectionV2 = () => {
+const LibrarySectionV3 = () => {
   const [hoveredBrochure, setHoveredBrochure] = useState<string | null>(null);
   const [selectedBrochure, setSelectedBrochure] = useState<Brochure | null>(null);
   const [animationState, setAnimationState] = useState<AnimationState>('idle');
@@ -35,7 +35,6 @@ const LibrarySectionV2 = () => {
   }, [animationState]);
 
   const openModal = (brochure: Brochure, event: React.MouseEvent) => {
-    // If it's a blog item, navigate to blog page instead
     if (brochure.type === 'blog' && brochure.linkUrl) {
       window.location.href = brochure.linkUrl;
       return;
@@ -133,6 +132,9 @@ const LibrarySectionV2 = () => {
   const topShelfBrochures = brochures.filter(b => b.shelf === 'top');
   const bottomShelfBrochures = brochures.filter(b => b.shelf === 'bottom');
 
+  // Consistent gap spacing for both rows
+  const gapClasses = 'gap-2 sm:gap-4 md:gap-6';
+
   const renderBrochure = (brochure: Brochure, index: number) => {
     const content = (
       <>
@@ -165,7 +167,7 @@ const LibrarySectionV2 = () => {
             />
           </div>
           
-          {/* Name label below brochure - mobile optimized */}
+          {/* Name label below brochure */}
           <div 
             className="w-full text-center font-poppins font-bold text-slate-700 tracking-wide uppercase pointer-events-none z-30"
             style={{
@@ -209,32 +211,34 @@ const LibrarySectionV2 = () => {
 
   return (
     <>
-    <section className="relative bg-white px-2 sm:px-4 overflow-hidden">
-      {/* Section Header */}
-      <div className="max-w-7xl mx-auto text-center pt-6 sm:pt-8 md:pt-10 lg:pt-12 mb-1 sm:mb-1.5 md:mb-2">
-        <h2
-          className="font-poppins font-normal text-[#2c476e] mb-0.5 sm:mb-1 font-poppins leading-tight"
-          style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
-        >
-          Resource Library
-        </h2>
-      </div>
-
-      {/* Mobile-Optimized Grid Layout */}
-      <div className="max-w-7xl mx-auto pb-6 sm:pb-8 md:pb-10 lg:pb-12">
-        {/* Top Shelf - Responsive Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6 mb-1 sm:mb-1.5 md:mb-2 px-2 sm:px-0">
-          {topShelfBrochures.map((brochure, index) => renderBrochure(brochure, index))}
+      <section className="relative bg-white px-2 sm:px-4 overflow-hidden">
+        {/* Section Header */}
+        <div className="max-w-7xl mx-auto text-center pt-6 sm:pt-8 md:pt-10 lg:pt-12 mb-1 sm:mb-1.5 md:mb-2">
+          <h2
+            className="font-poppins font-normal text-[#2c476e] mb-0.5 sm:mb-1 font-poppins leading-tight"
+            style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+          >
+            Resource Library
+          </h2>
         </div>
 
-        {/* Bottom Shelf - Centered Grid */}
-        <div className="flex justify-center">
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 md:gap-6 px-2 sm:px-0">
-            {bottomShelfBrochures.map((brochure, index) => renderBrochure(brochure, index + topShelfBrochures.length))}
+        {/* Grid Layout with Consistent Spacing */}
+        <div className="max-w-7xl mx-auto pb-6 sm:pb-8 md:pb-10 lg:pb-12">
+          {/* Top Shelf - 4 brochures */}
+          <div className="flex justify-center">
+            <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ${gapClasses} mb-1 sm:mb-1.5 md:mb-2 px-2 sm:px-0`}>
+              {topShelfBrochures.map((brochure, index) => renderBrochure(brochure, index))}
+            </div>
+          </div>
+
+          {/* Bottom Shelf - 3 brochures, centered */}
+          <div className="flex justify-center">
+            <div className={`grid grid-cols-2 sm:grid-cols-3 ${gapClasses} px-2 sm:px-0`}>
+              {bottomShelfBrochures.map((brochure, index) => renderBrochure(brochure, index + topShelfBrochures.length))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Backdrop - Shows during reading state */}
       <AnimatePresence>
@@ -268,5 +272,5 @@ const LibrarySectionV2 = () => {
   );
 };
 
-export default LibrarySectionV2;
+export default LibrarySectionV3;
 

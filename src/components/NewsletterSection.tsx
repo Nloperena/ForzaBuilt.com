@@ -135,19 +135,19 @@ const NewsletterSection = () => {
                       <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Industry insights and market trends</p>
+                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Stay informed with the latest industry insights & trends</p>
                     </div>
                     <div className="flex items-start gap-2 justify-start">
                       <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Product launches and innovations</p>
+                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Discover our latest product launches and innovations</p>
                     </div>
                     <div className="flex items-start gap-2 justify-start">
                       <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Expert tips and best practices</p>
+                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Get expert tips and best practices for your applications</p>
                     </div>
                   </div>
                   

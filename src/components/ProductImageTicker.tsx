@@ -201,6 +201,7 @@ export default function ProductImageTicker({
                   alt={it.alt}
                   className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
                   loading={i < 6 ? "eager" : "lazy"}
+                  style={{ transform: it.src.includes("/t") ? "translateY(10%)" : "none" }}
                 />
               </div>
             </figure>

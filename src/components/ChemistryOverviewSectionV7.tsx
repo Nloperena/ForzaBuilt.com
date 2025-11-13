@@ -163,6 +163,21 @@ const ChemistryOverviewSectionV7: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (selectedChemistry) {
+        setSelectedChemistry(null);
+        setShouldStartTimer(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [selectedChemistry]);
+
   const handleChemistryHover = (chemistry: ChemistryData | null) => {
     // Clear any existing hover timer
     if (hoverTimerRef.current) {

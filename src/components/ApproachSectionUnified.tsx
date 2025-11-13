@@ -172,8 +172,12 @@ const ApproachSectionUnified = () => {
         if (approachItems[index].video && !videoLoadedMap[index]) {
           const video = document.createElement('video');
           video.src = approachItems[index].video!;
+          video.preload = 'auto';
           video.addEventListener('canplay', () => {
             setVideoLoadedMap((prev) => ({ ...prev, [index]: true }));
+          });
+          video.addEventListener('error', () => {
+            setVideoErrorMap((prev) => ({ ...prev, [index]: true }));
           });
         }
       });
@@ -291,9 +295,10 @@ const ApproachSectionUnified = () => {
                       muted
                       loop
                       playsInline
-                      preload="none"
+                      autoPlay
+                      preload="auto"
                     >
-                      <source key={approachItems[previousItem].video} src={approachItems[previousItem].video} type="video/mp4" />
+                      <source src={approachItems[previousItem].video} type="video/mp4" />
                     </video>
                   )}
                   {/* Only show image if video failed or doesn't exist */}
@@ -323,11 +328,11 @@ const ApproachSectionUnified = () => {
                       loop
                       playsInline
                       autoPlay
-                      preload="metadata"
-                      onLoadedMetadata={() => handleVideoLoadedMetadata(selectedItem)}
+                      preload="auto"
+                      onCanPlay={() => handleVideoLoadedMetadata(selectedItem)}
                       onError={() => handleVideoError(selectedItem)}
                     >
-                      <source key={approachItems[selectedItem].video} src={approachItems[selectedItem].video} type="video/mp4" />
+                      <source src={approachItems[selectedItem].video} type="video/mp4" />
                     </motion.video>
                   )}
                   {/* Only show image if no video or video failed */}

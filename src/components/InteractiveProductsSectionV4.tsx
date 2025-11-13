@@ -47,7 +47,7 @@ const products: Product[] = [
 const InteractiveProductsSectionV4 = () => {
   const [selectedProduct, setSelectedProduct] = useState(0); // For button/link/text
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null); // For image on hover
-  const [previousProduct, setPreviousProduct] = useState(0);
+  const [isProductLocked, setIsProductLocked] = useState(false); // New state to track if a product is locked by click
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
@@ -55,6 +55,7 @@ const InteractiveProductsSectionV4 = () => {
   const [isClosing, setIsClosing] = useState(false);
   const [overlayProducts, setOverlayProducts] = useState<DBProduct[]>([]);
   const [selectedOverlayProduct, setSelectedOverlayProduct] = useState<DBProduct | null>(null);
+  const [displayedImage, setDisplayedImage] = useState(products[0].image); // New state for the main displayed image
   const [scrollStartY, setScrollStartY] = useState(0);
   const timerRef = useRef<NodeJS.Timeout>();
   const progressIntervalRef = useRef<NodeJS.Timeout>();
@@ -88,20 +89,20 @@ const InteractiveProductsSectionV4 = () => {
   }, []);
 
   // Handle click - only updates button/link/text
-  const handleProductClick = (index: number) => {
-    if (index !== selectedProduct) {
-      setPreviousProduct(selectedProduct);
-      setSelectedProduct(index);
-      setProgress(0);
-      resetTimer();
-    }
-  };
+  const handleProductClick = useCallback((index: number) => {
+    setDisplayedImage(products[index].image);
+    setSelectedProduct(index);
+    setIsProductLocked(true); // Lock the product on click
+    setHoveredProduct(null); // Clear any active hover effect immediately
+    resetTimer();
+  }, [products, resetTimer]);
 
   // Handle hover - only change color to orange, don't change image if something is selected
-  const handleProductHover = (index: number | null) => {
-    // Don't change the image on hover if something is already selected
-    // This means we only show color change on hover, no image swap
-  };
+  const handleProductHover = useCallback((index: number | null) => {
+    if (!isProductLocked) { // Only update hoveredProduct if no product is locked
+      setHoveredProduct(index);
+    }
+  }, [isProductLocked]);
 
   // Load products for overlay
   const loadOverlayProducts = async (category: 'bond' | 'seal' | 'tape') => {
@@ -139,10 +140,9 @@ const InteractiveProductsSectionV4 = () => {
   useEffect(() => {
     // Auto-cycle every 4 seconds
     timerRef.current = setInterval(() => {
-      if (!isUserInteractingRef.current) {
+      if (!isUserInteractingRef.current && !isProductLocked) { // Also check if product is locked
         setSelectedProduct(prev => {
           const nextIndex = (prev + 1) % products.length;
-          setPreviousProduct(prev);
           return nextIndex;
         });
         setProgress(0);
@@ -272,18 +272,16 @@ const InteractiveProductsSectionV4 = () => {
               </div>
 
               {(() => {
-                const displayedProduct = hoveredProduct ?? selectedProduct;
-                // Previous displayed product: if hovering, use what was displayed before hover; otherwise use previousProduct
-                const previousDisplayedProduct = hoveredProduct !== null 
-                  ? (previousProduct !== null ? previousProduct : selectedProduct)
-                  : previousProduct;
-                
+                // The displayed product is the selected one if locked, otherwise hovered or selected
+                const currentDisplayedProductIndex = isProductLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
+                const currentDisplayedProduct = products[currentDisplayedProductIndex];
+
                 return (
                   <>
                     {/* Previous product image (stays in place) */}
                     <img
-                      src={products[previousDisplayedProduct].image}
-                      alt={products[previousDisplayedProduct].title}
+                      src={displayedImage} // Use displayedImage state
+                      alt={currentDisplayedProduct.title}
                       className="absolute inset-0 w-full h-full object-cover"
                       style={{
                         objectPosition: 'center 70%',
@@ -293,9 +291,9 @@ const InteractiveProductsSectionV4 = () => {
 
                     {/* Current product image (slides over) */}
                     <img
-                      key={displayedProduct}
-                      src={products[displayedProduct].image}
-                      alt={products[displayedProduct].title}
+                      key={currentDisplayedProductIndex} // Key on the image itself
+                      src={currentDisplayedProduct.image} // Use the image from the product object
+                      alt={currentDisplayedProduct.title}
                       className="
                         absolute inset-0 w-full h-full object-cover
 
@@ -330,7 +328,7 @@ const InteractiveProductsSectionV4 = () => {
                 <div className="flex-1 flex flex-col">
                   <div className="flex flex-col justify-evenly h-full flex-shrink-0">
                     {products.map((product, index) => {
-                      const displayedProduct = hoveredProduct ?? selectedProduct;
+                      const displayedProduct = isProductLocked ? selectedProduct : (hoveredProduct ?? selectedProduct); // Corrected calculation
                       const isActive = displayedProduct === index;
                       
                       return (
@@ -346,8 +344,8 @@ const InteractiveProductsSectionV4 = () => {
                           } ${
                             isActive
                               ? 'text-[#F2611D] font-bold'
-                              : 'text-white font-normal hover:text-[#F2611D]'
-                          }`}
+                              : 'text-white font-normal'
+                          } ${!isProductLocked ? 'hover:text-[#F2611D]' : ''}`}
                           style={{
                             fontSize: isActive 
                               ? 'clamp(28px, 4vw, 128px)'
@@ -364,14 +362,15 @@ const InteractiveProductsSectionV4 = () => {
                 {/* Button and description fixed at bottom */}
                 <div className="mt-auto pt-4 flex-shrink-0 space-y-4">
                   {(() => {
-                    const displayedProduct = hoveredProduct ?? selectedProduct;
+                    const displayedProduct = hoveredProduct ?? selectedProduct; // Use current hovered or selected product for description and button
+                    const productToDisplay = products[displayedProduct];
                     return (
                       <>
                         <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-right-2 ${
                           mode === 'light2' ? 'font-poppins' : ''
                         }`}
                         key={displayedProduct}>
-                          {products[displayedProduct].description}
+                          {productToDisplay.description}
                         </p>
                         <Button 
                           onClick={() => loadOverlayProducts('bond')}
@@ -404,7 +403,7 @@ const InteractiveProductsSectionV4 = () => {
               </div>
               <button
                 onClick={closeOverlay}
-                className="text-white hover:text-white/70 transition-colors p-2 hover:bg-white/10 rounded-lg flex-shrink-0 hover:scale-110 transition-transform flex items-center gap-1"
+                className="text-white hover:text-white/70 p-2 hover:bg-white/10 rounded-lg flex-shrink-0 hover:scale-110 transition-all flex items-center gap-1"
                 aria-label="Close modal"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -510,13 +509,13 @@ const InteractiveProductsSectionV4 = () => {
                     <div className="flex gap-2 mt-auto pt-2 md:pt-4 lg:pt-1.5 xl:pt-2.5 2xl:pt-3">
                       <Link 
                         to={`/products/${selectedOverlayProduct.productCode?.toLowerCase().replace(/\s+/g, '-') || 'product'}`}
-                        className="flex-1 px-2 md:px-4 lg:px-1.5 xl:px-3 2xl:px-4 py-2 lg:py-1 xl:py-1.5 2xl:py-2 bg-white/10 text-white rounded text-xs lg:text-[10px] xl:text-xs 2xl:text-sm hover:bg-white/20 transition-all duration-300 text-center animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
+                        className="flex-1 px-2 md:px-4 lg:px-1.5 xl:px-3 2xl:px-4 py-2 lg:py-1 xl:py-1.5 2xl:py-2 bg-white/10 text-white rounded text-xs lg:text-[10px] xl:text-xs 2xl:text-sm hover:bg-white/20 transition-all text-center animate-in fade-in slide-in-from-bottom-4 delay-250"
                       >
                         Details
                       </Link>
                       <Link 
                         to={`/products/${products[selectedProduct].slug}`}
-                        className="flex-1 px-2 md:px-4 lg:px-1.5 xl:px-3 2xl:px-4 py-2 lg:py-1 xl:py-1.5 2xl:py-2 bg-[#F2611D] text-white rounded text-xs lg:text-[10px] xl:text-xs 2xl:text-sm hover:bg-[#E6540D] transition-all duration-300 text-center flex items-center justify-center gap-1 shadow-lg hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-300 delay-250"
+                        className="flex-1 px-2 md:px-4 lg:px-1.5 xl:px-3 2xl:px-4 py-2 lg:py-1 xl:py-1.5 2xl:py-2 bg-[#F2611D] text-white rounded text-xs lg:text-[10px] xl:text-xs 2xl:text-sm hover:bg-[#E6540D] transition-all text-center flex items-center justify-center gap-1 shadow-lg hover:shadow-xl animate-in fade-in slide-in-from-bottom-4 delay-250"
                       >
                         <span className="hidden md:inline">View All</span>
                         <span className="md:hidden">View</span>

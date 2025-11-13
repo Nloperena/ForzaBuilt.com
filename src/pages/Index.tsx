@@ -9,6 +9,7 @@ import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7'
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import InteractiveProductsSectionV5 from '@/components/InteractiveProductsSectionV5';
 import ApproachSectionUnified from '@/components/ApproachSectionUnified';
+import ApproachSectionV3 from '@/components/ApproachSectionV3';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
@@ -125,6 +126,8 @@ const Index = () => {
 
         {/* Approach Section */}
         <ApproachSectionUnified />
+
+    
 
         {/* Made in America Sections */}
         <section className="relative">

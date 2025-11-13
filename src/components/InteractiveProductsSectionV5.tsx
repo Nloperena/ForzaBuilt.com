@@ -44,6 +44,7 @@ const InteractiveProductsSectionV5 = () => {
   const [selectedProduct, setSelectedProduct] = useState(0);
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
   const [previousProduct, setPreviousProduct] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
   const [parallaxOffset, setParallaxOffset] = useState(0);
@@ -82,6 +83,8 @@ const InteractiveProductsSectionV5 = () => {
       setPreviousProduct(selectedProduct);
       setSelectedProduct(index);
       setProgress(0);
+      setIsLocked(true);
+      setHoveredProduct(null); // Clear any active hover effect immediately
       resetTimer();
     }
   };
@@ -119,7 +122,7 @@ const InteractiveProductsSectionV5 = () => {
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      if (!isUserInteractingRef.current) {
+      if (!isUserInteractingRef.current && !isLocked) {
         setSelectedProduct(prev => {
           const nextIndex = (prev + 1) % products.length;
           setPreviousProduct(prev);
@@ -142,7 +145,7 @@ const InteractiveProductsSectionV5 = () => {
       if (timerRef.current) clearInterval(timerRef.current);
       if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
     };
-  }, []);
+  }, [isLocked]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -226,7 +229,7 @@ const InteractiveProductsSectionV5 = () => {
                   mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                 }`}>
                   <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{(() => {
-                    const displayedProduct = hoveredProduct ?? selectedProduct;
+                    const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
                     return products[displayedProduct].title === 'SEALANTS' ? 'SEAL' : products[displayedProduct].title;
                   })()}</span>
                 </div>
@@ -238,8 +241,8 @@ const InteractiveProductsSectionV5 = () => {
               </div>
 
               {(() => {
-                const displayedProduct = hoveredProduct ?? selectedProduct;
-                const previousDisplayedProduct = hoveredProduct !== null
+                const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
+                const previousDisplayedProduct = hoveredProduct !== null && !isLocked
                   ? (previousProduct !== null ? previousProduct : selectedProduct)
                   : previousProduct;
 
@@ -279,15 +282,15 @@ const InteractiveProductsSectionV5 = () => {
                 <div className="flex-1 flex flex-col">
                   <div className="flex flex-col justify-evenly h-full flex-shrink-0">
                     {products.map((product, index) => {
-                      const displayedProduct = hoveredProduct ?? selectedProduct;
+                      const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
                       const isActive = displayedProduct === index;
 
                       return (
                         <div
                           key={index}
                           onClick={() => handleProductClick(index)}
-                          onMouseEnter={() => setHoveredProduct(index)}
-                          onMouseLeave={() => setHoveredProduct(null)}
+                          onMouseEnter={isLocked ? undefined : () => setHoveredProduct(index)}
+                          onMouseLeave={isLocked ? undefined : () => setHoveredProduct(null)}
                           className="w-full text-left transition-all duration-500 cursor-pointer"
                         >
                           <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] transition-all duration-500 ease-out ${
@@ -295,8 +298,8 @@ const InteractiveProductsSectionV5 = () => {
                           } ${
                             isActive
                               ? 'text-[#F2611D] font-bold'
-                              : 'text-white font-normal hover:text-[#F2611D]'
-                          }`}
+                              : 'text-white font-normal'
+                          } ${!isLocked && !isActive ? 'hover:text-[#F2611D]' : ''}`}
                           style={{
                             fontSize: isActive
                               ? 'clamp(28px, 4vw, 128px)'
@@ -313,7 +316,7 @@ const InteractiveProductsSectionV5 = () => {
                 {/* Button and description at bottom */}
                 <div className="mt-auto pt-4 flex-shrink-0 space-y-4">
                   {(() => {
-                    const displayedProduct = hoveredProduct ?? selectedProduct;
+                    const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
                     return (
                       <>
                         <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-right-2 ${
