@@ -8,8 +8,7 @@ import DynamicMetaTags from '@/components/DynamicMetaTags';
 import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import InteractiveProductsSectionV5 from '@/components/InteractiveProductsSectionV5';
-import ApproachSectionV3Alt from '@/components/ApproachSectionV3Alt';
-import ApproachHeading from '@/components/ApproachHeading';
+import ApproachSectionUnified from '@/components/ApproachSectionUnified';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
@@ -125,9 +124,7 @@ const Index = () => {
         </section>
 
         {/* Approach Section */}
-        <section className="relative">
-          <ApproachSectionV3Alt />
-        </section>
+        <ApproachSectionUnified />
 
         {/* Made in America Sections */}
         <section className="relative">

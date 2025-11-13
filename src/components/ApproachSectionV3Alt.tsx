@@ -480,10 +480,11 @@ const ApproachSectionV3Alt = () => {
         {/* Progress bar */}
         <div className="absolute bottom-0 t-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
-        {/* Scrollable Content */}
+        {/* Scrollable Content with gradient background spanning both columns */}
         <div className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
-            {/* LEFT - Titles with white to grey gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#b8d4f8] via-[#6fa3d4] to-[#2c476e] z-0"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative z-10">
+            {/* LEFT - Titles */}
             <div 
               ref={titlesContainerRef}
               className="
@@ -493,7 +494,6 @@ const ApproachSectionV3Alt = () => {
               py-[clamp(24px,4vw,40px)]
               flex items-center justify-center
               [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
-              bg-gradient-to-b from-white to-gray-200
             ">
               <div className="w-full flex flex-col items-start">
                 <div className="space-y-[clamp(6px,1.2vw,8px)] w-full">
@@ -509,8 +509,8 @@ const ApproachSectionV3Alt = () => {
                         ref={(el) => { titleRefs.current[index] = el; }}
                         className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap px-3 py-1.5 rounded block ${
                           selectedItem === index
-                            ? 'text-[#2c476e] font-bold bg-gray-300'
-                            : 'text-[#2c476e] font-normal bg-gray-100'
+                            ? 'text-white font-bold bg-white/20'
+                            : 'text-white font-normal bg-white/10'
                         }`}
                         style={{
                           fontSize: 'clamp(14px, 1.5vw + 0.4rem, 36px)',
@@ -526,7 +526,7 @@ const ApproachSectionV3Alt = () => {
               </div>
             </div>
 
-            {/* RIGHT - Videos with description and blue gradient */}
+            {/* RIGHT - Videos with description */}
             <div className="
               relative
               min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
@@ -534,8 +534,8 @@ const ApproachSectionV3Alt = () => {
               flex items-center justify-center
               overflow-hidden lg:overflow-visible
             ">
-              {/* Inline image (all breakpoints) with blue gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-bl from-[#477197] to-[#2c476e] overflow-hidden">
+              {/* Inline image (all breakpoints) - relative z-20 to appear above gradient */}
+              <div className="absolute inset-0 overflow-hidden z-20">
                 {/* Previous content (beneath) - image or video */}
                 {approachItems[previousItem].video && !videoErrorMap[previousItem] && (
                   <video
@@ -597,8 +597,8 @@ const ApproachSectionV3Alt = () => {
                   />
                 )}
                 
-                {/* Uniform greyish dark blue overlay */}
-                <div className="absolute inset-0 bg-[#3a4a6b]/75 z-10"></div>
+                {/* Uniform dark overlay to darken image/video */}
+                <div className="absolute inset-0 bg-black/40 z-10"></div>
                 
                 {/* Overlay content - flexbox layout with items at bottom */}
                 <div className="absolute inset-0 z-20 flex flex-col justify-between p-6 md:p-8">
