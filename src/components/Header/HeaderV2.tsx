@@ -132,7 +132,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
 
   return (
     <header data-component="header" className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''}`}> 
-      <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto p-4">
+      <nav className="max-w-[1600px] 2xl:max-w-[1800px] mx-auto p-4 lg:p-[0.85rem]">
         <div className="h-16 md:h-20 lg:h-16 xl:h-20 2xl:h-24 flex items-center justify-between">
           {/* Left logo */}
           <div className="flex items-center relative z-30">

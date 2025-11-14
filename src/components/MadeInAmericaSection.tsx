@@ -54,7 +54,7 @@ const MadeInAmericaSection: React.FC = () => {
                 <div className="flex justify-start mt-2 sm:mt-3 md:mt-4">
                   <img 
                     src="/images/misc/Flag Icon with asterisk 1.png" 
-                    alt="Made in USA" 
+                    alt="PROUDLY MADE IN AMERICA" 
                     className="h-16 w-auto object-contain"
                   />
                 </div>

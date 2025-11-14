@@ -237,7 +237,7 @@ const ApproachSectionUnified = () => {
                 ref={titlesContainerRef}
                 className="
                 relative
-                min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
+                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
                 px-[clamp(14px,4vw,32px)] 
                 py-[clamp(24px,4vw,40px)]
                 flex items-center justify-center
@@ -257,7 +257,7 @@ const ApproachSectionUnified = () => {
                           ref={(el) => { titleRefs.current[index] = el; }}
                           className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap block ${
                             selectedItem === index
-                              ? 'text-white font-bold'
+                              ? 'text-[#F2611D] font-bold'
                               : 'text-white font-normal'
                           }`}
                           style={{
@@ -277,7 +277,7 @@ const ApproachSectionUnified = () => {
               {/* RIGHT - Videos with description */}
               <div className="
                 relative
-                min-h-[32svh] md:min-h-[36svh] lg:min-h-[40vh]
+                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[75vh]
                 py-[clamp(24px,4vw,40px)]
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible

@@ -127,7 +127,7 @@ const ExperienceBetterBanner = () => {
               <span
                 className="text-[#2c476e] font-poppins font-bold leading-[1]"
                 style={{
-                  fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)',
+                  fontSize: 'clamp(36px, 3.25vw + 0.65rem, 73px)',
                   fontWeight: 700,
                   letterSpacing: '-0.02em',
                   lineHeight: 1,
@@ -160,7 +160,7 @@ const ExperienceBetterBanner = () => {
                 <span
                   className="text-[#2c476e] font-poppins font-bold leading-[1]"
                   style={{
-                    fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)',
+                    fontSize: 'clamp(36px, 3.25vw + 0.65rem, 73px)',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
                     lineHeight: 1,
@@ -173,7 +173,7 @@ const ExperienceBetterBanner = () => {
                   <span
                     className="text-[#F2611D] font-poppins font-bold leading-[1]"
                     style={{
-                      fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)',
+                      fontSize: 'clamp(36px, 3.25vw + 0.65rem, 73px)',
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
                       lineHeight: 1,

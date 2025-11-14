@@ -91,10 +91,10 @@ const InteractiveProductsSectionV4 = () => {
   // Handle click - only updates button/link/text
   const handleProductClick = useCallback((index: number) => {
     setDisplayedImage(products[index].image);
-    setSelectedProduct(index);
+      setSelectedProduct(index);
     setIsProductLocked(true); // Lock the product on click
     setHoveredProduct(null); // Clear any active hover effect immediately
-    resetTimer();
+      resetTimer();
   }, [products, resetTimer]);
 
   // Handle hover - only change color to orange, don't change image if something is selected
@@ -275,7 +275,7 @@ const InteractiveProductsSectionV4 = () => {
                 // The displayed product is the selected one if locked, otherwise hovered or selected
                 const currentDisplayedProductIndex = isProductLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
                 const currentDisplayedProduct = products[currentDisplayedProductIndex];
-
+                
                 return (
                   <>
                     {/* Previous product image (stays in place) */}

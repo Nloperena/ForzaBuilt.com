@@ -53,7 +53,7 @@ const NewsletterSection = () => {
 
             <h2
               className="text-fluid-heading font-normal text-[#2c476e] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance"
-              style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 48px)' }}
+              style={{ fontSize: 'clamp(31px, 3.25vw + 0.65rem, 62px)' }}
             >
               Elevate Your Performance
             </h2>

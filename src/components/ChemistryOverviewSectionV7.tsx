@@ -179,25 +179,11 @@ const ChemistryOverviewSectionV7: React.FC = () => {
   }, [selectedChemistry]);
 
   const handleChemistryHover = (chemistry: ChemistryData | null) => {
-    // Clear any existing hover timer
-    if (hoverTimerRef.current) {
-      clearTimeout(hoverTimerRef.current);
-      hoverTimerRef.current = null;
-    }
-
+    // Only handle visual hover state, don't open modal on hover
     if (chemistry) {
       setHoveredChemistry(chemistry.id);
-      setShouldStartTimer(false); // Don't start timer while hovering over an icon
-      // Show modal after a short delay (e.g., 300ms) when switching chemistries
-      hoverTimerRef.current = setTimeout(() => {
-        setSelectedChemistry(chemistry);
-      }, 300);
     } else {
       setHoveredChemistry(null);
-      // Start timer when leaving the icon (only if modal is currently showing)
-      if (selectedChemistry) {
-        setShouldStartTimer(true);
-      }
     }
   };
 
@@ -225,6 +211,13 @@ const ChemistryOverviewSectionV7: React.FC = () => {
                         bg-gradient-to-bl from-[#477197] to-[#2c476e]">
       
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Callout/Subtitle */}
+        <div className="text-center mb-3 sm:mb-4 md:mb-5">
+          <p className="text-white/80 text-xs sm:text-sm md:text-base font-poppins font-normal tracking-wider uppercase">
+            Click on a chemistry to learn more
+          </p>
+        </div>
+        
         <h2
           className="font-poppins font-normal text-white text-center leading-tight
                      mb-4 sm:mb-5 md:mb-6 lg:mb-8
