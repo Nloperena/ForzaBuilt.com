@@ -94,7 +94,7 @@ const ExperienceBetterBanner = () => {
           opacity: 1;
         }
       `}</style>
-      <div className="bg-white py-8 md:py-12 mt-4 mb-4 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
+      <div className="bg-white py-10 md:py-16 lg:py-20 mt-4 mb-4 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
         <div className="w-full h-full flex items-center justify-center overflow-x-hidden" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <div
             ref={containerRef}
@@ -127,7 +127,7 @@ const ExperienceBetterBanner = () => {
               <span
                 className="text-[#2c476e] font-poppins font-bold leading-[1]"
                 style={{
-                  fontSize: 'clamp(36px, 3.25vw + 0.65rem, 73px)',
+                  fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
                   fontWeight: 700,
                   letterSpacing: '-0.02em',
                   lineHeight: 1,
@@ -160,7 +160,7 @@ const ExperienceBetterBanner = () => {
                 <span
                   className="text-[#2c476e] font-poppins font-bold leading-[1]"
                   style={{
-                    fontSize: 'clamp(36px, 3.25vw + 0.65rem, 73px)',
+                    fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
                     lineHeight: 1,
@@ -173,7 +173,7 @@ const ExperienceBetterBanner = () => {
                   <span
                     className="text-[#F2611D] font-poppins font-bold leading-[1]"
                     style={{
-                      fontSize: 'clamp(36px, 3.25vw + 0.65rem, 73px)',
+                      fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
                       lineHeight: 1,

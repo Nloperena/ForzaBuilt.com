@@ -211,21 +211,23 @@ const ChemistryOverviewSectionV7: React.FC = () => {
                         bg-gradient-to-bl from-[#477197] to-[#2c476e]">
       
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Callout/Subtitle */}
-        <div className="text-center mb-3 sm:mb-4 md:mb-5">
-          <p className="text-white/80 text-xs sm:text-sm md:text-base font-poppins font-normal tracking-wider uppercase">
-            Click on a chemistry to learn more
-          </p>
-        </div>
+        
         
         <h2
           className="font-poppins font-normal text-white text-center leading-tight
-                     mb-4 sm:mb-5 md:mb-6 lg:mb-8
+                     mb-2 sm:mb-3 md:mb-3 lg:mb-4
                      [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]"
           style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
         >
           Product Chemistries
         </h2>
+
+        {/* Callout/Subtitle */}
+        <div className="text-center mb-3 sm:mb-4 md:mb-5">
+          <p className="text-white/80 text-xs sm:text-sm md:text-base font-poppins font-normal tracking-wider">
+            Click on a Chemistry to learn more.
+          </p>
+        </div>
         
         {/* Top Row - 6 items */}
         <div className="flex justify-center items-center

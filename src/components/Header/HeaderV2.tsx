@@ -28,10 +28,10 @@ const industriesItems: MenuItem[] = industriesData.slice(0, 6).map((ind) => ({
 }));
 
 const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?: 'default' | 'industries' }> = ({ items, widthClass = 'w-[760px]', variant = 'default' }) => {
-  // Determine responsive width based on variant - scaled for larger displays
+  // Determine responsive width based on variant - same size across all breakpoints
   const responsiveWidth = variant === 'industries' 
-    ? 'w-[420px] md:w-[460px] lg:w-[500px] xl:w-[800px] 2xl:w-[900px]'
-    : 'w-[280px] md:w-[320px] lg:w-[340px] xl:w-[560px] 2xl:w-[640px]';
+    ? 'w-[640px] 2xl:w-[720px]'
+    : 'w-[440px] 2xl:w-[500px]';
   
   return (
     <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${responsiveWidth} ${variant === 'default' ? 'rounded-lg' : 'rounded-lg'} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-50`}> 
@@ -45,11 +45,11 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-0.5 py-0.5 lg:py-1 xl:py-2 2xl:py-2.5 px-0.5 lg:px-0.5 xl:px-1.5 2xl:px-2 min-h-[50px] lg:min-h-[55px] xl:min-h-[90px] 2xl:min-h-[100px] transition-colors hover:bg-[#F2611D]">
+              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-0.5 py-0.5 lg:py-1 xl:py-1 2xl:py-1.5 px-0.5 lg:px-0.25 xl:px-0.25 2xl:px-0.5 min-h-[40px] lg:min-h-[45px] xl:min-h-[70px] 2xl:min-h-[75px] transition-colors hover:bg-[#F2611D]">
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 object-contain" />
+                  <img src={it.iconSrc} alt="" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 object-contain" />
                 ) : null}
-                <span className="font-poppins text-[8px] lg:text-[9px] xl:text-[12px] 2xl:text-[13px] font-normal group-hover:font-bold text-center leading-tight">{toTitleCase(it.label)}</span>
+                <span className="font-poppins text-[8px] lg:text-[9px] xl:text-[11px] 2xl:text-[12px] font-normal group-hover:font-bold text-center leading-tight">{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
               </Link>
             </motion.div>
@@ -65,11 +65,11 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-0.5 lg:gap-1 xl:gap-3 2xl:gap-3.5 py-0.5 lg:py-1 xl:py-2 2xl:py-2.5 px-0.5 lg:px-0.5 xl:px-1.5 2xl:px-2 min-h-[50px] lg:min-h-[55px] xl:min-h-[90px] 2xl:min-h-[100px] transition-colors hover:bg-[#F2611D]">
+              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-0.5 lg:gap-0.5 xl:gap-1 2xl:gap-1.5 py-0.5 lg:py-1 xl:py-1 2xl:py-1.5 px-0.5 lg:px-0.5 xl:px-1 2xl:px-1.5 min-h-[40px] lg:min-h-[45px] xl:min-h-[70px] 2xl:min-h-[75px] transition-colors hover:bg-[#F2611D]">
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="hidden md:block w-4 h-4 lg:w-5 lg:h-5 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 object-contain" />
+                  <img src={it.iconSrc} alt="" className="hidden md:block w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 object-contain" />
                 ) : null}
-                <span className="font-poppins text-[8px] lg:text-[9px] xl:text-[12px] 2xl:text-[13px] font-normal group-hover:font-bold leading-tight">{toTitleCase(it.label)}</span>
+                <span className="font-poppins text-[8px] lg:text-[9px] xl:text-[11px] 2xl:text-[12px] font-normal group-hover:font-bold leading-tight">{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
               </Link>
             </motion.div>

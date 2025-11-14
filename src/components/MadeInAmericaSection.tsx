@@ -21,6 +21,10 @@ const MadeInAmericaSection: React.FC = () => {
                   playsInline
                   preload="auto"
                   className="w-full h-full object-cover"
+                  style={{
+                    objectPosition: 'center',
+                    transform: 'scale(1.15)',
+                  }}
                 />
               </div>
             </div>

@@ -33,7 +33,7 @@ const Index = () => {
         {/* All content that should slide over the video */}
 
         {/* Product Image Ticker - New Product Divider */}
-        <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-72">
+        <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68">
           <ProductImageTicker
             items={[
               // Pattern: BOND, SEAL, BOND, SEAL, TAPE

@@ -89,15 +89,10 @@ const InteractiveProductsSectionV5 = () => {
     }
   };
 
-  const loadModalProducts = async (category: 'bond' | 'seal' | 'tape') => {
+  const loadModalProducts = async (category: 'bond' | 'seal' | 'tape' | 'ruggedred') => {
     try {
-      const categoryMap: { [key: string]: 'bond' | 'seal' | 'tape' } = {
-        'ADHESIVES': 'bond',
-        'SEALANTS': 'seal',
-        'TAPES': 'tape',
-        'CLEANERS': 'seal'
-      };
-      const categorySlug = categoryMap[products[selectedProduct].title] || 'bond';
+      // Map ruggedred to seal for product listing
+      const categorySlug = category === 'ruggedred' ? 'seal' : category;
       const productsList = await byProductLine(categorySlug);
       setModalProducts(productsList);
       if (productsList.length > 0) {
@@ -326,10 +321,12 @@ const InteractiveProductsSectionV5 = () => {
                           {products[displayedProduct].description}
                         </p>
                         <Button
-                          onClick={() => loadModalProducts('bond')}
+                          asChild
                           className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
                         >
-                          {getButtonText(products[displayedProduct].title)}
+                          <Link to={`/products/${products[displayedProduct].slug}`}>
+                            {getButtonText(products[displayedProduct].title)}
+                          </Link>
                         </Button>
                       </>
                     );

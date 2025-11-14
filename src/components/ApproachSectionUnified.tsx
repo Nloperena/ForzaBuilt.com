@@ -239,12 +239,12 @@ const ApproachSectionUnified = () => {
                 relative
                 min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
                 px-[clamp(14px,4vw,32px)] 
-                py-[clamp(24px,4vw,40px)]
+                py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
                 [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
               ">
-                <div className="w-full flex flex-col items-start">
-                  <div className="space-y-[clamp(6px,1.2vw,8px)] w-full">
+                <div className="w-full flex flex-col items-start h-full">
+                  <div className="space-y-[clamp(8px,1.5vw,16px)] w-full flex flex-col">
                     {approachItems.map((item, index) => (
                       <button
                         key={index}
@@ -261,7 +261,7 @@ const ApproachSectionUnified = () => {
                               : 'text-white font-normal'
                           }`}
                           style={{
-                            fontSize: 'clamp(14px, 1.5vw + 0.4rem, 36px)',
+                            fontSize: 'clamp(14px, 1.5vw + 0.4rem, 48px)',
                             transform: 'none',
                             display: 'block'
                           }}
@@ -277,8 +277,8 @@ const ApproachSectionUnified = () => {
               {/* RIGHT - Videos with description */}
               <div className="
                 relative
-                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[75vh]
-                py-[clamp(24px,4vw,40px)]
+                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
+                py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible
               ">
