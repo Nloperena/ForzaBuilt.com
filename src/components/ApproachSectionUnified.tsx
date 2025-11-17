@@ -380,12 +380,12 @@ const ApproachSectionUnified = () => {
                       {/* Bullet Points */}
                       <ul className="space-y-2">
                         {approachItems[selectedItem].bulletPoints.map((point, idx) => (
-                          <li key={idx} className="flex gap-2 text-white font-bold transition-all duration-500" style={{
+                          <li key={idx} className="flex gap-2 text-white transition-all duration-500" style={{
                             fontSize: 'clamp(11px, 0.85vw + 0.2rem, 14px)',
                             lineHeight: '1.4'
                           }}>
-                            <span className="text-[#F2611D] flex-shrink-0 mt-1">•</span>
-                            <span>{point}</span>
+                            <span className="text-[#F2611D] flex-shrink-0 mt-1 font-bold">•</span>
+                            <span className="font-bold">{point}</span>
                           </li>
                         ))}
                       </ul>
