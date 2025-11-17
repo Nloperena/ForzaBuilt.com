@@ -33,15 +33,13 @@ interface DropdownProps {
 }
 
 const ScalableDropdown: React.FC<DropdownProps> = ({ items, variant = 'default', isOpen }) => {
-  // Determine responsive sizing based on variant and screen size
-  const getDropdownClasses = () => {
-    if (variant === 'industries') {
-      return 'w-screen sm:w-[420px] md:w-[460px] lg:w-[500px] xl:w-[800px] 2xl:w-[900px] max-h-[90vh] overflow-y-auto';
-    }
-    return 'w-screen sm:w-[280px] md:w-[320px] lg:w-[340px] xl:w-[560px] 2xl:w-[640px] max-h-[90vh] overflow-y-auto';
+  const gridCols = variant === 'industries' ? 'grid-cols-6' : 'grid-cols-4';
+  const dropdownWidth = 'w-[800px] 2xl:w-[900px]';
+  
+  const handleItemClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
   };
-
-  const gridCols = variant === 'industries' ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6' : 'grid-cols-2 lg:grid-cols-4';
   
   return (
     <AnimatePresence>
@@ -51,7 +49,7 @@ const ScalableDropdown: React.FC<DropdownProps> = ({ items, variant = 'default',
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${getDropdownClasses()} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden rounded-lg z-[100]`}
+          className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${dropdownWidth} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden rounded-lg z-[100]`}
         >
           <div className={`grid ${gridCols} gap-0`}>
             {items.map((it, idx) => (
@@ -62,24 +60,21 @@ const ScalableDropdown: React.FC<DropdownProps> = ({ items, variant = 'default',
                 exit={{ opacity: 0, y: -20, scale: 0.9 }}
                 transition={{ duration: 0.2, delay: idx * 0.03 }}
               >
-                <Link 
-                  to={it.href} 
-                  className="group relative flex flex-col items-center justify-center gap-1 sm:gap-0.5 py-2 sm:py-0.5 lg:py-1 xl:py-2 2xl:py-2.5 px-2 sm:px-0.5 lg:px-0.5 xl:px-1.5 2xl:px-2 min-h-[60px] sm:min-h-[50px] lg:min-h-[55px] xl:min-h-[90px] 2xl:min-h-[100px] transition-colors hover:bg-[#F2611D]"
+                <div 
+                  onClick={handleItemClick}
+                  className="group relative flex flex-col items-center justify-center gap-1 xl:gap-2 2xl:gap-2.5 py-2 xl:py-2.5 2xl:py-3 px-2 xl:px-3 2xl:px-3.5 min-h-[90px] 2xl:min-h-[100px] transition-colors hover:bg-[#F2611D] cursor-pointer"
                 >
                   {it.iconSrc ? (
                     <img 
                       src={it.iconSrc} 
                       alt="" 
-                      className="w-5 h-5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 object-contain" 
+                      className="w-8 xl:w-8 2xl:w-9 h-8 xl:h-8 2xl:h-9 object-contain" 
                     />
                   ) : null}
-                  <span className="font-poppins text-[9px] sm:text-[8px] lg:text-[9px] xl:text-[12px] 2xl:text-[13px] font-normal group-hover:font-bold text-center leading-tight">
+                  <span className="font-poppins text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] font-normal group-hover:font-bold text-center">
                     {toTitleCase(it.label)}
                   </span>
-                  {idx < items.length - 1 && variant !== 'default' && (
-                    <span className="hidden lg:block absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />
-                  )}
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -101,13 +96,13 @@ const HeaderV3: React.FC = () => {
   const [lastScrollY, setLastScrollY] = React.useState(0);
   
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [pinnedDropdown, setPinnedDropdown] = useState<string | null>(null);
 
   React.useEffect(() => {
     const onScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 8);
       
-      // For desktop only: hide navbar when scrolling down
       if (window.innerWidth >= 1024) {
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsScrollingUp(true);
@@ -160,14 +155,19 @@ const HeaderV3: React.FC = () => {
             <div 
               className="relative"
               onMouseEnter={() => setOpenDropdown('products')}
-              onMouseLeave={() => setOpenDropdown(null)}
+              onMouseLeave={() => pinnedDropdown !== 'products' && setOpenDropdown(null)}
             >
-              <Link 
-                to="/products" 
-                className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3.5 py-2 lg:py-2 xl:py-2.5 2xl:py-3 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent`}
+              <div 
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setPinnedDropdown(pinnedDropdown === 'products' ? null : 'products');
+                  setOpenDropdown('products');
+                }}
+                className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3.5 py-2 lg:py-2 xl:py-2.5 2xl:py-3 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent cursor-pointer`}
               >
                 Products ▾
-              </Link>
+              </div>
               <ScalableDropdown 
                 items={productsItems} 
                 variant="default" 
@@ -179,14 +179,19 @@ const HeaderV3: React.FC = () => {
             <div 
               className="relative"
               onMouseEnter={() => setOpenDropdown('industries')}
-              onMouseLeave={() => setOpenDropdown(null)}
+              onMouseLeave={() => pinnedDropdown !== 'industries' && setOpenDropdown(null)}
             >
-              <Link 
-                to="/industries" 
-                className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3.5 py-2 lg:py-2 xl:py-2.5 2xl:py-3 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent`}
+              <div 
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setPinnedDropdown(pinnedDropdown === 'industries' ? null : 'industries');
+                  setOpenDropdown('industries');
+                }}
+                className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3.5 py-2 lg:py-2 xl:py-2.5 2xl:py-3 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent cursor-pointer`}
               >
                 Industries ▾
-              </Link>
+              </div>
               <ScalableDropdown 
                 items={industriesItems} 
                 variant="industries" 
@@ -232,4 +237,3 @@ const HeaderV3: React.FC = () => {
 };
 
 export default HeaderV3;
-

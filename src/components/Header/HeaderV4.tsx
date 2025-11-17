@@ -42,6 +42,12 @@ const CompactDropdown: React.FC<CompactDropdownProps> = ({ items, variant = 'def
     ? 'w-screen sm:w-[320px] md:w-[420px] lg:w-[500px]'
     : 'w-screen sm:w-[240px] md:w-[280px] lg:w-[340px]';
 
+  const handleItemClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // Dropdown stays open, prevents navigation
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -61,9 +67,9 @@ const CompactDropdown: React.FC<CompactDropdownProps> = ({ items, variant = 'def
                 exit={{ opacity: 0, y: -20, scale: 0.9 }}
                 transition={{ duration: 0.2, delay: idx * 0.03 }}
               >
-                <Link 
-                  to={it.href} 
-                  className="group relative flex flex-col items-center justify-center gap-1 py-2 sm:py-2.5 md:py-2 lg:py-2.5 px-2 sm:px-2.5 min-h-[60px] sm:min-h-[70px] md:min-h-[60px] lg:min-h-[70px] transition-colors hover:bg-[#F2611D]"
+                <div 
+                  onClick={handleItemClick}
+                  className="group relative flex flex-col items-center justify-center gap-1 py-2 sm:py-2.5 md:py-2 lg:py-2.5 px-2 sm:px-2.5 min-h-[60px] sm:min-h-[70px] md:min-h-[60px] lg:min-h-[70px] transition-colors hover:bg-[#F2611D] cursor-pointer"
                 >
                   {it.iconSrc ? (
                     <img 
@@ -72,10 +78,10 @@ const CompactDropdown: React.FC<CompactDropdownProps> = ({ items, variant = 'def
                       className="w-5 h-5 sm:w-6 sm:h-6 md:w-5 md:h-5 lg:w-6 lg:h-6 object-contain" 
                     />
                   ) : null}
-                  <span className="font-poppins text-[9px] sm:text-[10px] md:text-[9px] lg:text-[10px] font-normal group-hover:font-bold text-center leading-tight">
+                  <span className="font-poppins text-[12px] lg:text-[12px] xl:text-[13px] 2xl:text-[13px] font-normal group-hover:font-bold text-center leading-tight">
                     {toTitleCase(it.label)}
                   </span>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -97,6 +103,7 @@ const HeaderV4: React.FC = () => {
   const [lastScrollY, setLastScrollY] = React.useState(0);
   
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [pinnedDropdown, setPinnedDropdown] = useState<string | null>(null);
 
   React.useEffect(() => {
     const onScroll = () => {
@@ -155,14 +162,19 @@ const HeaderV4: React.FC = () => {
             <div 
               className="relative"
               onMouseEnter={() => setOpenDropdown('products')}
-              onMouseLeave={() => setOpenDropdown(null)}
+              onMouseLeave={() => pinnedDropdown !== 'products' && setOpenDropdown(null)}
             >
-              <Link 
-                to="/products" 
-                className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3 py-2 lg:py-2 xl:py-2.5 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[12px] xl:text-[13px] 2xl:text-[13px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent`}
+              <div 
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setPinnedDropdown(pinnedDropdown === 'products' ? null : 'products');
+                  setOpenDropdown('products');
+                }}
+                className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3 py-2 lg:py-2 xl:py-2.5 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[12px] xl:text-[13px] 2xl:text-[13px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent cursor-pointer`}
               >
                 Products ▾
-              </Link>
+              </div>
               <CompactDropdown 
                 items={productsItems} 
                 variant="default" 
@@ -174,14 +186,19 @@ const HeaderV4: React.FC = () => {
             <div 
               className="relative"
               onMouseEnter={() => setOpenDropdown('industries')}
-              onMouseLeave={() => setOpenDropdown(null)}
+              onMouseLeave={() => pinnedDropdown !== 'industries' && setOpenDropdown(null)}
             >
-              <Link 
-                to="/industries" 
-                className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3 py-2 lg:py-2 xl:py-2.5 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[12px] xl:text-[13px] 2xl:text-[13px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent`}
+              <div 
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setPinnedDropdown(pinnedDropdown === 'industries' ? null : 'industries');
+                  setOpenDropdown('industries');
+                }}
+                className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3 py-2 lg:py-2 xl:py-2.5 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[12px] xl:text-[13px] 2xl:text-[13px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent cursor-pointer`}
               >
                 Industries ▾
-              </Link>
+              </div>
               <CompactDropdown 
                 items={industriesItems} 
                 variant="industries" 

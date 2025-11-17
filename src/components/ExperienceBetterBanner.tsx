@@ -3,11 +3,15 @@ import React, { useEffect, useRef, useState } from 'react';
 const ExperienceBetterBanner = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const typeIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const animationRef = useRef<NodeJS.Timeout | null>(null);
   const [isInView, setIsInView] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
   const fullText = 'Performance. Elevated.';
-  const typingSpeed = 50; // milliseconds per character (2x faster: was 100ms, now 50ms)
+  const typingSpeed = 50; // milliseconds per character
+  const typingDelayBeforeAnimation = 500; // delay before starting animation
+  const holdTimeAfterTyping = 4000; // 4 seconds - hold time after text is fully typed
+  const deleteSpeed = 50; // milliseconds per character for deletion
+  const delayBetweenCycles = 1000; // 1 second delay between animation cycles
 
   useEffect(() => {
     // Intersection Observer for scroll-triggered animation
@@ -42,41 +46,61 @@ const ExperienceBetterBanner = () => {
     };
   }, []);
 
-  // Typewriter effect
+  // Complete animation cycle: type -> hold -> delete -> wait -> repeat
   useEffect(() => {
     if (!isInView) {
       setDisplayedText('');
-      if (typeIntervalRef.current) {
-        clearInterval(typeIntervalRef.current);
-        typeIntervalRef.current = null;
+      if (animationRef.current) {
+        clearTimeout(animationRef.current);
+        animationRef.current = null;
       }
       return;
     }
 
-    // Add 0.5 second delay before starting typewriter effect (2x faster: was 1000ms, now 500ms)
-    const delayTimeout = setTimeout(() => {
+    const runAnimationCycle = () => {
+      // Step 1: Typing phase
       let currentIndex = 0;
-      typeIntervalRef.current = setInterval(() => {
+      const typeInterval = setInterval(() => {
         if (currentIndex < fullText.length) {
           setDisplayedText(fullText.substring(0, currentIndex + 1));
           currentIndex++;
         } else {
-          if (typeIntervalRef.current) {
-            clearInterval(typeIntervalRef.current);
-            typeIntervalRef.current = null;
-          }
+          clearInterval(typeInterval);
+          
+          // Step 2: Hold text for 4 seconds after typing completes
+          animationRef.current = setTimeout(() => {
+            // Step 3: Delete phase - characters disappear one by one
+            let deleteIndex = fullText.length;
+            const deleteInterval = setInterval(() => {
+              if (deleteIndex > 0) {
+                deleteIndex--;
+                setDisplayedText(fullText.substring(0, deleteIndex));
+              } else {
+                clearInterval(deleteInterval);
+                
+                // Step 4: Wait 1 second before restarting
+                animationRef.current = setTimeout(() => {
+                  runAnimationCycle();
+                }, delayBetweenCycles);
+              }
+            }, deleteSpeed);
+          }, holdTimeAfterTyping);
         }
       }, typingSpeed);
-    }, 500); // 0.5 second delay (2x faster)
+    };
+
+    // Initial delay before animation starts
+    animationRef.current = setTimeout(() => {
+      runAnimationCycle();
+    }, typingDelayBeforeAnimation);
 
     return () => {
-      clearTimeout(delayTimeout);
-      if (typeIntervalRef.current) {
-        clearInterval(typeIntervalRef.current);
-        typeIntervalRef.current = null;
+      if (animationRef.current) {
+        clearTimeout(animationRef.current);
+        animationRef.current = null;
       }
     };
-  }, [isInView, fullText, typingSpeed]);
+  }, [isInView, fullText, typingSpeed, deleteSpeed, holdTimeAfterTyping, delayBetweenCycles, typingDelayBeforeAnimation]);
 
   // Split the displayed text into "Performance." and "Elevated." parts
   const performanceText = displayedText.substring(0, 13); // "Performance."

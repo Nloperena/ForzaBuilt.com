@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // This component can be hidden by modals using data-component="header" selector
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,8 +33,19 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
     ? 'w-[640px] 2xl:w-[720px]'
     : 'w-[440px] 2xl:w-[500px]';
   
+  const handleItemClick = (e: React.MouseEvent, item: MenuItem) => {
+    // Allow navigation for Products dropdown, prevent for Industries
+    if (variant === 'default') {
+      // Products - allow navigation
+      return;
+    }
+    // Industries - prevent navigation
+    e.preventDefault();
+    e.stopPropagation();
+  };
+  
   return (
-    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${responsiveWidth} ${variant === 'default' ? 'rounded-lg' : 'rounded-lg'} bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-50`}> 
+    <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${responsiveWidth} rounded-lg bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-50`}> 
               {variant === 'industries' ? (
         <div className="grid grid-cols-6">
           {items.map((it, idx) => (
@@ -45,13 +56,18 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex flex-col items-center justify-center gap-0.5 py-0.5 lg:py-1 xl:py-1 2xl:py-1.5 px-0.5 lg:px-0.25 xl:px-0.25 2xl:px-0.5 min-h-[40px] lg:min-h-[45px] xl:min-h-[70px] 2xl:min-h-[75px] transition-colors hover:bg-[#F2611D]">
+              <div onClick={(e) => handleItemClick(e, it)} className={`group relative z-30 flex flex-col items-center justify-center gap-2 py-2 lg:py-2 xl:py-2 2xl:py-2.5 min-h-[80px] lg:min-h-[85px] xl:min-h-[90px] 2xl:min-h-[95px] transition-colors hover:bg-[#F2611D] cursor-pointer ${it.label.toLowerCase() === 'transportation' ? 'px-[1rem] lg:px-[1rem] xl:px-[1rem] 2xl:px-[1rem]' : 'px-3 lg:px-3 xl:px-3 2xl:px-3'}`}>
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 object-contain" />
+                  <img src={it.iconSrc} alt="" className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 object-contain" />
                 ) : null}
-                <span className="font-poppins text-[8px] lg:text-[9px] xl:text-[11px] 2xl:text-[12px] font-normal group-hover:font-bold text-center leading-tight">{toTitleCase(it.label)}</span>
+                {/* Transportation font size: 10% smaller than base (base: 12/13/14/15px, 10% reduction = 0.9 multiplier) */}
+                <span className={`font-poppins font-normal group-hover:font-bold text-center ${
+                  it.label.toLowerCase() === 'transportation' 
+                    ? 'text-[10.8px] lg:text-[11.7px] xl:text-[12.6px] 2xl:text-[13.5px]' // 10% smaller: 12*0.9, 13*0.9, 14*0.9, 15*0.9
+                    : 'text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]'
+                }`}>{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
-              </Link>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -65,11 +81,11 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-0.5 lg:gap-0.5 xl:gap-1 2xl:gap-1.5 py-0.5 lg:py-1 xl:py-1 2xl:py-1.5 px-0.5 lg:px-0.5 xl:px-1 2xl:px-1.5 min-h-[40px] lg:min-h-[45px] xl:min-h-[70px] 2xl:min-h-[75px] transition-colors hover:bg-[#F2611D]">
+              <Link to={it.href} className="group relative z-30 flex items-center justify-center gap-0.5 lg:gap-0.5 xl:gap-1 2xl:gap-1.5 py-2 lg:py-2 xl:py-2 2xl:py-2.5 px-3 lg:px-3 xl:px-3 2xl:px-3 min-h-[70px] lg:min-h-[75px] xl:min-h-[80px] 2xl:min-h-[85px] transition-colors hover:bg-[#F2611D] cursor-pointer">
                 {it.iconSrc ? (
-                  <img src={it.iconSrc} alt="" className="hidden md:block w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 object-contain" />
+                  <img src={it.iconSrc} alt="" className="hidden md:block w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 object-contain" />
                 ) : null}
-                <span className="font-poppins text-[8px] lg:text-[9px] xl:text-[11px] 2xl:text-[12px] font-normal group-hover:font-bold leading-tight">{toTitleCase(it.label)}</span>
+                <span className="font-poppins text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] font-normal group-hover:font-bold">{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
               </Link>
             </motion.div>
@@ -89,6 +105,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isScrollingUp, setIsScrollingUp] = React.useState(false);
     const [lastScrollY, setLastScrollY] = React.useState(0);
+    const [pinnedDropdown, setPinnedDropdown] = React.useState<string | null>(null);
    
    React.useEffect(() => {
      const onScroll = () => {
@@ -143,8 +160,12 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
           {/* Center nav */}
           <div className="hidden lg:flex items-center gap-1.5 lg:gap-2.5 xl:gap-3 2xl:gap-4 relative z-20">
             {/* Products */}
-            <div className="relative group">
-              <Link to="/products" className={`px-1.5 lg:px-2 xl:px-2.5 2xl:px-3 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Products ▾</Link>
+            <div className="relative group" onMouseLeave={() => pinnedDropdown !== 'products' && setPinnedDropdown(null)}>
+              <div onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPinnedDropdown(pinnedDropdown === 'products' ? null : 'products');
+              }} className={`px-1.5 lg:px-2 xl:px-2.5 2xl:px-3 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent cursor-pointer`}>Products ▾</div>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-20 relative">
                   <HoverDropdown items={productsItems} variant="default" />
@@ -153,8 +174,12 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
             </div>
 
             {/* Industries */}
-            <div className="relative group">
-              <Link to="/industries" className={`px-1.5 lg:px-2 xl:px-2.5 2xl:px-3 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent`}>Industries ▾</Link>
+            <div className="relative group" onMouseLeave={() => pinnedDropdown !== 'industries' && setPinnedDropdown(null)}>
+              <div onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPinnedDropdown(pinnedDropdown === 'industries' ? null : 'industries');
+              }} className={`px-1.5 lg:px-2 xl:px-2.5 2xl:px-3 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 border border-transparent cursor-pointer`}>Industries ▾</div>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-20 relative">
                   <HoverDropdown items={industriesItems} variant="industries" />
