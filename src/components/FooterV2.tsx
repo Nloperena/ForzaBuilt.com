@@ -5,7 +5,7 @@ const FooterV2 = () => {
     <footer className="relative py-10 md:py-12 px-6 overflow-hidden bg-gradient-to-t from-[#477197] to-[#2c476e] text-white">
       
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* Mobile/Tablet Layout */}
         <div className="lg:hidden flex flex-col gap-4 mb-5">
           {/* Logo and Social Media */}
@@ -38,9 +38,9 @@ const FooterV2 = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid grid-cols-5 gap-5 mb-5">
-          {/* Logo Column - Spans more space on desktop */}
-          <div className="col-span-2">
+        <div className="hidden lg:grid grid-cols-4 gap-8 mb-5">
+          {/* Logo Column */}
+          <div>
             <img 
               src="/logos/Forza-Eagle-Logo-White.svg"
               alt="Forza Logo"
