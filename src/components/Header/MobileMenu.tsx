@@ -190,7 +190,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                           <Link
                             to={subItem.href}
                             onClick={onClose}
-                            className="block py-3 px-4 rounded-xl text-sm font-medium text-[#1B3764] bg-white/10 hover:bg-white/20 hover:text-[#1B3764] transition-all duration-200 border border-[#1B3764]/20"
+                            className="block py-3 px-4 rounded-xl text-base font-medium text-[#1B3764] bg-white/10 hover:bg-white/20 hover:text-[#1B3764] transition-all duration-200 border border-[#1B3764]/20"
                           >
                             {subItem.name}
                           </Link>

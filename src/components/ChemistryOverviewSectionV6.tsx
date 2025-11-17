@@ -1,7 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+
+// Typewriter hook for cycling text
+const useTypewriter = (text: string, cycleTime: number = 4000) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const typingSpeed = cycleTime / (text.length * 2 + 200); // Distribute time evenly
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting) {
+      // Typing phase
+      if (displayedText.length < text.length) {
+        timeout = setTimeout(() => {
+          setDisplayedText(text.slice(0, displayedText.length + 1));
+        }, typingSpeed);
+      } else {
+        // Typed complete, wait before deleting
+        timeout = setTimeout(() => setIsDeleting(true), cycleTime * 0.15);
+      }
+    } else {
+      // Deleting phase
+      if (displayedText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayedText(displayedText.slice(0, -1));
+        }, typingSpeed);
+      } else {
+        // Deleted complete, restart
+        timeout = setTimeout(() => setIsDeleting(false), 100);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, text, cycleTime]);
+
+  return displayedText;
+};
 
 interface ChemistryData {
   id: string;
@@ -146,6 +183,75 @@ const chemistryData: ChemistryData[] = [
   }
 ];
 
+// Chemistry Item Component with Typewriter Effect
+interface ChemistryItemProps {
+  chemistry: ChemistryData;
+  isHovered: boolean;
+  onHoverEnter: () => void;
+  onHoverLeave: () => void;
+  onClick: (chemistry: ChemistryData) => void;
+}
+
+const ChemistryItem: React.FC<ChemistryItemProps> = ({
+  chemistry,
+  isHovered,
+  onHoverEnter,
+  onHoverLeave,
+  onClick,
+}) => {
+  const displayedText = useTypewriter(chemistry.name, 4000);
+
+  return (
+    <motion.div
+      className="group transition-transform duration-200 hover:-translate-y-1.5"
+      onMouseEnter={onHoverEnter}
+      onMouseLeave={onHoverLeave}
+      onClick={() => onClick(chemistry)}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      tabIndex={0}
+    >
+      <div className="flex flex-col items-center cursor-pointer p-2
+                      gap-1 sm:gap-[clamp(4px,1vw,12px)] md:gap-[clamp(8px,1.6vw,20px)]">
+        <div className="relative">
+          <motion.img 
+            src={chemistry.iconSrc} 
+            alt={chemistry.name} 
+            className="
+              w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-[clamp(5.5rem,9vw,13rem)] lg:h-[clamp(5.5rem,9vw,13rem)]
+              object-contain
+              drop-shadow-lg
+              group-hover:drop-shadow-[0_8px_20px_rgba(242,97,29,0.35)]
+              transition-shadow duration-300
+            "
+            animate={{
+              filter: isHovered
+                ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
+                : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
+            }}
+            transition={{ duration: 0.2 }}
+          />
+        </div>
+        
+        <h3
+          className="
+            font-poppins font-normal text-white text-center
+            text-sm sm:text-base md:text-[clamp(14px,1.8vw,22px)]
+            leading-[1.18] md:leading-[1.15]
+            sm:whitespace-nowrap
+            whitespace-normal
+            min-h-[1.2em] md:min-h-[1.5em] lg:min-h-[2em]
+            h-[1.5em]
+          "
+        >
+          {displayedText}
+          <span className="animate-pulse">|</span>
+        </h3>
+      </div>
+    </motion.div>
+  );
+};
+
 const ChemistryOverviewSectionV6: React.FC = () => {
   const [selectedChemistry, setSelectedChemistry] = useState<ChemistryData | null>(null);
   const [hoveredChemistry, setHoveredChemistry] = useState<string | null>(null);
@@ -192,52 +298,14 @@ const ChemistryOverviewSectionV6: React.FC = () => {
             "
           >
             {chemistryData.slice(0, 6).map((chemistry) => (
-              <motion.div
+              <ChemistryItem
                 key={chemistry.id}
-                className="group transition-transform duration-200 hover:-translate-y-1.5"
-                onMouseEnter={() => setHoveredChemistry(chemistry.id)}
-                onMouseLeave={() => setHoveredChemistry(null)}
-                onClick={() => handleChemistryClick(chemistry)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                tabIndex={0}
-              >
-                <div className="flex flex-col items-center cursor-pointer p-2
-                                gap-1 sm:gap-[clamp(4px,1vw,12px)] md:gap-[clamp(8px,1.6vw,20px)]">
-                  <div className="relative">
-                    <motion.img 
-                      src={chemistry.iconSrc} 
-                      alt={chemistry.name} 
-                      className="
-                        w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-[clamp(5.5rem,9vw,13rem)] lg:h-[clamp(5.5rem,9vw,13rem)]
-                        object-contain
-                        drop-shadow-lg
-                        group-hover:drop-shadow-[0_8px_20px_rgba(242,97,29,0.35)]
-                        transition-shadow duration-300
-                      "
-                      animate={{
-                        filter: hoveredChemistry === chemistry.id 
-                          ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
-                          : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
-                      }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </div>
-                  
-                  <h3
-                    className="
-                      font-poppins font-normal text-white text-center
-                      text-xs sm:text-sm md:text-[clamp(12px,1.6vw,20px)]
-                      leading-[1.18] md:leading-[1.15]
-                      sm:whitespace-nowrap
-                      whitespace-normal
-                      min-h-[1.2em] md:min-h-[1.5em] lg:min-h-[2em]
-                    "
-                  >
-                    {chemistry.name}
-                  </h3>
-                </div>
-              </motion.div>
+                chemistry={chemistry}
+                isHovered={hoveredChemistry === chemistry.id}
+                onHoverEnter={() => setHoveredChemistry(chemistry.id)}
+                onHoverLeave={() => setHoveredChemistry(null)}
+                onClick={handleChemistryClick}
+              />
             ))}
           </div>
 
@@ -255,52 +323,14 @@ const ChemistryOverviewSectionV6: React.FC = () => {
             "
           >
             {chemistryData.slice(6, 11).map((chemistry) => (
-              <motion.div
+              <ChemistryItem
                 key={chemistry.id}
-                className="group transition-transform duration-200 hover:-translate-y-1.5"
-                onMouseEnter={() => setHoveredChemistry(chemistry.id)}
-                onMouseLeave={() => setHoveredChemistry(null)}
-                onClick={() => handleChemistryClick(chemistry)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                tabIndex={0}
-              >
-                <div className="flex flex-col items-center cursor-pointer p-2
-                                gap-1 sm:gap-[clamp(4px,1vw,12px)] md:gap-[clamp(8px,1.6vw,20px)]">
-                  <div className="relative">
-                    <motion.img 
-                      src={chemistry.iconSrc} 
-                      alt={chemistry.name} 
-                      className="
-                        w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-[clamp(5.5rem,9vw,13rem)] lg:h-[clamp(5.5rem,9vw,13rem)]
-                        object-contain
-                        drop-shadow-lg
-                        group-hover:drop-shadow-[0_8px_20px_rgba(242,97,29,0.35)]
-                        transition-shadow duration-300
-                      "
-                      animate={{
-                        filter: hoveredChemistry === chemistry.id 
-                          ? 'drop-shadow(0 8px 16px rgba(0,0,0,0.3)) brightness(1.1)' 
-                          : 'drop-shadow(0 4px 8px rgba(0,0,0,0.2))'
-                      }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  </div>
-                  
-                  <h3
-                    className="
-                      font-poppins font-normal text-white text-center
-                      text-xs sm:text-sm md:text-[clamp(12px,1.6vw,20px)]
-                      leading-[1.18] md:leading-[1.15]
-                      sm:whitespace-nowrap
-                      whitespace-normal
-                      min-h-[1.2em] md:min-h-[1.5em] lg:min-h-[2em]
-                    "
-                  >
-                    {chemistry.name}
-                  </h3>
-                </div>
-              </motion.div>
+                chemistry={chemistry}
+                isHovered={hoveredChemistry === chemistry.id}
+                onHoverEnter={() => setHoveredChemistry(chemistry.id)}
+                onHoverLeave={() => setHoveredChemistry(null)}
+                onClick={handleChemistryClick}
+              />
             ))}
           </div>
         </div>

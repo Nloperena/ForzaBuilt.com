@@ -255,10 +255,10 @@ const ApproachSectionUnified = () => {
                       >
                         <h3 
                           ref={(el) => { titleRefs.current[index] = el; }}
-                          className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap block ${
+                          className={`font-poppins font-bold leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap block ${
                             selectedItem === index
-                              ? 'text-[#F2611D] font-bold'
-                              : 'text-white font-normal'
+                              ? 'text-[#F2611D]'
+                              : 'text-white'
                           }`}
                           style={{
                             fontSize: 'clamp(14px, 1.5vw + 0.4rem, 48px)',
@@ -348,8 +348,8 @@ const ApproachSectionUnified = () => {
                     />
                   )}
                   
-                  {/* Uniform dark overlay to darken image/video */}
-                  <div className="absolute inset-0 bg-black/40 z-10"></div>
+                  {/* Uniform dark blue overlay to darken image/video */}
+                  <div className="absolute inset-0 z-10" style={{ backgroundColor: 'rgba(44, 71, 110, 0.6)' }}></div>
                   
                   {/* Overlay content - flexbox layout with items at bottom */}
                   <div className="absolute inset-0 z-20 flex flex-col justify-between p-6 md:p-8">
@@ -370,7 +370,7 @@ const ApproachSectionUnified = () => {
                       </div>
                       
                       {/* Description */}
-                      <p className="text-white/80 font-poppins leading-relaxed transition-all duration-500" style={{
+                      <p className="text-white font-bold font-poppins leading-relaxed transition-all duration-500" style={{
                         fontSize: 'clamp(12px, 0.9vw + 0.3rem, 16px)',
                         lineHeight: '1.5'
                       }}>
@@ -380,7 +380,7 @@ const ApproachSectionUnified = () => {
                       {/* Bullet Points */}
                       <ul className="space-y-2">
                         {approachItems[selectedItem].bulletPoints.map((point, idx) => (
-                          <li key={idx} className="flex gap-2 text-white/75 transition-all duration-500" style={{
+                          <li key={idx} className="flex gap-2 text-white font-bold transition-all duration-500" style={{
                             fontSize: 'clamp(11px, 0.85vw + 0.2rem, 14px)',
                             lineHeight: '1.4'
                           }}>

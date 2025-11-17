@@ -97,8 +97,9 @@ const ChemistryPopupV2: React.FC<ChemistryPopupV2Props> = ({
             ease: [0.25, 0.46, 0.45, 0.94],
             opacity: { duration: 0.3 }
           }}
-          className="fixed inset-0 flex items-center justify-center p-4 pointer-events-none"
+          className="fixed inset-0 flex items-center justify-center p-4 pointer-events-auto"
           style={{ zIndex: 99999 }}
+          onClick={handleClose}
           onMouseEnter={() => {
             // Pause auto-close when hovering over popup
             if (autoCloseTimerRef.current) {
@@ -125,6 +126,7 @@ const ChemistryPopupV2: React.FC<ChemistryPopupV2Props> = ({
               delay: 0.1
             }}
             className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 max-w-md w-full shadow-2xl pointer-events-auto relative"
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button

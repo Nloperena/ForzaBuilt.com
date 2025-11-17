@@ -159,10 +159,10 @@ export default function ProductImageTicker({
   }, [speed, direction]);
 
   return (
-    <section
+      <section
       aria-label="Product image ticker"
       className={clsx(
-        "relative w-full pt-8 md:pt-12 pb-0 z-20",
+        "relative w-full -mt-8 md:-mt-12 lg:-mt-16 xl:-mt-20 2xl:-mt-24 pb-0 z-20",
         "bg-white",
         className
       )}
@@ -176,8 +176,8 @@ export default function ProductImageTicker({
         className="relative overflow-hidden"
       >
         {/* Edge fade masks */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 z-10 [mask-image:linear-gradient(to_right,rgba(0,0,0,0),#000_40%)]"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24 z-10 [mask-image:linear-gradient(to_left,rgba(0,0,0,0),#000_40%)]"></div>
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 lg:w-32 xl:w-40 z-10 [mask-image:linear-gradient(to_right,rgba(0,0,0,0),#000_40%)]"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24 lg:w-32 xl:w-40 z-10 [mask-image:linear-gradient(to_left,rgba(0,0,0,0),#000_40%)]"></div>
         
         <div
           ref={trackRef}
