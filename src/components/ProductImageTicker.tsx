@@ -162,7 +162,7 @@ export default function ProductImageTicker({
       <section
       aria-label="Product image ticker"
       className={clsx(
-        "relative w-full -mt-16 md:-mt-20 lg:-mt-24 xl:-mt-28 2xl:-mt-32 pb-0 z-20",
+        "relative w-full -mt-16 md:-mt-20 lg:-mt-24 xl:-mt-32 2xl:-mt-36 pb-0 z-20",
         "bg-white",
         className
       )}
