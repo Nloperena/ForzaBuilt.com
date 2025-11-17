@@ -3,18 +3,17 @@ import React, { useEffect, useRef, useState } from 'react';
 const ExperienceBetterBanner = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
   const [isInView, setIsInView] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
+  const [fadeOut, setFadeOut] = useState(false);
   const fullText = 'Performance. Elevated.';
   const typingSpeed = 50; // milliseconds per character
-  const typingDelayBeforeAnimation = 500; // delay before starting animation
-  const holdTimeAfterTyping = 4000; // 4 seconds - hold time after text is fully typed
-  const deleteSpeed = 50; // milliseconds per character for deletion
-  const delayBetweenCycles = 1000; // 1 second delay between animation cycles
+  const holdTimeAfterTyping = 2000; // 2 seconds - hold time after text is fully typed
+  const fadeOutDuration = 800; // fade out duration in ms
+  const delayBetweenCycles = 500; // delay before restarting cycle
 
   useEffect(() => {
-    // Intersection Observer for scroll-triggered animation
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -22,23 +21,16 @@ const ExperienceBetterBanner = () => {
             setIsInView(true);
           } else {
             setIsInView(false);
-            // Reset when leaving viewport so it can re-animate when entering again
             setDisplayedText('');
+            setFadeOut(false);
           }
         });
       },
-      { threshold: 0.1, rootMargin: '-50px' }
+      { threshold: 0.1 }
     );
 
     if (containerRef.current) {
       observer.observe(containerRef.current);
-      
-      // Check if already in view on mount
-      const rect = containerRef.current.getBoundingClientRect();
-      const isInViewOnMount = rect.top < window.innerHeight && rect.bottom > 0;
-      if (isInViewOnMount) {
-        setIsInView(true);
-      }
     }
     
     return () => {
@@ -46,61 +38,58 @@ const ExperienceBetterBanner = () => {
     };
   }, []);
 
-  // Complete animation cycle: type -> hold -> delete -> wait -> repeat
+  // Animation cycle: type character by character -> hold -> fade out all at once -> repeat
   useEffect(() => {
     if (!isInView) {
+      // Clear all timeouts
+      timeoutRefs.current.forEach(clearTimeout);
+      timeoutRefs.current = [];
       setDisplayedText('');
-      if (animationRef.current) {
-        clearTimeout(animationRef.current);
-        animationRef.current = null;
-      }
+      setFadeOut(false);
       return;
     }
 
     const runAnimationCycle = () => {
-      // Step 1: Typing phase
-      let currentIndex = 0;
-      const typeInterval = setInterval(() => {
-        if (currentIndex < fullText.length) {
-          setDisplayedText(fullText.substring(0, currentIndex + 1));
-          currentIndex++;
-        } else {
-          clearInterval(typeInterval);
+      // Reset states
+      setFadeOut(false);
+      setDisplayedText('');
+      
+      // Step 1: Type character by character
+      for (let i = 0; i <= fullText.length; i++) {
+        const timeout = setTimeout(() => {
+          setDisplayedText(fullText.substring(0, i));
           
-          // Step 2: Hold text for 4 seconds after typing completes
-          animationRef.current = setTimeout(() => {
-            // Step 3: Delete phase - characters disappear one by one
-            let deleteIndex = fullText.length;
-            const deleteInterval = setInterval(() => {
-              if (deleteIndex > 0) {
-                deleteIndex--;
-                setDisplayedText(fullText.substring(0, deleteIndex));
-              } else {
-                clearInterval(deleteInterval);
-                
-                // Step 4: Wait 1 second before restarting
-                animationRef.current = setTimeout(() => {
-                  runAnimationCycle();
-                }, delayBetweenCycles);
-              }
-            }, deleteSpeed);
-          }, holdTimeAfterTyping);
-        }
-      }, typingSpeed);
-    };
-
-    // Initial delay before animation starts
-    animationRef.current = setTimeout(() => {
-      runAnimationCycle();
-    }, typingDelayBeforeAnimation);
-
-    return () => {
-      if (animationRef.current) {
-        clearTimeout(animationRef.current);
-        animationRef.current = null;
+          // Step 2: After typing completes, hold then fade out
+          if (i === fullText.length) {
+            const holdTimeout = setTimeout(() => {
+              // Step 3: Trigger fade out
+              setFadeOut(true);
+              
+              // Step 4: After fade completes, reset and restart
+              const restartTimeout = setTimeout(() => {
+                runAnimationCycle();
+              }, fadeOutDuration + delayBetweenCycles);
+              
+              timeoutRefs.current.push(restartTimeout);
+            }, holdTimeAfterTyping);
+            
+            timeoutRefs.current.push(holdTimeout);
+          }
+        }, i * typingSpeed);
+        
+        timeoutRefs.current.push(timeout);
       }
     };
-  }, [isInView, fullText, typingSpeed, deleteSpeed, holdTimeAfterTyping, delayBetweenCycles, typingDelayBeforeAnimation]);
+
+    // Start animation
+    runAnimationCycle();
+
+    return () => {
+      // Cleanup all timeouts
+      timeoutRefs.current.forEach(clearTimeout);
+      timeoutRefs.current = [];
+    };
+  }, [isInView]);
 
   // Split the displayed text into "Performance." and "Elevated." parts
   const performanceText = displayedText.substring(0, 13); // "Performance."
@@ -109,20 +98,20 @@ const ExperienceBetterBanner = () => {
   return (
     <>
       <style>{`
-        .performance-elevated-container {
-          opacity: 1;
-          transition: opacity 0.3s ease-out;
-        }
-        
         .performance-elevated-text {
           opacity: 1;
+          transition: opacity ${fadeOutDuration}ms ease-out;
+        }
+        
+        .performance-elevated-text.fade-out {
+          opacity: 0;
         }
       `}</style>
       <div className="bg-white py-10 md:py-16 lg:py-20 mt-4 mb-4 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
         <div className="w-full h-full flex items-center justify-center overflow-x-hidden" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <div
             ref={containerRef}
-            className="flex items-center justify-center performance-elevated-container"
+            className="flex items-center justify-center"
             style={{ 
               width: '100%',
               maxWidth: '100%',
@@ -136,7 +125,7 @@ const ExperienceBetterBanner = () => {
           >
             <div
               ref={textRef}
-              className="performance-elevated-text"
+              className={`performance-elevated-text ${fadeOut ? 'fade-out' : ''}`}
               style={{
                 width: '100%',
                 maxWidth: '100%',
