@@ -173,8 +173,7 @@ export default function ProductImageTicker({
     >
       <div
         ref={containerRef}
-        className="relative overflow-hidden"
-        style={{ marginTop: '2.5rem' }}
+        className="relative overflow-hidden mt-6 md:mt-8 lg:mt-9 xl:mt-10 2xl:-mt-16"
       >
         {/* Edge fade masks */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 lg:w-32 xl:w-40 z-10 [mask-image:linear-gradient(to_right,rgba(0,0,0,0),#000_40%)]"></div>
