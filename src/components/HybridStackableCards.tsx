@@ -441,18 +441,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     return { progress, nextCardProgress, isVisible };
   };
 
-  // Get industry gradient colors for background
-  const gradientColors = getIndustryGradient(industry);
-
   return (
     <>
       <style>{cardStyleSheet}</style>
       <div 
         ref={containerRef}
-        className="relative w-full pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24"
-        style={{
-          background: `linear-gradient(315deg, ${gradientColors})`
-        }}
+        className="relative w-full pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 bg-white"
       >
       {/* Stacking Cards with Header Inside Sticky Container */}
       <div className="relative">
@@ -478,7 +472,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               {index === 0 ? (
                  <div className="text-center pt-0 mb-4 sm:mb-6 md:mb-6 lg:mb-8 px-3 sm:px-4 relative z-50">
                   <motion.h2 
-                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white mb-2 leading-none"
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-[#1b3764] mb-2 leading-none"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
@@ -487,7 +481,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                   </motion.h2>
                   
                   <motion.p 
-                    className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light px-2 sm:px-0"
+                    className="text-sm sm:text-base md:text-lg lg:text-xl text-[#1b3764]/80 max-w-3xl mx-auto font-light px-2 sm:px-0"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
