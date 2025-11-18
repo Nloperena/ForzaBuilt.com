@@ -9,7 +9,7 @@ interface TransportationXRayExplorerProps {
 
 const TransportationXRayExplorer: React.FC<TransportationXRayExplorerProps> = ({ variant }) => {
   return (
-    <section className="py-16 bg-white overflow-visible">
+    <section className="pb-16 bg-white overflow-visible">
       <div className="w-full px-4">
         {/* Section Title */}
         <motion.div

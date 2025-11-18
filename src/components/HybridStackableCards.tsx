@@ -444,10 +444,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   return (
     <>
       <style>{cardStyleSheet}</style>
-      <div 
-        ref={containerRef}
+    <div 
+      ref={containerRef}
         className="relative w-full pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 bg-white"
-      >
+    >
       {/* Stacking Cards with Header Inside Sticky Container */}
       <div className="relative">
         {cardData.map((card, index) => {
@@ -463,7 +463,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           return (
             <div
               key={card.id}
-              className="sticky top-0 w-full h-screen flex flex-col px-2 sm:px-4 bg-white"
+              className="sticky top-0 w-full h-screen flex flex-col px-2 sm:px-4"
               style={{
                 zIndex: 40 + index,
               }}
@@ -751,7 +751,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
-      </div>
+    </div>
     </>
   );
 };
