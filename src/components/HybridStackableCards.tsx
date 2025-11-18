@@ -1,8 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ExternalLink } from 'lucide-react';
 import { getIndustryGradient, typography } from '../styles/brandStandards';
+
+const cardStyleSheet = `
+  .card-gradient-marine { background: linear-gradient(to right, rgb(28, 58, 92), rgb(19, 120, 117)); }
+  .card-gradient-marine-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(19, 120, 117)); }
+  .card-gradient-industrial { background: linear-gradient(to right, rgb(28, 58, 92), rgb(241, 106, 38)); }
+  .card-gradient-industrial-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(241, 106, 38)); }
+  .card-gradient-transportation { background: linear-gradient(to right, rgb(28, 58, 92), rgb(184, 61, 53)); }
+  .card-gradient-transportation-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(184, 61, 53)); }
+  .card-gradient-construction { background: linear-gradient(to right, rgb(28, 58, 92), rgb(254, 199, 112)); }
+  .card-gradient-construction-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(254, 199, 112)); }
+  .card-gradient-composites { background: linear-gradient(to right, rgb(28, 58, 92), rgb(199, 200, 201)); }
+  .card-gradient-composites-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(199, 200, 201)); }
+  .card-gradient-insulation { background: linear-gradient(to right, rgb(28, 58, 92), rgb(208, 21, 125)); }
+  .card-gradient-insulation-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(208, 21, 125)); }
+  .card-gradient-foam { background: linear-gradient(to right, rgb(28, 58, 92), rgb(241, 106, 38)); }
+  .card-gradient-foam-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(241, 106, 38)); }
+`;
 
 interface Card {
   id: string;
@@ -429,13 +445,15 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const gradientColors = getIndustryGradient(industry);
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative w-full pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24"
-      style={{
-        background: `linear-gradient(315deg, ${gradientColors})`
-      }}
-    >
+    <>
+      <style>{cardStyleSheet}</style>
+      <div 
+        ref={containerRef}
+        className="relative w-full pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24"
+        style={{
+          background: `linear-gradient(315deg, ${gradientColors})`
+        }}
+      >
       {/* Stacking Cards with Header Inside Sticky Container */}
       <div className="relative">
         {cardData.map((card, index) => {
@@ -497,13 +515,13 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 }}
               >
                 <div 
-                  className="bg-white/10 backdrop-blur-xl rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 cursor-pointer hover:border-white/40 hover:bg-white/15 transition-all duration-300 hover:shadow-3xl hover:scale-[1.02]" 
+                  className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 cursor-pointer hover:border-white/30 transition-all duration-300 hover:shadow-3xl hover:scale-[1.02] card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''}`}
                   style={{ maxWidth: '1600px' }}
                   onClick={() => openProductModal(card)}
                 >
-                  <div className={`flex flex-col lg:flex-row h-auto lg:h-[500px] xl:h-[600px] ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                  <div className={`flex flex-col lg:flex-row h-auto lg:h-[320px] 1024px:h-[300px] xl:h-[380px] 1440px:h-[350px] ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                     {/* Image Section */}
-                    <div className="w-full lg:w-1/2 h-48 sm:h-56 md:h-64 lg:h-full relative bg-white/20 backdrop-blur-sm p-3 sm:p-4 lg:p-6 flex items-center justify-center">
+                    <div className="w-full lg:w-1/2 h-48 sm:h-56 md:h-64 lg:h-full relative p-3 sm:p-4 lg:p-6 flex items-center justify-center">
                       <div className="w-full h-full flex items-center justify-center">
                         <img 
                           src={card.image} 
@@ -515,13 +533,14 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     </div>
                     
                     {/* Content Section */}
-                    <div className="w-full lg:w-1/2 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-center bg-white/20 backdrop-blur-sm">
-                      <div className="space-y-3 sm:space-y-4 lg:space-y-6">
+                    <div className="w-full lg:w-1/2 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-center">
+                      <div className="space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col justify-center h-full">
                         {/* Heading */}
                         <h2 
-                          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal font-poppins text-white leading-tight"
+                          className="font-normal font-poppins text-white leading-tight"
                           style={{ 
-                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+                            fontSize: 'clamp(1rem, 2.5vw, 2rem)'
                           }}
                         >
                           {card.title}
@@ -529,29 +548,38 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         
                         {/* Subheading */}
                         <h3 
-                          className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-white/90"
-                          style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)' }}
+                          className="font-semibold text-white/90"
+                          style={{ 
+                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
+                            fontSize: 'clamp(0.875rem, 1.8vw, 1.5rem)'
+                          }}
                         >
                           {card.subheading}
                         </h3>
                         
                         {/* Description Paragraph */}
                         <p 
-                          className="text-white/80 leading-relaxed text-sm sm:text-base lg:text-lg"
-                          style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+                          className="text-white/80 leading-relaxed"
+                          style={{ 
+                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
+                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
+                          }}
                         >
                           {card.description}
                         </p>
                         
                         {/* List Items */}
-                        <ul className="space-y-2 sm:space-y-2 lg:space-y-3">
+                        <ul className="space-y-1 sm:space-y-1.5 lg:space-y-2">
                           {card.listItems.map((item, itemIndex) => (
                             <li 
                               key={itemIndex} 
-                              className="flex items-start text-sm sm:text-base lg:text-lg text-white/90"
-                              style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+                              className="flex items-start text-white/90"
+                              style={{ 
+                                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
+                                fontSize: 'clamp(0.7rem, 1vw, 0.95rem)'
+                              }}
                             >
-                              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-white/80 mr-3 sm:mr-4 flex-shrink-0 shadow-lg mt-1.5 sm:mt-1"></div>
+                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1" style={{ width: 'clamp(0.4rem, 0.8vw, 0.6rem)', height: 'clamp(0.4rem, 0.8vw, 0.6rem)' }}></div>
                               {item}
                             </li>
                           ))}
@@ -595,7 +623,11 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 duration: 0.6,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
-              className={`relative rounded-2xl md:rounded-3xl shadow-2xl max-w-4xl w-full max-h-[95vh] md:max-h-[90vh] overflow-hidden bg-gradient-to-b ${getIndustryGradient(industry)}`}
+              className={`relative rounded-lg md:rounded-2xl lg:rounded-3xl shadow-2xl w-full overflow-hidden bg-gradient-to-b ${getIndustryGradient(industry)}`}
+              style={{
+                maxWidth: 'clamp(90%, 75vw, 900px)',
+                maxHeight: 'clamp(60vh, 85vh, 95vh)'
+              }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Wipe Animation Overlay */}
@@ -611,7 +643,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               />
               
               {/* Modal Header */}
-              <div className="relative p-4 md:p-6 border-b border-white/20">
+              <div className="relative p-3 md:p-4 border-b border-white/20">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <div className={`w-3 h-3 rounded-full`} style={{ backgroundColor: getIndustryColorHex(industry) }}></div>
@@ -629,12 +661,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               </div>
 
               {/* Modal Content */}
-              <div className="relative overflow-y-auto max-h-[calc(95vh-8rem)] md:max-h-[calc(90vh-8rem)]">
-                <div className="p-4 md:p-6 lg:p-8">
-                  <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+              <div className="relative overflow-y-auto" style={{ maxHeight: 'calc(100% - 3rem)' }}>
+                <div className="p-2 sm:p-3 md:p-4 lg:p-5">
+                  <div className="flex flex-col lg:flex-row gap-3 md:gap-4 lg:gap-5">
                     {/* Product Image */}
-                    <div className="w-full lg:w-1/2">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-6 h-64 md:h-80 lg:h-96 flex items-center justify-center">
+                    <div className="w-full lg:w-1/3">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 lg:p-4 h-40 md:h-48 lg:h-56 flex items-center justify-center">
                         <img
                           src={selectedProduct.imageUrl}
                           alt={selectedProduct.name}
@@ -645,12 +677,13 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     </div>
 
                     {/* Product Details */}
-                    <div className="w-full lg:w-1/2 space-y-4 lg:space-y-6">
+                    <div className="w-full lg:w-2/3 space-y-2 md:space-y-3 lg:space-y-4">
                       {/* Title */}
                       <h2 
-                        className="text-2xl md:text-3xl lg:text-4xl font-normal font-poppins text-white leading-tight"
+                        className="font-normal font-poppins text-white leading-tight"
                         style={{ 
-                          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+                          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+                          fontSize: 'clamp(1.125rem, 2.2vw, 1.75rem)'
                         }}
                       >
                         {selectedProduct.name}
@@ -659,8 +692,11 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                       {/* Subheading */}
                       {selectedProduct.subheading && (
                         <h3 
-                          className="text-lg md:text-xl lg:text-2xl text-white/90 font-semibold"
-                          style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)' }}
+                          className="text-white/90 font-semibold"
+                          style={{ 
+                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
+                            fontSize: 'clamp(0.9rem, 1.6vw, 1.25rem)'
+                          }}
                         >
                           {selectedProduct.subheading}
                         </h3>
@@ -668,22 +704,28 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
 
                       {/* Description */}
                       <p 
-                        className="text-white/80 leading-relaxed text-base md:text-lg"
-                        style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+                        className="text-white/80 leading-relaxed"
+                        style={{ 
+                          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
+                          fontSize: 'clamp(0.8rem, 1.3vw, 1rem)'
+                        }}
                       >
                         {selectedProduct.description}
                       </p>
 
                       {/* List Items */}
                       {selectedProduct.listItems && selectedProduct.listItems.length > 0 && (
-                        <ul className="space-y-3">
+                        <ul className="space-y-1 md:space-y-1.5 lg:space-y-2">
                           {selectedProduct.listItems.map((item: string, itemIndex: number) => (
                             <li 
                               key={itemIndex} 
-                              className="flex items-start text-base md:text-lg text-white/90"
-                              style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}
+                              className="flex items-start text-white/90"
+                              style={{ 
+                                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
+                                fontSize: 'clamp(0.75rem, 1.1vw, 0.95rem)'
+                              }}
                             >
-                              <div className="w-3 h-3 rounded-full bg-white/80 mr-4 flex-shrink-0 shadow-lg mt-1"></div>
+                              <div className="rounded-full bg-white/80 mr-2 md:mr-2.5 flex-shrink-0 shadow-lg mt-1" style={{ width: 'clamp(0.35rem, 0.7vw, 0.5rem)', height: 'clamp(0.35rem, 0.7vw, 0.5rem)' }}></div>
                               {item}
                             </li>
                           ))}
@@ -691,19 +733,18 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                       )}
 
                       {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                      <div className="flex flex-col sm:flex-row gap-2 md:gap-2.5 pt-2 md:pt-3">
                         <Link
                           to={`/products/${selectedProduct.category?.toLowerCase() || 'bond'}/${selectedProduct.id}`}
                           onClick={(e) => e.stopPropagation()}
-                          className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 border border-white/30 hover:border-white/40"
+                          className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 border border-white/30 hover:border-white/40"
                         >
                           <span>View Product Details</span>
-                          <ExternalLink className="h-4 w-4" />
                         </Link>
                         
                         <button
                           onClick={closeModal}
-                          className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 border border-white/20 hover:border-white/30"
+                          className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 border border-white/20 hover:border-white/30"
                         >
                           <span>Close</span>
                         </button>
@@ -716,7 +757,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+      </div>
+    </>
   );
 };
 

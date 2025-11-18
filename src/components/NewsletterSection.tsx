@@ -54,14 +54,14 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6">
           {showHeading && (
-            <div className="text-center mb-4 md:mb-6 lg:mb-8 relative">
-              <h2
-                className="text-fluid-heading font-normal text-[#2c476e] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance"
+          <div className="text-center mb-4 md:mb-6 lg:mb-8 relative">
+            <h2
+              className="text-fluid-heading font-normal text-[#2c476e] font-poppins leading-tight break-words relative z-10 tracking-tight text-balance"
                 style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
-              >
-                Elevate Your Performance
-              </h2>
-            </div>
+            >
+              Elevate Your Performance
+            </h2>
+          </div>
           )}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-stretch max-w-[1000px] mx-auto">

@@ -25,7 +25,7 @@ const IndustryPage = () => {
 
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   const handleProductSelect = (product: any) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
@@ -84,9 +84,9 @@ const IndustryPage = () => {
             title={industryData.title}
             logo={industryData.logo}
             color={industryData.color || '#1B3764'}
-          />
+              />
 
-          {/* Dynamic Industry Headings Section */}
+      {/* Dynamic Industry Headings Section */}
           <IndustryHeadingsSection industryTitle={industryData.title} />
 
           {/* X-Ray Explorer Sections */}
@@ -109,12 +109,12 @@ const IndustryPage = () => {
           {/* Chemistries Section */}
           <div className="relative z-[30]">
             <ChemistryOverviewSectionV6 showBanner={false} />
-          </div>
+      </div>
 
-          {/* Industry Brochure Section */}
-          <div className="relative z-[30]">
-            <IndustryBrochureSection industry={industryData.title} backgroundColor="white" />
-          </div>
+      {/* Industry Brochure Section */}
+      <div className="relative z-[30]">
+        <IndustryBrochureSection industry={industryData.title} backgroundColor="white" />
+      </div>
 
           {/* Industry Articles Section */}
           <IndustryArticlesSection industryName={industryData.title} />
@@ -128,7 +128,7 @@ const IndustryPage = () => {
         product={selectedProduct}
         onClose={closeModal}
       />
-
+                  
       <NewsletterSection showHeading={true} />
       
       {/* Footer */}
@@ -137,4 +137,4 @@ const IndustryPage = () => {
   );
 };
 
-export default IndustryPage;
+export default IndustryPage; 

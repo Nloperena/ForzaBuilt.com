@@ -20,32 +20,41 @@ const IndustryTitleSection: React.FC<IndustryTitleSectionProps> = ({ title, logo
   };
 
   return (
-    <section style={{ background: 'linear-gradient(#ffffff 50%, #ffffff 50%)' }} className="relative z-[20] pt-16 sm:pt-24 md:pt-32 lg:pt-40 xl:pt-48">
+    <section className="relative z-[20]" style={{ background: 'linear-gradient(#ffffff 50%, #ffffff 50%)', paddingTop: 'clamp(4rem, 8vw, 12rem)' }}>
       <motion.div 
-        className="w-full px-4 sm:px-6 md:px-10 flex items-center justify-center gap-4 sm:gap-6 md:gap-8"
-        style={{ marginTop: '-5rem' }}
+        className="w-full flex items-center justify-center"
+        style={{ 
+          marginTop: '-5rem',
+          paddingLeft: 'clamp(1rem, 2vw, 2.5rem)',
+          paddingRight: 'clamp(1rem, 2vw, 2.5rem)',
+          gap: 'clamp(1rem, 2vw, 2rem)'
+        }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -30 }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
       >
         <h1
-          className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-0 leading-none font-kallisto"
+          className="font-black mb-0 leading-none font-kallisto"
           style={{ 
             color: color || '#1B3764',
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+            fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
           }}
         >
           {title.toUpperCase()}
         </h1>
         {logo ? (
-          <div className="relative h-20 sm:h-28 md:h-40 lg:h-48 xl:h-56 w-20 sm:w-28 md:w-40 lg:w-48 xl:w-56">
+          <div className="relative" style={{ width: 'clamp(5rem, 8vw, 14rem)', height: 'clamp(5rem, 8vw, 14rem)' }}>
             {!iconLoaded && <ImageSkeleton className="rounded-lg" />}
             <motion.img
               src={logo}
               alt={`${title} icon`}
-              className={`h-20 sm:h-28 md:h-40 lg:h-48 xl:h-56 w-auto object-contain transition-opacity duration-500 ${iconLoaded ? 'opacity-100' : 'opacity-0'}`}
-              style={{ filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))' }}
+              className="w-auto h-full object-contain transition-opacity duration-500"
+              style={{ 
+                filter: 'drop-shadow(2px 2px 0px rgba(0,0,0,0.3))',
+                opacity: iconLoaded ? 1 : 0
+              }}
               loading="lazy"
               onLoad={handleIconLoad}
               onError={handleIconError}

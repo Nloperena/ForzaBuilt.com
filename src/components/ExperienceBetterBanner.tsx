@@ -74,7 +74,7 @@ const ExperienceBetterBanner = () => {
             }, holdTimeAfterTyping);
             
             timeoutRefs.current.push(holdTimeout);
-          }
+        }
         }, i * typingSpeed);
         
         timeoutRefs.current.push(timeout);

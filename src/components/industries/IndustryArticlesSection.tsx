@@ -41,7 +41,7 @@ const IndustryArticlesSection: React.FC<IndustryArticlesSectionProps> = ({ indus
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-[#2c476e] to-[#1a3a5a] pb-8 md:pb-10 lg:pb-12 pt-6 md:pt-8 lg:pt-10 px-2 sm:px-4">
+    <section className="relative bg-gradient-to-br from-[#2c476e] to-[#1a3a5a]" style={{ paddingTop: 'clamp(1.5rem, 3vw, 2.5rem)', paddingBottom: 'clamp(2rem, 4vw, 3rem)', paddingLeft: 'clamp(0.5rem, 2vw, 1rem)', paddingRight: 'clamp(0.5rem, 2vw, 1rem)' }}>
       <div className="max-w-5xl mx-auto">
         {/* Section Title */}
         <motion.h2 
@@ -49,8 +49,8 @@ const IndustryArticlesSection: React.FC<IndustryArticlesSectionProps> = ({ indus
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-white font-poppins font-normal text-center mb-6 md:mb-8 lg:mb-10" 
-          style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}
+          className="text-white font-poppins font-normal text-center" 
+          style={{ fontSize: 'clamp(1.75rem, 2.5vw + 0.5rem, 3rem)', marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)' }}
         >
           {toTitleCase(industryName)} Articles
         </motion.h2>
@@ -58,7 +58,8 @@ const IndustryArticlesSection: React.FC<IndustryArticlesSectionProps> = ({ indus
         {/* Articles Grid - Centered with consistent spacing */}
         <div className="flex justify-center">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-6 md:mb-8 w-full px-2 sm:px-0"
+            className="grid grid-cols-1 md:grid-cols-3 w-full"
+            style={{ gap: 'clamp(0.75rem, 2vw, 1.5rem)', marginBottom: 'clamp(1.5rem, 3vw, 2rem)', paddingLeft: 'clamp(0.5rem, 2vw, 0)', paddingRight: 'clamp(0.5rem, 2vw, 0)' }}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"

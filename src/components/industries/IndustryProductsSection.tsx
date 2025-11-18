@@ -158,23 +158,24 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   };
 
   return (
-    <section className="bg-gray-100 text-gray-900 py-8 sm:py-12 md:py-16 relative z-[30]">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8">
+    <section className="bg-gray-100 text-gray-900 relative z-[30]" style={{ paddingTop: 'clamp(2rem, 4vw, 4rem)', paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
+      <div className="max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 2rem)', paddingRight: 'clamp(1rem, 2vw, 2rem)' }}>
         <motion.div 
-          className="text-center mb-8 sm:mb-12"
+          className="text-center"
+          style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular font-poppins leading-none text-[#1b3764] break-words capitalize">
+          <h2 className="font-regular font-poppins leading-none text-[#1b3764] break-words capitalize" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>
             {industryData.title.toLowerCase()} Products
           </h2>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-6 mt-2">
+        <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
           {/* Filter Sidebar */}
-          <aside className="lg:w-64 xl:w-72 flex-shrink-0 lg:sticky lg:top-24 lg:self-start">
+          <aside className="flex-shrink-0 lg:sticky lg:top-24 lg:self-start" style={{ width: 'clamp(16rem, 20vw, 18rem)' }}>
             {/* Search Bar */}
             <div className="bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
               <div className="relative">
@@ -340,7 +341,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
             {/* Product Grid or Empty State */}
             {industryProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)' }}>
                 <AnimatePresence mode="popLayout">
                   {industryProducts.map((product, idx) => (
                     <motion.div
