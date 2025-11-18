@@ -58,6 +58,8 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
       setHoveredHotspot(hotspot);
       if (hotspot) {
         console.log('Hovering over:', hotspot.id, 'Product:', hotspot.product?.sku);
+      } else {
+        console.log('Hover cleared');
       }
     }
   };
@@ -218,6 +220,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                         onClick={() => handleHotspotClick(hotspot)}
+                        style={{ pointerEvents: 'auto' }}
                       >
                         {svgPolygon.tagName === 'polygon' ? (
                           <motion.polygon

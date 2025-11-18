@@ -20,7 +20,7 @@ const ProductTooltipCard: React.FC<ProductTooltipCardProps> = ({ product, isVisi
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="fixed right-4 top-1/2 -translate-y-1/2 bg-[#D1D5DB] rounded-2xl p-4 md:p-6 shadow-2xl pointer-events-none z-40 w-80 md:w-96 lg:w-full lg:max-w-sm"
+          className="fixed right-4 top-1/2 -translate-y-1/2 bg-[#D1D5DB] rounded-2xl p-4 md:p-6 shadow-2xl pointer-events-auto z-[9999] w-80 md:w-96 lg:w-full lg:max-w-sm"
         >
           <div className="space-y-4 md:space-y-6">
             {/* Product Image */}
