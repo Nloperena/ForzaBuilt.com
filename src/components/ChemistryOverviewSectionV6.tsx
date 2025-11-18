@@ -1,44 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
-
-// Typewriter hook for cycling text
-const useTypewriter = (text: string, cycleTime: number = 4000) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const typingSpeed = cycleTime / (text.length * 2 + 200); // Distribute time evenly
-    let timeout: NodeJS.Timeout;
-
-    if (!isDeleting) {
-      // Typing phase
-      if (displayedText.length < text.length) {
-        timeout = setTimeout(() => {
-          setDisplayedText(text.slice(0, displayedText.length + 1));
-        }, typingSpeed);
-      } else {
-        // Typed complete, wait before deleting
-        timeout = setTimeout(() => setIsDeleting(true), cycleTime * 0.15);
-      }
-    } else {
-      // Deleting phase
-      if (displayedText.length > 0) {
-        timeout = setTimeout(() => {
-          setDisplayedText(displayedText.slice(0, -1));
-        }, typingSpeed);
-      } else {
-        // Deleted complete, restart
-        timeout = setTimeout(() => setIsDeleting(false), 100);
-      }
-    }
-
-    return () => clearTimeout(timeout);
-  }, [displayedText, isDeleting, text, cycleTime]);
-
-  return displayedText;
-};
 
 interface ChemistryData {
   id: string;
@@ -183,7 +146,7 @@ const chemistryData: ChemistryData[] = [
   }
 ];
 
-// Chemistry Item Component with Typewriter Effect
+// Chemistry Item Component
 interface ChemistryItemProps {
   chemistry: ChemistryData;
   isHovered: boolean;
@@ -199,8 +162,6 @@ const ChemistryItem: React.FC<ChemistryItemProps> = ({
   onHoverLeave,
   onClick,
 }) => {
-  const displayedText = useTypewriter(chemistry.name, 4000);
-
   return (
     <motion.div
       className="group transition-transform duration-200 hover:-translate-y-1.5"
@@ -244,8 +205,7 @@ const ChemistryItem: React.FC<ChemistryItemProps> = ({
             h-[1.5em]
           "
         >
-          {displayedText}
-          <span className="animate-pulse">|</span>
+          {chemistry.name}
         </h3>
       </div>
     </motion.div>

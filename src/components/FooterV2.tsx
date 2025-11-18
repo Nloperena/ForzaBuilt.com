@@ -38,9 +38,9 @@ const FooterV2 = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid grid-cols-4 gap-8 mb-5">
+        <div className="hidden lg:flex justify-between items-start gap-12 mb-5 max-w-4xl ml-auto mr-auto">
           {/* Logo Column */}
-          <div>
+          <div className="flex-shrink-0">
             <img 
               src="/logos/Forza-Eagle-Logo-White.svg"
               alt="Forza Logo"
@@ -49,7 +49,7 @@ const FooterV2 = () => {
           </div>
 
           {/* Company Column */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 flex-shrink-0">
             <h3 className="text-white font-bold text-base font-poppins">Company</h3>
             <ul className="space-y-1">
               <li><a href="/products" className="text-white hover:text-white/80 transition-colors font-poppins leading-tight">Products</a></li>
@@ -60,7 +60,7 @@ const FooterV2 = () => {
           </div>
           
           {/* HQ Column */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 flex-shrink-0">
             <h3 className="text-white font-bold text-base font-poppins">HQ</h3>
             <div className="text-white space-y-1">
               <p className="font-poppins leading-tight">Forza</p>
@@ -72,7 +72,7 @@ const FooterV2 = () => {
           </div>
           
           {/* Contact Column */}
-          <div className="space-y-1.5">
+          <div className="space-y-1.5 flex-shrink-0">
             <h3 className="text-white font-bold text-base font-poppins">Contact</h3>
             <div className="text-white space-y-1">
               <p className="font-poppins leading-tight">O. 402.731.9300</p>

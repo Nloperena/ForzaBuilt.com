@@ -33,17 +33,6 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
     ? 'w-[640px] 2xl:w-[720px]'
     : 'w-[440px] 2xl:w-[500px]';
   
-  const handleItemClick = (e: React.MouseEvent, item: MenuItem) => {
-    // Allow navigation for Products dropdown, prevent for Industries
-    if (variant === 'default') {
-      // Products - allow navigation
-      return;
-    }
-    // Industries - prevent navigation
-    e.preventDefault();
-    e.stopPropagation();
-  };
-  
   return (
     <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-0 ${responsiveWidth} rounded-lg bg-[#2c476e] text-white shadow-2xl border-x border-b border-white/10 border-t-0 overflow-hidden z-50`}> 
               {variant === 'industries' ? (
@@ -56,7 +45,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
               transition={{ duration: 0.3, delay: idx * 0.05 }}
             >
-              <div onClick={(e) => handleItemClick(e, it)} className={`group relative z-30 flex flex-col items-center justify-center gap-2 py-2 lg:py-2 xl:py-2 2xl:py-2.5 min-h-[80px] lg:min-h-[85px] xl:min-h-[90px] 2xl:min-h-[95px] transition-colors hover:bg-[#F2611D] cursor-pointer ${it.label.toLowerCase() === 'transportation' ? 'px-[1rem] lg:px-[1rem] xl:px-[1rem] 2xl:px-[1rem]' : 'px-3 lg:px-3 xl:px-3 2xl:px-3'}`}>
+              <Link to={it.href} className={`group relative z-30 flex flex-col items-center justify-center gap-2 py-2 lg:py-2 xl:py-2 2xl:py-2.5 min-h-[80px] lg:min-h-[85px] xl:min-h-[90px] 2xl:min-h-[95px] transition-colors hover:bg-[#F2611D] cursor-pointer ${it.label.toLowerCase() === 'transportation' ? 'px-[1rem] lg:px-[1rem] xl:px-[1rem] 2xl:px-[1rem]' : 'px-3 lg:px-3 xl:px-3 2xl:px-3'}`}>
                 {it.iconSrc ? (
                   <img src={it.iconSrc} alt="" className="w-6 h-6 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 object-contain" />
                 ) : null}
@@ -67,7 +56,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
                     : 'text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px]'
                 }`}>{toTitleCase(it.label)}</span>
                 {idx < items.length - 1 && <span className="absolute right-0 top-4 bottom-4 w-px bg-white/20" aria-hidden />}
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>

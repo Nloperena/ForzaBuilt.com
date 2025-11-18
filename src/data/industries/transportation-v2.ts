@@ -1,10 +1,10 @@
 import { IndustryData } from '../../types/industry';
 
-export const TRANSPORTATION_DATA: IndustryData = {
-  id: 'transportation',
+export const TRANSPORTATION_V2_DATA: IndustryData = {
+  id: 'transportation-v2',
   xrays: [
     {
-      id: 'transportation-rv-bus-xray',
+      id: 'transportation-rv-bus-xray-v2',
       preSrc: '/img/transportation/pre-RV Bus PreX-Ray.png',
       postSrc: '/img/transportation/post-RV Bus PostX-Ray.jpg',
       svgOverlay: '/img/transportation/overlay-RV Bus Exploded.svg',
@@ -89,7 +89,7 @@ export const TRANSPORTATION_DATA: IndustryData = {
       ],
     },
     {
-      id: 'transportation-trailer-xray',
+      id: 'transportation-trailer-xray-v2',
       preSrc: '/img/transportation/pre-Trailer PreX-Ray.png',
       postSrc: '/img/transportation/post-Trailer PostX-Ray.jpg',
       svgOverlay: '/img/transportation/overlay-Trailer Exploded Graphic.svg',
@@ -166,3 +166,4 @@ export const TRANSPORTATION_DATA: IndustryData = {
     },
   ],
 };
+
