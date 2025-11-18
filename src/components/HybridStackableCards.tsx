@@ -463,7 +463,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           return (
             <div
               key={card.id}
-              className="sticky top-0 w-full h-screen flex flex-col px-2 sm:px-4"
+              className="sticky top-0 w-full h-screen flex flex-col px-2 sm:px-4 bg-white"
               style={{
                 zIndex: 40 + index,
               }}
