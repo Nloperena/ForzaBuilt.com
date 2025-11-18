@@ -56,15 +56,8 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
   const handleHotspotHover = (hotspot: Hotspot | null, event?: React.MouseEvent) => {
     if (!isMobile) {
       setHoveredHotspot(hotspot);
-      if (hotspot && event) {
-        const rect = event.currentTarget.getBoundingClientRect();
-        const containerRect = event.currentTarget.closest('.x-ray-container')?.getBoundingClientRect();
-        if (containerRect) {
-          setTooltipPosition({
-            x: rect.left - containerRect.left + rect.width / 2,
-            y: rect.top - containerRect.top + rect.height / 2
-          });
-        }
+      if (hotspot) {
+        console.log('Hovering over:', hotspot.id, 'Product:', hotspot.product?.sku);
       }
     }
   };
@@ -184,7 +177,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative w-full aspect-square bg-transparent rounded-2xl overflow-visible">
+            <div className="relative w-full aspect-square bg-transparent rounded-2xl overflow-visible" onMouseLeave={() => handleHotspotHover(null)}>
               {/* Post X-Ray Image */}
               <img
                 src={xrayComponent.postSrc}
@@ -198,6 +191,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                   className="w-full h-full"
                   viewBox={viewBox}
                   xmlns="http://www.w3.org/2000/svg"
+                  style={{ pointerEvents: 'auto' }}
                 >
                   {xrayComponent.hotspots.map((hotspot, index) => {
                     const isHovered = hoveredHotspot?.id === hotspot.id;
@@ -210,19 +204,33 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
 
                     const points = svgPolygon.getAttribute('points') || svgPolygon.getAttribute('d') || '';
                     
+                    const handleMouseEnter = () => {
+                      handleHotspotHover(hotspot);
+                    };
+
+                    const handleMouseLeave = () => {
+                      handleHotspotHover(null);
+                    };
+
                     return (
-                      <motion.g key={hotspot.id}>
+                      <motion.g 
+                        key={hotspot.id}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={() => handleHotspotClick(hotspot)}
+                      >
                         {svgPolygon.tagName === 'polygon' ? (
                           <motion.polygon
                             points={points}
                             fill={isHighlight ? "rgba(242,97,29,0.8)" : "rgba(27,55,100,0.9)"}
                             stroke="none"
                             strokeWidth="0"
-                            className="cursor-pointer transition-all duration-300"
+                            className="cursor-pointer"
                             style={{
                               filter: isHighlight ? 
                                 'drop-shadow(0 0 12px rgba(242,97,29,0.8)) brightness(1.2)' : 
                                 'drop-shadow(0 0 4px rgba(27,55,100,0.3))',
+                              pointerEvents: 'auto',
                             }}
                             initial={{ opacity: 0.6, scale: 1 }}
                             animate={{
@@ -230,9 +238,6 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                               scale: isHighlight ? 1.05 : 1,
                             }}
                             transition={{ duration: 0.2 }}
-                            onClick={() => handleHotspotClick(hotspot)}
-                            onMouseEnter={(e) => handleHotspotHover(hotspot, e)}
-                            onMouseLeave={() => handleHotspotHover(null)}
                             role="button"
                             tabIndex={0}
                             aria-label={`${hotspot.product?.name || hotspot.experience?.title || 'hotspot'} area`}
@@ -243,11 +248,12 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                             fill={isHighlight ? "rgba(242,97,29,0.8)" : "rgba(27,55,100,0.9)"}
                             stroke="none"
                             strokeWidth="0"
-                            className="cursor-pointer transition-all duration-300"
+                            className="cursor-pointer"
                             style={{
                               filter: isHighlight ? 
                                 'drop-shadow(0 0 12px rgba(242,97,29,0.8)) brightness(1.2)' : 
                                 'drop-shadow(0 0 4px rgba(27,55,100,0.3))',
+                              pointerEvents: 'auto',
                             }}
                             initial={{ opacity: 0.6, scale: 1 }}
                             animate={{
@@ -255,9 +261,6 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                               scale: isHighlight ? 1.05 : 1,
                             }}
                             transition={{ duration: 0.2 }}
-                            onClick={() => handleHotspotClick(hotspot)}
-                            onMouseEnter={(e) => handleHotspotHover(hotspot, e)}
-                            onMouseLeave={() => handleHotspotHover(null)}
                             role="button"
                             tabIndex={0}
                             aria-label={`${hotspot.product?.name || hotspot.experience?.title || 'hotspot'} area`}
@@ -340,16 +343,16 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
               </motion.div>
             )}
           </motion.div>
-
-          {/* Product Tooltip Card - Sticky to bottom right */}
-          {!isMobile && (
-            <ProductTooltipCard 
-              product={hoveredHotspot?.product || null} 
-              isVisible={!!hoveredHotspot?.product} 
-            />
-          )}
         </div>
       </div>
+
+      {/* Product Tooltip Card - Fixed Position on Right */}
+      {!isMobile && (
+        <ProductTooltipCard 
+          product={hoveredHotspot?.product || null} 
+          isVisible={!!hoveredHotspot?.product} 
+        />
+      )}
 
       {/* Product Modal */}
       <AnimatePresence>
