@@ -212,7 +212,11 @@ const ChemistryItem: React.FC<ChemistryItemProps> = ({
   );
 };
 
-const ChemistryOverviewSectionV6: React.FC = () => {
+interface ChemistryOverviewSectionV6Props {
+  showBanner?: boolean;
+}
+
+const ChemistryOverviewSectionV6: React.FC<ChemistryOverviewSectionV6Props> = ({ showBanner = true }) => {
   const [selectedChemistry, setSelectedChemistry] = useState<ChemistryData | null>(null);
   const [hoveredChemistry, setHoveredChemistry] = useState<string | null>(null);
   const { mode, getTextClasses } = useGradientMode();
@@ -227,7 +231,7 @@ const ChemistryOverviewSectionV6: React.FC = () => {
 
   return (
     <>
-      <ExperienceBetterBanner />
+      {showBanner && <ExperienceBetterBanner />}
       <section className="w-full relative overflow-hidden
                         pt-[clamp(20px,3vw,48px)] pb-[clamp(40px,6vw,96px)] px-2 sm:px-[clamp(16px,4vw,48px)]
                         bg-gradient-to-bl from-[#477197] to-[#2c476e]">
