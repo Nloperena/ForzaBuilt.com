@@ -84,10 +84,10 @@ const FooterV2 = () => {
         </div>
 
         {/* Divider Line */}
-        <div className="border-t border-white/30 mb-5"></div>
+        <div className="border-t border-white/30 mb-5 max-w-[56rem] mx-auto"></div>
 
         {/* Bottom Section with Made in USA Badge, Copyright, and Follow Us */}
-        <div className="flex items-center gap-4 flex-wrap">
+        <div className="flex items-center gap-4 flex-wrap max-w-[56rem] mx-auto">
           {/* Made in USA Badge - Standalone Image */}
           <img 
             src="/images/misc/Flag Icon with asterisk 1.png"

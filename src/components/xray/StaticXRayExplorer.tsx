@@ -149,7 +149,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
   const viewBox = svgElement.getAttribute('viewBox') || '0 0 233.403 191.162';
 
   return (
-    <section className="py-16 bg-white overflow-visible">
+    <section className="pt-0 pb-16 bg-white overflow-visible">
       <div className="w-full px-4">
         {/* Section Title */}
         <motion.div
@@ -202,7 +202,48 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                     
                     // Find corresponding SVG element by ID
                     const svgPolygon = svgElement.querySelector(`#${hotspot.id}`);
-                    if (!svgPolygon) return null;
+                    
+                    // If SVG element not found, log it and create a fallback circle
+                    if (!svgPolygon) {
+                      console.log('SVG element not found for hotspot:', hotspot.id);
+                      // Create a fallback circular hotspot
+                      const cx = hotspot.points?.[0] || 100 + index * 20;
+                      const cy = hotspot.points?.[1] || 100;
+                      
+                      return (
+                        <motion.g 
+                          key={hotspot.id}
+                          onMouseEnter={() => handleHotspotHover(hotspot)}
+                          onMouseLeave={() => handleHotspotHover(null)}
+                          onClick={() => handleHotspotClick(hotspot)}
+                          style={{ pointerEvents: 'auto' }}
+                        >
+                          <motion.circle
+                            cx={cx}
+                            cy={cy}
+                            r={15}
+                            fill={isHighlight ? "rgba(242,97,29,0.8)" : "rgba(27,55,100,0.9)"}
+                            stroke="none"
+                            className="cursor-pointer"
+                            style={{
+                              filter: isHighlight ? 
+                                'drop-shadow(0 0 12px rgba(242,97,29,0.8)) brightness(1.2)' : 
+                                'drop-shadow(0 0 4px rgba(27,55,100,0.3))',
+                              pointerEvents: 'auto',
+                            }}
+                            initial={{ opacity: 0.6, scale: 1 }}
+                            animate={{
+                              opacity: isHighlight ? 0.9 : 0.6,
+                              scale: isHighlight ? 1.05 : 1,
+                            }}
+                            transition={{ duration: 0.2 }}
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`${hotspot.product?.name || 'hotspot'} area`}
+                          />
+                        </motion.g>
+                      );
+                    }
 
                     const points = svgPolygon.getAttribute('points') || svgPolygon.getAttribute('d') || '';
                     
@@ -349,12 +390,15 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
         </div>
       </div>
 
-      {/* Product Tooltip Card - Fixed Position on Right */}
-      {!isMobile && (
-        <ProductTooltipCard 
-          product={hoveredHotspot?.product || null} 
-          isVisible={!!hoveredHotspot?.product} 
-        />
+      {/* Product Tooltip - Fixed Position on Right */}
+      {!isMobile && hoveredHotspot && (
+        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-[9999]">
+          <ProductTooltip 
+            hotspot={hoveredHotspot}
+            isPinned={false}
+            industry={industry.id}
+          />
+        </div>
       )}
 
       {/* Product Modal */}
