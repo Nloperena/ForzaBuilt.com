@@ -90,7 +90,7 @@ const IndustryPage = () => {
               <style>{`
                 @media (min-width: 1400px) and (max-width: 1700px) {
                   .industry-title-wrapper {
-                    margin-top: 1rem !important;
+                    margin-top: 2.65rem !important;
                   }
                 }
                 @media (min-width: 1701px) {

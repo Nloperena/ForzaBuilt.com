@@ -461,8 +461,14 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           
           // Transform calculations (same as original)
           const currentScale = 1 - progress * 0.05;
+          const baseOffset = index > 0 ? 48 : 0; // 48px = 12rem (top-12) - maintain offset for subsequent cards
           const currentTranslateY = progress * -50;
-          const transformString = `translateY(${currentTranslateY}px) scale(${currentScale})`;
+          // Maintain offset throughout scroll: apply offset consistently, but reduce upward movement
+          // so the card maintains its relative position to the first card
+          const offsetTranslateY = index > 0 
+            ? baseOffset + (currentTranslateY * 0.7) // Maintain most of offset, reduce upward movement slightly
+            : currentTranslateY;
+          const transformString = `translateY(${offsetTranslateY}px) scale(${currentScale})`;
           // Cards should never vanish - always show once visible
           const opacity = isVisible ? 1 : (index === 0 ? 1 : 0); // First card always visible, others show when scrolled to
           const blurAmount = 0; // No blur
@@ -470,7 +476,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           return (
             <div
               key={card.id}
-              className="sticky top-0 w-full h-screen flex flex-col px-2 sm:px-4"
+              className={`sticky w-full h-screen flex flex-col px-2 sm:px-4 ${index === 0 ? 'top-0' : 'top-12'}`}
               style={{
                 zIndex: 40 + index,
                 opacity: opacity, // Ensure opacity is applied at card level too
@@ -550,10 +556,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         
                         {/* Subheading */}
                         <h3 
-                          className="font-semibold text-white/90"
+                          className="font-normal text-white/90"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-                            fontSize: 'clamp(0.875rem, 1.8vw, 1.5rem)'
+                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
                           }}
                         >
                           {card.subheading}
@@ -561,7 +567,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         
                         {/* Description Paragraph */}
                         <p 
-                          className="text-white/80 leading-relaxed"
+                          className="font-normal text-white/80 leading-relaxed"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
                             fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'

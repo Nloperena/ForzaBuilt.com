@@ -266,7 +266,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
       <div className="bg-white py-4 sm:py-6 md:py-8 lg:py-12">
         {title && (
           <div className="text-center mb-4">
-            <h2 className="text-2xl md:text-4xl font-normal text-[#1B3764] font-poppins">{title}</h2>
+            <h2 className="text-xs md:text-sm font-normal text-[#1B3764] font-poppins">{title}</h2>
           </div>
         )}
         
