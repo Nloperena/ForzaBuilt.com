@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import VideoSkeleton from '../common/VideoSkeleton';
 import { motion } from 'framer-motion';
-import ImageSkeleton from '../common/ImageSkeleton';
 
 interface IndustryHeroBannerProps {
   videoUrl: string;
@@ -19,9 +18,10 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
     // Fallback timeout to prevent infinite loading on slow connections
     const timeout = setTimeout(() => {
       if (!videoLoaded) {
+        console.warn('Industry video took too long to load, showing fallback');
         setVideoLoaded(true);
       }
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearTimeout(timeout);
@@ -29,10 +29,12 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
   }, [videoLoaded]);
 
   const handleVideoLoad = () => {
+    console.log('Industry video loaded successfully');
     setVideoLoaded(true);
   };
 
   const handleVideoError = () => {
+    console.warn('Industry video failed to load, showing fallback');
     setVideoLoaded(true);
   };
 
@@ -44,11 +46,16 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
     setIconLoaded(true);
   };
 
-  // Simple variant - just video
+  // Simple variant - full screen video like homepage (exact copy of EagleHeroVideo)
   if (variant === 'simple') {
     return (
-      <section className="relative w-full h-full flex items-center justify-center overflow-hidden z-[5] hero-video-area">
-        {!videoLoaded && <ImageSkeleton className="rounded-xl" />}
+      <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0">
+        {/* Video Skeleton Loading State */}
+        {!videoLoaded && (
+          <VideoSkeleton />
+        )}
+        
+        {/* Background Video */}
         <video
           key={videoUrl}
           autoPlay
@@ -56,18 +63,31 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
           muted
           playsInline
           preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover object-center z-[5] transition-opacity duration-500 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onLoadedData={handleVideoLoad}
+          onCanPlay={handleVideoLoad}
+          onError={handleVideoError}
+          onLoadStart={() => console.log('Industry video loading started')}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            videoLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{ 
+            zIndex: 1,
+            objectFit: 'cover',
             width: '100%',
             height: '100%',
             minWidth: '100%',
             minHeight: '100%'
           }}
-          onLoadedData={handleVideoLoad}
-          onError={handleVideoError}
         >
           <source src={videoUrl} type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
+
+        {/* Fallback background - always visible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
+
+        {/* Blue overlay on top of video */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
       </section>
     );
   }

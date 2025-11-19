@@ -436,7 +436,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     
     const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / cardHeight));
     const nextCardProgress = Math.max(0, Math.min(1, (scrollY - cardStart - cardHeight) / cardHeight));
-    const isVisible = scrollY >= cardStart - cardHeight * 0.5 && scrollY < cardStart + cardHeight * 2;
+    // Cards should stay visible once they've been shown - remove upper bound check
+    const isVisible = scrollY >= cardStart - cardHeight * 0.5;
     
     return { progress, nextCardProgress, isVisible };
   };
@@ -462,8 +463,9 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           const currentScale = 1 - progress * 0.05;
           const currentTranslateY = progress * -50;
           const transformString = `translateY(${currentTranslateY}px) scale(${currentScale})`;
-          const opacity = isVisible ? 1 - nextCardProgress * 0.7 : 0; // Slower fade out
-          const blurAmount = Math.max(0, (1 - opacity) * 5); // Less blur
+          // Cards should never vanish - always show once visible
+          const opacity = isVisible ? 1 : (index === 0 ? 1 : 0); // First card always visible, others show when scrolled to
+          const blurAmount = 0; // No blur
           
           return (
             <div
@@ -471,6 +473,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               className="sticky top-0 w-full h-screen flex flex-col px-2 sm:px-4"
               style={{
                 zIndex: 40 + index,
+                opacity: opacity, // Ensure opacity is applied at card level too
               }}
             >
               {/* Header Section - Only show on first card, positioned higher */}
@@ -508,9 +511,9 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 className="w-full max-w-none"
                 style={{
                   transform: transformString,
-                  opacity,
+                  opacity: 1, // Always fully opaque when card container is visible
                   filter: `blur(${blurAmount}px)`,
-                  transition: 'all 0.3s ease-out'
+                  transition: 'transform 0.3s ease-out' // Only transition transform, not opacity
                 }}
               >
                 <div 

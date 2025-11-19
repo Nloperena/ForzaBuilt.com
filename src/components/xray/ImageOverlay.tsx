@@ -32,8 +32,8 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
   const [transportationProducts, setTransportationProducts] = useState<Product[]>([]);
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const svgContainerRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
   // Sample applications text for different path types
@@ -100,12 +100,14 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
         const svgDoc = parser.parseFromString(text, 'image/svg+xml');
         const svgElement = svgDoc.documentElement;
 
-        // Ensure SVG has proper width/height for responsive sizing
+        // Ensure SVG has proper width/height for responsive sizing - make it larger
         svgElement.setAttribute('width', '100%');
         svgElement.setAttribute('height', 'auto');
         svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
         svgElement.style.width = '100%';
         svgElement.style.height = 'auto';
+        // Responsive min-height: smaller on mobile, larger on desktop
+        svgElement.style.minHeight = 'clamp(400px, 50vh, 1000px)';
         svgElement.style.display = 'block';
         svgElement.style.maxWidth = '100%';
         svgElement.style.overflow = 'visible';
@@ -164,44 +166,39 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
       });
   }, [svgSrc, title, transportationProducts]);
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleCloseCard = () => {
     setSelectedProduct(null);
+    setHoveredProduct(null);
   };
 
-  // Hide navbar and prevent body scroll when modal is open
+  // Handle click outside to close selected product
   useEffect(() => {
-    const navbar = document.querySelector('header[data-component="header"]') as HTMLElement;
-    
-    if (isModalOpen) {
-      // Prevent body scroll
-      document.body.style.overflow = 'hidden';
-      
-      // Slide navbar up with !important to override scroll behavior temporarily
-      if (navbar) {
-        navbar.style.setProperty('transform', 'translateY(-100%)', 'important');
-        navbar.style.setProperty('transition', 'transform 0.3s ease-in-out', 'important');
-      }
-    } else {
-      // Restore body scroll
-      document.body.style.overflow = '';
-      
-      // Remove the forced transform to allow scroll behavior to resume
-      if (navbar) {
-        navbar.style.removeProperty('transform');
-        navbar.style.removeProperty('transition');
-      }
-    }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = '';
-      if (navbar) {
-        navbar.style.removeProperty('transform');
-        navbar.style.removeProperty('transition');
+    const handleClickOutside = (event: MouseEvent) => {
+      if (selectedProduct && tooltipRef.current && svgContainerRef.current) {
+        const target = event.target as Node;
+        // Check if click is outside both the tooltip and SVG container
+        if (
+          !tooltipRef.current.contains(target) &&
+          !svgContainerRef.current.contains(target)
+        ) {
+          setSelectedProduct(null);
+          setHoveredProduct(null);
+        }
       }
     };
-  }, [isModalOpen]);
+
+    if (selectedProduct) {
+      // Use a small delay to avoid closing immediately when clicking to select
+      const timeoutId = setTimeout(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+      }, 100);
+
+      return () => {
+        clearTimeout(timeoutId);
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [selectedProduct]);
 
   // Set up hover and click handlers when SVG content is loaded
   useEffect(() => {
@@ -216,13 +213,19 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
           const product = pathProducts.get(target.id);
           if (product) {
             console.log('Hovering over path:', target.id, 'Product:', product.sku || product.name);
-            setHoveredProduct(product);
+            // Only show hover if no product is selected, or if hovering over a different product
+            if (!selectedProduct || selectedProduct.id !== product.id) {
+              setHoveredProduct(product);
+            }
           }
         };
 
         const handleMouseLeave = () => {
           if (isMobile) return;
-          setHoveredProduct(null);
+          // Only clear hover if no product is selected
+          if (!selectedProduct) {
+            setHoveredProduct(null);
+          }
         };
 
         const handleClick = (event: Event) => {
@@ -230,8 +233,12 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
           const product = pathProducts.get(target.id);
           if (product) {
             console.log('Clicked path:', target.id, 'Product:', product.sku || product.name);
-            setSelectedProduct(product);
-            setIsModalOpen(true);
+            // Toggle selection - if clicking the same product, deselect it
+            if (selectedProduct?.id === product.id) {
+              setSelectedProduct(null);
+            } else {
+              setSelectedProduct(product);
+            }
           }
         };
 
@@ -263,143 +270,99 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
           </div>
         )}
         
-        <div className="relative overflow-hidden flex justify-center px-2 sm:px-4 md:px-6">
-          {/* SVG - rendered inline for interactivity */}
+        <div className="relative overflow-visible flex justify-center px-2 sm:px-4 md:px-6">
+          {/* SVG Container with Tooltip positioned relative to it */}
           {svgContent && (
-            <div
-              ref={svgContainerRef}
-              className="w-full max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
-              dangerouslySetInnerHTML={{ __html: svgContent }}
-            />
+            <div className="relative inline-block">
+              <div
+                ref={svgContainerRef}
+                className="relative w-full max-w-full sm:max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[90rem]"
+                style={{ minHeight: 'clamp(400px, 50vh, 1000px)' }}
+              >
+                <div
+                  dangerouslySetInnerHTML={{ __html: svgContent }}
+                  style={{ width: '100%', height: 'auto', minHeight: 'clamp(400px, 50vh, 1000px)' }}
+                />
+              </div>
+              
+              {/* Product Tooltip - Positioned outside SVG container, glued to right edge */}
+              {!isMobile && (selectedProduct || hoveredProduct) && (
+                <div 
+                  ref={tooltipRef}
+                  className="absolute left-full ml-2 xl:ml-4 top-1/2 -translate-y-1/2 z-[9999] whitespace-nowrap"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="bg-[#D1D5DB] rounded-xl p-3 md:p-4 shadow-2xl pointer-events-auto w-56 md:w-64 lg:max-w-xs relative"
+                  >
+                    {/* Close button when selected */}
+                    {selectedProduct && (
+                      <button
+                        onClick={handleCloseCard}
+                        className="absolute top-2 right-2 text-[#1B3764] hover:text-[#1B3764]/70 transition-colors z-10"
+                        aria-label="Close"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
+                    {(() => {
+                      const displayProduct = selectedProduct || hoveredProduct;
+                      return (
+                        <div className="space-y-2 md:space-y-3">
+                          {/* Product Image */}
+                          {(displayProduct?.thumb || displayProduct?.imageUrl) && (
+                            <div className="flex justify-center">
+                              <img
+                                src={displayProduct.thumb || displayProduct.imageUrl}
+                                alt={displayProduct.name}
+                                className="w-28 h-28 md:w-36 md:h-36 object-contain"
+                              />
+                            </div>
+                          )}
+                          {/* Product Information */}
+                          <div className="space-y-2">
+                            <div className="text-center">
+                              {displayProduct?.sku && (
+                                <h3 className="font-bold text-base md:text-lg mb-1 text-[#1B3764]">
+                                  {displayProduct.sku}
+                                </h3>
+                              )}
+                              <p className="text-xs md:text-sm text-[#1B3764] mb-2 leading-relaxed">
+                                {displayProduct?.name}
+                              </p>
+                              {displayProduct?.description && (
+                                <p className="text-[10px] md:text-xs text-[#1B3764] leading-relaxed line-clamp-3">
+                                  {displayProduct.description}
+                                </p>
+                              )}
+                            </div>
+                            {/* View Product Button */}
+                            {displayProduct && (
+                              <div className="pt-2 border-t border-[#1B3764]/20">
+                                <a
+                                  href={`/products/${displayProduct.id}`}
+                                  className="block w-full bg-[#F2611D] hover:bg-[#E55B1C] text-white rounded-full px-4 py-2 text-xs md:text-sm text-center font-medium transition-colors"
+                                >
+                                  View Product
+                                </a>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </motion.div>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
 
-      {/* Product Tooltip - Fixed Position on Right */}
-      {!isMobile && hoveredProduct && (
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-[9999]">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="bg-[#D1D5DB] rounded-xl p-3 md:p-4 shadow-2xl pointer-events-auto w-56 md:w-64 lg:max-w-xs"
-          >
-            <div className="space-y-2 md:space-y-3">
-              {/* Product Image */}
-              {(hoveredProduct.thumb || hoveredProduct.imageUrl) && (
-                <div className="flex justify-center">
-                  <img
-                    src={hoveredProduct.thumb || hoveredProduct.imageUrl}
-                    alt={hoveredProduct.name}
-                    className="w-28 h-28 md:w-36 md:h-36 object-contain"
-                  />
-                </div>
-              )}
-              {/* Product Information */}
-              <div className="space-y-2">
-                <div className="text-center">
-                  {hoveredProduct.sku && (
-                    <h3 className="font-bold text-base md:text-lg mb-1 text-[#1B3764]">
-                      {hoveredProduct.sku}
-                    </h3>
-                  )}
-                  <p className="text-xs md:text-sm text-[#1B3764] mb-2 leading-relaxed">
-                    {hoveredProduct.name}
-                  </p>
-                  {hoveredProduct.description && (
-                    <p className="text-[10px] md:text-xs text-[#1B3764] leading-relaxed line-clamp-3">
-                      {hoveredProduct.description}
-                    </p>
-                  )}
-                </div>
-                {/* Call to Action */}
-                <div className="text-center pt-2 border-t border-[#1B3764]/20">
-                  <div className="text-[10px] text-[#1B3764]/70">
-                    Click highlighted area for details
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
 
-      {/* Product Details Modal - Center Aligned */}
-      <AnimatePresence>
-        {isModalOpen && selectedProduct && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[10000]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={handleCloseModal}
-          >
-            <motion.div
-              className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-6">
-                {/* Header with Close Button */}
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-[#1B3764]">
-                    {selectedProduct.sku || selectedProduct.name}
-                  </h3>
-                  <button
-                    onClick={handleCloseModal}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </div>
-
-                {/* Product Content */}
-                <div className="space-y-4">
-                  {/* Product Image */}
-                  {(selectedProduct.thumb || selectedProduct.imageUrl) && (
-                    <img
-                      src={selectedProduct.thumb || selectedProduct.imageUrl}
-                      alt={selectedProduct.name}
-                      className="w-full h-48 object-contain rounded-lg bg-gray-50"
-                    />
-                  )}
-
-                  {/* Product Details */}
-                  <div>
-                    <h4 className="font-semibold text-lg text-[#1B3764] mb-2">
-                      {selectedProduct.name}
-                    </h4>
-                    {selectedProduct.description && (
-                      <p className="text-gray-600 mb-4">
-                        {selectedProduct.description}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3">
-                    <a
-                      href={`/products/${selectedProduct.id}`}
-                      className="flex-1 bg-[#F2611D] hover:bg-[#E55B1C] text-white rounded-full px-6 py-3 text-center font-medium transition-colors"
-                    >
-                      View Product Details
-                    </a>
-                    <button
-                      onClick={handleCloseModal}
-                      className="px-6 py-3 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }

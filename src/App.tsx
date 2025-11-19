@@ -24,6 +24,7 @@ import SealantCalculator from './pages/tools/SealantCalculator';
 import Compatibility from './pages/tools/Compatibility';
 import IndustryPage from './pages/industries/[industry]';
 import TransportationV2Page from './pages/industries/transportation-v2';
+import IndustryPageV3 from './pages/industries/[industry]-V3';
 import ProductCategoryPage from './pages/products/[productCategory]';
 import ProductDetailPage from './pages/products/[productId]';
 import RuggedRed from './pages/products/RuggedRed';
@@ -77,6 +78,7 @@ const App = () => {
               <Route path="/tools/product-datasheets" element={<ProductDatasheetsPage />} />
               <Route path="/tools/sealant-calculator" element={<SealantCalculator />} />
               <Route path="/tools/compatibility" element={<Compatibility />} />
+              <Route path="/industries/:industry/v3" element={<IndustryPageV3 />} />
               <Route path="/industries/:industry" element={<IndustryPage />} />
               <Route path="/industries/transportation-v2" element={<TransportationV2Page />} />
               <Route path="/products/ruggedred" element={<RuggedRed />} />

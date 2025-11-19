@@ -8,16 +8,14 @@ import IndustryXRaySections from '../../components/xray/IndustryXRaySections';
 import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
 import IndustryBrochureSection from '../../components/IndustryBrochureSection';
 import NewsletterSection from '@/components/NewsletterSection';
-import IndustryHeroBanner from '../../components/industries/IndustryHeroBanner';
+import StickyIndustryHeroVideoSection from '../../components/industries/StickyIndustryHeroVideoSection';
 import IndustryTitleSection from '../../components/industries/IndustryTitleSection';
 import IndustryHeadingsSection from '../../components/industries/IndustryHeadingsSection';
 import IndustryProductsSection from '../../components/industries/IndustryProductsSection';
 import ProductQuickViewModal from '../../components/industries/ProductQuickViewModal';
 import IndustryArticlesSection from '../../components/industries/IndustryArticlesSection';
 
-import { motion, AnimatePresence } from 'framer-motion';
-
-const IndustryPage = () => {
+const IndustryPageV3 = () => {
   const { industry } = useParams();
   const industryData = industries.find(
     (ind) => ind.title.toLowerCase().replace(/\s+/g, '-') === industry
@@ -60,78 +58,77 @@ const IndustryPage = () => {
 
   const validIndustryKey = getIndustryKey(industryData.title);
 
-
   return (
-    <div className="bg-[#115B87] min-h-screen flex flex-col relative">
+    <div className={`relative overflow-x-hidden bg-[#115B87] min-h-screen flex flex-col`}>
       <HeaderV2 />
-      
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={industry}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="w-full relative"
-        >
-          {/* Hero Video Section - Full screen like homepage (same structure as StickyHeroVideoSection) */}
-          <div className="relative">
-            <IndustryHeroBanner 
-              videoUrl={industryData.videoUrl} 
-              industryTitle={industryData.title}
-              variant="simple"
+
+      {/* Sticky Hero Video Section - video stays while content slides over */}
+      <StickyIndustryHeroVideoSection 
+        videoUrl={industryData.videoUrl} 
+        industryTitle={industryData.title}
+      >
+        {/* All content that should slide over the video */}
+
+        {/* Industry Title Section - Transparent background with white text */}
+        <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68 z-[25]">
+          <div style={{ background: 'transparent' }}>
+            <IndustryTitleSection 
+              title={industryData.title}
+              logo={industryData.logo}
+              color="#ffffff"
             />
           </div>
+        </section>
 
-          {/* Scrollable content that slides over the video */}
-          <div className="relative pointer-events-auto">
-            {/* Industry Title Section - Transparent background with white text */}
-            <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68 z-[20]">
-              <div style={{ background: 'transparent' }}>
-                <IndustryTitleSection 
-                  title={industryData.title}
-                  logo={industryData.logo}
-                  color="#ffffff"
-                />
-              </div>
-            </section>
-          </div>
-
-      {/* Dynamic Industry Headings Section */}
+        {/* Dynamic Industry Headings Section */}
+        <section className="relative z-[25] bg-white">
           <IndustryHeadingsSection industryTitle={industryData.title} />
+        </section>
 
-          {/* X-Ray Explorer Sections */}
+        {/* X-Ray Explorer Sections */}
+        <section className="relative z-[25] bg-white">
           <IndustryXRaySections industry={industryData.title} />
+        </section>
+      </StickyIndustryHeroVideoSection>
 
-          {/* Hybrid Stackable Cards Section */}
-          <div className="relative z-[30]">
-            <HybridStackableCards 
-              industry={validIndustryKey}
-              maxCards={2}
-            />
-          </div>
+      {/* Hybrid Stackable Cards Section - Outside sticky wrapper so sticky positioning works */}
+      <div className="relative z-[30]">
+        <HybridStackableCards 
+          industry={validIndustryKey}
+          maxCards={2}
+        />
+      </div>
 
-          {/* Product Cards Section */}
+      {/* Continue with remaining content */}
+      <div className="relative z-[25]">
+        {/* Product Cards Section */}
+        <section className="relative bg-white">
           <IndustryProductsSection 
             industryData={industryData}
             onProductSelect={handleProductSelect}
           />
+        </section>
 
-          {/* Chemistries Section */}
-          <div className="relative z-[30]">
-            <ChemistryOverviewSectionV7 showBanner={false} />
-      </div>
+        {/* Chemistries Section */}
+        <section className="relative bg-white">
+          <ChemistryOverviewSectionV7 showBanner={false} />
+        </section>
 
-      {/* Industry Brochure Section */}
-      <div className="relative z-[30]">
-        <IndustryBrochureSection industry={industryData.title} backgroundColor="white" />
-      </div>
+        {/* Industry Brochure Section */}
+        <section className="relative bg-white">
+          <IndustryBrochureSection industry={industryData.title} backgroundColor="white" />
+        </section>
 
-          {/* Industry Articles Section */}
+        {/* Industry Articles Section */}
+        <section className="relative bg-white">
           <IndustryArticlesSection industryName={industryData.title} />
+        </section>
 
-        </motion.div>
-      </AnimatePresence>
+        {/* Newsletter Section */}
+        <section className="relative bg-white">
+          <NewsletterSection showHeading={true} />
+        </section>
+      </div>
 
       {/* Product Quick View Modal */}
       <ProductQuickViewModal 
@@ -139,8 +136,6 @@ const IndustryPage = () => {
         product={selectedProduct}
         onClose={closeModal}
       />
-                  
-      <NewsletterSection showHeading={true} />
       
       {/* Footer */}
       <FooterV2 />
@@ -148,4 +143,5 @@ const IndustryPage = () => {
   );
 };
 
-export default IndustryPage; 
+export default IndustryPageV3;
+

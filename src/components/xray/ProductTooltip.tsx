@@ -84,13 +84,15 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
       } else if (isTablet) {
         return 'fixed bottom-4 right-4 left-1/4 z-50';
       } else {
-        return 'absolute bottom-4 right-4 w-96 z-50';
+        // On larger displays, bring card closer to graphic - use fixed positioning to lock it in
+        return 'fixed right-2 xl:right-4 2xl:right-6 top-1/2 -translate-y-1/2 w-80 xl:w-96 z-[9999]';
       }
     } else {
       if (isMobile) {
         return 'fixed bottom-4 left-4 right-4 z-50';
       } else {
-        return 'absolute bottom-4 right-4 w-80 z-50';
+        // On larger displays, bring card closer to graphic
+        return 'absolute bottom-4 right-2 xl:right-4 2xl:right-6 w-80 z-50';
       }
     }
   };
@@ -211,21 +213,32 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
                       </p>
                       
                       <div className="flex gap-2 pt-2">
-                        <Button 
-                          asChild 
-                          size="sm" 
-                          className="flex-1 bg-[#F16022] hover:bg-[#F16022]/85 text-white"
-                        >
-                          <a 
-                            href={hotspot.product!.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center gap-2"
+                        {onProductClick ? (
+                          <Button 
+                            onClick={() => onProductClick(hotspot.product!)}
+                            size="sm" 
+                            className="flex-1 bg-[#F16022] hover:bg-[#F16022]/85 text-white"
                           >
                             View Product
-                            <ExternalLink className="h-3 w-3" />
-                          </a>
-                        </Button>
+                            <ExternalLink className="h-3 w-3 ml-2" />
+                          </Button>
+                        ) : (
+                          <Button 
+                            asChild 
+                            size="sm" 
+                            className="flex-1 bg-[#F16022] hover:bg-[#F16022]/85 text-white"
+                          >
+                            <a 
+                              href={hotspot.product!.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-center gap-2"
+                            >
+                              View Product
+                              <ExternalLink className="h-3 w-3" />
+                            </a>
+                          </Button>
+                        )}
                       </div>
                     </>
                   )}

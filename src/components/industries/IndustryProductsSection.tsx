@@ -389,15 +389,15 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                           )}
                           
                           {!imageErrorStates[product.id] && (
-                            <img 
-                              src={product.imageUrl} 
-                              alt={product.name}
-                              className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
-                                imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
-                              }`}
-                              onLoad={() => handleImageLoad(product.id)}
-                              onError={() => handleImageError(product.id)}
-                            />
+                          <img 
+                            src={product.imageUrl} 
+                            alt={product.name}
+                            className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
+                              imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onLoad={() => handleImageLoad(product.id)}
+                            onError={() => handleImageError(product.id)}
+                          />
                           )}
                         </div>
 
@@ -417,15 +417,15 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                             )}
                             
                             {!imageErrorStates[product.id] && (
-                              <img 
-                                src={product.imageUrl} 
-                                alt={product.name}
-                                className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
-                                  imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
-                                }`}
-                                onLoad={() => handleImageLoad(product.id)}
-                                onError={() => handleImageError(product.id)}
-                              />
+                            <img 
+                              src={product.imageUrl} 
+                              alt={product.name}
+                              className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
+                                imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
+                              }`}
+                              onLoad={() => handleImageLoad(product.id)}
+                              onError={() => handleImageError(product.id)}
+                            />
                             )}
                           </div>
                           

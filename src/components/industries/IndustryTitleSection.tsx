@@ -20,7 +20,14 @@ const IndustryTitleSection: React.FC<IndustryTitleSectionProps> = ({ title, logo
   };
 
   return (
-    <section className="relative z-[20] bg-white w-full" style={{ padding: 'clamp(1.5rem, 3vw, 3rem) clamp(1rem, 2vw, 2.5rem)', margin: 0 }}>
+    <section 
+      className="relative z-[20] w-full pb-0" 
+      style={{ 
+        padding: 'clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2vw, 2.5rem)', 
+        paddingBottom: 0,
+        margin: 0
+      }}
+    >
       <motion.div 
         className="w-full flex items-center justify-center"
         style={{ 
@@ -36,8 +43,8 @@ const IndustryTitleSection: React.FC<IndustryTitleSectionProps> = ({ title, logo
         <h1
           className="font-black mb-0 leading-none font-kallisto"
           style={{ 
-            color: color || '#1B3764',
-            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+            color: color || '#ffffff',
+            textShadow: '2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5)',
             fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
           }}
         >

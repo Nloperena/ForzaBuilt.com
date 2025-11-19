@@ -5,7 +5,6 @@ import ProductTooltip from './ProductTooltip';
 import ProductTooltipCard from './ProductTooltipCard';
 import { typography } from '../../styles/brandStandards';
 import { useIsMobile } from '../../hooks/use-mobile';
-import { X } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { byProductLine } from '../../utils/products';
 
@@ -19,11 +18,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
   xrayIndex = 0
 }) => {
   const [svgContent, setSvgContent] = useState<string | null>(null);
-  const [hoveredHotspot, setHoveredHotspot] = useState<Hotspot | null>(null);
   const [selectedHotspot, setSelectedHotspot] = useState<Hotspot | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   
   const isMobile = useIsMobile();
   
@@ -54,32 +49,22 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
   }, [xrayComponent.svgOverlay]);
 
   const handleHotspotHover = (hotspot: Hotspot | null, event?: React.MouseEvent) => {
-    if (!isMobile) {
-      setHoveredHotspot(hotspot);
-      if (hotspot) {
-        console.log('Hovering over:', hotspot.id, 'Product:', hotspot.product?.sku);
-      } else {
-        console.log('Hover cleared');
-      }
-    }
+    // Disable hover behavior - using click/select instead
   };
 
   const handleHotspotClick = (hotspot: Hotspot) => {
-    if (isMobile) {
-      setSelectedHotspot(selectedHotspot?.id === hotspot.id ? null : hotspot);
+    // Toggle selection - if clicking the same hotspot, deselect it
+    if (selectedHotspot?.id === hotspot.id) {
+      setSelectedHotspot(null);
     } else {
-      // On desktop, open product modal if there's a product
-      if (hotspot.product) {
-        setSelectedProduct(hotspot.product);
-        setIsModalOpen(true);
-      }
+      setSelectedHotspot(hotspot);
     }
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedProduct(null);
+  const handleCloseCard = () => {
+    setSelectedHotspot(null);
   };
+
 
   // Helper to get industry logo from navbar data
   const getIndustryLogo = (industry: string) => {
@@ -197,9 +182,8 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                   style={{ pointerEvents: 'auto' }}
                 >
                   {xrayComponent.hotspots.map((hotspot, index) => {
-                    const isHovered = hoveredHotspot?.id === hotspot.id;
                     const isSelected = selectedHotspot?.id === hotspot.id;
-                    const isHighlight = isHovered || isSelected;
+                    const isHighlight = isSelected; // Only highlight on select, not hover
                     
                     // Find corresponding SVG element by ID
                     const svgPolygon = svgElement.querySelector(`#${hotspot.id}`);
@@ -214,8 +198,8 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                       return (
                         <motion.g 
                           key={hotspot.id}
-                          onMouseEnter={() => handleHotspotHover(hotspot)}
-                          onMouseLeave={() => handleHotspotHover(null)}
+                          onMouseEnter={() => {}}
+                          onMouseLeave={() => {}}
                           onClick={() => handleHotspotClick(hotspot)}
                           style={{ pointerEvents: 'auto' }}
                         >
@@ -249,11 +233,11 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                     const points = svgPolygon.getAttribute('points') || svgPolygon.getAttribute('d') || '';
                     
                     const handleMouseEnter = () => {
-                      handleHotspotHover(hotspot);
+                      // Hover disabled - using click/select instead
                     };
 
                     const handleMouseLeave = () => {
-                      handleHotspotHover(null);
+                      // Hover disabled - using click/select instead
                     };
 
                     return (
@@ -360,15 +344,14 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                         {selectedHotspot.product.blurb}
                       </p>
                     </div>
-                    <button
-                      onClick={() => {
-                        setSelectedProduct(selectedHotspot.product);
-                        setIsModalOpen(true);
-                      }}
-                      className="w-full bg-[#1B3764] hover:bg-[#2A4A7A] text-white rounded-full px-6 py-3 font-medium transition-colors"
+                    <a
+                      href={selectedHotspot.product.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-[#1B3764] hover:bg-[#2A4A7A] text-white rounded-full px-6 py-3 font-medium transition-colors text-center block"
                     >
                       View Product Details
-                    </button>
+                    </a>
                   </div>
                 ) : (
                   <div className="space-y-3">
@@ -391,85 +374,20 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
         </div>
       </div>
 
-      {/* Product Tooltip - Fixed Position on Right */}
-      {!isMobile && hoveredHotspot && (
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-[9999]">
-          <ProductTooltip 
-            hotspot={hoveredHotspot}
-            isPinned={false}
-            industry={industry.id}
-          />
-        </div>
+      {/* Product Tooltip - Fixed Position on Right - Show on select, not hover */}
+      {!isMobile && selectedHotspot && selectedHotspot.product && (
+        <ProductTooltip 
+          hotspot={selectedHotspot}
+          isPinned={true}
+          industry={industry.id}
+          onClose={handleCloseCard}
+          onProductClick={(product) => {
+            // Open product URL in new tab
+            window.open(product.url, '_blank', 'noopener,noreferrer');
+          }}
+        />
       )}
 
-      {/* Product Modal */}
-      <AnimatePresence>
-        {isModalOpen && selectedProduct && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-          >
-            <motion.div
-              className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-bold text-[#1B3764]">
-                    {selectedProduct.sku}
-                  </h3>
-                  <button
-                    onClick={closeModal}
-                    className="text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <X className="h-6 w-6" />
-                  </button>
-                </div>
-                
-                <div className="space-y-4">
-                  <img
-                    src={selectedProduct.thumb}
-                    alt={selectedProduct.name}
-                    className="w-full h-48 object-contain rounded-lg bg-gray-50"
-                  />
-                  
-                  <div>
-                    <h4 className="font-semibold text-lg text-[#1B3764] mb-2">
-                      {selectedProduct.name}
-                    </h4>
-                    <p className="text-gray-600 mb-4">
-                      {selectedProduct.blurb}
-                    </p>
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    <a
-                      href={selectedProduct.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 bg-[#F2611D] hover:bg-[#E55B1C] text-white rounded-full px-6 py-3 text-center font-medium transition-colors"
-                    >
-                      View Full Details
-                    </a>
-                    <button
-                      onClick={closeModal}
-                      className="px-6 py-3 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
