@@ -87,7 +87,19 @@ const IndustryPage = () => {
           <div className="relative pointer-events-auto">
             {/* Industry Title Section - Transparent background with white text */}
             <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68 z-[20]">
-              <div style={{ background: 'transparent' }}>
+              <style>{`
+                @media (min-width: 1400px) and (max-width: 1700px) {
+                  .industry-title-wrapper {
+                    margin-top: 1rem !important;
+                  }
+                }
+                @media (min-width: 1701px) {
+                  .industry-title-wrapper {
+                    margin-top: clamp(0.5rem, calc(6rem - 1.5vw), 4.4rem) !important;
+                  }
+                }
+              `}</style>
+              <div className="industry-title-wrapper" style={{ background: 'transparent', marginTop: 'clamp(0.5rem, calc(6rem - 1.5vw), 4.4rem)' }}>
                 <IndustryTitleSection 
                   title={industryData.title}
                   logo={industryData.logo}

@@ -8,14 +8,7 @@ interface IndustryHeadingsSectionProps {
 const IndustryHeadingsSection: React.FC<IndustryHeadingsSectionProps> = ({ industryTitle }) => {
   return (
     <>
-      <style>{`
-        @media (min-width: 1400px) and (max-width: 1700px) {
-          .industry-headings-section {
-            margin-top: 1rem !important;
-          }
-        }
-      `}</style>
-      <section className="bg-white text-[#1b3764] relative z-[30] industry-headings-section" style={{ marginTop: 'clamp(0.5rem, calc(6rem - 1.5vw), 4.4rem)', paddingTop: 'clamp(2rem, 4vw, 4rem)', paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
+      <section className="bg-white text-[#1b3764] relative z-[30]" style={{ paddingTop: 'clamp(2rem, 4vw, 4rem)', paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
       <div className="w-full max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 1.5rem)', paddingRight: 'clamp(1rem, 2vw, 1.5rem)' }}>
         <motion.div 
           className="flex flex-col sm:flex-row items-center justify-center"
