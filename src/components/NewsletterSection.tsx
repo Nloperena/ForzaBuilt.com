@@ -106,7 +106,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                   <button
                     onClick={handleNewsletterSubmitInline}
                     disabled={isSubmitting}
-                    className="rounded-full bg-[#F2611D] text-white px-3 lg:px-4 xl:px-6 py-1.5 lg:py-2 xl:py-3 text-xs lg:text-sm xl:text-base font-medium hover:bg-[#F2611D]/90 transition-all duration-300 disabled:opacity-50"
+                    className="rounded-full bg-[#F2611D] text-white px-4 md:px-5 py-2 md:py-2.5 text-xs sm:text-sm font-bold hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
                   >
                     {isSubmitting ? 'Subscribing...' : 'Subscribe'}
                   </button>
@@ -161,7 +161,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                       href="https://linkedin.com/company/forzabuilt"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full bg-[#F2611D] text-white px-3 lg:px-4 xl:px-6 py-1.5 lg:py-2 xl:py-3 text-xs lg:text-sm xl:text-base font-medium hover:bg-[#F2611D]/90 transition-all duration-300"
+                      className="rounded-full bg-[#F2611D] text-white px-4 md:px-5 py-2 md:py-2.5 text-xs sm:text-sm font-bold hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                       aria-label="Follow ForzaBuilt on LinkedIn"
                     >
                       Follow Us
@@ -228,7 +228,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-xl px-6 py-4 transition-all duration-200 text-lg font-bold shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed mt-4 border border-[#F2611D]"
+                  className="w-full bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 md:px-5 py-2 md:py-2.5 transition-all duration-300 text-xs sm:text-sm font-bold shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-4 border border-[#F2611D]"
                 >
                   {isSubmitting ? 'Subscribing...' : 'Subscribe Now'}
                 </button>

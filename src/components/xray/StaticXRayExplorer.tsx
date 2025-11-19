@@ -124,7 +124,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-2xl md:text-4xl font-normal text-[#1B3764] mb-8 font-poppins">
+            <h2 className="font-normal text-[#1B3764] mb-8 font-poppins leading-tight" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}>
               Product Application View
             </h2>
             <p className="text-gray-600 font-normal font-poppins">Loading Product Application View...</p>
@@ -159,7 +159,8 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
           viewport={{ once: true }}
         >
           <h2 
-            className="text-2xl md:text-4xl font-normal text-[#1B3764] mb-4 font-poppins"
+            className="font-normal text-[#1B3764] mb-4 font-poppins leading-tight"
+            style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
           >
             Product Application View
           </h2>

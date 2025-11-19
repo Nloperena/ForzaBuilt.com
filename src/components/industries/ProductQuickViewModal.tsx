@@ -91,7 +91,7 @@ const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({ isOpen, p
                 <div className="flex gap-2 pt-2">
                   <Link
                     to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`}
-                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
+                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                   >
                     <span>Product Details</span>
                     <ExternalLink className="h-3 w-3" />

@@ -49,8 +49,8 @@ const IndustryArticlesSection: React.FC<IndustryArticlesSectionProps> = ({ indus
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-white font-poppins font-normal text-center" 
-          style={{ fontSize: 'clamp(1.75rem, 2.5vw + 0.5rem, 3rem)', marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)' }}
+          className="text-white font-poppins font-normal text-center leading-tight" 
+          style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)', marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)' }}
         >
           {toTitleCase(industryName)} Articles
         </motion.h2>
@@ -111,7 +111,7 @@ const IndustryArticlesSection: React.FC<IndustryArticlesSectionProps> = ({ indus
         >
           <Link
             to="/blog"
-            className="bg-[#F2611D] hover:bg-[#E6540D] text-white font-poppins font-medium px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base transition-colors duration-300 shadow-lg hover:shadow-xl"
+            className="bg-[#F2611D] hover:bg-[#E6540D] text-white font-poppins font-bold px-4 md:px-5 py-2 md:py-2.5 rounded-full text-xs sm:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
             View All
           </Link>

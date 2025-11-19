@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } from 'lucide-react';
+import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } from 'lucide-react';
 import { byProductLine } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
@@ -38,6 +38,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   const [selectedChemistries, setSelectedChemistries] = useState<string[]>([]);
   const [isFilterDialogOpen, setIsFilterDialogOpen] = useState(false);
   const [imageLoadedStates, setImageLoadedStates] = useState<Record<string, boolean>>({});
+  const [imageErrorStates, setImageErrorStates] = useState<Record<string, boolean>>({});
 
   // Product loading states
   const [allLineProducts, setAllLineProducts] = useState<Product[]>([]);
@@ -105,6 +106,23 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     return filtered;
   }, [industryData, allLineProducts, search, selectedChemistries, nameSort]);
 
+  // Helper to get chemistry icon - maps chemistry names to icon paths, falls back to MS icon
+  const getChemistryIcon = (chemistry: string): string => {
+    // Try exact match first
+    if (CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]) {
+      return CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS];
+    }
+    // Try case-insensitive match
+    const normalized = chemistry.toLowerCase();
+    for (const [key, icon] of Object.entries(CHEMISTRY_ICONS)) {
+      if (key.toLowerCase() === normalized || key.toLowerCase().includes(normalized) || normalized.includes(key.toLowerCase())) {
+        return icon;
+      }
+    }
+    // Fallback to MS icon if no match found
+    return CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
+  };
+
   // Get chemistry types for the current industry
   const chemistryTypes = useMemo(() => {
     const unique = new Set<string>(
@@ -151,10 +169,12 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   // Image loading handlers
   const handleImageLoad = (productId: string) => {
     setImageLoadedStates(prev => ({ ...prev, [productId]: true }));
+    setImageErrorStates(prev => ({ ...prev, [productId]: false }));
   };
 
   const handleImageError = (productId: string) => {
     setImageLoadedStates(prev => ({ ...prev, [productId]: true }));
+    setImageErrorStates(prev => ({ ...prev, [productId]: true }));
   };
 
   return (
@@ -168,25 +188,25 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="font-regular font-poppins leading-none text-[#1b3764] break-words capitalize" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>
+          <h2 className="font-normal font-poppins leading-tight text-[#1b3764] break-words capitalize" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}>
             {industryData.title.toLowerCase()} Products
           </h2>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
           {/* Filter Sidebar */}
-          <aside className="flex-shrink-0 lg:sticky lg:top-24 lg:self-start" style={{ width: 'clamp(16rem, 20vw, 18rem)' }}>
+          <aside className="flex-shrink-0 lg:sticky lg:top-24 lg:self-start" style={{ width: 'clamp(12rem, 15vw, 14rem)' }}>
             {/* Search Bar */}
-            <div className="bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-xl shadow-lg border border-gray-300 p-3 mb-4">
+            <div className="bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-lg shadow-lg border border-gray-300 p-2 mb-3">
               <div className="relative">
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/20 p-1.5 rounded-full">
-                  <Search className="text-white h-4 w-4" />
+                <div className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 p-1 rounded-full">
+                  <Search className="text-white h-3 w-3" />
                 </div>
                 <input
                   placeholder="Search products…"
                   value={search}
                   onChange={e => setSearch(e.target.value)}
-                  className="w-full bg-white/10 text-white placeholder-white/60 pl-12 py-3 text-sm border border-white/30 focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 rounded-xl"
+                  className="w-full bg-white/10 text-white placeholder-white/60 pl-8 py-2 text-xs border border-white/30 focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 rounded-lg"
                 />
                 {search && (
                   <button
@@ -200,20 +220,20 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
             </div>
 
             {/* Filter Panel */}
-            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-xl border border-gray-300 overflow-hidden">
-              <div className="p-4 border-b border-white/20">
-                <h3 className="font-poppins font-regular text-lg text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
+            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-lg border border-gray-300 overflow-hidden">
+              <div className="p-2.5 border-b border-white/20">
+                <h3 className="font-poppins font-regular text-sm text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
                   Filter & Sort
                 </h3>
               </div>
 
-              <div className="p-4 space-y-6">
+              <div className="p-2.5 space-y-3">
                 {/* Product Category (Bond/Seal/Tape) */}
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-semibold text-white">Product Category</h4>
+                    <h4 className="text-xs font-semibold text-white">Product Category</h4>
                   </div>
-                  <div className="grid grid-cols-1 gap-2">
+                  <div className="grid grid-cols-1 gap-1.5">
                     {(['bond','seal','tape'] as const).map(line => (
                       <button
                         key={line}
@@ -221,11 +241,11 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                           setSelectedLine(line);
                           setSelectedChemistries([]);
                         }}
-                        className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden ${
+                        className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden ${
                           selectedLine === line ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
-                        <span className="text-xs xl:text-sm font-medium capitalize">{line}</span>
+                        <span className="text-xs font-medium capitalize">{line}</span>
                         <span className="text-xs opacity-70">({categoryCounts[line] || 0})</span>
                       </button>
                     ))}
@@ -233,16 +253,16 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                 </div>
 
                 {/* Name Sort */}
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <div className="flex items-center">
-                    <ArrowUpDown className="text-white h-4 w-4 mr-2" />
-                    <h4 className="text-sm font-semibold text-white">Sort By Name</h4>
+                    <ArrowUpDown className="text-white h-3 w-3 mr-1.5" />
+                    <h4 className="text-xs font-semibold text-white">Sort By Name</h4>
                   </div>
 
-                  <div className="flex rounded-lg overflow-hidden">
+                  <div className="flex rounded-md overflow-hidden">
                     <button
                       onClick={() => setNameSort('asc')}
-                      className={`flex-1 flex items-center justify-center gap-1 py-2 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                      className={`flex-1 flex items-center justify-center gap-1 py-1.5 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
                     >
                       <ChevronUp className="h-3 w-3" />
                       <span className="text-xs font-medium">A-Z</span>
@@ -250,7 +270,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
                     <button
                       onClick={() => setNameSort('desc')}
-                      className={`flex-1 flex items-center justify-center gap-1 py-2 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                      className={`flex-1 flex items-center justify-center gap-1 py-1.5 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
                     >
                       <ChevronDown className="h-3 w-3" />
                       <span className="text-xs font-medium">Z-A</span>
@@ -260,23 +280,23 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
                 {/* Chemistry Filter */}
                 {chemistryTypes.length > 0 && (
-                  <div className="space-y-3 border-t border-white/20 pt-5">
+                  <div className="space-y-2 border-t border-white/20 pt-3">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center">
-                        <FlaskConical className="text-white h-4 w-4 mr-2" />
-                        <h4 className="text-sm font-semibold text-white">Chemistry</h4>
+                        <FlaskConical className="text-white h-3 w-3 mr-1.5" />
+                        <h4 className="text-xs font-semibold text-white">Chemistry</h4>
                       </div>
                       {selectedChemistries.length > 0 && (
                         <button
                           onClick={() => setSelectedChemistries([])}
-                          className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-1 px-2 rounded-md"
+                          className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1.5 rounded-md"
                         >
                           Clear
                         </button>
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-1.5">
                       {chemistryTypes.map(chemistry => {
                         const isSelected = selectedChemistries.includes(chemistry);
                         const count = industryProducts.filter(p => p.chemistry === chemistry).length;
@@ -288,19 +308,23 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                               else setSelectedChemistries([...selectedChemistries, chemistry]);
                             }}
                             disabled={count === 0 && !isSelected}
-                            className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden border ${
+                            className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden border ${
                               isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-white/10 text-white hover:bg-white/20 hover:shadow-md border-white/20'
                             } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
                           >
-                            <div className="flex items-center gap-2 min-w-0 flex-1">
-                              <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                            <div className="flex items-center gap-1.5 min-w-0 flex-1">
+                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
                                 <img 
-                                  src={CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]} 
+                                  src={getChemistryIcon(chemistry)} 
                                   alt={chemistry}
-                                  className="w-6 h-6 object-contain chemistry-icon"
+                                  className="w-5 h-5 object-contain chemistry-icon"
+                                  onError={(e) => {
+                                    // Fallback to MS icon if image fails to load
+                                    e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
+                                  }}
                                 />
                               </div>
-                              <span className="text-xs xl:text-sm font-medium truncate">{chemistry}</span>
+                              <span className="text-xs font-medium truncate">{chemistry}</span>
                             </div>
                             <span className="text-xs opacity-70">({count})</span>
                           </button>
@@ -315,12 +339,12 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
             {/* Mobile Filter Button */}
             <div className="lg:hidden sticky bottom-4 w-full flex justify-center z-30">
               <button
-                className="bg-[#F2611D] hover:bg-[#E55B1C] rounded-full px-6 py-3 shadow-lg transition-colors flex items-center justify-center gap-2"
+                className="bg-[#F2611D] hover:bg-[#E55B1C] rounded-full px-4 md:px-5 py-2 md:py-2.5 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
                 aria-label="Filter"
                 onClick={() => setIsFilterDialogOpen(true)}
               >
-                <Filter className="text-white h-5 w-5" />
-                <span className="text-white font-medium">Filter & Sort</span>
+                <Filter className="text-white h-4 w-4" />
+                <span className="text-white font-bold text-xs sm:text-sm">Filter & Sort</span>
               </button>
             </div>
           </aside>
@@ -341,7 +365,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
             {/* Product Grid or Empty State */}
             {industryProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)' }}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4" style={{ gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
                 <AnimatePresence mode="popLayout">
                   {industryProducts.map((product, idx) => (
                     <motion.div
@@ -354,42 +378,27 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                       className="group"
                     >
                       <div 
-                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg"
+                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg"
                       >
-                        {/* Desktop: Badge above image */}
-                        <div className="absolute top-3 left-3 z-30 hidden md:block">
-                          <div 
-                            className="px-4 py-2 rounded-full text-2xl font-bold uppercase tracking-wide flex items-center gap-2 bg-transparent text-white"
-                          >
-                            {getIndustryLogo(product.industry?.[0] || '') ? (
-                              <img 
-                                src={getIndustryLogo(product.industry?.[0] || '')} 
-                                alt={`${product.industry?.[0] || ''} icon`}
-                                className="h-10 w-10 md:h-12 md:w-12 object-contain"
-                              />
-                            ) : (
-                              <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
-                            )}
-                            <span className="capitalize">{product.industry?.[0] || ''}</span>
-                          </div>
-                        </div>
 
-                        {/* Desktop: Product Image - Full height to show whole image */}
-                        <div className="absolute inset-0 hidden md:block" style={{ transform: 'translateY(-7.5%) scale(0.74)' }}>
-                          {/* Image Skeleton Loading State */}
-                          {!imageLoadedStates[product.id] && (
+                        {/* Desktop: Product Image - Larger and zoomed in with space for text */}
+                        <div className="absolute inset-0 hidden md:block pb-24" style={{ transform: 'translateY(-3%) scale(0.85)' }}>
+                          {/* Image Skeleton Loading State - show when loading or on error */}
+                          {(!imageLoadedStates[product.id] || imageErrorStates[product.id]) && (
                             <ImageSkeleton />
                           )}
                           
-                          <img 
-                            src={product.imageUrl} 
-                            alt={product.name}
-                            className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
-                              imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
-                            }`}
-                            onLoad={() => handleImageLoad(product.id)}
-                            onError={() => handleImageError(product.id)}
-                          />
+                          {!imageErrorStates[product.id] && (
+                            <img 
+                              src={product.imageUrl} 
+                              alt={product.name}
+                              className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
+                                imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
+                              }`}
+                              onLoad={() => handleImageLoad(product.id)}
+                              onError={() => handleImageError(product.id)}
+                            />
+                          )}
                         </div>
 
                         {/* Mobile: Left side with image and basic info */}
@@ -402,20 +411,22 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                         >
                           {/* Mobile: Product Image */}
                           <div className="w-[100px] h-[100px] rounded-xl overflow-hidden bg-transparent relative flex items-center justify-center">
-                            {/* Image Skeleton Loading State */}
-                            {!imageLoadedStates[product.id] && (
+                            {/* Image Skeleton Loading State - show when loading or on error */}
+                            {(!imageLoadedStates[product.id] || imageErrorStates[product.id]) && (
                               <ImageSkeleton className="rounded-xl" />
                             )}
                             
-                            <img 
-                              src={product.imageUrl} 
-                              alt={product.name}
-                              className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
-                                imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
-                              }`}
-                              onLoad={() => handleImageLoad(product.id)}
-                              onError={() => handleImageError(product.id)}
-                            />
+                            {!imageErrorStates[product.id] && (
+                              <img 
+                                src={product.imageUrl} 
+                                alt={product.name}
+                                className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
+                                  imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
+                                }`}
+                                onLoad={() => handleImageLoad(product.id)}
+                                onError={() => handleImageError(product.id)}
+                              />
+                            )}
                           </div>
                           
                           {/* Mobile: Product Info */}
@@ -426,55 +437,39 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                             <p className="text-xs text-white line-clamp-2">
                               {toTitleCase(product.name.split('–')[1]?.trim() || product.description || '')}
                             </p>
-                            {/* Mobile: Industry Badge */}
-                            <div 
-                              className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-base font-bold uppercase tracking-wide mt-2 bg-gray-100 text-gray-800"
-                            >
-                              {getIndustryLogo(product.industry?.[0] || '') ? (
-                                <img 
-                                  src={getIndustryLogo(product.industry?.[0] || '')} 
-                                  alt={`${product.industry?.[0] || ''} icon`}
-                                  className="h-8 w-8 object-contain"
-                                />
-                              ) : (
-                                <span className="capitalize">{product.industry?.[0]?.charAt(0) || ''}</span>
-                              )}
-                              <span className="text-xs">{product.industry?.[0] || ''}</span>
-                            </div>
                           </div>
                         </div>
 
                         {/* Desktop: Content Section with title and description */}
-                        <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
-                          <div className="space-y-1">
-                            <h3 className="text-base font-poppins font-bold leading-tight line-clamp-4 text-white">
+                        <div className="hidden md:block p-2.5 absolute bottom-0 left-0 right-0">
+                          <div className="space-y-0.5">
+                            <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
                               {product.name.split('–')[0].trim()}
                             </h3>
-                            <p className="text-sm text-white line-clamp-3 min-h-[3.75rem]">
+                            <p className="text-xs text-white line-clamp-2">
                               {toTitleCase(product.name.split('–')[1]?.trim() || product.description || '')}
                             </p>
                             
                             {/* Button Row */}
-                            <div className="flex gap-2">
+                            <div className="flex gap-1.5 mt-2">
                               {/* Quick View Button */}
                               <button
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   onProductSelect(product);
                                 }}
-                                className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-[white] hover:bg-[#477197] text-[white] hover:text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
+                                className="flex-1 inline-flex items-center justify-center border-2 border-[white] hover:bg-[#477197] text-[white] hover:text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
                               >
-                                <span>Quick View</span>
+                                Quick View
                               </button>
                               
                               {/* Product Details Button */}
                               <Link
                                 to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`}
                                 onClick={(e) => e.stopPropagation()}
-                                className="flex-1 inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
+                                className="flex-1 inline-flex items-center justify-center bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
                               >
-                                <span>Product Details</span>
-                                <ExternalLink className="h-3 w-3" />
+                                Product Details
                               </Link>
                             </div>
                           </div>
@@ -497,10 +492,9 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                           <Link
                             to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
+                            className="flex items-center justify-center bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
                           >
-                            <span>Details</span>
-                            <ExternalLink className="h-2.5 w-2.5" />
+                            Details
                           </Link>
                         </div>
                       </div>
@@ -522,7 +516,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                     setSelectedChemistries([]);
                     setSelectedLine('bond');
                   }}
-                  className="px-6 py-2 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-sm font-medium transition-all duration-300"
+                  className="px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   Clear All Filters
                 </button>
@@ -635,7 +629,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
                   {/* Apply Button */}
                   <div className="pt-2 pb-6">
-                    <button onClick={() => setIsFilterDialogOpen(false)} className="w-full py-3 bg-[#F2611D] hover:bg-[#E55B1C] text-white font-medium rounded-xl transition-colors">
+                    <button onClick={() => setIsFilterDialogOpen(false)} className="w-full px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#E55B1C] text-white font-bold rounded-full text-xs sm:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                       Apply Filters
                     </button>
                   </div>

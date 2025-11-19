@@ -253,11 +253,9 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
           >
             <h2 
               id={`${industry.id}-xray-explorer`}
-              className="text-base md:text-4xl font-bold text-[#1B3764] mb-4"
+              className="font-normal font-poppins text-[#1B3764] mb-4 leading-tight"
               style={{ 
-                fontFamily: typography.headings.fontFamily, 
-                fontWeight: typography.headings.fontWeight,
-                lineHeight: typography.headings.lineHeight
+                fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)'
               }}
             >
               Product Application View

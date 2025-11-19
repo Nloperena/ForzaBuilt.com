@@ -20,11 +20,10 @@ const IndustryTitleSection: React.FC<IndustryTitleSectionProps> = ({ title, logo
   };
 
   return (
-    <section className="relative z-[20]" style={{ background: 'linear-gradient(#ffffff 50%, #ffffff 50%)', paddingTop: 'clamp(4rem, 8vw, 12rem)' }}>
+    <section className="relative z-[20] bg-white w-full" style={{ padding: 'clamp(1.5rem, 3vw, 3rem) clamp(1rem, 2vw, 2.5rem)', margin: 0 }}>
       <motion.div 
         className="w-full flex items-center justify-center"
         style={{ 
-          marginTop: '-5rem',
           paddingLeft: 'clamp(1rem, 2vw, 2.5rem)',
           paddingRight: 'clamp(1rem, 2vw, 2.5rem)',
           gap: 'clamp(1rem, 2vw, 2rem)'

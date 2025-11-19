@@ -104,7 +104,7 @@ const RecentNewsArticlesSection = () => {
         >
           <Link
             to="/blog"
-            className="bg-[#F2611D] hover:bg-[#E6540D] text-white font-poppins font-medium px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm md:text-base transition-colors duration-300 shadow-lg hover:shadow-xl"
+            className="bg-[#F2611D] hover:bg-[#E6540D] text-white font-poppins font-bold px-4 md:px-5 py-2 md:py-2.5 rounded-full text-xs sm:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
             View All
           </Link>

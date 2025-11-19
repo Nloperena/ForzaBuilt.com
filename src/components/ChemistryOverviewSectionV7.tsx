@@ -147,7 +147,11 @@ const chemistryData: ChemistryData[] = [
   }
 ];
 
-const ChemistryOverviewSectionV7: React.FC = () => {
+interface ChemistryOverviewSectionV7Props {
+  showBanner?: boolean;
+}
+
+const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({ showBanner = true }) => {
   const [selectedChemistry, setSelectedChemistry] = useState<ChemistryData | null>(null);
   const [hoveredChemistry, setHoveredChemistry] = useState<string | null>(null);
   const [shouldStartTimer, setShouldStartTimer] = useState(false);
@@ -203,7 +207,7 @@ const ChemistryOverviewSectionV7: React.FC = () => {
 
   return (
     <>
-      <ExperienceBetterBanner />
+      {showBanner && <ExperienceBetterBanner />}
       <section className="w-full relative overflow-hidden
                         pt-5 sm:pt-6 md:pt-8 lg:pt-10
                         pb-3 sm:pb-4 md:pb-5 lg:pb-6

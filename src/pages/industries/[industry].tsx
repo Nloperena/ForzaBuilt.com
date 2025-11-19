@@ -5,7 +5,7 @@ import HeaderV2 from '../../components/Header/HeaderV2';
 import FooterV2 from '../../components/FooterV2';
 import HybridStackableCards from '../../components/HybridStackableCards';
 import IndustryXRaySections from '../../components/xray/IndustryXRaySections';
-import ChemistryOverviewSectionV6 from '@/components/ChemistryOverviewSectionV6';
+import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
 import IndustryBrochureSection from '../../components/IndustryBrochureSection';
 import NewsletterSection from '@/components/NewsletterSection';
 import IndustryHeroBanner from '../../components/industries/IndustryHeroBanner';
@@ -25,6 +25,8 @@ const IndustryPage = () => {
 
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [heroLayout, setHeroLayout] = useState<'flex' | 'overlay'>('flex');
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
   
   const handleProductSelect = (product: any) => {
     setSelectedProduct(product);
@@ -60,6 +62,28 @@ const IndustryPage = () => {
 
   const validIndustryKey = getIndustryKey(industryData.title);
 
+  // Intersection observer to detect when hero section is visible
+  const heroRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroVisible(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="bg-[#115B87] min-h-screen flex flex-col relative">
       <HeaderV2 />
@@ -73,18 +97,67 @@ const IndustryPage = () => {
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="w-full relative"
         >
-          {/* Hero Banner */}
-          <IndustryHeroBanner 
-            videoUrl={industryData.videoUrl} 
-            industryTitle={industryData.title}
-          />
+          {/* Hero Layout Toggle Button */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={isHeroVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="fixed top-20 right-4 z-50"
+            style={{ pointerEvents: isHeroVisible ? 'auto' : 'none' }}
+          >
+            {/* Toggle Switch */}
+            <div className="bg-gray-300 rounded-full p-1 w-24 cursor-pointer shadow-lg transition-all duration-300 hover:shadow-xl" onClick={() => setHeroLayout(heroLayout === 'flex' ? 'overlay' : 'flex')}>
+              <motion.div
+                layout
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-300 ${
+                  heroLayout === 'flex' 
+                    ? 'bg-white text-[#2c476e]' 
+                    : 'bg-[#F2611D] text-white'
+                }`}
+              >
+                {heroLayout === 'flex' ? 'Flex' : 'Over'}
+              </motion.div>
+            </div>
+          </motion.div>
 
-          {/* Title Section */}
-          <IndustryTitleSection 
-            title={industryData.title}
-            logo={industryData.logo}
-            color={industryData.color || '#1B3764'}
-              />
+          {/* Hero Video and Title Banner Container - FLEX LAYOUT */}
+          <div ref={heroRef}>
+            {heroLayout === 'flex' && (
+              <div className="relative w-full flex flex-col overflow-hidden" style={{ height: '100vh', minHeight: '100vh' }}>
+              {/* Hero Banner - Flex to fill available space */}
+              <div className="flex-1 overflow-hidden">
+                <IndustryHeroBanner 
+                  videoUrl={industryData.videoUrl} 
+                  industryTitle={industryData.title}
+                  variant="simple"
+                />
+              </div>
+
+              {/* Title Section - Fixed height at bottom, flex-shrink-0 to prevent shrinking */}
+              <div className="flex-shrink-0 z-[10]">
+                <IndustryTitleSection 
+                  title={industryData.title}
+                  logo={industryData.logo}
+                  color={industryData.color || '#1B3764'}
+                />
+              </div>
+            </div>
+          )}
+
+            {/* Hero Video and Title Banner Container - OVERLAY LAYOUT (Full viewport video with white text overlay at bottom) */}
+            {heroLayout === 'overlay' && (
+              <div className="relative w-full overflow-hidden" style={{ height: '100vh', minHeight: '100vh' }}>
+                <IndustryHeroBanner 
+                  videoUrl={industryData.videoUrl} 
+                  industryTitle={industryData.title}
+                  logo={industryData.logo}
+                  color={industryData.color || '#1B3764'}
+                  variant="overlay"
+                />
+              </div>
+            )}
+          </div>
 
       {/* Dynamic Industry Headings Section */}
           <IndustryHeadingsSection industryTitle={industryData.title} />
@@ -108,7 +181,7 @@ const IndustryPage = () => {
 
           {/* Chemistries Section */}
           <div className="relative z-[30]">
-            <ChemistryOverviewSectionV6 showBanner={false} />
+            <ChemistryOverviewSectionV7 showBanner={false} />
       </div>
 
       {/* Industry Brochure Section */}
