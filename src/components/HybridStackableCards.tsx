@@ -43,7 +43,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   industry = 'industrial',
   title,
   subtitle,
-  maxCards = 2 
+  maxCards = 3 
 }) => {
   const [scrollY, setScrollY] = useState(0);
   const [containerTop, setContainerTop] = useState(0);
@@ -176,7 +176,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Unparalleled process efficiency"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/05/Ford-side-angle-1.png"
+            image: "/img/transportation/RV Bus Exploded-NEW.svg"
           },
           {
             id: 'transportation-trailer',
@@ -190,7 +190,21 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Custom-formulated requirements"
             ],
             color: getCardGradient(1),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/05/trailer-horse.png"
+            image: "/img/transportation/RV Bus Exploded-NEW.svg"
+          },
+          {
+            id: 'transportation-fleet',
+            title: "Trailer & Transportation Solutions",
+            subheading: "Fleet-ready systems engineered for uptime",
+            description: "Comprehensive adhesive, tape, and sealant systems that keep fleets rolling. From trailers to specialty vehicles, we deliver application-specific chemistries optimized for throughput, consistency, and regulatory compliance.",
+            listItems: [
+              "Fleet-focused chemistries for repeatable builds",
+              "Dialed-in green strength & open times for faster production",
+              "Solutions vetted for DOT, FMVSS, and OEM requirements",
+              "North American manufacturing & technical support"
+            ],
+            color: getCardGradient(0),
+            image: "https://forzabuilt.com/wp-content/uploads/2023/05/Ford-box-truck.png"
           }
         ];
         
@@ -544,9 +558,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                       <div className="space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col justify-center h-full">
                         {/* Heading */}
                         <h2 
-                          className="font-normal font-poppins text-white leading-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl"
+                          className="font-normal font-poppins text-white leading-tight"
                           style={{ 
-                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+                            fontSize: 'clamp(1rem, 2.5vw, 2rem)'
                           }}
                         >
                           {card.title}

@@ -84,7 +84,7 @@ const IndustryPage = () => {
           <div className="relative z-[30]">
             <HybridStackableCards 
               industry={validIndustryKey}
-              maxCards={2}
+              maxCards={3}
             />
           </div>
 
