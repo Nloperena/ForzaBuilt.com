@@ -166,7 +166,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         return [
           {
             id: 'transportation-vehicle',
-            title: "Vehicle Integrity & Performance",
+            title: "Purpose-Built Performance",
             subheading: "Custom-formulated transportation solutions",
             description: "Unparalleled solutions that ensure vehicle integrity and watertight sealing over the long haul with cutting-edge chemistries and technologies.",
             listItems: [
@@ -180,7 +180,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           },
           {
             id: 'transportation-trailer',
-            title: "Trailer & Transportation Solutions",
+            title: "Guaranteed Strength",
             subheading: "Rugged solutions for demanding transportation",
             description: "Tailor-made solutions rugged enough to meet the most demanding trailer & transportation needs while remaining simple and intuitive for manufacturing.",
             listItems: [

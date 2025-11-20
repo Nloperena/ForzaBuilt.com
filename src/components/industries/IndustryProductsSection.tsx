@@ -296,7 +296,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-1.5">
+                    <div className="flex flex-col gap-2">
                       {chemistryTypes.map(chemistry => {
                         const isSelected = selectedChemistries.includes(chemistry);
                         const count = industryProducts.filter(p => p.chemistry === chemistry).length;
@@ -308,23 +308,25 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                               else setSelectedChemistries([...selectedChemistries, chemistry]);
                             }}
                             disabled={count === 0 && !isSelected}
-                            className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden border ${
+                            className={`w-full flex items-center justify-between p-2 rounded-md transition-all overflow-hidden border ${
                               isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-white/10 text-white hover:bg-white/20 hover:shadow-md border-white/20'
                             } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
                           >
-                            <div className="flex items-center gap-1.5 min-w-0 flex-1">
-                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
+                            <div className="flex items-center gap-2 min-w-0 flex-1 text-left">
+                              <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
                                 <img 
                                   src={getChemistryIcon(chemistry)} 
                                   alt={chemistry}
-                                  className="w-5 h-5 object-contain chemistry-icon"
+                                  className="w-6 h-6 object-contain chemistry-icon"
                                   onError={(e) => {
                                     // Fallback to MS icon if image fails to load
                                     e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
                                   }}
                                 />
                               </div>
-                              <span className="text-xs font-medium truncate">{chemistry}</span>
+                              <span className="text-xs font-medium break-words whitespace-normal leading-snug">
+                                {chemistry.replace(/_/g, ' ')}
+                              </span>
                             </div>
                             <span className="text-xs opacity-70">({count})</span>
                           </button>
