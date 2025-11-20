@@ -431,7 +431,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     }
 
     const isDesktopOrTablet = window.innerWidth >= 768;
-    const cardHeight = window.innerHeight * (isDesktopOrTablet ? 1.0 : 0.42); // Shorter height to reduce idle scroll
+    const cardHeight = window.innerHeight * (isDesktopOrTablet ? 0.75 : 0.4); // Shorter height to reduce idle scroll
     const cardStart = containerTop + (cardIndex * cardHeight);
     
     const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / cardHeight));
@@ -457,26 +457,28 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       {/* Stacking Cards with Header Inside Sticky Container */}
       <div className="relative">
         {cardData.map((card, index) => {
-          const { progress, nextCardProgress, isVisible } = getCardProgress(index);
-          const isLastCard = index === cardData.length - 1;
+          const { progress } = getCardProgress(index);
           
-          // Transform calculations - cards align exactly without layered offset/scale
-          let currentTranslateY = progress * -60;
-          if (isLastCard) {
-            currentTranslateY += nextCardProgress * 60; // Settle last card back to final position
-          }
+          // Ensure progress is clamped between 0-1 for smooth stacking
+          const clampedProgress = Math.max(0, Math.min(1, progress));
+          
+          // Stage each subsequent card slightly lower so it's always visible,
+          // then slide it perfectly into place over the first card.
+          const baseOffset = index * 80; // distance between card layers
+          const currentTranslateY = index === 0 
+            ? 0 
+            : baseOffset * (1 - clampedProgress);
+          
           const transformString = `translateY(${currentTranslateY}px)`;
-          // Cards should never vanish - always show once visible
-          const opacity = isVisible ? 1 : (index === 0 ? 1 : 0); // First card always visible, others show when scrolled to
           const blurAmount = 0; // No blur
           
           return (
             <div
               key={card.id}
-              className={`sticky w-full h-screen flex flex-col px-2 sm:px-4 top-0`}
+              className={`sticky w-full min-h-[70vh] flex flex-col px-2 sm:px-4 top-0`}
               style={{
                 zIndex: 50 + index,
-                opacity: opacity, // Ensure opacity is applied at card level too
+                opacity: 1,
               }}
             >
               {/* Header Section - Only show on first card, positioned higher */}
@@ -507,8 +509,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 </div>
               )}
               
-              {/* Card container - flex-1 to take remaining space and center */}
-              <div className="flex-1 flex items-center justify-center">
+              {/* Card container - center within viewport while keeping title close */}
+              <div className="flex-1 flex items-center justify-center pt-4 pb-4">
 
               <div 
                 className="w-full max-w-none"
@@ -542,10 +544,9 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                       <div className="space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col justify-center h-full">
                         {/* Heading */}
                         <h2 
-                          className="font-normal font-poppins text-white leading-tight"
+                          className="font-normal font-poppins text-white leading-tight text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl"
                           style={{ 
-                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-                            fontSize: 'clamp(1rem, 2.5vw, 2rem)'
+                            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)'
                           }}
                         >
                           {card.title}
@@ -600,7 +601,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         })}
         
         {/* Spacer for scroll height */}
-        <div style={{ height: `${cardData.length * 25}vh` }} />
+        <div style={{ height: `${cardData.length * 15}vh` }} />
       </div>
 
       {/* Product Modal with Wipe Animation */}
