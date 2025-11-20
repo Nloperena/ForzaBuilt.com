@@ -431,7 +431,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     }
 
     const isDesktopOrTablet = window.innerWidth >= 768;
-    const cardHeight = window.innerHeight * (isDesktopOrTablet ? 0.6 : 0.5); // Slightly longer for better transitions
+    const cardHeight = window.innerHeight * (isDesktopOrTablet ? 1.0 : 0.42); // Shorter height to reduce idle scroll
     const cardStart = containerTop + (cardIndex * cardHeight);
     
     const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / cardHeight));
@@ -458,17 +458,14 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       <div className="relative">
         {cardData.map((card, index) => {
           const { progress, nextCardProgress, isVisible } = getCardProgress(index);
+          const isLastCard = index === cardData.length - 1;
           
-          // Transform calculations (same as original)
-          const currentScale = 1 - progress * 0.05;
-          const baseOffset = index > 0 ? 48 : 0; // 48px = 12rem (top-12) - maintain offset for subsequent cards
-          const currentTranslateY = progress * -50;
-          // Maintain offset throughout scroll: apply offset consistently, but reduce upward movement
-          // so the card maintains its relative position to the first card
-          const offsetTranslateY = index > 0 
-            ? baseOffset + (currentTranslateY * 0.7) // Maintain most of offset, reduce upward movement slightly
-            : currentTranslateY;
-          const transformString = `translateY(${offsetTranslateY}px) scale(${currentScale})`;
+          // Transform calculations - cards align exactly without layered offset/scale
+          let currentTranslateY = progress * -60;
+          if (isLastCard) {
+            currentTranslateY += nextCardProgress * 60; // Settle last card back to final position
+          }
+          const transformString = `translateY(${currentTranslateY}px)`;
           // Cards should never vanish - always show once visible
           const opacity = isVisible ? 1 : (index === 0 ? 1 : 0); // First card always visible, others show when scrolled to
           const blurAmount = 0; // No blur
@@ -476,9 +473,9 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           return (
             <div
               key={card.id}
-              className={`sticky w-full h-screen flex flex-col px-2 sm:px-4 ${index === 0 ? 'top-0' : 'top-12'}`}
+              className={`sticky w-full h-screen flex flex-col px-2 sm:px-4 top-0`}
               style={{
-                zIndex: 40 + index,
+                zIndex: 50 + index,
                 opacity: opacity, // Ensure opacity is applied at card level too
               }}
             >
@@ -603,7 +600,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         })}
         
         {/* Spacer for scroll height */}
-        <div style={{ height: `${cardData.length * 60}vh` }} />
+        <div style={{ height: `${cardData.length * 25}vh` }} />
       </div>
 
       {/* Product Modal with Wipe Animation */}
