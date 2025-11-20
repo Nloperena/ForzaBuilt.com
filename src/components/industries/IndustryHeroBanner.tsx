@@ -50,7 +50,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
   // Simple variant - full screen video with title and subtitle overlay (like homepage)
   if (variant === 'simple') {
     return (
-      <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0">
+      <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
         {/* Video Skeleton Loading State */}
         {!videoLoaded && (
           <VideoSkeleton />
@@ -117,7 +117,6 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
                     alt={`${industryTitle} icon`}
                     className="w-auto h-full object-contain transition-opacity duration-500"
                     style={{ 
-                      filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.8))',
                       opacity: iconLoaded ? 1 : 0
                     }}
                     loading="lazy"
@@ -137,7 +136,6 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
               style={{ 
                 fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
                 maxWidth: '1100px',
-                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5)',
                 marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
               }}
               initial={{ opacity: 0, y: 20 }}
@@ -206,7 +204,6 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
           <h1
             className="font-black mb-0 leading-none font-kallisto text-white"
             style={{ 
-              textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
               fontSize: 'clamp(2rem, 5vw + 0.5rem, 6rem)'
             }}
           >
@@ -220,7 +217,6 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
                 alt={`${industryTitle} icon`}
                 className="w-auto h-full object-contain transition-opacity duration-500"
                 style={{ 
-                  filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.8))',
                   opacity: iconLoaded ? 1 : 0
                 }}
                 loading="lazy"

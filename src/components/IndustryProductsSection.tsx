@@ -139,7 +139,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black font-kallisto leading-none text-white break-words">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black font-kallisto leading-none text-white break-words pb-[1.3rem]">
             {industryData.title} Products
           </h2>
         </motion.div>
@@ -364,8 +364,8 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                     </div>
 
                     {/* Desktop: Product Title between image and content */}
-                    <div className="hidden md:block px-4 py-3 absolute bottom-28 left-0 right-0">
-                      <h3 className="text-3xl font-kallisto font-black leading-tight line-clamp-2 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                    <div className="hidden md:block px-4 py-3 absolute bottom-[8.5rem] left-0 right-0">
+                      <h3 className="text-2xl font-kallisto font-black leading-tight line-clamp-1 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                         {product.name.split('–')[0].trim()}
                       </h3>
                     </div>
@@ -388,7 +388,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                       </div>
                       
                       {/* Mobile: Product Info */}
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 space-y-0">
                         <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                           {product.name.split('–')[0].trim()}
                         </h3>
@@ -420,8 +420,8 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
 
                     {/* Desktop: Content Section */}
                     <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
-                      <div className="space-y-2">
-                        <p className="text-sm text-white/90 line-clamp-3 min-h-[3.75rem]">
+                      <div className="space-y-0">
+                        <p className="text-sm text-white/90 line-clamp-2 min-h-[3.75rem]">
                           {product.name.split('–')[1]?.trim() || product.description}
                         </p>
                         
@@ -435,7 +435,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                               setIsModalOpen(true);
                               onProductSelect?.(product);
                             }}
-                            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 border border-white/30"
+                            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-0.5 py-[0.05rem] text-[0.4rem] font-medium transition-all duration-300 border border-white/30"
                           >
                             <span>Quick View</span>
                           </button>
@@ -444,10 +444,10 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                           <Link
                             to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.slug || product.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 border border-white/30"
+                            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-0.5 py-[0.05rem] text-[0.4rem] font-medium transition-all duration-300 border border-white/30"
                           >
-                            <span>Product Details</span>
-                            <ExternalLink className="h-3 w-3" />
+                            <span>Details</span>
+                            <ExternalLink className="h-2 w-2" />
                           </Link>
                         </div>
                       </div>
@@ -463,7 +463,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                           setIsModalOpen(true);
                           onProductSelect?.(product);
                         }}
-                        className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
+                        className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-0.5 py-[0.05rem] text-[0.35rem] font-medium transition-all duration-300 border border-white/30"
                       >
                         <span>Quick View</span>
                       </button>
@@ -472,10 +472,10 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                       <Link
                         to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.slug || product.id}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
+                        className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-0.5 py-[0.05rem] text-[0.35rem] font-medium transition-all duration-300 border border-white/30"
                       >
                         <span>Details</span>
-                        <ExternalLink className="h-2.5 w-2.5" />
+                        <ExternalLink className="h-2 w-2" />
                       </Link>
                     </div>
                   </div>
@@ -485,118 +485,190 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
           </div>
         </div>
 
-        {/* Mobile Filter Dialog */}
+        {/* Filter Dialog (Mobile) */}
         <AnimatePresence>
           {isFilterDialogOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 z-50 flex items-end lg:hidden"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              className="fixed inset-0 z-40 bg-black/50 flex items-center justify-center p-4"
               onClick={() => setIsFilterDialogOpen(false)}
             >
               <motion.div
-                initial={{ y: '100%' }}
-                animate={{ y: 0 }}
-                exit={{ y: '100%' }}
-                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                className="bg-[#115B87] w-full rounded-t-xl max-h-[90vh] overflow-y-auto"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20 p-6 w-full max-w-md"
                 onClick={e => e.stopPropagation()}
               >
-                <div className="sticky top-0 bg-[#115B87] pt-3 pb-2 px-4 flex justify-between items-center border-b border-white/10">
-                  <h3 className="text-white text-lg font-bold">Filter & Sort</h3>
-                  <button onClick={() => setIsFilterDialogOpen(false)} className="p-2 rounded-full hover:bg-white/10">
-                    <X className="text-white h-5 w-5" />
-                  </button>
+                <h3 className="font-kallisto font-bold text-xl text-white mb-4" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
+                  Filter & Sort
+                </h3>
+
+                {/* Search Bar */}
+                <div className="mb-4">
+                  <div className="relative">
+                    <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 p-1.5 rounded-full">
+                      <Search className="text-white h-4 w-4" />
+                    </div>
+                    <input
+                      placeholder="Search products…"
+                      value={search}
+                      onChange={e => setSearch(e.target.value)}
+                      className="w-full bg-white/10 text-white placeholder-white/50 pl-12 py-3 text-sm border border-white/20 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/10 rounded-xl"
+                    />
+                    {search && (
+                      <button
+                        onClick={() => setSearch('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1.5 rounded-full transition-colors"
+                      >
+                        <X className="text-white h-3 w-3" />
+                      </button>
+                    )}
+                  </div>
                 </div>
 
-                <div className="p-4 space-y-6">
-                  {/* Search */}
-                  <div className="bg-white/15 backdrop-blur-md rounded-xl shadow-lg border border-white/20 p-3">
-                    <div className="relative">
-                      <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 p-1.5 rounded-full">
-                        <Search className="text-white h-4 w-4" />
-                      </div>
-                      <input
-                        placeholder="Search products…"
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        className="w-full bg-white/10 text-white placeholder-white/50 pl-12 py-3 text-sm border border-white/20 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/10 rounded-xl"
-                      />
-                      {search && (
-                        <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1.5 rounded-full transition-colors">
-                          <X className="text-white h-3 w-3" />
-                        </button>
-                      )}
-                    </div>
+                {/* Product Category */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-white/90 mb-2">Product Category</h4>
+                  <div className="grid grid-cols-1 gap-2">
+                    {(['bond','seal','tape'] as const).map(line => (
+                      <button
+                        key={line}
+                        onClick={() => setSelectedLine(line)}
+                        className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden ${
+                          selectedLine === line ? 'bg-[#F2611D] text-white' : 'bg-[#3f5275]/40 text-white/90 hover:bg-[#3f5275]/60'
+                        }`}
+                      >
+                        <span className="text-xs xl:text-sm font-medium capitalize">{line}</span>
+                        <span className="text-xs opacity-70">({categoryCounts[line] || 0})</span>
+                      </button>
+                    ))}
                   </div>
+                </div>
 
-                  {/* Sort */}
-                  <div className="bg-white/10 rounded-xl p-4 border border-white/10">
-                    <h4 className="text-white font-bold text-sm uppercase mb-3">Sort By</h4>
-                    <div className="flex gap-2">
-                      <button onClick={() => setNameSort('asc')} className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}>A-Z</button>
-                      <button onClick={() => setNameSort('desc')} className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}>Z-A</button>
-                    </div>
-                  </div>
+                {/* Sort By Name */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-white/90 mb-2">Sort By Name</h4>
+                  <div className="flex rounded-lg overflow-hidden">
+                    <button
+                      onClick={() => setNameSort('asc')}
+                      className={`flex-1 flex items-center justify-center gap-1 py-2 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-[#3f5275]/70 text-white/80 hover:bg-[#3f5275]'}`}
+                    >
+                      <ChevronUp className={`h-3 w-3 ${nameSort === 'asc' ? 'text-white' : 'text-white/70'}`} />
+                      <span className="text-xs font-medium">A-Z</span>
+                    </button>
 
-                  {/* Product Category */}
-                  <div className="bg-white/10 rounded-xl p-4 border border-white/10">
-                    <h4 className="text-white font-bold text-sm uppercase mb-3">Product Category</h4>
-                    <div className="grid grid-cols-3 gap-2">
-                      {(['bond','seal','tape'] as const).map(line => (
-                        <button
-                          key={line}
-                          onClick={() => setSelectedLine(line)}
-                          className={`py-2 px-3 rounded-lg text-center text-sm font-medium capitalize ${selectedLine === line ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
-                        >
-                          {line}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Chemistry Filter */}
-                  {chemistryTypes.length > 0 && (
-                    <div className="bg-white/10 rounded-xl p-4 border border-white/10">
-                      <h4 className="text-white font-bold text-sm uppercase mb-3">Chemistry</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {chemistryTypes.map(chemistry => {
-                          const isSelected = selectedChemistries.includes(chemistry);
-                          const count = industryProducts.filter(p => p.chemistry === chemistry).length;
-                          return (
-                            <button
-                              key={chemistry}
-                              onClick={() => {
-                                if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
-                                else setSelectedChemistries([...selectedChemistries, chemistry]);
-                              }}
-                              className={`flex items-center justify-between p-2 rounded-lg overflow-hidden ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
-                            >
-                              <div className="flex items-center gap-2 min-w-0 flex-1">
-                                <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                                  <img 
-                                    src={CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]} 
-                                    alt={chemistry}
-                                    className="w-5 h-5 object-contain chemistry-icon"
-                                  />
-                                </div>
-                                <span className="text-xs font-medium truncate">{chemistry}</span>
-                              </div>
-                              <span className="text-xs opacity-70 flex-shrink-0">({count})</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Apply Button */}
-                  <div className="pt-2 pb-6">
-                    <button onClick={() => setIsFilterDialogOpen(false)} className="w-full py-3 bg-[#F2611D] hover:bg-[#E55B1C] text-white font-medium rounded-xl transition-colors">
-                      Apply Filters
+                    <button
+                      onClick={() => setNameSort('desc')}
+                      className={`flex-1 flex items-center justify-center gap-1 py-2 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-[#3f5275]/70 text-white/80 hover:bg-[#3f5275]'}`}
+                    >
+                      <ChevronDown className={`h-3 w-3 ${nameSort === 'desc' ? 'text-white' : 'text-white/70'}`} />
+                      <span className="text-xs font-medium">Z-A</span>
                     </button>
                   </div>
+                </div>
+
+                {/* Chemistry Filter */}
+                {chemistryTypes.length > 0 && (
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-white/90 mb-2">Chemistry</h4>
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
+                      {chemistryTypes.map(chemistry => {
+                        const isSelected = selectedChemistries.includes(chemistry);
+                        const count = industryProducts.filter(p => p.chemistry === chemistry).length;
+                        return (
+                          <button
+                            key={chemistry}
+                            onClick={() => {
+                              if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
+                              else setSelectedChemistries([...selectedChemistries, chemistry]);
+                            }}
+                            disabled={count === 0 && !isSelected}
+                            className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden backdrop-blur-xl border border-white/20 ${
+                              isSelected ? 'bg-[#F2611D] text-white shadow-lg' : 'bg-[#3f5275]/40 text-white/90 hover:bg-[#3f5275]/60 hover:shadow-md'
+                            } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
+                          >
+                            <div className="flex items-center gap-2 min-w-0 flex-1">
+                              <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center">
+                                <img 
+                                  src={CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]} 
+                                  alt={chemistry}
+                                  className="w-8 h-8 object-contain chemistry-icon"
+                                />
+                              </div>
+                              <span className="text-xs xl:text-sm font-medium truncate">{chemistry}</span>
+                            </div>
+                            <span className="text-xs opacity-70">({count})</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                <div className="flex justify-end gap-2 mt-6">
+                  <button
+                    onClick={() => setIsFilterDialogOpen(false)}
+                    className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-colors"
+                  >
+                    Apply Filters
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSearch('');
+                      setSelectedLine('bond');
+                      setNameSort('asc');
+                      setSelectedChemistries([]);
+                      setIsFilterDialogOpen(false);
+                    }}
+                    className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-colors"
+                  >
+                    Clear All
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Product Modal */}
+        <AnimatePresence>
+          {isModalOpen && selectedProduct && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              onClick={() => setIsModalOpen(false)}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20 p-6 w-full max-w-md"
+                onClick={e => e.stopPropagation()}
+              >
+                <h3 className="font-kallisto font-bold text-2xl text-white mb-4" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
+                  {selectedProduct.name}
+                </h3>
+                <p className="text-base text-white/90 mb-4">{selectedProduct.description}</p>
+                <div className="flex items-center gap-2 text-white/90 text-sm mb-4">
+                  <FlaskConical className="h-4 w-4" />
+                  <span>{selectedProduct.chemistry}</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/90 text-sm mb-4">
+                  <ExternalLink className="h-4 w-4" />
+                  <a href={selectedProduct.imageUrl} target="_blank" rel="noopener noreferrer" className="underline">View Full Image</a>
+                </div>
+                <div className="flex justify-end gap-2 mt-6">
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-colors"
+                  >
+                    Close
+                  </button>
                 </div>
               </motion.div>
             </motion.div>
@@ -606,14 +678,3 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
     </section>
   );
 };
-
-export default IndustryProductsSection;
-
-
-
-
-
-
-
-
-
