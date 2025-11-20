@@ -165,46 +165,46 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       case 'transportation':
         return [
           {
-            id: 'transportation-vehicle',
-            title: "Purpose-Built Performance",
-            subheading: "Custom-formulated transportation solutions",
-            description: "Unparalleled solutions that ensure vehicle integrity and watertight sealing over the long haul with cutting-edge chemistries and technologies.",
+            id: 'transportation-purpose-built',
+            title: "Purpose-Built",
+            subheading: "Truck systems engineered for uptime",
+            description: "Unmatched bonding, sealing, and gasketing chemistries that keep vehicle integrity high and downtime low for the nation’s most demanding fleets.",
             listItems: [
-              "Vehicle integrity & watertight sealing",
-              "Precisely match demanding requirements",
-              "Cutting-edge delivery systems",
-              "Unparalleled process efficiency"
+              "Fleet-ready truck solutions",
+              "Optimized green strength and open times",
+              "Weatherproof sealing and gasketing",
+              "North American engineering support"
             ],
             color: getCardGradient(0),
-            image: "/img/transportation/RV Bus Exploded-NEW.svg"
+            image: "https://forzabuilt.com/wp-content/uploads/2023/05/Ford-side-angle-1.png"
           },
           {
-            id: 'transportation-trailer',
-            title: "Guaranteed Strength",
-            subheading: "Rugged solutions for demanding transportation",
-            description: "Tailor-made solutions rugged enough to meet the most demanding trailer & transportation needs while remaining simple and intuitive for manufacturing.",
+            id: 'transportation-performance',
+            title: "Performance",
+            subheading: "Precision trailer manufacturing",
+            description: "Tailor-made trailer solutions that balance throughput with quality using application-specific adhesive, tape, and sealant formulations.",
             listItems: [
-              "Full R&D formulations lab",
-              "Rugged transportation solutions",
-              "Simple manufacturing integration",
-              "Custom-formulated requirements"
+              "Dialed-in extrusion & spray systems",
+              "Fast takt-time material options",
+              "DOT & OEM specification alignment",
+              "Repeatable results across lines"
             ],
             color: getCardGradient(1),
-            image: "/img/transportation/RV Bus Exploded-NEW.svg"
+            image: "https://forzabuilt.com/wp-content/uploads/2023/05/trailer-horse.png"
           },
           {
-            id: 'transportation-fleet',
-            title: "Trailer & Transportation Solutions",
-            subheading: "Fleet-ready systems engineered for uptime",
-            description: "Comprehensive adhesive, tape, and sealant systems that keep fleets rolling. From trailers to specialty vehicles, we deliver application-specific chemistries optimized for throughput, consistency, and regulatory compliance.",
+            id: 'transportation-guaranteed-strength',
+            title: "Guaranteed Strength",
+            subheading: "RV & specialty vehicle expertise",
+            description: "Comprehensive RV, coach, and specialty vehicle chemistries that deliver structural strength, weather protection, and interior finish consistency.",
             listItems: [
-              "Fleet-focused chemistries for repeatable builds",
-              "Dialed-in green strength & open times for faster production",
-              "Solutions vetted for DOT, FMVSS, and OEM requirements",
-              "North American manufacturing & technical support"
+              "Structural bonding for slide-outs & frames",
+              "High-flex sealants for roofs and windows",
+              "Lightweight interior wall solutions",
+              "Backed by responsive technical teams"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/05/Ford-box-truck.png"
+            image: "/img/transportation/RV Bus Exploded-NEW.svg"
           }
         ];
         
@@ -371,6 +371,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   };
 
   const defaultCards = getIndustryCards();
+  const isTransportation = industry.toLowerCase() === 'transportation';
 
   const cardData = cards.length > 0 ? cards.slice(0, maxCards) : defaultCards.slice(0, maxCards);
 
@@ -536,9 +537,9 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 }}
               >
                 <div 
-                  className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 cursor-pointer hover:border-white/30 transition-all duration-300 hover:shadow-3xl hover:scale-[1.02] card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''}`}
+                  className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''} ${isTransportation ? '' : 'cursor-pointer hover:border-white/30 hover:shadow-3xl hover:scale-[1.02]'}`}
                   style={{ maxWidth: '1600px' }}
-                  onClick={() => openProductModal(card)}
+                  onClick={isTransportation ? undefined : () => openProductModal(card)}
                 >
                   <div className={`flex flex-col lg:flex-row h-auto lg:h-[320px] 1024px:h-[300px] xl:h-[380px] 1440px:h-[350px] ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                     {/* Image Section */}
