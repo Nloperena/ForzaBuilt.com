@@ -451,7 +451,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                             </p>
                             
                             {/* Button Row */}
-                            <div className="flex gap-1.5 mt-2">
+                            <div className="flex gap-1.5 mt-2 pt-2">
                               {/* Quick View Button */}
                               <button
                                 onClick={(e) => {
@@ -463,13 +463,13 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                                 Quick View
                               </button>
                               
-                              {/* Product Details Button */}
+                              {/* Details Button */}
                               <Link
                                 to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`}
                                 onClick={(e) => e.stopPropagation()}
                                 className="flex-1 inline-flex items-center justify-center bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
                               >
-                                Product Details
+                                Details
                               </Link>
                             </div>
                           </div>

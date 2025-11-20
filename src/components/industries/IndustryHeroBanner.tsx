@@ -50,7 +50,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
   // Simple variant - full screen video with title and subtitle overlay (like homepage)
   if (variant === 'simple') {
     return (
-      <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
+      <section className="relative h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
         {/* Video Skeleton Loading State */}
         {!videoLoaded && (
           <VideoSkeleton />
@@ -152,7 +152,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
 
   // Overlay variant - video with title overlay at bottom
   return (
-    <section className="relative w-full h-full overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] z-[5]">
+    <section className="relative w-full h-[60vh] md:h-[75vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] z-[5]">
       {/* Video Skeleton Loading State */}
       {!videoLoaded && (
         <VideoSkeleton />
