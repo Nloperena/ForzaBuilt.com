@@ -158,14 +158,16 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
 
   // Calculate tooltip position based on active hotspot
   const getTooltipPosition = (hotspot: Hotspot) => {
-    // Calculate center point of polygon
+    // Calculate center X point of polygon for horizontal centering
     const centerX = hotspot.points.reduce((sum, point, i) => 
       i % 2 === 0 ? sum + point : sum, 0) / (hotspot.points.length / 2);
-    const centerY = hotspot.points.reduce((sum, point, i) => 
-      i % 2 === 1 ? sum + point : sum, 0) / (hotspot.points.length / 2);
+    
+    // Find the bottom-most Y point of the polygon
+    const yPoints = hotspot.points.filter((_, i) => i % 2 === 1);
+    const bottomY = Math.max(...yPoints);
     
     const percentX = (centerX / xrayComponent.width) * 100;
-    const percentY = (centerY / xrayComponent.height) * 100;
+    const percentY = (bottomY / xrayComponent.height) * 100;
     
     return { x: percentX, y: percentY };
   };
@@ -387,22 +389,33 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
                     })}
                   </svg>
 
-                  {/* Product Tooltip - Positioned relative to active hotspot */}
-                  {activeHotspot && (
-                    <div 
-                      className="absolute pointer-events-none z-20"
-                      style={{
-                        left: `${getTooltipPosition(activeHotspot).x}%`,
-                        top: `${getTooltipPosition(activeHotspot).y}%`,
-                        transform: 'translate(-50%, -100%) translateY(-20px)',
-                      }}
-                    >
-                      <ProductTooltip 
-                        hotspot={activeHotspot}
-                        isPinned={false}
-                      />
-                    </div>
-                  )}
+                  {/* Desktop Product Tooltip - Positioned on opposite side of hotspot, 20px below */}
+                  {!isMobile && activeHotspot && (() => {
+                    const position = getTooltipPosition(activeHotspot);
+                    const isLeftSide = position.x < 50; // Hotspot is on left side if centerX < 50%
+                    const bottomY = position.y;
+                    
+                    return (
+                      <div 
+                        className="absolute pointer-events-none z-20"
+                        style={{
+                          left: isLeftSide ? 'auto' : '2%',
+                          right: isLeftSide ? '2%' : 'auto',
+                          top: `${bottomY}%`,
+                          transform: 'translateY(0)',
+                          marginTop: '20px',
+                          width: 'auto',
+                          maxWidth: '400px',
+                        }}
+                      >
+                        <ProductTooltip 
+                          hotspot={activeHotspot}
+                          isPinned={false}
+                          disablePositioning={true}
+                        />
+                      </div>
+                    );
+                  })()}
                 </>
               )}
             </motion.div>
@@ -410,7 +423,7 @@ const XRayExplorer: React.FC<XRayExplorerProps> = ({
 
           {/* Progress Indicator - After image, before products */}
           <motion.div 
-            className="flex justify-center mb-0 md:mb-1"
+            className="flex justify-center mb-0 md:mb-1 relative"
             style={{ opacity: hotspotsOpacity }}
           >
             <div className="relative overflow-hidden bg-white/10 backdrop-blur-xl rounded-lg px-6 py-3 border border-white/30 shadow-2xl">

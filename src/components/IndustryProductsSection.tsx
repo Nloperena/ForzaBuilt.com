@@ -364,7 +364,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                     </div>
 
                     {/* Desktop: Product Title between image and content */}
-                    <div className="hidden md:block px-4 py-3 absolute bottom-24 left-0 right-0">
+                    <div className="hidden md:block px-4 py-3 absolute bottom-28 left-0 right-0">
                       <h3 className="text-3xl font-kallisto font-black leading-tight line-clamp-2 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                         {product.name.split('–')[0].trim()}
                       </h3>
@@ -420,7 +420,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
 
                     {/* Desktop: Content Section */}
                     <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         <p className="text-sm text-white/90 line-clamp-3 min-h-[3.75rem]">
                           {product.name.split('–')[1]?.trim() || product.description}
                         </p>
@@ -435,7 +435,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                               setIsModalOpen(true);
                               onProductSelect?.(product);
                             }}
-                            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 border border-white/30"
+                            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 border border-white/30"
                           >
                             <span>Quick View</span>
                           </button>
@@ -444,7 +444,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                           <Link
                             to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.slug || product.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 border border-white/30"
+                            className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-300 border border-white/30"
                           >
                             <span>Product Details</span>
                             <ExternalLink className="h-3 w-3" />

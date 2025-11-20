@@ -10,9 +10,9 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
   const { getGradientClasses, mode } = useGradientMode();
 
   return (
-    <>
-      {/* Eagle Hero Video - Simple non-sticky version with overlay text */}
-      <div className="relative">
+    <div className="relative">
+      {/* Sticky Video Background Section */}
+      <div className="sticky top-0" style={{ zIndex: 1 }}>
         <EagleHeroVideo />
         
         {/* Text Overlay - positioned on top of video for all modes */}
@@ -37,10 +37,10 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
       </div>
 
       {/* Scrollable content that slides over the sticky video */}
-      <div className="relative pointer-events-auto">
+      <div className="relative pointer-events-auto" style={{ zIndex: 10 }}>
         {children}
       </div>
-    </>
+    </div>
   );
 };
 

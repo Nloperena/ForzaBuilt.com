@@ -27,11 +27,11 @@ interface ImageOverlayProps {
 
 function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
   const [svgContent, setSvgContent] = useState<string | null>(null);
-  const [selectedPaths, setSelectedPaths] = useState<Set<string>>(new Set());
   const [pathProducts, setPathProducts] = useState<Map<string, Product>>(new Map());
   const [transportationProducts, setTransportationProducts] = useState<Product[]>([]);
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState<{x: number, y: number, centerY: number, leftX: number, rightX: number} | null>(null);
   const svgContainerRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -215,6 +215,23 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
             console.log('Hovering over path:', target.id, 'Product:', product.sku || product.name);
             // Only show hover if no product is selected, or if hovering over a different product
             if (!selectedProduct || selectedProduct.id !== product.id) {
+              // Calculate position based on bounding box
+              try {
+                const bbox = target.getBBox();
+                const svg = target.ownerSVGElement;
+                if (svg && svg.viewBox && svg.viewBox.baseVal) {
+                  const viewBox = svg.viewBox.baseVal;
+                  // Calculate coordinates relative to viewBox
+                  const x = ((bbox.x + bbox.width / 2) / viewBox.width) * 100;
+                  const y = ((bbox.y + bbox.height) / viewBox.height) * 100;
+                  const centerY = ((bbox.y + bbox.height / 2) / viewBox.height) * 100;
+                  const leftX = (bbox.x / viewBox.width) * 100;
+                  const rightX = ((bbox.x + bbox.width) / viewBox.width) * 100;
+                  setTooltipPosition({ x, y, centerY, leftX, rightX });
+                }
+              } catch (e) {
+                console.error('Error calculating position:', e);
+              }
               setHoveredProduct(product);
             }
           }
@@ -225,6 +242,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
           // Only clear hover if no product is selected
           if (!selectedProduct) {
             setHoveredProduct(null);
+            setTooltipPosition(null);
           }
         };
 
@@ -233,9 +251,26 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
           const product = pathProducts.get(target.id);
           if (product) {
             console.log('Clicked path:', target.id, 'Product:', product.sku || product.name);
+            
+            // Calculate position based on bounding box
+            try {
+              const bbox = target.getBBox();
+              const svg = target.ownerSVGElement;
+              if (svg && svg.viewBox && svg.viewBox.baseVal) {
+                const viewBox = svg.viewBox.baseVal;
+                // Calculate center x and bottom y relative to viewBox
+                const x = ((bbox.x + bbox.width / 2) / viewBox.width) * 100;
+                const y = ((bbox.y + bbox.height) / viewBox.height) * 100;
+                setTooltipPosition({ x, y });
+              }
+            } catch (e) {
+              console.error('Error calculating position:', e);
+            }
+
             // Toggle selection - if clicking the same product, deselect it
             if (selectedProduct?.id === product.id) {
               setSelectedProduct(null);
+              setTooltipPosition(null);
             } else {
               setSelectedProduct(product);
             }
@@ -285,78 +320,97 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
                 />
               </div>
               
-              {/* Product Tooltip - Positioned outside SVG container, glued to right edge */}
-              {!isMobile && (selectedProduct || hoveredProduct) && (
-                <div 
-                  ref={tooltipRef}
-                  className="absolute left-full ml-2 xl:ml-4 top-1/2 -translate-y-1/2 z-[9999] whitespace-nowrap"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
-                    className="bg-[#D1D5DB] rounded-xl p-3 md:p-4 shadow-2xl pointer-events-auto w-56 md:w-64 lg:max-w-xs relative"
-                  >
-                    {/* Close button when selected */}
-                    {selectedProduct && (
-                      <button
-                        onClick={handleCloseCard}
-                        className="absolute top-2 right-2 text-[#1B3764] hover:text-[#1B3764]/70 transition-colors z-10"
-                        aria-label="Close"
-                      >
-                        <X className="h-4 w-4" />
-                      </button>
-                    )}
-                    {(() => {
-                      const displayProduct = selectedProduct || hoveredProduct;
-                      return (
-                        <div className="space-y-2 md:space-y-3">
-                          {/* Product Image */}
-                          {(displayProduct?.thumb || displayProduct?.imageUrl) && (
-                            <div className="flex justify-center">
-                              <img
-                                src={displayProduct.thumb || displayProduct.imageUrl}
-                                alt={displayProduct.name}
-                                className="w-28 h-28 md:w-36 md:h-36 object-contain"
-                              />
-                            </div>
-                          )}
-                          {/* Product Information */}
-                          <div className="space-y-2">
-                            <div className="text-center">
-                              {displayProduct?.sku && (
-                                <h3 className="font-bold text-base md:text-lg mb-1 text-[#1B3764]">
-                                  {displayProduct.sku}
-                                </h3>
-                              )}
-                              <p className="text-xs md:text-sm text-[#1B3764] mb-2 leading-relaxed">
-                                {displayProduct?.name}
-                              </p>
-                              {displayProduct?.description && (
-                                <p className="text-[10px] md:text-xs text-[#1B3764] leading-relaxed line-clamp-3">
-                                  {displayProduct.description}
-                                </p>
-                              )}
-                            </div>
-                            {/* View Product Button */}
-                            {displayProduct && (
-                              <div className="pt-2 border-t border-[#1B3764]/20">
-                                <a
-                                  href={`/products/${displayProduct.id}`}
-                                  className="block w-full bg-[#F2611D] hover:bg-[#E55B1C] text-white rounded-full px-4 py-2 text-xs md:text-sm text-center font-medium transition-colors"
-                                >
-                                  View Product
-                                </a>
+              {/* Product Tooltip - Positioned relative to hovered/selected path */}
+              {!isMobile && (selectedProduct || hoveredProduct) && tooltipPosition && (() => {
+                const isNearBottom = tooltipPosition.y > 80;
+                const isLeft = tooltipPosition.x < 50;
+                
+                const style: any = {
+                  position: 'absolute',
+                  pointerEvents: 'none',
+                  zIndex: 9999,
+                  width: 'auto',
+                  maxWidth: '400px',
+                };
+
+                if (isNearBottom) {
+                  // Spawn to side if touching bottom
+                  style.top = `${tooltipPosition.centerY}%`;
+                  style.transform = 'translateY(-50%)';
+                  if (isLeft) {
+                    style.left = `${tooltipPosition.rightX}%`;
+                    style.marginLeft = '20px';
+                  } else {
+                    style.right = `${100 - tooltipPosition.leftX}%`;
+                    style.marginRight = '20px';
+                  }
+                } else {
+                  // Spawn below (default)
+                  style.top = `${tooltipPosition.y}%`;
+                  style.marginTop = '20px';
+                  if (isLeft) {
+                    style.left = `${tooltipPosition.x}%`;
+                  } else {
+                    style.right = `${100 - tooltipPosition.x}%`;
+                  }
+                }
+
+                return (
+                  <div ref={tooltipRef} style={style}>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                      className="bg-[#D1D5DB] rounded-xl p-3 md:p-4 shadow-2xl pointer-events-auto w-56 md:w-64 lg:max-w-xs relative"
+                    >
+                      {/* Close button when selected */}
+                      {selectedProduct && (
+                        <button
+                          onClick={handleCloseCard}
+                          className="absolute top-2 right-2 text-[#1B3764] hover:text-[#1B3764]/70 transition-colors z-10"
+                          aria-label="Close"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      )}
+                      {(() => {
+                        const displayProduct = selectedProduct || hoveredProduct;
+                        return (
+                          <div className="space-y-2 md:space-y-3">
+                            {(displayProduct?.thumb || displayProduct?.imageUrl) && (
+                              <div className="flex justify-center">
+                                <img
+                                  src={displayProduct.thumb || displayProduct.imageUrl}
+                                  alt={displayProduct.name}
+                                  className="w-28 h-28 md:w-36 md:h-36 object-contain"
+                                />
                               </div>
                             )}
+                            <div className="space-y-2">
+                              <div className="text-center">
+                                {displayProduct?.sku && (
+                                  <h3 className="font-bold text-base md:text-lg mb-1 text-[#1B3764]">
+                                    {displayProduct.sku}
+                                  </h3>
+                                )}
+                                <p className="text-xs md:text-sm text-[#1B3764] mb-2 leading-relaxed">
+                                  {displayProduct?.name}
+                                </p>
+                                {displayProduct?.description && (
+                                  <p className="text-[10px] md:text-xs text-[#1B3764] leading-relaxed line-clamp-3">
+                                    {displayProduct.description}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })()}
-                  </motion.div>
-                </div>
-              )}
+                        );
+                      })()}
+                    </motion.div>
+                  </div>
+                );
+              })()}
             </div>
           )}
         </div>

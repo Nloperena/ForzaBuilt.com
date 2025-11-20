@@ -26,6 +26,7 @@ interface HotspotTooltipProps {
   isMobileFixed?: boolean; // New prop for mobile fixed positioning below X-Ray
   onProductClick?: (product: any) => void; // New prop for opening product modal
   industry?: string; // Industry name for color theming
+  disablePositioning?: boolean; // New prop to disable internal positioning
 }
 
 const HotspotTooltip: React.FC<HotspotTooltipProps> = ({ 
@@ -33,6 +34,7 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
   isPinned = false, 
   onClose,
   isMobileFixed = false,
+  disablePositioning = false,
   onProductClick,
   industry
 }) => {
@@ -73,6 +75,11 @@ const HotspotTooltip: React.FC<HotspotTooltipProps> = ({
 
   // Calculate responsive positioning
   const getResponsiveClasses = () => {
+    // If positioning is disabled, return relative positioning
+    if (disablePositioning) {
+      return 'relative w-80';
+    }
+    
     // Mobile fixed positioning (below X-Ray)
     if (isMobileFixed) {
       return 'w-full relative';

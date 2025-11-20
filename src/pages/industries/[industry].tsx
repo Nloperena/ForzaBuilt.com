@@ -5,15 +5,11 @@ import HeaderV2 from '../../components/Header/HeaderV2';
 import FooterV2 from '../../components/FooterV2';
 import HybridStackableCards from '../../components/HybridStackableCards';
 import IndustryXRaySections from '../../components/xray/IndustryXRaySections';
-import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
-import IndustryBrochureSection from '../../components/IndustryBrochureSection';
 import NewsletterSection from '@/components/NewsletterSection';
 import IndustryHeroBanner from '../../components/industries/IndustryHeroBanner';
-import IndustryTitleSection from '../../components/industries/IndustryTitleSection';
-import IndustryHeadingsSection from '../../components/industries/IndustryHeadingsSection';
 import IndustryProductsSection from '../../components/industries/IndustryProductsSection';
 import ProductQuickViewModal from '../../components/industries/ProductQuickViewModal';
-import IndustryArticlesSection from '../../components/industries/IndustryArticlesSection';
+import IndustryBrochureArticlesSection from '../../components/industries/IndustryBrochureArticlesSection';
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -74,48 +70,17 @@ const IndustryPage = () => {
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="w-full relative"
         >
-          {/* Hero Video Section - Full screen like homepage (same structure as StickyHeroVideoSection) */}
+          {/* Hero Video Section - Full screen with title and subtitle overlay */}
           <div className="relative">
             <IndustryHeroBanner 
               videoUrl={industryData.videoUrl} 
               industryTitle={industryData.title}
+              logo={industryData.logo}
               variant="simple"
             />
           </div>
 
-          {/* Scrollable content that slides over the video */}
-          <div className="relative pointer-events-auto">
-            {/* Industry Title Section - Transparent background with white text */}
-            <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68 z-[20]">
-              <style>{`
-                @media (min-width: 1400px) and (max-width: 1700px) {
-                  .industry-title-wrapper {
-                    margin-top: 2.65rem !important;
-                  }
-                }
-                @media (min-width: 1701px) {
-                  .industry-title-wrapper {
-                    margin-top: clamp(0.5rem, calc(6rem - 1.5vw), 4.4rem) !important;
-                  }
-                }
-              `}</style>
-              <div className="industry-title-wrapper" style={{ background: 'transparent', marginTop: 'clamp(0.5rem, calc(6rem - 1.5vw), 4.4rem)' }}>
-                <IndustryTitleSection 
-                  title={industryData.title}
-                  logo={industryData.logo}
-                  color="#ffffff"
-                />
-              </div>
-            </section>
-          </div>
-
-      {/* Dynamic Industry Headings Section */}
-          <IndustryHeadingsSection industryTitle={industryData.title} />
-
-          {/* X-Ray Explorer Sections */}
-          <IndustryXRaySections industry={industryData.title} />
-
-          {/* Hybrid Stackable Cards Section */}
+      {/* Hybrid Stackable Cards Section */}
           <div className="relative z-[30]">
             <HybridStackableCards 
               industry={validIndustryKey}
@@ -123,24 +88,22 @@ const IndustryPage = () => {
             />
           </div>
 
+          {/* X-Ray Explorer Sections - Single Row */}
+          <IndustryXRaySections industry={industryData.title} />
+
           {/* Product Cards Section */}
           <IndustryProductsSection 
             industryData={industryData}
             onProductSelect={handleProductSelect}
           />
 
-          {/* Chemistries Section */}
-          <div className="relative z-[30]">
-            <ChemistryOverviewSectionV7 showBanner={false} />
-      </div>
-
-      {/* Industry Brochure Section */}
+      {/* Combined Brochure & Articles Section */}
       <div className="relative z-[30]">
-        <IndustryBrochureSection industry={industryData.title} backgroundColor="white" />
+        <IndustryBrochureArticlesSection 
+          industry={industryData.title}
+          industryName={industryData.title}
+        />
       </div>
-
-          {/* Industry Articles Section */}
-          <IndustryArticlesSection industryName={industryData.title} />
 
         </motion.div>
       </AnimatePresence>

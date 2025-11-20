@@ -38,7 +38,7 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
   };
 
   return (
-    <div className="relative">
+    <>
       {/* Sticky Video Background Section */}
       <section className="sticky top-0 h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0" style={{ zIndex: 1 }}>
         {/* Video Skeleton Loading State */}
@@ -82,10 +82,10 @@ const StickyIndustryHeroVideoSection: React.FC<StickyIndustryHeroVideoSectionPro
       </section>
 
       {/* Content that will slide over the sticky video background */}
-      <div className="relative pointer-events-auto" style={{ zIndex: 10, marginTop: '3.5rem', position: 'relative' }}>
+      <div className="relative pointer-events-auto" style={{ zIndex: 10 }}>
         {children}
       </div>
-    </div>
+    </>
   );
 };
 

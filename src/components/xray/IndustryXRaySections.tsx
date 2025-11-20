@@ -91,19 +91,22 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
         </section>
       )}
 
-      {configs.map((config, index) => {
-        const bgClass = index % 2 === 0 ? 'bg-gray-50' : 'bg-white';
-        
-        return (
-          <section key={index} className={`${bgClass} relative z-[30]`}>
-            {config.component === 'static' && config.data ? (
-              <StaticXRayExplorer industry={config.data} xrayIndex={config.xrayIndex || 0} />
-            ) : config.component === 'transportation' && config.variant ? (
-              <TransportationXRayExplorer variant={config.variant} />
-            ) : null}
-          </section>
-        );
-      })}
+      {/* X-Rays in Single Row */}
+      <section className="relative overflow-visible py-12 bg-white z-[30]">
+        <div className="w-full px-4">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center items-center md:items-start">
+            {configs.map((config, index) => (
+              <div key={index} className="w-full md:w-1/2 max-w-3xl relative">
+                {config.component === 'static' && config.data ? (
+                  <StaticXRayExplorer industry={config.data} xrayIndex={config.xrayIndex || 0} />
+                ) : config.component === 'transportation' && config.variant ? (
+                  <TransportationXRayExplorer variant={config.variant} />
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 };

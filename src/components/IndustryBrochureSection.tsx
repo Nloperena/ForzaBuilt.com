@@ -10,6 +10,8 @@ interface IndustryBrochureSectionProps {
   brochureImage?: string;
   brochureLink?: string;
   backgroundColor?: string;
+  className?: string;
+  compact?: boolean;
 }
 
 // Industry-specific brochure images
@@ -61,7 +63,9 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
   description,
   brochureImage,
   brochureLink = '/downloads/forza-industry-brochure.pdf', // Default PDF link
-  backgroundColor
+  backgroundColor,
+  className = '',
+  compact = false
 }) => {
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   
@@ -99,20 +103,22 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
 
   return (
     <section 
-      className={`w-full py-16 md:py-36 px-4 md:px-6 lg:px-8 ${backgroundColor === 'white' ? 'bg-white' : ''}`}
+      className={`w-full px-4 md:px-6 lg:px-8 ${
+        compact ? 'py-6 md:py-8' : 'py-8 md:py-12'
+      } ${backgroundColor === 'white' ? 'bg-white' : ''} ${className}`}
       style={{
         background: backgroundColor === 'white' ? 'white' : `linear-gradient(to top, ${gradientColors})`
       }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 xl:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8 xl:gap-10">
           {/* Left: Brochure Image */}
           <div className="flex-shrink-0 w-full lg:w-1/2 flex justify-center">
             <div className="relative group">
               <img
                 src={imageToUse}
                 alt={`Forza ${content.title} Cover`}
-                className={`w-64 sm:w-72 md:w-80 lg:w-96 xl:w-[28rem] rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+                className={`w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl ${
                   backgroundColor === 'white'
                     ? 'border-0 bg-white'
                     : 'border-white/20 bg-white/10 border-4'
@@ -153,7 +159,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
               <a
                 href={`/brochures/${industry.toLowerCase()}.pdf`}
                 download
-                className={`group inline-flex items-center gap-2 font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
+                className={`group inline-flex items-center justify-center gap-2 font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 ${
                   backgroundColor === 'white'
                     ? 'border-2 border-[#477197] hover:bg-[#477197] text-[#477197] hover:text-white'
                     : 'border-2 border-white/50 hover:bg-white/30 backdrop-blur-sm text-white hover:border-white/70'
@@ -176,7 +182,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
               </a>
               <button
                 onClick={handleView}
-                className="inline-flex items-center gap-2 bg-[#F2611D] hover:bg-[#d94e0c] text-white font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d94e0c] text-white font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
               >
                 <svg 
                   className="w-4 h-4" 
@@ -236,4 +242,4 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
   );
 };
 
-export default IndustryBrochureSection; 
+export default IndustryBrochureSection;

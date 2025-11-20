@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import VideoSkeleton from '../common/VideoSkeleton';
+import ImageSkeleton from '../common/ImageSkeleton';
 import { motion } from 'framer-motion';
 
 interface IndustryHeroBannerProps {
@@ -46,7 +47,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
     setIconLoaded(true);
   };
 
-  // Simple variant - full screen video like homepage (exact copy of EagleHeroVideo)
+  // Simple variant - full screen video with title and subtitle overlay (like homepage)
   if (variant === 'simple') {
     return (
       <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl md:pt-12 2xl:pt-0">
@@ -88,6 +89,65 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
 
         {/* Blue overlay on top of video */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
+
+        {/* Title, Logo, and Subtitle Overlay - Centered on video */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 20 }}>
+          <motion.div 
+            className="w-full flex flex-col items-center justify-center"
+            style={{ gap: 'clamp(1rem, 2vw, 2rem)' }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+          >
+            {/* Title and Icon Row */}
+            <div className="flex items-center justify-center" style={{ gap: 'clamp(1rem, 2vw, 2rem)' }}>
+              <h1
+                className="font-black mb-0 leading-none font-kallisto text-white"
+                style={{ 
+                  fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
+                }}
+              >
+                {industryTitle.toUpperCase()}
+              </h1>
+              {logo && (
+                <div className="relative" style={{ width: 'clamp(5rem, 8vw, 14rem)', height: 'clamp(5rem, 8vw, 14rem)' }}>
+                  {!iconLoaded && <VideoSkeleton />}
+                  <motion.img
+                    src={logo}
+                    alt={`${industryTitle} icon`}
+                    className="w-auto h-full object-contain transition-opacity duration-500"
+                    style={{ 
+                      filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.8))',
+                      opacity: iconLoaded ? 1 : 0
+                    }}
+                    loading="lazy"
+                    onLoad={handleIconLoad}
+                    onError={handleIconError}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: iconLoaded ? 1 : 0, scale: 1 }}
+                    transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* High-Performance Subtitle - Regular Poppins */}
+            <motion.h3
+              className="font-regular text-center leading-tight font-poppins text-white"
+              style={{ 
+                fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
+                maxWidth: '1100px',
+                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 0, 0, 0.5)',
+                marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+            >
+              {`Building High-Performance ${industryTitle.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape & Sealant Solutions`}
+            </motion.h3>
+          </motion.div>
+        </div>
       </section>
     );
   }

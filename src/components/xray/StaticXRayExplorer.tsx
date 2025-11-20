@@ -133,6 +133,29 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
   // Get viewBox for scaling
   const viewBox = svgElement.getAttribute('viewBox') || '0 0 233.403 191.162';
 
+  // Calculate tooltip position - 20px below the bottom of the SVG path
+  const getTooltipPosition = (hotspot: Hotspot) => {
+    if (!hotspot.points || hotspot.points.length === 0) {
+      return { x: 50, y: 50 }; // Default center
+    }
+
+    // Calculate center X for horizontal centering
+    const xPoints = hotspot.points.filter((_, i) => i % 2 === 0);
+    const centerX = xPoints.reduce((sum, x) => sum + x, 0) / xPoints.length;
+    
+    // Find the bottom-most Y point
+    const yPoints = hotspot.points.filter((_, i) => i % 2 === 1);
+    const bottomY = Math.max(...yPoints);
+    
+    // Get SVG viewBox for percentage calculation
+    const [, , viewBoxWidth, viewBoxHeight] = viewBox.split(' ').map(Number);
+    
+    const percentX = (centerX / viewBoxWidth) * 100;
+    const percentY = (bottomY / viewBoxHeight) * 100;
+    
+    return { x: percentX, y: percentY };
+  };
+
   return (
     <section className="pt-0 pb-16 bg-white overflow-visible">
       <div className="w-full px-4">
@@ -165,7 +188,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="relative w-full aspect-square bg-transparent rounded-2xl overflow-visible" onMouseLeave={() => handleHotspotHover(null)}>
+            <div className="relative w-full aspect-square bg-transparent rounded-2xl overflow-visible" onMouseLeave={() => handleHotspotHover(null)} style={{ position: 'relative' }}>
               {/* Post X-Ray Image */}
               <img
                 src={xrayComponent.postSrc}
@@ -301,6 +324,32 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                 </svg>
               </div>
 
+              {/* Product Tooltip - Positioned 20px below the SVG path */}
+              {!isMobile && selectedHotspot && selectedHotspot.product && (() => {
+                const position = getTooltipPosition(selectedHotspot);
+                return (
+                  <div 
+                    className="absolute pointer-events-none z-20"
+                    style={{
+                      left: `${position.x}%`,
+                      top: `${position.y}%`,
+                      transform: 'translate(-50%, 0)',
+                      marginTop: '20px',
+                      width: '320px',
+                      maxWidth: '90%',
+                    }}
+                  >
+                    <ProductTooltip 
+                      hotspot={selectedHotspot}
+                      isPinned={false}
+                      industry={industry.id}
+                      onClose={handleCloseCard}
+                      disablePositioning={true}
+                      onProductClick={() => {}} // Disable product link
+                    />
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Mobile Selected Product Display */}
@@ -344,14 +393,9 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
                         {selectedHotspot.product.blurb}
                       </p>
                     </div>
-                    <a
-                      href={selectedHotspot.product.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-[#1B3764] hover:bg-[#2A4A7A] text-white rounded-full px-6 py-3 font-medium transition-colors text-center block"
-                    >
-                      View Product Details
-                    </a>
+                    <div className="w-full bg-[#1B3764] text-white rounded-full px-6 py-3 font-medium text-center">
+                      Product Information
+                    </div>
                   </div>
                 ) : (
                   <div className="space-y-3">
@@ -373,20 +417,6 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
           </motion.div>
         </div>
       </div>
-
-      {/* Product Tooltip - Fixed Position on Right - Show on select, not hover */}
-      {!isMobile && selectedHotspot && selectedHotspot.product && (
-        <ProductTooltip 
-          hotspot={selectedHotspot}
-          isPinned={true}
-          industry={industry.id}
-          onClose={handleCloseCard}
-          onProductClick={(product) => {
-            // Open product URL in new tab
-            window.open(product.url, '_blank', 'noopener,noreferrer');
-          }}
-        />
-      )}
 
     </section>
   );
