@@ -4,6 +4,7 @@ import { byIndustry } from '../../utils/products';
 import { useIsMobile } from '../../hooks/use-mobile';
 import ProductTooltip from './ProductTooltip';
 import { X } from 'lucide-react';
+import Link from 'next/link';
 
 /**
  * SVG Viewer component with path selection functionality
@@ -401,6 +402,16 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
                                   <p className="text-[10px] md:text-xs text-[#1B3764] leading-relaxed line-clamp-3">
                                     {displayProduct.description}
                                   </p>
+                                )}
+                                {displayProduct?.id && (
+                                  <div className="mt-3">
+                                    <Link
+                                      href={`/product/${displayProduct.id}`}
+                                      className="inline-flex items-center justify-center w-full px-3 py-1.5 text-[10px] md:text-xs font-semibold text-white bg-[#1B3764] hover:bg-[#2A4A7A] rounded-full transition-colors"
+                                    >
+                                      View Product
+                                    </Link>
+                                  </div>
                                 )}
                               </div>
                             </div>
