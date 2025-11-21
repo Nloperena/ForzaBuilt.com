@@ -171,12 +171,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-purpose-built',
             title: "Purpose-Built",
             subheading: "Truck systems engineered for uptime",
-            description: "Unmatched bonding, sealing, and gasketing chemistries that keep vehicle integrity high and downtime low for the nation’s most demanding fleets.",
+            description: "Every solution we make starts with your application—and is built with purpose from the ground up.",
             listItems: [
-              "Fleet-ready truck solutions",
-              "Optimized green strength and open times",
-              "Weatherproof sealing and gasketing",
-              "North American engineering support"
+              "Engineered for the real world to deliver solutions that work the first time and every time",
+              "Tailored, not templated: adhesives and sealants crafted for the specific demands your industry faces",
+              "Practical innovation that pairs advanced chemistry with real-world application insight",
+              "Custom, validated solutions delivered fast with no guesswork or wasted time"
             ],
             color: getCardGradient(0),
             image: TruckStackImage
@@ -185,12 +185,11 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-performance',
             title: "Performance",
             subheading: "Precision trailer manufacturing",
-            description: "Tailor-made trailer solutions that balance throughput with quality using application-specific adhesive, tape, and sealant formulations.",
+            description: "Driven by experience and powered by science, our products perform where it matters most.",
             listItems: [
-              "Dialed-in extrusion & spray systems",
-              "Fast takt-time material options",
-              "DOT & OEM specification alignment",
-              "Repeatable results across lines"
+              "Decades of in-field expertise plus rigorous testing to ensure performance in the toughest environments",
+              "Industry-specific formulas and test protocols for reliable results across transportation, construction, marine, and manufacturing sectors",
+              "Comprehensive product portfolio so you get the exact high-performance solution you need—nothing more, nothing less"
             ],
             color: getCardGradient(1),
             image: TrailerStackImage
@@ -199,12 +198,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-guaranteed-strength',
             title: "Guaranteed Strength",
             subheading: "RV & specialty vehicle expertise",
-            description: "Comprehensive RV, coach, and specialty vehicle chemistries that deliver structural strength, weather protection, and interior finish consistency.",
+            description: "Our products are engineered to handle the demands of your toughest applications.",
             listItems: [
-              "Structural bonding for slide-outs & frames",
-              "High-flex sealants for roofs and windows",
-              "Lightweight interior wall solutions",
-              "Backed by responsive technical teams"
+              "Strength you can trust—validated in-house and proven in the field",
+              "Built for the long haul to withstand demanding conditions without compromise",
+              "Made in the USA in our vertically integrated manufacturing and R&D center for consistent, reliable performance",
+              "If it bonds, seals, or sticks, we make it strong—and help create the solution if it doesn’t yet exist"
             ],
             color: getCardGradient(0),
             image: RvStackImage
