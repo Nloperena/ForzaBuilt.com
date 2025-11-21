@@ -405,7 +405,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       insulation: 'Discover our high-performance bonding solutions for insulation materials, ensuring energy efficiency and long-term performance.'
     };
     
-    return industrySubtitles[industry.toLowerCase()] || 'Discover how our advanced adhesive, tape, and sealant solutions deliver exceptional performance across industries.';
+    return industrySubtitles[industry.toLowerCase()] || '';
   };
 
   // Scroll tracking
