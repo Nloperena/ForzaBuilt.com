@@ -10,7 +10,7 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
   const { getGradientClasses, mode } = useGradientMode();
 
   return (
-    <div className="relative">
+      <div className="relative">
       {/* Sticky Video Background Section */}
       <div className="sticky top-0" style={{ zIndex: 1 }}>
         <EagleHeroVideo />

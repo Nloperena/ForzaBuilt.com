@@ -385,9 +385,9 @@ const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({
                     const bottomY = position.y;
                     
                     return (
-                      <div 
-                        className="absolute pointer-events-none z-20"
-                        style={{
+                    <div 
+                      className="absolute pointer-events-none z-20"
+                      style={{
                           left: isLeftSide ? 'auto' : '2%',
                           right: isLeftSide ? '2%' : 'auto',
                           top: `${bottomY}%`,
@@ -395,14 +395,14 @@ const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({
                           marginTop: '20px',
                           width: 'auto',
                           maxWidth: '400px',
-                        }}
-                      >
-                        <ProductTooltip 
-                          hotspot={activeHotspot}
-                          isPinned={false}
+                      }}
+                    >
+                      <ProductTooltip 
+                        hotspot={activeHotspot}
+                        isPinned={false}
                           disablePositioning={true}
-                        />
-                      </div>
+                      />
+                    </div>
                     );
                   })()}
                 </>

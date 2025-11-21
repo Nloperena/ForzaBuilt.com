@@ -242,4 +242,4 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
   );
 };
 
-export default IndustryBrochureSection;
+export default IndustryBrochureSection; 

@@ -473,7 +473,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           background: `linear-gradient(315deg, ${gradientColors})`
         }}
       >
-      {/* Stacking Cards with Header Inside Sticky Container */}
+      {/* Stacking Cards */}
       <div className="relative">
         {cardData.map((card, index) => {
           const { progress } = getCardProgress(index);
@@ -500,38 +500,48 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 opacity: 1,
               }}
             >
-              {/* Header Section - Only show on first card, positioned higher */}
-              {index === 0 ? (
-                 <div className="text-center pt-0 mb-4 sm:mb-6 md:mb-6 lg:mb-8 px-3 sm:px-4 relative z-50">
-                  <motion.h2 
-                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white mb-2 leading-none"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                  >
-                    {headerTitle}
-                  </motion.h2>
-                  
-                  {headerSubtitle && (
-                    <motion.p 
-                      className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light px-2 sm:px-0"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              {/* Section Heading - only visible on first card */}
+              {index === 0 && (
+                <div className="w-full flex justify-center pt-4 pb-2 px-3 sm:px-4 relative z-50">
+                  <div className="text-center max-w-5xl">
+                    <h2 
+                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white leading-none"
                     >
-                      {headerSubtitle}
-                    </motion.p>
-                  )}
-                </div>
-              ) : (
-                // Invisible spacer for subsequent cards to maintain alignment
-                 <div className="pt-0 mb-4 sm:mb-6 md:mb-6 lg:mb-8 px-3 sm:px-4" style={{ height: '80px', minHeight: '80px' }}>
-                  {/* Spacer to match header height */}
+                      {headerTitle}
+                    </h2>
+                    {headerSubtitle && (
+                      <p 
+                        className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light mt-2"
+                      >
+                        {headerSubtitle}
+                      </p>
+                    )}
+                  </div>
                 </div>
               )}
-              
-              {/* Card container - center within viewport while keeping title close */}
-              <div className="flex-1 flex items-center justify-center pt-4 pb-4">
+
+              {/* Invisible spacer heading for cards 2+ to maintain alignment */}
+              {index > 0 && (
+                <div className="w-full pt-4 pb-2 px-3 sm:px-4 invisible">
+                  <div className="text-center max-w-5xl">
+                    <h2 
+                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white leading-none"
+                    >
+                      {headerTitle}
+                    </h2>
+                    {headerSubtitle && (
+                      <p 
+                        className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light mt-2"
+                      >
+                        {headerSubtitle}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Card container - fixed position at top of sticky area */}
+              <div className="w-full flex items-center justify-center" style={{ height: 'calc(100vh - 200px)', minHeight: '300px' }}>
 
               <div 
                 className="w-full max-w-none"

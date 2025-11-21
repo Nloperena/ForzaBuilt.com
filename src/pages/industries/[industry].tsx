@@ -80,7 +80,7 @@ const IndustryPage = () => {
             />
           </div>
 
-      {/* Hybrid Stackable Cards Section */}
+          {/* Hybrid Stackable Cards Section */}
           <div className="relative z-[30]">
             <HybridStackableCards 
               industry={validIndustryKey}
