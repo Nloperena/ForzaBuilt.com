@@ -130,7 +130,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
   }
 
   const normalizedIndustryTitle = industryData.title?.trim().toLowerCase();
-  const productsHeading = normalizedIndustryTitle === 'transportation'
+  const productsHeading = normalizedIndustryTitle?.includes('transportation')
     ? 'Products'
     : `${industryData.title} Products`;
 
