@@ -71,19 +71,19 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
         <section className="bg-white relative z-[30] pt-8 pb-0">
           <div className="w-full px-4">
             <motion.div
-              className="text-center mb-6"
+              className="text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
               <h2 
-                className="font-normal text-[#1B3764] mb-4 font-poppins leading-tight"
+                className="font-normal text-[#1B3764] font-poppins leading-tight"
                 style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
               >
                 {getIndustryDisplayName(industry)}
               </h2>
               <p 
-                className="text-lg text-[#1B3764] max-w-2xl mx-auto font-normal font-poppins"
+                className="text-lg text-[#1B3764] max-w-2xl mx-auto font-normal font-poppins mt-2"
               >
                 Cursor over or click to learn more about our Trailer & Transportation product line applications
               </p>
@@ -93,7 +93,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
       )}
 
       {/* X-Rays in Single Row */}
-      <section className="relative overflow-visible pt-8 pb-12 bg-white z-[30]">
+      <section className="relative overflow-visible pt-6 pb-12 bg-white z-[30]">
         <div className="w-full px-4">
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center items-center md:items-start">
             {configs.map((config, index) => (
