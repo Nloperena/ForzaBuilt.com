@@ -124,7 +124,7 @@ const TransportationXRaySelector: React.FC = () => {
             </div>
 
             {/* Center X-ray */}
-            <div className="relative rounded-[32px] bg-white border border-[#1B3764]/10 shadow-[0_20px_60px_rgba(15,24,44,0.15)] p-3 sm:p-4 lg:p-6 overflow-hidden min-h-[520px]">
+            <div className="relative rounded-[32px] overflow-hidden min-h-[520px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={selectedVariant}
