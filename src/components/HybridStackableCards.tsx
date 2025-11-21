@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getIndustryGradient, typography } from '../styles/brandStandards';
+import TruckStackImage from '@/assets/images/Transporation-stickstackcard-images/Ford-side-angle-1-1.png';
+import TrailerStackImage from '@/assets/images/Transporation-stickstackcard-images/trailer-horse.png';
+import RvStackImage from '@/assets/images/Transporation-stickstackcard-images/White RV.png';
 
 const cardStyleSheet = `
   .card-gradient-marine { background: linear-gradient(to right, rgb(28, 58, 92), rgb(19, 120, 117)); }
@@ -176,7 +179,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "North American engineering support"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/05/Ford-side-angle-1.png"
+            image: TruckStackImage
           },
           {
             id: 'transportation-performance',
@@ -190,7 +193,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Repeatable results across lines"
             ],
             color: getCardGradient(1),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/05/trailer-horse.png"
+            image: TrailerStackImage
           },
           {
             id: 'transportation-guaranteed-strength',
@@ -204,7 +207,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Backed by responsive technical teams"
             ],
             color: getCardGradient(0),
-            image: "/img/transportation/RV Bus Exploded-NEW.svg"
+            image: RvStackImage
           }
         ];
         
