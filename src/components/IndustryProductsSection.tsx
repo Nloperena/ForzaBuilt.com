@@ -129,11 +129,6 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
     return null;
   }
 
-  const normalizedIndustryTitle = industryData.title?.trim().toLowerCase();
-  const productsHeading = normalizedIndustryTitle?.includes('transportation')
-    ? 'Products'
-    : `${industryData.title} Products`;
-
   return (
     <section className="bg-[#115B87] text-white py-8 sm:py-12 md:py-16 relative z-[30]">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8">
@@ -144,8 +139,8 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black font-kallisto leading-none text-white break-words pb-[1.3rem]">
-            {productsHeading}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black font-kallisto leading-none text-white break-words pb-[1.3rem] normal-case">
+            {industryData.title} Products
           </h2>
         </motion.div>
 
