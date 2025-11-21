@@ -383,7 +383,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     
     const industryTitles: Record<string, string> = {
       marine: 'Marine Solutions in Action',
-      transportation: 'Solutions in Action',
+      transportation: 'Purpose-Built, Performance, Guaranteed Strength',
       construction: 'Construction Solutions in Action',
       industrial: 'Industrial Solutions in Action',
       composites: 'Composite Solutions in Action',
@@ -398,7 +398,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     
     const industrySubtitles: Record<string, string> = {
       marine: 'Discover how our advanced marine adhesive, tape, and sealant solutions deliver exceptional performance in demanding maritime environments.',
-      transportation: 'Explore our heavy-duty solutions designed for the demanding requirements of commercial transportation and logistics.',
+      transportation: '',
       construction: 'See how our comprehensive construction solutions ensure quality, safety, and efficiency in every project.',
       industrial: 'Learn about our advanced adhesive and bonding solutions designed specifically for industrial manufacturing applications.',
       composites: 'Understand our specialized adhesive and bonding solutions that meet the rigorous requirements of composite material manufacturing.',
@@ -460,6 +460,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   };
 
   const gradientColors = getIndustryGradient(industry);
+  const headerTitle = getDefaultTitle();
+  const headerSubtitle = getDefaultSubtitle();
 
   return (
     <>
@@ -488,8 +490,6 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           
           const transformString = `translateY(${currentTranslateY}px)`;
           const blurAmount = 0; // No blur
-          const hasSubheading = Boolean(card.subheading && card.subheading.trim());
-          const centerContent = isTransportation && !hasSubheading;
           
           return (
             <div
@@ -509,17 +509,19 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                   >
-                    {getDefaultTitle()}
+                    {headerTitle}
                   </motion.h2>
                   
-                  <motion.p 
-                    className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light px-2 sm:px-0"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                  >
-                    {getDefaultSubtitle()}
-                  </motion.p>
+                  {headerSubtitle && (
+                    <motion.p 
+                      className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light px-2 sm:px-0"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                    >
+                      {headerSubtitle}
+                    </motion.p>
+                  )}
                 </div>
               ) : (
                 // Invisible spacer for subsequent cards to maintain alignment
@@ -560,12 +562,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     
                     {/* Content Section */}
                     <div className="w-full lg:w-1/2 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-center">
-                      <div 
-                        className={`space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col h-full ${centerContent ? 'items-center justify-between text-center' : 'justify-center'}`}
-                      >
+                      <div className="space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col justify-center h-full">
                         {/* Heading */}
                         <h2 
-                          className={`font-normal font-poppins text-white leading-tight ${centerContent ? 'text-center' : ''}`}
+                          className="font-normal font-poppins text-white leading-tight"
                           style={{ 
                             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
                             fontSize: 'clamp(1rem, 2.5vw, 2rem)'
@@ -575,7 +575,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         </h2>
                         
                         {/* Subheading */}
-                        {card.subheading && (
+                        {card.subheading?.trim() && (
                           <h3 
                             className="font-normal text-white/90"
                             style={{ 
@@ -592,15 +592,14 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                           className="font-normal text-white/80 leading-relaxed"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)',
-                            textAlign: centerContent ? 'center' : 'left'
+                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
                           }}
                         >
                           {card.description}
                         </p>
                         
                         {/* List Items */}
-                        <ul className={`space-y-1 sm:space-y-1.5 lg:space-y-2 ${centerContent ? 'w-full text-left' : ''}`}>
+                        <ul className="space-y-1 sm:space-y-1.5 lg:space-y-2">
                           {card.listItems.map((item, itemIndex) => (
                             <li 
                               key={itemIndex} 

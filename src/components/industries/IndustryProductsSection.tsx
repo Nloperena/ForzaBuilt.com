@@ -27,12 +27,6 @@ interface IndustryProductsSectionProps {
   onProductSelect: (product: Product) => void;
 }
 
-const toTitleCase = (text: string) => text
-  ?.toLowerCase()
-  .split(' ')
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-  .join(' ');
-
 const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   industryData, 
   onProductSelect 
