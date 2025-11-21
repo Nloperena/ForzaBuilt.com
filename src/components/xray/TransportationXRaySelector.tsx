@@ -33,9 +33,8 @@ const OPTIONS: XRayOption[] = [
 ];
 
 const optionVariants = {
-  rest: { y: 0, boxShadow: '0 10px 30px rgba(15, 24, 44, 0.05)' },
-  hover: { y: -6, boxShadow: '0 20px 45px rgba(15, 24, 44, 0.12)' },
-  selected: { y: -12, boxShadow: '0 25px 60px rgba(15, 24, 44, 0.18)' },
+  rest: { scale: 1 },
+  hover: { scale: 1.08 },
 };
 
 const TransportationXRaySelector: React.FC = () => {
@@ -51,38 +50,32 @@ const TransportationXRaySelector: React.FC = () => {
     : null;
 
   return (
-    <section className="relative bg-white z-[30] py-10 sm:py-12 md:py-16">
+    <section className="relative bg-white z-[30] py-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="mb-8 sm:mb-10" />
-
         {!selectedVariant ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {OPTIONS.map(option => (
-              <motion.button
-                key={option.id}
-                type="button"
-                variants={optionVariants}
-                initial="rest"
-                whileHover="hover"
-                className="group bg-white rounded-[30px] border border-[#1B3764]/15 p-4 sm:p-6 shadow-[0_10px_30px_rgba(15,24,44,0.08)] hover:shadow-[0_25px_60px_rgba(15,24,44,0.15)] transition-all duration-500 text-left"
-                onClick={() => setSelectedVariant(option.id)}
-              >
-                <div className="relative overflow-hidden rounded-2xl bg-[#f4f7fb] p-4">
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent pointer-events-none" />
-                  <img
-                    src={option.previewImage}
-                    alt={option.title}
-                    className="w-full object-contain"
-                  />
-                </div>
-                <div className="mt-5 space-y-1.5">
-                  <p className="text-sm font-semibold text-[#1B3764]">{option.title}</p>
-                  <p className="text-xs uppercase tracking-[0.25em] text-[#F2611D]">
-                    Click to explore
-                  </p>
-                </div>
-              </motion.button>
-            ))}
+          <div className="relative py-8 sm:py-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
+              {OPTIONS.map(option => (
+                <motion.button
+                  key={option.id}
+                  type="button"
+                  variants={optionVariants}
+                  initial="rest"
+                  whileHover="hover"
+                  className="relative isolate bg-transparent border-none p-0 focus:outline-none"
+                  onClick={() => setSelectedVariant(option.id)}
+                >
+                  <div className="inline-flex flex-col items-center gap-4">
+                    <img
+                      src={option.previewImage}
+                      alt={option.title}
+                      className="w-[240px] sm:w-[280px] lg:w-[340px] object-contain"
+                    />
+                    <p className="text-base font-semibold text-[#1B3764]">{option.title}</p>
+                  </div>
+                </motion.button>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-6 lg:gap-8 items-start">

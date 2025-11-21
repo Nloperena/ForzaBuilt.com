@@ -93,6 +93,31 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
   return (
     <>
       {/* Section Header - Only for transportation */}
+      {industryLower === 'transportation' && (
+        <section className="bg-white relative z-[30] pt-8 pb-0">
+          <div className="w-full px-4">
+            <motion.div
+              className="text-center mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 
+                className="font-normal text-[#1B3764] font-poppins leading-tight"
+                style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+              >
+                Trailer & Transportation
+              </h2>
+              <p 
+                className="text-lg text-[#1B3764] max-w-2xl mx-auto font-normal font-poppins mt-3"
+              >
+                Cursor over or click to explore each X-Ray and see where our solutions power every build detail.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* X-Rays in Single Row */}
       <section className="relative overflow-visible pt-6 pb-12 bg-white z-[30]">
         <div className="w-full px-4">
