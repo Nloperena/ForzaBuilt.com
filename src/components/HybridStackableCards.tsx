@@ -384,7 +384,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     
     const industryTitles: Record<string, string> = {
       marine: 'Marine Solutions in Action',
-      transportation: 'Transportation Solutions in Action',
+      transportation: 'Solutions in Action',
       construction: 'Construction Solutions in Action',
       industrial: 'Industrial Solutions in Action',
       composites: 'Composite Solutions in Action',

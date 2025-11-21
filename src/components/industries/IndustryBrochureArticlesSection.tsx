@@ -229,7 +229,7 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
               className="text-white font-poppins font-normal text-center leading-tight mb-6" 
               style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
             >
-              {toTitleCase(industryName)} Articles
+              {industryName?.trim().toLowerCase() === 'transportation' ? 'Featured Articles' : `${toTitleCase(industryName)} Articles`}
             </motion.h2>
 
             {/* Articles Grid */}
