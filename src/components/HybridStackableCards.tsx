@@ -170,7 +170,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           {
             id: 'transportation-purpose-built',
             title: "Purpose-Built",
-            subheading: "Truck systems engineered for uptime",
+            subheading: "",
             description: "Every solution we make starts with your application—and is built with purpose from the ground up.",
             listItems: [
               "Engineered for the real world to deliver solutions that work the first time and every time",
@@ -184,7 +184,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           {
             id: 'transportation-performance',
             title: "Performance",
-            subheading: "Precision trailer manufacturing",
+            subheading: "",
             description: "Driven by experience and powered by science, our products perform where it matters most.",
             listItems: [
               "Decades of in-field expertise plus rigorous testing to ensure performance in the toughest environments",
@@ -197,7 +197,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           {
             id: 'transportation-guaranteed-strength',
             title: "Guaranteed Strength",
-            subheading: "RV & specialty vehicle expertise",
+            subheading: "",
             description: "Our products are engineered to handle the demands of your toughest applications.",
             listItems: [
               "Strength you can trust—validated in-house and proven in the field",
