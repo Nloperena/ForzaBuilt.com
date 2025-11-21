@@ -27,7 +27,13 @@ interface IndustryProductsSectionProps {
   onProductSelect: (product: Product) => void;
 }
 
-const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({ 
+const toTitleCase = (text: string) => text
+  ?.toLowerCase()
+  .split(' ')
+  .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(' ');
+
+const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   industryData, 
   onProductSelect 
 }) => {
@@ -177,6 +183,8 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     setImageErrorStates(prev => ({ ...prev, [productId]: true }));
   };
 
+  const formattedIndustryTitle = toTitleCase(industryData.title || '');
+
   return (
     <section className="bg-gray-100 text-gray-900 relative z-[30]" style={{ paddingTop: 'clamp(2rem, 4vw, 4rem)', paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
       <div className="max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 2rem)', paddingRight: 'clamp(1rem, 2vw, 2rem)' }}>
@@ -188,8 +196,8 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="font-normal font-poppins leading-tight text-[#1b3764] break-words capitalize" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}>
-            {industryData.title} Products
+          <h2 className="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}>
+            {formattedIndustryTitle} Products
           </h2>
         </motion.div>
 
