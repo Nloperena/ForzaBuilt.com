@@ -488,6 +488,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           
           const transformString = `translateY(${currentTranslateY}px)`;
           const blurAmount = 0; // No blur
+          const hasSubheading = Boolean(card.subheading && card.subheading.trim());
+          const centerContent = isTransportation && !hasSubheading;
           
           return (
             <div
@@ -558,10 +560,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     
                     {/* Content Section */}
                     <div className="w-full lg:w-1/2 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-center">
-                      <div className="space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col justify-center h-full">
+                      <div 
+                        className={`space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col h-full ${centerContent ? 'items-center justify-between text-center' : 'justify-center'}`}
+                      >
                         {/* Heading */}
                         <h2 
-                          className="font-normal font-poppins text-white leading-tight"
+                          className={`font-normal font-poppins text-white leading-tight ${centerContent ? 'text-center' : ''}`}
                           style={{ 
                             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
                             fontSize: 'clamp(1rem, 2.5vw, 2rem)'
@@ -571,29 +575,32 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         </h2>
                         
                         {/* Subheading */}
-                        <h3 
-                          className="font-normal text-white/90"
-                          style={{ 
-                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
-                          }}
-                        >
-                          {card.subheading}
-                        </h3>
+                        {card.subheading && (
+                          <h3 
+                            className="font-normal text-white/90"
+                            style={{ 
+                              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
+                              fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
+                            }}
+                          >
+                            {card.subheading}
+                          </h3>
+                        )}
                         
                         {/* Description Paragraph */}
                         <p 
                           className="font-normal text-white/80 leading-relaxed"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
+                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)',
+                            textAlign: centerContent ? 'center' : 'left'
                           }}
                         >
                           {card.description}
                         </p>
                         
                         {/* List Items */}
-                        <ul className="space-y-1 sm:space-y-1.5 lg:space-y-2">
+                        <ul className={`space-y-1 sm:space-y-1.5 lg:space-y-2 ${centerContent ? 'w-full text-left' : ''}`}>
                           {card.listItems.map((item, itemIndex) => (
                             <li 
                               key={itemIndex} 
