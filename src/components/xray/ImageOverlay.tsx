@@ -361,68 +361,68 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
 
                 return (
                   <div ref={tooltipRef} style={style}>
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.3, ease: 'easeOut' }}
-                      className="bg-[#D1D5DB] rounded-xl p-3 md:p-4 shadow-2xl pointer-events-auto w-56 md:w-64 lg:max-w-xs relative"
-                    >
-                      {/* Close button when selected */}
-                      {selectedProduct && (
-                        <button
-                          onClick={handleCloseCard}
-                          className="absolute top-2 right-2 text-[#1B3764] hover:text-[#1B3764]/70 transition-colors z-10"
-                          aria-label="Close"
-                        >
-                          <X className="h-4 w-4" />
-                        </button>
-                      )}
-                      {(() => {
-                        const displayProduct = selectedProduct || hoveredProduct;
-                        return (
-                          <div className="space-y-2 md:space-y-3">
-                            {(displayProduct?.thumb || displayProduct?.imageUrl) && (
-                              <div className="flex justify-center">
-                                <img
-                                  src={displayProduct.thumb || displayProduct.imageUrl}
-                                  alt={displayProduct.name}
-                                  className="w-28 h-28 md:w-36 md:h-36 object-contain"
-                                />
-                              </div>
-                            )}
-                            <div className="space-y-2">
-                              <div className="text-center">
-                                {displayProduct?.sku && (
-                                  <h3 className="font-bold text-base md:text-lg mb-1 text-[#1B3764]">
-                                    {displayProduct.sku}
-                                  </h3>
-                                )}
-                                <p className="text-xs md:text-sm text-[#1B3764] mb-2 leading-relaxed">
-                                  {displayProduct?.name}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="bg-[#D1D5DB] rounded-xl p-3 md:p-4 shadow-2xl pointer-events-auto w-56 md:w-64 lg:max-w-xs relative"
+                  >
+                    {/* Close button when selected */}
+                    {selectedProduct && (
+                      <button
+                        onClick={handleCloseCard}
+                        className="absolute top-2 right-2 text-[#1B3764] hover:text-[#1B3764]/70 transition-colors z-10"
+                        aria-label="Close"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
+                    {(() => {
+                      const displayProduct = selectedProduct || hoveredProduct;
+                      return (
+                        <div className="space-y-2 md:space-y-3">
+                          {(displayProduct?.thumb || displayProduct?.imageUrl) && (
+                            <div className="flex justify-center">
+                              <img
+                                src={displayProduct.thumb || displayProduct.imageUrl}
+                                alt={displayProduct.name}
+                                className="w-28 h-28 md:w-36 md:h-36 object-contain"
+                              />
+                            </div>
+                          )}
+                          <div className="space-y-2">
+                            <div className="text-center">
+                              {displayProduct?.sku && (
+                                <h3 className="font-bold text-base md:text-lg mb-1 text-[#1B3764]">
+                                  {displayProduct.sku}
+                                </h3>
+                              )}
+                              <p className="text-xs md:text-sm text-[#1B3764] mb-2 leading-relaxed">
+                                {displayProduct?.name}
+                              </p>
+                              {displayProduct?.description && (
+                                <p className="text-[10px] md:text-xs text-[#1B3764] leading-relaxed line-clamp-3">
+                                  {displayProduct.description}
                                 </p>
-                                {displayProduct?.description && (
-                                  <p className="text-[10px] md:text-xs text-[#1B3764] leading-relaxed line-clamp-3">
-                                    {displayProduct.description}
-                                  </p>
-                                )}
+                              )}
                                 {displayProduct?.id && (
                                   <div className="mt-3">
-                                    <a
+                                <a
                                       href={`/product/${displayProduct.id}`}
                                       className="inline-flex items-center justify-center w-full px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-xs font-semibold text-white rounded-full bg-[#F2611D] border border-[#F2611D] shadow-[0_10px_25px_rgba(242,97,29,0.35)] hover:bg-[#F2611D]/85 hover:border-[#F2611D]/90 transition-colors duration-300"
-                                    >
-                                      View Product
-                                    </a>
-                                  </div>
-                                )}
+                                >
+                                  View Product
+                                </a>
                               </div>
-                            </div>
+                            )}
+                              </div>
                           </div>
-                        );
-                      })()}
-                    </motion.div>
-                  </div>
+                        </div>
+                      );
+                    })()}
+                  </motion.div>
+                </div>
                 );
               })()}
             </div>

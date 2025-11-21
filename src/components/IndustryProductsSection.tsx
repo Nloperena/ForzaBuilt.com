@@ -508,45 +508,45 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
 
                 {/* Search Bar */}
                 <div className="mb-4">
-                  <div className="relative">
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 p-1.5 rounded-full">
-                      <Search className="text-white h-4 w-4" />
-                    </div>
-                    <input
-                      placeholder="Search products…"
-                      value={search}
-                      onChange={e => setSearch(e.target.value)}
-                      className="w-full bg-white/10 text-white placeholder-white/50 pl-12 py-3 text-sm border border-white/20 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/10 rounded-xl"
-                    />
-                    {search && (
+                    <div className="relative">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/10 p-1.5 rounded-full">
+                        <Search className="text-white h-4 w-4" />
+                      </div>
+                      <input
+                        placeholder="Search products…"
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                        className="w-full bg-white/10 text-white placeholder-white/50 pl-12 py-3 text-sm border border-white/20 focus:border-white/40 focus:outline-none focus:ring-1 focus:ring-white/10 rounded-xl"
+                      />
+                      {search && (
                       <button
                         onClick={() => setSearch('')}
                         className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 p-1.5 rounded-full transition-colors"
                       >
-                        <X className="text-white h-3 w-3" />
-                      </button>
-                    )}
+                          <X className="text-white h-3 w-3" />
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                {/* Product Category */}
+                  {/* Product Category */}
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold text-white/90 mb-2">Product Category</h4>
                   <div className="grid grid-cols-1 gap-2">
-                    {(['bond','seal','tape'] as const).map(line => (
-                      <button
-                        key={line}
-                        onClick={() => setSelectedLine(line)}
+                      {(['bond','seal','tape'] as const).map(line => (
+                        <button
+                          key={line}
+                          onClick={() => setSelectedLine(line)}
                         className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden ${
                           selectedLine === line ? 'bg-[#F2611D] text-white' : 'bg-[#3f5275]/40 text-white/90 hover:bg-[#3f5275]/60'
                         }`}
-                      >
+                        >
                         <span className="text-xs xl:text-sm font-medium capitalize">{line}</span>
                         <span className="text-xs opacity-70">({categoryCounts[line] || 0})</span>
-                      </button>
-                    ))}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
                 {/* Sort By Name */}
                 <div className="mb-4">
@@ -570,51 +570,51 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                   </div>
                 </div>
 
-                {/* Chemistry Filter */}
-                {chemistryTypes.length > 0 && (
+                  {/* Chemistry Filter */}
+                  {chemistryTypes.length > 0 && (
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold text-white/90 mb-2">Chemistry</h4>
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
-                      {chemistryTypes.map(chemistry => {
-                        const isSelected = selectedChemistries.includes(chemistry);
-                        const count = industryProducts.filter(p => p.chemistry === chemistry).length;
-                        return (
-                          <button
-                            key={chemistry}
-                            onClick={() => {
-                              if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
-                              else setSelectedChemistries([...selectedChemistries, chemistry]);
-                            }}
+                        {chemistryTypes.map(chemistry => {
+                          const isSelected = selectedChemistries.includes(chemistry);
+                          const count = industryProducts.filter(p => p.chemistry === chemistry).length;
+                          return (
+                            <button
+                              key={chemistry}
+                              onClick={() => {
+                                if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
+                                else setSelectedChemistries([...selectedChemistries, chemistry]);
+                              }}
                             disabled={count === 0 && !isSelected}
                             className={`w-full flex items-center justify-between p-2 rounded-lg transition-all overflow-hidden backdrop-blur-xl border border-white/20 ${
                               isSelected ? 'bg-[#F2611D] text-white shadow-lg' : 'bg-[#3f5275]/40 text-white/90 hover:bg-[#3f5275]/60 hover:shadow-md'
                             } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
-                          >
-                            <div className="flex items-center gap-2 min-w-0 flex-1">
+                            >
+                              <div className="flex items-center gap-2 min-w-0 flex-1">
                               <div className="w-8 h-8 flex-shrink-0 flex items-center justify-center">
-                                <img 
-                                  src={CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]} 
-                                  alt={chemistry}
+                                  <img 
+                                    src={CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]} 
+                                    alt={chemistry}
                                   className="w-8 h-8 object-contain chemistry-icon"
-                                />
+                                  />
                               </div>
                               <span className="text-xs xl:text-sm font-medium truncate">{chemistry}</span>
                             </div>
                             <span className="text-xs opacity-70">({count})</span>
-                          </button>
-                        );
-                      })}
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
                 <div className="flex justify-end gap-2 mt-6">
                   <button
                     onClick={() => setIsFilterDialogOpen(false)}
                     className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 py-2 text-sm font-medium transition-colors"
                   >
-                    Apply Filters
-                  </button>
+                      Apply Filters
+                    </button>
                   <button
                     onClick={() => {
                       setSearch('');
@@ -661,7 +661,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                 <div className="flex items-center gap-2 text-white/90 text-sm mb-4">
                   <ExternalLink className="h-4 w-4" />
                   <a href={selectedProduct.imageUrl} target="_blank" rel="noopener noreferrer" className="underline">View Full Image</a>
-                </div>
+                  </div>
                 <div className="flex justify-end gap-2 mt-6">
                   <button
                     onClick={() => setIsModalOpen(false)}

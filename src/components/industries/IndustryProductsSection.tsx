@@ -27,7 +27,7 @@ interface IndustryProductsSectionProps {
   onProductSelect: (product: Product) => void;
 }
 
-const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
+const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({ 
   industryData, 
   onProductSelect 
 }) => {

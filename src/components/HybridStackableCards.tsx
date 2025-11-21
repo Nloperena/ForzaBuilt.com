@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getIndustryGradient, typography } from '../styles/brandStandards';
@@ -54,6 +54,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [viewportHeight, setViewportHeight] = useState<number>(typeof window !== 'undefined' ? window.innerHeight : 900);
+  const industryLowerCase = industry.toLowerCase();
 
   // Modal handlers
   const openProductModal = (card: Card) => {
@@ -76,6 +78,18 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     setIsModalOpen(false);
     setSelectedProduct(null);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== 'undefined') {
+        setViewportHeight(window.innerHeight);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Helper to get industry color hex value
   const getIndustryColorHex = (industry: string) => {
@@ -373,7 +387,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   };
 
   const defaultCards = getIndustryCards();
-  const isTransportation = industry.toLowerCase() === 'transportation';
+  const isTransportation = industryLowerCase === 'transportation';
 
   const cardData = cards.length > 0 ? cards.slice(0, maxCards) : defaultCards.slice(0, maxCards);
 
@@ -407,6 +421,18 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     
     return industrySubtitles[industry.toLowerCase()] || '';
   };
+
+  const cardDisplayHeight = useMemo(() => {
+    if (viewportHeight >= 1600) return 640;
+    if (viewportHeight >= 1440) return 580;
+    if (viewportHeight >= 1200) return 520;
+    if (viewportHeight >= 1000) return 460;
+    if (viewportHeight >= 800) return 400;
+    return Math.max(300, viewportHeight - 200);
+  }, [viewportHeight]);
+
+  const layerSpacing = Math.min(170, Math.max(80, cardDisplayHeight * 0.3));
+  const stackHeight = cardDisplayHeight + layerSpacing + 160;
 
   // Scroll tracking
   useEffect(() => {
@@ -447,14 +473,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       return { progress: 0, nextCardProgress: 0, isVisible: false };
     }
 
-    const isDesktopOrTablet = window.innerWidth >= 768;
-    const cardHeight = window.innerHeight * (isDesktopOrTablet ? 0.75 : 0.4); // Shorter height to reduce idle scroll
-    const cardStart = containerTop + (cardIndex * cardHeight);
+    const cardStart = containerTop + (cardIndex * stackHeight);
     
-    const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / cardHeight));
-    const nextCardProgress = Math.max(0, Math.min(1, (scrollY - cardStart - cardHeight) / cardHeight));
+    const progress = Math.max(0, Math.min(1, (scrollY - cardStart) / stackHeight));
+    const nextCardProgress = Math.max(0, Math.min(1, (scrollY - cardStart - stackHeight) / stackHeight));
     // Cards should stay visible once they've been shown - remove upper bound check
-    const isVisible = scrollY >= cardStart - cardHeight * 0.5;
+    const isVisible = scrollY >= cardStart - stackHeight * 0.5;
     
     return { progress, nextCardProgress, isVisible };
   };
@@ -462,6 +486,17 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const gradientColors = getIndustryGradient(industry);
   const headerTitle = getDefaultTitle();
   const headerSubtitle = getDefaultSubtitle();
+  const headerTitleContent = useMemo(() => {
+    if (industryLowerCase === 'transportation') {
+      return (
+        <>
+          Purpose-Built, Performance,{' '}
+          <span className="whitespace-nowrap">Guaranteed Strength</span>
+        </>
+      );
+    }
+    return headerTitle;
+  }, [headerTitle, industryLowerCase]);
 
   return (
     <>
@@ -483,7 +518,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           
           // Stage each subsequent card slightly lower so it's always visible,
           // then slide it perfectly into place over the first card.
-          const baseOffset = index * 80; // distance between card layers
+          const baseOffset = index * layerSpacing; // distance between card layers
           const currentTranslateY = index === 0 
             ? 0 
             : baseOffset * (1 - clampedProgress);
@@ -507,12 +542,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     <h2 
                       className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white leading-none"
                     >
-                      {headerTitle}
+                      {headerTitleContent}
                     </h2>
                     {headerSubtitle && (
                       <p 
                         className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light mt-2"
-                      >
+                  >
                         {headerSubtitle}
                       </p>
                     )}
@@ -527,7 +562,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     <h2 
                       className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white leading-none"
                     >
-                      {headerTitle}
+                      {headerTitleContent}
                     </h2>
                     {headerSubtitle && (
                       <p 
@@ -539,24 +574,23 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                   </div>
                 </div>
               )}
-
+              
               {/* Card container - fixed position at top of sticky area */}
-              <div className="w-full flex items-center justify-center" style={{ height: 'calc(100vh - 200px)', minHeight: '300px' }}>
-
-              <div 
-                className="w-full max-w-none"
-                style={{
-                  transform: transformString,
-                  opacity: 1, // Always fully opaque when card container is visible
-                  filter: `blur(${blurAmount}px)`,
-                  transition: 'transform 0.3s ease-out' // Only transition transform, not opacity
-                }}
-              >
+              <div className="w-full flex items-center justify-center" style={{ height: `${cardDisplayHeight}px`, minHeight: '300px' }}>
                 <div 
-                  className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''} ${isTransportation ? '' : 'cursor-pointer hover:border-white/30 hover:shadow-3xl hover:scale-[1.02]'}`}
-                  style={{ maxWidth: '1600px' }}
-                  onClick={isTransportation ? undefined : () => openProductModal(card)}
+                  className="w-full max-w-none h-full"
+                  style={{
+                    transform: transformString,
+                    opacity: 1, // Always fully opaque when card container is visible
+                    filter: `blur(${blurAmount}px)`,
+                    transition: 'transform 0.3s ease-out' // Only transition transform, not opacity
+                  }}
                 >
+                  <div 
+                    className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''} ${isTransportation ? '' : 'cursor-pointer hover:border-white/30 hover:shadow-3xl hover:scale-[1.02]'}`}
+                    style={{ maxWidth: '1600px', height: '100%' }}
+                    onClick={isTransportation ? undefined : () => openProductModal(card)}
+                  >
                   <div className={`flex flex-col lg:flex-row h-auto lg:h-[320px] 1024px:h-[300px] xl:h-[380px] 1440px:h-[350px] ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                     {/* Image Section */}
                     <div className="w-full lg:w-1/2 h-48 sm:h-56 md:h-64 lg:h-full relative p-3 sm:p-4 lg:p-6 flex items-center justify-center">
@@ -586,15 +620,15 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         
                         {/* Subheading */}
                         {card.subheading?.trim() && (
-                          <h3 
-                            className="font-normal text-white/90"
-                            style={{ 
-                              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-                              fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
-                            }}
-                          >
-                            {card.subheading}
-                          </h3>
+                        <h3 
+                          className="font-normal text-white/90"
+                          style={{ 
+                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
+                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
+                          }}
+                        >
+                          {card.subheading}
+                        </h3>
                         )}
                         
                         {/* Description Paragraph */}
