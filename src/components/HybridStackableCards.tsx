@@ -762,7 +762,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         <Link
                           to={`/products/${selectedProduct.category?.toLowerCase() || 'bond'}/${selectedProduct.id}`}
                           onClick={(e) => e.stopPropagation()}
-                          className="flex-1 inline-flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 border border-white/30 hover:border-white/40"
+                          className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold text-white bg-[#F2611D] border border-[#F2611D] shadow-[0_10px_25px_rgba(242,97,29,0.35)] hover:bg-[#F2611D]/85 hover:border-[#F2611D]/90 transition-colors duration-300"
                         >
                           <span>View Product Details</span>
                         </Link>
