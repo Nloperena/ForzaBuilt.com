@@ -301,7 +301,11 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
       <div className="bg-white py-4 sm:py-6 md:py-8 lg:py-12">
         {title && (
           <div className="text-center mb-4">
-            <h2 className="text-xs md:text-sm font-normal text-[#1B3764] font-poppins">{title}</h2>
+            <h2 className="font-normal text-[#1B3764] font-poppins"
+              style={{ fontSize: 'clamp(14px, 1.3vw, 24px)' }}
+            >
+              {title}
+            </h2>
           </div>
         )}
         
@@ -406,7 +410,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
                                   <div className="mt-3">
                                     <a
                                       href={`/product/${displayProduct.id}`}
-                                      className="inline-flex items-center justify-center w-full px-3 py-1.5 text-[10px] md:text-xs font-semibold text-white bg-[#1B3764] hover:bg-[#2A4A7A] rounded-full transition-colors"
+                                      className="inline-flex items-center justify-center w-full px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-xs font-semibold text-white rounded-full bg-[#F2611D] border border-[#F2611D] shadow-[0_10px_25px_rgba(242,97,29,0.35)] hover:bg-[#F2611D]/85 hover:border-[#F2611D]/90 transition-colors duration-300"
                                     >
                                       View Product
                                     </a>

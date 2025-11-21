@@ -68,10 +68,10 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
     <>
       {/* Section Header - Only for transportation */}
       {industryLower === 'transportation' && (
-        <section className="bg-white relative z-[30] pt-12 pb-8">
+        <section className="bg-white relative z-[30] pt-8 pb-0">
           <div className="w-full px-4">
             <motion.div
-              className="text-center mb-8"
+              className="text-center mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -93,7 +93,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
       )}
 
       {/* X-Rays in Single Row */}
-      <section className="relative overflow-visible py-12 bg-white z-[30]">
+      <section className="relative overflow-visible pt-8 pb-12 bg-white z-[30]">
         <div className="w-full px-4">
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center items-center md:items-start">
             {configs.map((config, index) => (
