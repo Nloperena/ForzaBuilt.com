@@ -54,7 +54,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
               viewport={{ once: true }}
             >
               <h2 
-                className="font-semibold text-[#1B3764] font-poppins leading-tight"
+                className="font-normal text-[#1B3764] font-poppins leading-tight"
                 style={{ fontSize: 'clamp(1.75rem, 3vw + 0.5rem, 3rem)' }}
               >
                 Product Applications
