@@ -423,17 +423,17 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   };
 
   const cardDisplayHeight = useMemo(() => {
-    if (viewportHeight >= 1600) return 720;
-    if (viewportHeight >= 1440) return 640;
-    if (viewportHeight >= 1200) return 580;
-    if (viewportHeight >= 1000) return 500;
-    if (viewportHeight >= 800) return 420;
-    return Math.max(300, viewportHeight - 200);
+    if (viewportHeight >= 1600) return 800;
+    if (viewportHeight >= 1440) return 720;
+    if (viewportHeight >= 1200) return 650;
+    if (viewportHeight >= 1000) return 580;
+    if (viewportHeight >= 800) return 500;
+    return Math.max(450, viewportHeight - 150);
   }, [viewportHeight]);
 
-  const layerSpacing = Math.min(170, Math.max(80, cardDisplayHeight * 0.3));
-  const stackHeight = cardDisplayHeight + layerSpacing + 160;
-  const stickyTop = Math.max(0, (viewportHeight - cardDisplayHeight) / 2);
+  const layerSpacing = 0; // Small offset for visibility during transition, but cards stack at same position
+  const stackHeight = cardDisplayHeight + layerSpacing + (viewportHeight * 1.8); // Increased scroll distance for readability
+  const stickyTop = Math.max(10, viewportHeight * .01); // Stick cards higher up (5% from top)
 
   // Scroll tracking
   useEffect(() => {
@@ -487,11 +487,13 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const gradientColors = getIndustryGradient(industry);
   const headerTitle = getDefaultTitle();
   const headerSubtitle = getDefaultSubtitle();
-  const headerTitleContent = useMemo(() => {
-    if (industryLowerCase === 'transportation') {
+  
+  // Format title to ensure "Guaranteed Strength" is on its own line
+  const formattedTitle = useMemo(() => {
+    if (industryLowerCase === 'transportation' && headerTitle.includes('Guaranteed Strength')) {
       return (
         <>
-          Purpose-Built, Performance,{' '}
+          Purpose-Built, Performance,<br />
           <span className="whitespace-nowrap">Guaranteed Strength</span>
         </>
       );
@@ -504,9 +506,11 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       <style>{cardStyleSheet}</style>
       <div 
         ref={containerRef}
-        className="relative w-full pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24"
+        className="relative w-full"
         style={{
-          background: `linear-gradient(315deg, ${gradientColors})`
+          background: `linear-gradient(315deg, ${gradientColors})`,
+          paddingTop: '2rem',
+          paddingBottom: '2rem'
         }}
       >
       {/* Stacking Cards */}
@@ -519,12 +523,16 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           
           // Stage each subsequent card slightly lower so it's always visible,
           // then slide it perfectly into place over the first card.
+          // All cards should stack at exactly the same position (translateY(0))
           const baseOffset = index * layerSpacing; // distance between card layers
           const currentTranslateY = index === 0 
             ? 0 
             : baseOffset * (1 - clampedProgress);
           
-          const transformString = `translateY(${currentTranslateY}px)`;
+          // Ensure cards stack perfectly on top of each other when progress reaches 1
+          const finalTranslateY = clampedProgress >= 1 ? 0 : currentTranslateY;
+          
+          const transformString = `translateY(${finalTranslateY}px)`;
           const blurAmount = 0; // No blur
           
           return (
@@ -539,12 +547,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             >
               {/* Section Heading - only visible on first card */}
               {index === 0 && (
-                <div className="w-full flex justify-center pt-4 pb-2 px-3 sm:px-4 relative z-50">
+                <div className="w-full flex justify-center pt-12 pb-8 px-3 sm:px-4 relative z-50">
                   <div className="text-center max-w-5xl">
                     <h2 
                       className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white leading-none"
                     >
-                      {headerTitleContent}
+                      {formattedTitle}
                     </h2>
                     {headerSubtitle && (
                       <p 
@@ -559,12 +567,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
 
               {/* Invisible spacer heading for cards 2+ to maintain alignment */}
               {index > 0 && (
-                <div className="w-full pt-4 pb-2 px-3 sm:px-4 invisible">
+                <div className="w-full flex justify-center pt-12 pb-8 px-3 sm:px-4 invisible" style={{ height: 'auto' }}>
                   <div className="text-center max-w-5xl">
                     <h2 
                       className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white leading-none"
                     >
-                      {headerTitleContent}
+                      {formattedTitle}
                     </h2>
                     {headerSubtitle && (
                       <p 
@@ -578,7 +586,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               )}
               
               {/* Card container - fixed position at top of sticky area */}
-              <div className="w-full flex items-center justify-center" style={{ height: `${cardDisplayHeight}px`, minHeight: '300px' }}>
+              <div className="w-full flex items-center justify-center" style={{ height: `${cardDisplayHeight}px`, minHeight: '400px' }}>
                 <div 
                   className="w-full max-w-none h-full"
                   style={{
@@ -590,31 +598,31 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 >
                   <div 
                     className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''} ${isTransportation ? '' : 'cursor-pointer hover:border-white/30 hover:shadow-3xl hover:scale-[1.02]'}`}
-                    style={{ maxWidth: '1600px', height: '100%' }}
+                    style={{ maxWidth: '1800px', height: '100%', display: 'flex', flexDirection: 'column' }}
                     onClick={isTransportation ? undefined : () => openProductModal(card)}
                   >
-                  <div className={`flex flex-col lg:flex-row ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                  <div className={`flex flex-col lg:flex-row h-full ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                     {/* Image Section */}
-                    <div className="w-full lg:w-1/2 h-48 sm:h-56 md:h-64 lg:h-full relative p-3 sm:p-4 lg:p-6 flex items-center justify-center">
+                    <div className="w-full lg:w-1/2 h-[35%] sm:h-[40%] lg:h-full relative p-4 lg:p-6 flex items-center justify-center">
                       <div className="w-full h-full flex items-center justify-center">
                         <img 
                           src={card.image} 
                           alt={card.title}
                           className="max-w-full max-h-full object-contain rounded-lg lg:rounded-xl"
-                          style={{ width: 'auto', height: 'auto' }}
+                          style={{ width: 'auto', height: 'auto', maxHeight: '100%' }}
                         />
                       </div>
                     </div>
                     
                     {/* Content Section */}
-                    <div className="w-full lg:w-1/2 p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-start">
-                      <div className="space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col">
+                    <div className="w-full lg:w-1/2 h-[65%] sm:h-[60%] lg:h-full p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-center">
+                      <div className="flex flex-col justify-center h-full">
                         {/* Heading */}
                         <h2 
-                          className="font-normal font-poppins text-white leading-tight"
+                          className="font-normal font-poppins text-white leading-tight mb-2 sm:mb-3 lg:mb-4"
                           style={{ 
                             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-                            fontSize: 'clamp(1.5rem, 3vw, 2.5rem)'
+                            fontSize: 'clamp(1.75rem, 3vw, 3rem)'
                           }}
                         >
                           {card.title}
@@ -623,10 +631,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         {/* Subheading */}
                         {card.subheading?.trim() && (
                         <h3 
-                          className="font-normal text-white/90"
+                          className="font-normal text-white/90 mb-2"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-                            fontSize: 'clamp(0.75rem, 1.2vw, 1rem)'
+                            fontSize: 'clamp(0.9rem, 1.3vw, 1.25rem)'
                           }}
                         >
                           {card.subheading}
@@ -635,10 +643,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                         
                         {/* Description Paragraph */}
                         <p 
-                          className="font-normal text-white/80 leading-relaxed"
+                          className="font-normal text-white/80 leading-relaxed mb-3 sm:mb-4"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                            fontSize: 'clamp(0.9rem, 1.4vw, 1.15rem)'
+                            fontSize: 'clamp(1rem, 1.5vw, 1.35rem)'
                           }}
                         >
                           {card.description}
@@ -652,10 +660,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                               className="flex items-start text-white/90"
                               style={{ 
                                 textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                                fontSize: 'clamp(0.8rem, 1.2vw, 1.05rem)'
+                                fontSize: 'clamp(0.9rem, 1.3vw, 1.2rem)'
                               }}
                             >
-                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1.5" style={{ width: 'clamp(0.45rem, 0.9vw, 0.7rem)', height: 'clamp(0.45rem, 0.9vw, 0.7rem)' }}></div>
+                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1.5" style={{ width: 'clamp(0.5rem, 1vw, 0.8rem)', height: 'clamp(0.5rem, 1vw, 0.8rem)' }}></div>
                               {item}
                             </li>
                           ))}
@@ -671,7 +679,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         })}
         
         {/* Spacer for scroll height */}
-        <div style={{ height: `${cardData.length * 15}vh` }} />
+        <div style={{ height: `${cardData.length * 25}vh` }} />
       </div>
 
       {/* Product Modal with Wipe Animation */}

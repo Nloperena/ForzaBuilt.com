@@ -84,11 +84,6 @@ const IndustryPageV3 = () => {
         <section className="relative z-[25] bg-white">
           <IndustryHeadingsSection industryTitle={industryData.title} />
         </section>
-
-        {/* X-Ray Explorer Sections */}
-        <section className="relative z-[25] bg-white">
-          <IndustryXRaySections industry={industryData.title} />
-        </section>
       </StickyIndustryHeroVideoSection>
 
       {/* Hybrid Stackable Cards Section - Outside sticky wrapper so sticky positioning works */}
@@ -98,6 +93,11 @@ const IndustryPageV3 = () => {
           maxCards={3}
         />
       </div>
+
+      {/* X-Ray Explorer Sections - Scrolls over the cards section */}
+      <section className="relative z-[40] bg-white">
+        <IndustryXRaySections industry={industryData.title} />
+      </section>
 
       {/* Continue with remaining content */}
       <div className="relative z-[25]">

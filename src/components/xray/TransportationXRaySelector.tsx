@@ -20,7 +20,7 @@ const OPTIONS: XRayOption[] = [
     subtitle: '',
     summary:
       'Explore RV & motor coach assemblies including structural bonding for slide-outs, roof sealing, and continuous panel builds.',
-    previewImage: '/img/transportation/RV Bus Exploded-NEW.svg',
+    previewImage: '/img/transportation/RV Bus Exploded-NEW.png',
   },
   {
     id: 'trailer',
@@ -28,7 +28,7 @@ const OPTIONS: XRayOption[] = [
     subtitle: '',
     summary:
       'Inspect high-strength trailer assemblies covering walls, floors, and chassis bonding for commercial and specialty builds.',
-    previewImage: '/img/transportation/Trailer Exploded Graphic2.svg',
+    previewImage: '/img/transportation/Trailer PostX-Ray.png',
   },
 ];
 
@@ -38,7 +38,7 @@ const optionVariants = {
 };
 
 const TransportationXRaySelector: React.FC = () => {
-  const [selectedVariant, setSelectedVariant] = useState<XRayVariant | null>(null);
+  const [selectedVariant, setSelectedVariant] = useState<XRayVariant | null>('trailer');
 
   const SelectedOverlay = useMemo(() => {
     if (!selectedVariant) return null;
@@ -97,7 +97,7 @@ const TransportationXRaySelector: React.FC = () => {
                         : 'border-[#1B3764]/15 text-[#1B3764] bg-white'
                     }`}
                   >
-                    <div className="w-16 h-14 rounded-xl bg-[#f1f4fa] overflow-hidden flex-shrink-0">
+                    <div className="w-24 h-20 rounded-xl bg-[#f1f4fa] overflow-hidden flex-shrink-0">
                       <img
                         src={option.previewImage}
                         alt={option.title}
@@ -117,20 +117,24 @@ const TransportationXRaySelector: React.FC = () => {
             </div>
 
             {/* Center X-ray */}
-            <div className="relative rounded-[32px] overflow-hidden min-h-[520px]">
-              <AnimatePresence mode="wait">
+            <motion.div 
+              layout
+              className="relative rounded-[32px] min-h-[520px] isolate"
+              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            >
+              <AnimatePresence mode="popLayout">
                 <motion.div
                   key={selectedVariant}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -40 }}
-                  transition={{ duration: 0.45, ease: 'easeOut' }}
-                  className="h-full"
+                  initial={{ opacity: 0, filter: 'blur(4px)' }}
+                  animate={{ opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, filter: 'blur(4px)' }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="h-full w-full"
                 >
                   {SelectedOverlay}
                 </motion.div>
               </AnimatePresence>
-            </div>
+            </motion.div>
 
           </div>
         )}

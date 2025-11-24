@@ -107,7 +107,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
         svgElement.style.width = '100%';
         svgElement.style.height = 'auto';
         // Responsive min-height: smaller on mobile, larger on desktop
-        svgElement.style.minHeight = 'clamp(400px, 50vh, 1000px)';
+        svgElement.style.minHeight = 'clamp(480px, 60vh, 1200px)';
         svgElement.style.display = 'block';
         svgElement.style.maxWidth = '100%';
         svgElement.style.overflow = 'visible';
@@ -299,7 +299,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
   return (
     <>
       <div className="bg-white py-4 sm:py-6 md:py-8 lg:py-12">
-        {title && (
+        {/* {title && (
           <div className="text-center mb-4">
             <h2 className="font-normal text-[#1B3764] font-poppins"
               style={{ fontSize: 'clamp(14px, 1.3vw, 24px)' }}
@@ -307,7 +307,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
               {title}
             </h2>
           </div>
-        )}
+        )} */}
         
         <div className="relative overflow-visible flex justify-center px-2 sm:px-4 md:px-6">
           {/* SVG Container with Tooltip positioned relative to it */}
@@ -316,11 +316,11 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
               <div
                 ref={svgContainerRef}
                 className="relative w-full max-w-full sm:max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[90rem]"
-                style={{ minHeight: 'clamp(400px, 50vh, 1000px)' }}
+                style={{ minHeight: 'clamp(480px, 60vh, 1200px)' }}
               >
                 <div
                   dangerouslySetInnerHTML={{ __html: svgContent }}
-                  style={{ width: '100%', height: 'auto', minHeight: 'clamp(400px, 50vh, 1000px)' }}
+                  style={{ width: '100%', height: 'auto', minHeight: 'clamp(480px, 60vh, 1200px)' }}
                 />
               </div>
               
