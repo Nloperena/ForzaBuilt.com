@@ -107,7 +107,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
         svgElement.style.width = '100%';
         svgElement.style.height = 'auto';
         // Responsive min-height: smaller on mobile, larger on desktop
-        svgElement.style.minHeight = 'clamp(480px, 60vh, 1200px)';
+        svgElement.style.minHeight = 'clamp(580px, 72vh, 1500px)';
         svgElement.style.display = 'block';
         svgElement.style.maxWidth = '100%';
         svgElement.style.overflow = 'visible';
@@ -174,28 +174,30 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
   // Handle click outside to close selected product
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (selectedProduct && tooltipRef.current && svgContainerRef.current) {
+      if (selectedProduct && svgContainerRef.current) {
         const target = event.target as Node;
-        // Check if click is outside both the tooltip and SVG container
-        if (
-          !tooltipRef.current.contains(target) &&
-          !svgContainerRef.current.contains(target)
-        ) {
-          setSelectedProduct(null);
-          setHoveredProduct(null);
+        // Check if click is outside the SVG container (the display area)
+        // Allow clicks on the tooltip itself to keep it open
+        if (!svgContainerRef.current.contains(target)) {
+          // Also check if it's not the tooltip
+          if (tooltipRef.current && !tooltipRef.current.contains(target)) {
+            setSelectedProduct(null);
+            setHoveredProduct(null);
+            setTooltipPosition(null);
+          }
         }
       }
     };
 
     if (selectedProduct) {
-      // Use a small delay to avoid closing immediately when clicking to select
+      // Use a longer delay to avoid closing immediately when clicking to select
       const timeoutId = setTimeout(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-      }, 100);
+        document.addEventListener('mousedown', handleClickOutside, true);
+      }, 200);
 
       return () => {
         clearTimeout(timeoutId);
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('mousedown', handleClickOutside, true);
       };
     }
   }, [selectedProduct]);
@@ -209,31 +211,31 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
         
         const handleMouseEnter = (event: Event) => {
           if (isMobile) return;
+          // Don't show hover tooltips if a product is already selected
+          if (selectedProduct) return;
+          
           const target = event.currentTarget as SVGPathElement | SVGPolygonElement;
           const product = pathProducts.get(target.id);
           if (product) {
             console.log('Hovering over path:', target.id, 'Product:', product.sku || product.name);
-            // Only show hover if no product is selected, or if hovering over a different product
-            if (!selectedProduct || selectedProduct.id !== product.id) {
-              // Calculate position based on bounding box
-              try {
-                const bbox = target.getBBox();
-                const svg = target.ownerSVGElement;
-                if (svg && svg.viewBox && svg.viewBox.baseVal) {
-                  const viewBox = svg.viewBox.baseVal;
-                  // Calculate coordinates relative to viewBox
-                  const x = ((bbox.x + bbox.width / 2) / viewBox.width) * 100;
-                  const y = ((bbox.y + bbox.height) / viewBox.height) * 100;
-                  const centerY = ((bbox.y + bbox.height / 2) / viewBox.height) * 100;
-                  const leftX = (bbox.x / viewBox.width) * 100;
-                  const rightX = ((bbox.x + bbox.width) / viewBox.width) * 100;
-                  setTooltipPosition({ x, y, centerY, leftX, rightX });
-                }
-              } catch (e) {
-                console.error('Error calculating position:', e);
+            // Calculate position based on bounding box
+            try {
+              const bbox = target.getBBox();
+              const svg = target.ownerSVGElement;
+              if (svg && svg.viewBox && svg.viewBox.baseVal) {
+                const viewBox = svg.viewBox.baseVal;
+                // Calculate coordinates relative to viewBox
+                const x = ((bbox.x + bbox.width / 2) / viewBox.width) * 100;
+                const y = ((bbox.y + bbox.height) / viewBox.height) * 100;
+                const centerY = ((bbox.y + bbox.height / 2) / viewBox.height) * 100;
+                const leftX = (bbox.x / viewBox.width) * 100;
+                const rightX = ((bbox.x + bbox.width) / viewBox.width) * 100;
+                setTooltipPosition({ x, y, centerY, leftX, rightX });
               }
-              setHoveredProduct(product);
+            } catch (e) {
+              console.error('Error calculating position:', e);
             }
+            setHoveredProduct(product);
           }
         };
 
@@ -247,6 +249,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
         };
 
         const handleClick = (event: Event) => {
+          event.stopPropagation(); // Prevent event from bubbling to document
           const target = event.currentTarget as SVGPathElement | SVGPolygonElement;
           const product = pathProducts.get(target.id);
           if (product) {
@@ -261,19 +264,18 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
                 // Calculate center x and bottom y relative to viewBox
                 const x = ((bbox.x + bbox.width / 2) / viewBox.width) * 100;
                 const y = ((bbox.y + bbox.height) / viewBox.height) * 100;
-                setTooltipPosition({ x, y });
+                const centerY = ((bbox.y + bbox.height / 2) / viewBox.height) * 100;
+                const leftX = (bbox.x / viewBox.width) * 100;
+                const rightX = ((bbox.x + bbox.width) / viewBox.width) * 100;
+                setTooltipPosition({ x, y, centerY, leftX, rightX });
               }
             } catch (e) {
               console.error('Error calculating position:', e);
             }
 
-            // Toggle selection - if clicking the same product, deselect it
-            if (selectedProduct?.id === product.id) {
-              setSelectedProduct(null);
-              setTooltipPosition(null);
-            } else {
-              setSelectedProduct(product);
-            }
+            // Set selection - clicking the same path keeps it selected
+            setSelectedProduct(product);
+            setHoveredProduct(null); // Clear hover when selecting
           }
         };
 
@@ -293,7 +295,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
         };
       }
     }
-  }, [svgContent, pathProducts, isMobile]);
+  }, [svgContent, pathProducts, isMobile, selectedProduct]);
 
 
   return (
@@ -315,12 +317,12 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
             <div className="relative inline-block">
               <div
                 ref={svgContainerRef}
-                className="relative w-full max-w-full sm:max-w-4xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[90rem]"
-                style={{ minHeight: 'clamp(480px, 60vh, 1200px)' }}
+                className="relative w-full max-w-full sm:max-w-5xl md:max-w-6xl lg:max-w-7xl xl:max-w-[90rem] 2xl:max-w-[110rem]"
+                style={{ minHeight: 'clamp(580px, 72vh, 1500px)' }}
               >
                 <div
                   dangerouslySetInnerHTML={{ __html: svgContent }}
-                  style={{ width: '100%', height: 'auto', minHeight: 'clamp(480px, 60vh, 1200px)' }}
+                  style={{ width: '100%', height: 'auto', minHeight: 'clamp(580px, 72vh, 1500px)' }}
                 />
               </div>
               

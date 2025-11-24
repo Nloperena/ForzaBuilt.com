@@ -78,9 +78,9 @@ const TransportationXRaySelector: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-6 lg:gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-6 lg:gap-8 items-start">
             {/* Left selector column */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-5">
               {OPTIONS.map(option => {
                 const isSelected = option.id === selectedVariant;
                 return (
@@ -91,13 +91,13 @@ const TransportationXRaySelector: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: option.id === 'trailer' ? 0.05 : 0 }}
                     onClick={() => setSelectedVariant(option.id)}
-                    className={`rounded-2xl border p-4 text-left transition-all duration-300 flex items-center gap-4 ${
+                    className={`rounded-2xl border p-5 text-left transition-all duration-300 flex items-center gap-5 ${
                       isSelected
                         ? 'border-transparent bg-gradient-to-br from-[#1B3764] to-[#263f6b] text-white shadow-[0_20px_45px_rgba(27,55,100,0.3)]'
                         : 'border-[#1B3764]/15 text-[#1B3764] bg-white'
                     }`}
                   >
-                    <div className="w-24 h-20 rounded-xl bg-[#f1f4fa] overflow-hidden flex-shrink-0">
+                    <div className="w-[120px] h-28 rounded-xl bg-[#f1f4fa] overflow-hidden flex-shrink-0">
                       <img
                         src={option.previewImage}
                         alt={option.title}
@@ -105,7 +105,7 @@ const TransportationXRaySelector: React.FC = () => {
                       />
                     </div>
                     <p
-                      className={`text-base font-semibold ${
+                      className={`text-lg font-semibold ${
                         isSelected ? 'text-white' : 'text-[#1B3764]'
                       }`}
                     >
@@ -117,24 +117,23 @@ const TransportationXRaySelector: React.FC = () => {
             </div>
 
             {/* Center X-ray */}
-            <motion.div 
-              layout
-              className="relative rounded-[32px] min-h-[520px] isolate"
-              transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+            <div 
+              className="relative rounded-[32px] isolate"
+              style={{ minHeight: 'clamp(580px, 72vh, 1500px)' }}
             >
               <AnimatePresence mode="popLayout">
                 <motion.div
                   key={selectedVariant}
-                  initial={{ opacity: 0, filter: 'blur(4px)' }}
-                  animate={{ opacity: 1, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, filter: 'blur(4px)' }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="h-full w-full"
                 >
                   {SelectedOverlay}
                 </motion.div>
               </AnimatePresence>
-            </motion.div>
+            </div>
 
           </div>
         )}
