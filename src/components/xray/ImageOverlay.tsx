@@ -37,9 +37,9 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
 
   // Tooltip scale factor for short displays
   const tooltipScale = (() => {
-    if (viewportHeight < 500) return 0.6;
-    if (viewportHeight < 600) return 0.7;
-    if (viewportHeight < 800) return 0.85;
+    if (viewportHeight < 500) return 0.85;
+    if (viewportHeight < 600) return 0.9;
+    if (viewportHeight < 800) return 0.95;
     return 1;
   })();
   const [svgContent, setSvgContent] = useState<string | null>(null);
@@ -342,11 +342,8 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
                 />
               </div>
               
-              {/* Product Tooltip - Positioned relative to hovered/selected path */}
+              {/* Product Tooltip - Positioned to the right of the X-Ray */}
               {!isMobile && (selectedProduct || hoveredProduct) && tooltipPosition && (() => {
-                const isNearBottom = tooltipPosition.y > 80;
-                const isLeft = tooltipPosition.x < 50;
-                
                 const tooltipWidth = 400 * tooltipScale;
                 const style: any = {
                   position: 'absolute',
@@ -354,32 +351,12 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
                   zIndex: 9999,
                   width: 'auto',
                   maxWidth: `${tooltipWidth}px`,
+                  left: '100%',
+                  marginLeft: `${20 * tooltipScale}px`,
+                  top: '50%',
+                  transform: `translateY(-50%) scale(${tooltipScale})`,
+                  transformOrigin: 'center center',
                 };
-
-                if (isNearBottom) {
-                  // Spawn to side if touching bottom
-                  style.top = `${tooltipPosition.centerY}%`;
-                  style.transform = `translateY(-50%) scale(${tooltipScale})`;
-                  style.transformOrigin = 'center center';
-                  if (isLeft) {
-                    style.left = `${tooltipPosition.rightX}%`;
-                    style.marginLeft = `${20 * tooltipScale}px`;
-                  } else {
-                    style.right = `${100 - tooltipPosition.leftX}%`;
-                    style.marginRight = `${20 * tooltipScale}px`;
-                  }
-                } else {
-                  // Spawn below (default)
-                  style.top = `${tooltipPosition.y}%`;
-                  style.marginTop = `${20 * tooltipScale}px`;
-                  style.transform = `scale(${tooltipScale})`;
-                  style.transformOrigin = 'top center';
-                  if (isLeft) {
-                    style.left = `${tooltipPosition.x}%`;
-                  } else {
-                    style.right = `${100 - tooltipPosition.x}%`;
-                  }
-                }
 
                 return (
                   <div ref={tooltipRef} style={style}>
