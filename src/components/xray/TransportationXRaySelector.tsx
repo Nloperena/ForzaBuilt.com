@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import RVBusOverlay from './RVBusOverlay';
 import TrailerOverlay from './TrailerOverlay';
 
@@ -71,11 +71,6 @@ const TransportationXRaySelector: React.FC = () => {
     if (viewportHeight < 800) return 'clamp(400px, 60vh, 700px)';
     return 'clamp(580px, 72vh, 1500px)';
   }, [viewportHeight]);
-
-  const SelectedOverlay = useMemo(() => {
-    if (!selectedVariant) return null;
-    return selectedVariant === 'rv-bus' ? <RVBusOverlay viewportHeight={viewportHeight} /> : <TrailerOverlay viewportHeight={viewportHeight} />;
-  }, [selectedVariant, viewportHeight]);
 
   const selectedOption = selectedVariant
     ? OPTIONS.find(option => option.id === selectedVariant)
@@ -219,18 +214,36 @@ const TransportationXRaySelector: React.FC = () => {
                 className="relative rounded-[32px] isolate"
                 style={{ minHeight: xrayMinHeight }}
               >
-                <AnimatePresence mode="popLayout">
+                {/* Crossfade container - both X-rays rendered, visibility controlled by opacity */}
+                <div className="relative w-full" style={{ minHeight: xrayMinHeight }}>
+                  {/* RV/Bus X-Ray */}
                   <motion.div
-                    key={selectedVariant}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="h-full w-full"
+                    initial={false}
+                    animate={{ 
+                      opacity: selectedVariant === 'rv-bus' ? 1 : 0,
+                      pointerEvents: selectedVariant === 'rv-bus' ? 'auto' : 'none'
+                    }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                    className={selectedVariant === 'rv-bus' ? 'relative' : 'absolute inset-0'}
+                    style={{ zIndex: selectedVariant === 'rv-bus' ? 2 : 1 }}
                   >
-                    {SelectedOverlay}
+                    <RVBusOverlay viewportHeight={viewportHeight} />
                   </motion.div>
-                </AnimatePresence>
+                  
+                  {/* Trailer X-Ray */}
+                  <motion.div
+                    initial={false}
+                    animate={{ 
+                      opacity: selectedVariant === 'trailer' ? 1 : 0,
+                      pointerEvents: selectedVariant === 'trailer' ? 'auto' : 'none'
+                    }}
+                    transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                    className={selectedVariant === 'trailer' ? 'relative' : 'absolute inset-0'}
+                    style={{ zIndex: selectedVariant === 'trailer' ? 2 : 1 }}
+                  >
+                    <TrailerOverlay viewportHeight={viewportHeight} />
+                  </motion.div>
+                </div>
               </div>
             </div>
 
