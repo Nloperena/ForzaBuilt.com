@@ -54,15 +54,16 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
               viewport={{ once: true }}
             >
               <h2 
-                className="font-normal text-[#1B3764] font-poppins leading-tight"
-                style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+                className="font-semibold text-[#1B3764] font-poppins leading-tight"
+                style={{ fontSize: 'clamp(1.75rem, 3vw + 0.5rem, 3rem)' }}
               >
-                Trailer & Transportation
+                Product Applications
               </h2>
               <p 
-                className="text-lg text-[#1B3764] max-w-2xl mx-auto font-normal font-poppins mt-2"
+                className="text-[#1B3764]/70 max-w-2xl mx-auto font-normal font-poppins mt-2"
+                style={{ fontSize: 'clamp(0.875rem, 1.2vw + 0.25rem, 1.25rem)' }}
               >
-                Cursor over or click to explore each X-Ray and see where our solutions power every build detail.
+                Cursor over or click to explore product application details
               </p>
             </motion.div>
           </div>
