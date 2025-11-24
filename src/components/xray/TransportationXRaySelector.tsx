@@ -94,14 +94,14 @@ const TransportationXRaySelector: React.FC = () => {
                     className={`rounded-2xl border p-5 text-left transition-all duration-300 flex items-center gap-5 ${
                       isSelected
                         ? 'border-transparent bg-gradient-to-br from-[#1B3764] to-[#263f6b] text-white shadow-[0_20px_45px_rgba(27,55,100,0.3)]'
-                        : 'border-[#1B3764]/15 text-[#1B3764] bg-white'
+                        : 'border-[#1B3764]/15 text-[#1B3764] bg-gray-200'
                     }`}
                   >
-                    <div className="w-[120px] h-28 rounded-xl bg-[#f1f4fa] overflow-hidden flex-shrink-0">
+                    <div className="w-[120px] h-28 rounded-xl bg-gray-300 overflow-hidden flex-shrink-0">
                       <img
                         src={option.previewImage}
                         alt={option.title}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <p

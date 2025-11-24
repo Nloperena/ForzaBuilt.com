@@ -423,12 +423,14 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   };
 
   const cardDisplayHeight = useMemo(() => {
-    if (viewportHeight >= 1600) return 800;
-    if (viewportHeight >= 1440) return 720;
-    if (viewportHeight >= 1200) return 650;
-    if (viewportHeight >= 1000) return 580;
-    if (viewportHeight >= 800) return 500;
-    return Math.max(450, viewportHeight - 150);
+    // Use fixed sizes based on viewport height, but don't scale up when viewport gets shorter
+    if (viewportHeight >= 1600) return 600;
+    if (viewportHeight >= 1440) return 540;
+    if (viewportHeight >= 1200) return 480;
+    if (viewportHeight >= 1000) return 420;
+    if (viewportHeight >= 800) return 360;
+    // Fixed minimum size for smaller viewports instead of scaling with height
+    return 320;
   }, [viewportHeight]);
 
   const layerSpacing = 0; // Small offset for visibility during transition, but cards stack at same position
