@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import RVBusOverlay from './RVBusOverlay';
 import TrailerOverlay from './TrailerOverlay';
@@ -39,11 +39,43 @@ const optionVariants = {
 
 const TransportationXRaySelector: React.FC = () => {
   const [selectedVariant, setSelectedVariant] = useState<XRayVariant | null>('trailer');
+  const [viewportHeight, setViewportHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 800);
+
+  // Track viewport height
+  useEffect(() => {
+    const handleResize = () => setViewportHeight(window.innerHeight);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Scale factor for short displays
+  const scale = useMemo(() => {
+    if (viewportHeight < 500) return 0.6;
+    if (viewportHeight < 600) return 0.7;
+    if (viewportHeight < 800) return 0.85;
+    return 1;
+  }, [viewportHeight]);
+
+  // Sidebar column width based on viewport height
+  const sidebarWidth = useMemo(() => {
+    if (viewportHeight < 600) return '200px';
+    if (viewportHeight < 800) return '260px';
+    return '320px';
+  }, [viewportHeight]);
+
+  // X-Ray container min-height based on viewport height
+  const xrayMinHeight = useMemo(() => {
+    if (viewportHeight < 500) return 'clamp(280px, 50vh, 400px)';
+    if (viewportHeight < 600) return 'clamp(320px, 55vh, 500px)';
+    if (viewportHeight < 800) return 'clamp(400px, 60vh, 700px)';
+    return 'clamp(580px, 72vh, 1500px)';
+  }, [viewportHeight]);
 
   const SelectedOverlay = useMemo(() => {
     if (!selectedVariant) return null;
-    return selectedVariant === 'rv-bus' ? <RVBusOverlay /> : <TrailerOverlay />;
-  }, [selectedVariant]);
+    return selectedVariant === 'rv-bus' ? <RVBusOverlay viewportHeight={viewportHeight} /> : <TrailerOverlay viewportHeight={viewportHeight} />;
+  }, [selectedVariant, viewportHeight]);
 
   const selectedOption = selectedVariant
     ? OPTIONS.find(option => option.id === selectedVariant)
@@ -78,9 +110,12 @@ const TransportationXRaySelector: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-6 lg:gap-8 items-start">
+          <div 
+            className="grid grid-cols-1 lg:grid-cols-[var(--sidebar-width)_minmax(0,1fr)] gap-4 lg:gap-6 items-center"
+            style={{ '--sidebar-width': sidebarWidth } as React.CSSProperties}
+          >
             {/* Left selector column */}
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col" style={{ gap: `${Math.max(12, 20 * scale)}px` }}>
               {OPTIONS.map(option => {
                 const isSelected = option.id === selectedVariant;
                 return (
@@ -91,13 +126,23 @@ const TransportationXRaySelector: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: option.id === 'trailer' ? 0.05 : 0 }}
                     onClick={() => setSelectedVariant(option.id)}
-                    className={`rounded-2xl border p-5 text-left transition-all duration-300 flex items-center gap-5 ${
+                    className={`rounded-2xl border text-left transition-all duration-300 flex items-center ${
                       isSelected
-                        ? 'border-transparent bg-gradient-to-br from-[#1B3764] to-[#263f6b] text-white shadow-[0_20px_45px_rgba(27,55,100,0.3)]'
+                        ? 'border-transparent bg-gradient-to-br from-[#1B3764] to-[#263f6b] text-white'
                         : 'border-[#1B3764]/15 text-[#1B3764] bg-gray-200'
                     }`}
+                    style={{ 
+                      padding: `${Math.max(12, 20 * scale)}px`,
+                      gap: `${Math.max(12, 20 * scale)}px`
+                    }}
                   >
-                    <div className="w-[120px] h-28 rounded-xl bg-gray-300 overflow-hidden flex-shrink-0">
+                    <div 
+                      className="rounded-xl bg-gray-300 overflow-hidden flex-shrink-0"
+                      style={{ 
+                        width: `${Math.max(70, 120 * scale)}px`, 
+                        height: `${Math.max(56, 112 * scale)}px` 
+                      }}
+                    >
                       <img
                         src={option.previewImage}
                         alt={option.title}
@@ -105,9 +150,10 @@ const TransportationXRaySelector: React.FC = () => {
                       />
                     </div>
                     <p
-                      className={`text-lg font-semibold ${
+                      className={`font-semibold ${
                         isSelected ? 'text-white' : 'text-[#1B3764]'
                       }`}
+                      style={{ fontSize: `${Math.max(12, 18 * scale)}px` }}
                     >
                       {option.title}
                     </p>
@@ -119,7 +165,7 @@ const TransportationXRaySelector: React.FC = () => {
             {/* Center X-ray */}
             <div 
               className="relative rounded-[32px] isolate"
-              style={{ minHeight: 'clamp(580px, 72vh, 1500px)' }}
+              style={{ minHeight: xrayMinHeight }}
             >
               <AnimatePresence mode="popLayout">
                 <motion.div

@@ -1,10 +1,15 @@
 import ImageOverlay from './ImageOverlay';
 
-function TrailerOverlay() {
+interface TrailerOverlayProps {
+  viewportHeight?: number;
+}
+
+function TrailerOverlay({ viewportHeight }: TrailerOverlayProps) {
   return (
     <ImageOverlay
       svgSrc="/img/transportation/Trailer Exploded Graphic2.svg"
       title="Trailer Applications"
+      viewportHeight={viewportHeight}
     />
   );
 }

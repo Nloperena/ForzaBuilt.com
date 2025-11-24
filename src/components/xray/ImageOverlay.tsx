@@ -23,9 +23,17 @@ interface Product {
 interface ImageOverlayProps {
   svgSrc: string;
   title?: string;
+  viewportHeight?: number;
 }
 
-function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
+function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps) {
+  // Calculate responsive min-height based on viewport height
+  const xrayMinHeight = (() => {
+    if (viewportHeight < 500) return 'clamp(280px, 50vh, 400px)';
+    if (viewportHeight < 600) return 'clamp(320px, 55vh, 500px)';
+    if (viewportHeight < 800) return 'clamp(400px, 60vh, 700px)';
+    return 'clamp(580px, 72vh, 1500px)';
+  })();
   const [svgContent, setSvgContent] = useState<string | null>(null);
   const [pathProducts, setPathProducts] = useState<Map<string, Product>>(new Map());
   const [transportationProducts, setTransportationProducts] = useState<Product[]>([]);
@@ -107,7 +115,7 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
         svgElement.style.width = '100%';
         svgElement.style.height = 'auto';
         // Responsive min-height: smaller on mobile, larger on desktop
-        svgElement.style.minHeight = 'clamp(580px, 72vh, 1500px)';
+        svgElement.style.minHeight = xrayMinHeight;
         svgElement.style.display = 'block';
         svgElement.style.maxWidth = '100%';
         svgElement.style.overflow = 'visible';
@@ -318,11 +326,11 @@ function ImageOverlay({ svgSrc, title }: ImageOverlayProps) {
               <div
                 ref={svgContainerRef}
                 className="relative w-full max-w-full sm:max-w-5xl md:max-w-6xl lg:max-w-7xl xl:max-w-[90rem] 2xl:max-w-[110rem]"
-                style={{ minHeight: 'clamp(580px, 72vh, 1500px)' }}
+                style={{ minHeight: xrayMinHeight }}
               >
                 <div
                   dangerouslySetInnerHTML={{ __html: svgContent }}
-                  style={{ width: '100%', height: 'auto', minHeight: 'clamp(580px, 72vh, 1500px)' }}
+                  style={{ width: '100%', height: 'auto', minHeight: xrayMinHeight }}
                 />
               </div>
               

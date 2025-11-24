@@ -100,8 +100,9 @@ const IndustryTitleSection: React.FC<IndustryTitleSectionProps> = ({ title, logo
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
         >
           Building High-Performance<br />
-          {`${title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape`}<br />
-          & Sealant Solutions.
+          {`${title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape`}
+          <br />
+          <span style={{ display: 'inline-block' }}>{'&'} Sealant Solutions.</span>
         </motion.h3>
       </motion.div>
     </section>

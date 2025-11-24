@@ -423,19 +423,75 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   };
 
   const cardDisplayHeight = useMemo(() => {
-    // Use fixed sizes based on viewport height, but don't scale up when viewport gets shorter
-    if (viewportHeight >= 1600) return 600;
-    if (viewportHeight >= 1440) return 540;
-    if (viewportHeight >= 1200) return 480;
-    if (viewportHeight >= 1000) return 420;
-    if (viewportHeight >= 800) return 360;
-    // Fixed minimum size for smaller viewports instead of scaling with height
-    return 320;
+    // XL Displays - larger cards
+    if (viewportHeight >= 1600) return 750;
+    if (viewportHeight >= 1440) return 680;
+    
+    // Standard Desktop
+    if (viewportHeight >= 1200) return 600;
+    if (viewportHeight >= 1000) return 520;
+    
+    // Laptops/Tablets
+    if (viewportHeight >= 800) return 450;
+    if (viewportHeight >= 600) return 380;
+    
+    // Short displays (450px - 600px)
+    if (viewportHeight >= 450) return 280;
+    
+    // Very short displays
+    return 240;
   }, [viewportHeight]);
 
   const layerSpacing = 0; // Small offset for visibility during transition, but cards stack at same position
   const stackHeight = cardDisplayHeight + layerSpacing + (viewportHeight * 1.8); // Increased scroll distance for readability
-  const stickyTop = Math.max(10, viewportHeight * .01); // Stick cards higher up (5% from top)
+  
+  // ============================================
+  // POSITIONING VARIABLES - Adjust these to control where title + cards sit
+  // ============================================
+  
+  // Estimated height of the title section above the card (pt-12 pb-8 + text)
+  const titleHeight = 100; // pixels - adjust if title is taller/shorter
+  
+  // Total height of the group (title + card)
+  const groupHeight = titleHeight + cardDisplayHeight;
+  
+  // Where to position the CENTER of the group in the viewport (0.5 = middle, 0.4 = higher, 0.6 = lower)
+  const groupCenterPosition = 0.0; // 0.5 = perfectly centered
+  
+  // Calculate where the top of the group should be to center the entire group
+  const groupCenterY = viewportHeight * groupCenterPosition;
+  const groupTopY = groupCenterY - (groupHeight / 2);
+  
+  // stickyTop is where the sticky container starts (which includes the title)
+  const calculatedStickyTop = groupTopY;
+  
+  // Ensure it doesn't go too high (min 10px from top) or too low
+  const stickyTop = Math.max(10, Math.min(viewportHeight - cardDisplayHeight - 20, calculatedStickyTop));
+  
+  // ============================================
+
+  // Adjust card width/padding based on viewport height for "more negative space" on short displays
+  const containerPadding = useMemo(() => {
+    if (viewportHeight < 500) return 'px-16 sm:px-20 md:px-28'; // Most padding on very short screens
+    if (viewportHeight < 600) return 'px-12 sm:px-16 md:px-24'; // More padding on short screens
+    if (viewportHeight < 800) return 'px-8 sm:px-12';
+    return 'px-4 sm:px-6 md:px-8'; // Standard padding
+  }, [viewportHeight]);
+
+  // Card max-width based on viewport height - wider on short displays
+  const cardMaxWidth = useMemo(() => {
+    if (viewportHeight < 600) return 1700; // Wider on short screens
+    if (viewportHeight < 800) return 1750;
+    return 1800; // Standard
+  }, [viewportHeight]);
+
+  // Content text scale factor based on viewport height (1 = normal, smaller = reduced)
+  const contentScale = useMemo(() => {
+    if (viewportHeight < 500) return 0.65;
+    if (viewportHeight < 600) return 0.75;
+    if (viewportHeight < 800) return 0.85;
+    return 1;
+  }, [viewportHeight]);
 
   // Scroll tracking
   useEffect(() => {
@@ -540,11 +596,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           return (
             <div
               key={card.id}
-              className="sticky w-full min-h-[70vh] flex flex-col px-2 sm:px-4"
+              className={`sticky w-full flex flex-col ${containerPadding}`}
               style={{
                 zIndex: 50 + index,
                 opacity: 1,
                 top: stickyTop,
+                minHeight: `${Math.max(cardDisplayHeight + 60, viewportHeight * 0.5)}px`
               }}
             >
               {/* Section Heading - only visible on first card */}
@@ -588,7 +645,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               )}
               
               {/* Card container - fixed position at top of sticky area */}
-              <div className="w-full flex items-center justify-center" style={{ height: `${cardDisplayHeight}px`, minHeight: '400px' }}>
+              <div className="w-full flex items-center justify-center" style={{ height: `${cardDisplayHeight}px`, minHeight: `${Math.min(cardDisplayHeight, viewportHeight * 0.6)}px` }}>
                 <div 
                   className="w-full max-w-none h-full"
                   style={{
@@ -600,7 +657,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 >
                   <div 
                     className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''} ${isTransportation ? '' : 'cursor-pointer hover:border-white/30 hover:shadow-3xl hover:scale-[1.02]'}`}
-                    style={{ maxWidth: '1800px', height: '100%', display: 'flex', flexDirection: 'column' }}
+                    style={{ maxWidth: `${cardMaxWidth}px`, height: '100%', display: 'flex', flexDirection: 'column' }}
                     onClick={isTransportation ? undefined : () => openProductModal(card)}
                   >
                   <div className={`flex flex-col lg:flex-row h-full ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
@@ -624,7 +681,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                           className="font-normal font-poppins text-white leading-tight mb-2 sm:mb-3 lg:mb-4"
                           style={{ 
                             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-                            fontSize: 'clamp(1.75rem, 3vw, 3rem)'
+                            fontSize: `calc(clamp(1.75rem, 3vw, 3rem) * ${contentScale})`
                           }}
                         >
                           {card.title}
@@ -636,7 +693,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                           className="font-normal text-white/90 mb-2"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-                            fontSize: 'clamp(0.9rem, 1.3vw, 1.25rem)'
+                            fontSize: `calc(clamp(0.9rem, 1.3vw, 1.25rem) * ${contentScale})`
                           }}
                         >
                           {card.subheading}
@@ -648,7 +705,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                           className="font-normal text-white/80 leading-relaxed mb-3 sm:mb-4"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                            fontSize: 'clamp(1rem, 1.5vw, 1.35rem)'
+                            fontSize: `calc(clamp(1rem, 1.5vw, 1.35rem) * ${contentScale})`
                           }}
                         >
                           {card.description}
@@ -662,10 +719,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                               className="flex items-start text-white/90"
                               style={{ 
                                 textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                                fontSize: 'clamp(0.9rem, 1.3vw, 1.2rem)'
+                                fontSize: `calc(clamp(0.9rem, 1.3vw, 1.2rem) * ${contentScale})`
                               }}
                             >
-                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1.5" style={{ width: 'clamp(0.5rem, 1vw, 0.8rem)', height: 'clamp(0.5rem, 1vw, 0.8rem)' }}></div>
+                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1.5" style={{ width: `calc(clamp(0.5rem, 1vw, 0.8rem) * ${contentScale})`, height: `calc(clamp(0.5rem, 1vw, 0.8rem) * ${contentScale})` }}></div>
                               {item}
                             </li>
                           ))}
