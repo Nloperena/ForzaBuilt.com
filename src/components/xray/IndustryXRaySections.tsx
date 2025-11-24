@@ -43,34 +43,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
   const configs = xrayConfigs[industryLower];
   
   if (industryLower === 'transportation') {
-    return (
-      <>
-        <section className="bg-white relative z-[30] pt-8 pb-0">
-          <div className="w-full px-4">
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 
-                className="font-normal text-[#1B3764] font-poppins leading-tight"
-                style={{ fontSize: 'clamp(1.75rem, 3vw + 0.5rem, 3rem)' }}
-              >
-                Product Applications
-              </h2>
-              <p 
-                className="text-[#1B3764]/70 max-w-2xl mx-auto font-normal font-poppins mt-2"
-                style={{ fontSize: 'clamp(0.875rem, 1.2vw + 0.25rem, 1.25rem)' }}
-              >
-                Cursor over or click to explore product application details
-              </p>
-            </motion.div>
-          </div>
-        </section>
-        <TransportationXRaySelector />
-      </>
-    );
+    return <TransportationXRaySelector />;
   }
 
   if (!configs || configs.length === 0) {
