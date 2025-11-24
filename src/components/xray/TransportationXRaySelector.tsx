@@ -110,12 +110,15 @@ const TransportationXRaySelector: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div 
-            className="grid grid-cols-1 lg:grid-cols-[var(--sidebar-width)_minmax(0,1fr)] gap-4 lg:gap-6 items-center"
-            style={{ '--sidebar-width': sidebarWidth } as React.CSSProperties}
-          >
-            {/* Left selector column */}
-            <div className="flex flex-col" style={{ gap: `${Math.max(12, 20 * scale)}px` }}>
+          <div className="relative">
+            {/* Left selector column - positioned absolutely on the left */}
+            <div 
+              className="hidden lg:flex flex-col absolute left-0 top-0 z-10" 
+              style={{ 
+                gap: `${Math.max(12, 20 * scale)}px`,
+                width: sidebarWidth
+              }}
+            >
               {OPTIONS.map(option => {
                 const isSelected = option.id === selectedVariant;
                 return (
@@ -162,23 +165,73 @@ const TransportationXRaySelector: React.FC = () => {
               })}
             </div>
 
-            {/* Center X-ray */}
-            <div 
-              className="relative rounded-[32px] isolate"
-              style={{ minHeight: xrayMinHeight }}
-            >
-              <AnimatePresence mode="popLayout">
-                <motion.div
-                  key={selectedVariant}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="h-full w-full"
-                >
-                  {SelectedOverlay}
-                </motion.div>
-              </AnimatePresence>
+            {/* Mobile selections - above X-Ray */}
+            <div className="flex lg:hidden flex-col items-center gap-4 mb-6">
+              {OPTIONS.map(option => {
+                const isSelected = option.id === selectedVariant;
+                return (
+                  <motion.button
+                    key={option.id}
+                    type="button"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: option.id === 'trailer' ? 0.05 : 0 }}
+                    onClick={() => setSelectedVariant(option.id)}
+                    className={`rounded-2xl border text-left transition-all duration-300 flex items-center w-full max-w-md ${
+                      isSelected
+                        ? 'border-transparent bg-gradient-to-br from-[#1B3764] to-[#263f6b] text-white'
+                        : 'border-[#1B3764]/15 text-[#1B3764] bg-gray-200'
+                    }`}
+                    style={{ 
+                      padding: `${Math.max(12, 20 * scale)}px`,
+                      gap: `${Math.max(12, 20 * scale)}px`
+                    }}
+                  >
+                    <div 
+                      className="rounded-xl bg-gray-300 overflow-hidden flex-shrink-0"
+                      style={{ 
+                        width: `${Math.max(70, 120 * scale)}px`, 
+                        height: `${Math.max(56, 112 * scale)}px` 
+                      }}
+                    >
+                      <img
+                        src={option.previewImage}
+                        alt={option.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <p
+                      className={`font-semibold ${
+                        isSelected ? 'text-white' : 'text-[#1B3764]'
+                      }`}
+                      style={{ fontSize: `${Math.max(12, 18 * scale)}px` }}
+                    >
+                      {option.title}
+                    </p>
+                  </motion.button>
+                );
+              })}
+            </div>
+
+            {/* Center X-ray - centered in full width, independent of selections */}
+            <div className="flex justify-center items-center w-full">
+              <div 
+                className="relative rounded-[32px] isolate"
+                style={{ minHeight: xrayMinHeight }}
+              >
+                <AnimatePresence mode="popLayout">
+                  <motion.div
+                    key={selectedVariant}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="h-full w-full"
+                  >
+                    {SelectedOverlay}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
 
           </div>

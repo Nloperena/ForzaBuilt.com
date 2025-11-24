@@ -342,21 +342,57 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
                 />
               </div>
               
-              {/* Product Tooltip - Positioned to the right of the X-Ray */}
+              {/* Product Tooltip - Positioned next to the hovered/selected SVG path */}
               {!isMobile && (selectedProduct || hoveredProduct) && tooltipPosition && (() => {
                 const tooltipWidth = 400 * tooltipScale;
+                // Determine if hover is on left or right side of SVG
+                const isLeftSide = tooltipPosition.x < 20;
+                // Check if tooltip would touch bottom - if path is in bottom 40% of viewport, show above
+                // Using a more aggressive threshold to prevent cutoff
+                const pathY = tooltipPosition.centerY || tooltipPosition.y;
+                const isNearBottom = pathY > 60;
+                
                 const style: any = {
                   position: 'absolute',
                   pointerEvents: 'none',
                   zIndex: 9999,
                   width: 'auto',
                   maxWidth: `${tooltipWidth}px`,
-                  left: '100%',
-                  marginLeft: `${20 * tooltipScale}px`,
-                  top: '50%',
-                  transform: `translateY(-50%) scale(${tooltipScale})`,
                   transformOrigin: 'center center',
                 };
+
+                // Vertical positioning - above if near bottom, otherwise centered
+                if (isNearBottom) {
+                  // Position above the path - use top with negative margin
+                  style.top = `${pathY}%`;
+                  style.marginTop = '-12px';
+                  style.transformOrigin = 'center bottom';
+                } else {
+                  // Position centered on the path
+                  style.top = `${pathY}%`;
+                  style.transformOrigin = 'center center';
+                }
+
+                // Horizontal positioning
+                if (isLeftSide) {
+                  // Position to the left of the path with small gap
+                  style.left = `${tooltipPosition.leftX}%`;
+                  style.marginLeft = '-12px';
+                  if (isNearBottom) {
+                    style.transform = `translateX(-100%) translateY(-100%) scale(${tooltipScale})`;
+                  } else {
+                    style.transform = `translateX(-100%) translateY(-50%) scale(${tooltipScale})`;
+                  }
+                } else {
+                  // Position to the right of the path with small gap
+                  style.left = `${tooltipPosition.rightX}%`;
+                  style.marginLeft = '12px';
+                  if (isNearBottom) {
+                    style.transform = `translateY(-100%) scale(${tooltipScale})`;
+                  } else {
+                    style.transform = `translateY(-50%) scale(${tooltipScale})`;
+                  }
+                }
 
                 return (
                   <div ref={tooltipRef} style={style}>
