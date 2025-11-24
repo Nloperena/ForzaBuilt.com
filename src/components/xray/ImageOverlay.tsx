@@ -34,6 +34,14 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
     if (viewportHeight < 800) return 'clamp(400px, 60vh, 700px)';
     return 'clamp(580px, 72vh, 1500px)';
   })();
+
+  // Tooltip scale factor for short displays
+  const tooltipScale = (() => {
+    if (viewportHeight < 500) return 0.6;
+    if (viewportHeight < 600) return 0.7;
+    if (viewportHeight < 800) return 0.85;
+    return 1;
+  })();
   const [svgContent, setSvgContent] = useState<string | null>(null);
   const [pathProducts, setPathProducts] = useState<Map<string, Product>>(new Map());
   const [transportationProducts, setTransportationProducts] = useState<Product[]>([]);
@@ -339,29 +347,33 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
                 const isNearBottom = tooltipPosition.y > 80;
                 const isLeft = tooltipPosition.x < 50;
                 
+                const tooltipWidth = 400 * tooltipScale;
                 const style: any = {
                   position: 'absolute',
                   pointerEvents: 'none',
                   zIndex: 9999,
                   width: 'auto',
-                  maxWidth: '400px',
+                  maxWidth: `${tooltipWidth}px`,
                 };
 
                 if (isNearBottom) {
                   // Spawn to side if touching bottom
                   style.top = `${tooltipPosition.centerY}%`;
-                  style.transform = 'translateY(-50%)';
+                  style.transform = `translateY(-50%) scale(${tooltipScale})`;
+                  style.transformOrigin = 'center center';
                   if (isLeft) {
                     style.left = `${tooltipPosition.rightX}%`;
-                    style.marginLeft = '20px';
+                    style.marginLeft = `${20 * tooltipScale}px`;
                   } else {
                     style.right = `${100 - tooltipPosition.leftX}%`;
-                    style.marginRight = '20px';
+                    style.marginRight = `${20 * tooltipScale}px`;
                   }
                 } else {
                   // Spawn below (default)
                   style.top = `${tooltipPosition.y}%`;
-                  style.marginTop = '20px';
+                  style.marginTop = `${20 * tooltipScale}px`;
+                  style.transform = `scale(${tooltipScale})`;
+                  style.transformOrigin = 'top center';
                   if (isLeft) {
                     style.left = `${tooltipPosition.x}%`;
                   } else {
@@ -376,7 +388,12 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
-                    className="bg-[#D1D5DB] rounded-xl p-3 md:p-4 shadow-2xl pointer-events-auto w-56 md:w-64 lg:max-w-xs relative"
+                    className="bg-[#D1D5DB] rounded-xl shadow-2xl pointer-events-auto relative"
+                    style={{
+                      padding: `${Math.max(8, 12 * tooltipScale)}px ${Math.max(10, 16 * tooltipScale)}px`,
+                      width: `${224 * tooltipScale}px`,
+                      maxWidth: `${320 * tooltipScale}px`
+                    }}
                   >
                     {/* Close button when selected */}
                     {selectedProduct && (
@@ -397,30 +414,47 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
                               <img
                                 src={displayProduct.thumb || displayProduct.imageUrl}
                                 alt={displayProduct.name}
-                                className="w-28 h-28 md:w-36 md:h-36 object-contain"
+                                className="object-contain"
+                                style={{
+                                  width: `${112 * tooltipScale}px`,
+                                  height: `${112 * tooltipScale}px`
+                                }}
                               />
                             </div>
                           )}
-                          <div className="space-y-2">
+                          <div style={{ gap: `${8 * tooltipScale}px` }} className="flex flex-col">
                             <div className="text-center">
                               {displayProduct?.sku && (
-                                <h3 className="font-bold text-base md:text-lg mb-1 text-[#1B3764]">
+                                <h3 
+                                  className="font-bold mb-1 text-[#1B3764]"
+                                  style={{ fontSize: `${Math.max(12, 16 * tooltipScale)}px` }}
+                                >
                                   {displayProduct.sku}
                                 </h3>
                               )}
-                              <p className="text-xs md:text-sm text-[#1B3764] mb-2 leading-relaxed">
+                              <p 
+                                className="text-[#1B3764] mb-2 leading-relaxed"
+                                style={{ fontSize: `${Math.max(10, 14 * tooltipScale)}px` }}
+                              >
                                 {displayProduct?.name}
                               </p>
                               {displayProduct?.description && (
-                                <p className="text-[10px] md:text-xs text-[#1B3764] leading-relaxed line-clamp-3">
+                                <p 
+                                  className="text-[#1B3764] leading-relaxed line-clamp-3"
+                                  style={{ fontSize: `${Math.max(8, 12 * tooltipScale)}px` }}
+                                >
                                   {displayProduct.description}
                                 </p>
                               )}
                                 {displayProduct?.id && (
-                                  <div className="mt-3">
+                                  <div style={{ marginTop: `${12 * tooltipScale}px` }}>
                                 <a
                                       href={`/product/${displayProduct.id}`}
-                                      className="inline-flex items-center justify-center w-full px-3 md:px-4 py-1.5 md:py-2 text-[10px] md:text-xs font-semibold text-white rounded-full bg-[#F2611D] border border-[#F2611D] shadow-[0_10px_25px_rgba(242,97,29,0.35)] hover:bg-[#F2611D]/85 hover:border-[#F2611D]/90 transition-colors duration-300"
+                                      className="inline-flex items-center justify-center w-full font-semibold text-white rounded-full bg-[#F2611D] border border-[#F2611D] shadow-[0_10px_25px_rgba(242,97,29,0.35)] hover:bg-[#F2611D]/85 hover:border-[#F2611D]/90 transition-colors duration-300"
+                                      style={{
+                                        padding: `${Math.max(4, 6 * tooltipScale)}px ${Math.max(8, 12 * tooltipScale)}px`,
+                                        fontSize: `${Math.max(8, 12 * tooltipScale)}px`
+                                      }}
                                 >
                                   View Product
                                 </a>

@@ -142,7 +142,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
             >
-              Building High-Performance<br />
+              Building High-Performing<br />
               {`${industryTitle.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape`}<br />
               {'&'} Sealant Solutions.
             </motion.h3>
