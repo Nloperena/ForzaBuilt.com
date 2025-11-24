@@ -77,8 +77,24 @@ const TransportationXRaySelector: React.FC = () => {
     : null;
 
   return (
-    <section className="relative bg-white z-[30] py-0">
+    <section className="relative bg-white z-[30] py-8 sm:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Section Header */}
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 
+            className="font-poppins font-semibold text-[#1B3764] mb-2 sm:mb-3"
+            style={{ fontSize: 'clamp(1.75rem, 3vw + 0.5rem, 3rem)' }}
+          >
+            Product Applications
+          </h2>
+          <p 
+            className="text-[#1B3764]/70 font-poppins"
+            style={{ fontSize: 'clamp(0.875rem, 1.2vw + 0.25rem, 1.25rem)' }}
+          >
+            Cursor over or click to explore product application details
+          </p>
+        </div>
+
         {!selectedVariant ? (
           <div className="relative py-8 sm:py-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
