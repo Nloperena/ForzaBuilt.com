@@ -185,12 +185,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-purpose-built',
             title: "Purpose-Built",
             subheading: "",
-            description: "Every solution we make starts with your application—and is built with purpose from the ground up.",
+            description: "Every solution starts with your application—built with purpose from the ground up.",
             listItems: [
-              "Engineered for the real world to deliver solutions that work the first time and every time",
-              "Tailored, not templated: adhesives and sealants crafted for the specific demands your industry faces",
-              "Practical innovation that pairs advanced chemistry with real-world application insight",
-              "Custom, validated solutions delivered fast with no guesswork or wasted time"
+              "Engineered for real-world use, delivering results the first time and every time.",
+              "Tailored to your industry—never one-size-fits-all.",
+              "Innovation grounded in chemistry and real-world insight.",
+              "Custom, validated solutions delivered fast—no guesswork, no waste."
             ],
             color: getCardGradient(0),
             image: TruckStackImage
@@ -199,11 +199,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-performance',
             title: "Performance",
             subheading: "",
-            description: "Driven by experience and powered by science, our products perform where it matters most.",
+            description: "Experience and science powering performance where it matters most.",
             listItems: [
-              "Decades of in-field expertise plus rigorous testing to ensure performance in the toughest environments",
-              "Industry-specific formulas and test protocols for reliable results across transportation, construction, marine, and manufacturing sectors",
-              "Comprehensive product portfolio so you get the exact high-performance solution you need—nothing more, nothing less"
+              "Decades of in-field know-how backed by rigorous testing.",
+              "Industry-specific formulas built for tough environments.",
+              "A complete portfolio that gives you exactly what you need.",
+              "Smarter chemistry for faster application and less waste."
             ],
             color: getCardGradient(1),
             image: TrailerStackImage
@@ -212,12 +213,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-guaranteed-strength',
             title: "Guaranteed Strength",
             subheading: "",
-            description: "Our products are engineered to handle the demands of your toughest applications.",
+            description: "Engineered for your toughest applications—with strength you can trust.",
             listItems: [
-              "Strength you can trust—validated in-house and proven in the field",
-              "Built for the long haul to withstand demanding conditions without compromise",
-              "Made in the USA in our vertically integrated manufacturing and R&D center for consistent, reliable performance",
-              "If it bonds, seals, or sticks, we make it strong—and help create the solution if it doesn’t yet exist"
+              "Proven strength validated in-house and in the field.",
+              "Built to withstand demanding conditions without compromise.",
+              "Made in the USA for consistent, reliable performance.",
+              "If it bonds, seals, or sticks, we make it strong—or help you create it."
             ],
             color: getCardGradient(0),
             image: RvStackImage
