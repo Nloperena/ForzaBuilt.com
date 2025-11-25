@@ -15,6 +15,7 @@ import MarineSpeedboatImage from '@/assets/images/Marine-stickstackcard-images/S
 // Construction Images
 import ConstructionBuildingImage from '@/assets/images/Construction-stickstackcard-images/House Construction-2.jpg';
 import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard-images/construction-2.jpg';
+import ConstructionTiltUpImage from '@/assets/images/Construction-stickstackcard-images/Tilt-Up Image-2.jpg';
 
 // Industrial Images
 import IndustrialStructuralImage from '@/assets/images/Industrial-stickstackcard-images/general-industries.jpg';
@@ -268,6 +269,20 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             ],
             color: getCardGradient(1),
             image: ConstructionCustomImage
+          },
+          {
+            id: 'construction-tiltup',
+            title: "Lorem Ipsum Solutions",
+            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            listItems: [
+              "Lorem ipsum dolor sit amet",
+              "Consectetur adipiscing elit",
+              "Sed do eiusmod tempor",
+              "Incididunt ut labore et dolore magna aliqua"
+            ],
+            color: getCardGradient(2),
+            image: ConstructionTiltUpImage
           }
         ];
         
@@ -300,6 +315,20 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             ],
             color: getCardGradient(1),
             image: IndustrialStructuralImage // Using duplicate as requested for missing image
+          },
+          {
+            id: 'industrial-placeholder',
+            title: "Advanced Industrial Solutions",
+            subheading: "Coming soon",
+            description: "New industrial adhesive and bonding solutions are in development to meet the evolving needs of modern manufacturing.",
+            listItems: [
+              "Innovative bonding technologies",
+              "Enhanced performance characteristics",
+              "Expanded application capabilities",
+              "Next-generation industrial solutions"
+            ],
+            color: getCardGradient(2),
+            image: null // Skeleton placeholder will be used
           }
         ];
         
@@ -741,12 +770,20 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                     {/* Image Section */}
                     <div className="w-full lg:w-1/2 h-[50%] sm:h-[55%] lg:h-full relative p-2 sm:p-3 lg:p-4 flex items-center justify-center">
                       <div className="w-full h-full flex items-center justify-center">
-                        <img 
-                          src={card.image} 
-                          alt={card.title}
-                          className="max-w-full max-h-full object-contain rounded-lg lg:rounded-xl"
-                          style={{ width: 'auto', height: 'auto', maxHeight: '100%', maxWidth: '100%' }}
-                        />
+                        {card.image ? (
+                          <img 
+                            src={card.image} 
+                            alt={card.title}
+                            className="max-w-full max-h-full object-contain rounded-lg lg:rounded-xl"
+                            style={{ width: 'auto', height: 'auto', maxHeight: '100%', maxWidth: '100%' }}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center rounded-lg lg:rounded-xl bg-gray-300/20 animate-pulse">
+                            <div className="w-3/4 h-3/4 bg-gray-400/30 rounded-lg flex items-center justify-center">
+                              <div className="text-gray-500/50 text-sm font-medium">Loading...</div>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                     
