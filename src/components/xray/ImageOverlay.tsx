@@ -26,9 +26,11 @@ interface ImageOverlayProps {
   viewportHeight?: number;
   viewportWidth?: number;
   sidebarWidth?: string; // New prop for sidebar width
+  industry?: string; // Industry to fetch products for
+  bgImage?: string; // Optional background image
 }
 
-function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 1280, sidebarWidth = '320px' }: ImageOverlayProps) {
+function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 1280, sidebarWidth = '320px', industry = 'transportation', bgImage }: ImageOverlayProps) {
   // Calculate responsive min-height based on viewport height - use full viewport height
   const xrayMinHeight = (() => {
     // Use full viewport height for all displays
@@ -53,7 +55,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   })();
   const [svgContent, setSvgContent] = useState<string | null>(null);
   const [pathProducts, setPathProducts] = useState<Map<string, Product>>(new Map());
-  const [transportationProducts, setTransportationProducts] = useState<Product[]>([]);
+  const [industryProducts, setIndustryProducts] = useState<Product[]>([]);
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState<{x: number, y: number, centerY: number, leftX: number, rightX: number} | null>(null);
@@ -100,25 +102,26 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     return 'Transportation industry bonding and sealing applications for RV and trailer construction, providing reliable performance in demanding environments.';
   };
 
-  // Load transportation products
+  // Load industry products
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const products = await byIndustry('transportation');
+        const products = await byIndustry(industry);
         // Convert to format we need
         const formattedProducts = products.map(p => ({
           id: p.id,
           name: p.name,
           imageUrl: p.imageUrl,
           description: p.description || p.shortName || '',
+          sku: p.sku // Ensure sku is passed
         }));
-        setTransportationProducts(formattedProducts);
+        setIndustryProducts(formattedProducts);
       } catch (error) {
-        console.error('Failed to load transportation products:', error);
+        console.error(`Failed to load ${industry} products:`, error);
       }
     };
     loadProducts();
-  }, []);
+  }, [industry]);
 
   useEffect(() => {
     // Load SVG content dynamically
@@ -186,10 +189,10 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         setSvgContent(svgString);
 
         // Assign random transportation products to each path/polygon after SVG is loaded
-        if (transportationProducts.length > 0) {
+        if (industryProducts.length > 0) {
           const productMap = new Map<string, Product>();
           paths.forEach((path) => {
-            const randomProduct = transportationProducts[Math.floor(Math.random() * transportationProducts.length)];
+            const randomProduct = industryProducts[Math.floor(Math.random() * industryProducts.length)];
             productMap.set(path.id, randomProduct);
           });
           setPathProducts(productMap);
@@ -198,7 +201,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
       .catch((error) => {
         console.error('Error loading SVG:', error);
       });
-  }, [svgSrc, title, transportationProducts]);
+  }, [svgSrc, title, industryProducts]);
 
   const handleCloseCard = () => {
     if (selectedPathRef.current) {
@@ -501,9 +504,24 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                 className={`relative w-full ${svgMaxWidth}`}
                 style={{ minHeight: xrayMinHeight }}
               >
+                {/* Optional Background Image */}
+                {bgImage && (
+                  <img 
+                    src={bgImage} 
+                    alt="" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ zIndex: 0 }}
+                  />
+                )}
                 <div
                   dangerouslySetInnerHTML={{ __html: svgContent }}
-                  style={{ width: '100%', height: 'auto', minHeight: xrayMinHeight }}
+                  style={{ 
+                    width: '100%', 
+                    height: 'auto', 
+                    minHeight: xrayMinHeight, 
+                    position: 'relative', 
+                    zIndex: 1 
+                  }}
                 />
               </div>
               
