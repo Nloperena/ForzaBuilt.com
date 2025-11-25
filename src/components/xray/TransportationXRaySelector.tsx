@@ -250,7 +250,7 @@ const TransportationXRaySelector: React.FC = () => {
                     className={selectedVariant === 'rv-bus' ? 'relative' : 'absolute inset-0'}
                     style={{ zIndex: selectedVariant === 'rv-bus' ? 2 : 1 }}
                   >
-                    <RVBusOverlay viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
+                    <RVBusOverlay viewportHeight={viewportHeight} viewportWidth={viewportWidth} sidebarWidth={sidebarWidth} />
                   </motion.div>
                   
                   {/* Trailer X-Ray */}
@@ -264,7 +264,7 @@ const TransportationXRaySelector: React.FC = () => {
                     className={selectedVariant === 'trailer' ? 'relative' : 'absolute inset-0'}
                     style={{ zIndex: selectedVariant === 'trailer' ? 2 : 1 }}
                   >
-                    <TrailerOverlay viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
+                    <TrailerOverlay viewportHeight={viewportHeight} viewportWidth={viewportWidth} sidebarWidth={sidebarWidth} />
                   </motion.div>
                 </div>
               </div>

@@ -25,9 +25,10 @@ interface ImageOverlayProps {
   title?: string;
   viewportHeight?: number;
   viewportWidth?: number;
+  sidebarWidth?: string; // New prop for sidebar width
 }
 
-function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 1280 }: ImageOverlayProps) {
+function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 1280, sidebarWidth = '320px' }: ImageOverlayProps) {
   // Calculate responsive min-height based on viewport height - use full viewport height
   const xrayMinHeight = (() => {
     // Use full viewport height for all displays
@@ -421,6 +422,8 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                   width: 'auto',
                   maxWidth: `${tooltipWidth}px`,
                   transformOrigin: 'center center',
+                  right: '12px', // Position on the right side of ImageOverlay
+                  left: 'auto', // Clear left positioning
                 };
 
                 // Vertical positioning - above if near bottom, otherwise centered
@@ -435,14 +438,8 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                   style.transformOrigin = 'center center';
                 }
 
-                // Horizontal positioning: Always position to the right of the path with a small gap
-                style.left = `${tooltipPosition.rightX}%`;
-                style.marginLeft = '12px';
-                if (isNearBottom) {
-                  style.transform = `translateY(-100%) scale(${tooltipScale})`;
-                } else {
-                  style.transform = `translateY(-50%) scale(${tooltipScale})`;
-                }
+                style.transform = `translateY(${isNearBottom ? '-100%' : '-50%'}) scale(${tooltipScale})`;
+                style.marginLeft = '0'; // Clear margin left
 
                 return (
                   <div ref={tooltipRef} style={style}>
