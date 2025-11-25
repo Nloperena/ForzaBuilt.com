@@ -47,16 +47,18 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
     return 1;
   }, [viewportHeight]);
 
-  // Sidebar column width based on viewport height
+  // Sidebar column width based on viewport height and width
   const sidebarWidth = useMemo(() => {
-    if (viewportHeight < 600) return '200px';
-    if (viewportHeight < 800) return '260px';
+    if (viewportHeight < 600) return '180px';
+    if (viewportHeight < 800) return '220px';
+    // Reduce sidebar width on narrower screens to give more room to X-Ray
+    if (viewportWidth < 1440) return '260px';
     return '320px';
-  }, [viewportHeight]);
+  }, [viewportHeight, viewportWidth]);
 
-  // X-Ray container min-height based on viewport height - use 90% of viewport height
+  // X-Ray container min-height based on viewport height - use 85% of viewport height
   const xrayMinHeight = useMemo(() => {
-    return `${viewportHeight * 0.9}px`;
+    return `${viewportHeight * 0.85}px`;
   }, [viewportHeight]);
 
   return (
