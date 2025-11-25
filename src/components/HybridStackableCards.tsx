@@ -14,7 +14,7 @@ import MarineSpeedboatImage from '@/assets/images/Marine-stickstackcard-images/S
 
 // Construction Images
 import ConstructionBuildingImage from '@/assets/images/Construction-stickstackcard-images/House Construction-2.jpg';
-import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard-images/Tilt-Up Image-2.jpg';
+import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard-images/construction-2.jpg';
 import ConstructionTiltUpImage from '@/assets/images/Construction-stickstackcard-images/Tilt-Up Image-2.jpg';
 
 // Industrial Images
@@ -303,20 +303,6 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             image: IndustrialStructuralImage
           },
           {
-            id: 'industrial-manufacturing',
-            title: "Manufacturing Adhesive Solutions",
-            subheading: "Comprehensive bonding systems",
-            description: "Industrial adhesive solutions designed for manufacturing environments, providing reliable bonding for equipment assembly, production lines, and maintenance operations.",
-            listItems: [
-              "Equipment assembly & machinery bonding",
-              "Production line sealing & gasketing",
-              "Maintenance & repair applications",
-              "Factory automation component bonding"
-            ],
-            color: getCardGradient(1),
-            image: IndustrialStructuralImage // Using duplicate as requested for missing image
-          },
-          {
             id: 'industrial-placeholder',
             title: "Advanced Industrial Solutions",
             subheading: "Coming soon",
@@ -327,7 +313,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Expanded application capabilities",
               "Next-generation industrial solutions"
             ],
-            color: getCardGradient(2),
+            color: getCardGradient(1),
             image: null // Skeleton placeholder will be used
           }
         ];
