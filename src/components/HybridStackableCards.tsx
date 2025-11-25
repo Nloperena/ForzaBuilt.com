@@ -19,7 +19,7 @@ import ConstructionTiltUpImage from '@/assets/images/Construction-stickstackcard
 
 // Industrial Images
 import IndustrialStructuralImage from '@/assets/images/Industrial-stickstackcard-images/general-industries.jpg';
-// import IndustrialManufacturingImage from '@/assets/images/Industrial-stickstackcard-images/bonding-adhesive.png'; // Missing, using duplicate
+import IndustrialManufacturingImage from '@/assets/images/Industrial-stickstackcard-images/general-industries.jpg'; // TODO: Replace with robotic-manufacturing.jpg when available
 
 // Composites Images
 import CompositesStructuralImage from '@/assets/images/Composites-stickstackcard-images/composite-1.jpg';
@@ -303,6 +303,20 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             image: IndustrialStructuralImage
           },
           {
+            id: 'industrial-manufacturing',
+            title: "Manufacturing Adhesive Solutions",
+            subheading: "Comprehensive bonding systems",
+            description: "Industrial adhesive solutions designed for manufacturing environments, providing reliable bonding for equipment assembly, production lines, and maintenance operations.",
+            listItems: [
+              "Equipment assembly & machinery bonding",
+              "Production line sealing & gasketing",
+              "Maintenance & repair applications",
+              "Factory automation component bonding"
+            ],
+            color: getCardGradient(1),
+            image: IndustrialManufacturingImage
+          },
+          {
             id: 'industrial-placeholder',
             title: "Advanced Industrial Solutions",
             subheading: "Coming soon",
@@ -313,7 +327,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Expanded application capabilities",
               "Next-generation industrial solutions"
             ],
-            color: getCardGradient(1),
+            color: getCardGradient(2),
             image: null // Skeleton placeholder will be used
           }
         ];
