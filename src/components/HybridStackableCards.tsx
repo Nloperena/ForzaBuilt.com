@@ -2,9 +2,32 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { getIndustryGradient, typography } from '../styles/brandStandards';
-import TruckStackImage from '@/assets/images/Transporation-stickstackcard-images/Ford-side-angle-1-1.png';
-import TrailerStackImage from '@/assets/images/Transporation-stickstackcard-images/trailer-horse.png';
-import RvStackImage from '@/assets/images/Transporation-stickstackcard-images/White RV.png';
+
+// Transportation Images
+import TruckStackImage from '@/assets/images/Transportation-stickstackcard-images/Truck Reefer Image.jpg';
+import TrailerStackImage from '@/assets/images/Transportation-stickstackcard-images/Trailer Image-3.jpg';
+import RvStackImage from '@/assets/images/Transportation-stickstackcard-images/RV Bus-2.jpg';
+
+// Marine Images
+import MarineYachtImage from '@/assets/images/Marine-stickstackcard-images/marine-yacht.png';
+import MarinePontoonImage from '@/assets/images/Marine-stickstackcard-images/marine-pontoon.png';
+
+// Construction Images
+import ConstructionBuildingImage from '@/assets/images/Construction-stickstackcard-images/house-construction.jpg';
+import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard-images/construction-2.jpg';
+
+// Industrial Images
+import IndustrialStructuralImage from '@/assets/images/Industrial-stickstackcard-images/general-industries.jpg';
+// import IndustrialManufacturingImage from '@/assets/images/Industrial-stickstackcard-images/bonding-adhesive.png'; // Missing, using duplicate
+
+// Composites Images
+import CompositesStructuralImage from '@/assets/images/Composites-stickstackcard-images/composite-1.jpg';
+import CompositesCustomImage from '@/assets/images/Composites-stickstackcard-images/composite-3.png';
+import CompositesBoatImage from '@/assets/images/Composites-stickstackcard-images/Boat.jpg';
+
+// Insulation Images
+import InsulationAdhesivesImage from '@/assets/images/Insulation-stickstackcard-images/insulation-1.jpg';
+import InsulationCustomImage from '@/assets/images/Insulation-stickstackcard-images/insulation-2.jpg';
 
 // Old color scheme (with darker blue rgb(28, 58, 92))
 const cardStyleSheetOld = `
@@ -181,7 +204,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Superior process efficiency"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/05/marine-yacht.png"
+            image: MarineYachtImage
           },
           {
             id: 'marine-pontoon',
@@ -195,7 +218,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Exceeds marine expectations"
             ],
             color: getCardGradient(1),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/05/marine-pontoon.png"
+            image: MarinePontoonImage
           }
         ];
         
@@ -259,7 +282,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Wide range of material compatibility"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-House-Construction.jpg"
+            image: ConstructionBuildingImage
           },
           {
             id: 'construction-custom',
@@ -273,7 +296,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Demanding construction environments"
             ],
             color: getCardGradient(1),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Construction-2-scaled.jpeg"
+            image: ConstructionCustomImage
           }
         ];
         
@@ -291,7 +314,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "VOC-compliant workplace safety"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-General-Industries-2-2048x1365.jpeg"
+            image: IndustrialStructuralImage
           },
           {
             id: 'industrial-manufacturing',
@@ -305,7 +328,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Factory automation component bonding"
             ],
             color: getCardGradient(1),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Industrial-Bonding-Adhesive.png"
+            image: IndustrialStructuralImage // Using duplicate as requested for missing image
           }
         ];
         
@@ -323,7 +346,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Cutting-edge chemistries & technologies"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Composite-1-scaled.jpg"
+            image: CompositesStructuralImage
           },
           {
             id: 'composites-custom',
@@ -337,7 +360,21 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "High-tech & aviation environments"
             ],
             color: getCardGradient(1),
-            image: "https://forzabuilt.com/wp-content/uploads/elementor/thumbs/Forza-Built-Compsite-3-Cropped-que8zmnjfjma0xgvnoxmjmjxd8ng36vz9podec5mlc.png"
+            image: CompositesCustomImage
+          },
+          {
+            id: 'composites-boat',
+            title: "Marine Composite Solutions",
+            subheading: "Advanced bonding for marine composites",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            listItems: [
+              "Superior adhesion for marine environments",
+              "Resistant to saltwater and harsh conditions",
+              "Lightweight and high-strength bonds",
+              "Designed for diverse composite materials"
+            ],
+            color: getCardGradient(2),
+            image: CompositesBoatImage
           }
         ];
         
@@ -355,7 +392,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Non-flammable sprayable adhesives"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Insulation-1-2048x1365.jpeg"
+            image: InsulationAdhesivesImage
           },
           {
             id: 'insulation-custom',
@@ -369,7 +406,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Exceeding customer expectations"
             ],
             color: getCardGradient(1),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-Insulation-2-2048x1152.jpeg"
+            image: InsulationCustomImage
           }
         ];
         
@@ -387,7 +424,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Long-lasting performance"
             ],
             color: getCardGradient(0),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Forza-Built-General-Industries-2-2048x1365.jpeg"
+            image: IndustrialStructuralImage
           },
           {
             id: 'default-2',
@@ -401,7 +438,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Professional results"
             ],
             color: getCardGradient(1),
-            image: "https://forzabuilt.com/wp-content/uploads/2023/06/Industrial-Bonding-Adhesive.png"
+            image: IndustrialStructuralImage // Fallback
           }
         ];
     }

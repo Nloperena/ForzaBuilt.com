@@ -94,7 +94,9 @@ const TransportationXRaySelector: React.FC = () => {
             Cursor over or click to explore product application details
           </p>
         </div>
+      </div>
 
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6">
         {!selectedVariant ? (
           <div className="relative py-8 sm:py-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
@@ -121,13 +123,18 @@ const TransportationXRaySelector: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="relative">
-            {/* Left selector column - positioned absolutely on the left */}
+          <div 
+            className="flex flex-col lg:grid lg:items-center lg:gap-8 xl:gap-12"
+            style={{
+              gridTemplateColumns: `${sidebarWidth} 1fr ${sidebarWidth}`
+            }}
+          >
+            {/* Left selector column */}
             <div 
-              className="hidden lg:flex flex-col absolute left-0 top-0 z-10" 
+              className="hidden lg:flex flex-col z-10" 
               style={{ 
                 gap: `${Math.max(12, 20 * scale)}px`,
-                width: sidebarWidth
+                width: '100%'
               }}
             >
               {OPTIONS.map(option => {
@@ -224,10 +231,10 @@ const TransportationXRaySelector: React.FC = () => {
               })}
             </div>
 
-            {/* Center X-ray - centered in full width, independent of selections */}
-            <div className="flex justify-center items-center w-full">
+            {/* Center X-ray - Grid column 2 */}
+            <div className="flex justify-center items-center w-full min-w-0">
               <div 
-                className="relative rounded-[32px] isolate"
+                className="relative rounded-[32px] isolate w-full"
                 style={{ minHeight: xrayMinHeight }}
               >
                 {/* Crossfade container - both X-rays rendered, visibility controlled by opacity */}
