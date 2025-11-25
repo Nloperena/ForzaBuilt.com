@@ -58,6 +58,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   const [tooltipPosition, setTooltipPosition] = useState<{x: number, y: number, centerY: number, leftX: number, rightX: number} | null>(null);
   const svgContainerRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
+  const selectedPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // New ref to track selected path
   const isMobile = useIsMobile();
 
   // Sample applications text for different path types
@@ -191,6 +192,10 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   }, [svgSrc, title, transportationProducts]);
 
   const handleCloseCard = () => {
+    if (selectedPathRef.current) {
+      selectedPathRef.current.classList.remove('selected');
+      selectedPathRef.current = null;
+    }
     setSelectedProduct(null);
     setHoveredProduct(null);
   };
@@ -205,6 +210,10 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         if (!svgContainerRef.current.contains(target)) {
           // Also check if it's not the tooltip
           if (tooltipRef.current && !tooltipRef.current.contains(target)) {
+            if (selectedPathRef.current) {
+              selectedPathRef.current.classList.remove('selected');
+              selectedPathRef.current = null;
+            }
             setSelectedProduct(null);
             setHoveredProduct(null);
             setTooltipPosition(null);
@@ -232,6 +241,11 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
       const svgElement = svgContainerRef.current.querySelector('svg');
       if (svgElement) {
         const paths = svgElement.querySelectorAll('path, polygon');
+
+        // Apply 'selected' class to the initially selected product if it exists
+        if (selectedProduct && selectedPathRef.current) {
+          selectedPathRef.current.classList.add('selected');
+        }
         
         const handleMouseEnter = (event: Event) => {
           if (isMobile) return;
@@ -278,6 +292,15 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
           const product = pathProducts.get(target.id);
           if (product) {
             console.log('Clicked path:', target.id, 'Product:', product.sku || product.name);
+            
+            // Remove 'selected' class from previously selected path, if any
+            if (selectedPathRef.current && selectedPathRef.current !== target) {
+              selectedPathRef.current.classList.remove('selected');
+            }
+
+            // Add 'selected' class to the newly selected path
+            target.classList.add('selected');
+            selectedPathRef.current = target; // Update the ref
             
             // Calculate position based on bounding box
             try {
@@ -412,25 +435,13 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                   style.transformOrigin = 'center center';
                 }
 
-                // Horizontal positioning
-                if (finalIsLeftSide) {
-                  // Position to the left of the path with small gap
-                  style.left = `${tooltipPosition.leftX}%`;
-                  style.marginLeft = '-12px';
-                  if (isNearBottom) {
-                    style.transform = `translateX(-100%) translateY(-100%) scale(${tooltipScale})`;
-                  } else {
-                    style.transform = `translateX(-100%) translateY(-50%) scale(${tooltipScale})`;
-                  }
+                // Horizontal positioning: Always position to the right of the path with a small gap
+                style.left = `${tooltipPosition.rightX}%`;
+                style.marginLeft = '12px';
+                if (isNearBottom) {
+                  style.transform = `translateY(-100%) scale(${tooltipScale})`;
                 } else {
-                  // Position to the right of the path with small gap
-                  style.left = `${tooltipPosition.rightX}%`;
-                  style.marginLeft = '12px';
-                  if (isNearBottom) {
-                    style.transform = `translateY(-100%) scale(${tooltipScale})`;
-                  } else {
-                    style.transform = `translateY(-50%) scale(${tooltipScale})`;
-                  }
+                  style.transform = `translateY(-50%) scale(${tooltipScale})`;
                 }
 
                 return (
