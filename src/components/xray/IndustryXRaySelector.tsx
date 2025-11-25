@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ImageOverlay from './ImageOverlay';
+import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 
 export interface XRayOption {
   id: string;
@@ -71,7 +72,7 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
 
         {/* Floating Selectors (Top Left) */}
         <div className="absolute top-8 left-8 z-40 flex flex-col gap-4">
-        {options.map((option) => {
+          {options.map((option) => {
           const isSelected = selectedVariant === option.id;
           return (
             <motion.button

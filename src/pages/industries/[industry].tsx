@@ -91,7 +91,7 @@ const IndustryPage = () => {
             />
           </div>
           {/* Performance Elevated Banner */}
-          <div className="relative z-[45] bg-[#33486c]">
+          <div className="relative z-[45] bg-gradient-to-r from-[#477197] to-[#2c476e]">
             <ExperienceBetterBanner textColor="#FFFFFF" highlightColor="#F2611D" />
           </div>
           {/* X-Ray Explorer Sections - Single Row */}

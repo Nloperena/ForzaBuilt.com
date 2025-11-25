@@ -205,17 +205,13 @@ function ImageOverlay({ svgSrc, title, industry = 'transportation', bgImage }: I
         if (hoveredProduct || selectedProduct) {
           const target = event.target as Node;
           
-          // Check if click is on a path/polygon
-          const isPath = target instanceof SVGPathElement || target instanceof SVGPolygonElement;
-          
           // Check if click is inside the modal
           const isInsideModal = modalRef.current && modalRef.current.contains(target);
           
-          // Check if click is inside the SVG container
-          const isInsideSvgContainer = svgContainerRef.current && svgContainerRef.current.contains(target);
-          
-          // Only close if click is outside both the SVG paths AND the modal
-          if (!isPath && !isInsideModal && !isInsideSvgContainer) {
+          // If click is not inside the modal and not on a product link (since product links are inside the modal)
+          // clear states. This means clicks on the SVG background, or anywhere else on the page outside the modal,
+          // will close the modal. Clicks directly on an SVG path still trigger the handleClick for product selection.
+          if (!isInsideModal) {
             clearAllStates();
           }
         }
