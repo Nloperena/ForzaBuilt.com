@@ -57,11 +57,13 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState<{x: number, y: number, centerY: number, leftX: number, rightX: number} | null>(null);
+  const [modalOpacity, setModalOpacity] = useState(1); // State for modal opacity animation
   const svgContainerRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const selectedPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // New ref to track selected path
   const hoveredPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // Ref to track hovered path
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null); // Ref to track scroll timeout
+  const lastScrollY = useRef<number>(0); // Ref to track last scroll position for direction detection
   const isMobile = useIsMobile();
 
   // Sample applications text for different path types
@@ -211,10 +213,23 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     setHoveredProduct(null);
   };
 
-  // Handle scroll to close hover modals after 3 seconds
+  // Handle scroll to fade modal and close hover modals after 3 seconds
   useEffect(() => {
     const handleScroll = () => {
-      // Only close hover modals, not selected ones
+      const currentScrollY = window.scrollY;
+      const scrollDirection = currentScrollY > lastScrollY.current ? 'down' : 'up';
+      
+      // Fade out modal when scrolling up
+      if ((hoveredProduct || selectedProduct) && scrollDirection === 'up') {
+        setModalOpacity(0);
+      } else if ((hoveredProduct || selectedProduct) && scrollDirection === 'down') {
+        // Fade in modal when scrolling down
+        setModalOpacity(1);
+      }
+      
+      lastScrollY.current = currentScrollY;
+      
+      // Only close hover modals after 3 seconds, not selected ones
       if (hoveredProduct && !selectedProduct) {
         // Clear any existing timeout
         if (scrollTimeoutRef.current) {
@@ -233,6 +248,9 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
       }
     };
 
+    // Initialize lastScrollY
+    lastScrollY.current = window.scrollY;
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
@@ -243,11 +261,15 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     };
   }, [hoveredProduct, selectedProduct]);
 
-  // Clear scroll timeout when hover state changes or product is selected
+  // Reset modal opacity and clear scroll timeout when hover state changes or product is selected
   useEffect(() => {
     if (scrollTimeoutRef.current) {
       clearTimeout(scrollTimeoutRef.current);
       scrollTimeoutRef.current = null;
+    }
+    // Reset modal opacity when a new product is hovered or selected
+    if (hoveredProduct || selectedProduct) {
+      setModalOpacity(1);
     }
   }, [hoveredProduct, selectedProduct]);
 
@@ -500,10 +522,17 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                 return (
                   <div ref={tooltipRef} style={style}>
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                    animate={{ 
+                      opacity: modalOpacity, 
+                      scale: 1,
+                      y: 0
+                    }}
+                    exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                    transition={{ 
+                      duration: 0.4, 
+                      ease: [0.4, 0, 0.2, 1] // Smooth easing
+                    }}
                     className="bg-[#D1D5DB] rounded-xl shadow-2xl pointer-events-auto relative"
                     style={{
                       padding: `${Math.max(8, 12 * tooltipScale)}px ${Math.max(10, 16 * tooltipScale)}px`,
