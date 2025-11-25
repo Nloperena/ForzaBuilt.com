@@ -53,20 +53,20 @@ const cardStyleSheetOld = `
 
 // New color scheme (with lighter blue rgb(17, 91, 135))
 const cardStyleSheetNew = `
-  .card-gradient-marine { background: linear-gradient(to right, rgb(17, 91, 135), rgb(19, 120, 117)); }
-  .card-gradient-marine-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(19, 120, 117)); }
-  .card-gradient-industrial { background: linear-gradient(to right, rgb(17, 91, 135), rgb(241, 106, 38)); }
-  .card-gradient-industrial-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(241, 106, 38)); }
-  .card-gradient-transportation { background: linear-gradient(to right, rgb(17, 91, 135), rgb(184, 61, 53)); }
-  .card-gradient-transportation-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(184, 61, 53)); }
-  .card-gradient-construction { background: linear-gradient(to right, rgb(17, 91, 135), rgb(254, 199, 112)); }
-  .card-gradient-construction-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(254, 199, 112)); }
-  .card-gradient-composites { background: linear-gradient(to right, rgb(17, 91, 135), rgb(199, 200, 201)); }
-  .card-gradient-composites-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(199, 200, 201)); }
-  .card-gradient-insulation { background: linear-gradient(to right, rgb(17, 91, 135), rgb(208, 21, 125)); }
-  .card-gradient-insulation-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(208, 21, 125)); }
-  .card-gradient-foam { background: linear-gradient(to right, rgb(17, 91, 135), rgb(241, 106, 38)); }
-  .card-gradient-foam-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(241, 106, 38)); }
+  .card-gradient-marine { background: linear-gradient(to right, rgb(51, 72, 108), rgb(19, 120, 117)); }
+  .card-gradient-marine-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(19, 120, 117)); }
+  .card-gradient-industrial { background: linear-gradient(to right, rgb(51, 72, 108), rgb(241, 106, 38)); }
+  .card-gradient-industrial-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(241, 106, 38)); }
+  .card-gradient-transportation { background: linear-gradient(to right, rgb(51, 72, 108), rgb(184, 61, 53)); }
+  .card-gradient-transportation-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(184, 61, 53)); }
+  .card-gradient-construction { background: linear-gradient(to right, rgb(51, 72, 108), rgb(254, 199, 112)); }
+  .card-gradient-construction-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(254, 199, 112)); }
+  .card-gradient-composites { background: linear-gradient(to right, rgb(51, 72, 108), rgb(199, 200, 201)); }
+  .card-gradient-composites-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(199, 200, 201)); }
+  .card-gradient-insulation { background: linear-gradient(to right, rgb(51, 72, 108), rgb(208, 21, 125)); }
+  .card-gradient-insulation-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(208, 21, 125)); }
+  .card-gradient-foam { background: linear-gradient(to right, rgb(51, 72, 108), rgb(241, 106, 38)); }
+  .card-gradient-foam-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(241, 106, 38)); }
 `;
 
 interface Card {
