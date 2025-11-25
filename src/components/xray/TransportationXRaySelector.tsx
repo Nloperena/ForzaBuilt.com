@@ -149,7 +149,7 @@ const TransportationXRaySelector: React.FC = () => {
                     onClick={() => setSelectedVariant(option.id)}
                     className={`rounded-2xl border text-left transition-all duration-300 flex items-center ${
                       isSelected
-                        ? 'border-transparent bg-gradient-to-br from-[#115B87] to-[#1a6fa0] text-white'
+                        ? 'border-transparent bg-gradient-to-br from-[#1B3764] to-[#2A4A7A] text-white'
                         : 'border-[#1B3764]/15 text-[#1B3764] bg-gray-200'
                     }`}
                     style={{ 
@@ -197,7 +197,7 @@ const TransportationXRaySelector: React.FC = () => {
                     onClick={() => setSelectedVariant(option.id)}
                     className={`rounded-2xl border text-left transition-all duration-300 flex items-center w-full max-w-md ${
                       isSelected
-                        ? 'border-transparent bg-gradient-to-br from-[#115B87] to-[#1a6fa0] text-white'
+                        ? 'border-transparent bg-gradient-to-br from-[#1B3764] to-[#2A4A7A] text-white'
                         : 'border-[#1B3764]/15 text-[#1B3764] bg-gray-200'
                     }`}
                     style={{ 
