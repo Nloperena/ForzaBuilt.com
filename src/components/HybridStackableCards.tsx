@@ -13,8 +13,8 @@ import MarinePontoonImage from '@/assets/images/Marine-stickstackcard-images/Pon
 import MarineSpeedboatImage from '@/assets/images/Marine-stickstackcard-images/Speedboat image-2.jpg'; // New third card image
 
 // Construction Images
-import ConstructionBuildingImage from '@/assets/images/Construction-stickstackcard-images/house-construction.jpg';
-import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard-images/construction-2.jpg';
+import ConstructionBuildingImage from '@/assets/images/Construction-stickstackcard-images/House Construction-2.jpg';
+import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard-images/Tilt-Up Image-2.jpg';
 
 // Industrial Images
 import IndustrialStructuralImage from '@/assets/images/Industrial-stickstackcard-images/general-industries.jpg';
@@ -26,8 +26,8 @@ import CompositesCustomImage from '@/assets/images/Composites-stickstackcard-ima
 import CompositesBoatImage from '@/assets/images/Composites-stickstackcard-images/Boat.jpg';
 
 // Insulation Images
-import InsulationAdhesivesImage from '@/assets/images/Insulation-stickstackcard-images/insulation-1.jpg';
-import InsulationCustomImage from '@/assets/images/Insulation-stickstackcard-images/insulation-2.jpg';
+import InsulationAdhesivesImage from '@/assets/images/Insulation-stickstackcard-images/Insulation Image-2.jpg';
+import InsulationCustomImage from '@/assets/images/Insulation-stickstackcard-images/Pipe Insulation-2.jpg';
 
 // Old color scheme (with darker blue rgb(28, 58, 92))
 const cardStyleSheetOld = `
