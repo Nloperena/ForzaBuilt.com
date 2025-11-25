@@ -96,7 +96,7 @@ const IndustryPageV3 = () => {
       </div>
 
       {/* Performance Elevated Banner */}
-      <div className="relative z-[35]">
+      <div className="relative z-[45] bg-white">
         <ExperienceBetterBanner />
       </div>
 
