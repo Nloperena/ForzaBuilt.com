@@ -471,13 +471,13 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   // ============================================
   
   // Estimated height of the title section above the card (pt-12 pb-8 + text)
-  const titleHeight = 100; // pixels - adjust if title is taller/shorter
+  const titleHeight = 140; // pixels - adjust if title is taller/shorter
   
   // Total height of the group (title + card)
   const groupHeight = titleHeight + cardDisplayHeight;
   
   // Where to position the CENTER of the group in the viewport (0.5 = middle, 0.4 = higher, 0.6 = lower)
-  const groupCenterPosition = 0.4; // 0.5 = perfectly centered, 0.1 = 10% from top
+  const groupCenterPosition = 0.32; // 0.5 = perfectly centered, 0.1 = 10% from top
   
   // Calculate where the top of the group should be to center the entire group
   const groupCenterY = viewportHeight * groupCenterPosition;
@@ -646,7 +646,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             >
               {/* Section Heading - only visible on first card */}
               {index === 0 && (
-                <div className="w-full flex justify-center pt-12 pb-8 px-3 sm:px-4 relative z-50">
+                <div className="w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 relative z-50">
                   <div className="text-center max-w-5xl">
                     <h2 
                       className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
@@ -667,7 +667,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
 
               {/* Invisible spacer heading for cards 2+ to maintain alignment */}
               {index > 0 && (
-                <div className="w-full flex justify-center pt-12 pb-8 px-3 sm:px-4 invisible" style={{ height: 'auto' }}>
+                <div className="w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 invisible" style={{ height: 'auto' }}>
                   <div className="text-center max-w-5xl">
                     <h2 
                       className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
