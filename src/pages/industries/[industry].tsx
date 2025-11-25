@@ -4,6 +4,7 @@ import { industries } from '../../data/industries';
 import HeaderV2 from '../../components/Header/HeaderV2';
 import FooterV2 from '../../components/FooterV2';
 import HybridStackableCards from '../../components/HybridStackableCards';
+import ExperienceBetterBanner from '../../components/ExperienceBetterBanner';
 import IndustryXRaySections from '../../components/xray/IndustryXRaySections';
 import NewsletterSection from '@/components/NewsletterSection';
 import IndustryHeroBanner from '../../components/industries/IndustryHeroBanner';
@@ -80,6 +81,8 @@ const IndustryPage = () => {
             />
           </div>
 
+         
+
           {/* Hybrid Stackable Cards Section */}
           <div className="relative z-[30]">
             <HybridStackableCards 
@@ -87,7 +90,10 @@ const IndustryPage = () => {
               maxCards={3}
             />
           </div>
-
+ {/* Performance Elevated Banner */}
+ <div className="relative z-[45] bg-[#1B3764]">
+            <ExperienceBetterBanner textColor="#FFFFFF" />
+          </div>
           {/* X-Ray Explorer Sections - Single Row */}
           <IndustryXRaySections industry={industryData.title} />
 
