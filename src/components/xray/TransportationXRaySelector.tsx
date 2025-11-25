@@ -38,7 +38,7 @@ const optionVariants = {
 };
 
 const TransportationXRaySelector: React.FC = () => {
-  const [selectedVariant, setSelectedVariant] = useState<XRayVariant | null>('trailer');
+  const [selectedVariant, setSelectedVariant] = useState<XRayVariant | null>('rv-bus');
   const [viewportHeight, setViewportHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 800);
 
   // Track viewport height
@@ -69,7 +69,7 @@ const TransportationXRaySelector: React.FC = () => {
     if (viewportHeight < 500) return 'clamp(280px, 50vh, 400px)';
     if (viewportHeight < 600) return 'clamp(320px, 55vh, 500px)';
     if (viewportHeight < 800) return 'clamp(400px, 60vh, 700px)';
-    return 'clamp(580px, 72vh, 1500px)';
+    return 'clamp(500px, 60vh, 1200px)';
   }, [viewportHeight]);
 
   const selectedOption = selectedVariant
@@ -77,7 +77,7 @@ const TransportationXRaySelector: React.FC = () => {
     : null;
 
   return (
-    <section className="relative bg-white z-[30] py-8 sm:py-12">
+    <section className="relative bg-white z-[30] pt-8 sm:pt-12 pb-2 sm:pb-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="text-center mb-6 sm:mb-8">

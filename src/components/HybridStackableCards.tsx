@@ -6,7 +6,8 @@ import TruckStackImage from '@/assets/images/Transporation-stickstackcard-images
 import TrailerStackImage from '@/assets/images/Transporation-stickstackcard-images/trailer-horse.png';
 import RvStackImage from '@/assets/images/Transporation-stickstackcard-images/White RV.png';
 
-const cardStyleSheet = `
+// Old color scheme (with darker blue rgb(28, 58, 92))
+const cardStyleSheetOld = `
   .card-gradient-marine { background: linear-gradient(to right, rgb(28, 58, 92), rgb(19, 120, 117)); }
   .card-gradient-marine-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(19, 120, 117)); }
   .card-gradient-industrial { background: linear-gradient(to right, rgb(28, 58, 92), rgb(241, 106, 38)); }
@@ -21,6 +22,24 @@ const cardStyleSheet = `
   .card-gradient-insulation-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(208, 21, 125)); }
   .card-gradient-foam { background: linear-gradient(to right, rgb(28, 58, 92), rgb(241, 106, 38)); }
   .card-gradient-foam-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(241, 106, 38)); }
+`;
+
+// New color scheme (with lighter blue rgb(17, 91, 135))
+const cardStyleSheetNew = `
+  .card-gradient-marine { background: linear-gradient(to right, rgb(17, 91, 135), rgb(19, 120, 117)); }
+  .card-gradient-marine-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(19, 120, 117)); }
+  .card-gradient-industrial { background: linear-gradient(to right, rgb(17, 91, 135), rgb(241, 106, 38)); }
+  .card-gradient-industrial-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(241, 106, 38)); }
+  .card-gradient-transportation { background: linear-gradient(to right, rgb(17, 91, 135), rgb(184, 61, 53)); }
+  .card-gradient-transportation-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(184, 61, 53)); }
+  .card-gradient-construction { background: linear-gradient(to right, rgb(17, 91, 135), rgb(254, 199, 112)); }
+  .card-gradient-construction-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(254, 199, 112)); }
+  .card-gradient-composites { background: linear-gradient(to right, rgb(17, 91, 135), rgb(199, 200, 201)); }
+  .card-gradient-composites-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(199, 200, 201)); }
+  .card-gradient-insulation { background: linear-gradient(to right, rgb(17, 91, 135), rgb(208, 21, 125)); }
+  .card-gradient-insulation-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(208, 21, 125)); }
+  .card-gradient-foam { background: linear-gradient(to right, rgb(17, 91, 135), rgb(241, 106, 38)); }
+  .card-gradient-foam-reverse { background: linear-gradient(to left, rgb(17, 91, 135), rgb(241, 106, 38)); }
 `;
 
 interface Card {
@@ -55,6 +74,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [viewportHeight, setViewportHeight] = useState<number>(typeof window !== 'undefined' ? window.innerHeight : 900);
+  const [useOldColorScheme, setUseOldColorScheme] = useState(false);
   const industryLowerCase = industry.toLowerCase();
 
   // Modal handlers
@@ -457,7 +477,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const groupHeight = titleHeight + cardDisplayHeight;
   
   // Where to position the CENTER of the group in the viewport (0.5 = middle, 0.4 = higher, 0.6 = lower)
-  const groupCenterPosition = 0.0; // 0.5 = perfectly centered
+  const groupCenterPosition = 0.4; // 0.5 = perfectly centered, 0.1 = 10% from top
   
   // Calculate where the top of the group should be to center the entire group
   const groupCenterY = viewportHeight * groupCenterPosition;
@@ -562,12 +582,31 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
 
   return (
     <>
-      <style>{cardStyleSheet}</style>
+      <style>{useOldColorScheme ? cardStyleSheetOld : cardStyleSheetNew}</style>
+      {/* Toggle Button - Fixed below navbar on right side */}
+      <div className="fixed top-20 sm:top-24 right-4 sm:right-8 z-[100]">
+        <button
+          onClick={() => setUseOldColorScheme(!useOldColorScheme)}
+          className={`relative inline-flex h-8 w-16 items-center rounded-full transition-colors duration-300 shadow-lg ${
+            useOldColorScheme ? 'bg-[#1c3a5c]' : 'bg-[#115B87]'
+          }`}
+          aria-label="Toggle color scheme"
+        >
+          <span
+            className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform duration-300 shadow-sm ${
+              useOldColorScheme ? 'translate-x-9' : 'translate-x-1'
+            }`}
+          />
+        </button>
+      </div>
       <div 
         ref={containerRef}
-        className="relative w-full"
-        style={{
+        className={`relative w-full ${useOldColorScheme ? '' : 'bg-white'}`}
+        style={useOldColorScheme ? {
           background: `linear-gradient(315deg, ${gradientColors})`,
+          paddingTop: '2rem',
+          paddingBottom: '2rem'
+        } : {
           paddingTop: '2rem',
           paddingBottom: '2rem'
         }}
@@ -610,14 +649,15 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 <div className="w-full flex justify-center pt-12 pb-8 px-3 sm:px-4 relative z-50">
                   <div className="text-center max-w-5xl">
                     <h2 
-                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white leading-none"
+                      className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
+                      style={useOldColorScheme ? {} : { color: '#1c3a5c' }}
                     >
                       {formattedTitle}
                     </h2>
                     {headerSubtitle && (
                       <p 
-                        className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light mt-2"
-                  >
+                        className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light mt-2 ${useOldColorScheme ? 'text-white/90' : 'text-gray-700'}`}
+                      >
                         {headerSubtitle}
                       </p>
                     )}
@@ -630,7 +670,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 <div className="w-full flex justify-center pt-12 pb-8 px-3 sm:px-4 invisible" style={{ height: 'auto' }}>
                   <div className="text-center max-w-5xl">
                     <h2 
-                      className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins text-white leading-none"
+                      className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
+                      style={useOldColorScheme ? {} : { color: '#1c3a5c' }}
                     >
                       {formattedTitle}
                     </h2>
@@ -657,7 +698,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                   }}
                 >
                   <div 
-                    className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden shadow-2xl border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''} ${isTransportation ? '' : 'cursor-pointer hover:border-white/30 hover:shadow-3xl hover:scale-[1.02]'}`}
+                    className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''} ${isTransportation ? '' : 'cursor-pointer hover:border-white/30 hover:scale-[1.02]'}`}
                     style={{ maxWidth: `${cardMaxWidth}px`, height: '100%', display: 'flex', flexDirection: 'column' }}
                     onClick={isTransportation ? undefined : () => openProductModal(card)}
                   >
@@ -767,7 +808,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 duration: 0.6,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
-              className={`relative rounded-lg md:rounded-2xl lg:rounded-3xl shadow-2xl w-full overflow-hidden bg-gradient-to-b ${getIndustryGradient(industry)}`}
+              className={`relative rounded-lg md:rounded-2xl lg:rounded-3xl w-full overflow-hidden bg-gradient-to-b ${getIndustryGradient(industry)}`}
               style={{
                 maxWidth: 'clamp(90%, 75vw, 900px)',
                 maxHeight: 'clamp(60vh, 85vh, 95vh)'
