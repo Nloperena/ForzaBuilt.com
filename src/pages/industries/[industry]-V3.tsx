@@ -4,6 +4,7 @@ import { industries } from '../../data/industries';
 import HeaderV2 from '../../components/Header/HeaderV2';
 import FooterV2 from '../../components/FooterV2';
 import HybridStackableCards from '../../components/HybridStackableCards';
+import ExperienceBetterBanner from '../../components/ExperienceBetterBanner'; // Import new component
 import IndustryXRaySections from '../../components/xray/IndustryXRaySections';
 import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7';
 import IndustryBrochureSection from '../../components/IndustryBrochureSection';
@@ -92,6 +93,11 @@ const IndustryPageV3 = () => {
           industry={validIndustryKey}
           maxCards={3}
         />
+      </div>
+
+      {/* Performance Elevated Banner */}
+      <div className="relative z-[35]">
+        <ExperienceBetterBanner />
       </div>
 
       {/* X-Ray Explorer Sections - Scrolls over the cards section */}

@@ -107,7 +107,7 @@ const ExperienceBetterBanner = () => {
           opacity: 0;
         }
       `}</style>
-      <div className="bg-white py-10 md:py-16 lg:py-20 mt-4 mb-4 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
+      <div className="bg-transparent py-10 md:py-16 lg:py-20 mt-4 mb-4 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
         <div className="w-full h-full flex items-center justify-center overflow-x-hidden" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <div
             ref={containerRef}
@@ -138,7 +138,7 @@ const ExperienceBetterBanner = () => {
             >
               {/* Invisible full text placeholder - reserves space to prevent container resize */}
               <span
-                className="text-[#2c476e] font-poppins font-bold leading-[1]"
+                className="font-poppins font-bold leading-[1]"
                 style={{
                   fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
                   fontWeight: 700,
@@ -149,7 +149,8 @@ const ExperienceBetterBanner = () => {
                   whiteSpace: 'nowrap',
                   display: 'inline-block',
                   width: '100%',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  color: '#1B3764' // Changed to match other headings
                 }}
               >
                 Performance. Elevated.
@@ -171,27 +172,29 @@ const ExperienceBetterBanner = () => {
                 }}
               >
                 <span
-                  className="text-[#2c476e] font-poppins font-bold leading-[1]"
+                  className="font-poppins font-bold leading-[1]"
                   style={{
                     fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
                     lineHeight: 1,
-                    whiteSpace: 'nowrap'
+                    whiteSpace: 'nowrap',
+                    color: '#1B3764' // Changed to match other headings
                   }}
                 >
                   {performanceText}
                 </span>
                 {elevatedText && (
                   <span
-                    className="text-[#F2611D] font-poppins font-bold leading-[1]"
+                    className="font-poppins font-bold leading-[1]"
                     style={{
                       fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
                       lineHeight: 1,
                       marginLeft: '0.15em',
-                      whiteSpace: 'nowrap'
+                      whiteSpace: 'nowrap',
+                      color: '#1B3764' // Changed to match other headings
                     }}
                   >
                     {elevatedText}

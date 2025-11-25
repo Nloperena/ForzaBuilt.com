@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { typography } from '@/styles/brandStandards';
 import RVBusOverlay from './RVBusOverlay';
 import TrailerOverlay from './TrailerOverlay';
 
@@ -79,13 +80,13 @@ const TransportationXRaySelector: React.FC = () => {
     : null;
 
   return (
-    <section className="relative bg-white z-[30] pt-8 sm:pt-12 pb-2 sm:pb-4">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="text-center mb-6 sm:mb-8">
+    <section className="relative bg-white z-[30] pb-2 sm:pb-4">
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6">
+        {/* Section Header moved here, above the X-Ray selection/display */}
+        <div className="text-center mb-3 sm:mb-8 pt-[5rem]">
           <h2 
             className="font-poppins font-normal text-[#1B3764] mb-2 sm:mb-3"
-            style={{ fontSize: 'clamp(1.75rem, 3vw + 0.5rem, 3rem)' }}
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}
           >
             Product Applications
           </h2>
@@ -96,9 +97,7 @@ const TransportationXRaySelector: React.FC = () => {
             Cursor over or click to explore product application details
           </p>
         </div>
-      </div>
 
-      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6">
         {!selectedVariant ? (
           <div className="relative py-8 sm:py-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
