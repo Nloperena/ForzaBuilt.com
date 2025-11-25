@@ -19,8 +19,9 @@ import ConstructionTiltUpImage from '@/assets/images/Construction-stickstackcard
 
 // Industrial Images
 import IndustrialRoofCurbImage from '@/assets/images/Industrial-stickstackcard-images/Roof curb-2.jpg';
-import IndustrialMattressImage from '@/assets/images/Industrial-stickstackcard-images/Mattress Manufacturer-2.jpg';
+import IndustrialMattressManufacturerImage from '@/assets/images/Industrial-stickstackcard-images/Mattress Manufacturer-2.jpg';
 import IndustrialHandshakeImage from '@/assets/images/Industrial-stickstackcard-images/Industrial Handshake-2.jpg';
+import IndustrialMattressImage from '@/assets/images/Industrial-stickstackcard-images/Mattress-2.jpg';
 
 // Composites Images
 import CompositesStructuralImage from '@/assets/images/Composites-stickstackcard-images/composite-1.jpg';
@@ -301,7 +302,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "VOC-compliant workplace safety"
             ],
             color: getCardGradient(0),
-            image: IndustrialRoofCurbImage
+            image: IndustrialHandshakeImage
           },
           {
             id: 'industrial-manufacturing',
@@ -315,7 +316,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Factory automation component bonding"
             ],
             color: getCardGradient(1),
-            image: IndustrialMattressImage
+            image: IndustrialRoofCurbImage
           },
           {
             id: 'industrial-placeholder',
@@ -329,7 +330,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Next-generation industrial solutions"
             ],
             color: getCardGradient(2),
-            image: IndustrialHandshakeImage
+            image: IndustrialMattressImage
           }
         ];
         
