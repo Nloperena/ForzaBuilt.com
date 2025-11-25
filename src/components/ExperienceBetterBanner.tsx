@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 
 interface ExperienceBetterBannerProps {
   textColor?: string;
+  highlightColor?: string;
 }
 
-const ExperienceBetterBanner = ({ textColor = '#1B3764' }: ExperienceBetterBannerProps) => {
+const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F2611D' }: ExperienceBetterBannerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
@@ -111,7 +112,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764' }: ExperienceBetterBanne
           opacity: 0;
         }
       `}</style>
-      <div className="bg-transparent py-10 md:py-16 lg:py-20 mt-4 mb-4 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
+      <div className="bg-transparent py-10 md:py-16 lg:py-20 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
         <div className="w-full h-full flex items-center justify-center overflow-x-hidden" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <div
             ref={containerRef}
@@ -198,7 +199,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764' }: ExperienceBetterBanne
                       lineHeight: 1,
                       marginLeft: '0.15em',
                       whiteSpace: 'nowrap',
-                      color: textColor
+                      color: highlightColor
                     }}
                   >
                     {elevatedText}
