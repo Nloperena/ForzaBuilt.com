@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { typography } from '@/styles/brandStandards';
 import RVBusOverlay from './RVBusOverlay';
 import TrailerOverlay from './TrailerOverlay';
 
@@ -86,7 +85,7 @@ const TransportationXRaySelector: React.FC = () => {
         <div className="text-center mb-3 sm:mb-8 pt-[5rem]">
           <h2 
             className="font-poppins font-normal text-[#1B3764] mb-2 sm:mb-3"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
           >
             Product Applications
           </h2>
