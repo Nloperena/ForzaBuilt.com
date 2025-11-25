@@ -385,35 +385,25 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                   return 320;
                 })();
                 
-                // Determine if hover is on left or right side of SVG
-                const isLeftSide = tooltipPosition.x < 20;
-                
-                // Check if tooltip positioned on left would overlap with sidebar
-                // Get SVG container's position relative to viewport to calculate absolute tooltip position
+                // Calculate available space to the right of the SVG for the modal
                 const svgContainer = svgContainerRef.current;
-                let wouldOverlapSidebar = false;
+                let rightPosition = `${sidebarWidthPx + 20}px`;
                 
-                if (svgContainer && isLeftSide) {
+                if (svgContainer) {
                   const svgContainerRect = svgContainer.getBoundingClientRect();
-                  const svgContainerLeft = svgContainerRect.left;
-                  const svgContainerWidth = svgContainerRect.width;
+                  const svgRightEdge = svgContainerRect.right;
+                  const viewportWidth = window.innerWidth;
+                  const availableRightSpace = viewportWidth - svgRightEdge;
                   
-                  // Calculate tooltip's left edge position in viewport coordinates
-                  const tooltipLeftPositionPx = svgContainerLeft + (tooltipPosition.leftX / 100) * svgContainerWidth;
-                  const tooltipWidthPx = tooltipWidth;
-                  const tooltipLeftEdgePx = tooltipLeftPositionPx - tooltipWidthPx - 12; // 12px gap + tooltip width
-                  
-                  // If tooltip's left edge would be less than sidebar width, it would overlap
-                  wouldOverlapSidebar = tooltipLeftEdgePx < sidebarWidthPx;
+                  // If there's enough space to the right of the SVG (more than tooltip width + padding)
+                  if (availableRightSpace > tooltipWidth + 40) {
+                    // Position in the whitespace to the right of the SVG
+                    rightPosition = `${viewportWidth - svgRightEdge - tooltipWidth - 20}px`;
+                  } else {
+                    // On larger displays or when SVG takes full width, use sidebar spacing
+                    rightPosition = `${Math.max(20, sidebarWidthPx + 20)}px`;
+                  }
                 }
-                
-                // If tooltip would overlap with sidebar, force it to right side
-                const finalIsLeftSide = isLeftSide && !wouldOverlapSidebar;
-                
-                // Check if tooltip would touch bottom - if path is in bottom 40% of viewport, show above
-                // Using a more aggressive threshold to prevent cutoff
-                const pathY = tooltipPosition.centerY || tooltipPosition.y;
-                const isNearBottom = pathY > 60;
                 
                 const style: any = {
                   position: 'fixed', // Changed to fixed to position relative to viewport
@@ -422,7 +412,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                   width: 'auto',
                   maxWidth: `${tooltipWidth}px`,
                   transformOrigin: 'center center',
-                  right: `${sidebarWidthPx + 20}px`, // Position on the right side of the viewport, accounting for sidebar
+                  right: rightPosition, // Dynamic positioning based on available space
                   top: '50%', // Center vertically in viewport
                   transform: `translateY(-50%) scale(${tooltipScale})`, // Center transform
                 }
