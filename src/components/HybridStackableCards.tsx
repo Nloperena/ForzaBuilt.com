@@ -14,7 +14,7 @@ import MarineSpeedboatImage from '@/assets/images/Marine-stickstackcard-images/S
 
 // Construction Images
 import ConstructionBuildingImage from '@/assets/images/Construction-stickstackcard-images/House Construction-2.jpg';
-import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard-images/construction-2.jpg';
+import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard-images/Tilt-Up Image-2.jpg';
 import ConstructionTiltUpImage from '@/assets/images/Construction-stickstackcard-images/Tilt-Up Image-2.jpg';
 
 // Industrial Images
