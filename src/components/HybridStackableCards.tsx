@@ -27,7 +27,8 @@ import CompositesBoatImage from '@/assets/images/Composites-stickstackcard-image
 
 // Insulation Images
 import InsulationAdhesivesImage from '@/assets/images/Insulation-stickstackcard-images/Insulation Image-2.jpg';
-import InsulationCustomImage from '@/assets/images/Insulation-stickstackcard-images/Pipe Insulation-2.jpg';
+import InsulationCustomImage from '@/assets/images/Insulation-stickstackcard-images/insulation-2.jpg';
+import InsulationPipeImage from '@/assets/images/Insulation-stickstackcard-images/Pipe Insulation-2.jpg';
 
 // Old color scheme (with darker blue rgb(28, 58, 92))
 const cardStyleSheetOld = `
@@ -377,6 +378,20 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             ],
             color: getCardGradient(1),
             image: InsulationCustomImage
+          },
+          {
+            id: 'insulation-pipe',
+            title: "Lorem Ipsum Solutions",
+            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            listItems: [
+              "Lorem ipsum dolor sit amet",
+              "Consectetur adipiscing elit",
+              "Sed do eiusmod tempor",
+              "Incididunt ut labore et dolore magna aliqua"
+            ],
+            color: getCardGradient(2),
+            image: InsulationPipeImage
           }
         ];
         
