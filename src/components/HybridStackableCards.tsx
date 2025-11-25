@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { getIndustryGradient, typography } from '../styles/brandStandards';
 
 // Transportation Images
@@ -9,8 +8,9 @@ import TrailerStackImage from '@/assets/images/Transportation-stickstackcard-ima
 import RvStackImage from '@/assets/images/Transportation-stickstackcard-images/RV Bus-2.jpg';
 
 // Marine Images
-import MarineYachtImage from '@/assets/images/Marine-stickstackcard-images/marine-yacht.png';
-import MarinePontoonImage from '@/assets/images/Marine-stickstackcard-images/marine-pontoon.png';
+import MarineYachtImage from '@/assets/images/Marine-stickstackcard-images/Yacht Boat-2.jpg'; // Replaced marine-yacht.png
+import MarinePontoonImage from '@/assets/images/Marine-stickstackcard-images/Pontoon Boat-2.jpg'; // Replaced marine-pontoon.png
+import MarineSpeedboatImage from '@/assets/images/Marine-stickstackcard-images/Speedboat image-2.jpg'; // New third card image
 
 // Construction Images
 import ConstructionBuildingImage from '@/assets/images/Construction-stickstackcard-images/house-construction.jpg';
@@ -93,34 +93,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const [scrollY, setScrollY] = useState(0);
   const [containerTop, setContainerTop] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [viewportHeight, setViewportHeight] = useState<number>(typeof window !== 'undefined' ? window.innerHeight : 900);
   const [useOldColorScheme, setUseOldColorScheme] = useState(false);
+  const [showHeading, setShowHeading] = useState(true);
   const industryLowerCase = industry.toLowerCase();
 
-  // Modal handlers
-  const openProductModal = (card: Card) => {
-    // Convert card to product format expected by modal
-    const product = {
-      id: card.id,
-      name: card.title,
-      description: card.description,
-      imageUrl: card.image,
-      category: industry,
-      industry: industry,
-      subheading: card.subheading,
-      listItems: card.listItems
-    };
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedProduct(null);
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -133,28 +111,6 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  // Helper to get industry color hex value
-  const getIndustryColorHex = (industry: string) => {
-    switch (industry.toLowerCase()) {
-      case 'marine':
-        return '#137875'; // Marine teal
-      case 'industrial':
-        return '#f16a26'; // Industrial orange
-      case 'transportation':
-        return '#b83d35'; // Transportation red
-      case 'construction':
-        return '#fec770'; // Construction yellow
-      case 'composites':
-        return '#c7c8c9'; // Composites gray
-      case 'insulation':
-        return '#d0157d'; // Insulation pink
-      case 'foam':
-        return '#f16a26'; // Foam orange (same as industrial)
-      default:
-        return '#1b3764'; // Default brand blue
-    }
-  };
 
   // Get industry-specific gradient colors for cards
   const getCardGradient = (cardIndex: number) => {
@@ -195,13 +151,13 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           {
             id: 'marine-yacht',
             title: "Marine Yacht Solutions",
-            subheading: "Premium adhesive solutions for luxury vessels",
-            description: "Custom-formulated marine solutions that ensure boat and yacht structural integrity, watertight sealing, and surface bonding over the long haul.",
+            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             listItems: [
-              "Structural integrity & watertight sealing",
-              "Custom-formulated for marine demands",
-              "Cutting-edge marine chemistries",
-              "Superior process efficiency"
+              "Lorem ipsum dolor sit amet",
+              "Consectetur adipiscing elit",
+              "Sed do eiusmod tempor",
+              "Incididunt ut labore et dolore magna aliqua"
             ],
             color: getCardGradient(0),
             image: MarineYachtImage
@@ -209,16 +165,30 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           {
             id: 'marine-pontoon',
             title: "Marine Pontoon Solutions",
-            subheading: "Rugged solutions for pontoon applications",
-            description: "Tailor-made marine solutions that are rugged enough to meet the most demanding needs while remaining simple and intuitive for today's manufacturing environment.",
+            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             listItems: [
-              "Full R&D formulations lab",
-              "Rugged for demanding marine needs",
-              "Simple & intuitive manufacturing",
-              "Exceeds marine expectations"
+              "Lorem ipsum dolor sit amet",
+              "Consectetur adipiscing elit",
+              "Sed do eiusmod tempor",
+              "Incididunt ut labore et dolore magna aliqua"
             ],
             color: getCardGradient(1),
             image: MarinePontoonImage
+          },
+          {
+            id: 'marine-speedboat',
+            title: "Marine Speedboat Solutions",
+            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            listItems: [
+              "Lorem ipsum dolor sit amet",
+              "Consectetur adipiscing elit",
+              "Sed do eiusmod tempor",
+              "Incididunt ut labore et dolore magna aliqua"
+            ],
+            color: getCardGradient(2),
+            image: MarineSpeedboatImage
           }
         ];
         
@@ -365,13 +335,13 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           {
             id: 'composites-boat',
             title: "Marine Composite Solutions",
-            subheading: "Advanced bonding for marine composites",
+            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             listItems: [
-              "Superior adhesion for marine environments",
-              "Resistant to saltwater and harsh conditions",
-              "Lightweight and high-strength bonds",
-              "Designed for diverse composite materials"
+              "Lorem ipsum dolor sit amet",
+              "Consectetur adipiscing elit",
+              "Sed do eiusmod tempor",
+              "Incididunt ut labore et dolore magna aliqua"
             ],
             color: getCardGradient(2),
             image: CompositesBoatImage
@@ -481,23 +451,23 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   };
 
   const cardDisplayHeight = useMemo(() => {
-    // XL Displays - larger cards
-    if (viewportHeight >= 1600) return 750;
-    if (viewportHeight >= 1440) return 680;
+    // XL Displays - larger cards (increased by ~25%)
+    if (viewportHeight >= 1600) return 950;
+    if (viewportHeight >= 1440) return 850;
     
-    // Standard Desktop
-    if (viewportHeight >= 1200) return 600;
-    if (viewportHeight >= 1000) return 520;
+    // Standard Desktop (increased by ~25%)
+    if (viewportHeight >= 1200) return 750;
+    if (viewportHeight >= 1000) return 650;
     
-    // Laptops/Tablets
-    if (viewportHeight >= 800) return 450;
-    if (viewportHeight >= 600) return 380;
+    // Laptops/Tablets (increased by ~25%)
+    if (viewportHeight >= 800) return 560;
+    if (viewportHeight >= 600) return 480;
     
-    // Short displays (450px - 600px)
-    if (viewportHeight >= 450) return 280;
+    // Short displays (450px - 600px) (increased by ~25%)
+    if (viewportHeight >= 450) return 350;
     
-    // Very short displays
-    return 240;
+    // Very short displays (increased by ~25%)
+    return 300;
   }, [viewportHeight]);
 
   const layerSpacing = 0; // Small offset for visibility during transition, but cards stack at same position
@@ -508,13 +478,14 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   // ============================================
   
   // Estimated height of the title section above the card (pt-12 pb-8 + text)
-  const titleHeight = 140; // pixels - adjust if title is taller/shorter
+  const titleHeight = showHeading ? 140 : 0; // pixels - adjust if title is taller/shorter, 0 when hidden
   
   // Total height of the group (title + card)
   const groupHeight = titleHeight + cardDisplayHeight;
   
   // Where to position the CENTER of the group in the viewport (0.5 = middle, 0.4 = higher, 0.6 = lower)
-  const groupCenterPosition = 0.32; // 0.5 = perfectly centered, 0.1 = 10% from top
+  // When heading is hidden, center the card itself (0.5), otherwise use the original position (0.32)
+  const groupCenterPosition = showHeading ? 0.32 : 0.5; // 0.5 = perfectly centered, 0.32 = with heading
   
   // Calculate where the top of the group should be to center the entire group
   const groupCenterY = viewportHeight * groupCenterPosition;
@@ -620,8 +591,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   return (
     <>
       <style>{useOldColorScheme ? cardStyleSheetOld : cardStyleSheetNew}</style>
-      {/* Toggle Button - Fixed below navbar on right side */}
-      <div className="fixed top-20 sm:top-24 right-4 sm:right-8 z-[100]">
+      {/* Toggle Buttons - Fixed below navbar on right side */}
+      <div className="fixed top-20 sm:top-24 right-4 sm:right-8 z-[100] flex flex-col gap-2">
         <button
           onClick={() => setUseOldColorScheme(!useOldColorScheme)}
           className={`relative inline-flex h-8 w-16 items-center rounded-full transition-colors duration-300 shadow-lg ${
@@ -632,6 +603,19 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           <span
             className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform duration-300 shadow-sm ${
               useOldColorScheme ? 'translate-x-9' : 'translate-x-1'
+            }`}
+          />
+        </button>
+        <button
+          onClick={() => setShowHeading(!showHeading)}
+          className={`relative inline-flex h-8 w-16 items-center rounded-full transition-colors duration-300 shadow-lg ${
+            showHeading ? 'bg-[#115B87]' : 'bg-gray-400'
+          }`}
+          aria-label="Toggle heading visibility"
+        >
+          <span
+            className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform duration-300 shadow-sm ${
+              showHeading ? 'translate-x-9' : 'translate-x-1'
             }`}
           />
         </button>
@@ -681,8 +665,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 minHeight: `${Math.max(cardDisplayHeight + 60, viewportHeight * 0.5)}px`
               }}
             >
-              {/* Section Heading - only visible on first card */}
-              {index === 0 && (
+              {/* Section Heading - only visible on first card when showHeading is true */}
+              {showHeading && index === 0 && (
                 <div className="w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 relative z-50">
                   <div className="text-center max-w-5xl">
                     <h2 
@@ -702,8 +686,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 </div>
               )}
 
-              {/* Invisible spacer heading for cards 2+ to maintain alignment */}
-              {index > 0 && (
+              {/* Invisible spacer heading for cards 2+ to maintain alignment - only when showHeading is true */}
+              {showHeading && index > 0 && (
                 <div className="w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 invisible" style={{ height: 'auto' }}>
                   <div className="text-center max-w-5xl">
                     <h2 
@@ -735,25 +719,24 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                   }}
                 >
                   <div 
-                    className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''} ${isTransportation ? '' : 'cursor-pointer hover:border-white/30 hover:scale-[1.02]'}`}
+                    className={`rounded-xl sm:rounded-2xl lg:rounded-3xl mx-auto overflow-hidden border border-white/20 transition-all duration-300 card-gradient-${industry.toLowerCase()}${index % 2 === 1 ? '-reverse' : ''}`}
                     style={{ maxWidth: `${cardMaxWidth}px`, height: '100%', display: 'flex', flexDirection: 'column' }}
-                    onClick={isTransportation ? undefined : () => openProductModal(card)}
                   >
                   <div className={`flex flex-col lg:flex-row h-full ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                     {/* Image Section */}
-                    <div className="w-full lg:w-1/2 h-[35%] sm:h-[40%] lg:h-full relative p-4 lg:p-6 flex items-center justify-center">
+                    <div className="w-full lg:w-1/2 h-[50%] sm:h-[55%] lg:h-full relative p-2 sm:p-3 lg:p-4 flex items-center justify-center">
                       <div className="w-full h-full flex items-center justify-center">
                         <img 
                           src={card.image} 
                           alt={card.title}
                           className="max-w-full max-h-full object-contain rounded-lg lg:rounded-xl"
-                          style={{ width: 'auto', height: 'auto', maxHeight: '100%' }}
+                          style={{ width: 'auto', height: 'auto', maxHeight: '100%', maxWidth: '100%' }}
                         />
                       </div>
                     </div>
                     
                     {/* Content Section */}
-                    <div className="w-full lg:w-1/2 h-[65%] sm:h-[60%] lg:h-full p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-center">
+                    <div className="w-full lg:w-1/2 h-[50%] sm:h-[45%] lg:h-full p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col justify-center">
                       <div className="flex flex-col justify-center h-full">
                         {/* Heading */}
                         <h2 
@@ -819,166 +802,6 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         {/* Spacer for scroll height */}
         <div style={{ height: `${cardData.length * 25}vh` }} />
       </div>
-
-      {/* Product Modal with Wipe Animation */}
-      <AnimatePresence>
-        {isModalOpen && selectedProduct && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-2 md:p-4"
-            onClick={closeModal}
-          >
-            {/* Backdrop */}
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-            
-            {/* Modal Content with Wipe Animation */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0, y: 50 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 50 }}
-              transition={{ 
-                type: "spring", 
-                damping: 25, 
-                stiffness: 300,
-                duration: 0.6,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-              className={`relative rounded-lg md:rounded-2xl lg:rounded-3xl w-full overflow-hidden bg-gradient-to-b ${getIndustryGradient(industry)}`}
-              style={{
-                maxWidth: 'clamp(90%, 75vw, 900px)',
-                maxHeight: 'clamp(60vh, 85vh, 95vh)'
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Wipe Animation Overlay */}
-              <motion.div
-                initial={{ x: '-100%' }}
-                animate={{ x: '100%' }}
-                transition={{ 
-                  duration: 0.8, 
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                  delay: 0.1
-                }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent z-10 pointer-events-none"
-              />
-              
-              {/* Modal Header */}
-              <div className="relative p-3 md:p-4 border-b border-white/20">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-3 h-3 rounded-full`} style={{ backgroundColor: getIndustryColorHex(industry) }}></div>
-                    <span className="text-white/80 text-sm font-medium uppercase tracking-wider">
-                      {industry} Industry
-                    </span>
-                  </div>
-                  <button
-                    onClick={closeModal}
-                    className="text-white/70 hover:text-white text-2xl font-light transition-colors"
-                  >
-                    ×
-                  </button>
-                </div>
-              </div>
-
-              {/* Modal Content */}
-              <div className="relative overflow-y-auto" style={{ maxHeight: 'calc(100% - 3rem)' }}>
-                <div className="p-2 sm:p-3 md:p-4 lg:p-5">
-                  <div className="flex flex-col lg:flex-row gap-3 md:gap-4 lg:gap-5">
-                    {/* Product Image */}
-                    <div className="w-full lg:w-1/3">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 lg:p-4 h-40 md:h-48 lg:h-56 flex items-center justify-center">
-                        <img
-                          src={selectedProduct.imageUrl}
-                          alt={selectedProduct.name}
-                          className="max-w-full max-h-full object-contain"
-                          style={{ width: 'auto', height: 'auto' }}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Product Details */}
-                    <div className="w-full lg:w-2/3 space-y-2 md:space-y-3 lg:space-y-4">
-                      {/* Title */}
-                      <h2 
-                        className="font-normal font-poppins text-white leading-tight"
-                        style={{ 
-                          textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-                          fontSize: 'clamp(1.125rem, 2.2vw, 1.75rem)'
-                        }}
-                      >
-                        {selectedProduct.name}
-                      </h2>
-
-                      {/* Subheading */}
-                      {selectedProduct.subheading && (
-                        <h3 
-                          className="text-white/90 font-semibold"
-                          style={{ 
-                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-                            fontSize: 'clamp(0.9rem, 1.6vw, 1.25rem)'
-                          }}
-                        >
-                          {selectedProduct.subheading}
-                        </h3>
-                      )}
-
-                      {/* Description */}
-                      <p 
-                        className="text-white/80 leading-relaxed"
-                        style={{ 
-                          textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                          fontSize: 'clamp(0.8rem, 1.3vw, 1rem)'
-                        }}
-                      >
-                        {selectedProduct.description}
-                      </p>
-
-                      {/* List Items */}
-                      {selectedProduct.listItems && selectedProduct.listItems.length > 0 && (
-                        <ul className="space-y-1 md:space-y-1.5 lg:space-y-2">
-                          {selectedProduct.listItems.map((item: string, itemIndex: number) => (
-                            <li 
-                              key={itemIndex} 
-                              className="flex items-start text-white/90"
-                              style={{ 
-                                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                                fontSize: 'clamp(0.75rem, 1.1vw, 0.95rem)'
-                              }}
-                            >
-                              <div className="rounded-full bg-white/80 mr-2 md:mr-2.5 flex-shrink-0 shadow-lg mt-1" style={{ width: 'clamp(0.35rem, 0.7vw, 0.5rem)', height: 'clamp(0.35rem, 0.7vw, 0.5rem)' }}></div>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-
-                      {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-2 md:gap-2.5 pt-2 md:pt-3">
-                        <Link
-                          to={`/products/${selectedProduct.category?.toLowerCase() || 'bond'}/${selectedProduct.id}`}
-                          onClick={(e) => e.stopPropagation()}
-                          className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-4 md:px-6 py-2.5 md:py-3 text-xs md:text-sm font-semibold text-white bg-[#F2611D] border border-[#F2611D] shadow-[0_10px_25px_rgba(242,97,29,0.35)] hover:bg-[#F2611D]/85 hover:border-[#F2611D]/90 transition-colors duration-300"
-                        >
-                          <span>View Product Details</span>
-                        </Link>
-                        
-                        <button
-                          onClick={closeModal}
-                          className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 border border-white/20 hover:border-white/30"
-                        >
-                          <span>Close</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
     </>
   );

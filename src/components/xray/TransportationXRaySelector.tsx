@@ -40,10 +40,14 @@ const optionVariants = {
 const TransportationXRaySelector: React.FC = () => {
   const [selectedVariant, setSelectedVariant] = useState<XRayVariant | null>('rv-bus');
   const [viewportHeight, setViewportHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 800);
+  const [viewportWidth, setViewportWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1280);
 
-  // Track viewport height
+  // Track viewport height and width
   useEffect(() => {
-    const handleResize = () => setViewportHeight(window.innerHeight);
+    const handleResize = () => {
+      setViewportHeight(window.innerHeight);
+      setViewportWidth(window.innerWidth);
+    };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -64,12 +68,10 @@ const TransportationXRaySelector: React.FC = () => {
     return '320px';
   }, [viewportHeight]);
 
-  // X-Ray container min-height based on viewport height
+  // X-Ray container min-height based on viewport height - use full viewport height
   const xrayMinHeight = useMemo(() => {
-    if (viewportHeight < 500) return 'clamp(280px, 50vh, 400px)';
-    if (viewportHeight < 600) return 'clamp(320px, 55vh, 500px)';
-    if (viewportHeight < 800) return 'clamp(400px, 60vh, 700px)';
-    return 'clamp(500px, 60vh, 1200px)';
+    // Use full viewport height for all displays
+    return `${viewportHeight}px`;
   }, [viewportHeight]);
 
   const selectedOption = selectedVariant
@@ -250,7 +252,7 @@ const TransportationXRaySelector: React.FC = () => {
                     className={selectedVariant === 'rv-bus' ? 'relative' : 'absolute inset-0'}
                     style={{ zIndex: selectedVariant === 'rv-bus' ? 2 : 1 }}
                   >
-                    <RVBusOverlay viewportHeight={viewportHeight} />
+                    <RVBusOverlay viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
                   </motion.div>
                   
                   {/* Trailer X-Ray */}
@@ -264,7 +266,7 @@ const TransportationXRaySelector: React.FC = () => {
                     className={selectedVariant === 'trailer' ? 'relative' : 'absolute inset-0'}
                     style={{ zIndex: selectedVariant === 'trailer' ? 2 : 1 }}
                   >
-                    <TrailerOverlay viewportHeight={viewportHeight} />
+                    <TrailerOverlay viewportHeight={viewportHeight} viewportWidth={viewportWidth} />
                   </motion.div>
                 </div>
               </div>

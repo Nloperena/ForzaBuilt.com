@@ -24,15 +24,23 @@ interface ImageOverlayProps {
   svgSrc: string;
   title?: string;
   viewportHeight?: number;
+  viewportWidth?: number;
 }
 
-function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps) {
-  // Calculate responsive min-height based on viewport height
+function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 1280 }: ImageOverlayProps) {
+  // Calculate responsive min-height based on viewport height - use full viewport height
   const xrayMinHeight = (() => {
-    if (viewportHeight < 500) return 'clamp(280px, 50vh, 400px)';
-    if (viewportHeight < 600) return 'clamp(320px, 55vh, 500px)';
-    if (viewportHeight < 800) return 'clamp(400px, 60vh, 700px)';
-    return 'clamp(500px, 60vh, 1200px)';
+    // Use full viewport height for all displays
+    return `${viewportHeight}px`;
+  })();
+  
+  // Calculate max-width for SVG container based on viewport width
+  const svgMaxWidth = (() => {
+    // For smaller desktop displays around 1280px width, allow larger SVG
+    if (viewportWidth >= 1024 && viewportWidth <= 1440) {
+      return 'max-w-[100rem]'; // Larger than default 7xl (80rem)
+    }
+    return 'max-w-full sm:max-w-5xl md:max-w-6xl lg:max-w-7xl xl:max-w-[90rem] 2xl:max-w-[110rem]';
   })();
 
   // Tooltip scale factor for short displays
@@ -333,7 +341,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800 }: ImageOverlayProps
             <div className="relative inline-block">
               <div
                 ref={svgContainerRef}
-                className="relative w-full max-w-full sm:max-w-5xl md:max-w-6xl lg:max-w-7xl xl:max-w-[90rem] 2xl:max-w-[110rem]"
+                className={`relative w-full ${svgMaxWidth}`}
                 style={{ minHeight: xrayMinHeight }}
               >
                 <div
