@@ -58,6 +58,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState<{x: number, y: number, centerY: number, leftX: number, rightX: number} | null>(null);
   const [modalOpacity, setModalOpacity] = useState(1); // State for modal opacity animation
+  const [isXRayInView, setIsXRayInView] = useState(false); // State to track if X-Ray is in viewport
   const svgContainerRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const selectedPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // New ref to track selected path
@@ -323,6 +324,33 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     }
   }, [xrayMinHeight, svgContent]);
 
+  // Intersection Observer to track when X-Ray is in view
+  useEffect(() => {
+    if (!svgContainerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsXRayInView(entry.isIntersecting);
+          // Reset modal opacity when X-Ray comes into view
+          if (entry.isIntersecting) {
+            setModalOpacity(1);
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Trigger when at least 10% of the X-Ray is visible
+        rootMargin: '0px'
+      }
+    );
+
+    observer.observe(svgContainerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [svgContent]); // Re-run when SVG content changes
+
   // Set up hover and click handlers when SVG content is loaded
   useEffect(() => {
     if (svgContent && svgContainerRef.current) {
@@ -482,7 +510,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
               </div>
               
               {/* Product Tooltip - Positioned next to the hovered/selected SVG path */}
-              {!isMobile && (selectedProduct || hoveredProduct) && tooltipPosition && (() => {
+              {!isMobile && (selectedProduct || hoveredProduct) && tooltipPosition && isXRayInView && (() => {
                 const tooltipWidth = 400 * tooltipScale;
                 
                 // Calculate sidebar width (matches TransportationXRaySelector sidebarWidth)
