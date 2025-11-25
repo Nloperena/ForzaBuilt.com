@@ -385,34 +385,29 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                   return 320;
                 })();
                 
-                // Calculate available space to the right of the SVG for the modal
+                // Calculate exact position to place modal directly to the right of the SVG edge
                 const svgContainer = svgContainerRef.current;
-                let rightPosition = `${sidebarWidthPx + 20}px`;
+                let leftPosition = 'auto';
+                let rightPosition = 'auto';
                 
                 if (svgContainer) {
                   const svgContainerRect = svgContainer.getBoundingClientRect();
-                  const svgRightEdge = svgContainerRect.right;
-                  const viewportWidth = window.innerWidth;
-                  const availableRightSpace = viewportWidth - svgRightEdge;
-                  
-                  // If there's enough space to the right of the SVG (more than tooltip width + padding)
-                  if (availableRightSpace > tooltipWidth + 40) {
-                    // Position in the whitespace to the right of the SVG
-                    rightPosition = `${viewportWidth - svgRightEdge - tooltipWidth - 20}px`;
-                  } else {
-                    // On larger displays or when SVG takes full width, use sidebar spacing
-                    rightPosition = `${Math.max(20, sidebarWidthPx + 20)}px`;
-                  }
+                  // Position exactly at the right edge of the SVG container + small gap
+                  leftPosition = `${svgContainerRect.right + 12}px`; 
+                } else {
+                  // Fallback if container ref is missing (should rarely happen)
+                  rightPosition = `${Math.max(20, sidebarWidthPx + 20)}px`;
                 }
                 
                 const style: any = {
-                  position: 'fixed', // Changed to fixed to position relative to viewport
+                  position: 'fixed', // Fixed to viewport
                   pointerEvents: 'none',
                   zIndex: 9999,
                   width: 'auto',
                   maxWidth: `${tooltipWidth}px`,
                   transformOrigin: 'center center',
-                  right: rightPosition, // Dynamic positioning based on available space
+                  left: leftPosition, // Use left positioning calculated from SVG's right edge
+                  right: rightPosition,
                   top: '50%', // Center vertically in viewport
                   transform: `translateY(-50%) scale(${tooltipScale})`, // Center transform
                 }
