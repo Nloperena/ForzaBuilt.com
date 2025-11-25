@@ -22,7 +22,7 @@ import IndustrialStructuralImage from '@/assets/images/Industrial-stickstackcard
 
 // Composites Images
 import CompositesStructuralImage from '@/assets/images/Composites-stickstackcard-images/composite-1.jpg';
-import CompositesCustomImage from '@/assets/images/Composites-stickstackcard-images/composite-3.png';
+import CompositesCustomImage from '@/assets/images/Composites-stickstackcard-images/wind turbines-2.jpg';
 import CompositesBoatImage from '@/assets/images/Composites-stickstackcard-images/Boat.jpg';
 
 // Insulation Images
