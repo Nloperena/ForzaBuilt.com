@@ -60,6 +60,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   const svgContainerRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const selectedPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // New ref to track selected path
+  const hoveredPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // Ref to track hovered path
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null); // Ref to track scroll timeout
   const isMobile = useIsMobile();
 
@@ -151,11 +152,15 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         // Add style element for hover and selected effects
         const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
         style.textContent = `
-          path:hover:not(.selected), polygon:hover:not(.selected) {
+          path:hover:not(.selected):not(.hovered), polygon:hover:not(.selected):not(.hovered) {
             fill: #ff6600 !important;
             stroke: #ff6600 !important;
             transition: fill 0.2s ease, stroke 0.2s ease;
             cursor: pointer;
+          }
+          path.hovered:not(.selected), polygon.hovered:not(.selected) {
+            fill: #ff6600 !important;
+            stroke: #ff6600 !important;
           }
           path.selected, polygon.selected {
             fill: #ff6600 !important;
@@ -198,6 +203,10 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
       selectedPathRef.current.classList.remove('selected');
       selectedPathRef.current = null;
     }
+    if (hoveredPathRef.current) {
+      hoveredPathRef.current.classList.remove('hovered');
+      hoveredPathRef.current = null;
+    }
     setSelectedProduct(null);
     setHoveredProduct(null);
   };
@@ -214,6 +223,10 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         
         // Set a 3-second timer to close the hover modal
         scrollTimeoutRef.current = setTimeout(() => {
+          if (hoveredPathRef.current) {
+            hoveredPathRef.current.classList.remove('hovered');
+            hoveredPathRef.current = null;
+          }
           setHoveredProduct(null);
           setTooltipPosition(null);
         }, 3000);
@@ -238,10 +251,11 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     }
   }, [hoveredProduct, selectedProduct]);
 
-  // Handle click outside to close selected product
+  // Handle click outside to close modal (both hovered and selected products)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (selectedProduct && svgContainerRef.current) {
+      // Close modal if there's either a hovered or selected product
+      if ((hoveredProduct || selectedProduct) && svgContainerRef.current) {
         const target = event.target as Node;
         // Check if click is outside the SVG container (the display area)
         // Allow clicks on the tooltip itself to keep it open
@@ -252,6 +266,10 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
               selectedPathRef.current.classList.remove('selected');
               selectedPathRef.current = null;
             }
+            if (hoveredPathRef.current) {
+              hoveredPathRef.current.classList.remove('hovered');
+              hoveredPathRef.current = null;
+            }
             setSelectedProduct(null);
             setHoveredProduct(null);
             setTooltipPosition(null);
@@ -260,18 +278,19 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
       }
     };
 
-    if (selectedProduct) {
-      // Use a longer delay to avoid closing immediately when clicking to select
+    if (hoveredProduct || selectedProduct) {
+      // Use a longer delay for selected products to avoid closing immediately when clicking to select
+      const delay = selectedProduct ? 200 : 0;
       const timeoutId = setTimeout(() => {
         document.addEventListener('mousedown', handleClickOutside, true);
-      }, 200);
+      }, delay);
 
       return () => {
         clearTimeout(timeoutId);
         document.removeEventListener('mousedown', handleClickOutside, true);
       };
     }
-  }, [selectedProduct]);
+  }, [hoveredProduct, selectedProduct]);
 
   useEffect(() => {
     if (svgContainerRef.current) {
@@ -296,10 +315,20 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         
         const handleMouseEnter = (event: Event) => {
           if (isMobile) return;
-          // Don't show hover tooltips if a product is already selected
+          // Don't show hover tooltips or change hover state if a product is already selected (locked)
           if (selectedProduct) return;
           
           const target = event.currentTarget as SVGPathElement | SVGPolygonElement;
+          
+          // Remove 'hovered' class from previously hovered path
+          if (hoveredPathRef.current && hoveredPathRef.current !== target) {
+            hoveredPathRef.current.classList.remove('hovered');
+          }
+          
+          // Add 'hovered' class to current path
+          target.classList.add('hovered');
+          hoveredPathRef.current = target;
+          
           const product = pathProducts.get(target.id);
           if (product) {
             console.log('Hovering over path:', target.id, 'Product:', product.sku || product.name);
@@ -326,11 +355,14 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
 
         const handleMouseLeave = () => {
           if (isMobile) return;
-          // Only clear hover if no product is selected
-          if (!selectedProduct) {
-            setHoveredProduct(null);
-            setTooltipPosition(null);
+          // Don't clear hover state - keep the orange color and modal visible
+          // Only clear if a product is selected (locked)
+          if (selectedProduct) {
+            // If product is selected, don't change anything
+            return;
           }
+          // Keep hovered state - don't clear hoveredProduct or tooltipPosition
+          // The orange color will persist via the 'hovered' class
         };
 
         const handleClick = (event: Event) => {
@@ -345,7 +377,14 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
               selectedPathRef.current.classList.remove('selected');
             }
 
-            // Add 'selected' class to the newly selected path
+            // Remove 'hovered' class from previously hovered path, if any
+            if (hoveredPathRef.current) {
+              hoveredPathRef.current.classList.remove('hovered');
+              hoveredPathRef.current = null;
+            }
+
+            // Add 'selected' class to the newly selected path (removes 'hovered' automatically via CSS)
+            target.classList.remove('hovered');
             target.classList.add('selected');
             selectedPathRef.current = target; // Update the ref
             
@@ -367,7 +406,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
               console.error('Error calculating position:', e);
             }
 
-            // Set selection - clicking the same path keeps it selected
+            // Set selection - clicking locks the product in the modal
             setSelectedProduct(product);
             setHoveredProduct(null); // Clear hover when selecting
           }
