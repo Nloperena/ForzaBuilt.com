@@ -416,30 +416,16 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                 const isNearBottom = pathY > 60;
                 
                 const style: any = {
-                  position: 'absolute',
+                  position: 'fixed', // Changed to fixed to position relative to viewport
                   pointerEvents: 'none',
                   zIndex: 9999,
                   width: 'auto',
                   maxWidth: `${tooltipWidth}px`,
                   transformOrigin: 'center center',
-                  right: '12px', // Position on the right side of ImageOverlay
-                  left: 'auto', // Clear left positioning
-                };
-
-                // Vertical positioning - above if near bottom, otherwise centered
-                if (isNearBottom) {
-                  // Position above the path - use top with negative margin
-                  style.top = `${pathY}%`;
-                  style.marginTop = '-12px';
-                  style.transformOrigin = 'center bottom';
-                } else {
-                  // Position centered on the path
-                  style.top = `${pathY}%`;
-                  style.transformOrigin = 'center center';
+                  right: `${sidebarWidthPx + 20}px`, // Position on the right side of the viewport, accounting for sidebar
+                  top: '50%', // Center vertically in viewport
+                  transform: `translateY(-50%) scale(${tooltipScale})`, // Center transform
                 }
-
-                style.transform = `translateY(${isNearBottom ? '-100%' : '-50%'}) scale(${tooltipScale})`;
-                style.marginLeft = '0'; // Clear margin left
 
                 return (
                   <div ref={tooltipRef} style={style}>
