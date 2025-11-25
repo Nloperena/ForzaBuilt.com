@@ -559,7 +559,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                       duration: 0.6, 
                       ease: [0.4, 0, 0.2, 1] // Smooth easing for fade in/out
                     }}
-                    className="bg-[#33486c] rounded-xl shadow-2xl pointer-events-auto relative"
+                    className="bg-[#D1D5DB] rounded-xl shadow-2xl pointer-events-auto relative"
                     style={{
                       padding: `${Math.max(8, 12 * tooltipScale)}px ${Math.max(10, 16 * tooltipScale)}px`,
                       width: `${224 * tooltipScale}px`,
@@ -570,7 +570,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                     {selectedProduct && (
                       <button
                         onClick={handleCloseCard}
-                        className="absolute top-2 right-2 text-white hover:text-white/70 transition-colors z-10"
+                        className="absolute top-2 right-2 text-[#1B3764] hover:text-[#1B3764]/70 transition-colors z-10"
                         aria-label="Close"
                       >
                         <X className="h-4 w-4" />
@@ -597,21 +597,21 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                             <div className="text-center">
                               {displayProduct?.sku && (
                                 <h3 
-                                  className="font-bold mb-1 text-white"
+                                  className="font-bold mb-1 text-[#1B3764]"
                                   style={{ fontSize: `${Math.max(12, 16 * tooltipScale)}px` }}
                                 >
                                   {displayProduct.sku}
                                 </h3>
                               )}
                               <p 
-                                className="text-white mb-2 leading-relaxed"
+                                className="text-[#1B3764] mb-2 leading-relaxed"
                                 style={{ fontSize: `${Math.max(10, 14 * tooltipScale)}px` }}
                               >
                                 {displayProduct?.name}
                               </p>
                               {displayProduct?.description && (
                                 <p 
-                                  className="text-white/90 leading-relaxed line-clamp-3"
+                                  className="text-[#1B3764] leading-relaxed line-clamp-3"
                                   style={{ fontSize: `${Math.max(8, 12 * tooltipScale)}px` }}
                                 >
                                   {displayProduct.description}
