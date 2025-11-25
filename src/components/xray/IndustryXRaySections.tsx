@@ -53,7 +53,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
         subtitle: '',
         summary: 'Inspect high-strength trailer assemblies covering walls, floors, and chassis bonding for commercial and specialty builds.',
         previewImage: '/img/transportation/Trailer PostX-Ray.png',
-        svgSrc: '/img/transportation/Trailer PostX-Ray.svg'
+        svgSrc: '/img/transportation/Trailer Exploded Graphic2.svg'
       }
     ];
   };

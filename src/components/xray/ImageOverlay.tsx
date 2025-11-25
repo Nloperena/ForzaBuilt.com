@@ -39,19 +39,16 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   
   // Calculate max-width for SVG container based on viewport width
   const svgMaxWidth = (() => {
-    // For smaller desktop displays around 1280px width, allow larger SVG
-    if (viewportWidth >= 1024 && viewportWidth <= 1440) {
-      return 'max-w-[100rem]'; // Larger than default 7xl (80rem)
-    }
-    return 'max-w-full sm:max-w-5xl md:max-w-6xl lg:max-w-7xl xl:max-w-[90rem] 2xl:max-w-[110rem]';
+    // Allow unrestricted width to ensure full viewport height can be maintained
+    return 'max-w-none'; 
   })();
 
   // Tooltip scale factor for short displays
   const tooltipScale = (() => {
-    if (viewportHeight < 500) return 0.85;
-    if (viewportHeight < 600) return 0.9;
-    if (viewportHeight < 800) return 0.95;
-    return 1;
+    if (viewportHeight < 500) return 0.7;
+    if (viewportHeight < 600) return 0.75;
+    if (viewportHeight < 800) return 0.85;
+    return 0.95;
   })();
   const [svgContent, setSvgContent] = useState<string | null>(null);
   const [pathProducts, setPathProducts] = useState<Map<string, Product>>(new Map());
@@ -134,15 +131,15 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         const svgElement = svgDoc.documentElement;
 
         // Ensure SVG has proper width/height for responsive sizing - make it larger
-        svgElement.setAttribute('width', '100%');
-        svgElement.setAttribute('height', 'auto');
+        svgElement.setAttribute('height', '100%');
+        svgElement.setAttribute('width', 'auto');
         svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        svgElement.style.width = '100%';
-        svgElement.style.height = 'auto';
+        svgElement.style.height = '100%';
+        svgElement.style.width = 'auto';
         // Responsive min-height: smaller on mobile, larger on desktop
-        svgElement.style.minHeight = xrayMinHeight;
+        svgElement.style.minHeight = '100vh';
         svgElement.style.display = 'block';
-        svgElement.style.maxWidth = '100%';
+        svgElement.style.maxWidth = 'none'; // Allow full width
         svgElement.style.overflow = 'visible';
 
         // Add unique IDs to paths/polygons if they don't have them
@@ -498,27 +495,27 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         <div className="relative overflow-visible flex justify-center px-2 sm:px-4 md:px-6">
           {/* SVG Container with Tooltip positioned relative to it */}
           {svgContent && (
-            <div className="relative inline-block">
+            <div className="relative inline-block h-screen w-full flex justify-center">
               <div
                 ref={svgContainerRef}
-                className={`relative w-full ${svgMaxWidth}`}
-                style={{ minHeight: xrayMinHeight }}
+                className={`relative h-full`}
+                style={{ aspectRatio: 'auto', minHeight: '100vh' }}
               >
                 {/* Optional Background Image */}
                 {bgImage && (
                   <img 
                     src={bgImage} 
                     alt="" 
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 h-full w-auto max-w-none mx-auto"
                     style={{ zIndex: 0 }}
                   />
                 )}
                 <div
                   dangerouslySetInnerHTML={{ __html: svgContent }}
                   style={{ 
-                    width: '100%', 
-                    height: 'auto', 
-                    minHeight: xrayMinHeight, 
+                    width: 'auto', 
+                    height: '100%', 
+                    minHeight: '100vh', 
                     position: 'relative', 
                     zIndex: 1 
                   }}

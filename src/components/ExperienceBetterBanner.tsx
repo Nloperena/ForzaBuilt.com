@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const ExperienceBetterBanner = () => {
+interface ExperienceBetterBannerProps {
+  textColor?: string;
+}
+
+const ExperienceBetterBanner = ({ textColor = '#1B3764' }: ExperienceBetterBannerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
@@ -150,7 +154,7 @@ const ExperienceBetterBanner = () => {
                   display: 'inline-block',
                   width: '100%',
                   textAlign: 'center',
-                  color: '#1B3764' // Changed to match other headings
+                  color: textColor
                 }}
               >
                 Performance. Elevated.
@@ -179,7 +183,7 @@ const ExperienceBetterBanner = () => {
                     letterSpacing: '-0.02em',
                     lineHeight: 1,
                     whiteSpace: 'nowrap',
-                    color: '#1B3764' // Changed to match other headings
+                    color: textColor
                   }}
                 >
                   {performanceText}
@@ -194,7 +198,7 @@ const ExperienceBetterBanner = () => {
                       lineHeight: 1,
                       marginLeft: '0.15em',
                       whiteSpace: 'nowrap',
-                      color: '#1B3764' // Changed to match other headings
+                      color: textColor
                     }}
                   >
                     {elevatedText}

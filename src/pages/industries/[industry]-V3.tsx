@@ -96,8 +96,8 @@ const IndustryPageV3 = () => {
       </div>
 
       {/* Performance Elevated Banner */}
-      <div className="relative z-[45] bg-white">
-        <ExperienceBetterBanner />
+      <div className="relative z-[45] bg-[#1B3764]">
+        <ExperienceBetterBanner textColor="#FFFFFF" />
       </div>
 
       {/* X-Ray Explorer Sections - Scrolls over the cards section */}
