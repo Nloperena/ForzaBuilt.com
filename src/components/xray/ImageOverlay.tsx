@@ -64,7 +64,6 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   const selectedPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // New ref to track selected path
   const hoveredPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // Ref to track hovered path
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null); // Ref to track scroll timeout
-  const lastScrollY = useRef<number>(0); // Ref to track last scroll position for direction detection
   const isMobile = useIsMobile();
 
   // Sample applications text for different path types
@@ -214,22 +213,9 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     setHoveredProduct(null);
   };
 
-  // Handle scroll to fade modal and close hover modals after 3 seconds
+  // Handle scroll to close hover modals after 3 seconds
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollDirection = currentScrollY > lastScrollY.current ? 'down' : 'up';
-      
-      // Fade out modal when scrolling up
-      if ((hoveredProduct || selectedProduct) && scrollDirection === 'up') {
-        setModalOpacity(0);
-      } else if ((hoveredProduct || selectedProduct) && scrollDirection === 'down') {
-        // Fade in modal when scrolling down
-        setModalOpacity(1);
-      }
-      
-      lastScrollY.current = currentScrollY;
-      
       // Only close hover modals after 3 seconds, not selected ones
       if (hoveredProduct && !selectedProduct) {
         // Clear any existing timeout
@@ -248,9 +234,6 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         }, 3000);
       }
     };
-
-    // Initialize lastScrollY
-    lastScrollY.current = window.scrollY;
     
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -262,17 +245,17 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     };
   }, [hoveredProduct, selectedProduct]);
 
-  // Reset modal opacity and clear scroll timeout when hover state changes or product is selected
+  // Clear scroll timeout when hover state changes or product is selected
   useEffect(() => {
     if (scrollTimeoutRef.current) {
       clearTimeout(scrollTimeoutRef.current);
       scrollTimeoutRef.current = null;
     }
-    // Reset modal opacity when a new product is hovered or selected
-    if (hoveredProduct || selectedProduct) {
+    // Reset modal opacity when a new product is hovered or selected (only if X-Ray is in view)
+    if ((hoveredProduct || selectedProduct) && isXRayInView) {
       setModalOpacity(1);
     }
-  }, [hoveredProduct, selectedProduct]);
+  }, [hoveredProduct, selectedProduct, isXRayInView]);
 
   // Handle click outside to close modal (both hovered and selected products)
   useEffect(() => {
@@ -324,23 +307,35 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     }
   }, [xrayMinHeight, svgContent]);
 
-  // Intersection Observer to track when X-Ray is in view
+  // Intersection Observer to track when X-Ray is in view and control modal visibility
   useEffect(() => {
     if (!svgContainerRef.current) return;
+
+    let fadeTimeout: NodeJS.Timeout | null = null;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           setIsXRayInView(entry.isIntersecting);
-          // Reset modal opacity when X-Ray comes into view
+          // Control modal opacity based on whether X-Ray is in view
           if (entry.isIntersecting) {
-            setModalOpacity(1);
+            // Clear any pending fade out
+            if (fadeTimeout) {
+              clearTimeout(fadeTimeout);
+              fadeTimeout = null;
+            }
+            setModalOpacity(1); // Fade in when X-Ray comes into view
+          } else {
+            // Add a small delay before fading out for smoother transition
+            fadeTimeout = setTimeout(() => {
+              setModalOpacity(0); // Fade out when X-Ray goes out of view
+            }, 100);
           }
         });
       },
       {
         threshold: 0.1, // Trigger when at least 10% of the X-Ray is visible
-        rootMargin: '0px'
+        rootMargin: '-50px 0px' // Add buffer to start fading before completely out of view
       }
     );
 
@@ -348,6 +343,9 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
 
     return () => {
       observer.disconnect();
+      if (fadeTimeout) {
+        clearTimeout(fadeTimeout);
+      }
     };
   }, [svgContent]); // Re-run when SVG content changes
 
@@ -558,8 +556,8 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                     }}
                     exit={{ opacity: 0, scale: 0.95, y: 10 }}
                     transition={{ 
-                      duration: 0.4, 
-                      ease: [0.4, 0, 0.2, 1] // Smooth easing
+                      duration: 0.6, 
+                      ease: [0.4, 0, 0.2, 1] // Smooth easing for fade in/out
                     }}
                     className="bg-[#D1D5DB] rounded-xl shadow-2xl pointer-events-auto relative"
                     style={{
