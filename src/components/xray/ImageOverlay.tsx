@@ -60,6 +60,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   const svgContainerRef = useRef<HTMLDivElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const selectedPathRef = useRef<SVGPathElement | SVGPolygonElement | null>(null); // New ref to track selected path
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null); // Ref to track scroll timeout
   const isMobile = useIsMobile();
 
   // Sample applications text for different path types
@@ -201,6 +202,42 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
     setHoveredProduct(null);
   };
 
+  // Handle scroll to close hover modals after 3 seconds
+  useEffect(() => {
+    const handleScroll = () => {
+      // Only close hover modals, not selected ones
+      if (hoveredProduct && !selectedProduct) {
+        // Clear any existing timeout
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        
+        // Set a 3-second timer to close the hover modal
+        scrollTimeoutRef.current = setTimeout(() => {
+          setHoveredProduct(null);
+          setTooltipPosition(null);
+        }, 3000);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [hoveredProduct, selectedProduct]);
+
+  // Clear scroll timeout when hover state changes or product is selected
+  useEffect(() => {
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = null;
+    }
+  }, [hoveredProduct, selectedProduct]);
+
   // Handle click outside to close selected product
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -235,6 +272,15 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
       };
     }
   }, [selectedProduct]);
+
+  useEffect(() => {
+    if (svgContainerRef.current) {
+      const svgElement = svgContainerRef.current.querySelector('svg');
+      if (svgElement) {
+        svgElement.style.minHeight = xrayMinHeight;
+      }
+    }
+  }, [xrayMinHeight, svgContent]);
 
   // Set up hover and click handlers when SVG content is loaded
   useEffect(() => {
