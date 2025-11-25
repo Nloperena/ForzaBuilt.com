@@ -96,7 +96,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [viewportHeight, setViewportHeight] = useState<number>(typeof window !== 'undefined' ? window.innerHeight : 900);
   const [useOldColorScheme, setUseOldColorScheme] = useState(false);
-  const [showHeading, setShowHeading] = useState(true);
+  const [showHeading, setShowHeading] = useState(false); // Default to heading hidden (new behavior)
   const industryLowerCase = industry.toLowerCase();
 
 
