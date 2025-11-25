@@ -18,8 +18,9 @@ import ConstructionCustomImage from '@/assets/images/Construction-stickstackcard
 import ConstructionTiltUpImage from '@/assets/images/Construction-stickstackcard-images/Tilt-Up Image-2.jpg';
 
 // Industrial Images
-import IndustrialStructuralImage from '@/assets/images/Industrial-stickstackcard-images/general-industries.jpg';
-import IndustrialManufacturingImage from '@/assets/images/Industrial-stickstackcard-images/general-industries.jpg'; // TODO: Replace with robotic-manufacturing.jpg when available
+import IndustrialRoofCurbImage from '@/assets/images/Industrial-stickstackcard-images/Roof curb-2.jpg';
+import IndustrialMattressImage from '@/assets/images/Industrial-stickstackcard-images/Mattress Manufacturer-2.jpg';
+import IndustrialHandshakeImage from '@/assets/images/Industrial-stickstackcard-images/Industrial Handshake-2.jpg';
 
 // Composites Images
 import CompositesStructuralImage from '@/assets/images/Composites-stickstackcard-images/composite-1.jpg';
@@ -300,7 +301,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "VOC-compliant workplace safety"
             ],
             color: getCardGradient(0),
-            image: IndustrialStructuralImage
+            image: IndustrialRoofCurbImage
           },
           {
             id: 'industrial-manufacturing',
@@ -314,13 +315,13 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Factory automation component bonding"
             ],
             color: getCardGradient(1),
-            image: IndustrialManufacturingImage
+            image: IndustrialMattressImage
           },
           {
             id: 'industrial-placeholder',
             title: "Advanced Industrial Solutions",
-            subheading: "Coming soon",
-            description: "New industrial adhesive and bonding solutions are in development to meet the evolving needs of modern manufacturing.",
+            subheading: "Partnership in Performance",
+            description: "New industrial adhesive and bonding solutions are in development to meet the evolving needs of modern manufacturing through strategic partnership.",
             listItems: [
               "Innovative bonding technologies",
               "Enhanced performance characteristics",
@@ -328,7 +329,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Next-generation industrial solutions"
             ],
             color: getCardGradient(2),
-            image: null // Skeleton placeholder will be used
+            image: IndustrialHandshakeImage
           }
         ];
         
@@ -438,7 +439,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Long-lasting performance"
             ],
             color: getCardGradient(0),
-            image: IndustrialStructuralImage
+            image: IndustrialRoofCurbImage
           },
           {
             id: 'default-2',
@@ -452,7 +453,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
               "Professional results"
             ],
             color: getCardGradient(1),
-            image: IndustrialStructuralImage // Fallback
+            image: IndustrialRoofCurbImage // Fallback
           }
         ];
     }
@@ -795,7 +796,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                           className="font-normal font-poppins text-white leading-tight mb-2 sm:mb-3 lg:mb-4"
                           style={{ 
                             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-                            fontSize: `calc(clamp(1.75rem, 3vw, 3rem) * ${contentScale})`
+                            fontSize: `calc(clamp(2rem, 4vw, 3.5rem) * ${contentScale})`
                           }}
                         >
                           {card.title}
