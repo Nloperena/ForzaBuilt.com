@@ -54,10 +54,9 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
     return '320px';
   }, [viewportHeight]);
 
-  // X-Ray container min-height based on viewport height - use full viewport height
+  // X-Ray container min-height based on viewport height - use 90% of viewport height
   const xrayMinHeight = useMemo(() => {
-    // Use full viewport height for all displays
-    return `${viewportHeight}px`;
+    return `${viewportHeight * 0.9}px`;
   }, [viewportHeight]);
 
   return (

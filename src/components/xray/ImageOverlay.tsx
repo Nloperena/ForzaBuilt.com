@@ -137,7 +137,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         svgElement.style.height = '100%';
         svgElement.style.width = 'auto';
         // Responsive min-height: smaller on mobile, larger on desktop
-        svgElement.style.minHeight = '100vh';
+        svgElement.style.minHeight = '90vh';
         svgElement.style.display = 'block';
         svgElement.style.maxWidth = 'none'; // Allow full width
         svgElement.style.overflow = 'visible';
@@ -495,11 +495,11 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         <div className="relative overflow-visible flex justify-center px-2 sm:px-4 md:px-6">
           {/* SVG Container with Tooltip positioned relative to it */}
           {svgContent && (
-            <div className="relative h-screen w-full flex justify-center">
+            <div className="relative h-[90vh] w-full flex justify-center">
               <div
                 ref={svgContainerRef}
                 className={`relative h-full`}
-                style={{ aspectRatio: 'auto', minHeight: '100vh' }}
+                style={{ aspectRatio: 'auto', minHeight: '90vh' }}
               >
                 {/* Optional Background Image */}
                 {bgImage && (
@@ -515,7 +515,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
                   style={{ 
                     width: 'auto', 
                     height: '100%', 
-                    minHeight: '100vh', 
+                    minHeight: '90vh', 
                     position: 'relative', 
                     zIndex: 1 
                   }}
