@@ -82,7 +82,7 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
               className={`
                 group flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all duration-300 shadow-lg backdrop-blur-sm
                 ${isSelected 
-                  ? 'bg-[#1B3764] border-[#1B3764] text-white ring-2 ring-[#1B3764]/20' 
+                  ? 'bg-[#33486c] border-[#33486c] text-white ring-2 ring-[#33486c]/20' 
                   : 'bg-gray-200/80 border-gray-300 text-[#1B3764] hover:bg-gray-100 hover:border-[#1B3764]/30'
                 }
               `}

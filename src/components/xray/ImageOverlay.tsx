@@ -317,9 +317,6 @@ function ImageOverlay({ svgSrc, title, industry = 'transportation', bgImage }: I
                       {displayProduct.sku}
                     </h2>
                   )}
-                  <h3 className="font-medium text-[#1B3764] text-[10px] leading-tight">
-                    {displayProduct.name}
-                  </h3>
                 </div>
                 
                 <p className="text-[9px] text-[#1B3764]/80 leading-relaxed mb-2 px-1 line-clamp-3">
@@ -328,11 +325,6 @@ function ImageOverlay({ svgSrc, title, industry = 'transportation', bgImage }: I
 
                 {/* Divider */}
                 <div className="w-full h-px bg-[#1B3764]/20 mb-2"></div>
-
-                {/* Instruction */}
-                <p className="text-[9px] text-[#1B3764]/60 font-medium mb-1.5">
-                  Click highlighted area for details
-                </p>
 
                 {/* View Product Button */}
                 <a
