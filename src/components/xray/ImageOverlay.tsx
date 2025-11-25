@@ -39,16 +39,16 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
   
   // Calculate max-width for SVG container based on viewport width
   const svgMaxWidth = (() => {
-    // Allow unrestricted width to ensure full viewport height can be maintained
-    return 'max-w-none'; 
+    // Return width 100% to fit within the parent container (grid cell)
+    return 'w-full'; 
   })();
 
   // Tooltip scale factor for short displays
   const tooltipScale = (() => {
-    if (viewportHeight < 500) return 0.7;
-    if (viewportHeight < 600) return 0.75;
-    if (viewportHeight < 800) return 0.85;
-    return 0.95;
+    if (viewportHeight < 500) return 0.85;
+    if (viewportHeight < 600) return 0.9;
+    if (viewportHeight < 800) return 0.95;
+    return 1;
   })();
   const [svgContent, setSvgContent] = useState<string | null>(null);
   const [pathProducts, setPathProducts] = useState<Map<string, Product>>(new Map());
@@ -495,7 +495,7 @@ function ImageOverlay({ svgSrc, title, viewportHeight = 800, viewportWidth = 128
         <div className="relative overflow-visible flex justify-center px-2 sm:px-4 md:px-6">
           {/* SVG Container with Tooltip positioned relative to it */}
           {svgContent && (
-            <div className="relative inline-block h-screen w-full flex justify-center">
+            <div className="relative h-screen w-full flex justify-center">
               <div
                 ref={svgContainerRef}
                 className={`relative h-full`}
