@@ -298,9 +298,11 @@ function ImageOverlay({ svgSrc, title, industry = 'transportation', bgImage }: I
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed right-4 md:right-6 lg:right-8 2xl:right-12 top-1/2 -translate-y-1/2 
+              className="fixed right-4 md:right-6 lg:right-8 2xl:right-12 
+                         top-[calc(50%-68px)] md:top-[calc(50%-81px)] lg:top-[calc(50%-98px)] 2xl:top-[calc(50%-113px)]
                          w-44 md:w-52 lg:w-60 2xl:w-72
                          bg-[#dbe1e8]/95 backdrop-blur-md shadow-2xl rounded-lg border border-white/20 overflow-hidden"
+              style={{ zIndex: 99999 }}
               style={{ zIndex: 99999 }}
               onClick={(e) => e.stopPropagation()}
             >
