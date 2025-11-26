@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { byIndustry } from '../../utils/products';
 import { useIsMobile } from '../../hooks/use-mobile';
@@ -211,7 +212,21 @@ function ImageOverlay({ svgSrc, title, industry = 'transportation', bgImage }: I
           // If click is not inside the modal and not on a product link (since product links are inside the modal)
           // clear states. This means clicks on the SVG background, or anywhere else on the page outside the modal,
           // will close the modal. Clicks directly on an SVG path still trigger the handleClick for product selection.
-          if (!isInsideModal) {
+          // However, we must allow clicks on SVG paths to work for selection, so we check if it's a path.
+          // BUT user wants "click off the X-ray the modal should go away".
+          // The user also said "If I click off the X-ray the modal should go away" which implies clicking on the background
+          // should close it.
+          // The previous implementation was: if !isPath && !isInsideModal && !isInsideSvgContainer -> close.
+          // The request is "If I click off the X-ray the modal should go away".
+          // "X-ray" likely refers to the SVG part.
+          // If I click on the SVG (not a path), it should close? Or if I click outside the SVG container?
+          // "click off the X-ray" usually means clicking outside the component.
+          // BUT, the user also said "click anywhere off the modal should go away".
+          // Let's stick to: click outside modal closes it, UNLESS it's a click on a path (which selects a new product).
+          
+          const isPath = target instanceof SVGPathElement || target instanceof SVGPolygonElement;
+
+          if (!isInsideModal && !isPath) {
             clearAllStates();
           }
         }
@@ -272,68 +287,75 @@ function ImageOverlay({ svgSrc, title, industry = 'transportation', bgImage }: I
         )}
       </div>
 
-      {/* Product Details Card - Fixed Position (Bottom Right or Sidebar) */}
-      <AnimatePresence>
-        {displayProduct && (
-          <motion.div
-            ref={modalRef}
-            initial={{ opacity: 0, x: 20, y: 20 }}
-            animate={{ opacity: 1, x: 0, y: 0 }}
-            exit={{ opacity: 0, x: 20, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed bottom-8 right-8 z-50 w-56 bg-[#dbe1e8]/95 backdrop-blur-md shadow-2xl rounded-lg border border-white/20 overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-3 relative text-center">
-               {selectedProduct && (
-                <button
-                  onClick={handleCloseCard}
-                  className="absolute top-1.5 right-1.5 p-1 text-[#1B3764]/50 hover:text-[#1B3764] rounded-full transition-colors"
-                >
-                  <X className="w-3.5 h-3.5" />
-                </button>
-              )}
-
-              <div className="flex flex-col items-center">
-                {/* Image */}
-                {(displayProduct.thumb || displayProduct.imageUrl) && (
-                  <div className="w-full h-24 mb-2 flex items-center justify-center">
-                    <img
-                      src={displayProduct.thumb || displayProduct.imageUrl}
-                      alt={displayProduct.name}
-                      className="w-full h-full object-contain drop-shadow-lg"
-                    />
-                  </div>
+      {/* Product Details Card - Rendered via Portal to escape overflow:hidden */}
+      {/* Breakpoints: 768px (md), 1024px (lg), 1440px (2xl) */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {displayProduct && (
+            <motion.div
+              ref={modalRef}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="fixed right-4 md:right-6 lg:right-8 2xl:right-12 top-1/2 -translate-y-1/2 
+                         w-44 md:w-52 lg:w-60 2xl:w-72
+                         bg-[#dbe1e8]/95 backdrop-blur-md shadow-2xl rounded-lg border border-white/20 overflow-hidden"
+              style={{ zIndex: 99999 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-2.5 md:p-3 lg:p-4 2xl:p-5 relative text-center">
+                 {selectedProduct && (
+                  <button
+                    onClick={handleCloseCard}
+                    className="absolute top-1.5 right-1.5 md:top-2 md:right-2 lg:top-2.5 lg:right-2.5 p-0.5 md:p-1 text-[#1B3764]/50 hover:text-[#1B3764] rounded-full transition-colors"
+                  >
+                    <X className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5" />
+                  </button>
                 )}
 
-                {/* Content */}
-                <div className="w-full space-y-0.5 mb-2">
-                  {displayProduct.sku && (
-                    <h2 className="text-base font-bold text-[#1B3764] tracking-tight">
-                      {displayProduct.sku}
-                    </h2>
+                <div className="flex flex-col items-center">
+                  {/* Image */}
+                  {(displayProduct.thumb || displayProduct.imageUrl) && (
+                    <div className="w-full h-20 md:h-24 lg:h-28 2xl:h-36 mb-2 md:mb-2.5 lg:mb-3 flex items-center justify-center">
+                      <img
+                        src={displayProduct.thumb || displayProduct.imageUrl}
+                        alt={displayProduct.name}
+                        className="w-full h-full object-contain drop-shadow-lg"
+                      />
+                    </div>
                   )}
+
+                  {/* Content */}
+                  <div className="w-full space-y-0.5 mb-1.5 md:mb-2">
+                    {displayProduct.sku && (
+                      <h2 className="text-sm md:text-base lg:text-lg 2xl:text-xl font-bold text-[#1B3764] tracking-tight">
+                        {displayProduct.sku}
+                      </h2>
+                    )}
+                  </div>
+                  
+                  <p className="text-[9px] md:text-[10px] lg:text-xs 2xl:text-sm text-[#1B3764]/80 leading-relaxed mb-1.5 md:mb-2 lg:mb-2.5 px-0.5 line-clamp-3">
+                     {displayProduct.description}
+                  </p>
+
+                  {/* Divider */}
+                  <div className="w-full h-px bg-[#1B3764]/20 mb-1.5 md:mb-2 lg:mb-2.5"></div>
+
+                  {/* View Product Button */}
+                  <a
+                    href={`/product/${displayProduct.id}`}
+                    className="block w-full py-1.5 md:py-2 lg:py-2.5 text-center font-semibold text-white bg-[#F2611D] rounded hover:bg-[#F2611D]/90 transition-colors shadow-sm text-[10px] md:text-xs lg:text-sm"
+                  >
+                    View Product Details
+                  </a>
                 </div>
-                
-                <p className="text-[9px] text-[#1B3764]/80 leading-relaxed mb-2 px-1 line-clamp-3">
-                   {displayProduct.description}
-                </p>
-
-                {/* Divider */}
-                <div className="w-full h-px bg-[#1B3764]/20 mb-2"></div>
-
-                {/* View Product Button */}
-                <a
-                  href={`/product/${displayProduct.id}`}
-                  className="block w-full py-1.5 text-center font-semibold text-white bg-[#F2611D] rounded hover:bg-[#F2611D]/90 transition-colors shadow-sm text-[10px]"
-                >
-                  View Product Details
-                </a>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }

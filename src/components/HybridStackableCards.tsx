@@ -517,7 +517,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   }, [viewportHeight]);
 
   const layerSpacing = 0; // Small offset for visibility during transition, but cards stack at same position
-  const stackHeight = cardDisplayHeight + layerSpacing + (viewportHeight * 1.8); // Increased scroll distance for readability
+  const stackHeight = cardDisplayHeight + layerSpacing + (viewportHeight * 3.0); // Increased scroll distance for readability
   
   // ============================================
   // POSITIONING VARIABLES - Adjust these to control where title + cards sit
@@ -541,7 +541,9 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   const calculatedStickyTop = groupTopY;
   
   // Ensure it doesn't go too high (min 10px from top) or too low
-  const stickyTop = Math.max(10, Math.min(viewportHeight - cardDisplayHeight - 20, calculatedStickyTop));
+  // Increased spacing when heading is hidden to separate cards more initially
+  const stickyTopOffset = showHeading ? 10 : 80;
+  const stickyTop = Math.max(stickyTopOffset, Math.min(viewportHeight - cardDisplayHeight - 20, calculatedStickyTop));
   
   // ============================================
 

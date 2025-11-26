@@ -90,8 +90,8 @@ const IndustryPage = () => {
               maxCards={3}
             />
           </div>
-          {/* Performance Elevated Banner */}
-          <div className="relative z-[45] bg-gradient-to-r from-[#477197] to-[#2c476e]">
+          {/* Performance Elevated Banner - Dark on left, light on right */}
+          <div className="relative z-[45] bg-gradient-to-r from-[#2c476e] to-[#477197]">
             <ExperienceBetterBanner textColor="#FFFFFF" highlightColor="#F2611D" />
           </div>
           {/* X-Ray Explorer Sections - Single Row */}
