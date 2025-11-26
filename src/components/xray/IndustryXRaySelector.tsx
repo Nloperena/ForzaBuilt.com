@@ -33,25 +33,27 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
   }, []);
 
   return (
-    <section className="relative w-full bg-white overflow-hidden">
+    <section className="relative w-full bg-white">
       {/* Section Header */}
-      <div className="w-full px-4 sm:px-6 pt-16 pb-6 text-center">
-        <h2 
-          className="font-poppins font-normal text-[#1B3764] mb-2"
-          style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}
-        >
-          Products In Use
-        </h2>
-        <p 
-          className="text-[#1B3764]/70 font-poppins max-w-2xl mx-auto"
-          style={{ fontSize: 'clamp(0.875rem, 1.2vw + 0.25rem, 1.125rem)' }}
-        >
-          Cursor over or click to explore product application details
-        </p>
+      <div className="relative z-20 w-full px-4 sm:px-6 pt-16 pb-6 text-center">
+        <div className="inline-block">
+          <h2 
+            className="font-poppins font-normal text-[#1B3764] mb-2"
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+          >
+            Products In Use
+          </h2>
+          <p 
+            className="text-[#1B3764]/70 font-poppins max-w-2xl mx-auto"
+            style={{ fontSize: 'clamp(0.875rem, 1.2vw + 0.25rem, 1.125rem)' }}
+          >
+            Cursor over or click to explore product application details
+          </p>
+        </div>
       </div>
 
       {/* X-Ray Display Area */}
-      <div className="relative w-full h-[100vh]">
+      <div className="relative w-full aspect-[16/9] min-h-[700px]">
         <div className="absolute inset-0 w-full h-full z-0">
           {options.map((option) => (
             <div

@@ -640,6 +640,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
     <>
       <style>{useOldColorScheme ? cardStyleSheetOld : cardStyleSheetNew}</style>
       {/* Toggle Buttons - Fixed below navbar on right side */}
+      {/* 
       <div className="fixed top-20 sm:top-24 right-4 sm:right-8 z-[100] flex flex-col gap-2">
         <button
           onClick={() => setUseOldColorScheme(!useOldColorScheme)}
@@ -667,7 +668,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             }`}
           />
         </button>
-      </div>
+      </div> 
+      */}
       <div 
         ref={containerRef}
         className={`relative w-full ${useOldColorScheme ? '' : 'bg-white'}`}
