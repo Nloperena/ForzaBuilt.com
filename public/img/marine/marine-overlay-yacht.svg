@@ -1,0 +1,52 @@
+<svg width="1280" height="720.703" viewBox="0 0 1280 720.703" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    polygon {
+      fill: rgba(8, 96, 143, 0.65);
+      stroke: rgba(255, 255, 255, 0.1);
+      stroke-width: 1;
+      cursor: pointer;
+      transition: fill 0.2s ease, stroke 0.2s ease;
+    }
+    polygon:hover {
+      fill: rgba(245, 108, 35, 0.79);
+      stroke: rgba(255, 255, 255, 0.1);
+    }
+  </style>
+  
+  <!-- Headliners & Interior Paneling -->
+  <polygon id="yacht_path_0" points="536,162 780,155 799,197 675,191 657,175 599,172 564,169 547,166" />
+  
+  <!-- Headliners & Interior Paneling (right side) -->
+  <polygon id="yacht_path_1" points="789,177 798,197 776,196 776,209 851,211 841,186" />
+  
+  <!-- Seating & Mattresses -->
+  <polygon id="yacht_path_2" points="488,281 519,281 519,290 545,290 545,281 574,280 573,303 544,303 479,303" />
+  
+  <!-- Carpeting & Acoustic Materials -->
+  <polygon id="yacht_path_3" points="385,484 483,484 483,458 487,437 495,436 494,413 493,393 485,416 480,437 414,436" />
+  
+  <!-- Infusion Molding -->
+  <polygon id="yacht_path_4" points="130,423 131,447 137,453 144,457 166,464 223,478 285,488 339,496 381,500 390,474" />
+  
+  <!-- Bonding & Mounting -->
+  <polygon id="yacht_path_5" points="1032,314 1082,381 1096,379 1110,376 1125,403 1192,392 1195,385 1166,351 1136,325" />
+  
+  <!-- Bonding & Mounting (alternative) -->
+  <polygon id="yacht_path_6" points="953,309 974,337 972,341 966,343 969,352 983,391 1082,382 1032,315" />
+  
+  <!-- External Sealing -->
+  <polygon id="yacht_path_7" points="933,280 885,280 911,333 869,339 913,339 917,341 974,341 974,336" />
+  
+  <!-- Interior Cabinets -->
+  <polygon id="yacht_path_8" points="647,370 646,380 644,422 711,422 710,380 709,369" />
+  
+  <!-- Bonding Skirts to Metal Railing -->
+  <polygon id="yacht_path_9" points="655,268 693,268 692,297 724,296 725,269 763,268 762,313 672,313 674,298 670,296 666,299 659,303 654,306" />
+  
+  <!-- General Mounting -->
+  <polygon id="yacht_path_10" points="657,236 688,235 692,253 719,253 718,231 756,231 765,261 765,269 725,270 725,290 692,290 693,270 657,270" />
+  
+  <!-- Plastic Laminate Counters -->
+  <polygon id="yacht_path_11" points="657,226 658,268 655,270 655,292 603,291 605,246 608,228" />
+</svg>
+
