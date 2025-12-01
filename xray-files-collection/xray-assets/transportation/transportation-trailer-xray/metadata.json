@@ -1,0 +1,19 @@
+{
+  "id": "transportation-trailer-xray",
+  "name": "Transportation Trailer",
+  "industry": "Transportation",
+  "dimensions": {
+    "width": 800,
+    "height": 600
+  },
+  "files": {
+    "preImage": "pre-Trailer PreX-Ray.png",
+    "postImage": "post-Trailer PostX-Ray.jpg",
+    "svgOverlay": "overlay-Trailer Exploded Graphic.svg"
+  },
+  "originalUrls": {
+    "preSrc": "/img/transportation/Trailer PreX-Ray.png",
+    "postSrc": "/img/transportation/Trailer PostX-Ray.jpg",
+    "svgOverlay": "/img/transportation/Trailer Exploded Graphic.svg"
+  }
+}

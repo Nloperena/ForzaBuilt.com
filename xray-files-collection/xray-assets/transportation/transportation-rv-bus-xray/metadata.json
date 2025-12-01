@@ -1,0 +1,19 @@
+{
+  "id": "transportation-rv-bus-xray",
+  "name": "Transportation RV Bus",
+  "industry": "Transportation",
+  "dimensions": {
+    "width": 259.2,
+    "height": 259.2
+  },
+  "files": {
+    "preImage": "pre-RV Bus PreX-Ray.png",
+    "postImage": "post-RV Bus PostX-Ray.jpg",
+    "svgOverlay": "overlay-RV Bus Exploded.svg"
+  },
+  "originalUrls": {
+    "preSrc": "/img/transportation/RV Bus PreX-Ray.png",
+    "postSrc": "/img/transportation/RV Bus PostX-Ray.jpg",
+    "svgOverlay": "/img/transportation/RV Bus Exploded.svg"
+  }
+}

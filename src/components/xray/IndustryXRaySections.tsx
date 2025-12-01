@@ -1,10 +1,6 @@
 import React from 'react';
 import IndustryXRaySelector, { XRayOption } from './IndustryXRaySelector';
 
-// Import Marine images
-import MarinePontoonImage from '@/assets/images/Marine-stickstackcard-images/marine-pontoon.png';
-import MarineYachtImage from '@/assets/images/Marine-stickstackcard-images/marine-yacht.png';
-
 interface IndustryXRaySectionsProps {
   industry: string;
 }
@@ -22,8 +18,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
           subtitle: '',
           summary: 'Explore pontoon assembly applications including deck bonding, rail attachment, and furniture installation.',
           previewImage: '/New X-Ray Dimensions/New Marine/NEW_PONTOON.svg',
-          svgSrc: '/New X-Ray Dimensions/New Marine/NEW_PONTOON.svg',
-          bgImage: MarinePontoonImage
+          svgSrc: '/New X-Ray Dimensions/New Marine/NEW_PONTOON.svg'
         },
         {
           id: 'yacht',
@@ -31,8 +26,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
           subtitle: '',
           summary: 'Discover yacht construction solutions for hull bonding, deck assembly, and interior finishing.',
           previewImage: '/New X-Ray Dimensions/New Marine/NEW_YACHT.svg',
-          svgSrc: '/New X-Ray Dimensions/New Marine/NEW_YACHT.svg',
-          bgImage: MarineYachtImage
+          svgSrc: '/New X-Ray Dimensions/New Marine/NEW_YACHT.svg'
         }
       ];
     }

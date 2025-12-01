@@ -1,57 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import IndustriesSectionClean from '../components/IndustriesSectionClean';
-import Footer from '../components/Footer';
-import SplitText from '../components/SplitText';
-import { useGradientMode } from '@/contexts/GradientModeContext';
-// Removed Explore by Product Category section and its dependencies
-
-// Removed Explore by Product Category row component
+import React from 'react';
+import HeaderV2 from '../components/Header/HeaderV2';
+import IndustriesSectionAlt from '../components/IndustriesSectionAlt';
+import FooterV2 from '../components/FooterV2';
+import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
+import { motion } from 'framer-motion';
 
 const Industries = () => {
-  const { mode, setMode, getGradientClasses, getTextClasses, getTextSecondaryClasses } = useGradientMode();
-
   return (
-    <div className={`min-h-screen bg-gradient-to-b ${getGradientClasses()}`}>
-      <Header />
+    <div className="min-h-screen bg-white flex flex-col relative overflow-x-hidden">
+      <HeaderV2 />
 
-      {/* Hero Section */}
-      <section className="relative">
-        <div className={`pt-16 sm:pt-20 relative bg-gradient-to-b ${getGradientClasses()}`}>
-          <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 lg:py-16 [&:has(>div)]:max-w-[2000px]">
-            <div className="text-center mx-auto">
-              <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto ${getTextClasses()}`}>
-                <SplitText
-                  text="Better Built Bonds For All Industries"
-                  className="block"
-                  splitType="words"
-                  delay={50}
-                  as="span"
-                />
-              </h1>
-              <p className={`text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium leading-relaxed max-w-[1200px] mx-auto ${getTextSecondaryClasses()}`}>
-              At Forza, we're your trusted experts and mentors - delivering innovative adhesive solutions that secure your success.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Hero Section - Gradient Background */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 px-4 text-center z-20 bg-gradient-to-bl from-[#477197] to-[#2c476e]">
+        <motion.div 
+          className="max-w-[1400px] mx-auto flex flex-col items-center justify-center gap-4 md:gap-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <h1 className="font-black mb-0 leading-none font-kallisto text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+            INDUSTRIES
+          </h1>
+          <h3 className="font-regular text-center leading-tight font-poppins text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-4xl mt-4">
+            Better Built Bonds For All Industries
+          </h3>
+          <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed max-w-3xl mx-auto text-white/90 mt-4 font-poppins">
+            At Forza, we're your trusted experts and mentors - delivering innovative adhesive solutions that secure your success.
+          </p>
+        </motion.div>
       </section>
 
-      <IndustriesSectionClean />
+      {/* Industries Grid Section - White Background */}
+      <section className="relative z-20 py-16 md:py-24 bg-white">
+        <IndustriesSectionAlt />
+      </section>
       
-      {/* Spacer above footer */}
-      <div className={`py-8 sm:py-10 md:py-12 lg:py-14 xl:py-16 ${
-        mode === 'light' || mode === 'light2'
-          ? 'bg-gray-100'
-          : 'bg-[#1B3764]'
-      }`}></div>
+      {/* Gradient Break / CTA Section */}
+      <section className="relative py-20 px-4 bg-[#f5f7fa] text-center z-20">
+        <motion.div 
+          className="max-w-4xl mx-auto space-y-8"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl md:text-5xl font-black font-kallisto text-[#1B3764]">
+            Don't See Your Industry?
+          </h2>
+          <p className="text-lg md:text-xl font-poppins text-[#1B3764]/80 max-w-2xl mx-auto">
+            We create custom formulations for unique applications across many other sectors. Let's discuss your specific needs.
+          </p>
+          
+          <div className="pt-4">
+            <a
+              href="/contact"
+              className="inline-flex items-center px-10 py-4 bg-[#F2611D] text-white text-lg font-bold rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-xl"
+            >
+              Contact An Engineer
+            </a>
+          </div>
+        </motion.div>
+      </section>
       
-      <Footer />
-      
-      {/* Gradient Toggle Modal */}
+      <FooterV2 />
     </div>
   );
 };
 
-export default Industries; 
+export default Industries;

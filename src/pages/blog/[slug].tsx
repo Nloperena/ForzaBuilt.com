@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import HeaderV2 from '../../components/Header/HeaderV2';
+import FooterV2 from '../../components/FooterV2';
 import { Helmet } from 'react-helmet';
 import blogPostsData from '../../data/blogPosts.json';
 import { generateSlugFromTitle } from '@/lib/utils';
@@ -51,7 +51,6 @@ const BlogPostPage = () => {
     }
   }, [slug]);
 
-  // Sanitize fullContent to remove any Share This Post headings that come from source HTML
   const sanitizedFullContent = useMemo(() => {
     const html = blogPost?.fullContent || '';
     if (!html) return '';
@@ -69,64 +68,61 @@ const BlogPostPage = () => {
         return temp.innerHTML;
       }
     } catch (e) {
-      // no-op, fallback to regex
+      // no-op
     }
     return html.replace(/<h[1-6][^>]*>\s*share\s+this\s+post\s*<\/h[1-6]>/gi, '');
   }, [blogPost?.fullContent]);
 
-  // Get recent posts (excluding current post)
   const recentPosts = blogPosts
     .filter(post => post.id !== blogPost?.id)
     .slice(0, 3);
 
-  // Get related posts from same category
   const relatedPosts = blogPosts
     .filter(post => post.id !== blogPost?.id && post.category === blogPost?.category)
     .slice(0, 3);
 
-  // Get posts for "More To Explore" carousel
   const moreToExplorePosts = blogPosts
     .filter(post => post.id !== blogPost?.id)
     .slice(0, 6);
 
-     if (loading) {
-     return (
-       <div className="bg-[#115B87] min-h-screen">
-         <Header />
-         <div className="flex items-center justify-center min-h-screen">
-           <div className="text-center">
-             <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#F16022] mx-auto mb-4"></div>
-             <p className="text-white/80 font-bold font-poppins">Loading blog post...</p>
-           </div>
-         </div>
-         <Footer />
-       </div>
-     );
-   }
+  if (loading) {
+    return (
+      <div className="bg-white min-h-screen">
+        <HeaderV2 />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#F2611D] mx-auto mb-4"></div>
+            <p className="text-[#1B3764]/80 font-bold font-poppins">Loading blog post...</p>
+          </div>
+        </div>
+        <FooterV2 />
+      </div>
+    );
+  }
 
-     if (error || !blogPost) {
-     return (
-       <div className="bg-[#115B87] min-h-screen">
-         <Header />
-         <div className="flex items-center justify-center min-h-screen">
-           <div className="text-center">
-             <h1 className="text-white text-2xl font-bold mb-4 font-kallisto">Blog Post Not Found</h1>
-             <p className="text-white/80 mb-6 font-poppins">The blog post you're looking for doesn't exist.</p>
-             <Link 
-               to="/blog" 
-               className="inline-flex items-center px-6 py-3 bg-[#F16022] text-white font-bold rounded-full hover:bg-[#F16022]/80 transition-colors font-poppins"
-             >
-               Back to Learning Center
-             </Link>
-           </div>
-         </div>
-         <Footer />
-       </div>
-     );
-   }
+  if (error || !blogPost) {
+    return (
+      <div className="bg-white min-h-screen">
+        <HeaderV2 />
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <h1 className="text-[#1B3764] text-2xl font-bold mb-4 font-kallisto">Blog Post Not Found</h1>
+            <p className="text-[#1B3764]/80 mb-6 font-poppins">The blog post you're looking for doesn't exist.</p>
+            <Link 
+              to="/blog" 
+              className="inline-flex items-center px-6 py-3 bg-[#F2611D] text-white font-bold rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins"
+            >
+              Back to Learning Center
+            </Link>
+          </div>
+        </div>
+        <FooterV2 />
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-[#115B87] min-h-screen">
+    <div className="bg-white min-h-screen flex flex-col relative overflow-x-hidden text-[#1B3764]">
       <Helmet>
         <title>{blogPost.title} | ForzaBuilt Learning Center</title>
         <meta name="description" content={blogPost.excerpt} />
@@ -171,50 +167,57 @@ const BlogPostPage = () => {
         </script>
       </Helmet>
 
-      <Header />
+      <HeaderV2 />
       
-      {/* Breadcrumb */}
-      <nav className="bg-white/10 backdrop-blur-sm border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-2">
-          <div className="flex items-center space-x-2 text-sm text-white/70 font-poppins">
-            <Link to="/" className="hover:text-[#F16022] transition-colors">Home</Link>
+      {/* Breadcrumb - Light Grey Background */}
+      <nav className="bg-gray-50 border-b border-gray-200 relative z-30 pt-20 md:pt-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-3">
+          <div className="flex items-center space-x-2 text-sm text-gray-500 font-poppins">
+            <Link to="/" className="hover:text-[#F2611D] transition-colors">Home</Link>
             <span>/</span>
-            <Link to="/blog" className="hover:text-[#F16022] transition-colors">Learning Center</Link>
+            <Link to="/blog" className="hover:text-[#F2611D] transition-colors">Learning Center</Link>
             <span>/</span>
-            <span className="text-white">{blogPost.title}</span>
+            <span className="text-[#1B3764] font-medium truncate">{blogPost.title}</span>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative pt-10 sm:pt-14 md:pt-16 lg:pt-20 xl:pt-24 bg-[#115B87]">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#115B87]/80 via-[#115B87]/60 to-[#115B87]/80"></div>
-        <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-4">
-              <Link 
-                to="/blog" 
-                className="inline-flex items-center justify-center text-white hover:text-[#F16022] transition-colors font-poppins"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Back to Learning Center
-              </Link>
-            </div>
-            <h1 className="font-black text-white font-kallisto text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight break-words">
-              {blogPost.title}
-            </h1>
+      {/* Hero Section - Gradient Background */}
+      <section className="relative py-16 md:py-24 px-4 text-center z-20 bg-gradient-to-bl from-[#477197] to-[#2c476e]">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-6">
+            <Link 
+              to="/blog" 
+              className="inline-flex items-center justify-center text-white/90 hover:text-white transition-colors font-poppins text-sm font-medium group"
+            >
+              <svg className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Learning Center
+            </Link>
+          </div>
+          <h1 className="font-black text-white font-kallisto text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight break-words mb-6">
+            {blogPost.title}
+          </h1>
+          <div className="flex items-center justify-center gap-4 text-white/80 text-sm font-poppins">
+            <span className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              {new Date(blogPost.date).toLocaleDateString()}
+            </span>
+            <span>•</span>
+            <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide text-white border border-white/20">{blogPost.category}</span>
           </div>
         </div>
       </section>
 
-      {/* Main Content with Sidebar */}
-      <section className="py-12 bg-gradient-to-b from-[#115B87]/80 via-[#115B87]/60 to-[#115B87]/80">
+      {/* Main Content with Sidebar - White Background */}
+      <section className="py-16 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
             <div className="lg:col-span-3">
-              <div className="mb-8 bg-white/20 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl overflow-hidden">
+              <div className="mb-10 bg-gray-100 border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
                 <img 
                   src={blogPost.image} 
                   alt={blogPost.title}
@@ -227,457 +230,281 @@ const BlogPostPage = () => {
                 />
               </div>
 
-                             {/* Full Blog Content */}
-               <motion.div 
-                 className="bg-white/20 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl p-8"
-                 initial={{ opacity: 0, y: 20 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ duration: 0.6 }}
-               >
-                 {blogPost.fullContent ? (
-                   <div 
-                     className="prose prose-lg max-w-none prose-headings:text-white prose-headings:font-kallisto prose-headings:font-black prose-p:text-white/80 prose-p:font-poppins prose-strong:text-white prose-strong:font-bold prose-ul:text-white/80 prose-ol:text-white prose-a:text-[#F16022] prose-a:font-bold prose-blockquote:text-white/70 prose-blockquote:border-l-[#F16022] prose-code:text-white prose-code:bg-white/10 prose-pre:text-white prose-pre:bg-white/10 prose-hr:border-white/20"
-                      dangerouslySetInnerHTML={{ __html: sanitizedFullContent }}
-                   />
-                 ) : (
-                   <div className="prose prose-lg max-w-none prose-headings:text-white prose-headings:font-kallisto prose-headings:font-black prose-p:text-white/80 prose-p:font-poppins prose-strong:text-white prose-strong:font-bold prose-ul:text-white/80 prose-ol:text-white prose-a:text-[#F16022] prose-a:font-bold prose-blockquote:text-white/70 prose-blockquote:border-l-[#F16022] prose-code:text-white prose-code:bg-white/10 prose-pre:text-white prose-pre:bg-white/10 prose-hr:border-white/20">
-                     <motion.div 
-                       className="mb-8"
-                       initial={{ opacity: 0, x: -20 }}
-                       whileInView={{ opacity: 1, x: 0 }}
-                       viewport={{ once: true }}
-                       transition={{ duration: 0.5 }}
-                     >
-                       <h2 className="text-2xl font-bold text-white font-kallisto mb-4">Article Summary</h2>
-                       <p className="text-white/80 leading-relaxed font-poppins">
-                         {blogPost.excerpt}
-                       </p>
-                     </motion.div>
+              {/* Full Blog Content */}
+              <motion.div 
+                className="prose prose-lg max-w-none prose-headings:text-[#1B3764] prose-headings:font-kallisto prose-headings:font-black prose-p:text-gray-600 prose-p:font-poppins prose-strong:text-[#1B3764] prose-strong:font-bold prose-ul:text-gray-600 prose-ol:text-gray-600 prose-a:text-[#F2611D] prose-a:font-bold prose-blockquote:text-gray-500 prose-blockquote:border-l-[#F2611D] prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-code:text-[#1B3764] prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded prose-pre:text-gray-200 prose-pre:bg-[#1B3764] prose-hr:border-gray-200"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                {blogPost.fullContent ? (
+                  <div dangerouslySetInnerHTML={{ __html: sanitizedFullContent }} />
+                ) : (
+                  <div>
+                    <motion.div 
+                      className="mb-10 p-8 bg-[#f5f7fa] rounded-2xl border border-gray-100"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <h2 className="text-2xl font-bold text-[#1B3764] font-kallisto mb-4 mt-0">Article Summary</h2>
+                      <p className="text-gray-700 leading-relaxed font-poppins mb-0">
+                        {blogPost.excerpt}
+                      </p>
+                    </motion.div>
 
-                     {blogPost.keyTakeaways && blogPost.keyTakeaways.length > 0 && (
-                       <motion.div 
-                         className="mb-8"
-                         initial={{ opacity: 0, x: -20 }}
-                         whileInView={{ opacity: 1, x: 0 }}
-                         viewport={{ once: true }}
-                         transition={{ duration: 0.5, delay: 0.2 }}
-                       >
-                         <h2 className="text-2xl font-bold text-white font-kallisto mb-4">Key Takeaways</h2>
-                         <ul className="space-y-3">
-                           {blogPost.keyTakeaways.map((takeaway, index) => (
-                             <motion.li 
-                               key={index} 
-                               className="flex items-start"
-                               initial={{ opacity: 0, x: -20 }}
-                               whileInView={{ opacity: 1, x: 0 }}
-                               viewport={{ once: true }}
-                               transition={{ duration: 0.4, delay: index * 0.1 }}
-                             >
-                               <span className="text-[#F16022] mr-3 mt-1">•</span>
-                               <span className="text-white/80 font-poppins">{takeaway}</span>
-                             </motion.li>
-                           ))}
-                         </ul>
-                       </motion.div>
-                     )}
-                   </div>
-                 )}
-               </motion.div>
+                    {blogPost.keyTakeaways && blogPost.keyTakeaways.length > 0 && (
+                      <motion.div 
+                        className="mb-10"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                      >
+                        <h2 className="text-2xl font-bold text-[#1B3764] font-kallisto mb-6">Key Takeaways</h2>
+                        <ul className="space-y-4 list-none pl-0">
+                          {blogPost.keyTakeaways.map((takeaway, index) => (
+                            <motion.li 
+                              key={index} 
+                              className="flex items-start p-4 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 0.4, delay: index * 0.1 }}
+                            >
+                              <span className="text-[#F2611D] mr-4 mt-1 flex-shrink-0">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                              </span>
+                              <span className="text-gray-700 font-poppins">{takeaway}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </div>
+                )}
+              </motion.div>
 
-                 {/* Share section removed from near top; moved to bottom of page */}
-
-                             {/* Related Articles */}
-               {relatedPosts.length > 0 && (
-                 <motion.div 
-                   className="bg-white/20 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl p-6 mt-8"
-                   initial={{ opacity: 0, y: 20 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 0.6, delay: 0.4 }}
-                 >
-                   <motion.h3 
-                     className="text-2xl font-bold text-white font-kallisto mb-6"
-                     initial={{ opacity: 0, x: -20 }}
-                     whileInView={{ opacity: 1, x: 0 }}
-                     viewport={{ once: true }}
-                     transition={{ duration: 0.5 }}
-                   >
-                     Related Articles
-                   </motion.h3>
-                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                     <AnimatePresence>
-                       {relatedPosts.map((post, index) => (
-                         <motion.div
-                           key={post.id}
-                           initial={{ opacity: 0, y: 30 }}
-                           whileInView={{ opacity: 1, y: 0 }}
-                           viewport={{ once: true }}
-                           transition={{ duration: 0.5, delay: index * 0.1 }}
-                           whileHover={{ 
-                             scale: 1.02,
-                             y: -5,
-                             transition: { duration: 0.2 }
-                           }}
-                         >
-                           <Link
-                             to={`/blog/${generateSlugFromTitle(post.title)}`}
-                             className="group block bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden"
-                           >
-                             <motion.div 
-                               className="aspect-[16/9] bg-transparent overflow-hidden"
-                               whileHover={{ scale: 1.05 }}
-                               transition={{ duration: 0.3 }}
-                             >
-                               <img
-                                 src={post.image}
-                                 alt={post.title}
-                                 className="w-full h-full object-contain"
-                                 onError={(e) => {
-                                   e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
-                                 }}
-                               />
-                             </motion.div>
-                             <div className="p-4 bg-white/10 backdrop-blur-sm">
-                               <motion.span 
-                                 className="inline-block px-2 py-1 text-white text-xs font-bold rounded-full mb-2 font-poppins"
-                                 whileHover={{ scale: 1.05 }}
-                                 transition={{ duration: 0.2 }}
-                               >
-                                 {post.category}
-                               </motion.span>
-                               <h4 className="font-bold text-white group-hover:text-[#F16022] transition-colors line-clamp-2 font-kallisto">
-                                 {post.title}
-                               </h4>
-                               <p className="text-white/80 text-sm mt-2 line-clamp-3 font-poppins">
-                                 {post.excerpt}
-                               </p>
-                             </div>
-                           </Link>
-                         </motion.div>
-                       ))}
-                     </AnimatePresence>
-                   </div>
-                 </motion.div>
-               )}
+              {/* Related Articles */}
+              {relatedPosts.length > 0 && (
+                <motion.div 
+                  className="mt-16 pt-16 border-t border-gray-200"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                >
+                  <div className="flex items-center justify-between mb-8">
+                    <h3 className="text-2xl font-bold text-[#1B3764] font-kallisto">Related Articles</h3>
+                    <Link to="/blog" className="text-[#F2611D] font-bold font-poppins hover:underline">View All</Link>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <AnimatePresence>
+                      {relatedPosts.map((post, index) => (
+                        <motion.div
+                          key={post.id}
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          whileHover={{ 
+                            y: -5,
+                            transition: { duration: 0.2 }
+                          }}
+                        >
+                          <Link
+                            to={`/blog/${generateSlugFromTitle(post.title)}`}
+                            className="group block bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col"
+                          >
+                            <div className="aspect-[16/9] bg-gray-100 overflow-hidden relative">
+                              <img
+                                src={post.image}
+                                alt={post.title}
+                                className="w-full h-full object-contain p-4 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                                onError={(e) => {
+                                  e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                                }}
+                              />
+                            </div>
+                            <div className="p-5 flex flex-col flex-1">
+                              <span className="inline-block px-2.5 py-1 text-[#1B3764] text-xs font-bold rounded-full mb-3 font-poppins bg-[#1B3764]/5 self-start">
+                                {post.category}
+                              </span>
+                              <h4 className="font-bold text-[#1B3764] group-hover:text-[#F2611D] transition-colors line-clamp-2 font-kallisto text-lg mb-2">
+                                {post.title}
+                              </h4>
+                              <p className="text-gray-500 text-sm line-clamp-2 font-poppins">
+                                {post.excerpt}
+                              </p>
+                            </div>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+              )}
             </div>
 
-                         {/* Sidebar */}
-             <div className="lg:col-span-1 space-y-6 lg:sticky lg:top-28 lg:self-start">
-               {/* Recent Posts */}
-               <motion.div 
-                 className="bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl p-6"
-                 initial={{ opacity: 0, x: 20 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ duration: 0.6 }}
-               >
-                 <motion.h3 
-                   className="text-lg font-bold text-white font-kallisto mb-4"
-                   initial={{ opacity: 0, y: -10 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 0.5 }}
-                 >
-                   Recent Posts
-                 </motion.h3>
-                 <div className="space-y-4">
-                   <AnimatePresence>
-                     {recentPosts.map((post, index) => (
-                       <motion.div
-                         key={post.id}
-                         initial={{ opacity: 0, x: 20 }}
-                         whileInView={{ opacity: 1, x: 0 }}
-                         viewport={{ once: true }}
-                         transition={{ duration: 0.4, delay: index * 0.1 }}
-                         whileHover={{ x: 5 }}
-                       >
-                         <Link
-                           to={`/blog/${generateSlugFromTitle(post.title)}`}
-                           className="block group"
-                         >
-                           <div className="flex items-start space-x-3">
-                             <motion.div 
-                               className="w-16 h-16 bg-transparent overflow-hidden rounded-lg"
-                               whileHover={{ scale: 1.05 }}
-                               transition={{ duration: 0.2 }}
-                             >
-                               <img
-                                 src={post.image}
-                                 alt={post.title}
-                                 className="w-full h-full object-contain"
-                                 onError={(e) => {
-                                   e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
-                                 }}
-                               />
-                             </motion.div>
-                             <div className="flex-1 min-w-0">
-                               <h4 className="text-sm font-bold text-white group-hover:text-[#F16022] transition-colors line-clamp-2 font-kallisto">
-                                 {post.title}
-                               </h4>
-                               <p className="text-xs text-white/70 mt-1 font-poppins">
-                                 {new Date(post.date).toLocaleDateString('en-US', {
-                                   year: 'numeric',
-                                   month: 'short',
-                                   day: 'numeric'
-                                 })}
-                               </p>
-                             </div>
-                           </div>
-                         </Link>
-                       </motion.div>
-                     ))}
-                   </AnimatePresence>
-                 </div>
-               </motion.div>
+            {/* Sidebar */}
+            <div className="lg:col-span-1 space-y-8 lg:sticky lg:top-32 lg:self-start">
+              {/* Recent Posts */}
+              <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
+                <h3 className="text-lg font-bold text-[#1B3764] font-kallisto mb-6 border-b border-gray-100 pb-4">
+                  Recent Posts
+                </h3>
+                <div className="space-y-6">
+                  {recentPosts.map((post, index) => (
+                    <div key={post.id} className="group">
+                      <Link to={`/blog/${generateSlugFromTitle(post.title)}`} className="flex gap-4 items-start">
+                        <div className="w-20 h-20 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-full object-contain p-2 mix-blend-multiply group-hover:scale-110 transition-transform duration-300"
+                            onError={(e) => {
+                              e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                            }}
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm font-bold text-[#1B3764] group-hover:text-[#F2611D] transition-colors line-clamp-2 font-kallisto mb-1 leading-snug">
+                            {post.title}
+                          </h4>
+                          <p className="text-xs text-gray-400 font-poppins">
+                            {new Date(post.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            })}
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-               {/* Call to Action */}
-               <motion.div 
-                 className="bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl p-6"
-                 initial={{ opacity: 0, x: 20 }}
-                 whileInView={{ opacity: 1, x: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ duration: 0.6, delay: 0.4 }}
-               >
-                 <motion.h3 
-                   className="text-lg font-bold text-white font-kallisto mb-3"
-                   initial={{ opacity: 0, y: -10 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 0.5 }}
-                 >
-                   Stay Updated
-                 </motion.h3>
-                 <motion.p 
-                   className="text-sm mb-4 text-white/80 font-poppins"
-                   initial={{ opacity: 0, y: 10 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 0.5, delay: 0.1 }}
-                 >
-                   Get the latest insights, tips, and industry news delivered to your inbox.
-                 </motion.p>
-                 <motion.div 
-                   className="space-y-3"
-                   initial={{ opacity: 0, y: 20 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 0.5, delay: 0.2 }}
-                 >
-                   <motion.input
-                     type="email"
-                     placeholder="Enter your email"
-                     className="w-full px-3 py-2 bg-white/90 backdrop-blur-sm border border-[#F16022] text-[#F16022] rounded-full focus:outline-none focus:ring-2 focus:ring-[#F16022]/50 font-poppins placeholder-[#F16022]/60"
-                     whileFocus={{ scale: 1.02 }}
-                     transition={{ duration: 0.2 }}
-                   />
-                   <motion.button 
-                     className="w-full bg-[#F16022] text-white font-bold py-2 px-4 rounded-full hover:bg-[#F16022]/80 transition-colors font-poppins"
-                     whileHover={{ scale: 1.02 }}
-                     whileTap={{ scale: 0.98 }}
-                     transition={{ duration: 0.2 }}
-                   >
-                     Subscribe
-                   </motion.button>
-                 </motion.div>
-               </motion.div>
+              {/* Call to Action */}
+              <div className="bg-gradient-to-br from-[#1B3764] to-[#2c476e] rounded-2xl shadow-lg p-8 text-white text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-bold font-kallisto mb-3">
+                    Need Expert Advice?
+                  </h3>
+                  <p className="text-sm text-white/80 mb-6 font-poppins leading-relaxed">
+                    Our engineering team is ready to help you find the perfect adhesive solution for your application.
+                  </p>
+                  <Link
+                    to="/contact"
+                    className="block w-full bg-[#F2611D] text-white font-bold py-3 px-4 rounded-xl hover:bg-[#F2611D]/90 transition-all font-poppins shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  >
+                    Contact an Engineer
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-                           {/* More To Explore Carousel */}
-        {moreToExplorePosts.length > 0 && (
-          <section className="py-16 bg-gradient-to-b from-[#115B87]/60 to-[#115B87]/80">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-center mb-12"
-              >
-                <h2 className="text-3xl font-bold text-white font-kallisto mb-4">More To Explore</h2>
-                <p className="text-white/80 font-poppins">Discover more insights and industry knowledge</p>
-              </motion.div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <AnimatePresence>
-                  {moreToExplorePosts.map((post, index) => (
-                    <motion.div
-                      key={post.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      whileHover={{ 
-                        scale: 1.02,
-                        y: -5,
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      <Link
-                        to={`/blog/${generateSlugFromTitle(post.title)}`}
-                        className="group block bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden"
-                      >
-                        <motion.div 
-                          className="aspect-[16/9] bg-transparent overflow-hidden"
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <img
-                            src={post.image}
-                            alt={post.title}
-                            className="w-full h-full object-contain"
-                            onError={(e) => {
-                              e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
-                            }}
-                          />
-                        </motion.div>
-                        <div className="p-6 bg-white/10 backdrop-blur-sm">
-                          <motion.span 
-                            className="inline-block px-3 py-1 text-white text-xs font-bold rounded-full mb-3 font-poppins"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            {post.category}
-                          </motion.span>
-                          <h3 className="text-xl font-bold text-white group-hover:text-[#F16022] transition-colors mb-3 line-clamp-2 font-kallisto">
-                            {post.title}
-                          </h3>
-                          <p className="text-white/80 line-clamp-3 mb-4 font-poppins">
-                            {post.excerpt}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-sm text-white/70 font-poppins">
-                              {new Date(post.date).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                              })}
-                            </span>
-                            <motion.span 
-                              className="text-[#F16022] font-bold text-sm group-hover:translate-x-1 transition-transform font-poppins"
-                              whileHover={{ x: 5 }}
-                              transition={{ duration: 0.2 }}
-                            >
-                              Read More →
-                            </motion.span>
-                          </div>
-                        </div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Share This Post Section (moved to bottom) */}
-        <section className="py-10 bg-gradient-to-b from-[#115B87]/80 to-[#115B87]">
+      {/* More To Explore Carousel - Light Grey Background */}
+      {moreToExplorePosts.length > 0 && (
+        <section className="py-20 bg-[#f5f7fa] border-t border-gray-200 relative z-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-6">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                <div className="mb-4 sm:mb-0">
-                  <h3 className="text-lg font-bold text-white font-kallisto mb-2">Share This Post</h3>
-                  <p className="text-white/80 text-sm font-poppins">Help others discover this valuable content</p>
-                </div>
-                <div className="flex space-x-3">
-                  {[
-                    {
-                      href: `https://www.youtube.com/results?search_query=${encodeURIComponent(blogPost.title)}`,
-                      title: 'Share on YouTube',
-                      icon: 'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
-                    },
-                    {
-                      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://forzabuilt.com/blog/${generateSlugFromTitle(blogPost.title)}`)}`,
-                      title: 'Share on LinkedIn',
-                      icon: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
-                    },
-                  ].map((social) => (
-                    <a
-                      key={social.title}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 text-white/60 hover:text-[#F16022] transition-colors"
-                      title={social.title}
-                    >
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d={social.icon} />
-                      </svg>
-                    </a>
-                  ))}
-                </div>
-              </div>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-[#1B3764] font-kallisto mb-4">More To Explore</h2>
+              <p className="text-gray-600 font-poppins max-w-2xl mx-auto">
+                Continue your journey with these additional resources and insights from our experts.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {moreToExplorePosts.map((post) => (
+                <Link
+                  key={post.id}
+                  to={`/blog/${generateSlugFromTitle(post.title)}`}
+                  className="group block bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col"
+                >
+                  <div className="aspect-[16/9] bg-gray-50 overflow-hidden relative border-b border-gray-100">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-contain p-6 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                      onError={(e) => {
+                        e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                      }}
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-[#1B3764] text-xs font-bold rounded-full shadow-sm font-poppins border border-gray-100">
+                        {post.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <h3 className="text-lg font-bold text-[#1B3764] group-hover:text-[#F2611D] transition-colors mb-3 line-clamp-2 font-kallisto">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm line-clamp-3 mb-4 font-poppins flex-1">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-50 mt-auto">
+                      <span className="text-xs text-gray-400 font-poppins">
+                        {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </span>
+                      <span className="text-[#F2611D] font-bold text-sm group-hover:translate-x-1 transition-transform font-poppins flex items-center">
+                        Read More 
+                        <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
-                           {/* Call to Action Section */}
-        <section className="py-16 bg-gradient-to-b from-[#115B87]/80 to-[#115B87]">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center">
-            <motion.div 
-              className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.h2 
-                className="text-3xl font-bold text-white font-kallisto mb-6"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Ready to Get Started?
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-white/80 mb-8 font-poppins"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Discover how our adhesive solutions can transform your manufacturing processes.
-              </motion.p>
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Link
-                    to="/products"
-                    className="inline-flex items-center px-8 py-3 bg-[#F16022] text-white font-bold rounded-full hover:bg-[#F16022]/80 transition-colors font-poppins"
-                  >
-                    Explore Products
-                  </Link>
-                </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center px-8 py-3 bg-[#F16022] text-white font-bold rounded-full hover:bg-[#F16022]/80 transition-colors font-poppins"
-                  >
-                    Contact Us
-                  </Link>
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
+      )}
 
-      <Footer />
+      {/* Call to Action Section - Gradient Break */}
+      <section className="py-20 bg-gradient-to-bl from-[#477197] to-[#2c476e] text-center relative z-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white font-kallisto mb-6">
+              Ready to Transform Your Manufacturing?
+            </h2>
+            <p className="text-xl text-white/90 mb-10 font-poppins max-w-2xl mx-auto">
+              Discover how our high-performance adhesive solutions can improve your product quality and efficiency.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/products"
+                className="inline-flex items-center px-8 py-4 bg-white text-[#1B3764] font-bold rounded-full hover:bg-gray-100 transition-colors font-poppins shadow-lg text-lg"
+              >
+                Explore Products
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center px-8 py-4 bg-[#F2611D] text-white font-bold rounded-full hover:bg-[#F2611D]/90 transition-colors font-poppins shadow-lg text-lg"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <FooterV2 />
     </div>
   );
 };

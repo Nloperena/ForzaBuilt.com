@@ -1,0 +1,19 @@
+{
+  "id": "insulation-xray-2",
+  "name": "Insulation Pipe",
+  "industry": "Insulation",
+  "dimensions": {
+    "width": 1080,
+    "height": 1080
+  },
+  "files": {
+    "preImage": "pre-Pipe completely wrapped.png",
+    "postImage": "post-Pipe Exploded Graphic.png",
+    "svgOverlay": "overlay-Pipe Exploded Graphic.svg"
+  },
+  "originalUrls": {
+    "preSrc": "/img/insulation/Pipe completely wrapped.png",
+    "postSrc": "/img/insulation/Pipe Exploded Graphic.png",
+    "svgOverlay": "/img/insulation/Pipe Exploded Graphic.svg"
+  }
+}

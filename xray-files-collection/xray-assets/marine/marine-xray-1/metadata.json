@@ -1,0 +1,19 @@
+{
+  "id": "marine-xray-1",
+  "name": "Marine Boat",
+  "industry": "Marine",
+  "dimensions": {
+    "width": 259.2,
+    "height": 259.2
+  },
+  "files": {
+    "preImage": "pre-Marine_Boat.png",
+    "postImage": "post-Marine_Exploded_Boat_Graphic.png",
+    "svgOverlay": "overlay-marine-overlay.svg"
+  },
+  "originalUrls": {
+    "preSrc": "https://images.ctfassets.net/hdznx4p7ef81/6ouZLSgoHcLk2OWbaLla5o/5a0b49f23638ef42ae95237477fa2ad3/Marine_Boat.png",
+    "postSrc": "https://images.ctfassets.net/hdznx4p7ef81/5pUlDcvSsLIMeyC4HXQaK1/5acbb21568d484ffa5aa00506d499613/Marine_Exploded_Boat_Graphic.png",
+    "svgOverlay": "/img/marine/marine-overlay.svg"
+  }
+}

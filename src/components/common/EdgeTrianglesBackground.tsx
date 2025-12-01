@@ -76,6 +76,10 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
     }
   };
 
+  // Force triangle visibility for pages that have moved away from gradient modes
+  // but still want the visual effect (like the blue pages)
+  const forceVisible = true;
+
   return (
     <div className={`absolute inset-0 pointer-events-none overflow-hidden ${className}`}>
       {/* Left side image - positioned further outside left edge, will overflow and be cropped */}
@@ -83,28 +87,17 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
         className="absolute top-1/2 left-0 transform -translate-y-1/2"
         style={{
           transform: buildTransform('translateX(-30%)', leftRotation, leftFlipH, leftFlipV),
-          opacity: mode === 'light' ? 0 : mode === 'light2' ? opacity * 0.8 : opacity * 0.6,
+          opacity: forceVisible ? opacity : (mode === 'light' ? 0 : mode === 'light2' ? opacity * 0.8 : opacity * 0.6),
         }}
       >
-        {mode === 'light' ? (
-          <img
-            src={leftImage}
-            alt="Left Edge Triangles"
-            className="object-contain"
-            style={{
-              opacity: 0,
-            }}
-          />
-        ) : (
-          <img
-            src={leftImage}
-            alt="Left Edge Triangles"
-            className={`object-contain ${getBlendModeClass()}`}
-            style={{
-              opacity: mode === 'light2' ? opacity * 0.8 : opacity * 0.6,
-            }}
-          />
-        )}
+        <img
+          src={leftImage}
+          alt="Left Edge Triangles"
+          className={`object-contain ${getBlendModeClass()}`}
+          style={{
+            opacity: forceVisible ? opacity : (mode === 'light2' ? opacity * 0.8 : opacity * 0.6),
+          }}
+        />
       </div>
       
       {/* Right side image - positioned further outside right edge, will overflow and be cropped */}
@@ -112,28 +105,17 @@ const EdgeTrianglesBackground: React.FC<EdgeTrianglesBackgroundProps> = ({
         className="absolute top-1/2 right-0 transform -translate-y-1/2"
         style={{
           transform: buildTransform('translateX(30%)', rightRotation, rightFlipH, rightFlipV),
-          opacity: mode === 'light' ? 0 : mode === 'light2' ? opacity * 0.8 : opacity * 0.6,
+          opacity: forceVisible ? opacity : (mode === 'light' ? 0 : mode === 'light2' ? opacity * 0.8 : opacity * 0.6),
         }}
       >
-        {mode === 'light' ? (
-          <img
-            src={rightImage}
-            alt="Right Edge Triangles"
-            className="object-contain"
-            style={{
-              opacity: 0,
-            }}
-          />
-        ) : (
-          <img
-            src={rightImage}
-            alt="Right Edge Triangles"
-            className={`object-contain ${getBlendModeClass()}`}
-            style={{
-              opacity: mode === 'light2' ? opacity * 0.8 : opacity * 0.6,
-            }}
-          />
-        )}
+        <img
+          src={rightImage}
+          alt="Right Edge Triangles"
+          className={`object-contain ${getBlendModeClass()}`}
+          style={{
+            opacity: forceVisible ? opacity : (mode === 'light2' ? opacity * 0.8 : opacity * 0.6),
+          }}
+        />
       </div>
     </div>
   );

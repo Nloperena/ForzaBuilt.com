@@ -1,19 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import HeaderV2 from '../components/Header/HeaderV2';
+import FooterV2 from '../components/FooterV2';
 import blogPostsData from '../data/blogPosts.json';
-import FeaturedPosts from '@/components/blog/FeaturedPosts';
-import ControlsBar from '@/components/blog/ControlsBar';
-import PostsGrid from '@/components/blog/PostsGrid';
 import EdgeTrianglesBackground from '@/components/common/EdgeTrianglesBackground';
-import SplitText from '@/components/SplitText';
 import { generateSlugFromTitle } from '@/lib/utils';
 import type { BlogPost, ViewMode, SortOrder } from '@/types/Blog';
-import { useGradientMode } from '@/contexts/GradientModeContext';
+import { motion } from 'framer-motion';
 
 const Blog = () => {
-  const { mode, getGradientClasses, getTextClasses } = useGradientMode();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -22,12 +17,10 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
-  const [showNewsletter, setShowNewsletter] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [isSubscribing, setIsSubscribing] = useState<boolean>(false);
 
   useEffect(() => {
-    // Load blog data from the local data file
     const loadBlogData = async () => {
       try {
         setBlogPosts(blogPostsData);
@@ -55,13 +48,11 @@ const Blog = () => {
     'Product Spotlight'
   ];
 
-  // Calculate reading time (average 200 words per minute)
   const calculateReadingTime = (text: string) => {
     const words = text.split(' ').length;
     return Math.ceil(words / 200);
   };
 
-  // Filter posts by category and search query
   const filteredPosts = useMemo(() => {
     let filtered = selectedCategory === 'all' 
       ? blogPosts 
@@ -82,7 +73,6 @@ const Blog = () => {
     return filtered;
   }, [blogPosts, selectedCategory, searchQuery]);
 
-  // Sort the filtered posts
   const sortedPosts = [...filteredPosts].sort((a, b) => {
     let aValue: string | number;
     let bValue: string | number;
@@ -109,20 +99,17 @@ const Blog = () => {
       return aValue > bValue ? 1 : -1;
     } else {
       return aValue < bValue ? 1 : -1;
-        }
+    }
   });
 
-  // Pagination
   const postsPerPage = 9;
   const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
   const currentPosts = sortedPosts.slice(startIndex, endIndex);
 
-  // Featured posts (first 3 posts)
   const featuredPosts = blogPosts.slice(0, 3);
 
-  // Related categories
   const relatedCategories = useMemo(() => {
     const categoryCounts = blogPosts.reduce((acc, post) => {
       acc[post.category] = (acc[post.category] || 0) + 1;
@@ -135,491 +122,376 @@ const Blog = () => {
       .map(([category]) => category);
   }, [blogPosts]);
 
-  // Newsletter subscription
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
     
     setIsSubscribing(true);
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
-    setShowNewsletter(false);
     setEmail('');
     setIsSubscribing(false);
   };
 
   return (
-    <div className={`bg-gradient-to-b ${getGradientClasses()} min-h-screen`}>
-      <Header />
+    <div className="bg-white min-h-screen flex flex-col relative overflow-x-hidden text-[#1B3764]">
+      <HeaderV2 />
       
-      
+      {/* Hero Section - Gradient Background */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 px-4 text-center z-20 bg-gradient-to-bl from-[#477197] to-[#2c476e]">
+        <motion.div 
+          className="max-w-[1400px] mx-auto flex flex-col items-center justify-center gap-4 md:gap-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <h1 className="font-black mb-0 leading-none font-kallisto text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+            BLOG
+          </h1>
+          <h3 className="font-regular text-center leading-tight font-poppins text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-4xl mt-4">
+            Products, Tips, Tutorials, and More!
+          </h3>
+        </motion.div>
+      </section>
 
-      
-      {/* Hero Section */}
-      <section className="relative">
-        <div className={`bg-gradient-to-b ${getGradientClasses()} pt-16 sm:pt-20 relative`}>
-          <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 lg:py-16 [&:has(>div)]:max-w-[2000px]">
-            <div className="text-center mx-auto">
-              <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black mb-1 sm:mb-2 md:mb-4 leading-none font-kallisto ${getTextClasses()}`}>
-                <SplitText
-                  text="ForzaBuilt Blog"
-                  className="block"
-                  splitType="words"
-                  delay={50}
-                  as="span"
-                />
-              </h1>
-              <p className={`${getTextClasses()} text-lg md:text-xl lg:text-2xl xl:text-3xl font-medium leading-relaxed max-w-[1200px] mx-auto`}>
-                Products, Tips, Tutorials, and More!
-              </p>
+      {/* Featured Posts - White Background */}
+      {!loading && featuredPosts.length > 0 && (
+        <section className="py-16 relative z-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <div className="mb-10 text-center">
+              <h2 className="text-3xl md:text-4xl font-black font-kallisto mb-4 text-[#1B3764]">Featured Articles</h2>
+              <p className="font-poppins text-[#1B3764]/80 text-lg">Discover our most popular and important content</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {featuredPosts.map((post) => (
+                <article key={post.id} className="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group flex flex-col">
+                  <div className="aspect-[16/9] bg-gray-100 overflow-hidden relative">
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                      onError={(e) => {
+                        console.warn(`Failed to load image: ${post.image}`);
+                        e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
+                      }}
+                    />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-bold text-[#1B3764] uppercase tracking-wide px-3 py-1 rounded-full font-poppins bg-[#1B3764]/10">
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-gray-500 font-poppins">
+                        {calculateReadingTime(post.excerpt)} min read
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-black text-[#1B3764] mb-3 line-clamp-2 group-hover:text-[#F2611D] transition-colors font-kallisto">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-6 line-clamp-3 font-poppins flex-1">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between mt-auto">
+                      <Link
+                        to={`/blog/${generateSlugFromTitle(post.title)}`}
+                        className="inline-flex items-center text-[#1B3764] font-bold text-sm hover:text-[#F2611D] transition-colors font-poppins group/link"
+                      >
+                        Read Article
+                        <svg className="ml-2 w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Search and Controls - Light Grey Background (Alternating) */}
+      <section className="py-16 bg-[#f5f7fa] border-y border-gray-200 relative z-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          {/* Search Bar */}
+          <div className="mb-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-black font-kallisto mb-4 text-[#1B3764]">Browse All Articles</h2>
+            <div className="relative max-w-lg mx-auto">
+              <input
+                type="text"
+                placeholder="Search topics, keywords..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-white border border-gray-300 text-[#1B3764] px-6 py-4 rounded-full text-base font-medium focus:outline-none focus:ring-2 focus:ring-[#F2611D]/50 focus:border-[#F2611D] font-poppins placeholder-gray-400 shadow-sm"
+              />
+              <svg className="absolute right-5 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-5 py-2 rounded-full text-sm font-bold transition-all duration-200 font-poppins ${
+                  selectedCategory === category
+                    ? 'bg-[#1B3764] text-white shadow-md transform scale-105'
+                    : 'bg-white text-gray-600 hover:bg-gray-100 hover:text-[#1B3764] border border-gray-200 shadow-sm'
+                }`}
+              >
+                {category === 'all' ? 'All Posts' : category}
+              </button>
+            ))}
+          </div>
+
+          {/* View Toggle and Sort Controls */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600 font-poppins border-t border-gray-200 pt-6 mt-6">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <span className="font-bold">View:</span>
+                <div className="flex bg-white rounded-lg p-1 border border-gray-200">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200 ${
+                      viewMode === 'grid' 
+                        ? 'bg-[#1B3764] text-white shadow-sm' 
+                        : 'text-gray-500 hover:text-[#1B3764]'
+                    }`}
+                  >
+                    Grid
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200 ${
+                      viewMode === 'list' 
+                        ? 'bg-[#1B3764] text-white shadow-sm' 
+                        : 'text-gray-500 hover:text-[#1B3764]'
+                    }`}
+                  >
+                    List
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <label className="font-bold">Sort by:</label>
+                <div className="relative">
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="appearance-none bg-white border border-gray-200 text-[#1B3764] pl-4 pr-8 py-1.5 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-[#1B3764]/20 cursor-pointer"
+                  >
+                    <option value="date">Date</option>
+                    <option value="title">Title</option>
+                    <option value="category">Category</option>
+                  </select>
+                  <svg className="w-4 h-4 text-gray-500 absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+              <button
+                onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+                className="bg-white border border-gray-200 text-gray-600 p-2 rounded-lg hover:bg-gray-50 hover:text-[#1B3764] transition-colors"
+                title={sortOrder === 'asc' ? 'Sort Descending' : 'Sort Ascending'}
+              >
+                {sortOrder === 'asc' ? (
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4" />
+                  </svg>
+                )}
+              </button>
+            </div>
+            <div className="font-medium">
+              Showing <span className="text-[#1B3764] font-bold">{currentPosts.length}</span> of <span className="text-[#1B3764] font-bold">{sortedPosts.length}</span> posts
             </div>
           </div>
         </div>
       </section>
 
-      {/* Edge triangles positioned at left and right viewport edges */}
-      <EdgeTrianglesBackground 
-        leftImage="/Gradients and Triangles/Small Science Triangles 2.png"
-        rightImage="/Gradients and Triangles/Small Science Triangles.png"
-        opacity={0.6}
-        scale={1.1}
-        leftRotation={280}
-        rightRotation={280}
-        leftFlipH={false}
-        rightFlipV={false}
-        blendMode="overlay"
-      />
-
-        {/* Featured Posts */}
-        {!loading && featuredPosts.length > 0 && (
-          <section className="py-12 bg-gradient-to-t from-[#1B3764] to-[#115B87]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              <div className="mb-8">
-                <h2 className={`text-3xl font-black font-kallisto mb-4 ${getTextClasses()}`}>Featured Articles</h2>
-                <p className={`${getTextClasses()} font-poppins opacity-80`}>Discover our most popular and important content</p>
+      {/* Blog Posts Grid - White Background (Alternating) */}
+      <section className="py-16 relative z-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          {loading ? (
+            <div className="text-center py-20">
+              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#F2611D] mx-auto mb-4"></div>
+              <p className="text-gray-500 font-bold font-poppins">Loading blog posts...</p>
+            </div>
+          ) : currentPosts.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="max-w-md mx-auto">
+                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-black text-[#1B3764] font-kallisto mb-2">No articles found</h3>
+                <p className="text-gray-600 font-poppins mb-8">
+                  {searchQuery ? `No articles match "${searchQuery}"` : 'No articles in this category'}
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery('')}
+                      className="px-6 py-2.5 bg-[#F2611D] text-white rounded-full font-bold font-poppins hover:bg-[#F2611D]/80 transition-colors shadow-md"
+                    >
+                      Clear Search
+                    </button>
+                  )}
+                  {selectedCategory !== 'all' && (
+                    <button
+                      onClick={() => setSelectedCategory('all')}
+                      className="px-6 py-2.5 bg-white text-[#1B3764] border border-gray-200 rounded-full font-bold font-poppins hover:bg-gray-50 transition-colors shadow-sm"
+                    >
+                      View All Posts
+                    </button>
+                  )}
+                </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {featuredPosts.map((post) => (
-                  <article key={post.id} className="bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 hover:scale-105 group">
-                    <div className="aspect-[16/9] bg-transparent overflow-hidden">
+            </div>
+          ) : (
+            <>
+              <div className={viewMode === 'grid' 
+                ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" 
+                : "space-y-6"
+              }>
+                {currentPosts.map((post) => (
+                  <article key={post.id} className={`bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group ${
+                    viewMode === 'grid' ? 'flex flex-col h-full' : 'flex flex-row items-center'
+                  }`}>
+                    <div className={`bg-gray-100 overflow-hidden flex-shrink-0 relative ${
+                      viewMode === 'grid' ? 'aspect-[16/9]' : 'w-48 h-48'
+                    }`}>
                       <img 
                         src={post.image} 
                         alt={post.title}
-                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        className={`w-full h-full object-contain mix-blend-multiply p-4 transition-transform duration-500 ${viewMode === 'grid' ? 'group-hover:scale-105' : ''}`}
                         onError={(e) => {
                           console.warn(`Failed to load image: ${post.image}`);
                           e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
                         }}
                       />
                     </div>
-                    <div className="p-6 bg-white/10 backdrop-blur-sm">
+                    <div className={`flex flex-col ${
+                      viewMode === 'grid' ? 'p-6 flex-1' : 'p-6 flex-1'
+                    }`}>
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs font-bold text-white uppercase tracking-wide px-3 py-1 rounded-full font-poppins">
+                        <span className="text-xs font-bold text-[#1B3764] uppercase tracking-wide px-2.5 py-1 rounded-full font-poppins bg-[#1B3764]/5">
                           {post.category}
                         </span>
-                        <span className="text-xs text-white/70 font-poppins">
-                          {calculateReadingTime(post.excerpt)} min read
-                        </span>
+                        <div className="flex items-center gap-2 text-xs text-gray-500 font-poppins">
+                          <span>{new Date(post.date).toLocaleDateString()}</span>
+                          <span>•</span>
+                          <span>{calculateReadingTime(post.excerpt)} min read</span>
+                        </div>
                       </div>
-                      <h3 className="text-lg font-black text-white mb-3 line-clamp-2 group-hover:text-[#F16022] transition-colors font-kallisto">
+                      <h3 className={`font-black text-[#1B3764] mb-3 line-clamp-2 group-hover:text-[#F2611D] transition-colors font-kallisto ${
+                        viewMode === 'grid' ? 'text-xl' : 'text-2xl'
+                      }`}>
                         {post.title}
                       </h3>
-                      <p className="text-white/80 text-sm mb-4 line-clamp-3 font-poppins">
+                      <p className={`text-gray-600 mb-4 line-clamp-2 font-poppins ${
+                        viewMode === 'grid' ? 'text-sm' : 'text-base'
+                      }`}>
                         {post.excerpt}
                       </p>
-                      <div className="flex items-center justify-between">
+                      
+                      <div className="mt-auto pt-2">
                         <Link
                           to={`/blog/${generateSlugFromTitle(post.title)}`}
-                          className="inline-flex items-center text-white font-bold text-sm hover:text-white/90 transition-colors group-hover:translate-x-1 bg-[#F16022] px-4 py-2 rounded-full hover:bg-[#F16022]/80 font-poppins"
+                          className="inline-flex items-center text-[#1B3764] font-bold text-sm hover:text-[#F2611D] transition-colors group-hover/link font-poppins"
                         >
-                          Read Article
-                          <svg className="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          Read Full Article
+                          <svg className="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </Link>
-                        <div className="flex space-x-2">
-                          <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on YouTube">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                          </button>
-                          <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on LinkedIn">
-                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
-                            </svg>
-                          </button>
-                        </div>
                       </div>
                     </div>
                   </article>
                 ))}
               </div>
-            </div>
-          </section>
-        )}
 
-        {/* Search and Controls */}
-        <section className="py-8 bg-white/20 backdrop-blur-lg border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            {/* Search Bar */}
-            <div className="mb-6">
-              <div className="relative max-w-md mx-auto">
-                <input
-                  type="text"
-                  placeholder="Search articles..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-white/90 backdrop-blur-sm border border-[#F16022] text-[#F16022] px-4 py-3 rounded-full text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#F16022]/50 font-poppins placeholder-[#F16022]/60"
-                />
-                <svg className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#F16022]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </div>
-            </div>
-
-                         {/* Category Filter */}
-             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6">
-             {categories.map((category) => (
-               <button
-                 key={category}
-                 onClick={() => setSelectedCategory(category)}
-                                   className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-200 backdrop-blur-sm font-poppins ${
-                    selectedCategory === category
-                      ? 'bg-[#F16022]/90 text-white shadow-lg border border-[#F16022]/30'
-                      : 'bg-white/20 text-white hover:bg-white/30 hover:shadow-md border border-white/20'
-                  }`}
-               >
-                 {category === 'all' ? 'All Posts' : category}
-               </button>
-                            ))}
-             </div>
-
-             {/* View Toggle and Sort Controls */}
-             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-               <div className="flex items-center gap-3">
-                 <div className="flex items-center gap-2">
-                   <span className="text-white/80 text-sm font-bold font-poppins">View:</span>
-                   <div className="flex bg-white/20 rounded-full p-1">
-                     <button
-                       onClick={() => setViewMode('grid')}
-                       className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-200 ${
-                         viewMode === 'grid' 
-                           ? 'bg-[#F16022] text-white' 
-                           : 'text-white/70 hover:text-white'
-                       } font-poppins`}
-                     >
-                       Grid
-                     </button>
-                     <button
-                       onClick={() => setViewMode('list')}
-                       className={`px-3 py-1 rounded-full text-xs font-bold transition-all duration-200 ${
-                         viewMode === 'list' 
-                           ? 'bg-[#F16022] text-white' 
-                           : 'text-white/70 hover:text-white'
-                       } font-poppins`}
-                     >
-                       List
-                     </button>
-                   </div>
-                 </div>
-                 <div className="flex items-center gap-2">
-                   <label className="text-white/80 text-sm font-bold font-poppins">Sort by:</label>
-                   <select
-                     value={sortBy}
-                     onChange={(e) => setSortBy(e.target.value)}
-                     className="bg-white/90 backdrop-blur-sm border border-[#F16022] text-[#F16022] px-3 py-1 rounded-full text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#F16022]/50 font-poppins"
-                   >
-                     <option value="date">Date</option>
-                     <option value="title">Title</option>
-                     <option value="category">Category</option>
-                   </select>
-                 </div>
-                 <button
-                   onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                   className="bg-white/90 backdrop-blur-sm border border-[#F16022] text-[#F16022] p-2 rounded-full hover:bg-white/95 transition-colors"
-                   title={sortOrder === 'asc' ? 'Sort Descending' : 'Sort Ascending'}
-                 >
-                   {sortOrder === 'asc' ? (
-                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                     </svg>
-                   ) : (
-                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                     </svg>
-                   )}
-                 </button>
-               </div>
-               <div className="text-white/80 text-sm font-poppins">
-                 Showing {currentPosts.length} of {sortedPosts.length} posts
-               </div>
-             </div>
-           </div>
-         </section>
-
-        {/* Related Categories */}
-        {relatedCategories.length > 0 && (
-          <section className="py-6 bg-white/5 backdrop-blur-sm border-b border-white/5">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              <div className="flex items-center gap-4">
-                <span className="text-white/80 text-sm font-bold font-poppins">Popular Categories:</span>
-                <div className="flex flex-wrap gap-2">
-                  {relatedCategories.map((category) => (
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex justify-center mt-16">
+                  <div className="flex items-center gap-2 bg-white p-2 rounded-xl border border-gray-200 shadow-sm">
                     <button
-                      key={category}
-                      onClick={() => setSelectedCategory(category)}
-                      className="px-3 py-1 rounded-full text-xs font-bold text-white/70 hover:text-[#F16022] transition-colors font-poppins"
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="p-2.5 rounded-lg text-gray-500 hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
                     >
-                      {category}
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
                     </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Sort Controls */}
-        <section className="py-4 bg-white/10 backdrop-blur-sm border-b border-white/5">
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                           <div className="text-white/80 text-sm font-poppins">
-                Showing {sortedPosts.length} of {blogPosts.length} posts
-              </div>
-             <div className="flex items-center gap-3">
-               <div className="flex items-center gap-2">
-                                   <label className="text-white/80 text-sm font-bold font-poppins">Sort by:</label>
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="bg-white/90 backdrop-blur-sm border border-[#F16022] text-[#F16022] px-3 py-1 rounded-full text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#F16022]/50 font-poppins"
-                  >
-                   <option value="date">Date</option>
-                   <option value="title">Title</option>
-                   <option value="category">Category</option>
-                 </select>
-               </div>
-               <button
-                 onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-                                   className="bg-white/90 backdrop-blur-sm border border-[#F16022] text-[#F16022] p-2 rounded-full hover:bg-white/95 transition-colors"
-                 title={sortOrder === 'asc' ? 'Sort Descending' : 'Sort Ascending'}
-               >
-                 {sortOrder === 'asc' ? (
-                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                   </svg>
-                 ) : (
-                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                   </svg>
-                 )}
-               </button>
-             </div>
-           </div>
-         </div>
-       </section>
-
-               {/* Blog Posts Grid */}
-       <section className={`py-12 bg-gradient-to-b ${getGradientClasses()}`}>
-         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-           {loading ? (
-             <div className="text-center py-20">
-               <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#F16022] mx-auto mb-4"></div>
-               <p className="text-white/80 font-bold font-poppins">Loading blog posts...</p>
-             </div>
-           ) : currentPosts.length === 0 ? (
-             <div className="text-center py-20">
-               <div className="max-w-md mx-auto">
-                 <svg className="w-16 h-16 text-white/40 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                 </svg>
-                 <h3 className="text-xl font-black text-white font-kallisto mb-2">No articles found</h3>
-                 <p className="text-white/80 font-poppins mb-6">
-                   {searchQuery ? `No articles match "${searchQuery}"` : 'No articles in this category'}
-                 </p>
-                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                   {searchQuery && (
-                     <button
-                       onClick={() => setSearchQuery('')}
-                       className="px-4 py-2 bg-[#F16022] text-white rounded-full font-bold font-poppins hover:bg-[#F16022]/80 transition-colors"
-                     >
-                       Clear Search
-                     </button>
-                   )}
-                   {selectedCategory !== 'all' && (
-                     <button
-                       onClick={() => setSelectedCategory('all')}
-                       className="px-4 py-2 bg-white/20 text-white rounded-full font-bold font-poppins hover:bg-white/30 transition-colors"
-                     >
-                       View All Posts
-                     </button>
-                   )}
-                 </div>
-               </div>
-             </div>
-           ) : (
-             <>
-               <div className={viewMode === 'grid' 
-                 ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" 
-                 : "space-y-6"
-               }>
-                                   {currentPosts.map((post) => (
-                    <article key={post.id} className={`bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 hover:scale-105 group ${
-                      viewMode === 'grid' ? 'flex flex-col h-full' : 'flex flex-row items-center'
-                    }`}>
-                      <div className={`bg-transparent overflow-hidden flex-shrink-0 ${
-                        viewMode === 'grid' ? 'aspect-[16/9]' : 'w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 flex items-center justify-center self-center'
-                      }`}>
-                        <img 
-                          src={post.image} 
-                          alt={post.title}
-                          className={`${viewMode === 'grid' ? 'w-full h-full' : 'max-w-full max-h-full'} object-contain object-center ${viewMode === 'grid' ? 'group-hover:scale-110 transition-transform duration-300' : ''}`}
-                          onError={(e) => {
-                            console.warn(`Failed to load image: ${post.image}`);
-                            e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
-                          }}
-                        />
-                      </div>
-                      <div className={`bg-white/10 backdrop-blur-sm flex-1 flex flex-col ${
-                        viewMode === 'grid' ? 'p-6' : 'p-4'
-                      }`}>
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-xs font-bold text-white uppercase tracking-wide px-3 py-1 rounded-full font-poppins">
-                            {post.category}
-                        </span>
-                          <div className="flex items-center gap-2 text-xs text-white/70 font-poppins">
-                            <span>{new Date(post.date).toLocaleDateString()}</span>
-                            <span>•</span>
-                            <span>{calculateReadingTime(post.excerpt)} min read</span>
-                          </div>
-                        </div>
-                        <h3 className={`font-black text-white mb-3 line-clamp-2 group-hover:text-[#F16022] transition-colors font-kallisto ${
-                          viewMode === 'grid' ? 'text-xl' : 'text-lg'
-                        }`}>
-                          {post.title}
-                        </h3>
-                        <p className={`text-white/80 mb-4 line-clamp-3 flex-1 font-poppins ${
-                          viewMode === 'grid' ? 'text-sm' : 'text-xs'
-                        }`}>
-                          {post.excerpt}
-                        </p>
-                        {post.keyTakeaways && post.keyTakeaways.length > 0 && viewMode === 'grid' && (
-                          <div className="mb-4">
-                            <h4 className="text-sm font-bold text-white mb-2 font-poppins">Key Takeaways:</h4>
-                            <ul className="text-xs text-white/70 space-y-1 font-poppins">
-                              {post.keyTakeaways.slice(0, 2).map((takeaway, index) => (
-                                <li key={index} className="flex items-start">
-                                  <span className="text-[#F16022] mr-2">•</span>
-                                  <span className="line-clamp-2">{takeaway}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                        <div className="flex items-center justify-between mt-auto pt-4">
-                          <Link
-                            to={`/blog/${generateSlugFromTitle(post.title)}`}
-                            className="inline-flex items-center text-white font-bold text-sm hover:text-white/90 transition-colors group-hover:translate-x-1 bg-[#F16022] px-4 py-2 rounded-full hover:bg-[#F16022]/80 font-poppins"
-                          >
-                            Read Full Article
-                            <svg className="ml-2 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
-                          <div className="flex space-x-2">
-                            <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on YouTube">
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                              </svg>
-                            </button>
-                            <button className="p-2 text-white/60 hover:text-[#F16022] transition-colors" title="Share on LinkedIn">
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-
-                {/* Pagination */}
-                {totalPages > 1 && (
-                  <div className="flex justify-center mt-12">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                        disabled={currentPage === 1}
-                        className="p-2 rounded-full bg-white/20 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/30 transition-colors"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                      </button>
+                    <div className="flex items-center px-2 gap-1">
                       {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                         <button
                           key={page}
                           onClick={() => setCurrentPage(page)}
-                          className={`px-3 py-2 rounded-full text-sm font-bold font-poppins transition-colors ${
+                          className={`w-9 h-9 rounded-lg text-sm font-bold font-poppins transition-all ${
                             currentPage === page
-                              ? 'bg-[#F16022] text-white'
-                              : 'bg-white/20 text-white hover:bg-white/30'
+                              ? 'bg-[#1B3764] text-white shadow-md'
+                              : 'text-gray-600 hover:bg-gray-100'
                           }`}
                         >
                           {page}
                         </button>
                       ))}
-                      <button
-                        onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                        disabled={currentPage === totalPages}
-                        className="p-2 rounded-full bg-white/20 text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/30 transition-colors"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
                     </div>
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      disabled={currentPage === totalPages}
+                      className="p-2.5 rounded-lg text-gray-500 hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
-                )}
-              </>
-            )}
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* Newsletter Signup - Gradient Break */}
+      <section className="py-20 relative z-20 bg-gradient-to-bl from-[#477197] to-[#2c476e]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center text-white">
+          <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-10 shadow-2xl">
+            <h2 className="text-3xl md:text-4xl font-black font-kallisto mb-4">Stay Updated</h2>
+            <p className="font-poppins mb-8 opacity-90 text-lg">
+              Get the latest insights, tips, and industry news delivered to your inbox.
+            </p>
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 bg-white/90 backdrop-blur-sm border border-white/20 text-[#1B3764] px-6 py-3.5 rounded-full text-base font-bold focus:outline-none focus:ring-2 focus:ring-white/50 font-poppins placeholder-gray-500 shadow-inner"
+                required
+              />
+              <button
+                type="submit"
+                disabled={isSubscribing}
+                className="px-8 py-3.5 bg-[#F2611D] text-white rounded-full font-bold font-poppins hover:bg-[#F2611D]/90 transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              >
+                {isSubscribing ? 'Subscribing...' : 'Subscribe'}
+              </button>
+            </form>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Newsletter Signup */}
-        <section className={`py-16 bg-gradient-to-t ${getGradientClasses()}`}>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center">
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-8">
-              <h2 className={`text-3xl font-black font-kallisto mb-4 ${getTextClasses()}`}>Stay Updated</h2>
-              <p className={`${getTextClasses()} font-poppins mb-6 opacity-80`}>
-                Get the latest insights, tips, and industry news delivered to your inbox.
-              </p>
-              <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 bg-white/90 backdrop-blur-sm border border-[#F16022] text-[#F16022] px-4 py-3 rounded-full text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#F16022]/50 font-poppins placeholder-[#F16022]/60"
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={isSubscribing}
-                  className="px-6 py-3 bg-[#F16022] text-white rounded-full font-bold font-poppins hover:bg-[#F16022]/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubscribing ? 'Subscribing...' : 'Subscribe'}
-                </button>
-              </form>
-            </div>
-          </div>
-        </section>
-
-
-      <Footer />
-      
-      {/* Gradient Toggle Modal */}
+      <FooterV2 />
     </div>
   );
 };

@@ -19,7 +19,6 @@ export interface XRayOption {
   summary: string;
   previewImage: string;
   svgSrc: string;
-  bgImage?: string;
 }
 
 interface IndustryXRaySelectorProps {
@@ -231,7 +230,6 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                   svgSrc={option.svgSrc}
                   title={option.title}
                   industry={industry}
-                  bgImage={option.bgImage}
                   activeProductId={selectedProduct?.id}
                   onProductHover={handleProductHover}
                   onProductSelect={handleProductSelect}

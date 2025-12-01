@@ -16,7 +16,6 @@ interface ImageOverlayProps {
   svgSrc: string;
   title?: string;
   industry?: string;
-  bgImage?: string;
   activeProductId?: string | null;
   onProductHover?: (product: Product | null) => void;
   onProductSelect?: (product: Product | null) => void;
@@ -26,7 +25,6 @@ function ImageOverlay({
   svgSrc, 
   title, 
   industry = 'transportation', 
-  bgImage,
   activeProductId,
   onProductHover,
   onProductSelect 
@@ -210,15 +208,6 @@ function ImageOverlay({
         ref={svgContainerRef}
         className="relative h-full w-full max-w-[1920px] mx-auto flex items-center justify-center p-4 sm:p-8 lg:p-12"
       >
-        {bgImage && (
-          <img 
-            src={bgImage} 
-            alt="" 
-            className="absolute inset-0 h-full w-full object-contain opacity-50"
-            style={{ zIndex: 0 }}
-          />
-        )}
-        
         {svgContent && (
           <div
             dangerouslySetInnerHTML={{ __html: svgContent }}
