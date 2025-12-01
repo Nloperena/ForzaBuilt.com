@@ -144,7 +144,7 @@ const Blog = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h1 className="font-black mb-0 leading-none font-kallisto text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="mb-0 font-poppins text-white text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display leading-snug">
             BLOG
           </h1>
           <h3 className="font-regular text-center leading-tight font-poppins text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-4xl mt-4">
@@ -158,7 +158,7 @@ const Blog = () => {
         <section className="py-16 relative z-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <div className="mb-10 text-center">
-              <h2 className="text-3xl md:text-4xl font-black font-kallisto mb-4 text-[#1B3764]">Featured Articles</h2>
+              <h2 className="text-3xl md:text-4xl font-poppins mb-4 text-[#1B3764] tracking-tight">Featured Articles</h2>
               <p className="font-poppins text-[#1B3764]/80 text-lg">Discover our most popular and important content</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -184,7 +184,7 @@ const Blog = () => {
                         {calculateReadingTime(post.excerpt)} min read
                       </span>
                     </div>
-                    <h3 className="text-xl font-black text-[#1B3764] mb-3 line-clamp-2 group-hover:text-[#F2611D] transition-colors font-kallisto">
+                    <h3 className="text-xl text-[#1B3764] mb-3 line-clamp-2 group-hover:text-[#F2611D] transition-colors font-poppins">
                       {post.title}
                     </h3>
                     <p className="text-gray-600 text-sm mb-6 line-clamp-3 font-poppins flex-1">
@@ -214,7 +214,7 @@ const Blog = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           {/* Search Bar */}
           <div className="mb-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-black font-kallisto mb-4 text-[#1B3764]">Browse All Articles</h2>
+            <h2 className="text-3xl md:text-4xl font-poppins mb-4 text-[#1B3764] tracking-tight">Browse All Articles</h2>
             <div className="relative max-w-lg mx-auto">
               <input
                 type="text"
@@ -330,7 +330,7 @@ const Blog = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-black text-[#1B3764] font-kallisto mb-2">No articles found</h3>
+                <h3 className="text-xl text-[#1B3764] font-poppins mb-2">No articles found</h3>
                 <p className="text-gray-600 font-poppins mb-8">
                   {searchQuery ? `No articles match "${searchQuery}"` : 'No articles in this category'}
                 </p>
@@ -390,7 +390,7 @@ const Blog = () => {
                           <span>{calculateReadingTime(post.excerpt)} min read</span>
                         </div>
                       </div>
-                      <h3 className={`font-black text-[#1B3764] mb-3 line-clamp-2 group-hover:text-[#F2611D] transition-colors font-kallisto ${
+                      <h3 className={`text-[#1B3764] mb-3 line-clamp-2 group-hover:text-[#F2611D] transition-colors font-poppins ${
                         viewMode === 'grid' ? 'text-xl' : 'text-2xl'
                       }`}>
                         {post.title}
@@ -466,7 +466,7 @@ const Blog = () => {
       <section className="py-20 relative z-20 bg-gradient-to-bl from-[#477197] to-[#2c476e]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center text-white">
           <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl p-10 shadow-2xl">
-            <h2 className="text-3xl md:text-4xl font-black font-kallisto mb-4">Stay Updated</h2>
+            <h2 className="text-3xl md:text-4xl font-poppins mb-4 tracking-tight">Stay Updated</h2>
             <p className="font-poppins mb-8 opacity-90 text-lg">
               Get the latest insights, tips, and industry news delivered to your inbox.
             </p>

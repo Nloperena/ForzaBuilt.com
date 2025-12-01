@@ -132,7 +132,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h1 className="font-black mb-0 leading-none font-kallisto text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+            <h1 className="mb-0 font-poppins text-white text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display leading-snug">
               CONTACT US
             </h1>
             <h3 className="font-regular text-center leading-tight font-poppins text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-4xl mt-4">
@@ -153,7 +153,7 @@ const Contact = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <div className="mb-8">
-                  <h2 className="text-3xl md:text-4xl font-bold font-kallisto text-[#1B3764] mb-4">
+                  <h2 className="text-3xl md:text-4xl font-poppins text-[#1B3764] mb-4 tracking-tight">
                     Get In Touch
                   </h2>
                   <p className="text-lg font-poppins text-[#1B3764]/70">
@@ -271,7 +271,7 @@ const Contact = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <div className="mb-8">
-                    <h2 className="text-3xl md:text-4xl font-bold font-kallisto text-[#1B3764] mb-4">
+                    <h2 className="text-3xl md:text-4xl font-poppins text-[#1B3764] mb-4 tracking-tight">
                       Contact Information
                     </h2>
                     <p className="text-lg font-poppins text-[#1B3764]/70">
@@ -285,7 +285,7 @@ const Contact = () => {
                         <MapPin className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg mb-1">HQ Address</h4>
+                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">HQ Address</h4>
                         <p className="text-[#1B3764]/70 font-poppins text-base">
                           <span className="font-bold text-[#1B3764]">Forza</span><br />
                           3211 Nebraska Ave, Suite 300<br />
@@ -299,7 +299,7 @@ const Contact = () => {
                         <Phone className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg mb-1">Phone</h4>
+                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">Phone</h4>
                         <p className="text-[#1B3764]/70 font-poppins text-base">
                           <span className="font-bold">O. 402.731.9300</span>
                         </p>
@@ -311,7 +311,7 @@ const Contact = () => {
                         <Mail className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg mb-1">Email</h4>
+                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">Email</h4>
                         <p className="text-[#1B3764]/70 font-poppins text-base">
                           <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
                             support@forzabuilt.com
@@ -325,7 +325,7 @@ const Contact = () => {
                         <Clock className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg mb-1">Business Hours</h4>
+                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">Business Hours</h4>
                         <p className="text--[#1B3764]/70 font-poppins text-base">
                           <span className="font-bold">Mon – Fri | 8:00 AM – 4:30 PM CST</span><br />
                           Saturday & Sunday: Closed
@@ -338,7 +338,7 @@ const Contact = () => {
                         <Mail className="w-6 h-6 text-[#F2611D]" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-[#1B3764] font-poppins text-lg mb-1">Sales Inquiries</h4>
+                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">Sales Inquiries</h4>
                         <p className="text-[#1B3764]/70 font-poppins text-base">
                           <a href="mailto:sales@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
                             sales@forzabuilt.com

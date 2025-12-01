@@ -106,7 +106,7 @@ const BlogPostPage = () => {
         <HeaderV2 />
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
-            <h1 className="text-[#1B3764] text-2xl font-bold mb-4 font-kallisto">Blog Post Not Found</h1>
+            <h1 className="text-[#1B3764] text-2xl mb-4 font-poppins">Blog Post Not Found</h1>
             <p className="text-[#1B3764]/80 mb-6 font-poppins">The blog post you're looking for doesn't exist.</p>
             <Link 
               to="/blog" 
@@ -196,7 +196,7 @@ const BlogPostPage = () => {
               Back to Learning Center
             </Link>
           </div>
-          <h1 className="font-black text-white font-kallisto text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight break-words mb-6">
+          <h1 className="text-white font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight break-words mb-6 tracking-tight">
             {blogPost.title}
           </h1>
           <div className="flex items-center justify-center gap-4 text-white/80 text-sm font-poppins">
@@ -232,7 +232,7 @@ const BlogPostPage = () => {
 
               {/* Full Blog Content */}
               <motion.div 
-                className="prose prose-lg max-w-none prose-headings:text-[#1B3764] prose-headings:font-kallisto prose-headings:font-black prose-p:text-gray-600 prose-p:font-poppins prose-strong:text-[#1B3764] prose-strong:font-bold prose-ul:text-gray-600 prose-ol:text-gray-600 prose-a:text-[#F2611D] prose-a:font-bold prose-blockquote:text-gray-500 prose-blockquote:border-l-[#F2611D] prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-code:text-[#1B3764] prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded prose-pre:text-gray-200 prose-pre:bg-[#1B3764] prose-hr:border-gray-200"
+                className="prose prose-lg max-w-none prose-headings:text-[#1B3764] prose-headings:font-poppins prose-p:text-gray-600 prose-p:font-poppins prose-strong:text-[#1B3764] prose-strong:font-bold prose-ul:text-gray-600 prose-ol:text-gray-600 prose-a:text-[#F2611D] prose-a:font-bold prose-blockquote:text-gray-500 prose-blockquote:border-l-[#F2611D] prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-code:text-[#1B3764] prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded prose-pre:text-gray-200 prose-pre:bg-[#1B3764] prose-hr:border-gray-200"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -249,7 +249,7 @@ const BlogPostPage = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5 }}
                     >
-                      <h2 className="text-2xl font-bold text-[#1B3764] font-kallisto mb-4 mt-0">Article Summary</h2>
+                      <h2 className="text-2xl text-[#1B3764] font-poppins mb-4 mt-0">Article Summary</h2>
                       <p className="text-gray-700 leading-relaxed font-poppins mb-0">
                         {blogPost.excerpt}
                       </p>
@@ -263,7 +263,7 @@ const BlogPostPage = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                       >
-                        <h2 className="text-2xl font-bold text-[#1B3764] font-kallisto mb-6">Key Takeaways</h2>
+                        <h2 className="text-2xl text-[#1B3764] font-poppins mb-6">Key Takeaways</h2>
                         <ul className="space-y-4 list-none pl-0">
                           {blogPost.keyTakeaways.map((takeaway, index) => (
                             <motion.li 
@@ -299,7 +299,7 @@ const BlogPostPage = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <div className="flex items-center justify-between mb-8">
-                    <h3 className="text-2xl font-bold text-[#1B3764] font-kallisto">Related Articles</h3>
+                    <h3 className="text-2xl text-[#1B3764] font-poppins">Related Articles</h3>
                     <Link to="/blog" className="text-[#F2611D] font-bold font-poppins hover:underline">View All</Link>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -334,7 +334,7 @@ const BlogPostPage = () => {
                               <span className="inline-block px-2.5 py-1 text-[#1B3764] text-xs font-bold rounded-full mb-3 font-poppins bg-[#1B3764]/5 self-start">
                                 {post.category}
                               </span>
-                              <h4 className="font-bold text-[#1B3764] group-hover:text-[#F2611D] transition-colors line-clamp-2 font-kallisto text-lg mb-2">
+                              <h4 className="text-[#1B3764] group-hover:text-[#F2611D] transition-colors line-clamp-2 font-poppins text-lg mb-2">
                                 {post.title}
                               </h4>
                               <p className="text-gray-500 text-sm line-clamp-2 font-poppins">
@@ -354,7 +354,7 @@ const BlogPostPage = () => {
             <div className="lg:col-span-1 space-y-8 lg:sticky lg:top-32 lg:self-start">
               {/* Recent Posts */}
               <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6">
-                <h3 className="text-lg font-bold text-[#1B3764] font-kallisto mb-6 border-b border-gray-100 pb-4">
+                <h3 className="text-lg text-[#1B3764] font-poppins mb-6 border-b border-gray-100 pb-4">
                   Recent Posts
                 </h3>
                 <div className="space-y-6">
@@ -372,9 +372,9 @@ const BlogPostPage = () => {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-bold text-[#1B3764] group-hover:text-[#F2611D] transition-colors line-clamp-2 font-kallisto mb-1 leading-snug">
-                            {post.title}
-                          </h4>
+                                <h4 className="text-sm text-[#1B3764] group-hover:text-[#F2611D] transition-colors line-clamp-2 font-poppins mb-1 leading-snug">
+                                  {post.title}
+                                </h4>
                           <p className="text-xs text-gray-400 font-poppins">
                             {new Date(post.date).toLocaleDateString('en-US', {
                               year: 'numeric',
@@ -393,7 +393,7 @@ const BlogPostPage = () => {
               <div className="bg-gradient-to-br from-[#1B3764] to-[#2c476e] rounded-2xl shadow-lg p-8 text-white text-center relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
                 <div className="relative z-10">
-                  <h3 className="text-xl font-bold font-kallisto mb-3">
+                  <h3 className="text-xl font-poppins mb-3">
                     Need Expert Advice?
                   </h3>
                   <p className="text-sm text-white/80 mb-6 font-poppins leading-relaxed">
@@ -417,7 +417,7 @@ const BlogPostPage = () => {
         <section className="py-20 bg-[#f5f7fa] border-t border-gray-200 relative z-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[#1B3764] font-kallisto mb-4">More To Explore</h2>
+              <h2 className="text-3xl text-[#1B3764] font-poppins mb-4 tracking-tight">More To Explore</h2>
               <p className="text-gray-600 font-poppins max-w-2xl mx-auto">
                 Continue your journey with these additional resources and insights from our experts.
               </p>
@@ -446,7 +446,7 @@ const BlogPostPage = () => {
                     </div>
                   </div>
                   <div className="p-6 flex flex-col flex-1">
-                    <h3 className="text-lg font-bold text-[#1B3764] group-hover:text-[#F2611D] transition-colors mb-3 line-clamp-2 font-kallisto">
+                    <h3 className="text-lg text-[#1B3764] group-hover:text-[#F2611D] transition-colors mb-3 line-clamp-2 font-poppins">
                       {post.title}
                     </h3>
                     <p className="text-gray-500 text-sm line-clamp-3 mb-4 font-poppins flex-1">
@@ -480,7 +480,7 @@ const BlogPostPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white font-kallisto mb-6">
+            <h2 className="text-3xl md:text-4xl text-white font-poppins mb-6 tracking-tight">
               Ready to Transform Your Manufacturing?
             </h2>
             <p className="text-xl text-white/90 mb-10 font-poppins max-w-2xl mx-auto">

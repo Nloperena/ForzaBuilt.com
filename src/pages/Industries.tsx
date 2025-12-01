@@ -18,7 +18,7 @@ const Industries = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h1 className="font-black mb-0 leading-none font-kallisto text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="mb-0 font-poppins text-white text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display leading-snug">
             INDUSTRIES
           </h1>
           <h3 className="font-regular text-center leading-tight font-poppins text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-4xl mt-4">
@@ -44,7 +44,7 @@ const Industries = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl font-black font-kallisto text-[#1B3764]">
+          <h2 className="text-3xl md:text-5xl font-poppins text-[#1B3764] tracking-tight">
             Don't See Your Industry?
           </h2>
           <p className="text-lg md:text-xl font-poppins text-[#1B3764]/80 max-w-2xl mx-auto">
