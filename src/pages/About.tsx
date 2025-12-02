@@ -17,7 +17,7 @@ const RaisingBarsStats = () => {
 const About = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const heroVideoUrl = '/Forza Building Video.mp4';
+  const heroVideoUrl = '/videos/backgrounds/Forza Building Video.mp4';
 
   useEffect(() => {
     const timeout = setTimeout(() => {
