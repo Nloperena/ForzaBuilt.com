@@ -93,7 +93,7 @@ const About = () => {
                   fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
                 }}
               >
-                Meet Forza
+                MEET FORZA
               </h1>
 
               {/* Subtitle - Regular Poppins */}
@@ -206,7 +206,7 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             {/* Our Mission */}
             <motion.div 
-              className="space-y-6 bg-white p-8 md:p-12 rounded-2xl"
+              className="space-y-6 p-8 md:p-12 rounded-2xl"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -220,7 +220,7 @@ const About = () => {
                   Our Mission
                 </h2>
                 {/* Orange line */}
-                <div className="w-20 h-1 bg-[#F2611D] mb-6" />
+                <div className="w-40 h-1 bg-[#F2611D] mb-6" />
               </div>
               <p className="text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
                 To empower manufacturers with adhesive solutions that improve efficiency, reduce costs, and enhance product durability. We don't just sell glue; we solve bonding challenges.
@@ -246,7 +246,7 @@ const About = () => {
                   What We Manufacture
                 </h3>
                 {/* Orange line */}
-                <div className="w-20 h-1 bg-[#F2611D] mb-6" />
+                <div className="w-80 h-1 bg-[#F2611D] mb-6" />
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
