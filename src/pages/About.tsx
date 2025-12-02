@@ -202,7 +202,7 @@ const About = () => {
 
         {/* Mission & Manufacturing Section */}
         <section className="relative w-full py-20 z-20 bg-[#f5f7fa]">
-          <div className="max-w-[1400px] mx-auto px-4">
+          <div className="max-w-[1400px] xl:max-w-[1600px] mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             {/* Our Mission */}
             <motion.div 
@@ -241,7 +241,7 @@ const About = () => {
               <div className="mb-8">
                 <h3 
                   className="font-poppins mb-4" 
-                  style={{ fontSize: 'clamp(28px, 3vw, 56px)' }}
+                  style={{ fontSize: 'clamp(28px, 2.5vw + 0.3rem, 52px)' }}
                 >
                   What We Manufacture
                 </h3>

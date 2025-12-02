@@ -37,11 +37,11 @@ const WhyChooseForza = () => {
   return (
     <section 
       ref={containerRef} 
-      className="relative pt-24 pb-0 px-4 bg-gradient-to-bl from-[#477197] to-[#2c476e] overflow-hidden text-white isolation-auto border-b border-white/20"
+      className="relative pt-16 pb-0 px-4 bg-gradient-to-bl from-[#477197] to-[#2c476e] overflow-hidden text-white isolation-auto border-b-2 border-[#F2611D]"
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <header className="text-center mb-20 md:mb-24">
+        <header className="text-center mb-14 md:mb-16">
           <motion.h2 
             className="text-fluid-heading font-normal font-poppins mb-4 tracking-tight"
             style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
@@ -62,8 +62,8 @@ const WhyChooseForza = () => {
         </header>
 
         {/* Stats Visualization */}
-        <div className="relative h-[500px] px-4 md:px-12 pb-0">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 h-full relative">
+        <div className="relative h-[350px] px-4 md:px-12 pb-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 h-full relative" style={{ transform: 'translateX(calc(-12.5% - 0.75rem))' }}>
             {stats.map((stat, index) => {
               const StatWrapper = stat.link ? Link : 'div';
               const wrapperProps = stat.link ? { to: stat.link, className: "relative h-full w-full group block" } : { className: "relative h-full w-full" };
@@ -73,7 +73,7 @@ const WhyChooseForza = () => {
                   
                   {/* Line/Sceptre - Absolute positioned from bottom */}
                   <motion.div 
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px bg-gradient-to-t from-[#F2611D]/30 via-[#F2611D]/70 to-[#F2611D]"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-t from-[#F2611D]/30 via-[#F2611D]/70 to-[#F2611D]"
                     style={{ height: `${stat.height * 100}%` }}
                     initial={{ scaleY: 0 }}
                     animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
@@ -88,16 +88,19 @@ const WhyChooseForza = () => {
                      />
                   </motion.div>
                   
-                  {/* Stat Content - Absolute positioned above the line */}
+                  {/* Stat Content - Middle aligned with the dot */}
                   <motion.div 
-                    className="absolute left-1/2 -translate-x-1/2 w-full max-w-[220px] flex justify-center z-10 text-center"
-                    style={{ bottom: `${stat.height * 100}%`, paddingBottom: '2rem' }}
+                    className="absolute left-1/2 -translate-x-1/2 translate-y-1/4 w-full max-w-[220px] flex justify-center z-10 text-center"
+                    style={{ bottom: `${stat.height * 100}%` }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.5, delay: 0.2 + (index * 0.15) }}
                   >
                     <div className="w-full">
-                      <p className="text-white text-3xl md:text-4xl font-bold font-poppins mb-2 text-[#F2611D]">
+                      <p 
+                        className="text-white font-normal font-poppins mb-2 text-[#F2611D]"
+                        style={{ fontSize: 'clamp(2.625rem, 3.5vw + 0.7rem, 3.15rem)' }}
+                      >
                         {stat.value}
                       </p>
                       <h4 className="text-white/80 text-xs md:text-sm font-bold uppercase tracking-wider mb-2 font-poppins">
