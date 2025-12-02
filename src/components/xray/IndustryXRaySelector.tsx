@@ -203,7 +203,7 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
           <div className="inline-block">
             <h2 
               className="font-poppins font-normal text-[#1B3764] mb-2"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
             >
               Products In Use
             </h2>

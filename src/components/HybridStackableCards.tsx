@@ -720,8 +720,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 <div className="w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 relative z-50">
                   <div className="text-center max-w-5xl">
                     <h2 
-                      className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
-                      style={useOldColorScheme ? {} : { color: '#1c3a5c' }}
+                      className={`font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
+                      style={useOldColorScheme ? { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' } : { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)', color: '#1c3a5c' }}
                     >
                       {formattedTitle}
                     </h2>
@@ -741,8 +741,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 <div className="w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 invisible" style={{ height: 'auto' }}>
                   <div className="text-center max-w-5xl">
                     <h2 
-                      className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl 3xl:text-7xl font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
-                      style={useOldColorScheme ? {} : { color: '#1c3a5c' }}
+                      className={`font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
+                      style={useOldColorScheme ? { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' } : { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)', color: '#1c3a5c' }}
                     >
                       {formattedTitle}
                     </h2>

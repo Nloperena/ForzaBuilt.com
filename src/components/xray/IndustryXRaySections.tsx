@@ -110,12 +110,12 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
     if (industryLower.includes('industrial')) {
       return [
         {
-          id: 'fridge',
-          title: 'Refrigeration Applications',
+          id: 'office',
+          title: 'Office Furniture Applications',
           subtitle: '',
-          summary: 'Explore refrigeration and appliance manufacturing applications including panel bonding, insulation, and assembly solutions.',
-          previewImage: '/New X-Ray Dimensions/New Industrial/NEW_FRIDGE.svg',
-          svgSrc: '/New X-Ray Dimensions/New Industrial/NEW_FRIDGE.svg'
+          summary: 'Discover office furniture manufacturing solutions including desk assembly, chair construction, and modular system bonding applications.',
+          previewImage: '/New X-Ray Dimensions/New Industrial/Office.svg',
+          svgSrc: '/New X-Ray Dimensions/New Industrial/Office.svg'
         },
         {
           id: 'garage-door',
@@ -124,6 +124,22 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
           summary: 'Discover garage door manufacturing solutions including panel assembly, hardware mounting, and structural bonding applications.',
           previewImage: '/New X-Ray Dimensions/New Industrial/NEW_GARAGE DOOR.svg',
           svgSrc: '/New X-Ray Dimensions/New Industrial/NEW_GARAGE DOOR.svg'
+        },
+        {
+          id: 'fridge',
+          title: 'Refrigeration Applications',
+          subtitle: '',
+          summary: 'Explore refrigeration and appliance manufacturing applications including panel bonding, insulation, and assembly solutions.',
+          previewImage: '/New X-Ray Dimensions/New Industrial/NEW_FRIDGE.svg',
+          svgSrc: '/New X-Ray Dimensions/New Industrial/NEW_FRIDGE.svg'
+        },
+        {
+          id: 'couch',
+          title: 'Furniture Applications',
+          subtitle: '',
+          summary: 'Explore furniture manufacturing applications including upholstery bonding, frame assembly, and cushion attachment solutions.',
+          previewImage: '/New X-Ray Dimensions/New Industrial/Couch.svg',
+          svgSrc: '/New X-Ray Dimensions/New Industrial/Couch.svg'
         }
       ];
     }
