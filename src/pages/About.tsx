@@ -1,155 +1,227 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import HeaderV2 from '@/components/Header/HeaderV2';
 import FooterV2 from '@/components/FooterV2';
 import ApproachSectionUnified from '@/components/ApproachSectionUnified';
-import IndustriesSectionAlt from '@/components/IndustriesSectionAlt';
-import { motion } from 'framer-motion';
+import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
+import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import VideoSkeleton from '@/components/common/VideoSkeleton';
+import WhyChooseForza from '@/components/WhyChooseForza';
 
-const VideoPlayerWithUnmute = () => {
-  const [isMuted, setIsMuted] = useState(true);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  const handleUnmute = () => {
-    if (iframeRef.current && isMuted) {
-      const currentSrc = iframeRef.current.src;
-      iframeRef.current.src = currentSrc.replace('mute=1', 'mute=0');
-      setIsMuted(false);
-    }
-  };
-
-  return (
-    <div className="relative w-full aspect-video bg-gray-100 rounded-2xl shadow-xl border border-gray-200 overflow-hidden group">
-      <iframe
-        ref={iframeRef}
-        src="https://www.youtube.com/embed/DjI8bEcu6FI?autoplay=1&mute=1&loop=1&playlist=DjI8bEcu6FI&cc_load_policy=1&rel=0&controls=1"
-        title="Meet Forza in 60 seconds"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-        className="absolute inset-0 w-full h-full object-cover"
-      ></iframe>
-      {isMuted && (
-        <div 
-          className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/5 transition-colors cursor-pointer z-10"
-          onClick={handleUnmute}
-        >
-          <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-poppins font-bold text-[#1B3764] pointer-events-none">
-            Click to unmute
-          </div>
-        </div>
-      )}
-    </div>
-  );
+// Why Choose Forza Stats - Circles at top with thin stems extending down
+const RaisingBarsStats = () => {
+  // This component has been replaced by WhyChooseForza.tsx and can be removed
+  return null;
 };
 
 const About = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const heroVideoUrl = '/Forza Building Video.mp4';
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!videoLoaded) {
+        console.warn('About page video took too long to load, showing fallback');
+        setVideoLoaded(true);
+      }
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, [videoLoaded]);
+
+  const handleVideoLoad = () => {
+    console.log('About page video loaded successfully');
+    setVideoLoaded(true);
+  };
+
+  const handleVideoError = () => {
+    console.warn('About page video failed to load, showing fallback');
+    setVideoLoaded(true);
+  };
+
   return (
     <div className="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
       <HeaderV2 />
       
       <div className="flex-1 relative">
-        
-        {/* Hero Section - Gradient Background */}
-        <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 px-4 text-center z-20 bg-gradient-to-bl from-[#477197] to-[#2c476e]">
-          <motion.div 
-            className="max-w-[1400px] mx-auto flex flex-col items-center justify-center gap-4 md:gap-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+        {/* Hero Video Section - Above the fold */}
+        <section className="relative h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
+          {!videoLoaded && <VideoSkeleton />}
+          
+          <video
+            key={heroVideoUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            onLoadedData={handleVideoLoad}
+            onCanPlay={handleVideoLoad}
+            onError={handleVideoError}
+            onLoadStart={() => console.log('About page video loading started')}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+              videoLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ 
+              zIndex: 1,
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%',
+              minWidth: '100%',
+              minHeight: '100%'
+            }}
           >
-            <h1 className="mb-0 font-poppins text-white text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display leading-snug">
-              ABOUT US
-            </h1>
-            <h3 className="font-regular text-center leading-tight font-poppins text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-4xl mt-4">
-              High-Performance Adhesive Solutions<br />
-              Engineered & Manufactured in the USA.
-            </h3>
-            
-            <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <Link
-                to="/products"
-                className="inline-flex items-center px-8 py-3 bg-[#F2611D] text-white font-bold rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-lg"
+            <source src={heroVideoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
+
+          {/* Title and Subtitle Overlay - Centered on video */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 20 }}>
+            <motion.div 
+              className="w-full flex flex-col items-center justify-center"
+              style={{ gap: 'clamp(1rem, 2vw, 2rem)' }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            >
+              {/* Title - Kallisto font */}
+              <h1
+                className="font-black mb-0 leading-none font-kallisto text-white"
+                style={{ 
+                  fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
+                }}
               >
-                Explore Products
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-8 py-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold rounded-full hover:bg-white/30 transition-colors font-poppins shadow-lg"
+                Meet Forza
+              </h1>
+
+              {/* Subtitle - Regular Poppins */}
+              <motion.h3
+                className="font-regular text-center leading-tight font-poppins text-white"
+                style={{ 
+                  fontSize: 'clamp(0.9rem, 1.8vw + 0.3rem, 2.7rem)',
+                  maxWidth: '1100px',
+                  marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               >
-                Contact Us
-              </Link>
-            </div>
-          </motion.div>
+                We engineer superior adhesives, sealants, and tapes <br/> for the toughest industrial applications. From marine <br/> to transportation, we provide solutions that last.
+              </motion.h3>
+            </motion.div>
+          </div>
         </section>
 
-        {/* Meet Forza Video Section with Value Props - White Background */}
+        {/* Meet Forza Section - Story text first, then bullets, then video */}
         <section className="relative z-20 py-16 md:py-24 px-4 bg-white">
-          <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-2">
-              <VideoPlayerWithUnmute />
+          <div className="max-w-[1400px] mx-auto space-y-12">
+            {/* Story Text Section */}
+            <motion.div
+              className="max-w-4xl mx-auto space-y-6"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Story paragraphs */}
+              <div className="space-y-6 text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
+                <p>
+                  <span className="font-bold text-[#1B3764]">Why Forza?</span> Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at all times.
+                </p>
+                <p>
+                  At Forza, we do what other manufacturers won't.
+                  That means finding a better solution is just the beginning.
+                </p>
+                <p>
+                  If you're looking to take your projects, your results, and your
+                  business to the next level, we're ready to over-deliver for you.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Bullet Points Section */}
+            <motion.div
+              className="max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <ul className="space-y-4">
+                {[
+                  "Vertically Integrated USA Manufacturing",
+                  "Custom Formulations & Quick Turnaround",
+                  "Dedicated Engineering Support"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-center gap-3">
+                    <span className="flex-shrink-0 w-6 h-6 bg-[#F2611D] rounded-full flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                    <span className="text-[#1B3764] font-bold font-poppins text-lg">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+            
+            {/* Video Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <div className="relative w-full aspect-video bg-gray-100 rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+                {/* TODO: Update video URL or handle logo change */}
+                <iframe
+                  src="https://www.youtube.com/embed/DjI8bEcu6FI?autoplay=1&mute=1&loop=1&playlist=DjI8bEcu6FI&cc_load_policy=1&rel=0&controls=1"
+                  title="Meet Forza in 60 seconds"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
               <div className="mt-4 text-sm text-[#1B3764]/60 font-poppins">
                 <details>
-                  <summary className="cursor-pointer hover:text-[#F2611D] transition-colors font-medium">Video Transcript / Summary</summary>
+                  <summary className="cursor-pointer hover:text-[#F2611D] transition-colors font-medium">
+                    Video Transcript / Summary
+                  </summary>
                   <p className="mt-2 pl-4 border-l-2 border-[#F2611D]/20">
                     Forza is a US-based manufacturer of high-performance adhesives, sealants, and tapes. We combine vertically integrated manufacturing with in-house R&D to deliver custom solutions for industrial applications. From transportation to marine, our products are engineered for durability and performance.
                   </p>
                 </details>
               </div>
-            </div>
-            
-            <div className="lg:col-span-1 space-y-8 text-center lg:text-left">
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h3 className="font-poppins mb-4 text-[#1B3764]" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>Meet Forza</h3>
-                <p className="text-[#1B3764]/80 font-poppins mb-8 leading-relaxed text-lg">
-                  We engineer superior adhesives, sealants, and tapes for the toughest industrial applications. From marine to transportation, we provide solutions that last.
-                </p>
-                <ul className="space-y-4 text-left mb-8">
-                  {[
-                    "Vertically Integrated USA Manufacturing",
-                    "Custom Formulations & Quick Turnaround",
-                    "Dedicated Engineering Support"
-                  ].map((item, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-[#F2611D] rounded-full flex items-center justify-center">
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </span>
-                      <span className="text-[#1B3764] font-bold font-poppins">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center px-8 py-3 bg-[#F2611D] text-white font-bold rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-lg"
-                >
-                  Talk to an Engineer
-                </Link>
-              </motion.div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Mission & Manufacturing - White Background */}
-        <section className="relative py-20 px-4 max-w-[1400px] mx-auto z-20 bg-white">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Mission & Manufacturing Section */}
+        <section className="relative w-full py-20 z-20 bg-[#f5f7fa]">
+          <div className="max-w-[1400px] mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            {/* Our Mission */}
             <motion.div 
-              className="space-y-6"
+              className="space-y-6 bg-white p-8 md:p-12 rounded-2xl"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="font-poppins leading-none text-[#1B3764]" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>
-                Our Mission
-              </h2>
+              <div>
+                <h2 
+                  className="font-poppins leading-none text-[#1B3764] mb-4" 
+                  style={{ fontSize: 'clamp(28px, 3vw, 56px)' }}
+                >
+                  Our Mission
+                </h2>
+                {/* Orange line */}
+                <div className="w-20 h-1 bg-[#F2611D] mb-6" />
+              </div>
               <p className="text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
                 To empower manufacturers with adhesive solutions that improve efficiency, reduce costs, and enhance product durability. We don't just sell glue; we solve bonding challenges.
               </p>
@@ -157,18 +229,27 @@ const About = () => {
                 With complete in-house R&D and manufacturing capabilities, we can develop, test, and produce custom formulations faster than anyone in the industry.
               </p>
             </motion.div>
+            
+            {/* What We Manufacture */}
             <motion.div
-              className="relative bg-gradient-to-bl from-[#477197] to-[#2c476e] rounded-2xl p-12 shadow-2xl text-white"
+              className="relative bg-gradient-to-bl from-[#477197] to-[#2c476e] rounded-2xl p-12 text-white"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-8 border-b border-white/20 pb-4">
-                <h3 className="font-poppins" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>What We Manufacture</h3>
+              <div className="mb-8">
+                <h3 
+                  className="font-poppins mb-4" 
+                  style={{ fontSize: 'clamp(28px, 3vw, 56px)' }}
+                >
+                  What We Manufacture
+                </h3>
+                {/* Orange line */}
+                <div className="w-20 h-1 bg-[#F2611D] mb-6" />
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
                 <Link to="/products/structural-adhesives" className="space-y-2 group cursor-pointer">
                   <h4 className="text-white font-poppins text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
                     Structural Adhesives
@@ -206,105 +287,32 @@ const About = () => {
                   <p className="text-sm text-slate-300 font-poppins group-hover:text-white">Industrial-grade surface prep & removers.</p>
                 </Link>
               </div>
+              
+              {/* See Products Button */}
+              <div className="mt-8">
+                <Link
+                  to="/products"
+                  className="inline-flex items-center px-8 py-3 bg-[#F2611D] text-white font-bold rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-lg"
+                >
+                  See Products
+                </Link>
+              </div>
             </motion.div>
+          </div>
           </div>
         </section>
 
-        {/* Why Forza / Stats Section - Gradient Break */}
-        <section className="relative py-20 px-4 bg-gradient-to-bl from-[#477197] to-[#2c476e] z-20">
-          <div className="max-w-[1400px] mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="font-poppins text-white mb-4" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>Why Choose Forza?</h2>
-              <p className="text-xl text-white/90 font-poppins">Performance proof that speaks for itself.</p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div className="space-y-2">
-                <div className="text-5xl md:text-6xl text-white font-poppins">1979</div>
-                <p className="text-white/90 font-bold font-poppins text-lg">Established</p>
-                <p className="text-sm text-white/70 font-poppins">Decades of expertise</p>
-              </div>
-              <div className="space-y-2">
-                <div className="text-5xl md:text-6xl text-white font-poppins">100%</div>
-                <p className="text-white/90 font-bold font-poppins text-lg">Made in USA</p>
-                <p className="text-sm text-white/70 font-poppins">Quality controlled</p>
-              </div>
-              <div className="space-y-2">
-                <Link to="/contact" className="block group">
-                  <div className="text-5xl md:text-6xl text-white font-poppins group-hover:text-[#F2611D] transition-colors">24hr</div>
-                  <p className="text-white/90 font-bold font-poppins text-lg flex items-center justify-center gap-1">
-                    Support Response
-                    <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </p>
-                  <p className="text-sm text-white/70 font-poppins">Always here to help</p>
-                </Link>
-              </div>
-              <div className="space-y-2">
-                <div className="text-5xl md:text-6xl text-white font-poppins">500+</div>
-                <p className="text-white/90 font-bold font-poppins text-lg">Formulations</p>
-                <p className="text-sm text-white/70 font-poppins">Custom solutions</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Why Choose Forza - Raising Bars Animation */}
+        <WhyChooseForza />
 
         {/* Approach Section */}
         <div className="relative z-20">
           <ApproachSectionUnified />
         </div>
 
-        {/* Industries Links - White Background */}
-        {/* <section className="relative py-20 px-4 z-20 bg-white">
-          <IndustriesSectionAlt />
-        </section> */}
-
-        {/* Final CTA - Light Grey */}
-        <section className="relative py-24 px-4 bg-[#f5f7fa] text-center z-20">
-          <motion.div 
-            className="max-w-4xl mx-auto space-y-10"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {/* Logo */}
-            <div className="flex justify-center mb-8">
-              <img 
-                src="/logos/Forza-Eagle-Logo-Blue.svg"
-                alt="Forza Logo"
-                className="h-16 md:h-20 lg:h-32 xl:h-40 w-auto"
-              />
-            </div>
-
-            <div className="text-lg md:text-2xl font-poppins leading-relaxed text-[#1B3764]/80 space-y-8 max-w-3xl mx-auto">
-              <p>
-                <span className="font-bold text-[#1B3764]">Why Forza?</span> Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at all times.
-              </p>
-              <p>
-                At Forza, we do what other manufacturers won't.
-                That means finding a better solution is just the beginning.
-              </p>
-              <p>
-                If you're looking to take your projects, your results, and your
-                business to the next level, we're ready to over-deliver for you.
-              </p>
-            </div>
-
-            <div className="pt-8">
-              <p className="text-3xl md:text-5xl font-poppins text-[#1B3764] mb-8 tracking-tight">
-                Performance. Elevated.
-              </p>
-              
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-12 py-5 bg-[#F2611D] text-white text-xl font-bold rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-xl hover:shadow-2xl hover:-translate-y-1"
-              >
-                Talk to an Engineer
-              </Link>
-            </div>
-          </motion.div>
+        {/* Performance. Elevated. Animation Section */}
+        <section className="relative py-24 px-4 bg-[#f5f7fa] z-20">
+          <ExperienceBetterBanner textColor="#1B3764" highlightColor="#F2611D" />
         </section>
       </div>
       
