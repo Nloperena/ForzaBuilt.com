@@ -92,7 +92,7 @@ const WhyChooseForza = () => {
                   {/* Stat Content - Right aligned to the dot */}
                   <motion.div 
                     className="absolute left-[calc(50%+1rem)] w-full max-w-[220px] flex justify-start z-10 text-left"
-                    style={{ bottom: `calc(${stat.height * 100}% - 2.5rem)` }}
+                    style={{ top: `calc(100% - ${stat.height * 100}% - 1.5rem)` }}
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                     transition={{ duration: 0.5, delay: 0.2 + (index * 1.2) + 0.8 }}
