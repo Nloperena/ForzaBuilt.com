@@ -73,28 +73,29 @@ const WhyChooseForza = () => {
                   
                   {/* Line/Sceptre - Absolute positioned from bottom */}
                   <motion.div 
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-t from-[#F2611D]/30 via-[#F2611D]/70 to-[#F2611D]"
-                    style={{ height: `${stat.height * 100}%` }}
+                    className="absolute bottom-0 left-1/2 w-1 bg-[#F2611D] origin-bottom"
+                    style={{ height: `${stat.height * 100}%`, x: "-50%" }}
                     initial={{ scaleY: 0 }}
                     animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 + (index * 0.15), ease: "circOut" }}
-                  >
-                     {/* Dot at top of line */}
-                     <motion.div 
-                        className="absolute -top-2 -left-2 w-4 h-4 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
-                        initial={{ scale: 0 }}
-                        animate={isInView ? { scale: 1 } : { scale: 0 }}
-                        transition={{ duration: 0.4, delay: 0.4 + (index * 0.15) + 0.6, type: "spring" }}
-                     />
-                  </motion.div>
-                  
-                  {/* Stat Content - Middle aligned with the dot */}
+                    transition={{ duration: 0.8, delay: 0.2 + (index * 1.2), ease: "circOut" }}
+                  />
+
+                  {/* Dot at top of line - Separated to prevent scaling distortion */}
                   <motion.div 
-                    className="absolute left-1/2 -translate-x-1/2 translate-y-1/4 w-full max-w-[220px] flex justify-center z-10 text-center"
-                    style={{ bottom: `${stat.height * 100}%` }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.5, delay: 0.2 + (index * 0.15) }}
+                    className="absolute left-1/2 w-4 h-4 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
+                    style={{ bottom: `calc(${stat.height * 100}% - 8px)`, x: "-50%" }} 
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 + (index * 1.2) + 0.8, type: "spring" }}
+                  />
+                  
+                  {/* Stat Content - Right aligned to the dot */}
+                  <motion.div 
+                    className="absolute left-[calc(50%+1rem)] w-full max-w-[220px] flex justify-start z-10 text-left"
+                    style={{ bottom: `calc(${stat.height * 100}% - 2.5rem)` }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ duration: 0.5, delay: 0.2 + (index * 1.2) + 0.8 }}
                   >
                     <div className="w-full">
                       <p 

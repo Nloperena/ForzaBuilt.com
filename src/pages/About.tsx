@@ -156,7 +156,7 @@ const About = () => {
 
             {/* Bullet Points Section */}
             <motion.div
-              className="max-w-4xl mx-auto"
+              className="max-w-4xl mx-auto pb-10"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
