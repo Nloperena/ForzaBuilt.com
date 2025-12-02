@@ -35,6 +35,17 @@ const About = () => {
   };
 
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const videoElement = e.currentTarget;
+    const error = videoElement.error;
+    if (error) {
+      console.error('Video error details:', {
+        code: error.code,
+        message: error.message,
+        networkState: videoElement.networkState,
+        readyState: videoElement.readyState,
+        src: heroVideoUrl
+      });
+    }
     console.warn('About page video failed to load, showing fallback', e);
     setVideoError(true);
     setVideoLoaded(true);
@@ -55,11 +66,10 @@ const About = () => {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             onLoadedData={handleVideoLoad}
             onCanPlay={handleVideoLoad}
             onError={handleVideoError}
-            onLoadedMetadata={handleVideoLoad}
             onLoadStart={() => console.log('About page video loading started')}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
               videoLoaded && !videoError ? 'opacity-100' : 'opacity-0'
