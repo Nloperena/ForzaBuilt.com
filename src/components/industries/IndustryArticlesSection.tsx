@@ -50,7 +50,7 @@ const IndustryArticlesSection: React.FC<IndustryArticlesSectionProps> = ({ indus
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-white font-poppins font-normal text-center leading-tight" 
-          style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)', marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)' }}
+          style={{ fontSize: 'clamp(28px, 3vw, 56px)', marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)' }}
         >
           {toTitleCase(industryName)} Articles
         </motion.h2>

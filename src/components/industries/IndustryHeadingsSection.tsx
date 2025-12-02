@@ -20,7 +20,7 @@ const IndustryHeadingsSection: React.FC<IndustryHeadingsSectionProps> = ({ indus
         >
           <h3 
             className="font-regular text-center leading-none break-words font-poppins text-[#1b3764]"
-            style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)', maxWidth: '1100px' }}
+            style={{ fontSize: 'clamp(28px, 3vw, 56px)', maxWidth: '1100px' }}
           >
             Building High-Performing<br />
             {`${industryTitle.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape`}<br />

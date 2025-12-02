@@ -121,7 +121,7 @@ const About = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               >
-                30 years of engineering superior adhesives, sealants, and tapes.
+                30 Years of Engineering Superior Adhesives, Sealants, and Tapes.
               </motion.h3>
             </motion.div>
           </div>
