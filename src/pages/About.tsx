@@ -16,6 +16,7 @@ const RaisingBarsStats = () => {
 
 const About = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const heroVideoUrl = '/Forza Building Video.mp4';
 
   useEffect(() => {
@@ -33,8 +34,9 @@ const About = () => {
     setVideoLoaded(true);
   };
 
-  const handleVideoError = () => {
-    console.warn('About page video failed to load, showing fallback');
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    console.warn('About page video failed to load, showing fallback', e);
+    setVideoError(true);
     setVideoLoaded(true);
   };
 
@@ -53,13 +55,14 @@ const About = () => {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             onLoadedData={handleVideoLoad}
             onCanPlay={handleVideoLoad}
             onError={handleVideoError}
+            onLoadedMetadata={handleVideoLoad}
             onLoadStart={() => console.log('About page video loading started')}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-              videoLoaded ? 'opacity-100' : 'opacity-0'
+              videoLoaded && !videoError ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ 
               zIndex: 1,
@@ -100,7 +103,7 @@ const About = () => {
               <motion.h3
                 className="font-regular text-center leading-tight font-poppins text-white"
                 style={{ 
-                  fontSize: 'clamp(0.9rem, 1.8vw + 0.3rem, 2.7rem)',
+                  fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
                   maxWidth: '1100px',
                   marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
                 }}
@@ -108,7 +111,7 @@ const About = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
               >
-                We engineer superior adhesives, sealants, and tapes <br/> for the toughest industrial applications. From marine <br/> to transportation, we provide solutions that last.
+                30 years of engineering superior adhesives, sealants, and tapes.
               </motion.h3>
             </motion.div>
           </div>
