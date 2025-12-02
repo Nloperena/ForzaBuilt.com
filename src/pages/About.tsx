@@ -106,7 +106,7 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h3 className="font-poppins mb-4 text-[#1B3764]" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 3rem)' }}>Meet Forza</h3>
+                <h3 className="font-poppins mb-4 text-[#1B3764]" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>Meet Forza</h3>
                 <p className="text-[#1B3764]/80 font-poppins mb-8 leading-relaxed text-lg">
                   We engineer superior adhesives, sealants, and tapes for the toughest industrial applications. From marine to transportation, we provide solutions that last.
                 </p>
@@ -165,7 +165,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="mb-8 border-b border-white/20 pb-4">
-                <h3 className="font-poppins" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 3rem)' }}>What We Manufacture</h3>
+                <h3 className="font-poppins" style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>What We Manufacture</h3>
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

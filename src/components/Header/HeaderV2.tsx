@@ -92,6 +92,8 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   const isHome = location.pathname === '/';
   const isIndustry = location.pathname.startsWith('/industries');
   const isAbout = location.pathname === '/about';
+  const isBlog = location.pathname.startsWith('/blog');
+  const isProduct = location.pathname.startsWith('/products') || location.pathname.startsWith('/product');
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isScrollingUp, setIsScrollingUp] = React.useState(false);
     const [lastScrollY, setLastScrollY] = React.useState(0);
@@ -119,17 +121,17 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
    }, [lastScrollY]);
    const isLight = mode === 'light' || mode === 'light2';
 
-  const headerBg = (isHome || isIndustry || isAbout) && !isScrolled
+  const headerBg = (isHome || isIndustry || isAbout || isBlog || isProduct) && !isScrolled
     ? 'bg-transparent'
      : isLight
        ? 'bg-white/90 backdrop-blur-md'
        : 'bg-[#1b3764]/70 backdrop-blur-md';
-  const isTransparent = (isHome || isIndustry || isAbout) && !isScrolled;
+  const isTransparent = (isHome || isIndustry || isAbout || isBlog || isProduct) && !isScrolled;
   const baseNavText = isTransparent ? 'text-white' : 'text-[#1B3764]';
    const headerShadow = isScrolled ? 'shadow-sm' : '';
 
   // Keep header fixed on transparent routes to avoid layout jumps
-  const positionClass = (isHome || isIndustry || isAbout) ? 'fixed' : 'sticky';
+  const positionClass = (isHome || isIndustry || isAbout || isBlog || isProduct) ? 'fixed' : 'sticky';
   
   // Desktop: hide navbar when scrolling down past 100px
   const shouldHideOnDesktop = isScrollingUp && lastScrollY > 100;

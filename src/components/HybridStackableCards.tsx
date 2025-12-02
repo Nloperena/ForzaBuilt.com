@@ -153,43 +153,43 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       case 'marine':
         return [
           {
-            id: 'marine-yacht',
-            title: "Marine Yacht Solutions",
-            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: 'marine-purpose-built',
+            title: "Purpose-Built",
+            subheading: "",
+            description: "Every Marine solution starts with your specific application—built with purpose from the ground up.",
             listItems: [
-              "Lorem ipsum dolor sit amet",
-              "Consectetur adipiscing elit",
-              "Sed do eiusmod tempor",
-              "Incididunt ut labore et dolore magna aliqua"
+              "Engineered for real-world use, delivering results the first time and every time.",
+              "Tailored to your specialized Marine needs—never one-size-fits-all.",
+              "Innovation grounded in chemistry and real-world insight.",
+              "Custom, validated solutions delivered fast—no guesswork, no waste."
             ],
             color: getCardGradient(0),
             image: MarineYachtImage
           },
           {
-            id: 'marine-pontoon',
-            title: "Marine Pontoon Solutions",
-            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: 'marine-performance',
+            title: "Performance",
+            subheading: "",
+            description: "Marine experience and science powering performance where it matters most.",
             listItems: [
-              "Lorem ipsum dolor sit amet",
-              "Consectetur adipiscing elit",
-              "Sed do eiusmod tempor",
-              "Incididunt ut labore et dolore magna aliqua"
+              "Decades of in-field know-how backed by rigorous testing.",
+              "Marine-specific formulas built for tough environments.",
+              "A complete portfolio that gives you exactly what you need.",
+              "Smarter chemistry for faster application and less waste."
             ],
             color: getCardGradient(1),
             image: MarinePontoonImage
           },
           {
-            id: 'marine-speedboat',
-            title: "Marine Speedboat Solutions",
-            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            id: 'marine-guaranteed-strength',
+            title: "Guaranteed Strength",
+            subheading: "",
+            description: "Engineered for your toughest Marine applications—with strength you can trust.",
             listItems: [
-              "Lorem ipsum dolor sit amet",
-              "Consectetur adipiscing elit",
-              "Sed do eiusmod tempor",
-              "Incididunt ut labore et dolore magna aliqua"
+              "Proven strength validated in-house and in the field.",
+              "Built to withstand demanding Marine conditions without compromise.",
+              "Made in the USA for consistent, reliable performance.",
+              "If it bonds, seals, or sticks, we make it—or will help you create it."
             ],
             color: getCardGradient(2),
             image: MarineSpeedboatImage
@@ -202,10 +202,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-purpose-built',
             title: "Purpose-Built",
             subheading: "",
-            description: "Every solution starts with your application—built with purpose from the ground up.",
+            description: "Every Transportation solution starts with your specific application—built with purpose from the ground up.",
             listItems: [
               "Engineered for real-world use, delivering results the first time and every time.",
-              "Tailored to your industry—never one-size-fits-all.",
+              "Tailored to your specialized Transportation needs—never one-size-fits-all.",
               "Innovation grounded in chemistry and real-world insight.",
               "Custom, validated solutions delivered fast—no guesswork, no waste."
             ],
@@ -216,10 +216,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-performance',
             title: "Performance",
             subheading: "",
-            description: "Experience and science powering performance where it matters most.",
+            description: "Transportation experience and science powering performance where it matters most.",
             listItems: [
               "Decades of in-field know-how backed by rigorous testing.",
-              "Industry-specific formulas built for tough environments.",
+              "Transportation-specific formulas built for tough environments.",
               "A complete portfolio that gives you exactly what you need.",
               "Smarter chemistry for faster application and less waste."
             ],
@@ -230,12 +230,12 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             id: 'transportation-guaranteed-strength',
             title: "Guaranteed Strength",
             subheading: "",
-            description: "Engineered for your toughest applications—with strength you can trust.",
+            description: "Engineered for your toughest Transportation applications—with strength you can trust.",
             listItems: [
               "Proven strength validated in-house and in the field.",
-              "Built to withstand demanding conditions without compromise.",
+              "Built to withstand demanding Transportation conditions without compromise.",
               "Made in the USA for consistent, reliable performance.",
-              "If it bonds, seals, or sticks, we make it strong—or help you create it."
+              "If it bonds, seals, or sticks, we make it—or will help you create it."
             ],
             color: getCardGradient(0),
             image: RvStackImage
@@ -245,43 +245,43 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       case 'construction':
         return [
           {
-            id: 'construction-building',
-            title: "Building Envelope & Materials",
-            subheading: "Comprehensive bonding and sealing solutions",
-            description: "Custom-formulated construction bonding, sealing, and adhering chemistries designed to drive construction project success over the long haul.",
+            id: 'construction-purpose-built',
+            title: "Purpose-Built",
+            subheading: "",
+            description: "Every Construction solution starts with your specific application—built with purpose from the ground up.",
             listItems: [
-              "Insulation installation & HVAC wrapping",
-              "Concrete applications & crack repair",
-              "Interior & exterior waterproofing",
-              "Wide range of material compatibility"
+              "Engineered for real-world use, delivering results the first time and every time.",
+              "Tailored to your specialized Construction needs—never one-size-fits-all.",
+              "Innovation grounded in chemistry and real-world insight.",
+              "Custom, validated solutions delivered fast—no guesswork, no waste."
             ],
             color: getCardGradient(0),
             image: ConstructionBuildingImage
           },
           {
-            id: 'construction-custom',
-            title: "Custom Formulations & R&D",
-            subheading: "Tailor-made construction solutions",
-            description: "Full R&D lab capabilities delivering tailor-made solutions rugged enough to meet the most demanding construction needs with US-based manufacturing.",
+            id: 'construction-performance',
+            title: "Performance",
+            subheading: "",
+            description: "Construction experience and science powering performance where it matters most.",
             listItems: [
-              "Full R&D formulations lab",
-              "Global vendor network access",
-              "US-based manufacturing & packaging",
-              "Demanding construction environments"
+              "Decades of in-field know-how backed by rigorous testing.",
+              "Construction-specific formulas built for tough environments.",
+              "A complete portfolio that gives you exactly what you need.",
+              "Smarter chemistry for faster application and less waste."
             ],
             color: getCardGradient(1),
             image: ConstructionCustomImage
           },
           {
-            id: 'construction-tiltup',
-            title: "Lorem Ipsum Solutions",
-            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: 'construction-guaranteed-strength',
+            title: "Guaranteed Strength",
+            subheading: "",
+            description: "Engineered for your toughest Construction applications—with strength you can trust.",
             listItems: [
-              "Lorem ipsum dolor sit amet",
-              "Consectetur adipiscing elit",
-              "Sed do eiusmod tempor",
-              "Incididunt ut labore et dolore magna aliqua"
+              "Proven strength validated in-house and in the field.",
+              "Built to withstand demanding Construction conditions without compromise.",
+              "Made in the USA for consistent, reliable performance.",
+              "If it bonds, seals, or sticks, we make it—or will help you create it."
             ],
             color: getCardGradient(2),
             image: ConstructionTiltUpImage
@@ -291,43 +291,43 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       case 'industrial':
         return [
           {
-            id: 'industrial-structural',
-            title: "Industrial Structural Adhesives",
-            subheading: "High-strength bonding for manufacturing",
-            description: "Premium structural adhesives engineered for demanding manufacturing environments with superior bonding strength for metal, plastic, and composite applications.",
+            id: 'industrial-purpose-built',
+            title: "Purpose-Built",
+            subheading: "",
+            description: "Every Industrial solution starts with your specific application—built with purpose from the ground up.",
             listItems: [
-              "High-strength bonding up to 3,500 PSI",
-              "Temperature resistance -40°F to +200°F",
-              "Chemical resistance to industrial fluids",
-              "VOC-compliant workplace safety"
+              "Engineered for real-world use, delivering results the first time and every time.",
+              "Tailored to your specialized Industrial needs—never one-size-fits-all.",
+              "Innovation grounded in chemistry and real-world insight.",
+              "Custom, validated solutions delivered fast—no guesswork, no waste."
             ],
             color: getCardGradient(0),
             image: IndustrialHandshakeImage
           },
           {
-            id: 'industrial-manufacturing',
-            title: "Manufacturing Adhesive Solutions",
-            subheading: "Comprehensive bonding systems",
-            description: "Industrial adhesive solutions designed for manufacturing environments, providing reliable bonding for equipment assembly, production lines, and maintenance operations.",
+            id: 'industrial-performance',
+            title: "Performance",
+            subheading: "",
+            description: "Industrial experience and science powering performance where it matters most.",
             listItems: [
-              "Equipment assembly & machinery bonding",
-              "Production line sealing & gasketing",
-              "Maintenance & repair applications",
-              "Factory automation component bonding"
+              "Decades of in-field know-how backed by rigorous testing.",
+              "Industrial-specific formulas built for tough environments.",
+              "A complete portfolio that gives you exactly what you need.",
+              "Smarter chemistry for faster application and less waste."
             ],
             color: getCardGradient(1),
             image: IndustrialRoofCurbImage
           },
           {
-            id: 'industrial-placeholder',
-            title: "Advanced Industrial Solutions",
-            subheading: "Partnership in Performance",
-            description: "New industrial adhesive and bonding solutions are in development to meet the evolving needs of modern manufacturing through strategic partnership.",
+            id: 'industrial-guaranteed-strength',
+            title: "Guaranteed Strength",
+            subheading: "",
+            description: "Engineered for your toughest Industrial applications—with strength you can trust.",
             listItems: [
-              "Innovative bonding technologies",
-              "Enhanced performance characteristics",
-              "Expanded application capabilities",
-              "Next-generation industrial solutions"
+              "Proven strength validated in-house and in the field.",
+              "Built to withstand demanding Industrial conditions without compromise.",
+              "Made in the USA for consistent, reliable performance.",
+              "If it bonds, seals, or sticks, we make it—or will help you create it."
             ],
             color: getCardGradient(2),
             image: IndustrialMattressImage
@@ -337,43 +337,43 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       case 'composites':
         return [
           {
-            id: 'composites-structural',
-            title: "Structural Applications & Performance",
-            subheading: "Ultra-high-tech and ultra-high-strength solutions",
-            description: "Growing portfolio of ultra-high-tech structural adhesive solutions that deliver project success for the most demanding composite applications.",
+            id: 'composites-purpose-built',
+            title: "Purpose-Built",
+            subheading: "",
+            description: "Every Composites solution starts with your specific application—built with purpose from the ground up.",
             listItems: [
-              "Turbine, blade & teeth integrity",
-              "Structural rigidity for aviation",
-              "High-tech composite requirements",
-              "Cutting-edge chemistries & technologies"
+              "Engineered for real-world use, delivering results the first time and every time.",
+              "Tailored to your specialized Composites needs—never one-size-fits-all.",
+              "Innovation grounded in chemistry and real-world insight.",
+              "Custom, validated solutions delivered fast—no guesswork, no waste."
             ],
             color: getCardGradient(0),
             image: CompositesStructuralImage
           },
           {
-            id: 'composites-custom',
-            title: "Custom Formulations & R&D",
-            subheading: "Tailor-made high-tech solutions",
-            description: "Full R&D lab capabilities delivering tailor-made solutions rugged enough to meet the most demanding high-tech and aviation composite industry needs.",
+            id: 'composites-performance',
+            title: "Performance",
+            subheading: "",
+            description: "Composites experience and science powering performance where it matters most.",
             listItems: [
-              "Full R&D formulations lab",
-              "Global vendor network access",
-              "US-based manufacturing capabilities",
-              "High-tech & aviation environments"
+              "Decades of in-field know-how backed by rigorous testing.",
+              "Composites-specific formulas built for tough environments.",
+              "A complete portfolio that gives you exactly what you need.",
+              "Smarter chemistry for faster application and less waste."
             ],
             color: getCardGradient(1),
             image: CompositesCustomImage
           },
           {
-            id: 'composites-boat',
-            title: "Marine Composite Solutions",
-            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            id: 'composites-guaranteed-strength',
+            title: "Guaranteed Strength",
+            subheading: "",
+            description: "Engineered for your toughest Composites applications—with strength you can trust.",
             listItems: [
-              "Lorem ipsum dolor sit amet",
-              "Consectetur adipiscing elit",
-              "Sed do eiusmod tempor",
-              "Incididunt ut labore et dolore magna aliqua"
+              "Proven strength validated in-house and in the field.",
+              "Built to withstand demanding Composites conditions without compromise.",
+              "Made in the USA for consistent, reliable performance.",
+              "If it bonds, seals, or sticks, we make it—or will help you create it."
             ],
             color: getCardGradient(2),
             image: CompositesBoatImage
@@ -383,43 +383,43 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
       case 'insulation':
         return [
           {
-            id: 'insulation-adhesives',
-            title: "Insulation Adhesive Solutions",
-            subheading: "Legendary adhesives for insulation applications",
-            description: "Legendary line of insulation adhesives with numerous technologies and application solutions for adhering fabric liners, transfer tapes, and thermal blocking.",
+            id: 'insulation-purpose-built',
+            title: "Purpose-Built",
+            subheading: "",
+            description: "Every Insulation solution starts with your specific application—built with purpose from the ground up.",
             listItems: [
-              "Fabric liners to steel bonding",
-              "Low-temperature flexible transfer tapes",
-              "High-strength wall insulation tapes",
-              "Non-flammable sprayable adhesives"
+              "Engineered for real-world use, delivering results the first time and every time.",
+              "Tailored to your specialized Insulation needs—never one-size-fits-all.",
+              "Innovation grounded in chemistry and real-world insight.",
+              "Custom, validated solutions delivered fast—no guesswork, no waste."
             ],
             color: getCardGradient(0),
             image: InsulationAdhesivesImage
           },
           {
-            id: 'insulation-custom',
-            title: "Custom Insulation Solutions",
-            subheading: "Tailor-made for demanding insulation needs",
-            description: "Full R&D lab capabilities delivering specialized solutions rugged enough to meet demanding insulation installation situations while remaining simple and intuitive.",
+            id: 'insulation-performance',
+            title: "Performance",
+            subheading: "",
+            description: "Insulation experience and science powering performance where it matters most.",
             listItems: [
-              "Custom-formulated unique needs",
-              "Rugged specialized installations",
-              "Simple modern industrial environments",
-              "Exceeding customer expectations"
+              "Decades of in-field know-how backed by rigorous testing.",
+              "Insulation-specific formulas built for tough environments.",
+              "A complete portfolio that gives you exactly what you need.",
+              "Smarter chemistry for faster application and less waste."
             ],
             color: getCardGradient(1),
             image: InsulationCustomImage
           },
           {
-            id: 'insulation-pipe',
-            title: "Lorem Ipsum Solutions",
-            subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            id: 'insulation-guaranteed-strength',
+            title: "Guaranteed Strength",
+            subheading: "",
+            description: "Engineered for your toughest Insulation applications—with strength you can trust.",
             listItems: [
-              "Lorem ipsum dolor sit amet",
-              "Consectetur adipiscing elit",
-              "Sed do eiusmod tempor",
-              "Incididunt ut labore et dolore magna aliqua"
+              "Proven strength validated in-house and in the field.",
+              "Built to withstand demanding Insulation conditions without compromise.",
+              "Made in the USA for consistent, reliable performance.",
+              "If it bonds, seals, or sticks, we make it—or will help you create it."
             ],
             color: getCardGradient(2),
             image: InsulationPipeImage

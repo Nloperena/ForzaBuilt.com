@@ -25,8 +25,8 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
           title: 'Yacht / Boat Applications',
           subtitle: '',
           summary: 'Discover yacht construction solutions for hull bonding, deck assembly, and interior finishing.',
-          previewImage: '/New X-Ray Dimensions/New Marine/NEW_YACHT.svg',
-          svgSrc: '/New X-Ray Dimensions/New Marine/NEW_YACHT.svg'
+          previewImage: '/New X-Ray Dimensions/New Marine/NEW_YACHT-1.svg',
+          svgSrc: '/New X-Ray Dimensions/New Marine/NEW_YACHT-1.svg'
         }
       ];
     }
