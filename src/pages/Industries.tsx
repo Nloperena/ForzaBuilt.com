@@ -4,6 +4,7 @@ import IndustriesSectionAlt from '../components/IndustriesSectionAlt';
 import FooterV2 from '../components/FooterV2';
 import IndustryHeroBanner from '../components/industries/IndustryHeroBanner';
 import ProductQuickViewModal from '../components/industries/ProductQuickViewModal';
+import ExperienceBetterBanner from '../components/ExperienceBetterBanner';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Industries = () => {
@@ -40,7 +41,7 @@ const Industries = () => {
               industryTitle="Industries We Serve"
               variant="simple"
               useTitleCase={true}
-              subtitle="Serving every industrial sector since 1979." />
+              subtitle="Serving Every Industrial Sector Since 1979." />
           </div>
 
           {/* Industries Grid Section */}
@@ -57,6 +58,9 @@ const Industries = () => {
         product={selectedProduct}
         onClose={closeModal}
       />
+
+      {/* Performance Elevated Banner */}
+      <ExperienceBetterBanner />
       
       {/* Footer */}
       <FooterV2 />

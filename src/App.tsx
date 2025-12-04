@@ -27,7 +27,6 @@ import TransportationV2Page from './pages/industries/transportation-v2';
 import IndustryPageV3 from './pages/industries/[industry]-V3';
 import ProductCategoryPage from './pages/products/[productCategory]';
 import ProductDetailPage from './pages/products/[productId]';
-import RuggedRed from './pages/products/RuggedRed';
 import MSPage from './pages/products/MS';
 import IndustrialDatasheetPage from './pages/IndustrialDatasheetPage';
 import DatasheetDemo from './pages/DatasheetDemo';
@@ -81,7 +80,6 @@ const App = () => {
               <Route path="/industries/:industry/v3" element={<IndustryPageV3 />} />
               <Route path="/industries/:industry" element={<IndustryPage />} />
               <Route path="/industries/transportation-v2" element={<TransportationV2Page />} />
-              <Route path="/products/ruggedred" element={<RuggedRed />} />
               <Route path="/ModifiedSaline" element={<MSPage />} />
               <Route path="/products/:productCategory" element={<ProductCategoryPage />} />
               <Route path="/product/:productId" element={<ProductDetailPage />} />

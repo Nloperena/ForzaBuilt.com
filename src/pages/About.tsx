@@ -106,7 +106,7 @@ const About = () => {
                   fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
                 }}
               >
-                MEET FORZA
+                Meet Forza
               </h1>
 
               {/* Subtitle - Regular Poppins */}
