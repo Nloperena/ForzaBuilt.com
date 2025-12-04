@@ -51,6 +51,10 @@ const InteractiveProductsSectionV5 = () => {
   const [selectedProduct, setSelectedProduct] = useState(0);
   const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
   const [previousProduct, setPreviousProduct] = useState(0);
+  // New state to track visual background image for smooth transitions
+  const [backingProduct, setBackingProduct] = useState<number>(0);
+  const prevDisplayedRef = useRef<number>(0);
+  
   const [isLocked, setIsLocked] = useState(false);
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
@@ -95,6 +99,16 @@ const InteractiveProductsSectionV5 = () => {
       resetTimer();
     }
   };
+
+  const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
+
+  // Update backing product whenever displayed product changes
+  useEffect(() => {
+    if (prevDisplayedRef.current !== displayedProduct) {
+      setBackingProduct(prevDisplayedRef.current);
+      prevDisplayedRef.current = displayedProduct;
+    }
+  }, [displayedProduct]);
 
   const loadModalProducts = async (category: 'bond' | 'seal' | 'tape' | 'ruggedred') => {
     try {
@@ -231,7 +245,6 @@ const InteractiveProductsSectionV5 = () => {
                   mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                 }`}>
                   <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{(() => {
-                    const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
                     const title = products[displayedProduct].title === 'SEALANTS' ? 'SEAL' : products[displayedProduct].title;
                     return toTitleCase(title);
                   })()}</span>
@@ -244,25 +257,28 @@ const InteractiveProductsSectionV5 = () => {
               </div>
 
               {(() => {
-                const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
-                const previousDisplayedProduct = hoveredProduct !== null && !isLocked
-                  ? (previousProduct !== null ? previousProduct : selectedProduct)
-                  : previousProduct;
+                // Use the component-level displayedProduct we calculated above
+                
+                // Show backing image if it's different from current
+                const shouldShowBacking = backingProduct !== displayedProduct;
 
                 return (
                   <>
-                    {/* Previous product image */}
-                    <img
-                      src={products[previousDisplayedProduct].image}
-                      alt={products[previousDisplayedProduct].title}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      style={{
-                        objectPosition: 'center 70%',
-                        transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`
-                      }}
-                    />
+                    {/* Backing product image - always stays behind to prevent white gaps */}
+                    {shouldShowBacking && (
+                      <img
+                        src={products[backingProduct].image}
+                        alt={products[backingProduct].title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        style={{
+                          objectPosition: 'center 70%',
+                          transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`,
+                          zIndex: 1
+                        }}
+                      />
+                    )}
 
-                    {/* Current product image */}
+                    {/* Current product image - animates in over the backing image */}
                     <img
                       key={displayedProduct}
                       src={products[displayedProduct].image}
@@ -270,7 +286,8 @@ const InteractiveProductsSectionV5 = () => {
                       className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
                       style={{
                         objectPosition: 'center 70%',
-                        transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`
+                        transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`,
+                        zIndex: 2
                       }}
                     />
                   </>
