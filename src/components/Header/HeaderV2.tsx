@@ -167,11 +167,13 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
 
             {/* Industries */}
             <div className="relative group" onMouseLeave={() => pinnedDropdown !== 'industries' && setPinnedDropdown(null)}>
-              <div onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setPinnedDropdown(pinnedDropdown === 'industries' ? null : 'industries');
-              }} className={`px-1.5 lg:px-2 xl:px-2.5 2xl:px-3 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 group-hover:rounded-t-md group-hover:rounded-b-none border border-transparent cursor-pointer`}>Industries ▾</div>
+              <Link 
+                to="/industries"
+                onMouseEnter={() => setPinnedDropdown('industries')}
+                className={`px-1.5 lg:px-2 xl:px-2.5 2xl:px-3 py-1 lg:py-1.5 xl:py-2 2xl:py-2.5 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all group-hover:bg-[#2c476e] group-hover:text-white group-hover:font-bold group-hover:shadow-xl group-hover:mb-0 group-hover:relative group-hover:z-10 group-hover:rounded-t-md group-hover:rounded-b-none border border-transparent cursor-pointer`}
+              >
+                Industries ▾
+              </Link>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150">
                 <div className="mt-0 z-20 relative">
                   <HoverDropdown items={industriesItems} variant="industries" />

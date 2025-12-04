@@ -9,9 +9,19 @@ interface IndustryHeroBannerProps {
   logo?: string;
   color?: string;
   variant?: 'simple' | 'overlay';
+  subtitle?: string;
+  useTitleCase?: boolean;
 }
 
-const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, industryTitle, logo, color = '#1B3764', variant = 'simple' }) => {
+const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ 
+  videoUrl, 
+  industryTitle, 
+  logo, 
+  color = '#1B3764', 
+  variant = 'simple',
+  subtitle,
+  useTitleCase = false
+}) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [iconLoaded, setIconLoaded] = useState(false);
 
@@ -107,7 +117,9 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
                   fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
                 }}
               >
-                {industryTitle.toUpperCase()}
+                {useTitleCase 
+                  ? industryTitle.replace(/\b\w/g, c => c.toUpperCase())
+                  : industryTitle.toUpperCase()}
               </h1>
               {logo && (
                 <div className="relative" style={{ width: 'clamp(5rem, 8vw, 14rem)', height: 'clamp(5rem, 8vw, 14rem)' }}>
@@ -131,21 +143,42 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
             </div>
 
             {/* High-Performance Subtitle - Regular Poppins */}
-            <motion.h3
-              className="font-regular text-center leading-tight font-poppins text-white"
-              style={{ 
-                fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
-                maxWidth: '1100px',
-                marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-            >
-              Building High-Performing<br />
-              {`${industryTitle.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape`}<br />
-              {'&'} Sealant Solutions.
-            </motion.h3>
+            {subtitle ? (
+              <motion.h3
+                className="font-regular text-center leading-tight font-poppins text-white"
+                style={{ 
+                  fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
+                  maxWidth: '1100px',
+                  marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+              >
+                {subtitle.split('\n').map((line, i) => (
+                  <React.Fragment key={i}>
+                    {line}
+                    {i < subtitle.split('\n').length - 1 && <br />}
+                  </React.Fragment>
+                ))}
+              </motion.h3>
+            ) : (
+              <motion.h3
+                className="font-regular text-center leading-tight font-poppins text-white"
+                style={{ 
+                  fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
+                  maxWidth: '1100px',
+                  marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+              >
+                Building High-Performing<br />
+                {`${industryTitle.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape`}<br />
+                {'&'} Sealant Solutions.
+              </motion.h3>
+            )}
           </motion.div>
         </div>
       </section>
@@ -209,7 +242,9 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ videoUrl, indus
               fontSize: 'clamp(2rem, 5vw + 0.5rem, 6rem)'
             }}
           >
-            {industryTitle.toUpperCase()}
+            {useTitleCase 
+              ? industryTitle.replace(/\b\w/g, c => c.toUpperCase())
+              : industryTitle.toUpperCase()}
           </h1>
           {logo && (
             <div className="relative" style={{ width: 'clamp(4rem, 8vw, 12rem)', height: 'clamp(4rem, 8vw, 12rem)' }}>

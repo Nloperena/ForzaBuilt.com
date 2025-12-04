@@ -181,17 +181,12 @@ const HeaderV3: React.FC = () => {
               onMouseEnter={() => setOpenDropdown('industries')}
               onMouseLeave={() => pinnedDropdown !== 'industries' && setOpenDropdown(null)}
             >
-              <div 
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setPinnedDropdown(pinnedDropdown === 'industries' ? null : 'industries');
-                  setOpenDropdown('industries');
-                }}
+              <Link 
+                to="/industries"
                 className={`px-2 lg:px-2.5 xl:px-3 2xl:px-3.5 py-2 lg:py-2 xl:py-2.5 2xl:py-3 rounded-md font-normal text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] capitalize ${baseNavText} transition-all hover:bg-[#2c476e] hover:text-white hover:font-bold hover:shadow-lg border border-transparent cursor-pointer`}
               >
                 Industries ▾
-              </div>
+              </Link>
               <ScalableDropdown 
                 items={industriesItems} 
                 variant="industries" 
