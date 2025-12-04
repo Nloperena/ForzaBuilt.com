@@ -13,6 +13,13 @@ interface Product {
   slug: string;
 }
 
+// Function to convert ALL CAPS to Title Case
+const toTitleCase = (str: string): string => {
+  return str.toLowerCase().split(' ').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ');
+};
+
 const products: Product[] = [
   {
     title: "ADHESIVES",
@@ -225,7 +232,8 @@ const InteractiveProductsSectionV5 = () => {
                 }`}>
                   <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{(() => {
                     const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
-                    return products[displayedProduct].title === 'SEALANTS' ? 'SEAL' : products[displayedProduct].title;
+                    const title = products[displayedProduct].title === 'SEALANTS' ? 'SEAL' : products[displayedProduct].title;
+                    return toTitleCase(title);
                   })()}</span>
                 </div>
                 <div className={`text-white text-[clamp(10px,0.95vw,14px)] ${
@@ -300,7 +308,7 @@ const InteractiveProductsSectionV5 = () => {
                               ? 'clamp(28px, 4vw, 128px)'
                               : 'clamp(22px, 3.2vw, 48px)',
                           }}>
-                            {product.title}
+                            {toTitleCase(product.title)}
                           </h3>
                         </div>
                       );

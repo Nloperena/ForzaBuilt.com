@@ -17,6 +17,13 @@ interface Brochure {
 
 type AnimationState = 'idle' | 'reading';
 
+// Function to convert ALL CAPS to Title Case
+const toTitleCase = (str: string): string => {
+  return str.toLowerCase().split(' ').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ');
+};
+
 const LibrarySectionV3 = () => {
   const [hoveredBrochure, setHoveredBrochure] = useState<string | null>(null);
   const [selectedBrochure, setSelectedBrochure] = useState<Brochure | null>(null);
@@ -169,7 +176,7 @@ const LibrarySectionV3 = () => {
           
           {/* Name label below brochure */}
           <div 
-            className="w-full text-center font-poppins font-bold text-slate-700 tracking-wide uppercase pointer-events-none z-30"
+            className="w-full text-center font-poppins font-bold text-slate-700 tracking-wide pointer-events-none z-30"
             style={{
               fontSize: 'clamp(0.55rem, 1.5vw, 0.7rem)',
               textShadow: '0 1px 0 rgba(255,255,255,0.7)',
@@ -259,7 +266,7 @@ const LibrarySectionV3 = () => {
         {animationState === 'reading' && selectedBrochure && (
           <PDFViewerV2
             pdfUrl={selectedBrochure.pdfUrl}
-            bookTitle={selectedBrochure.title}
+            bookTitle={toTitleCase(selectedBrochure.title)}
             bookSubtitle={selectedBrochure.label}
             bookColor="#2c476e"
             onClose={closeModal}

@@ -182,21 +182,21 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   return (
     <section className="bg-gray-100 text-gray-900 relative z-[30]" style={{ paddingTop: 'clamp(2rem, 4vw, 4rem)', paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
       <div className="max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 2rem)', paddingRight: 'clamp(1rem, 2vw, 2rem)' }}>
-          <motion.div 
-            className="text-center"
-            style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+        <motion.div 
+          className="text-center"
+          style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
             <h2 
               className="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" 
               style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
             >
-              {formattedIndustryTitle} Products
-            </h2>
-          </motion.div>
+            {formattedIndustryTitle} Products
+          </h2>
+        </motion.div>
 
         <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
           {/* Filter Sidebar */}

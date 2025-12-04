@@ -11,6 +11,37 @@ interface ApproachItem {
   video?: string;
 }
 
+// Function to convert ALL CAPS titles to proper Title Case
+const toTitleCase = (str: string): string => {
+  // Handle special cases first
+  if (str === 'GREENER CHEMISTRIES') {
+    return 'Innovation & Greener Chemistries';
+  }
+  
+  // Split by spaces and hyphens, preserving the separators
+  const parts = str.split(/([\s-])/);
+  
+  return parts
+    .map((part, index) => {
+      // If it's a separator (space or hyphen), keep it as is
+      if (part === ' ' || part === '-') {
+        return part;
+      }
+      
+      // Convert to lowercase first
+      const lower = part.toLowerCase();
+      
+      // Preserve R&D
+      if (lower === 'r&d') return 'R&D';
+      // Preserve USA
+      if (lower === 'usa') return 'USA';
+      
+      // Capitalize first letter of each word
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    })
+    .join('');
+};
+
 const approachItems: ApproachItem[] = [
   {
     title: "REAL WORLD KNOW HOW",
@@ -250,23 +281,25 @@ const ApproachSectionUnified = () => {
                         key={index}
                         onClick={() => handleItemChange(index)}
                         onMouseEnter={() => handleItemChange(index)}
-                        className="block text-left"
+                        className="w-full text-left transition-all duration-500 cursor-pointer"
                         style={{ transform: 'none', width: 'fit-content' }}
                       >
                         <h3 
                           ref={(el) => { titleRefs.current[index] = el; }}
-                          className={`font-poppins font-bold leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap block ${
+                          className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap block transition-all duration-500 ease-out ${
                             selectedItem === index
-                              ? 'text-[#F2611D]'
-                              : 'text-white'
+                              ? 'text-[#F2611D] font-bold'
+                              : 'text-white font-normal'
                           }`}
                           style={{
-                            fontSize: 'clamp(14px, 1.5vw + 0.4rem, 48px)',
+                            fontSize: selectedItem === index
+                              ? 'clamp(20px, 2vw + 0.5rem, 56px)'
+                              : 'clamp(14px, 1.5vw + 0.4rem, 48px)',
                             transform: 'none',
                             display: 'block'
                           }}
                         >
-                          {item.title}
+                          {toTitleCase(item.title)}
                         </h3>
                       </button>
                     ))}
@@ -365,7 +398,7 @@ const ApproachSectionUnified = () => {
                           fontSize: 'clamp(16px, 1.5vw + 0.5rem, 32px)',
                           lineHeight: '1.2'
                         }}>
-                          {approachItems[selectedItem].title}
+                          {toTitleCase(approachItems[selectedItem].title)}
                         </h4>
                       </div>
                       

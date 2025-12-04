@@ -216,7 +216,7 @@ const About = () => {
         {/* Mission & Manufacturing Section */}
         <section className="relative w-full py-20 z-20 bg-[#f5f7fa]">
           <div className="max-w-[1400px] xl:max-w-[1600px] mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
             {/* Our Mission */}
             <motion.div 
               className="space-y-6 p-8 md:p-12 rounded-2xl"
