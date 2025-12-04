@@ -22,7 +22,7 @@ const Industries = () => {
   };
 
   return (
-    <div className="bg-[#115B87] min-h-screen flex flex-col relative">
+    <div className="bg-white min-h-screen flex flex-col relative">
       <HeaderV2 />
       
       <AnimatePresence mode="wait">
