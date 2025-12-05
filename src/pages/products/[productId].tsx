@@ -877,13 +877,12 @@ const ProductDetailPage: React.FC = () => {
         {relatedProducts.length > 0 && (
           <section className="bg-white py-12">
             <div className="max-w-[1200px] mx-auto px-4">
-              <section className="mb-12 bg-gradient-to-b from-[#477197] to-[#2c476e] rounded-2xl p-6 md:p-8">
               <div className="mb-8">
-                <h2 className="text-3xl font-poppins font-regular text-white mb-2" 
+                <h2 className="text-3xl font-poppins font-regular text-gray-900 mb-2" 
                     style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
                   Related Products
                 </h2>
-                <p className="text-white/80">More {product.industry} solutions</p>
+                <p className="text-gray-600">More {product.industry} solutions</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -948,7 +947,6 @@ const ProductDetailPage: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
-              </section>
             </div>
           </section>
         )}

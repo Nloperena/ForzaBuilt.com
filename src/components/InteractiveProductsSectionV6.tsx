@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import { byProductLine } from '@/utils/products';
+import ProductModalV3 from '@/components/ProductModal/ProductModalV3';
+import type { Product as DBProduct } from '@/types/products';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Product {
@@ -11,6 +14,13 @@ interface Product {
   slug: string;
 }
 
+// Function to convert ALL CAPS to Title Case
+const toTitleCase = (str: string): string => {
+  return str.toLowerCase().split(' ').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ');
+};
+
 const products: Product[] = [
   {
     title: "ADHESIVES",
@@ -19,7 +29,7 @@ const products: Product[] = [
     slug: "bond"
   },
   {
-    title: "SEALANTS", 
+    title: "SEALANTS",
     description: "Dependable sealing solutions designed to protect, perform, and endure in even the toughest manufacturing environments.",
     image: "/images/homepage-heroes/Forza Seal Hero Shot.jpg",
     slug: "seal"
@@ -39,101 +49,245 @@ const products: Product[] = [
 ];
 
 const InteractiveProductsSectionV6 = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isLocked, setIsLocked] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const { mode } = useGradientMode();
-  const timerRef = useRef<NodeJS.Timeout>();
+  // State for the "locked" selection (clicked)
+  const [lockedIndex, setLockedIndex] = useState(0);
+  // State for the "hovered" selection
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  
+  // The index to display: hover takes precedence, otherwise locked
+  const activeIndex = hoveredIndex !== null ? hoveredIndex : lockedIndex;
 
-  // Auto-cycling logic
+  // Refs for auto-rotation
+  const timerRef = useRef<NodeJS.Timeout>();
+  const isUserInteractingRef = useRef(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { mode } = useGradientMode();
+  const [progress, setProgress] = useState(0);
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+  
+  // Modal states
+  const [showModal, setShowModal] = useState(false);
+  const [isClosingModal, setIsClosingModal] = useState(false);
+  const [modalProducts, setModalProducts] = useState<DBProduct[]>([]);
+  const [selectedModalProduct, setSelectedModalProduct] = useState<DBProduct | null>(null);
+  const [scrollStartY, setScrollStartY] = useState(0);
+  const closeTimeoutRef = useRef<NodeJS.Timeout>();
+
+  const getButtonText = (title: string) => {
+    const buttonTextMap: { [key: string]: string } = {
+      'ADHESIVES': 'Browse Adhesives',
+      'SEALANTS': 'Browse Sealants',
+      'TAPES': 'Browse Tapes',
+      'CLEANERS': 'Browse Cleaners'
+    };
+    return buttonTextMap[title] || `Browse ${title}`;
+  };
+
+  // Reset the auto-rotation timer
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    isUserInteractingRef.current = true;
+    // Resume auto-rotation after 10 seconds of no interaction
+    timerRef.current = setTimeout(() => {
+      isUserInteractingRef.current = false;
+      setProgress(0);
+    }, 10000);
+  }, []);
+
+  // Auto-rotation logic
   useEffect(() => {
-    if (!isLocked && !isHovering) {
-      timerRef.current = setInterval(() => {
-        setActiveIndex(prevIndex => (prevIndex + 1) % products.length);
-      }, 4000);
-    } else {
-      if (timerRef.current) clearInterval(timerRef.current);
-    }
+    const rotationInterval = setInterval(() => {
+      if (!isUserInteractingRef.current && hoveredIndex === null) {
+        setLockedIndex((prev) => (prev + 1) % products.length);
+        setProgress(0);
+      }
+    }, 4000);
+
+    const progressInterval = setInterval(() => {
+      if (!isUserInteractingRef.current && hoveredIndex === null) {
+        setProgress((prev) => {
+          if (prev >= 100) return 0;
+          return prev + (100 / 40); // 100% over 40 ticks (4000ms / 100ms)
+        });
+      } else {
+        setProgress(0);
+      }
+    }, 100);
 
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      clearInterval(rotationInterval);
+      clearInterval(progressInterval);
     };
-  }, [isLocked, isHovering]);
+  }, [hoveredIndex]);
 
-  const handleMouseEnter = (index: number) => {
-    if (isLocked) return; // Completely disable hover when locked
-    setIsHovering(true);
-    setActiveIndex(index);
+  // Parallax effect on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
+        setParallaxOffset(scrollProgress * 15);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Modal helpers
+  const loadModalProducts = async (category: 'bond' | 'seal' | 'tape' | 'ruggedred') => {
+    try {
+      const categorySlug = category === 'ruggedred' ? 'seal' : category;
+      const productsList = await byProductLine(categorySlug);
+      setModalProducts(productsList);
+      if (productsList.length > 0) {
+        setSelectedModalProduct(productsList[0]);
+      }
+      setShowModal(true);
+      setIsClosingModal(false);
+      setScrollStartY(window.scrollY);
+    } catch (error) {
+      console.error('Failed to load modal products:', error);
+    }
   };
 
-  const handleMouseLeave = () => {
-    if (isLocked) return; // Completely disable hover when locked
-    setIsHovering(false);
-  };
+  const closeModal = useCallback(() => {
+    setIsClosingModal(true);
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    closeTimeoutRef.current = setTimeout(() => {
+      setShowModal(false);
+      setIsClosingModal(false);
+    }, 300);
+  }, []);
 
-  const handleClick = (index: number) => {
-    setActiveIndex(index);
-    setIsLocked(true);
-  };
-
-  const activeProduct = products[activeIndex];
+  // Handle scroll closing modal
+  useEffect(() => {
+    if (!showModal || isClosingModal) return;
+    const handleScroll = () => {
+      const scrollDelta = Math.abs(window.scrollY - scrollStartY);
+      if (scrollDelta > 20) {
+        closeModal();
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showModal, scrollStartY, isClosingModal, closeModal]);
 
   return (
-    <section className="relative z-20">
+    <section ref={sectionRef} className="relative z-20">
       <section className="relative isolate overflow-visible">
+        {/* Progress bar */}
+        <div className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
+
+        {/* Background color grid */}
         <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
           <div className="bg-[#f3f5f7]"></div>
           <div className="bg-gradient-to-r from-[#477197] to-[#2c476e]"></div>
         </div>
 
         <div className="relative overflow-visible">
+          {/* Two column grid - responsive layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden">
             {/* LEFT SIDE - Images */}
             <div className="relative min-h-[35svh] sm:min-h-[42svh] md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] flex items-center justify-center overflow-hidden">
-              <AnimatePresence>
-                <motion.img
-                  key={activeIndex}
-                  src={activeProduct.image}
-                  alt={activeProduct.title}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  style={{ objectPosition: 'center 70%' }}
-                />
-              </AnimatePresence>
+              {/* Subtle radial depth */}
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_0%,transparent_70%)] z-20" />
+
+              {/* Label group */}
+              <div className="absolute top-[clamp(16px,2.6vw,40px)] left-[clamp(16px,2.6vw,40px)] text-left select-none [--lh-label:1.22] opacity-0 pointer-events-none z-20" aria-hidden="false">
+                <div className={`font-bold text-white text-[clamp(18px,1.6vw,24px)] ${
+                  mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                }`}>
+                  <span className="leading-[var(--lh-label)] tracking-[-0.01em]">Forza</span>
+                </div>
+                <div className={`font-bold text-[#F2611D] text-[clamp(16px,1.4vw,22px)] ${
+                  mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                }`}>
+                  <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{(() => {
+                    const title = products[activeIndex].title === 'SEALANTS' ? 'SEAL' : products[activeIndex].title;
+                    return toTitleCase(title);
+                  })()}</span>
+                </div>
+                <div className={`text-white text-[clamp(10px,0.95vw,14px)] ${
+                  mode === 'light2' ? 'font-poppins' : ''
+                }`}>
+                  A FORCE TO BE RECKONED WITH
+                </div>
+              </div>
+
+              {/* Images with AnimatePresence for smooth transitions */}
+              <div className="absolute inset-0 w-full h-full">
+                <AnimatePresence initial={false}>
+                  <motion.img
+                    key={activeIndex}
+                    src={products[activeIndex].image}
+                    alt={products[activeIndex].title}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{
+                      objectPosition: 'center 70%',
+                      transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`,
+                      zIndex: 1 // New image fades in on top? 
+                      // With AnimatePresence, the entering component is rendered alongside exiting.
+                      // Default z-index stacking order usually puts newer elements on top if they are siblings.
+                    }}
+                  />
+                </AnimatePresence>
+                
+                {/* To avoid any white flashes if crossfade isn't perfect, 
+                    we could keep the previous image underneath, but AnimatePresence usually handles this well.
+                    If user wants "stacking", we can ensure exit is slower than enter or opacity stays 1 longer.
+                    But simple crossfade is usually what is meant by "fluid". 
+                */}
+              </div>
             </div>
 
             {/* RIGHT SIDE - Titles, description, and button */}
-            <div className="relative min-h-[35svh] sm:min-h-[42svh] md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] px-[clamp(14px,4vw,32px)] py-[clamp(24px,4vw,48px)] flex items-center justify-center">
+            <div className="relative min-h-[35svh] sm:min-h-[42svh] md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] px-[clamp(14px,4vw,32px)] py-[clamp(24px,4vw,48px)] flex items-center justify-center [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]">
               <div className="w-full relative flex flex-col h-full">
+                {/* Product list */}
                 <div className="flex-1 flex flex-col">
                   <div className="flex flex-col justify-evenly h-full flex-shrink-0">
                     {products.map((product, index) => {
                       const isActive = activeIndex === index;
-                      
+
                       return (
                         <div
                           key={index}
-                          onClick={() => handleClick(index)}
-                          onMouseEnter={isLocked ? undefined : () => handleMouseEnter(index)}
-                          onMouseLeave={isLocked ? undefined : handleMouseLeave}
+                          onMouseEnter={() => {
+                            setHoveredIndex(index);
+                            resetTimer();
+                          }}
+                          onMouseLeave={() => {
+                            setHoveredIndex(null);
+                          }}
+                          onClick={() => {
+                            setLockedIndex(index);
+                            setHoveredIndex(null); // Clear hover to "lock" visually? Or keep hover?
+                            // Usually click just sets the "base". Hover overrides it.
+                            resetTimer();
+                          }}
                           className="w-full text-left transition-all duration-500 cursor-pointer"
                         >
-                          <h3 className={`leading-tight tracking-[-0.01em] transition-all duration-500 ease-out ${
+                          <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] transition-all duration-500 ease-out ${
                             mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                           } ${
                             isActive
                               ? 'text-[#F2611D] font-bold'
                               : 'text-white font-normal'
-                          } ${!isLocked && !isActive ? 'hover:text-[#F2611D]' : ''}`}
+                          } ${!isActive ? 'hover:text-[#F2611D]' : ''}`}
                           style={{
-                            fontSize: isActive 
+                            fontSize: isActive
                               ? 'clamp(28px, 4vw, 128px)'
                               : 'clamp(22px, 3.2vw, 48px)',
                           }}>
-                            {product.title}
+                            {toTitleCase(product.title)}
                           </h3>
                         </div>
                       );
@@ -141,8 +295,9 @@ const InteractiveProductsSectionV6 = () => {
                   </div>
                 </div>
 
+                {/* Button and description at bottom */}
                 <div className="mt-auto pt-4 flex-shrink-0 space-y-4">
-                  <AnimatePresence mode="wait">
+                  <AnimatePresence mode='wait'>
                     <motion.div
                       key={activeIndex}
                       initial={{ opacity: 0, y: 10 }}
@@ -150,14 +305,17 @@ const InteractiveProductsSectionV6 = () => {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed ${
+                      <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed mb-4 ${
                         mode === 'light2' ? 'font-poppins' : ''
                       }`}>
-                        {activeProduct.description}
+                        {products[activeIndex].description}
                       </p>
-                      <Button asChild className="mt-4 gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg">
-                        <Link to={`/products/${activeProduct.slug}`}>
-                          Browse Products
+                      <Button
+                        asChild
+                        className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                      >
+                        <Link to={`/products/${products[activeIndex].slug}`}>
+                          {getButtonText(products[activeIndex].title)}
                         </Link>
                       </Button>
                     </motion.div>
@@ -167,6 +325,24 @@ const InteractiveProductsSectionV6 = () => {
             </div>
           </div>
         </div>
+
+        {/* Product Modal */}
+        <ProductModalV3
+          isOpen={showModal}
+          products={modalProducts}
+          selectedProduct={selectedModalProduct}
+          onProductSelect={setSelectedModalProduct}
+          onClose={closeModal}
+          categorySlug={(() => {
+            const categoryMap: { [key: string]: string } = {
+              'ADHESIVES': 'bond',
+              'SEALANTS': 'seal',
+              'TAPES': 'tape',
+              'CLEANERS': 'seal'
+            };
+            return categoryMap[products[activeIndex].title] || 'bond';
+          })()}
+        />
       </section>
     </section>
   );

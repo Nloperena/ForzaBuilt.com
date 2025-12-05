@@ -58,7 +58,7 @@ const getProductCategoryImage = (category: string) => {
     case 'bond':
       return '/images/product-heroes/Forza Bond Hero Shot Header.jpg';
     case 'seal':
-      return '/images/product-heroes/Forza Seal Hero Shot Header.jpg';
+      return '/images/product-heroes/Forza Seal Hero Shot.jpg';
     case 'tape':
       return '/images/product-heroes/Forza Tape Hero Shot Header.jpg';
     case 'ruggedred':

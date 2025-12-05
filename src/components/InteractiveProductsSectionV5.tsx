@@ -49,11 +49,17 @@ const products: Product[] = [
 
 const InteractiveProductsSectionV5 = () => {
   const [selectedProduct, setSelectedProduct] = useState(0);
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+  // Image stack: bottom to top, always contains at least selectedProduct
+  const [imageStack, setImageStack] = useState<number[]>([0]);
   const [previousProduct, setPreviousProduct] = useState(0);
-  // New state to track visual background image for smooth transitions
-  const [backingProduct, setBackingProduct] = useState<number>(0);
   const prevDisplayedRef = useRef<number>(0);
+  
+  // Animation state tracking
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [visibleStack, setVisibleStack] = useState<number[]>([0]); // Stack currently being displayed
+  const animationTimeoutRef = useRef<NodeJS.Timeout>();
+  const pendingStackRef = useRef<number[] | null>(null);
+  const prevStackLengthRef = useRef<number>(1); // Track previous stack length for animation detection
   
   const [isLocked, setIsLocked] = useState(false);
   const { mode } = useGradientMode();
@@ -95,20 +101,131 @@ const InteractiveProductsSectionV5 = () => {
       setSelectedProduct(index);
       setProgress(0);
       setIsLocked(true);
-      setHoveredProduct(null); // Clear any active hover effect immediately
+      // Reset stack to just the selected product
+      setImageStack([index]);
       resetTimer();
     }
   };
 
-  const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
-
-  // Update backing product whenever displayed product changes
-  useEffect(() => {
-    if (prevDisplayedRef.current !== displayedProduct) {
-      setBackingProduct(prevDisplayedRef.current);
-      prevDisplayedRef.current = displayedProduct;
+  // Handle hover enter - add product to top of stack with animation queue
+  const handleProductHoverEnter = useCallback((index: number) => {
+    if (!isLocked) {
+      // If animation is in progress, queue the change
+      if (isAnimating) {
+        setImageStack(prev => {
+          if (prev[prev.length - 1] === index) return prev;
+          const filtered = prev.filter(i => i !== index);
+          pendingStackRef.current = [...filtered, index];
+          return prev;
+        });
+      } else {
+        setImageStack(prev => {
+          // If already at top, no change needed
+          if (prev[prev.length - 1] === index) return prev;
+          // Remove if already in stack (to avoid duplicates), then add to top
+          const filtered = prev.filter(i => i !== index);
+          return [...filtered, index];
+        });
+      }
     }
-  }, [displayedProduct]);
+  }, [isLocked, isAnimating]);
+
+  // Handle hover leave - remove product from stack with smooth fade-out
+  const handleProductHoverLeave = useCallback((index: number) => {
+    if (!isLocked && index !== selectedProduct) {
+      // If animation is in progress, queue the change
+      if (isAnimating) {
+        setImageStack(prev => {
+          const filtered = prev.filter(i => i !== index);
+          const finalStack = filtered.length === 0 ? [selectedProduct] : 
+            (filtered[0] !== selectedProduct ? [selectedProduct, ...filtered.filter(i => i !== selectedProduct)] : filtered);
+          pendingStackRef.current = finalStack;
+          return prev;
+        });
+      } else {
+        setImageStack(prev => {
+          // Only remove if it's not the selectedProduct (which should always be at bottom)
+          const filtered = prev.filter(i => i !== index);
+          // Ensure we always have at least selectedProduct
+          if (filtered.length === 0) {
+            return [selectedProduct];
+          }
+          // Ensure selectedProduct is at the bottom
+          if (filtered[0] !== selectedProduct) {
+            return [selectedProduct, ...filtered.filter(i => i !== selectedProduct)];
+          }
+          return filtered;
+        });
+      }
+    }
+  }, [isLocked, selectedProduct, isAnimating]);
+
+  // Ensure stack always has selectedProduct at the bottom when selectedProduct changes
+  useEffect(() => {
+    if (!isLocked) {
+      setImageStack(prev => {
+        // If stack is empty or bottom item is not selectedProduct, update it
+        if (prev.length === 0 || prev[0] !== selectedProduct) {
+          // Keep all hover layers above, but ensure selectedProduct is at bottom
+          const hoverLayers = prev.filter(i => i !== selectedProduct);
+          return [selectedProduct, ...hoverLayers];
+        }
+        return prev;
+      });
+    }
+  }, [selectedProduct, isLocked]);
+
+  // Handle animation sequencing when imageStack changes
+  useEffect(() => {
+    // Check if stack actually changed
+    const stackChanged = JSON.stringify(visibleStack) !== JSON.stringify(imageStack);
+    if (!stackChanged) return;
+
+    // If currently animating, queue the new stack and wait for current animation to complete
+    if (isAnimating) {
+      pendingStackRef.current = imageStack;
+      return;
+    }
+
+    // Clear any existing timeout
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
+    }
+
+    // Start animation sequence
+    setIsAnimating(true);
+    
+    // Update visible stack to trigger CSS transitions
+    setVisibleStack(imageStack);
+    
+    // Update previous stack length ref for next animation detection
+    prevStackLengthRef.current = visibleStack.length;
+    
+    // Mark animation as complete after duration (700ms)
+    animationTimeoutRef.current = setTimeout(() => {
+      setIsAnimating(false);
+      prevStackLengthRef.current = imageStack.length;
+      
+      // Process any pending stack changes after current animation completes
+      if (pendingStackRef.current) {
+        const pending = pendingStackRef.current;
+        pendingStackRef.current = null;
+        // Update imageStack which will trigger this effect again
+        setImageStack(pending);
+      }
+    }, 700);
+
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
+    };
+  }, [imageStack, isAnimating, visibleStack]);
+
+  // displayedProduct is always the top of the visible stack
+  const displayedProduct = visibleStack[visibleStack.length - 1];
+  // backingProduct is the second-to-last item, or selectedProduct if stack has only one item
+  const backingProduct = visibleStack.length > 1 ? visibleStack[visibleStack.length - 2] : selectedProduct;
 
   const loadModalProducts = async (category: 'bond' | 'seal' | 'tape' | 'ruggedred') => {
     try {
@@ -142,6 +259,8 @@ const InteractiveProductsSectionV5 = () => {
         setSelectedProduct(prev => {
           const nextIndex = (prev + 1) % products.length;
           setPreviousProduct(prev);
+          // Reset stack to just the new selected product
+          setImageStack([nextIndex]);
           return nextIndex;
         });
         setProgress(0);
@@ -257,39 +376,51 @@ const InteractiveProductsSectionV5 = () => {
               </div>
 
               {(() => {
-                // Use the component-level displayedProduct we calculated above
-                
-                // Show backing image if it's different from current
-                const shouldShowBacking = backingProduct !== displayedProduct;
-
+                // Render all images in the visible stack as layers with smooth transitions
+                // Bottom layer (selectedProduct) always visible, then each hover adds a layer on top
                 return (
                   <>
-                    {/* Backing product image - always stays behind to prevent white gaps */}
-                    {shouldShowBacking && (
-                      <img
-                        src={products[backingProduct].image}
-                        alt={products[backingProduct].title}
-                        className="absolute inset-0 w-full h-full object-cover"
-                        style={{
-                          objectPosition: 'center 70%',
-                          transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`,
-                          zIndex: 1
-                        }}
-                      />
-                    )}
-
-                    {/* Current product image - animates in over the backing image */}
-                    <img
-                      key={displayedProduct}
-                      src={products[displayedProduct].image}
-                      alt={products[displayedProduct].title}
-                      className="absolute inset-0 w-full h-full object-cover animate-in slide-in-from-right duration-700"
-                      style={{
-                        objectPosition: 'center 70%',
-                        transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`,
-                        zIndex: 2
-                      }}
-                    />
+                    {visibleStack.map((productIndex, stackIndex) => {
+                      const isTopLayer = stackIndex === visibleStack.length - 1;
+                      const isBottomLayer = stackIndex === 0;
+                      const totalLayers = visibleStack.length;
+                      
+                      // Check if this is a newly added top layer
+                      const isNewTopLayer = isTopLayer && isAnimating && 
+                                           totalLayers > prevStackLengthRef.current;
+                      
+                      // Calculate opacity: bottom always visible, top fully visible, middle layers fade
+                      let opacity = 1;
+                      if (isBottomLayer) {
+                        opacity = 1; // Bottom layer always fully visible
+                      } else if (isTopLayer) {
+                        // Top layer: start at 0 if newly added, then animate to 1
+                        opacity = isNewTopLayer ? 0 : 1;
+                      } else {
+                        // Middle layers: slightly transparent to show depth
+                        const distanceFromTop = totalLayers - stackIndex - 1;
+                        opacity = Math.max(0.5, 1 - (distanceFromTop * 0.15));
+                      }
+                      
+                      // Calculate initial transform for slide-in animation (only for new top layer)
+                      const translateX = isNewTopLayer ? '40px' : '0px';
+                      
+                      return (
+                        <img
+                          key={`${productIndex}-${stackIndex}-${visibleStack.length}`}
+                          src={products[productIndex].image}
+                          alt={products[productIndex].title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                          style={{
+                            objectPosition: 'center 70%',
+                            transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px) translateX(${translateX})`,
+                            zIndex: stackIndex + 1, // Higher z-index for items higher in stack
+                            opacity: opacity,
+                            transition: 'opacity 700ms cubic-bezier(0.4, 0, 0.2, 1), transform 700ms cubic-bezier(0.4, 0, 0.2, 1)'
+                          }}
+                        />
+                      );
+                    })}
                   </>
                 );
               })()}
@@ -302,15 +433,14 @@ const InteractiveProductsSectionV5 = () => {
                 <div className="flex-1 flex flex-col">
                   <div className="flex flex-col justify-evenly h-full flex-shrink-0">
                     {products.map((product, index) => {
-                      const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
                       const isActive = displayedProduct === index;
 
                       return (
                         <div
                           key={index}
                           onClick={() => handleProductClick(index)}
-                          onMouseEnter={isLocked ? undefined : () => setHoveredProduct(index)}
-                          onMouseLeave={isLocked ? undefined : () => setHoveredProduct(null)}
+                          onMouseEnter={isLocked ? undefined : () => handleProductHoverEnter(index)}
+                          onMouseLeave={isLocked ? undefined : () => handleProductHoverLeave(index)}
                           className="w-full text-left transition-all duration-500 cursor-pointer"
                         >
                           <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] transition-all duration-500 ease-out ${
@@ -335,27 +465,22 @@ const InteractiveProductsSectionV5 = () => {
 
                 {/* Button and description at bottom */}
                 <div className="mt-auto pt-4 flex-shrink-0 space-y-4">
-                  {(() => {
-                    const displayedProduct = isLocked ? selectedProduct : (hoveredProduct ?? selectedProduct);
-                    return (
-                      <>
-                        <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-right-2 ${
-                          mode === 'light2' ? 'font-poppins' : ''
-                        }`}
-                        key={displayedProduct}>
-                          {products[displayedProduct].description}
-                        </p>
-                        <Button
-                          asChild
-                          className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
-                        >
-                          <Link to={`/products/${products[displayedProduct].slug}`}>
-                            {getButtonText(products[displayedProduct].title)}
-                          </Link>
-                        </Button>
-                      </>
-                    );
-                  })()}
+                  <>
+                    <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-right-2 ${
+                      mode === 'light2' ? 'font-poppins' : ''
+                    }`}
+                    key={displayedProduct}>
+                      {products[displayedProduct].description}
+                    </p>
+                    <Button
+                      asChild
+                      className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                    >
+                      <Link to={`/products/${products[displayedProduct].slug}`}>
+                        {getButtonText(products[displayedProduct].title)}
+                      </Link>
+                    </Button>
+                  </>
                 </div>
               </div>
             </div>

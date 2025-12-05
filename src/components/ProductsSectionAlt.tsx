@@ -162,7 +162,10 @@ const ProductsSectionAlt = () => {
                           imageLoadedStates[index] ? 'opacity-100' : 'opacity-0'
                         }`}
                         onLoad={() => handleImageLoad(index)}
-                        onError={() => handleImageLoad(index)}
+                        onError={(e) => {
+                          console.error(`Failed to load image for ${category.title}:`, category.image);
+                          // Don't mark as loaded on error - keep showing skeleton or fallback
+                        }}
                       />
                     </div>
                   </Card>
@@ -203,7 +206,10 @@ const ProductsSectionAlt = () => {
                           imageLoadedStates[index] ? 'opacity-100' : 'opacity-0'
                         }`}
                         onLoad={() => handleImageLoad(index)}
-                        onError={() => handleImageLoad(index)}
+                        onError={(e) => {
+                          console.error(`Failed to load image for ${category.title}:`, category.image);
+                          // Don't mark as loaded on error - keep showing skeleton or fallback
+                        }}
                         style={{
                           objectPosition: 'center center'
                         }}
