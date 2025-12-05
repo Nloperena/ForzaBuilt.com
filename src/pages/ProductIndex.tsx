@@ -104,7 +104,7 @@ const ProductIndex: React.FC = () => {
             </h1>
             <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed" 
                style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-              Choose your product category to explore our complete range of industrial solutions
+              Explore our complete range of industrial solutions
             </p>
           </motion.div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } from 'lucide-react';
 import { byProductLine } from '@/utils/products';
@@ -16,7 +16,7 @@ interface Product {
   id: string;
   name: string;
   description?: string;
-  imageUrl: string;
+  imageUrl?: string;
   category?: string;
   industry?: string[];
   chemistry?: string;
@@ -31,6 +31,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   industryData, 
   onProductSelect 
 }) => {
+  const navigate = useNavigate();
   // Filter states
   const [search, setSearch] = useState('');
   const [selectedLine, setSelectedLine] = useState<'bond' | 'seal' | 'tape'>('bond');
@@ -389,7 +390,11 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                       >
 
                         {/* Desktop: Product Image - Larger and zoomed in with space for text */}
-                        <div className="absolute inset-0 hidden md:block pb-24" style={{ transform: 'translateY(-3%) scale(0.85)' }}>
+                        <div 
+                          className="absolute inset-0 hidden md:block pb-24 cursor-pointer" 
+                          style={{ transform: 'translateY(-3%) scale(0.85)' }}
+                          onClick={() => navigate(`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`)}
+                        >
                           {/* Image Skeleton Loading State - show when loading or on error */}
                           {(!imageLoadedStates[product.id] || imageErrorStates[product.id]) && (
                             <ImageSkeleton />
@@ -413,7 +418,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                           className="flex md:hidden items-center gap-4 flex-1 p-4 cursor-pointer"
                           onClick={(e) => {
                             e.stopPropagation();
-                            onProductSelect(product);
+                            navigate(`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`);
                           }}
                         >
                           {/* Mobile: Product Image */}
@@ -459,17 +464,6 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                             
                             {/* Button Row */}
                             <div className="flex gap-1.5 mt-2 pt-2">
-                              {/* Quick View Button */}
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  onProductSelect(product);
-                                }}
-                                className="flex-1 inline-flex items-center justify-center border-2 border-[white] hover:bg-[#477197] text-[white] hover:text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
-                              >
-                                Quick View
-                              </button>
-                              
                               {/* Details Button */}
                               <Link
                                 to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`}
@@ -484,16 +478,6 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
                         {/* Mobile: Right side with buttons */}
                         <div className="flex md:hidden items-center gap-2 p-4">
-                          {/* Mobile: Quick View Button */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onProductSelect(product);
-                            }}
-                            className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
-                          >
-                            <span>Quick View</span>
-                          </button>
                           
                           {/* Mobile: Product Details Button */}
                           <Link

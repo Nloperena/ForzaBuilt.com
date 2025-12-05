@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, ArrowUpDown, ExternalLink, X, ChevronDown, ChevronUp, FlaskConical } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -33,7 +33,7 @@ const CHEMISTRY_ICONS = {
   'Rubber Based': '/images/icons/chemistry/rubber based icon.svg'
 };
 import HeaderV2 from '@/components/Header/HeaderV2';
-import Footer from '@/components/Footer';
+import FooterV2 from '@/components/FooterV2';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 
 // Helper to convert text to title case
@@ -226,6 +226,7 @@ const getChemistryIcon = (chemistry: string) => {
 
 const ProductCategoryPage: React.FC = () => {
   const { productCategory } = useParams<{ productCategory: string }>();
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [search, setSearch] = useState('');
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>(['industrial']);
@@ -915,8 +916,7 @@ const ProductCategoryPage: React.FC = () => {
                       <div 
                         className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg cursor-pointer"
                         onClick={() => {
-                          setSelectedProduct(product);
-                          setIsModalOpen(true);
+                          navigate(`/products/${productCategory}/${product.id}`);
                         }}
                       >
                         {/* Desktop: Badge above image */}
@@ -982,17 +982,6 @@ const ProductCategoryPage: React.FC = () => {
                             
                             {/* Button Row */}
                             <div className="flex gap-2">
-                              {/* Quick View Button */}
-                              <button
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setSelectedProduct(product);
-                                  setIsModalOpen(true);
-                                }}
-                                className="flex-1 inline-flex items-center justify-center gap-2 border-2 border-[white] hover:bg-[#477197] text-[white] hover:text-white rounded-full px-4 py-2 text-sm font-medium transition-all duration-300"
-                              >
-                                <span>Quick View</span>
-                              </button>
                               
                               {/* Product Details Button */}
                               <Link
@@ -1070,17 +1059,6 @@ const ProductCategoryPage: React.FC = () => {
 
                         {/* Mobile: Centered buttons - positioned at bottom */}
                         <div className="flex md:hidden items-center justify-center gap-2 p-2 pb-4">
-                          {/* Mobile: Quick View Button */}
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedProduct(product);
-                              setIsModalOpen(true);
-                            }}
-                            className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
-                          >
-                            <span>Quick View</span>
-                          </button>
                           
                           {/* Mobile: Product Details Button */}
                           <Link
@@ -1452,7 +1430,7 @@ const ProductCategoryPage: React.FC = () => {
       {/* Performance Elevated Banner */}
       <ExperienceBetterBanner />
       
-      <Footer />
+      <FooterV2 />
       
       {/* Gradient Toggle Modal */}
     </div>

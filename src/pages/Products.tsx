@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import HeaderV2 from '../components/Header/HeaderV2';
-import InteractiveProductsSectionV5 from '../components/InteractiveProductsSectionV5';
+import ProductsSectionAlt from '../components/ProductsSectionAlt';
 import FooterV2 from '../components/FooterV2';
 import IndustryHeroBanner from '../components/industries/IndustryHeroBanner';
 import ProductQuickViewModal from '../components/industries/ProductQuickViewModal';
@@ -41,12 +41,12 @@ const Products = () => {
               industryTitle="Our Products"
               variant="simple"
               useTitleCase={true}
-              subtitle="We Offer The Best Performing And Widest Range Of Adhesive, Sealant, Specialty Tape, And Industrial Cleaning Solutions. If We Don't Have It, We'll Make It Custom For You." />
+              subtitle="Best Performing and Widest Range of Industrial Products" />
           </div>
 
           {/* Products Grid Section */}
           <div className="relative z-[30]">
-            <InteractiveProductsSectionV5 />
+            <ProductsSectionAlt />
           </div>
 
         </motion.div>

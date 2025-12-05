@@ -9,7 +9,6 @@ import IndustryXRaySections from '../../components/xray/IndustryXRaySections';
 import NewsletterSection from '@/components/NewsletterSection';
 import IndustryHeroBanner from '../../components/industries/IndustryHeroBanner';
 import IndustryProductsSection from '../../components/industries/IndustryProductsSection';
-import ProductQuickViewModal from '../../components/industries/ProductQuickViewModal';
 import IndustryBrochureArticlesSection from '../../components/industries/IndustryBrochureArticlesSection';
 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -20,18 +19,6 @@ const IndustryPage = () => {
     (ind) => ind.title.toLowerCase().replace(/\s+/g, '-') === industry
   );
 
-  const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const handleProductSelect = (product: any) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedProduct(null);
-  };
 
   if (!industryData) {
     return (
@@ -100,7 +87,7 @@ const IndustryPage = () => {
           {/* Product Cards Section */}
           <IndustryProductsSection 
             industryData={industryData}
-            onProductSelect={handleProductSelect}
+            onProductSelect={() => {}}
           />
 
       {/* Combined Brochure & Articles Section */}
@@ -114,13 +101,6 @@ const IndustryPage = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Product Quick View Modal */}
-      <ProductQuickViewModal 
-        isOpen={isModalOpen}
-        product={selectedProduct}
-        onClose={closeModal}
-      />
-                  
       <NewsletterSection showHeading={true} />
       
       {/* Footer */}
