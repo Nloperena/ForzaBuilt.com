@@ -90,40 +90,20 @@ const About = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
           <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
 
-          {/* Title and Subtitle Overlay - Centered on video */}
+          {/* Subtitle Overlay - Centered on video */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 20 }}>
-            <motion.div 
-              className="w-full flex flex-col items-center justify-center"
-              style={{ gap: 'clamp(1rem, 2vw, 2rem)' }}
-              initial={{ opacity: 0, y: 30 }}
+            <motion.h3
+              className="font-regular text-center leading-tight font-poppins text-white"
+              style={{ 
+                fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
+                maxWidth: '1100px'
+              }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             >
-              {/* Title - Kallisto font */}
-              <h1
-                className="font-black mb-0 leading-none font-kallisto text-white"
-                style={{ 
-                  fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
-                }}
-              >
-                Meet Forza
-              </h1>
-
-              {/* Subtitle - Regular Poppins */}
-              <motion.h3
-                className="font-regular text-center leading-tight font-poppins text-white"
-                style={{ 
-                  fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
-                  maxWidth: '1100px',
-                  marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-              >
-                30 Years of Engineering Superior Adhesives, Sealants, and Tapes.
-              </motion.h3>
-            </motion.div>
+              30 Years of Engineering Superior Adhesives, Sealants, and Tapes.
+            </motion.h3>
           </div>
         </section>
 
@@ -138,10 +118,18 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
+              {/* Why Forza Title */}
+              <h2 
+                className="font-poppins leading-none text-[#1B3764] mb-4" 
+                style={{ fontSize: 'clamp(28px, 3vw, 56px)' }}
+              >
+                Why Forza?
+              </h2>
+              
               {/* Story paragraphs */}
               <div className="space-y-6 text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
                 <p>
-                  <span className="font-bold text-[#1B3764]">Why Forza?</span> Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at all times.
+                  Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at all times.
                 </p>
                 <p>
                   At Forza, we do what other manufacturers won't.

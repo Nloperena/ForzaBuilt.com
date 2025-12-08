@@ -10,6 +10,7 @@ import NewsletterSection from '@/components/NewsletterSection';
 import IndustryHeroBanner from '../../components/industries/IndustryHeroBanner';
 import IndustryProductsSection from '../../components/industries/IndustryProductsSection';
 import IndustryBrochureArticlesSection from '../../components/industries/IndustryBrochureArticlesSection';
+import { getIndustryColorHex } from '@/utils/industryHelpers';
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -65,10 +66,36 @@ const IndustryPage = () => {
               industryTitle={industryData.title}
               logo={industryData.logo}
               variant="simple"
+              subtitle={`Building High-Performing\n${industryData.title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape\n& Sealant Solutions.`}
             />
           </div>
 
-         
+          {/* Industry Title & Icon Section - White Background */}
+          <section className="bg-white py-2 md:py-3 relative z-[30]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+              <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8">
+                {industryData.logo && (
+                  <div className="relative" style={{ width: 'clamp(4rem, 8vw, 10rem)', height: 'clamp(4rem, 8vw, 10rem)' }}>
+                    <img
+                      src={industryData.logo}
+                      alt={`${industryData.title} icon`}
+                      className="w-auto h-full object-contain"
+                    />
+                  </div>
+                )}
+                <h1
+                  className="font-black mb-0 leading-none font-kallisto"
+                  style={{ 
+                    fontSize: 'clamp(2rem, 4vw + 0.5rem, 5rem)',
+                    color: industryData.color || getIndustryColorHex(industryData.title),
+                    fontFamily: 'Kallisto, Poppins, sans-serif'
+                  }}
+                >
+                  {industryData.title.toUpperCase()}
+                </h1>
+              </div>
+            </div>
+          </section>
 
           {/* Hybrid Stackable Cards Section */}
           <div className="relative z-[30]">
@@ -100,7 +127,7 @@ const IndustryPage = () => {
 
         </motion.div>
       </AnimatePresence>
-
+                  
       <NewsletterSection showHeading={true} />
       
       {/* Footer */}

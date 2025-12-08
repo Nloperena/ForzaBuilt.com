@@ -41,6 +41,7 @@ import PdfViewer from './pages/PdfViewer';
 import Dashboard from './pages/Dashboard';
 import Stylesheet from './pages/Stylesheet';
 import Triangles from './pages/Triangles';
+import CanisterReturns from './pages/CanisterReturns';
 
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 
@@ -95,6 +96,7 @@ const App = () => {
               <Route path="/admin/dashboard" element={<Dashboard />} />
               <Route path="/stylesheet" element={<Stylesheet />} />
               <Route path="/triangles" element={<Triangles />} />
+              <Route path="/canister-returns" element={<CanisterReturns />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

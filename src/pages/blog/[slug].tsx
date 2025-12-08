@@ -6,6 +6,8 @@ import FooterV2 from '../../components/FooterV2';
 import { Helmet } from 'react-helmet';
 import blogPostsData from '../../data/blogPosts.json';
 import { generateSlugFromTitle } from '@/lib/utils';
+import RecentNewsArticlesSection from '@/components/RecentNewsArticlesSection';
+import NewsletterSection from '@/components/NewsletterSection';
 
 interface BlogPost {
   id: string;
@@ -81,9 +83,6 @@ const BlogPostPage = () => {
     .filter(post => post.id !== blogPost?.id && post.category === blogPost?.category)
     .slice(0, 3);
 
-  const moreToExplorePosts = blogPosts
-    .filter(post => post.id !== blogPost?.id)
-    .slice(0, 6);
 
   if (loading) {
     return (
@@ -169,60 +168,55 @@ const BlogPostPage = () => {
 
       <HeaderV2 />
       
-      {/* Breadcrumb - Light Grey Background */}
-      <nav className="bg-gray-50 border-b border-gray-200 relative z-30 pt-20 md:pt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-3">
-          <div className="flex items-center space-x-2 text-sm text-gray-500 font-poppins">
-            <Link to="/" className="hover:text-[#F2611D] transition-colors">Home</Link>
-            <span>/</span>
-            <Link to="/blog" className="hover:text-[#F2611D] transition-colors">Learning Center</Link>
-            <span>/</span>
-            <span className="text-[#1B3764] font-medium truncate">{blogPost.title}</span>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section - Gradient Background */}
-      <section className="relative py-16 md:py-24 px-4 text-center z-20 bg-gradient-to-bl from-[#477197] to-[#2c476e]">
-        <div className="max-w-4xl mx-auto">
+      {/* Header Section - White Background with Back Link */}
+      <section className="bg-white relative z-30 pt-32 md:pt-36 lg:pt-32 xl:pt-36 2xl:pt-40 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          {/* Back to All Blogs Link - Left Aligned */}
           <div className="mb-6">
             <Link 
               to="/blog" 
-              className="inline-flex items-center justify-center text-white/90 hover:text-white transition-colors font-poppins text-sm font-medium group"
+              className="inline-flex items-center text-[#1B3764] hover:text-[#F2611D] transition-colors font-poppins text-sm font-medium group"
             >
               <svg className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              Back to Learning Center
+              Back to All Blogs
             </Link>
           </div>
-          <h1 className="text-white font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight break-words mb-6 tracking-tight">
-            {blogPost.title}
-          </h1>
-          <div className="flex items-center justify-center gap-4 text-white/80 text-sm font-poppins">
-            <span className="flex items-center gap-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              {new Date(blogPost.date).toLocaleDateString()}
-            </span>
-            <span>•</span>
-            <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide text-white border border-white/20">{blogPost.category}</span>
+
+          {/* Title and Date */}
+          <div className="mb-8">
+            <h1 className="text-[#1B3764] font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight break-words mb-4 tracking-tight">
+              {blogPost.title}
+            </h1>
+            <div className="flex items-center gap-4 text-gray-600 text-sm font-poppins">
+              <span className="flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                {new Date(blogPost.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'numeric',
+                  day: 'numeric'
+                })}
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Main Content with Sidebar - White Background */}
-      <section className="py-16 bg-white relative z-20">
+      <section className="pb-16 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
             <div className="lg:col-span-3">
-              <div className="mb-10 bg-gray-100 border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
+              {/* Hero Image */}
+              <div className="mb-10">
                 <img 
                   src={blogPost.image} 
                   alt={blogPost.title}
-                  className="w-full object-contain bg-transparent"
-                  style={{ maxHeight: '600px' }}
+                  className="w-full h-auto object-cover rounded-lg shadow-lg"
+                  style={{ maxHeight: '500px' }}
                   onError={(e) => {
                     console.warn(`Failed to load image: ${blogPost.image}`);
                     e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
@@ -318,7 +312,7 @@ const BlogPostPage = () => {
                         >
                           <Link
                             to={`/blog/${generateSlugFromTitle(post.title)}`}
-                            className="group block bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col"
+                            className="group bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col"
                           >
                             <div className="aspect-[16/9] bg-gray-100 overflow-hidden relative">
                               <img
@@ -412,97 +406,11 @@ const BlogPostPage = () => {
         </div>
       </section>
 
-      {/* More To Explore Carousel - Light Grey Background */}
-      {moreToExplorePosts.length > 0 && (
-        <section className="py-20 bg-[#f5f7fa] border-t border-gray-200 relative z-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl text-[#1B3764] font-poppins mb-4 tracking-tight">More To Explore</h2>
-              <p className="text-gray-600 font-poppins max-w-2xl mx-auto">
-                Continue your journey with these additional resources and insights from our experts.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {moreToExplorePosts.map((post) => (
-                <Link
-                  key={post.id}
-                  to={`/blog/${generateSlugFromTitle(post.title)}`}
-                  className="group block bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col"
-                >
-                  <div className="aspect-[16/9] bg-gray-50 overflow-hidden relative border-b border-gray-100">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-contain p-6 mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => {
-                        e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
-                      }}
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-[#1B3764] text-xs font-bold rounded-full shadow-sm font-poppins border border-gray-100">
-                        {post.category}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <h3 className="text-lg text-[#1B3764] group-hover:text-[#F2611D] transition-colors mb-3 line-clamp-2 font-poppins">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-500 text-sm line-clamp-3 mb-4 font-poppins flex-1">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-50 mt-auto">
-                      <span className="text-xs text-gray-400 font-poppins">
-                        {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                      </span>
-                      <span className="text-[#F2611D] font-bold text-sm group-hover:translate-x-1 transition-transform font-poppins flex items-center">
-                        Read More 
-                        <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Recent News & Articles Section */}
+      <RecentNewsArticlesSection />
 
-      {/* Call to Action Section - Gradient Break */}
-      <section className="py-20 bg-gradient-to-bl from-[#477197] to-[#2c476e] text-center relative z-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl text-white font-poppins mb-6 tracking-tight">
-              Ready to Transform Your Manufacturing?
-            </h2>
-            <p className="text-xl text-white/90 mb-10 font-poppins max-w-2xl mx-auto">
-              Discover how our high-performance adhesive solutions can improve your product quality and efficiency.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/products"
-                className="inline-flex items-center px-8 py-4 bg-white text-[#1B3764] font-bold rounded-full hover:bg-gray-100 transition-colors font-poppins shadow-lg text-lg"
-              >
-                Explore Products
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-8 py-4 bg-[#F2611D] text-white font-bold rounded-full hover:bg-[#F2611D]/90 transition-colors font-poppins shadow-lg text-lg"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Newsletter Section */}
+      <NewsletterSection showHeading={true} />
 
       <FooterV2 />
     </div>

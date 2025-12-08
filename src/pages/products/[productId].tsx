@@ -450,7 +450,7 @@ const ProductDetailPage: React.FC = () => {
                   {/* Product Image */}
                   <div className="flex justify-center lg:justify-start relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] order-2 lg:order-1">
                     {/* Mobile/Tablet Hero Image */}
-                    <img 
+                          <img 
                       src={getMobileHeroImage(product.category)}
                       alt={`${product.category} Hero`}
                       className="lg:hidden w-full h-full object-cover rounded-lg drop-shadow-2xl"
@@ -464,26 +464,26 @@ const ProductDetailPage: React.FC = () => {
                       }}
                     />
                     {/* Desktop Product Image */}
-                    <img 
-                      src={product.imageUrl || product.image} 
-                      alt={product.name}
+                      <img 
+                        src={product.imageUrl || product.image} 
+                        alt={product.name}
                       className="hidden lg:block w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain drop-shadow-2xl"
-                      style={{
-                        filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.1)) brightness(1.2) contrast(1.1)'
-                      }}
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        // Try fallback to product-images folder
-                        if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
-                          const filename = product.id.toLowerCase() + '.png';
-                          target.src = `/product-images/${filename}`;
-                        } else if (!target.src.includes('placeholder')) {
-                          target.src = '/placeholder.svg';
-                        }
-                      }}
-                    />
-                  </div>
-
+                        style={{
+                          filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.1)) brightness(1.2) contrast(1.1)'
+                        }}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          // Try fallback to product-images folder
+                          if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                            const filename = product.id.toLowerCase() + '.png';
+                            target.src = `/product-images/${filename}`;
+                          } else if (!target.src.includes('placeholder')) {
+                            target.src = '/placeholder.svg';
+                          }
+                        }}
+                      />
+                    </div>
+                    
                   {/* Product Info */}
                   <div className="order-1 lg:order-2">
                     {/* Product ID */}
@@ -502,52 +502,52 @@ const ProductDetailPage: React.FC = () => {
 
         {/* Product Details Section - Grey Background */}
         <section className="bg-gray-100 py-12">
-          <div className="max-w-[1200px] mx-auto px-4">
-            {/* Breadcrumb */}
-            <nav className="mb-8">
-              <div className="flex items-center gap-2 text-gray-600 text-sm">
-                <Link to="/products" className="hover:text-gray-900 transition-colors">
-                  Products
-                </Link>
-                <span>/</span>
-                <Link to={`/products/${product.category.toLowerCase()}`} className="hover:text-gray-900 transition-colors">
-                  {product.category}
-                </Link>
-                <span>/</span>
-                <span className="text-gray-900 font-semibold">{product.name}</span>
-              </div>
-            </nav>
+        <div className="max-w-[1200px] mx-auto px-4">
+          {/* Breadcrumb */}
+          <nav className="mb-8">
+            <div className="flex items-center gap-2 text-gray-600 text-sm">
+              <Link to="/products" className="hover:text-gray-900 transition-colors">
+                Products
+              </Link>
+              <span>/</span>
+              <Link to={`/products/${product.category.toLowerCase()}`} className="hover:text-gray-900 transition-colors">
+                {product.category}
+              </Link>
+              <span>/</span>
+              <span className="text-gray-900 font-semibold">{product.name}</span>
+            </div>
+          </nav>
 
-            {/* Product Details Tabs */}
+          {/* Product Details Tabs */}
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               {/* Tabs Selector - Above Content Container */}
               <div className="flex justify-center mb-6">
                 <TabsList className="inline-flex bg-transparent rounded-full p-1 gap-3">
-                  <TabsTrigger 
-                    value="applications" 
+                    <TabsTrigger 
+                      value="applications" 
                     className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
-                  >
+                    >
                     Applications
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="benefits" 
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="benefits" 
                     className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
-                  >
+                    >
                     Benefits
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="technical" 
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="technical" 
                     className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
-                  >
+                    >
                     Technical
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="sizing" 
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="sizing" 
                     className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
-                  >
+                    >
                     Sizing
-                  </TabsTrigger>
-                </TabsList>
+                    </TabsTrigger>
+                  </TabsList>
               </div>
 
               {/* Product Details Tabs Content Container */}
@@ -556,12 +556,12 @@ const ProductDetailPage: React.FC = () => {
                 layout
                 transition={{ duration: 0.4, ease: "easeInOut" }}
               >
-                <motion.div 
-                  className="mt-8 md:mt-8"
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
+              <motion.div 
+                className="mt-8 md:mt-8"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
 
 
 
@@ -678,48 +678,48 @@ const ProductDetailPage: React.FC = () => {
                       {/* Benefits */}
                       {product.benefits && product.benefits.length > 0 && (
                         <ul className="space-y-2 text-white/80">
-                          {product.benefits.map((benefit, index) => (
+                            {product.benefits.map((benefit, index) => (
                             <li key={index} className="flex items-start gap-2">
                               <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                               <span>{benefit}</span>
                             </li>
-                          ))}
+                            ))}
                         </ul>
                       )}
 
                       {/* Colors */}
                       {product.colors && product.colors.length > 0 && (
                         <ul className="space-y-2 text-white/80">
-                          {product.colors.map((color, index) => (
+                            {product.colors.map((color, index) => (
                             <li key={index} className="flex items-start gap-2">
                               <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                               <span>{color}</span>
                             </li>
-                          ))}
+                            ))}
                         </ul>
                       )}
 
                       {/* Sizing */}
                       {product.sizing && product.sizing.length > 0 && (
                         <ul className="space-y-2 text-white/80">
-                          {product.sizing.map((size, index) => (
+                            {product.sizing.map((size, index) => (
                             <li key={index} className="flex items-start gap-2">
                               <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                               <span>{toTitleCase(size)}</span>
                             </li>
-                          ))}
+                            ))}
                         </ul>
                       )}
 
                       {/* Cleanup */}
                       {product.cleanup && product.cleanup.length > 0 && (
                         <ul className="space-y-2 text-white/80">
-                          {product.cleanup.map((method, index) => (
+                            {product.cleanup.map((method, index) => (
                             <li key={index} className="flex items-start gap-2">
                               <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                               <span>{method}</span>
                             </li>
-                          ))}
+                            ))}
                         </ul>
                       )}
                     </CardContent>
@@ -848,12 +848,12 @@ const ProductDetailPage: React.FC = () => {
                       {/* Sizes (includes packaging data under same label) */}
                       {sizesAndPackaging.length > 0 ? (
                         <ul className="space-y-2 text-white/80">
-                          {sizesAndPackaging.map((size, index) => (
+                            {sizesAndPackaging.map((size, index) => (
                             <li key={index} className="flex items-start gap-2">
                               <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                               <span>{toTitleCase(size)}</span>
                             </li>
-                          ))}
+                            ))}
                         </ul>
                       ) : (
                         <div className="text-center py-8">
@@ -868,13 +868,13 @@ const ProductDetailPage: React.FC = () => {
                   </motion.div>
                 </TabsContent>
               </motion.div>
-            </motion.section>
+          </motion.section>
           </Tabs>
           </div>
         </section>
 
         {/* Related Products Section - White Background */}
-        {relatedProducts.length > 0 && (
+          {relatedProducts.length > 0 && (
           <section className="bg-white py-12">
             <div className="max-w-[1200px] mx-auto px-4">
               <div className="mb-8">
@@ -947,11 +947,11 @@ const ProductDetailPage: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
-            </div>
-          </section>
-        )}
+              </div>
+            </section>
+          )}
 
-        {/* Call to Action */}
+          {/* Call to Action */}
         <section className="bg-white py-12">
           <div className="max-w-[1200px] mx-auto px-4">
             <div className="text-center">
@@ -977,7 +977,7 @@ const ProductDetailPage: React.FC = () => {
                 </div>
               </CardContent>
             </Card>
-            </div>
+        </div>
           </div>
         </section>
       </main>

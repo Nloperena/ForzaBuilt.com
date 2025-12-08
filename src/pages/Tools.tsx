@@ -30,7 +30,7 @@ const Tools = () => {
               />
             </div>
             
-            <h1 className="text-5xl md:text-5xl font-kallisto font-black text-white mb-6 leading-none">
+            <h1 className="text-5xl md:text-5xl font-poppins font-bold text-white mb-6 leading-none">
               Professional Tools
             </h1>
             
@@ -68,7 +68,7 @@ const Tools = () => {
                     <div className="w-24 h-1 bg-gradient-to-r from-[#F16022] to-[#D35127] mx-auto mb-4"></div>
                   </div>
                   
-                  <CardTitle className="text-4xl font-kallisto font-black text-[#1B3764] mb-4 leading-tight">
+                  <CardTitle className="text-4xl font-poppins font-bold text-[#1B3764] mb-4 leading-tight">
                     Products Datasheet
                   </CardTitle>
                   
@@ -95,7 +95,7 @@ const Tools = () => {
       {/* Call to Action Section */}
       <section className="py-16 bg-gradient-to-r from-[#1B3764] to-[#F16022]">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-kallisto font-black text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-poppins font-bold text-white mb-6">
             Need Expert Guidance?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-poppins">

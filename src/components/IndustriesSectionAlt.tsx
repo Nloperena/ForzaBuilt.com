@@ -77,8 +77,7 @@ const IndustriesSectionAlt = () => {
               className="font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins"
               style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
             >
-              Purpose-Built
-              Solutions
+              Industries We Serve
             </h2>
           </div>
         </div>
@@ -93,8 +92,7 @@ const IndustriesSectionAlt = () => {
               } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-snug break-words block`}
               style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
             >
-              Purpose-Built
-              Solutions
+              Industries We Serve
             </h2>
           </div>
         </div>

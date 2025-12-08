@@ -218,7 +218,7 @@ const InteractiveProductsSectionV5 = () => {
     return () => {
       if (animationTimeoutRef.current) {
         clearTimeout(animationTimeoutRef.current);
-      }
+    }
     };
   }, [imageStack, isAnimating, visibleStack]);
 
@@ -406,19 +406,19 @@ const InteractiveProductsSectionV5 = () => {
                       const translateX = isNewTopLayer ? '40px' : '0px';
                       
                       return (
-                        <img
+                      <img
                           key={`${productIndex}-${stackIndex}-${visibleStack.length}`}
                           src={products[productIndex].image}
                           alt={products[productIndex].title}
-                          className="absolute inset-0 w-full h-full object-cover"
-                          style={{
-                            objectPosition: 'center 70%',
+                        className="absolute inset-0 w-full h-full object-cover"
+                        style={{
+                          objectPosition: 'center 70%',
                             transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px) translateX(${translateX})`,
                             zIndex: stackIndex + 1, // Higher z-index for items higher in stack
                             opacity: opacity,
                             transition: 'opacity 700ms cubic-bezier(0.4, 0, 0.2, 1), transform 700ms cubic-bezier(0.4, 0, 0.2, 1)'
-                          }}
-                        />
+                      }}
+                    />
                       );
                     })}
                   </>
@@ -465,22 +465,22 @@ const InteractiveProductsSectionV5 = () => {
 
                 {/* Button and description at bottom */}
                 <div className="mt-auto pt-4 flex-shrink-0 space-y-4">
-                  <>
-                    <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-right-2 ${
-                      mode === 'light2' ? 'font-poppins' : ''
-                    }`}
-                    key={displayedProduct}>
-                      {products[displayedProduct].description}
-                    </p>
-                    <Button
-                      asChild
-                      className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
-                    >
-                      <Link to={`/products/${products[displayedProduct].slug}`}>
-                        {getButtonText(products[displayedProduct].title)}
-                      </Link>
-                    </Button>
-                  </>
+                      <>
+                        <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed transition-all duration-500 animate-in fade-in slide-in-from-right-2 ${
+                          mode === 'light2' ? 'font-poppins' : ''
+                        }`}
+                        key={displayedProduct}>
+                          {products[displayedProduct].description}
+                        </p>
+                        <Button
+                          asChild
+                          className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                        >
+                          <Link to={`/products/${products[displayedProduct].slug}`}>
+                            {getButtonText(products[displayedProduct].title)}
+                          </Link>
+                        </Button>
+                      </>
                 </div>
               </div>
             </div>

@@ -98,8 +98,7 @@ const ProductIndex: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-6xl font-kallisto font-black mb-6 text-white leading-none" 
-                style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
+            <h1 className="text-5xl md:text-6xl font-poppins font-bold mb-6 text-white leading-none">
               Product Categories
             </h1>
             <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed" 

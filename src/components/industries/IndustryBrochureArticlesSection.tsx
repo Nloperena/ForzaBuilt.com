@@ -220,23 +220,22 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
         </div>
 
         {/* Articles Section */}
-        <div className="w-full">
+        <div className="w-full max-w-5xl mx-auto">
             <motion.h2 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="text-white font-poppins font-normal text-center leading-tight mb-6" 
-              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+              className="text-white font-poppins font-normal text-center mb-6 md:mb-8 lg:mb-10" 
+              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}
             >
               {industryName?.trim().toLowerCase() === 'transportation' ? 'Featured Articles' : `${toTitleCase(industryName)} Articles`}
             </motion.h2>
 
-            {/* Articles Grid */}
-            <div className="flex justify-center mb-6">
+            {/* Articles Grid - Centered with consistent spacing */}
+            <div className="flex justify-center">
               <motion.div 
-                className="grid grid-cols-1 md:grid-cols-3 w-full"
-                style={{ gap: 'clamp(0.75rem, 2vw, 1.5rem)' }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-6 md:mb-8 w-full px-2 sm:px-0"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -263,7 +262,7 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
                         )}
                       </div>
 
-                      {/* Content Section */}
+                      {/* Content Section - White background */}
                       <div className="p-3 md:p-4">
                         <h3 className="font-poppins font-bold text-[#2c476e] text-sm md:text-base mb-2 group-hover:text-[#F2611D] transition-colors duration-300 line-clamp-2">
                           {article.title}

@@ -93,6 +93,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   const isIndustry = location.pathname.startsWith('/industries');
   const isAbout = location.pathname === '/about';
   const isBlog = location.pathname.startsWith('/blog');
+  const isBlogDetail = location.pathname.startsWith('/blog/') && location.pathname !== '/blog';
   const isProduct = location.pathname.startsWith('/products') || location.pathname.startsWith('/product');
     const [isScrolled, setIsScrolled] = React.useState(false);
     const [isScrollingUp, setIsScrollingUp] = React.useState(false);
@@ -121,12 +122,12 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
    }, [lastScrollY]);
    const isLight = mode === 'light' || mode === 'light2';
 
-  const headerBg = (isHome || isIndustry || isAbout || isBlog || isProduct) && !isScrolled
+  const headerBg = (isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || isProduct) && !isScrolled
     ? 'bg-transparent'
-     : isLight
-       ? 'bg-white/90 backdrop-blur-md'
-       : 'bg-[#1b3764]/70 backdrop-blur-md';
-  const isTransparent = (isHome || isIndustry || isAbout || isBlog || isProduct) && !isScrolled;
+    : isBlogDetail || isLight
+      ? 'bg-white/90 backdrop-blur-md'
+      : 'bg-[#1b3764]/70 backdrop-blur-md';
+  const isTransparent = (isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || isProduct) && !isScrolled;
   const baseNavText = isTransparent ? 'text-white' : 'text-[#1B3764]';
    const headerShadow = isScrolled ? 'shadow-sm' : '';
 

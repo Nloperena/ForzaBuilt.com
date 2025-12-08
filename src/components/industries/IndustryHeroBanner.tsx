@@ -100,87 +100,28 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
         {/* Blue overlay on top of video */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
 
-        {/* Title, Logo, and Subtitle Overlay - Centered on video */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 20 }}>
-          <motion.div 
-            className="w-full flex flex-col items-center justify-center"
-            style={{ gap: 'clamp(1rem, 2vw, 2rem)' }}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-          >
-            {/* Title and Icon Row */}
-            <div className="flex items-center justify-center" style={{ gap: 'clamp(1rem, 2vw, 2rem)' }}>
-              <h1
-                className="font-black mb-0 leading-none font-kallisto text-white"
-                style={{ 
-                  fontSize: 'clamp(1.5rem, 4vw + 0.5rem, 6rem)'
-                }}
-              >
-                {useTitleCase 
-                  ? industryTitle.replace(/\b\w/g, c => c.toUpperCase())
-                  : industryTitle.toUpperCase()}
-              </h1>
-              {logo && (
-                <div className="relative" style={{ width: 'clamp(5rem, 8vw, 14rem)', height: 'clamp(5rem, 8vw, 14rem)' }}>
-                  {!iconLoaded && <VideoSkeleton />}
-                  <motion.img
-                    src={logo}
-                    alt={`${industryTitle} icon`}
-                    className="w-auto h-full object-contain transition-opacity duration-500"
-                    style={{ 
-                      opacity: iconLoaded ? 1 : 0
-                    }}
-                    loading="lazy"
-                    onLoad={handleIconLoad}
-                    onError={handleIconError}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: iconLoaded ? 1 : 0, scale: 1 }}
-                    transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* High-Performance Subtitle - Regular Poppins */}
-            {subtitle ? (
-              <motion.h3
-                className="font-regular text-center leading-tight font-poppins text-white"
-                style={{ 
-                  fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
-                  maxWidth: '1100px',
-                  marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-              >
-                {subtitle.split('\n').map((line, i) => (
-                  <React.Fragment key={i}>
-                    {line}
-                    {i < subtitle.split('\n').length - 1 && <br />}
-                  </React.Fragment>
-                ))}
-              </motion.h3>
-            ) : (
-              <motion.h3
-                className="font-regular text-center leading-tight font-poppins text-white"
-                style={{ 
-                  fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
-                  maxWidth: '1100px',
-                  marginTop: 'clamp(0.5rem, 1vw, 1.5rem)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-              >
-                Building High-Performing<br />
-                {`${industryTitle.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape`}<br />
-                {'&'} Sealant Solutions.
-              </motion.h3>
-            )}
-          </motion.div>
-        </div>
+        {/* Subtitle Overlay - Centered on video (title and logo removed) */}
+        {subtitle && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 20 }}>
+            <motion.h3
+              className="font-regular text-center leading-tight font-poppins text-white"
+              style={{ 
+                fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)',
+                maxWidth: '1100px'
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            >
+              {subtitle.split('\n').map((line, i) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < subtitle.split('\n').length - 1 && <br />}
+                </React.Fragment>
+              ))}
+            </motion.h3>
+          </div>
+        )}
       </section>
     );
   }
@@ -225,48 +166,6 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" style={{ zIndex: 2 }} />
 
-      {/* Title and Logo Overlay - Positioned at bottom */}
-      <div className="absolute inset-0 flex items-end justify-center pb-8 md:pb-12 lg:pb-16 px-4 pointer-events-none" style={{ zIndex: 20 }}>
-        <motion.div 
-          className="w-full flex items-center justify-center"
-          style={{ 
-            gap: 'clamp(1rem, 2vw, 2rem)'
-          }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-        >
-          <h1
-            className="font-black mb-0 leading-none font-kallisto text-white"
-            style={{ 
-              fontSize: 'clamp(2rem, 5vw + 0.5rem, 6rem)'
-            }}
-          >
-            {useTitleCase 
-              ? industryTitle.replace(/\b\w/g, c => c.toUpperCase())
-              : industryTitle.toUpperCase()}
-          </h1>
-          {logo && (
-            <div className="relative" style={{ width: 'clamp(4rem, 8vw, 12rem)', height: 'clamp(4rem, 8vw, 12rem)' }}>
-              {!iconLoaded && <VideoSkeleton />}
-              <motion.img
-                src={logo}
-                alt={`${industryTitle} icon`}
-                className="w-auto h-full object-contain transition-opacity duration-500"
-                style={{ 
-                  opacity: iconLoaded ? 1 : 0
-                }}
-                loading="lazy"
-                onLoad={handleIconLoad}
-                onError={handleIconError}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: iconLoaded ? 1 : 0, scale: 1 }}
-                transition={{ duration: 0.4, ease: "easeOut", delay: 0.5 }}
-              />
-            </div>
-          )}
-        </motion.div>
-      </div>
     </section>
   );
 };

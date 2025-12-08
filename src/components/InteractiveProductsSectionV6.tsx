@@ -29,7 +29,7 @@ const products: Product[] = [
     slug: "bond"
   },
   {
-    title: "SEALANTS",
+    title: "SEALANTS", 
     description: "Dependable sealing solutions designed to protect, perform, and endure in even the toughest manufacturing environments.",
     image: "/images/homepage-heroes/Forza Seal Hero Shot.jpg",
     slug: "seal"
@@ -102,7 +102,7 @@ const InteractiveProductsSectionV6 = () => {
         setLockedIndex((prev) => (prev + 1) % products.length);
         setProgress(0);
       }
-    }, 4000);
+      }, 4000);
 
     const progressInterval = setInterval(() => {
       if (!isUserInteractingRef.current && hoveredIndex === null) {
@@ -110,9 +110,9 @@ const InteractiveProductsSectionV6 = () => {
           if (prev >= 100) return 0;
           return prev + (100 / 40); // 100% over 40 ticks (4000ms / 100ms)
         });
-      } else {
+    } else {
         setProgress(0);
-      }
+    }
     }, 100);
 
     return () => {
@@ -221,15 +221,15 @@ const InteractiveProductsSectionV6 = () => {
               {/* Images with AnimatePresence for smooth transitions */}
               <div className="absolute inset-0 w-full h-full">
                 <AnimatePresence initial={false}>
-                  <motion.img
-                    key={activeIndex}
+                <motion.img
+                  key={activeIndex}
                     src={products[activeIndex].image}
                     alt={products[activeIndex].title}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                     style={{
                       objectPosition: 'center 70%',
                       transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`,
@@ -237,8 +237,8 @@ const InteractiveProductsSectionV6 = () => {
                       // With AnimatePresence, the entering component is rendered alongside exiting.
                       // Default z-index stacking order usually puts newer elements on top if they are siblings.
                     }}
-                  />
-                </AnimatePresence>
+                />
+              </AnimatePresence>
                 
                 {/* To avoid any white flashes if crossfade isn't perfect, 
                     we could keep the previous image underneath, but AnimatePresence usually handles this well.
@@ -256,7 +256,7 @@ const InteractiveProductsSectionV6 = () => {
                   <div className="flex flex-col justify-evenly h-full flex-shrink-0">
                     {products.map((product, index) => {
                       const isActive = activeIndex === index;
-
+                      
                       return (
                         <div
                           key={index}
@@ -283,7 +283,7 @@ const InteractiveProductsSectionV6 = () => {
                               : 'text-white font-normal'
                           } ${!isActive ? 'hover:text-[#F2611D]' : ''}`}
                           style={{
-                            fontSize: isActive
+                            fontSize: isActive 
                               ? 'clamp(28px, 4vw, 128px)'
                               : 'clamp(22px, 3.2vw, 48px)',
                           }}>
