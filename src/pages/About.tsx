@@ -120,7 +120,7 @@ const About = () => {
             >
               {/* Why Forza Title */}
               <h2 
-                className="font-poppins leading-none text-[#1B3764] mb-4" 
+                className="font-poppins leading-none text-[#1B3764] mb-4 text-center" 
                 style={{ fontSize: 'clamp(28px, 3vw, 56px)' }}
               >
                 Why Forza?
