@@ -4,7 +4,7 @@ import HeaderV2 from '@/components/Header/HeaderV2';
 import FooterV2 from '@/components/FooterV2';
 import NewsletterSection from '@/components/NewsletterSection';
 import { motion } from 'framer-motion';
-import canisterPalletImage from '@/assets/images/Canister Pallet Return image.jpg';
+import canisterPalletImage from '@/assets/images/canister-pallet-return-image.jpg';
 
 const CanisterReturns = () => {
 
