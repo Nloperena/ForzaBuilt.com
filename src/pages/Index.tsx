@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import HeaderV2 from '@/components/Header/HeaderV2';
 import StickyHeroVideoSection from '@/components/StickyHeroVideoSection';
 import IndustriesSectionAlt from '@/components/IndustriesSectionAlt';
@@ -14,9 +14,72 @@ import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
 import { useGradientMode } from '@/contexts/GradientModeContext';
-
 const Index = () => {
   const { mode } = useGradientMode();
+
+  // Predefined ticker items with full Vercel Blob Storage URLs and product names
+  const tickerItems = useMemo(() => [
+    // Cycle 1
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/IC932 Canister.png', alt: 'ForzaBOND® IC932' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OS9 Sausage.png', alt: 'ForzaSEAL® C-OS9' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/TAC-735R Canister and Aerosol.png', alt: 'ForzaBOND® TAC-735R' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS2 Cartridge.png', alt: 'ForzaSEAL® OS2' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS10 Cartridge.png', alt: 'ForzaSEAL® OS10' },
+    // Cycle 2
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/TAC-738R Canister and Aerosol.png', alt: 'ForzaBOND® TAC-738R' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS20 Sausage.png', alt: 'ForzaSEAL® OS20' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/TAC-739R Canister and Aerosol.png', alt: 'ForzaBOND® TAC-739R' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS31 Cartridge.png', alt: 'ForzaSEAL® OS31' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS25 Cartridge.png', alt: 'ForzaSEAL® OS25' },
+    // Cycle 3
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC722 Canister.png', alt: 'ForzaBOND® MC722' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS35 Cartridge.png', alt: 'ForzaSEAL® OS35' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC723 Canister and Aerosol.png', alt: 'ForzaBOND® MC723' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS37 Cartridge.png', alt: 'ForzaSEAL® OS37' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T305- Foam Tape.png', alt: 'T305' },
+    // Cycle 4
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC724 Canister and Aerosol.png', alt: 'ForzaBOND® MC724' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS61 Cartridge.png', alt: 'ForzaSEAL® OS61' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC737 Canister.png', alt: 'ForzaBOND® MC737' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OS55 Sausage.png', alt: 'ForzaSEAL® C-OS55' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T350- Thermal Break Tape.png', alt: 'T350' },
+    // Cycle 5
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC737 Canister.png', alt: 'ForzaBOND® MC737' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS24 Cartridge.png', alt: 'ForzaSEAL® OS24' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Marine/MC741 Canister.png', alt: 'ForzaBOND® MC741' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OS9 Sausage.png', alt: 'ForzaSEAL® C-OS9' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-T500 Tape.png', alt: 'ForzaTAPE® C-T500' },
+    // Cycle 6
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/IC933 Canister and Aerosol.png', alt: 'ForzaBOND® IC933' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS2 Cartridge.png', alt: 'ForzaSEAL® OS2' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/IC946 Canister and Aerosol.png', alt: 'ForzaBOND® IC946' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS20 Sausage.png', alt: 'ForzaSEAL® OS20' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Insulation/R-T600 Tape.png', alt: 'ForzaTAPE® R-T600' },
+    // Cycle 7
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/C130 Drum.png', alt: 'ForzaBOND® C130' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS31 Cartridge.png', alt: 'ForzaSEAL® OS31' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/C150 1 gal pail.png', alt: 'ForzaBOND® C150' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS35 Cartridge.png', alt: 'ForzaSEAL® OS35' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OA12 Cartridge.png', alt: 'ForzaBOND® OA12' },
+    // Cycle 8
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/C331 5 gal Pail.png', alt: 'ForzaBOND® C331' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS37 Cartridge.png', alt: 'ForzaSEAL® OS37' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/R160 2 part.png', alt: 'R160' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS61 Cartridge.png', alt: 'ForzaSEAL® OS61' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T900 Butyl Tape.png', alt: 'T900' },
+    // Cycle 9
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/R221 2 part.png', alt: 'R221' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OS55 Sausage.png', alt: 'ForzaSEAL® C-OS55' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/R519 2 part.png', alt: 'R519' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS24 Cartridge.png', alt: 'ForzaSEAL® OS24' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T950 FSK Bonding Tape.png', alt: 'T950' },
+    // Cycle 10
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/r529.png', alt: 'R529' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OS9 Sausage.png', alt: 'ForzaSEAL® C-OS9' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OA13 Cartridge.png', alt: 'ForzaBOND® OA13' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS2 Cartridge.png', alt: 'ForzaSEAL® OS2' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T970 Foil Bonding Tape.png', alt: 'T970' }
+  ], []);
 
   return (
     <div className={`relative overflow-x-hidden ${mode === 'light' || mode === 'light2' ? 'bg-white' : ''}`}>
@@ -35,69 +98,7 @@ const Index = () => {
         {/* Product Image Ticker - New Product Divider */}
         <section className="relative -mt-40 md:-mt-56 lg:-mt-64 xl:-mt-68">
           <ProductImageTicker
-            items={[
-              // Pattern: BOND, SEAL, BOND, SEAL, TAPE
-              // Cycle 1
-              { src: "/product-images/ic932.png", alt: "IC932" }, // BOND
-              { src: "/product-images/c-os9.png", alt: "OS9" }, // SEAL
-              { src: "/product-images/tac-735r.png", alt: "TAC-735R" }, // BOND
-              { src: "/product-images/os2.png", alt: "OS2" }, // SEAL
-              { src: "/product-images/t215.png", alt: "T215" }, // TAPE
-              // Cycle 2
-              { src: "/product-images/tac-738r.png", alt: "TAC-738R" }, // BOND
-              { src: "/product-images/os20.png", alt: "OS20" }, // SEAL
-              { src: "/product-images/tac-739r.png", alt: "TAC-739R" }, // BOND
-              { src: "/product-images/os31.png", alt: "OS31" }, // SEAL
-              { src: "/product-images/t220.png", alt: "T220" }, // TAPE
-              // Cycle 3
-              { src: "/product-images/mc722.png", alt: "MC722" }, // BOND
-              { src: "/product-images/os35.png", alt: "OS35" }, // SEAL
-              { src: "/product-images/mc723.png", alt: "MC723" }, // BOND
-              { src: "/product-images/os37.png", alt: "OS37" }, // SEAL
-              { src: "/product-images/t305.png", alt: "T305" }, // TAPE
-              // Cycle 4  
-              { src: "/product-images/mc724.png", alt: "MC724" }, // BOND
-              { src: "/product-images/os45.png", alt: "OS45" }, // SEAL
-              { src: "/product-images/mc737.png", alt: "MC737" }, // BOND
-              { src: "/product-images/os55.png", alt: "OS55" }, // SEAL
-              { src: "/product-images/t350.png", alt: "T350" }, // TAPE
-              // Cycle 5
-              { src: "/product-images/mc739.png", alt: "MC739" }, // BOND
-              { src: "/product-images/os24.png", alt: "OS24" }, // SEAL
-              { src: "/product-images/mc741.png", alt: "MC741" }, // BOND
-              { src: "/product-images/c-os9.png", alt: "OS9-2" }, // SEAL (repeat)
-              { src: "/product-images/t500.png", alt: "T500" }, // TAPE
-              // Cycle 6
-              { src: "/product-images/ic933.png", alt: "IC933" }, // BOND
-              { src: "/product-images/os2.png", alt: "OS2-2" }, // SEAL (repeat)
-              { src: "/product-images/ic946.png", alt: "IC946" }, // BOND
-              { src: "/product-images/os20.png", alt: "OS20-2" }, // SEAL (repeat)
-              { src: "/product-images/t600.png", alt: "T600" }, // TAPE
-              // Cycle 7
-              { src: "/product-images/c130.png", alt: "C130" }, // BOND
-              { src: "/product-images/os31.png", alt: "OS31-2" }, // SEAL (repeat)
-              { src: "/product-images/c150.png", alt: "C150" }, // BOND
-              { src: "/product-images/os35.png", alt: "OS35-2" }, // SEAL (repeat)
-              { src: "/product-images/t715.png", alt: "T715" }, // TAPE
-              // Cycle 8
-              { src: "/product-images/c331.png", alt: "C331" }, // BOND
-              { src: "/product-images/os37.png", alt: "OS37-2" }, // SEAL (repeat)
-              { src: "/product-images/r160.png", alt: "R160" }, // BOND
-              { src: "/product-images/os45.png", alt: "OS45-2" }, // SEAL (repeat)
-              { src: "/product-images/t900.png", alt: "T900" }, // TAPE
-              // Cycle 9
-              { src: "/product-images/r221.png", alt: "R221" }, // BOND
-              { src: "/product-images/os55.png", alt: "OS55-2" }, // SEAL (repeat)
-              { src: "/product-images/r519.png", alt: "R519" }, // BOND
-              { src: "/product-images/os24.png", alt: "OS24-2" }, // SEAL (repeat)
-              { src: "/product-images/t950.png", alt: "T950" }, // TAPE
-              // Cycle 10
-              { src: "/product-images/r529.png", alt: "R529" }, // BOND
-              { src: "/product-images/c-os9.png", alt: "OS9-3" }, // SEAL (repeat)
-              { src: "/product-images/fc-car.png", alt: "FC Car" }, // BOND
-              { src: "/product-images/os2.png", alt: "OS2-3" }, // SEAL (repeat)
-              { src: "/product-images/t970.png", alt: "T970" } // TAPE
-            ]}
+            items={tickerItems}
             speed={95}
             direction="left"
             className="pt-0 pb-10 md:pt-0 md:pb-16"
