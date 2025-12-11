@@ -7,6 +7,7 @@
 
 import { fetchData } from "../lib/utils";
 import { ImageMappingService } from './imageMappingService';
+import { getBlobImageUrl } from '../utils/blobStorage';
 
 // Types
 export type Product = {
@@ -49,8 +50,10 @@ export type ProductsData = {
 };
 
 // Constants
-// Direct URL to Heroku API (CORS enabled on server)
-const PRODUCTS_DATA_URL = 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products';
+// Use proxy in development to avoid CORS issues, direct URL in production
+const PRODUCTS_DATA_URL = import.meta.env.DEV 
+  ? '/api/products'  // Uses Vite proxy in development
+  : 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products';  // Direct URL in production
 
 // Service functions
 export async function getAllProducts(): Promise<Product[]> {
@@ -109,7 +112,15 @@ export async function getAllProducts(): Promise<Product[]> {
           : apiProduct.applications ? [apiProduct.applications] : [],
         benefits: apiProduct.benefits || [],
         sizes: sizes,
-        imageUrl: apiProduct.image ? (apiProduct.image.startsWith('/') || apiProduct.image.startsWith('http') ? apiProduct.image : `/product-images/${apiProduct.image}`) : undefined,
+        imageUrl: apiProduct.image ? (
+          // If API returns a full URL, use it directly
+          apiProduct.image.startsWith('http://') || apiProduct.image.startsWith('https://')
+            ? apiProduct.image
+            : getBlobImageUrl(
+                apiProduct.image,
+                apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
+              )
+        ) : undefined,
         pdfLinks: [], // Not in API response
         standardTdsLink: '', // Not in API response
         hasTdsLink: false, // Not in API response
@@ -122,7 +133,8 @@ export async function getAllProducts(): Promise<Product[]> {
       
       // Debug first few products with images
       if (index < 3) {
-        console.log(`🖼️ Product ${product.id}: imageUrl = ${product.imageUrl}`);
+        console.log(`🖼️ Product ${product.id}: imageUrl = ${product.imageUrl}, industry = ${product.industry.join(', ')}`);
+        console.log(`   API image field: ${apiProduct.image}`);
       }
       
       return product;
@@ -133,20 +145,18 @@ export async function getAllProducts(): Promise<Product[]> {
     console.log(`✅ Returning ${publishedProducts.length} published products`);
     return publishedProducts;
   } catch (error) {
-    console.error('Failed to fetch products from Heroku API, trying fallback:', error);
+    console.error('Failed to fetch products from Heroku API:', error);
     
-    // Fallback to local JSON file in development
-    if (import.meta.env.DEV) {
-      try {
-        const fallbackResponse = await fetch('/productsSimplified.json');
-        if (fallbackResponse.ok) {
-          const fallbackData = await fallbackResponse.json();
-          console.warn('Using fallback local JSON data');
-          return fallbackData.products || [];
-        }
-      } catch (fallbackError) {
-        console.error('Fallback also failed:', fallbackError);
+    // Try fallback to local JSON file only as last resort
+    try {
+      const fallbackResponse = await fetch('/productsSimplified.json');
+      if (fallbackResponse.ok) {
+        const fallbackData = await fallbackResponse.json();
+        console.warn('⚠️ API failed, using fallback local JSON data');
+        return fallbackData.products || [];
       }
+    } catch (fallbackError) {
+      console.error('Fallback also failed:', fallbackError);
     }
     
     return [];
@@ -211,7 +221,10 @@ export async function getProductById(id: string): Promise<Product | null> {
         : apiProduct.applications ? [apiProduct.applications] : [],
       benefits: apiProduct.benefits || [],
       sizes: sizes,
-      imageUrl: apiProduct.image ? (apiProduct.image.startsWith('/') || apiProduct.image.startsWith('http') ? apiProduct.image : `/product-images/${apiProduct.image}`) : undefined,
+      imageUrl: apiProduct.image ? getBlobImageUrl(
+        apiProduct.image,
+        apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
+      ) : undefined,
       pdfLinks: [], // Not in API response
       standardTdsLink: '', // Not in API response
       hasTdsLink: false, // Not in API response

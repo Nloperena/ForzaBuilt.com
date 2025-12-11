@@ -114,10 +114,10 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             >
               {subtitle.split('\n').map((line, i) => (
-                <React.Fragment key={i}>
+                <span key={i}>
                   {line}
                   {i < subtitle.split('\n').length - 1 && <br />}
-                </React.Fragment>
+                </span>
               ))}
             </motion.h3>
           </div>
