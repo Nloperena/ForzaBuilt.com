@@ -27,7 +27,7 @@ const HeroVideoSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="relative h-[400px] md:h-[425px] lg:h-[455px] xl:h-[585px] 2xl:h-[400px] min-[1920px]:h-[585px] min-[2560px]:h-[650px] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl py-0">
+    <section className="relative h-[450px] md:h-[488px] lg:h-[525px] xl:h-[675px] 2xl:h-[450px] min-[1920px]:h-[675px] min-[2560px]:h-[750px] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl py-0">
       {/* Video Skeleton Loading State */}
       {!isVideoLoaded && (
         <VideoSkeleton />
