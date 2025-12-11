@@ -268,7 +268,7 @@ const ApproachSectionUnified = () => {
                 ref={titlesContainerRef}
                 className="
                 relative
-                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
+                min-h-[25svh] md:min-h-[38vh] lg:min-h-[38vh] xl:min-h-[45vh]
                 px-[clamp(14px,4vw,32px)] 
                 py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
@@ -310,13 +310,11 @@ const ApproachSectionUnified = () => {
               {/* RIGHT - Videos with description */}
               <div className="
                 relative
-                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
+                min-h-[25svh] md:min-h-[38vh] lg:min-h-[38vh] xl:min-h-[45vh]
                 py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible
-              "
-              style={selectedItem === 1 ? { maxHeight: '800px' } : {}}
-              >
+              ">
                 {/* Inline image (all breakpoints) - relative z-20 to appear above gradient */}
                 <div className="absolute inset-0 overflow-hidden z-20">
                   {/* Previous content (beneath) - image or video */}
