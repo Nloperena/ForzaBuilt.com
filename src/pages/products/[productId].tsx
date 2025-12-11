@@ -968,7 +968,7 @@ const ProductDetailPage: React.FC = () => {
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Link to="/contact">
                     <Button 
-                      className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-8 py-6 text-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/30"
+                      className="bg-[#F2611D] hover:bg-[#E6540D] text-white font-poppins font-normal rounded-full px-8 py-6 text-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       <Mail className="h-4 w-4 mr-2" />
                       Contact Us
