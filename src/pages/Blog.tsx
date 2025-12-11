@@ -26,11 +26,11 @@ const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
       />
     </div>
 
-    {/* Blue Gradient Overlay - matching IndustriesSectionAlt */}
+    {/* Blue Gradient Overlay - spread more */}
     <div 
       className="absolute inset-0 pointer-events-none transition-opacity duration-300"
       style={{
-        background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 10%, rgba(27, 55, 100, 0.5) 20%, rgba(27, 55, 100, 0.3) 30%, rgba(27, 55, 100, 0.15) 40%, transparent 50%)'
+        background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 15%, rgba(27, 55, 100, 0.5) 30%, rgba(27, 55, 100, 0.3) 45%, rgba(27, 55, 100, 0.15) 60%, transparent 70%)'
       }}
     />
 
@@ -39,14 +39,14 @@ const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
       <h3 className="text-xl md:text-2xl font-bold font-poppins mb-2 leading-tight group-hover:text-[#F2611D] transition-colors">
         {post.title}
       </h3>
-      <p className="text-sm md:text-base text-white/80 font-poppins line-clamp-2 mb-4">
-        {post.excerpt}
-      </p>
       
-      {/* Orange Arrow Icon - no circle background */}
-      <div className="flex justify-end mt-2">
+      {/* Description and Arrow on same line */}
+      <div className="flex items-center justify-between gap-3 mt-2">
+        <p className="text-sm md:text-base text-white/80 font-poppins line-clamp-2 flex-1">
+          {post.excerpt}
+        </p>
         <svg 
-          className="w-6 h-6 text-[#F2611D] transform group-hover:translate-x-1 transition-transform duration-300" 
+          className="w-6 h-6 text-[#F2611D] transform group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0" 
           fill="none" 
           stroke="currentColor" 
           strokeWidth={2.5}
