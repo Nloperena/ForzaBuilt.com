@@ -970,7 +970,6 @@ const ProductDetailPage: React.FC = () => {
                     <Button 
                       className="bg-[#F2611D] hover:bg-[#E6540D] text-white font-poppins font-normal rounded-full px-8 py-6 text-xl shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                      <Mail className="h-4 w-4 mr-2" />
                       Contact Us
                     </Button>
                   </Link>
