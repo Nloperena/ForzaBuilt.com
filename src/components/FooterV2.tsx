@@ -89,25 +89,23 @@ const FooterV2 = () => {
 
         {/* Bottom Section with Made in USA Badge, Copyright, and Follow Us */}
         <div className="max-w-[56rem] mx-auto">
-          {/* Made in USA Badge - Standalone Image */}
-          <div className="mb-5">
-            <img 
-              src="/images/misc/Flag Icon with asterisk 1.png"
-              alt="PROUDLY MADE IN AMERICA"
-              className="h-16 w-auto object-contain"
-            />
-          </div>
-
           {/* Copyright, Button, and Follow Us - Equal spacing */}
           <div className="flex items-center justify-between gap-4 flex-wrap">
-            {/* Copyright */}
-            <p className="text-white/70 text-xs font-poppins leading-tight">
-              *Forza industrial adhesive and industrial sealants are proudly
-              <br />
-              manufactured in the USA from domestic and limited foreign
-              <br />
-              components. © {new Date().getFullYear()} Forza Built. All rights reserved.
-            </p>
+            {/* Flag Badge and Copyright */}
+            <div className="flex items-center gap-4">
+              <img 
+                src="/images/misc/Flag Icon with asterisk 1.png"
+                alt="PROUDLY MADE IN AMERICA"
+                className="h-16 w-auto object-contain flex-shrink-0"
+              />
+              <p className="text-white/70 text-xs font-poppins leading-tight">
+                *Forza industrial adhesive and industrial sealants are proudly
+                <br />
+                manufactured in the USA from domestic and limited foreign
+                <br />
+                components. © {new Date().getFullYear()} Forza Built. All rights reserved.
+              </p>
+            </div>
 
             {/* Canister Returns Button - Centered */}
             <div className="flex items-center">
