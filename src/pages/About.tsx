@@ -152,7 +152,7 @@ const About = () => {
         </section>
 
         {/* Meet Forza Section - Story text first, then bullets, then video */}
-        <section className="relative z-20 py-16 md:py-24 px-4 bg-white">
+        <section className="relative z-20 pt-8 pb-16 md:pt-12 md:pb-24 px-4 bg-white">
           <div className="max-w-[1400px] mx-auto space-y-12">
             {/* Story Text Section */}
             <motion.div

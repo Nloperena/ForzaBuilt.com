@@ -165,7 +165,7 @@ const Blog = () => {
 
       {/* Most Popular Section */}
       {!loading && featuredPosts.length > 0 && (
-        <section className="py-20 relative z-20 bg-white">
+        <section className="pt-8 pb-20 relative z-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <h2 className="font-poppins font-normal text-[#1B3764] text-center mb-16" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}>
               Most Popular
@@ -180,7 +180,7 @@ const Blog = () => {
       )}
 
       {/* Products, Tips, Tutorials Section */}
-      <section className="py-20 bg-white relative z-20">
+      <section className="pt-8 pb-20 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="mb-12 text-center">
             <h2 className="font-poppins font-normal text-[#1B3764] mb-10 text-center" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}>
