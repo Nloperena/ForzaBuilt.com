@@ -43,7 +43,7 @@ const ThirtyYearsTrustSection: React.FC = () => {
               style={{ y: headingY }}
               className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-kallisto font-black leading-[1.05]"
             >
-              30 Years of Proven Adhesive, Sealant, and Tape Expertise
+              30 Years of Proven Adhesive Sealant and Tape Expertise
             </motion.h2>
             <motion.p
               style={{ opacity: chipsOpacity }}

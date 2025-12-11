@@ -511,7 +511,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                     setSelectedChemistries([]);
                     setSelectedIndustries([]);
                   }}
-                  className="px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                  className="px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-xs sm:text-sm font-normal font-poppins transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   Clear All Filters
                 </button>
@@ -639,7 +639,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
 
                   {/* Apply Button */}
                   <div className="pt-2 pb-6">
-                    <button onClick={() => setIsFilterDialogOpen(false)} className="w-full px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#E55B1C] text-white font-bold rounded-full text-xs sm:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                    <button onClick={() => setIsFilterDialogOpen(false)} className="w-full px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#E55B1C] text-white font-normal font-poppins rounded-full text-xs sm:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                       Apply Filters
                     </button>
                   </div>

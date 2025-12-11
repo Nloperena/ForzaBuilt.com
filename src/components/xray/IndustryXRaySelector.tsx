@@ -232,17 +232,6 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                   
                   {/* Button Row */}
                   <div className="flex gap-1.5 mt-2 pt-2">
-                    {/* Quick View Button */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        // Keep modal open for quick view
-                      }}
-                      className="flex-1 inline-flex items-center justify-center border-2 border-[white] hover:bg-[#477197] text-[white] hover:text-white rounded-full px-2 py-1 text-xs font-medium transition-all duration-300"
-                    >
-                      Quick View
-                    </button>
-                    
                     {/* Details Button */}
                     <a
                       href={`/products/${displayProduct.category?.toLowerCase() || 'bond'}/${displayProduct.id}`}
@@ -257,20 +246,10 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
 
               {/* Mobile: Bottom buttons */}
               <div className="flex md:hidden items-center gap-2 p-3">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // Keep modal open for quick view
-                  }}
-                  className="flex items-center gap-1 bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-2 py-1 text-xs font-medium transition-all duration-300 border border-white/30"
-                >
-                  <span>Quick View</span>
-                </button>
-                
                 <a
                   href={`/products/${displayProduct.category?.toLowerCase() || 'bond'}/${displayProduct.id}`}
                   onClick={(e) => e.stopPropagation()}
-                  className="flex items-center justify-center bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-2 py-1 text-xs font-medium transition-all duration-300 border border-white/30"
+                  className="w-full flex items-center justify-center bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-2 py-1 text-xs font-medium transition-all duration-300 border border-white/30"
                 >
                   Details
                 </a>

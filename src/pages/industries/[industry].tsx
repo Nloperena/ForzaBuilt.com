@@ -66,7 +66,7 @@ const IndustryPage = () => {
               industryTitle={industryData.title}
               logo={industryData.logo}
               variant="simple"
-              subtitle={`Building High-Performing\n${industryData.title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape\n& Sealant Solutions.`}
+              subtitle={`Building High-Performing\n${industryData.title.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape\n& Sealant Solutions`}
             />
           </div>
 

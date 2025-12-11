@@ -23,8 +23,8 @@ const IndustryHeadingsSection: React.FC<IndustryHeadingsSectionProps> = ({ indus
             style={{ fontSize: 'clamp(28px, 3vw, 56px)', maxWidth: '1100px' }}
           >
             Building High-Performing<br />
-            {`${industryTitle.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive, Tape`}<br />
-            {'&'} Sealant Solutions.
+            {`${industryTitle.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())} Adhesive Tape`}<br />
+            & Sealant Solutions
           </h3>
         </motion.div>
       </div>

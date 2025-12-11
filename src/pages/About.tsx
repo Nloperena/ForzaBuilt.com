@@ -8,6 +8,48 @@ import { Link } from 'react-router-dom';
 import VideoSkeleton from '@/components/common/VideoSkeleton';
 import WhyChooseForza from '@/components/WhyChooseForza';
 
+// Utility function to prevent orphaned words (single words on last line)
+// Processes each sentence separately to ensure no single-word orphans
+// Uses non-breaking spaces to keep at least 2 words together on the last line
+const preventOrphans = (text: string): string => {
+  // Split by sentence endings (., !, ?) but preserve them
+  const sentenceParts = text.split(/([.!?]\s+)/);
+  
+  return sentenceParts.map((part, index) => {
+    // Skip punctuation-only fragments (they're part of the previous sentence)
+    if (part.match(/^[.!?]\s*$/)) {
+      return part;
+    }
+    
+    // Process actual sentence content
+    const trimmed = part.trim();
+    if (!trimmed) return part;
+    
+    const words = trimmed.split(/\s+/);
+    
+    // If there are less than 3 words, return as is
+    if (words.length < 3) {
+      return part;
+    }
+    
+    // For longer sentences, ensure the last 2-3 words stick together
+    // This prevents orphans more effectively
+    const wordsToKeepTogether = words.length >= 4 ? 3 : 2;
+    const lastWords = words.slice(-wordsToKeepTogether).join('\u00A0'); // \u00A0 is non-breaking space
+    const remainingWords = words.slice(0, -wordsToKeepTogether);
+    
+    // Reconstruct with non-breaking spaces
+    const result = remainingWords.length > 0 
+      ? [...remainingWords, lastWords].join(' ')
+      : lastWords;
+    
+    // Preserve original whitespace at the end if it exists
+    const trailingWhitespace = part.match(/\s+$/)?.[0] || '';
+    
+    return result + trailingWhitespace;
+  }).join('');
+};
+
 // Why Choose Forza Stats - Circles at top with thin stems extending down
 const RaisingBarsStats = () => {
   // This component has been replaced by WhyChooseForza.tsx and can be removed
@@ -17,7 +59,8 @@ const RaisingBarsStats = () => {
 const About = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const heroVideoUrl = '/videos/backgrounds/Forza Building Video.mp4';
+  const heroVideoUrlMobile = '/videos/backgrounds/Forza Building Video for Mobile.mp4';
+  const heroVideoUrlDesktop = '/videos/backgrounds/Forza Building Video for Desktop.mp4';
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -43,7 +86,7 @@ const About = () => {
         message: error.message,
         networkState: videoElement.networkState,
         readyState: videoElement.readyState,
-        src: heroVideoUrl
+        currentSrc: videoElement.currentSrc
       });
     }
     console.warn('About page video failed to load, showing fallback', e);
@@ -61,7 +104,7 @@ const About = () => {
           {!videoLoaded && <VideoSkeleton />}
           
           <video
-            key={heroVideoUrl}
+            key={`${heroVideoUrlMobile}-${heroVideoUrlDesktop}`}
             autoPlay
             loop
             muted
@@ -83,7 +126,8 @@ const About = () => {
               minHeight: '100%'
             }}
           >
-            <source src={heroVideoUrl} type="video/mp4" />
+            <source src={heroVideoUrlDesktop} type="video/mp4" media="(min-width: 768px)" />
+            <source src={heroVideoUrlMobile} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 
@@ -102,7 +146,7 @@ const About = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             >
-              30 Years of Engineering Superior Adhesives, Sealants, and Tapes
+              30 Years of Engineering Superior Adhesives Sealants and Tapes
             </motion.h3>
           </div>
         </section>
@@ -123,21 +167,19 @@ const About = () => {
                 className="font-poppins leading-none text-[#1B3764] mb-4 text-center" 
                 style={{ fontSize: 'clamp(28px, 3vw, 56px)' }}
               >
-                Why Forza?
+                Why Forza
               </h2>
               
               {/* Story paragraphs */}
               <div className="space-y-6 text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
                 <p>
-                  Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at all times.
+                  {preventOrphans("Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at all times.")}
                 </p>
                 <p>
-                  At Forza, we do what other manufacturers won't.
-                  That means finding a better solution is just the beginning.
+                  {preventOrphans("At Forza, we do what other manufacturers won't. That means finding a better solution is just the beginning.")}
                 </p>
                 <p>
-                  If you're looking to take your projects, your results, and your
-                  business to the next level, we're ready to over-deliver for you.
+                  {preventOrphans("If you're looking to take your projects, your results, and your business to the next level, we're ready to over-deliver for you.")}
                 </p>
               </div>
             </motion.div>
@@ -193,7 +235,7 @@ const About = () => {
                     Video Transcript / Summary
                   </summary>
                   <p className="mt-2 pl-4 border-l-2 border-[#F2611D]/20">
-                    Forza is a US-based manufacturer of high-performance adhesives, sealants, and tapes. We combine vertically integrated manufacturing with in-house R&D to deliver custom solutions for industrial applications. From transportation to marine, our products are engineered for durability and performance.
+                    {preventOrphans("Forza is a US-based manufacturer of high-performance adhesives, sealants, and tapes. We combine vertically integrated manufacturing with in-house R&D to deliver custom solutions for industrial applications. From transportation to marine, our products are engineered for durability and performance.")}
                   </p>
                 </details>
               </div>
@@ -224,10 +266,10 @@ const About = () => {
                 <div className="w-40 h-1 bg-[#F2611D] mb-6" />
               </div>
               <p className="text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
-                To empower manufacturers with adhesive solutions that improve efficiency, reduce costs, and enhance product durability. We don't just sell glue; we solve bonding challenges.
+                {preventOrphans("To empower manufacturers with adhesive solutions that improve efficiency, reduce costs, and enhance product durability. We don't just sell glue; we solve bonding challenges.")}
               </p>
               <p className="text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
-                With complete in-house R&D and manufacturing capabilities, we can develop, test, and produce custom formulations faster than anyone in the industry.
+                {preventOrphans("With complete in-house R&D and manufacturing capabilities, we can develop, test, and produce custom formulations faster than anyone in the industry.")}
               </p>
             </motion.div>
             
@@ -293,7 +335,7 @@ const About = () => {
               <div className="mt-8">
                 <Link
                   to="/products"
-                  className="inline-flex items-center px-8 py-3 bg-[#F2611D] text-white font-bold rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-lg"
+                  className="inline-flex items-center px-8 py-3 bg-[#F2611D] text-white font-normal rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-lg"
                 >
                   See Products
                 </Link>

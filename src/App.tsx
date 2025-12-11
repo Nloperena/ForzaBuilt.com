@@ -44,6 +44,7 @@ import Triangles from './pages/Triangles';
 import CanisterReturns from './pages/CanisterReturns';
 
 import PerformanceMonitor from "@/components/PerformanceMonitor";
+import HelpButton from "@/components/HelpButton";
 
 const queryClient = new QueryClient();
 
@@ -62,6 +63,7 @@ const App = () => {
             <Sonner />
             <BrowserRouter>
               <ScrollToTop />
+              <HelpButton />
               <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/industries" element={<Industries />} />

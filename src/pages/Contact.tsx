@@ -136,7 +136,7 @@ const Contact = () => {
               CONTACT US
             </h1>
             <h3 className="font-regular text-center leading-tight font-poppins text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-4xl mt-4">
-              Ready to discuss your project?<br />Let's find the right solution together.
+              Ready to discuss your project<br />Let's find the right solution together
             </h3>
           </motion.div>
         </section>

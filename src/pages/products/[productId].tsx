@@ -959,7 +959,7 @@ const ProductDetailPage: React.FC = () => {
               <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
                 <h2 className="text-3xl font-poppins font-regular text-white" 
                     style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                  Ready to Get Started?
+                  Ready to Get Started
                 </h2>
                 <p className="text-xl text-gray-300 max-w-2xl mx-auto" 
                    style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>

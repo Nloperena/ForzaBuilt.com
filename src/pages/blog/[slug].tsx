@@ -55,7 +55,7 @@ const BlogPostPage = () => {
 
   const sanitizedFullContent = useMemo(() => {
     const html = blogPost?.fullContent || '';
-    if (!html) return '';
+    if (!html || !blogPost) return '';
     try {
       if (typeof window !== 'undefined' && typeof document !== 'undefined') {
         const temp = document.createElement('div');
@@ -63,7 +63,13 @@ const BlogPostPage = () => {
         const headings = temp.querySelectorAll('h1,h2,h3,h4,h5,h6');
         headings.forEach((h) => {
           const text = (h.textContent || '').trim().toLowerCase();
+          const titleLower = blogPost.title.trim().toLowerCase();
+          // Remove "Share this post" headings
           if (text === 'share this post') {
+            h.remove();
+          }
+          // Remove H1 tags that match the blog post title
+          if (h.tagName === 'H1' && text === titleLower) {
             h.remove();
           }
         });
@@ -72,8 +78,13 @@ const BlogPostPage = () => {
     } catch (e) {
       // no-op
     }
-    return html.replace(/<h[1-6][^>]*>\s*share\s+this\s+post\s*<\/h[1-6]>/gi, '');
-  }, [blogPost?.fullContent]);
+    // Also remove via regex as fallback
+    let cleaned = html.replace(/<h[1-6][^>]*>\s*share\s+this\s+post\s*<\/h[1-6]>/gi, '');
+    // Remove H1 tags matching the title (case insensitive)
+    const titleEscaped = blogPost.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    cleaned = cleaned.replace(new RegExp(`<h1[^>]*>\\s*${titleEscaped}\\s*</h1>`, 'gi'), '');
+    return cleaned;
+  }, [blogPost?.fullContent, blogPost?.title]);
 
   const recentPosts = blogPosts
     .filter(post => post.id !== blogPost?.id)
@@ -109,7 +120,7 @@ const BlogPostPage = () => {
             <p className="text-[#1B3764]/80 mb-6 font-poppins">The blog post you're looking for doesn't exist.</p>
             <Link 
               to="/blog" 
-              className="inline-flex items-center px-6 py-3 bg-[#F2611D] text-white font-bold rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins"
+              className="inline-flex items-center px-6 py-3 bg-[#F2611D] text-white font-normal rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins"
             >
               Back to Learning Center
             </Link>
@@ -186,7 +197,7 @@ const BlogPostPage = () => {
 
           {/* Title and Date */}
           <div className="mb-8">
-            <h1 className="text-[#1B3764] font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight break-words mb-4 tracking-tight">
+            <h1 className="text-[#1B3764] font-poppins text-4xl md:text-5xl lg:text-6xl font-normal leading-tight break-words mb-4 tracking-tight">
               {blogPost.title}
             </h1>
             <div className="flex items-center gap-4 text-gray-600 text-sm font-poppins">
@@ -226,7 +237,7 @@ const BlogPostPage = () => {
 
               {/* Full Blog Content */}
               <motion.div 
-                className="prose prose-lg max-w-none prose-headings:text-[#1B3764] prose-headings:font-poppins prose-p:text-gray-600 prose-p:font-poppins prose-strong:text-[#1B3764] prose-strong:font-bold prose-ul:text-gray-600 prose-ol:text-gray-600 prose-a:text-[#F2611D] prose-a:font-bold prose-blockquote:text-gray-500 prose-blockquote:border-l-[#F2611D] prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-code:text-[#1B3764] prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded prose-pre:text-gray-200 prose-pre:bg-[#1B3764] prose-hr:border-gray-200"
+                className="prose prose-lg max-w-none prose-headings:text-[#1B3764] prose-headings:font-poppins prose-headings:font-normal prose-h1:font-normal prose-h2:font-normal prose-h3:font-normal prose-p:text-gray-600 prose-p:font-poppins prose-strong:text-[#1B3764] prose-strong:font-bold prose-ul:text-gray-600 prose-ol:text-gray-600 prose-a:text-[#F2611D] prose-a:font-bold prose-blockquote:text-gray-500 prose-blockquote:border-l-[#F2611D] prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-code:text-[#1B3764] prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded prose-pre:text-gray-200 prose-pre:bg-[#1B3764] prose-hr:border-gray-200"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -243,7 +254,7 @@ const BlogPostPage = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5 }}
                     >
-                      <h2 className="text-2xl text-[#1B3764] font-poppins mb-4 mt-0">Article Summary</h2>
+                      <h2 className="text-xl md:text-2xl text-[#1B3764] font-poppins font-normal mb-4 mt-0">Article Summary</h2>
                       <p className="text-gray-700 leading-relaxed font-poppins mb-0">
                         {blogPost.excerpt}
                       </p>
@@ -257,7 +268,7 @@ const BlogPostPage = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                       >
-                        <h2 className="text-2xl text-[#1B3764] font-poppins mb-6">Key Takeaways</h2>
+                        <h2 className="text-xl md:text-2xl text-[#1B3764] font-poppins font-normal mb-6">Key Takeaways</h2>
                         <ul className="space-y-4 list-none pl-0">
                           {blogPost.keyTakeaways.map((takeaway, index) => (
                             <motion.li 
@@ -293,7 +304,7 @@ const BlogPostPage = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   <div className="flex items-center justify-between mb-8">
-                    <h3 className="text-2xl text-[#1B3764] font-poppins">Related Articles</h3>
+                    <h3 className="text-xl md:text-2xl text-[#1B3764] font-poppins font-normal">Related Articles</h3>
                     <Link to="/blog" className="text-[#F2611D] font-bold font-poppins hover:underline">View All</Link>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -388,14 +399,14 @@ const BlogPostPage = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
                 <div className="relative z-10">
                   <h3 className="text-xl font-poppins mb-3">
-                    Need Expert Advice?
+                    Need Expert Advice
                   </h3>
                   <p className="text-sm text-white/80 mb-6 font-poppins leading-relaxed">
                     Our engineering team is ready to help you find the perfect adhesive solution for your application.
                   </p>
                   <Link
                     to="/contact"
-                    className="block w-full bg-[#F2611D] text-white font-bold py-3 px-4 rounded-xl hover:bg-[#F2611D]/90 transition-all font-poppins shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                    className="block w-full bg-[#F2611D] text-white font-normal py-3 px-4 rounded-full hover:bg-[#F2611D]/90 transition-all font-poppins shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
                     Contact an Engineer
                   </Link>

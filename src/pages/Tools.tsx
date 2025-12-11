@@ -96,7 +96,7 @@ const Tools = () => {
       <section className="py-16 bg-gradient-to-r from-[#1B3764] to-[#F16022]">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-poppins font-bold text-white mb-6">
-            Need Expert Guidance?
+            Need Expert Guidance
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto font-poppins">
             Our technical team is ready to help you find the perfect solution for your project.

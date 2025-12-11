@@ -319,7 +319,7 @@ const DatasheetDemo: React.FC = () => {
           {/* CTA Section */}
           <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Ready to explore all products?
+              Ready to explore all products
             </h3>
             <p className="text-gray-600 mb-6">
               Access the complete industrial products datasheet with detailed specifications, 

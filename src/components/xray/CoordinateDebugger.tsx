@@ -144,7 +144,7 @@ export const CoordinateDebugger: React.FC<CoordinateDebuggerProps> = ({
 
       {isDebugMode && coordinates.length > 0 && (
         <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-          <h3 className="font-medium mb-2">Collected Coordinates:</h3>
+          <h3 className="font-medium mb-2">Collected Coordinates</h3>
           <div className="text-sm font-mono bg-white p-2 rounded border">
             {coordinates.map((coord, index) => (
               <div key={coord.id} className="flex justify-between">

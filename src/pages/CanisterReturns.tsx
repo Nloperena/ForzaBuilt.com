@@ -39,7 +39,7 @@ const CanisterReturns = () => {
           >
             <button
               onClick={handleDownload}
-              className="bg-[#F2611D] hover:bg-[#F2611D]/90 text-white font-medium font-poppins px-8 py-3 rounded-full transition-all duration-300"
+              className="bg-[#F2611D] hover:bg-[#F2611D]/90 text-white font-normal font-poppins px-8 py-3 rounded-full transition-all duration-300"
             >
               Download Form
             </button>
@@ -182,7 +182,7 @@ const CanisterReturns = () => {
               >
                 <button
                   onClick={handleDownload}
-                  className="bg-[#F2611D] hover:bg-[#F2611D]/90 text-white font-medium font-poppins px-8 py-3 rounded-full transition-all duration-300"
+                  className="bg-[#F2611D] hover:bg-[#F2611D]/90 text-white font-normal font-poppins px-8 py-3 rounded-full transition-all duration-300"
                 >
                   Download
                 </button>

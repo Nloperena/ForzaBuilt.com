@@ -17,7 +17,7 @@ interface MSCard {
 const MSCards: MSCard[] = [
   {
     id: 'what-are-ms-polymers',
-    title: 'What are Modified Silane (MS) Polymers?',
+    title: 'What are Modified Silane MS Polymers',
     description: 'Modified Silane (MS) Polymers are moisture-curing, silane-terminated blends that deliver advanced adhesion and durability.',
     features: [
       'Silane-terminated polyether hybrids',
@@ -29,7 +29,7 @@ const MSCards: MSCard[] = [
   },
   {
     id: 'why-safer',
-    title: 'Why are Forza MS Products Safer?',
+    title: 'Why are Forza MS Products Safer',
     description: 'Forza MS products are built with health and safety in mind, without compromising performance.',
     features: [
       'No isocyanates, harmful solvents, or hazardous air pollutants (HAPs)',
@@ -41,7 +41,7 @@ const MSCards: MSCard[] = [
   },
   {
     id: 'why-stronger',
-    title: 'Why are Forza MS Products Stronger?',
+    title: 'Why are Forza MS Products Stronger',
     description: 'Our products are engineered to outperform in both lab and field.',
     features: [
       'Exceeds ASTM strength and flexibility standards (D412, D1002, D794, G26)',
@@ -53,7 +53,7 @@ const MSCards: MSCard[] = [
   },
   {
     id: 'why-preferred',
-    title: 'Why are Forza MS Products Preferred?',
+    title: 'Why are Forza MS Products Preferred',
     description: 'Our products are designed for professionals who need results and reliability.',
     features: [
       'Instant results: develop peak strength in 24 hours',

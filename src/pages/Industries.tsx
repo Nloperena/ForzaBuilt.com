@@ -41,8 +41,7 @@ const Industries = () => {
               industryTitle="Industries We Serve"
               variant="simple"
               useTitleCase={true}
-              subtitle="Serving Every Industrial Sector
-Since 1979" />
+              subtitle={`Serving Every Industrial Sector\nSince 1979`} />
           </div>
 
           {/* Industries Grid Section */}

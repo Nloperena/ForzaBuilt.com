@@ -146,7 +146,7 @@ const IndustryReview: React.FC = () => {
             
             <CardContent>
               <div className="mb-6">
-                <h3 className="font-semibold mb-2">Current Industries:</h3>
+                <h3 className="font-semibold mb-2">Current Industries</h3>
                 <div className="flex flex-wrap gap-2">
                   {currentProduct.currentIndustries.map(industry => (
                     <Badge key={industry} variant="outline">
@@ -157,7 +157,7 @@ const IndustryReview: React.FC = () => {
               </div>
 
               <div className="mb-6">
-                <h3 className="font-semibold mb-2">Select Primary Industry:</h3>
+                <h3 className="font-semibold mb-2">Select Primary Industry</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   {OFFICIAL_INDUSTRIES.map(industry => (
                     <Button
