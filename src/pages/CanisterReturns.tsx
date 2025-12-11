@@ -21,7 +21,7 @@ const CanisterReturns = () => {
       <HeaderV2 />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-bl from-[#477197] to-[#2c476e] py-20 md:py-32 text-center">
+      <section className="relative bg-gradient-to-bl from-[#477197] to-[#2c476e] py-14 md:py-22 text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -102,10 +102,6 @@ const CanisterReturns = () => {
             {/* Right Column - Example Illustration */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-[2rem] p-5 shadow-sm border border-gray-100">
-                <h4 className="font-poppins font-medium text-[#1B3764] text-2xl mb-4 pl-2">
-                  Example:
-                </h4>
-                
                 <div className="flex justify-center mb-0">
                    <img 
                     src="/images/canister-pallet-return-image.jpg" 
