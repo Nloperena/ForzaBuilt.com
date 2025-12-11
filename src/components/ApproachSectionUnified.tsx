@@ -314,7 +314,9 @@ const ApproachSectionUnified = () => {
                 py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible
-              ">
+              "
+              style={selectedItem === 1 ? { maxHeight: '800px' } : {}}
+              >
                 {/* Inline image (all breakpoints) - relative z-20 to appear above gradient */}
                 <div className="absolute inset-0 overflow-hidden z-20">
                   {/* Previous content (beneath) - image or video */}
