@@ -109,7 +109,7 @@ const FooterV2 = () => {
           <div className="flex items-center">
             <Link
               to="/canister-returns"
-              className="bg-white text-[#2c476e] hover:bg-white/90 transition-colors font-poppins font-normal px-6 py-2 rounded-full text-sm whitespace-nowrap"
+              className="bg-[#F2611D] text-white hover:bg-[#E6540D] transition-colors font-poppins font-normal px-6 py-2 rounded-full text-sm whitespace-nowrap"
             >
               Empty Canister Returns
             </Link>
