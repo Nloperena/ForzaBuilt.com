@@ -88,43 +88,48 @@ const FooterV2 = () => {
         <div className="border-t border-white/30 mb-5 max-w-[56rem] mx-auto"></div>
 
         {/* Bottom Section with Made in USA Badge, Copyright, and Follow Us */}
-        <div className="flex items-center gap-4 flex-wrap max-w-[56rem] mx-auto">
+        <div className="max-w-[56rem] mx-auto">
           {/* Made in USA Badge - Standalone Image */}
-          <img 
-            src="/images/misc/Flag Icon with asterisk 1.png"
-            alt="PROUDLY MADE IN AMERICA"
-            className="h-16 w-auto object-contain"
-          />
-
-          {/* Copyright */}
-          <p className="text-white/70 text-xs font-poppins leading-tight flex-1">
-            *Forza industrial adhesive and industrial sealants are proudly
-            <br />
-            manufactured in the USA from domestic and limited foreign
-            <br />
-            components. © {new Date().getFullYear()} Forza Built. All rights reserved.
-          </p>
-
-          {/* Canister Returns Button */}
-          <div className="flex items-center">
-            <Link
-              to="/canister-returns"
-              className="bg-[#F2611D] text-white hover:bg-[#E6540D] transition-colors font-poppins font-normal px-6 py-2 rounded-full text-sm whitespace-nowrap"
-            >
-              Empty Canister Returns
-            </Link>
+          <div className="mb-5">
+            <img 
+              src="/images/misc/Flag Icon with asterisk 1.png"
+              alt="PROUDLY MADE IN AMERICA"
+              className="h-16 w-auto object-contain"
+            />
           </div>
 
-          {/* Follow Us - Aligned with flag on the right */}
-          <div className="ml-auto">
-            <h3 className="text-white font-normal text-base font-poppins mb-1">Follow Us</h3>
-            <div className="flex space-x-2">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-white/80 transition-colors">
-                <span className="text-[#2c476e] text-sm font-normal font-poppins">in</span>
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-white/80 transition-colors">
-                <span className="text-[#2c476e] text-base font-normal font-poppins">▶</span>
-              </a>
+          {/* Copyright, Button, and Follow Us - Equal spacing */}
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+            {/* Copyright */}
+            <p className="text-white/70 text-xs font-poppins leading-tight">
+              *Forza industrial adhesive and industrial sealants are proudly
+              <br />
+              manufactured in the USA from domestic and limited foreign
+              <br />
+              components. © {new Date().getFullYear()} Forza Built. All rights reserved.
+            </p>
+
+            {/* Canister Returns Button - Centered */}
+            <div className="flex items-center">
+              <Link
+                to="/canister-returns"
+                className="bg-[#F2611D] text-white hover:bg-[#E6540D] transition-colors font-poppins font-normal px-6 py-2 rounded-full text-sm whitespace-nowrap"
+              >
+                Empty Canister Returns
+              </Link>
+            </div>
+
+            {/* Follow Us */}
+            <div className="flex flex-col items-end">
+              <h3 className="text-white font-normal text-base font-poppins mb-1">Follow Us</h3>
+              <div className="flex space-x-2">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-white/80 transition-colors">
+                  <span className="text-[#2c476e] text-sm font-normal font-poppins">in</span>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-white/80 transition-colors">
+                  <span className="text-[#2c476e] text-base font-normal font-poppins">▶</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
