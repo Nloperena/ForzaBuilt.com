@@ -27,7 +27,7 @@ const HeroVideoSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="relative h-[450px] md:h-[488px] lg:h-[525px] xl:h-[675px] 2xl:h-[450px] min-[1920px]:h-[675px] min-[2560px]:h-[750px] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl py-0">
+    <section className="relative h-[550px] md:h-[588px] lg:h-[625px] xl:h-[775px] 2xl:h-[550px] min-[1920px]:h-[775px] min-[2560px]:h-[850px] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl py-0">
       {/* Video Skeleton Loading State */}
       {!isVideoLoaded && (
         <VideoSkeleton />
@@ -55,7 +55,7 @@ const HeroVideoSectionV2: React.FC = () => {
           minHeight: '100%'
         }}
       >
-        <source src="/videos/misc/Forza Slogan Slam Final 1.mp4" type="video/mp4" />
+        <source src="/videos/misc/Forza Slogan Slam Final 3.mp4" type="video/mp4" />
       </video>
 
       {/* Fallback background - always visible */}
