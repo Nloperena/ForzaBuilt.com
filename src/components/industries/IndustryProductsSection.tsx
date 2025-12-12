@@ -34,24 +34,30 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   const navigate = useNavigate();
   // Filter states
   const [search, setSearch] = useState('');
-  const [selectedLine, setSelectedLine] = useState<'bond' | 'seal' | 'tape'>('bond');
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]); // Empty array = show all
   const [nameSort, setNameSort] = useState<'asc' | 'desc'>('asc');
   const [selectedChemistries, setSelectedChemistries] = useState<string[]>([]);
   const [isFilterDialogOpen, setIsFilterDialogOpen] = useState(false);
   const [imageLoadedStates, setImageLoadedStates] = useState<Record<string, boolean>>({});
   const [imageErrorStates, setImageErrorStates] = useState<Record<string, boolean>>({});
 
-  // Product loading states
+  // Product loading states - load ALL products by default
   const [allLineProducts, setAllLineProducts] = useState<Product[]>([]);
   const [productsLoading, setProductsLoading] = useState(true);
 
-  // Load products when selected line changes
+  // Load ALL products on mount (not filtered by category)
   useEffect(() => {
     const loadProducts = async () => {
       setProductsLoading(true);
       try {
-        const products = await byProductLine(selectedLine);
-        setAllLineProducts(products);
+        // Load all products from all categories
+        const [bondProducts, sealProducts, tapeProducts] = await Promise.all([
+          byProductLine('bond'),
+          byProductLine('seal'),
+          byProductLine('tape')
+        ]);
+        // Combine all products
+        setAllLineProducts([...bondProducts, ...sealProducts, ...tapeProducts]);
       } catch (error) {
         console.error('Failed to load products:', error);
         setAllLineProducts([]);
@@ -61,7 +67,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     };
 
     loadProducts();
-  }, [selectedLine]);
+  }, []); // Load once on mount
 
   // Filter and sort products
   const industryProducts = useMemo(() => {
@@ -81,6 +87,17 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
         industryKey.includes(ind.toLowerCase())
       );
     });
+
+    // Apply category filter - if selectedCategories is empty, show all; otherwise filter by selected categories
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter(product => {
+        const productCategory = product.category?.toLowerCase();
+        return selectedCategories.some(cat => {
+          // Map category keys (bond, seal, tape) to product categories
+          return productCategory === cat.toLowerCase();
+        });
+      });
+    }
 
     // Apply search filter
     if (search) {
@@ -105,7 +122,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
     );
 
     return filtered;
-  }, [industryData, allLineProducts, search, selectedChemistries, nameSort]);
+  }, [industryData, allLineProducts, selectedCategories, search, selectedChemistries, nameSort]);
 
   // Helper to get chemistry icon - maps chemistry names to icon paths, falls back to MS icon
   const getChemistryIcon = (chemistry: string): string => {
@@ -234,27 +251,47 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
               </div>
 
               <div className="p-2.5 space-y-3">
-                {/* Product Category (Bond/Seal/Tape) */}
+                {/* Product Category (Adhesives/Sealants/Tapes) - Toggleable */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <h4 className="text-xs font-semibold text-white">Product Category</h4>
+                    {selectedCategories.length > 0 && (
+                      <button
+                        onClick={() => setSelectedCategories([])}
+                        className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1.5 rounded-md"
+                      >
+                        Clear
+                      </button>
+                    )}
                   </div>
                   <div className="grid grid-cols-1 gap-1.5">
-                    {(['bond','seal','tape'] as const).map(line => (
-                      <button
-                        key={line}
-                        onClick={() => {
-                          setSelectedLine(line);
-                          setSelectedChemistries([]);
-                        }}
-                        className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden ${
-                          selectedLine === line ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
-                      >
-                        <span className="text-xs font-medium capitalize">{line}</span>
-                        <span className="text-xs opacity-70">({categoryCounts[line] || 0})</span>
-                      </button>
-                    ))}
+                    {([
+                      { key: 'bond', label: 'Adhesives' },
+                      { key: 'seal', label: 'Sealants' },
+                      { key: 'tape', label: 'Tapes' }
+                    ] as const).map(({ key, label }) => {
+                      const isSelected = selectedCategories.includes(key);
+                      return (
+                        <button
+                          key={key}
+                          onClick={() => {
+                            if (isSelected) {
+                              // Remove from selection
+                              setSelectedCategories(selectedCategories.filter(cat => cat !== key));
+                            } else {
+                              // Add to selection
+                              setSelectedCategories([...selectedCategories, key]);
+                            }
+                          }}
+                          className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden ${
+                            isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          }`}
+                        >
+                          <span className="text-xs font-medium">{label}</span>
+                          <span className="text-xs opacity-70">({categoryCounts[key] || 0})</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -505,7 +542,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                   onClick={() => {
                     setSearch('');
                     setSelectedChemistries([]);
-                    setSelectedLine('bond');
+                    setSelectedCategories([]);
                   }}
                   className="px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
@@ -566,20 +603,40 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
                   {/* Product Category */}
                   <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                    <h4 className="text-gray-900 font-bold text-sm uppercase mb-3">Product Category</h4>
-                    <div className="grid grid-cols-3 gap-2">
-                      {(['bond','seal','tape'] as const).map(line => (
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="text-gray-900 font-bold text-sm uppercase">Product Category</h4>
+                      {selectedCategories.length > 0 && (
                         <button
-                          key={line}
-                          onClick={() => {
-                            setSelectedLine(line);
-                            setSelectedChemistries([]);
-                          }}
-                          className={`py-2 px-3 rounded-lg text-center text-sm font-medium ${selectedLine === line ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                          onClick={() => setSelectedCategories([])}
+                          className="text-xs text-gray-600 hover:text-gray-900 bg-gray-200 hover:bg-gray-300 py-0.5 px-2 rounded-md"
                         >
-                          {line}
+                          Clear
                         </button>
-                      ))}
+                      )}
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      {([
+                        { key: 'bond', label: 'Adhesives' },
+                        { key: 'seal', label: 'Sealants' },
+                        { key: 'tape', label: 'Tapes' }
+                      ] as const).map(({ key, label }) => {
+                        const isSelected = selectedCategories.includes(key);
+                        return (
+                          <button
+                            key={key}
+                            onClick={() => {
+                              if (isSelected) {
+                                setSelectedCategories(selectedCategories.filter(cat => cat !== key));
+                              } else {
+                                setSelectedCategories([...selectedCategories, key]);
+                              }
+                            }}
+                            className={`py-2 px-3 rounded-lg text-center text-sm font-medium ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                          >
+                            {label}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 

@@ -14,7 +14,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
       return [
         {
           id: 'pontoon',
-          title: 'Pontoon Applications',
+          title: 'Pontoon',
           subtitle: '',
           summary: 'Explore pontoon assembly applications including deck bonding, rail attachment, and furniture installation.',
           previewImage: '/New X-Ray Dimensions/New Marine/NEW_PONTOON.svg',
@@ -22,7 +22,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
         },
         {
           id: 'yacht',
-          title: 'Yacht / Boat Applications',
+          title: 'Yacht / Boat',
           subtitle: '',
           summary: 'Discover yacht construction solutions for hull bonding, deck assembly, and interior finishing.',
           previewImage: '/New X-Ray Dimensions/New Marine/NEW_YACHT-1.svg',
@@ -35,7 +35,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
       return [
         {
           id: 'rv-bus',
-          title: 'RV / Motor Coach Applications',
+          title: 'RV / Motor Coach',
           subtitle: '',
           summary: 'Explore RV & motor coach assemblies including structural bonding for slide-outs, roof sealing, and continuous panel builds.',
           previewImage: '/New X-Ray Dimensions/New Transporation/NEW_RV BUS.svg',
@@ -43,7 +43,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
         },
         {
           id: 'trailer',
-          title: 'Trailer Applications',
+          title: 'Trailer',
           subtitle: '',
           summary: 'Inspect high-strength trailer assemblies covering walls, floors, and chassis bonding for commercial and specialty builds.',
           previewImage: '/New X-Ray Dimensions/New Transporation/NEW_TRAILER.svg',
@@ -98,7 +98,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
       return [
         {
           id: 'windturbine',
-          title: 'Wind Turbine Applications',
+          title: 'Wind Turbine',
           subtitle: '',
           summary: 'Explore wind turbine composite applications including blade bonding, structural assembly, and advanced material solutions.',
           previewImage: '/New X-Ray Dimensions/New Composites/NEW_WINDTURBINE.svg',
@@ -111,7 +111,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
       return [
         {
           id: 'office',
-          title: 'Office Furniture Applications',
+          title: 'Office Furniture',
           subtitle: '',
           summary: 'Discover office furniture manufacturing solutions including desk assembly, chair construction, and modular system bonding applications.',
           previewImage: '/New X-Ray Dimensions/New Industrial/Office.svg',
@@ -119,7 +119,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
         },
         {
           id: 'garage-door',
-          title: 'Garage Door Applications',
+          title: 'Garage Door',
           subtitle: '',
           summary: 'Discover garage door manufacturing solutions including panel assembly, hardware mounting, and structural bonding applications.',
           previewImage: '/New X-Ray Dimensions/New Industrial/NEW_GARAGE DOOR.svg',
@@ -127,7 +127,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
         },
         {
           id: 'fridge',
-          title: 'Refrigeration Applications',
+          title: 'Refrigeration',
           subtitle: '',
           summary: 'Explore refrigeration and appliance manufacturing applications including panel bonding, insulation, and assembly solutions.',
           previewImage: '/New X-Ray Dimensions/New Industrial/NEW_FRIDGE.svg',
@@ -135,7 +135,7 @@ const IndustryXRaySections: React.FC<IndustryXRaySectionsProps> = ({ industry })
         },
         {
           id: 'couch',
-          title: 'Furniture Applications',
+          title: 'Furniture',
           subtitle: '',
           summary: 'Explore furniture manufacturing applications including upholstery bonding, frame assembly, and cushion attachment solutions.',
           previewImage: '/New X-Ray Dimensions/New Industrial/Couch.svg',

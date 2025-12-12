@@ -158,7 +158,7 @@ const Blog = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
           >
-            Products Tips Tutorials<br/>and More
+            Products, Tips, Tutorials<br/>and More
           </motion.h3>
         </div>
       </section>
@@ -184,7 +184,7 @@ const Blog = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="mb-12 text-center">
             <h2 className="font-poppins font-normal text-[#1B3764] mb-10 text-center" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}>
-              Products Tips Tutorials<br/>and More
+              Products, Tips, Tutorials<br/>and More
             </h2>
             
             {/* Category Pills */}

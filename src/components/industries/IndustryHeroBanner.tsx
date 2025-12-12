@@ -113,12 +113,40 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             >
-              {subtitle.split('\n').map((line, i) => (
-                <span key={i}>
-                  {line}
-                  {i < subtitle.split('\n').length - 1 && <br />}
-                </span>
-              ))}
+              {subtitle.split('\n').map((line, i) => {
+                // Wrap "Industrial Products" to prevent orphan
+                const parts = [];
+                const regex = /(Industrial Products)/g;
+                let lastIndex = 0;
+                let match;
+                let key = 0;
+                
+                while ((match = regex.exec(line)) !== null) {
+                  // Add text before the match
+                  if (match.index > lastIndex) {
+                    parts.push(line.substring(lastIndex, match.index));
+                  }
+                  // Add the wrapped match
+                  parts.push(
+                    <span key={key++} style={{ whiteSpace: 'nowrap' }}>{match[0]}</span>
+                  );
+                  lastIndex = regex.lastIndex;
+                }
+                // Add remaining text
+                if (lastIndex < line.length) {
+                  parts.push(line.substring(lastIndex));
+                }
+                
+                // If no match found, just use the line as-is
+                const content = parts.length > 0 ? parts : [line];
+                
+                return (
+                  <span key={i}>
+                    {content}
+                    {i < subtitle.split('\n').length - 1 && <br />}
+                  </span>
+                );
+              })}
             </motion.h3>
           </div>
         )}

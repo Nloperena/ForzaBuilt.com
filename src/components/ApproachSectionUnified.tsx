@@ -76,7 +76,7 @@ const approachItems: ApproachItem[] = [
       "If it's important to you, it's important to us."
     ],
     image: "/images/approach/Legacy Image.jpg",
-    video: "/approach-videos/Industry Focused-2.mp4"
+    video: "/videos/backgrounds/Industry Summary Page Video.mp4"
   },
   {
     title: "EXPANSIVE PRODUCT PORTFOLIO",
@@ -88,7 +88,7 @@ const approachItems: ApproachItem[] = [
       "If it bonds, seals, or sticks—we probably make it. If we don't, we'll help you find it."
     ],
     image: "/images/approach/Products Portfolio.jpg",
-    video: "/approach-videos/Complete Portfolio-2.mp4"
+    video: "/videos/backgrounds/Product Summary Page Video.mp4"
   },
   {
     title: "COMMON SENSE INNOVATION",
@@ -268,7 +268,7 @@ const ApproachSectionUnified = () => {
                 ref={titlesContainerRef}
                 className="
                 relative
-                min-h-[25svh] md:min-h-[38vh] lg:min-h-[38vh] xl:min-h-[45vh]
+                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
                 px-[clamp(14px,4vw,32px)] 
                 py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
@@ -310,7 +310,7 @@ const ApproachSectionUnified = () => {
               {/* RIGHT - Videos with description */}
               <div className="
                 relative
-                min-h-[25svh] md:min-h-[38vh] lg:min-h-[38vh] xl:min-h-[45vh]
+                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
                 py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible

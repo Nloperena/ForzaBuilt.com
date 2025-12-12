@@ -15,8 +15,8 @@ const WhyChooseForza = () => {
     },
     { 
       value: '100%', 
-      label: 'Made in USA', 
-      description: 'Quality controlled',
+      label: 'Made in USA*', 
+      description: 'Quality guaranteed',
       height: 0.55 // Goes up
     },
     { 

@@ -197,7 +197,7 @@ const BlogPostPage = () => {
 
           {/* Title and Date */}
           <div className="mb-8">
-            <h1 className="text-[#1B3764] font-poppins text-4xl md:text-5xl lg:text-6xl font-normal leading-tight break-words mb-4 tracking-tight">
+            <h1 className="text-[#1B3764] font-poppins font-normal leading-tight break-words mb-4 tracking-tight" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}>
               {blogPost.title}
             </h1>
             <div className="flex items-center gap-4 text-gray-600 text-sm font-poppins">

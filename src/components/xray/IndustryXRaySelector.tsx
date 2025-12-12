@@ -150,7 +150,7 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
                     {option.title}
                   </p>
                   <p className={`text-[10px] md:text-xs lg:text-sm 2xl:text-base mt-0.5 ${isSelected ? 'text-white/70' : 'text-gray-500'}`}>
-                    View Application
+                    View Applications
                   </p>
                 </div>
               </motion.button>

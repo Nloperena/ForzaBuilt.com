@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Skeleton } from '@/components/ui/skeleton';
 import { industries as industriesData } from '@/data/industries';
 import { brandColors, productColors, industryColors, typography } from '@/styles/brandStandards';
 import { getProduct, getRelatedProducts, getProducts } from '@/utils/products';
@@ -434,11 +435,11 @@ const ProductDetailPage: React.FC = () => {
       <HeaderV2 />
       <main className="flex-1 pb-10">
         {/* Product Image, Title and Description */}
-        <section className="bg-gradient-to-r from-[#477197] to-[#2c476e]">
-          <div className="max-w-[1200px] mx-auto px-4 py-12 md:py-16 lg:py-20">
+        <section className="bg-gradient-to-r from-[#477197] to-[#2c476e] pt-16 lg:pt-20 xl:pt-24">
+          <div className="max-w-[1200px] mx-auto px-4 py-12 md:py-16 lg:py-12 xl:py-20">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               {/* Product Image */}
-              <div className="flex justify-center lg:justify-start relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+              <div className="flex justify-center lg:justify-start relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[450px] xl:h-[500px] 2xl:h-[600px]">
                 {/* Mobile/Tablet Hero Image */}
                 <img 
                   src={getMobileHeroImage(product.category)}
@@ -453,7 +454,7 @@ const ProductDetailPage: React.FC = () => {
                 <img 
                   src={product.imageUrl || product.image} 
                   alt={product.name}
-                  className="hidden lg:block w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain"
+                  className="hidden lg:block w-[450px] h-[450px] xl:w-[500px] xl:h-[500px] 2xl:w-[600px] 2xl:h-[600px] object-contain"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
@@ -536,7 +537,7 @@ const ProductDetailPage: React.FC = () => {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
               >
               <motion.div 
-                className="mt-8 md:mt-8"
+                className="mt-2 md:mt-2"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
@@ -546,6 +547,26 @@ const ProductDetailPage: React.FC = () => {
 
 
                 <TabsContent value="applications" className="space-y-6">
+                  {loading ? (
+                    <Card className="bg-transparent border-0 rounded-2xl">
+                      <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
+                        <Skeleton className="h-8 w-40 bg-white/20" />
+                      </CardHeader>
+                      <CardContent className="px-4 md:px-6 py-3 md:py-4">
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div className="space-y-3">
+                            <Skeleton className="h-4 w-full bg-white/20" />
+                            <Skeleton className="h-4 w-full bg-white/20" />
+                            <Skeleton className="h-4 w-3/4 bg-white/20" />
+                          </div>
+                          <div className="space-y-3">
+                            <Skeleton className="h-24 w-24 bg-white/20 rounded-full" />
+                            <Skeleton className="h-4 w-full bg-white/20" />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ) : (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -555,7 +576,7 @@ const ProductDetailPage: React.FC = () => {
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
                   <Card className="bg-transparent border-0 rounded-2xl">
-                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                    <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
                       <CardTitle className="text-white font-poppins font-regular" 
                                  style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                         Applications
@@ -635,9 +656,25 @@ const ProductDetailPage: React.FC = () => {
                   </Card>
                   </motion.div>
                   </motion.div>
+                  )}
                 </TabsContent>
 
                 <TabsContent value="benefits" className="space-y-6">
+                  {loading ? (
+                    <Card className="bg-transparent border-0 rounded-2xl">
+                      <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
+                        <Skeleton className="h-8 w-32 bg-white/20" />
+                      </CardHeader>
+                      <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
+                        <div className="space-y-3">
+                          <Skeleton className="h-4 w-full bg-white/20" />
+                          <Skeleton className="h-4 w-full bg-white/20" />
+                          <Skeleton className="h-4 w-3/4 bg-white/20" />
+                          <Skeleton className="h-4 w-full bg-white/20" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ) : (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -647,7 +684,7 @@ const ProductDetailPage: React.FC = () => {
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
                   <Card className="bg-transparent border-0 rounded-2xl">
-                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                    <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
                       <CardTitle className="text-white font-poppins font-regular" 
                                  style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                         Benefits
@@ -705,9 +742,29 @@ const ProductDetailPage: React.FC = () => {
                   </Card>
                   </motion.div>
                   </motion.div>
+                  )}
                 </TabsContent>
 
                 <TabsContent value="technical" className="space-y-6">
+                  {loading ? (
+                    <Card className="bg-transparent border-0 rounded-2xl">
+                      <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
+                        <Skeleton className="h-8 w-40 bg-white/20" />
+                      </CardHeader>
+                      <CardContent className="px-4 md:px-6 py-3 md:py-4">
+                        <div className="mb-6">
+                          <Skeleton className="h-6 w-32 bg-white/20 mb-3" />
+                          <Skeleton className="h-24 w-full bg-white/20 rounded-xl" />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <Skeleton className="h-12 w-full bg-white/20" />
+                          <Skeleton className="h-12 w-full bg-white/20" />
+                          <Skeleton className="h-12 w-full bg-white/20" />
+                          <Skeleton className="h-12 w-full bg-white/20" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ) : (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -717,7 +774,7 @@ const ProductDetailPage: React.FC = () => {
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
                   <Card className="bg-transparent border-0 rounded-2xl">
-                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                    <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
                       <CardTitle className="text-white font-poppins font-regular" 
                                  style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                         Technical Data
@@ -780,20 +837,25 @@ const ProductDetailPage: React.FC = () => {
                             Test Data
                           </h3>
                           <div className="overflow-x-auto">
-                            <table className="w-full text-sm">
+                            <table className="w-full max-w-2xl text-sm" style={{ tableLayout: 'fixed' }}>
+                              <colgroup>
+                                <col style={{ width: '35%' }} />
+                                <col style={{ width: '30%' }} />
+                                <col style={{ width: '35%' }} />
+                              </colgroup>
                               <thead>
                                 <tr className="border-b border-white/20">
-                                  <th className="text-left py-3 px-2 font-semibold text-white">Property</th>
-                                  <th className="text-left py-3 px-2 font-semibold text-white">Value</th>
-                                  <th className="text-left py-3 px-2 font-semibold text-white">Methods</th>
+                                  <th className="text-left py-2.5 px-3 font-semibold text-white">Property</th>
+                                  <th className="text-left py-2.5 px-3 font-semibold text-white">Value</th>
+                                  <th className="text-left py-2.5 px-3 font-semibold text-white">Methods</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 {product.technicalData.testData.map((test, index) => (
                                   <tr key={index} className="border-b border-white/10">
-                                    <td className="py-3 px-2 text-white/90 font-medium">{test.property}</td>
-                                    <td className="py-3 px-2 text-white/80">{test.value || '-'}</td>
-                                    <td className="py-3 px-2 text-white/70 text-xs">{test.method}</td>
+                                    <td className="py-2.5 px-3 text-white/90 font-medium break-words">{test.property}</td>
+                                    <td className="py-2.5 px-3 text-white/80 break-words">{test.value || '-'}</td>
+                                    <td className="py-2.5 px-3 text-white/70 text-xs break-words">{test.method}</td>
                                   </tr>
                                 ))}
                               </tbody>
@@ -805,9 +867,24 @@ const ProductDetailPage: React.FC = () => {
                   </Card>
                   </motion.div>
                   </motion.div>
+                  )}
                 </TabsContent>
 
                 <TabsContent value="sizing" className="space-y-6">
+                  {loading ? (
+                    <Card className="bg-transparent border-0 rounded-2xl">
+                      <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
+                        <Skeleton className="h-8 w-36 bg-white/20" />
+                      </CardHeader>
+                      <CardContent className="space-y-6 px-4 md:px-6 py-3 md:py-4">
+                        <div className="space-y-3">
+                          <Skeleton className="h-4 w-full bg-white/20" />
+                          <Skeleton className="h-4 w-full bg-white/20" />
+                          <Skeleton className="h-4 w-3/4 bg-white/20" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ) : (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -817,7 +894,7 @@ const ProductDetailPage: React.FC = () => {
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
                   <Card className="bg-transparent border-0 rounded-2xl">
-                    <CardHeader className="px-4 md:px-6 py-3 md:py-4">
+                    <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
                       <CardTitle className="text-white font-poppins font-regular" 
                                  style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                         Available Sizes
@@ -845,6 +922,7 @@ const ProductDetailPage: React.FC = () => {
                   </Card>
                   </motion.div>
                   </motion.div>
+                  )}
                 </TabsContent>
               </motion.div>
           </motion.section>
@@ -864,62 +942,107 @@ const ProductDetailPage: React.FC = () => {
                 <p className="text-gray-600">More {product.industry} solutions</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4" style={{ gap: 'clamp(1.5rem, 3vw, 2.5rem)' }}>
                 {relatedProducts.map((relatedProduct, idx) => (
                   <motion.div
                     key={relatedProduct.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: idx * 0.1 }}
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                    transition={{ duration: 0.3, delay: Math.min(idx * 0.03, 0.3) }}
+                    layout
                     className="group"
                   >
-                    <Link to={`/products/${relatedProduct.category.toLowerCase()}/${relatedProduct.id}`}>
-                      <div className="relative h-[300px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#477197] to-[#2c476e] shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02]">
-                        {/* Background Image */}
-                        <div className="absolute inset-0">
+                    <Link to={`/products/${relatedProduct.category?.toLowerCase() || 'bond'}/${relatedProduct.id}`}>
+                      <div 
+                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg"
+                      >
+                        {/* Desktop: Product Image */}
+                        <div 
+                          className="absolute inset-0 hidden md:block pb-24 cursor-pointer" 
+                          style={{ transform: 'translateY(-3%) scale(0.85)' }}
+                        >
                           <img 
                             src={relatedProduct.imageUrl || relatedProduct.image} 
                             alt={relatedProduct.name}
-                            className="w-full h-full object-cover opacity-100 transition-transform duration-700 group-hover:scale-110"
+                            className="w-full h-full object-contain transition-all duration-500 group-hover:scale-105 opacity-100"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
-                              // Try fallback to product-images folder
                               if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
                                 const filename = relatedProduct.id.toLowerCase() + '.png';
                                 target.src = `/product-images/${filename}`;
-                              } else if (!target.src.includes('placeholder') && !target.src.includes('product-images')) {
+                              } else if (!target.src.includes('placeholder')) {
                                 target.src = '/placeholder.svg';
                               }
                             }}
                           />
                         </div>
 
-                        {/* Content Overlay */}
-                        <div className="absolute inset-0 flex flex-col justify-between p-4 text-white">
-                          {/* Top Section */}
-                          <div className="flex items-start justify-between">
-                            <Badge className={`bg-white/20 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wide`}>
-                              {relatedProduct.category}
-                            </Badge>
+                        {/* Mobile: Left side with image and basic info */}
+                        <div className="flex md:hidden items-center gap-4 flex-1 p-4">
+                          {/* Mobile: Product Image */}
+                          <div className="w-[100px] h-[100px] rounded-xl overflow-hidden bg-transparent relative flex items-center justify-center">
+                            <img 
+                              src={relatedProduct.imageUrl || relatedProduct.image} 
+                              alt={relatedProduct.name}
+                              className="max-w-full max-h-full object-contain transition-opacity duration-500 opacity-100"
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                                  const filename = relatedProduct.id.toLowerCase() + '.png';
+                                  target.src = `/product-images/${filename}`;
+                                } else if (!target.src.includes('placeholder')) {
+                                  target.src = '/placeholder.svg';
+                                }
+                              }}
+                            />
                           </div>
+                          
+                          {/* Mobile: Product Info */}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-sm font-kallisto font-bold mb-1 leading-tight line-clamp-1 text-white">
+                              {relatedProduct.name.split('–')[0].trim()}
+                            </h3>
+                            <p className="text-xs text-white line-clamp-2">
+                              {relatedProduct.name.split('–')[1]?.trim() || relatedProduct.description || ''}
+                            </p>
+                          </div>
+                        </div>
 
-                          {/* Bottom Section with Text Overlay */}
-                          <div className="relative -mx-4 -mb-4">
-                            {/* Text Background Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-b-2xl"></div>
+                        {/* Desktop: Content Section with title and description */}
+                        <div className="hidden md:block p-2.5 absolute bottom-0 left-0 right-0">
+                          <div className="space-y-0.5">
+                            <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
+                              {relatedProduct.name.split('–')[0].trim()}
+                            </h3>
+                            <p className="text-xs text-white line-clamp-2">
+                              {relatedProduct.name.split('–')[1]?.trim() || relatedProduct.description || ''}
+                            </p>
                             
-                            {/* Text Content */}
-                            <div className="relative z-10 p-4">
-                              <h3 className="text-lg font-kallisto font-bold mb-2 leading-tight" 
-                                  style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                                {relatedProduct.name.split('–')[0].trim()}
-                              </h3>
-                              <p className="text-sm text-gray-300 line-clamp-2" 
-                                 style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                                {relatedProduct.name.split('–')[1]?.trim() || relatedProduct.description}
-                              </p>
+                            {/* Button Row */}
+                            <div className="flex gap-1.5 mt-2 pt-2">
+                              {/* Details Button */}
+                              <Link
+                                to={`/products/${relatedProduct.category?.toLowerCase() || 'bond'}/${relatedProduct.id}`}
+                                onClick={(e) => e.stopPropagation()}
+                                className="flex-1 inline-flex items-center justify-center bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300"
+                              >
+                                Details
+                              </Link>
                             </div>
                           </div>
+                        </div>
+
+                        {/* Mobile: Right side with buttons */}
+                        <div className="flex md:hidden items-center gap-2 p-4">
+                          {/* Mobile: Product Details Button */}
+                          <Link
+                            to={`/products/${relatedProduct.category?.toLowerCase() || 'bond'}/${relatedProduct.id}`}
+                            onClick={(e) => e.stopPropagation()}
+                            className="flex items-center justify-center bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
+                          >
+                            Details
+                          </Link>
                         </div>
                       </div>
                     </Link>

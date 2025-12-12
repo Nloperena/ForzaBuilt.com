@@ -40,7 +40,7 @@ const productCategories: ProductCategory[] = [
   {
     title: "Industrial Cleaners",
     slug: "ruggedred",
-    image: "/images/homepage-heroes/Forza Cleaners Hero Shot.jpg",
+    image: "/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.jpg",
     logo: "/products/brand-logos/product-line-brands-white-ruggedred.svg",
     description: "A FORCE TO BE RECKONED WITH"
   }

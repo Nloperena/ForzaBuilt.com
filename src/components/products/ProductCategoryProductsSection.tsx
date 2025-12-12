@@ -18,7 +18,7 @@ interface Product {
 }
 
 interface ProductCategoryProductsSectionProps {
-  productCategory: 'bond' | 'seal' | 'tape';
+  productCategory: 'bond' | 'seal' | 'tape' | 'ruggedred';
   onProductSelect?: (product: Product) => void;
 }
 
@@ -92,12 +92,41 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
       );
     }
 
-    // Apply sorting
-    filtered.sort((a, b) => 
-      nameSort === 'asc' 
+    // Apply sorting - first by industry order, then by name
+    const industryOrder = ['industrial', 'transportation', 'marine', 'composites', 'construction', 'insulation'];
+    
+    // Helper to get the primary (first/most important) industry for a product
+    const getPrimaryIndustryIndex = (product: Product): number => {
+      if (!product.industry) return 999; // Products without industry go last
+      const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
+      
+      // Find the first industry that matches our order
+      for (const ind of industries) {
+        const indLower = ind.toLowerCase();
+        const index = industryOrder.indexOf(indLower);
+        if (index !== -1) {
+          return index;
+        }
+      }
+      
+      // If no industry matches, sort alphabetically after known industries
+      return 999;
+    };
+    
+    filtered.sort((a, b) => {
+      // First sort by industry order
+      const aIndustryIndex = getPrimaryIndustryIndex(a);
+      const bIndustryIndex = getPrimaryIndustryIndex(b);
+      
+      if (aIndustryIndex !== bIndustryIndex) {
+        return aIndustryIndex - bIndustryIndex;
+      }
+      
+      // If same industry (or both unknown), sort by name
+      return nameSort === 'asc' 
         ? a.name.localeCompare(b.name) 
-        : b.name.localeCompare(a.name)
-    );
+        : b.name.localeCompare(a.name);
+    });
 
     return filtered;
   }, [allProducts, selectedIndustries, search, selectedChemistries, nameSort]);
@@ -125,7 +154,31 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
         industries.forEach(ind => unique.add(ind));
       }
     });
-    return Array.from(unique).sort();
+    
+    // Custom sort order: Industrial, Transportation, Marine, Composites, Construction, Insulation
+    const industryOrder = ['industrial', 'transportation', 'marine', 'composites', 'construction', 'insulation'];
+    
+    return Array.from(unique).sort((a, b) => {
+      const aLower = a.toLowerCase();
+      const bLower = b.toLowerCase();
+      const aIndex = industryOrder.indexOf(aLower);
+      const bIndex = industryOrder.indexOf(bLower);
+      
+      // If both are in the order array, sort by their position
+      if (aIndex !== -1 && bIndex !== -1) {
+        return aIndex - bIndex;
+      }
+      // If only a is in the order array, a comes first
+      if (aIndex !== -1) {
+        return -1;
+      }
+      // If only b is in the order array, b comes first
+      if (bIndex !== -1) {
+        return 1;
+      }
+      // If neither is in the order array, sort alphabetically
+      return aLower.localeCompare(bLower);
+    });
   }, [allProducts]);
 
   // Get chemistry types for this category
@@ -149,7 +202,22 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     setImageErrorStates(prev => ({ ...prev, [productId]: true }));
   };
 
-  const formattedCategoryTitle = toTitleCase(productCategory);
+  // Map category to display title
+  const getCategoryTitle = (category: string): string => {
+    const categoryLower = category.toLowerCase();
+    switch (categoryLower) {
+      case 'bond':
+        return 'Adhesive';
+      case 'seal':
+        return 'Sealant';
+      case 'ruggedred':
+        return 'Cleaning';
+      default:
+        return toTitleCase(category);
+    }
+  };
+
+  const formattedCategoryTitle = getCategoryTitle(productCategory);
 
   return (
     <section className="bg-gray-100 text-gray-900 relative z-[30] pt-4 md:pt-6" style={{ paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>

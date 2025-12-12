@@ -18,11 +18,13 @@ const HeroVideoSectionV2: React.FC = () => {
   }, [isVideoLoaded]);
 
   const handleVideoLoad = () => {
+    console.log('Slogan Slam video loaded successfully');
     setIsVideoLoaded(true);
   };
 
-  const handleVideoError = () => {
-    console.warn('Video failed to load, showing fallback');
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    console.error('Slogan Slam video failed to load:', e);
+    console.error('Video source:', '/videos/misc/Forza Slogan Slam Final 3.mp4');
     setIsVideoLoaded(true);
   };
 
@@ -39,10 +41,11 @@ const HeroVideoSectionV2: React.FC = () => {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         onLoadedData={handleVideoLoad}
         onCanPlay={handleVideoLoad}
         onError={handleVideoError}
+        onLoadStart={() => console.log('Slogan Slam video loading started')}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
           isVideoLoaded ? 'opacity-100' : 'opacity-0'
         }`}
@@ -56,6 +59,7 @@ const HeroVideoSectionV2: React.FC = () => {
         }}
       >
         <source src="/videos/misc/Forza Slogan Slam Final 3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
 
       {/* Fallback background - always visible */}

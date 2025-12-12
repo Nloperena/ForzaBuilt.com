@@ -635,10 +635,30 @@ const ProductCategoryPage: React.FC = () => {
                   />
                 </section> */}
 
-                {/* Products Section - Using ProductCategoryProductsSection component */}
-                <ProductCategoryProductsSection 
-                  productCategory={productCategory as 'bond' | 'seal' | 'tape'}
-                />
+                {/* Products Section - Using ProductCategoryProductsSection component or RuggedRed iframe */}
+                {productCategory?.toLowerCase() === 'ruggedred' ? (
+                  <section className="relative w-full h-screen z-20 flex justify-center bg-gray-100 pt-4 md:pt-6">
+                    <div className="w-full max-w-[1600px] h-full bg-white rounded-3xl overflow-hidden shadow-2xl mx-4">
+                      <iframe
+                        src="https://ruggedred.com/industrial/products"
+                        title="Rugged Red - Industrial Cleaning Solutions"
+                        className="w-full h-full border-0 rounded-3xl"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                        style={{
+                          scrollbarWidth: 'thin',
+                          scrollbarColor: '#F2611D #1b3764'
+                        }}
+                      />
+                    </div>
+                  </section>
+                ) : (
+                  <ProductCategoryProductsSection 
+                    productCategory={productCategory as 'bond' | 'seal' | 'tape'}
+                  />
+                )}
             </StickyProductHeroImageSection>
             </motion.div>
           </AnimatePresence>
