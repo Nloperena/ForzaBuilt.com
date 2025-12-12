@@ -433,76 +433,55 @@ const ProductDetailPage: React.FC = () => {
       />
       <HeaderV2 />
       <main className="flex-1 pb-10">
-        {/* Hero Section - Full width background */}
-        <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#2c476e] h-[60vh] md:h-[88vh] flex items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative overflow-hidden w-full"
-          >
-            {/* Content Container - Centered with max-width */}
-            <div className="max-w-[1200px] mx-auto px-4 w-full">
+        {/* Product Image, Title and Description */}
+        <section className="bg-gradient-to-r from-[#477197] to-[#2c476e]">
+          <div className="max-w-[1200px] mx-auto px-4 py-12 md:py-16 lg:py-20">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              {/* Product Image */}
+              <div className="flex justify-center lg:justify-start relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                {/* Mobile/Tablet Hero Image */}
+                <img 
+                  src={getMobileHeroImage(product.category)}
+                  alt={`${product.category} Hero`}
+                  className="lg:hidden w-full h-full object-cover rounded-lg"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = product.imageUrl || product.image || '/placeholder.svg';
+                  }}
+                />
+                {/* Desktop Product Image */}
+                <img 
+                  src={product.imageUrl || product.image} 
+                  alt={product.name}
+                  className="hidden lg:block w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                      const filename = product.id.toLowerCase() + '.png';
+                      target.src = `/product-images/${filename}`;
+                    } else if (!target.src.includes('placeholder')) {
+                      target.src = '/placeholder.svg';
+                    }
+                  }}
+                />
+              </div>
               
-              {/* Content */}
-              <div className="relative p-8 md:p-12 text-white">
-                <div className="grid lg:grid-cols-2 gap-8 items-center">
-                  {/* Product Image */}
-                  <div className="flex justify-center lg:justify-start relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] order-2 lg:order-1">
-                    {/* Mobile/Tablet Hero Image */}
-                          <img 
-                      src={getMobileHeroImage(product.category)}
-                      alt={`${product.category} Hero`}
-                      className="lg:hidden w-full h-full object-cover rounded-lg drop-shadow-2xl"
-                      style={{
-                        filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.1)) brightness(1.2) contrast(1.1)'
-                      }}
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        // Fallback to desktop product image if mobile image fails
-                        target.src = product.imageUrl || product.image || '/placeholder.svg';
-                      }}
-                    />
-                    {/* Desktop Product Image */}
-                      <img 
-                        src={product.imageUrl || product.image} 
-                        alt={product.name}
-                      className="hidden lg:block w-[400px] h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] object-contain drop-shadow-2xl"
-                        style={{
-                          filter: 'drop-shadow(0 0 40px rgba(255, 255, 255, 0.1)) brightness(1.2) contrast(1.1)'
-                        }}
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          // Try fallback to product-images folder
-                          if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
-                            const filename = product.id.toLowerCase() + '.png';
-                            target.src = `/product-images/${filename}`;
-                          } else if (!target.src.includes('placeholder')) {
-                            target.src = '/placeholder.svg';
-                          }
-                        }}
-                      />
-                    </div>
-                    
-                  {/* Product Info */}
-                  <div className="order-1 lg:order-2">
-                    {/* Product ID */}
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-white mb-1 sm:mb-2 md:mb-4 leading-none font-poppins text-left">
-                      {product.id.toUpperCase()}
-                    </h1>
-                    <div className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed text-left">
-                      {product.name.split('–')[1]?.trim() || product.description}
-                    </div>
-                  </div>
+              {/* Product Info */}
+              <div>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-white mb-1 sm:mb-2 md:mb-4 leading-none font-poppins text-left">
+                  {product.id.toUpperCase()}
+                </h1>
+                <div className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed text-left">
+                  {product.name.split('–')[1]?.trim() || product.description}
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </section>
 
         {/* Product Details Section - Grey Background */}
-        <section className="bg-gray-100 py-12">
-        <div className="max-w-[1200px] mx-auto px-4">
+        <section className="bg-gray-100 pb-12">
+        <div className="max-w-[1200px] mx-auto px-4 pt-8">
           {/* Breadcrumb */}
           <nav className="mb-8">
             <div className="flex items-center gap-2 text-gray-600 text-sm">
