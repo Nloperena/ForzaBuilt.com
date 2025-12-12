@@ -107,7 +107,7 @@ const ProductsSectionAlt = () => {
           </div>
         </div>
       ) : (
-        <div className="w-full px-4 mx-auto max-w-7xl relative z-10">
+        <div className="w-full pt-4 md:pt-6 px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
             <h2
               className={`font-black ${
