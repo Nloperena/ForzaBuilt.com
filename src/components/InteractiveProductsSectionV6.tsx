@@ -43,7 +43,7 @@ const products: Product[] = [
   {
     title: "CLEANERS",
     description: "Industrial-grade cleaners formulated to cut through residue fast — keeping your equipment and processes running at peak efficiency.",
-    image: "/images/homepage-heroes/Forza Cleaners Hero Shot1.jpg",
+    image: "/images/homepage-heroes/Forza-Cleaners-Hero-Shot1.jpg",
     slug: "ruggedred"
   }
 ];
