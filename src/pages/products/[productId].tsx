@@ -434,15 +434,15 @@ const ProductDetailPage: React.FC = () => {
       <HeaderV2 />
       <main className="flex-1 pb-10">
         {/* Hero Section - Full width background */}
-        <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#2c476e]">
+        <section className="mb-12 bg-gradient-to-r from-[#477197] to-[#2c476e] h-[60vh] md:h-[88vh] flex items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative overflow-hidden"
+            className="relative overflow-hidden w-full"
           >
             {/* Content Container - Centered with max-width */}
-            <div className="max-w-[1200px] mx-auto px-4 py-16">
+            <div className="max-w-[1200px] mx-auto px-4 w-full">
               
               {/* Content */}
               <div className="relative p-8 md:p-12 text-white">
