@@ -71,7 +71,7 @@ const IndustriesSectionAlt = () => {
       
       {/* Industries Header Section */}
       {mode === 'light2' ? (
-        <div className="w-full bg-white pt-0 md:pt-2 px-4 mx-auto max-w-7xl relative z-10">
+        <div className="w-full bg-white pt-4 md:pt-6 px-4 mx-auto max-w-7xl relative z-10">
           <div className="text-center relative z-10">
             <h2
               className="font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins"

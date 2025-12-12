@@ -152,7 +152,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   const formattedCategoryTitle = toTitleCase(productCategory);
 
   return (
-    <section className="bg-gray-100 text-gray-900 relative z-[30]" style={{ paddingTop: 'clamp(2rem, 4vw, 4rem)', paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
+    <section className="bg-gray-100 text-gray-900 relative z-[30] pt-4 md:pt-6" style={{ paddingBottom: 'clamp(2rem, 4vw, 4rem)' }}>
       <div className="max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 2rem)', paddingRight: 'clamp(1rem, 2vw, 2rem)' }}>
         <motion.div 
           className="text-center"
