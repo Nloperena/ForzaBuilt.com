@@ -42,7 +42,7 @@ export const getIndustryColorHex = (industry: string | string[]) => {
     case 'construction':
       return '#fec770'; // Construction yellow
     case 'composites':
-      return '#c7c8c9'; // Composites gray
+      return '#9a9b9c'; // Composites gray
     case 'insulation':
       return '#d0157d'; // Insulation pink
     case 'foam':

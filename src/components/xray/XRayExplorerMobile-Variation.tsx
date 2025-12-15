@@ -190,7 +190,7 @@ const XRayExplorerMobileVariation: React.FC<XRayExplorerProps> = ({
       case 'construction':
         return 'from-[#fec770] via-[#1b3764] to-[#1b3764]';
       case 'composites':
-        return 'from-[#c7c8c9] via-[#1b3764] to-[#1b3764]';
+        return 'from-[#9a9b9c] via-[#1b3764] to-[#1b3764]';
       case 'insulation':
         return 'from-[#d0157d] via-[#1b3764] to-[#1b3764]';
       default:

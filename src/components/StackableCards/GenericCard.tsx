@@ -114,7 +114,7 @@ const GenericCard: React.FC<GenericCardProps> = ({
           <ul className="space-y-1 sm:space-y-1.5 md:space-y-2 lg:space-y-3 xl:space-y-4">
             {card.features.map((feature, index) => (
               <li key={index} className="flex items-start space-x-1.5 sm:space-x-2 md:space-x-3 lg:space-x-4 xl:space-x-5">
-                <span className={`${themeStyles.text} mt-0.5 sm:mt-1 text-[10px] sm:text-xs md:text-xs lg:text-sm xl:text-base flex-shrink-0`}>•</span>
+                <span className={`${themeStyles.text} mt-0.5 sm:mt-1 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl flex-shrink-0`}>•</span>
                 <span className={`text-[10px] sm:text-xs md:text-xs lg:text-sm xl:text-base ${themeStyles.text}/90 leading-relaxed`} 
                        style={{ 
                          fontFamily: themeStyles.bodyFont,

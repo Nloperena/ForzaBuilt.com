@@ -52,7 +52,7 @@ const industryColor = (industry: string) => {
     // case 'foam':
     //   return 'from-[#1b3764] via-[#1b3764] to-[#7a6fb0]'; // 70% blue, 30% Foam purple
     case 'composites':
-      return 'from-[#1b3764] via-[#1b3764] to-[#c7c8c9]'; // 70% blue, 30% Composites gray
+      return 'from-[#1b3764] via-[#1b3764] to-[#9a9b9c]'; // 70% blue, 30% Composites gray
     case 'insulation':
       return 'from-[#1b3764] via-[#1b3764] to-[#d0157d]'; // 70% blue, 30% Insulation pink
     default:

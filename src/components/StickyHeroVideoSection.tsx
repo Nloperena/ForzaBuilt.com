@@ -16,10 +16,10 @@ const StickyHeroVideoSection: React.FC<StickyHeroVideoSectionProps> = ({ childre
         <EagleHeroVideo />
         
         {/* Text Overlay - positioned on top of video for all modes */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 20 }}>
-          <h1 className={`text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display font-regular text-white leading-snug ${
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 20, padding: '0 0 4rem 0' }}>
+          <h1 className={`font-regular text-white leading-tight ${
             mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-          }`}>
+          }`} style={{ fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 4.5rem)' }}>
             {mode === 'light2' ? (
               <>
                 High-Performing<br />

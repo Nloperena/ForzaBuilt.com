@@ -168,7 +168,7 @@ export const industries: Industry[] = [
     videoUrl: "/videos/misc/ForzaTurbineLoop-Compressed.mp4#t=0,100",
     description: "Specialized adhesives for composite materials",
     logo: "/logos/Composite-Icon.png",
-    color: "#c7c8c9", // Composites grey color from brand standards
+    color: "#9a9b9c", // Composites grey color from brand standards
   },
   {
     title: "CONSTRUCTION", 

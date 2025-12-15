@@ -32,7 +32,7 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
         industrial: 'from-[#F16A26] via-[#1b3764] to-[#1b3764]',
         transportation: 'from-[#b83d35] via-[#1b3764] to-[#1b3764]',
         construction: 'from-[#fec770] via-[#1b3764] to-[#1b3764]',
-        composites: 'from-[#c7c8c9] via-[#1b3764] to-[#1b3764]',
+        composites: 'from-[#9a9b9c] via-[#1b3764] to-[#1b3764]',
         insulation: 'from-[#d0157d] via-[#1b3764] to-[#1b3764]'
       },
       light: {
@@ -41,7 +41,7 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
         industrial: 'from-[#F16A26] via-[#1b3764] to-[#1b3764]',
         transportation: 'from-[#b83d35] via-[#1b3764] to-[#1b3764]',
         construction: 'from-[#fec770] via-[#1b3764] to-[#1b3764]',
-        composites: 'from-[#c7c8c9] via-[#1b3764] to-[#1b3764]',
+        composites: 'from-[#9a9b9c] via-[#1b3764] to-[#1b3764]',
         insulation: 'from-[#d0157d] via-[#1b3764] to-[#1b3764]'
       },
       light2: {
@@ -50,7 +50,7 @@ export const GradientModeProvider: React.FC<GradientModeProviderProps> = ({ chil
         industrial: 'from-[#F16A26] via-[#1b3764] to-[#1b3764]',
         transportation: 'from-[#b83d35] via-[#1b3764] to-[#1b3764]',
         construction: 'from-[#fec770] via-[#1b3764] to-[#1b3764]',
-        composites: 'from-[#c7c8c9] via-[#1b3764] to-[#1b3764]',
+        composites: 'from-[#9a9b9c] via-[#1b3764] to-[#1b3764]',
         insulation: 'from-[#d0157d] via-[#1b3764] to-[#1b3764]'
       }
     };

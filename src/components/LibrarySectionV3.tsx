@@ -82,7 +82,7 @@ const LibrarySectionV3 = () => {
       title: 'INDUSTRIAL',
       label: 'Industrial Brochure',
       coverImage: '/Final Resource Files/Industrial Brochure.png',
-      pdfUrl: '/documents/industrial.pdf',
+      pdfUrl: '/documents/Forza_Industrial Brochure_V15.pdf',
       shelf: 'top'
     },
     {
@@ -90,7 +90,7 @@ const LibrarySectionV3 = () => {
       title: 'TRANSPORTATION',
       label: 'Transportation Brochure',
       coverImage: '/Final Resource Files/Transportation Brochure.png',
-      pdfUrl: '/documents/transportation.pdf',
+      pdfUrl: '/documents/CompanyBrochure_Transportation_V37.pdf',
       shelf: 'top'
     },
     {
@@ -98,7 +98,7 @@ const LibrarySectionV3 = () => {
       title: 'MARINE',
       label: 'Marine Brochure',
       coverImage: '/Final Resource Files/Marine Brochure.png',
-      pdfUrl: '/documents/marine.pdf',
+      pdfUrl: '/documents/CompanyBrochure_Marine_V40.3.pdf',
       shelf: 'top'
     },
     {
@@ -106,7 +106,7 @@ const LibrarySectionV3 = () => {
       title: 'COMPOSITES',
       label: 'Composites Brochure',
       coverImage: '/Final Resource Files/Composites Brochure.png',
-      pdfUrl: '/documents/composites.pdf',
+      pdfUrl: '/documents/Forza_Composites Brochure_V22.1.pdf',
       shelf: 'top'
     },
     // Bottom shelf - 3 brochures
@@ -115,7 +115,7 @@ const LibrarySectionV3 = () => {
       title: 'CONSTRUCTION',
       label: 'Construction Brochure',
       coverImage: '/Final Resource Files/Construction Brochure.png',
-      pdfUrl: '/documents/construction.pdf',
+      pdfUrl: '/documents/Construction Brochure V31.2.pdf',
       shelf: 'bottom'
     },
     {
@@ -123,7 +123,7 @@ const LibrarySectionV3 = () => {
       title: 'INSULATION',
       label: 'Insulation Brochure',
       coverImage: '/Final Resource Files/Insulation Brochure.png',
-      pdfUrl: '/documents/insulation.pdf',
+      pdfUrl: '/documents/CompanyBrochure_Insulation_V27.1.pdf',
       shelf: 'bottom'
     },
     {

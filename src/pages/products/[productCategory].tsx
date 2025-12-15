@@ -155,7 +155,7 @@ const industryColor = (industry: string | string[]) => {
     // case 'foam':
     //   return 'from-[#7a6fb0] via-[#1b3764] to-[#1b3764]'; // 70% Foam purple, 30% blue
     case 'composites':
-      return 'from-[#c7c8c9] via-[#1b3764] to-[#1b3764]'; // 70% Composites gray, 30% blue
+      return 'from-[#9a9b9c] via-[#1b3764] to-[#1b3764]'; // 70% Composites gray, 30% blue
     case 'insulation':
       return 'from-[#d0157d] via-[#1b3764] to-[#1b3764]'; // 70% Insulation pink, 30% blue
     default:
@@ -181,7 +181,7 @@ const getIndustryColorHex = (industry: string | string[]) => {
     case 'foam':
       return '#7a6fb0'; // Foam purple
     case 'composites':
-      return '#c7c8c9'; // Composites gray
+      return '#9a9b9c'; // Composites gray
     case 'insulation':
       return '#d0157d'; // Insulation pink
     default:
@@ -637,21 +637,40 @@ const ProductCategoryPage: React.FC = () => {
 
                 {/* Products Section - Using ProductCategoryProductsSection component or RuggedRed iframe */}
                 {productCategory?.toLowerCase() === 'ruggedred' ? (
-                  <section className="relative w-full h-screen z-20 flex justify-center bg-gray-100 pt-4 md:pt-6">
-                    <div className="w-full max-w-[1600px] h-full bg-white rounded-3xl overflow-hidden shadow-2xl mx-4">
-                      <iframe
-                        src="https://ruggedred.com/industrial/products"
-                        title="Rugged Red - Industrial Cleaning Solutions"
-                        className="w-full h-full border-0 rounded-3xl"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                        style={{
-                          scrollbarWidth: 'thin',
-                          scrollbarColor: '#F2611D #1b3764'
-                        }}
-                      />
+                  <section className="relative w-full z-20 bg-gray-100 pt-4 md:pt-6">
+                    <div className="max-w-[1600px] mx-auto" style={{ paddingLeft: 'clamp(1rem, 2vw, 2rem)', paddingRight: 'clamp(1rem, 2vw, 2rem)' }}>
+                      <motion.div 
+                        className="text-center"
+                        style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                      >
+                        <h2 
+                          className="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" 
+                          style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+                        >
+                          Cleaning Products
+                        </h2>
+                      </motion.div>
+                    </div>
+                    <div className="relative w-full h-screen flex justify-center">
+                      <div className="w-full max-w-[1600px] h-full bg-white rounded-3xl overflow-hidden shadow-2xl mx-4">
+                        <iframe
+                          src="https://ruggedred.com/industrial/products"
+                          title="Rugged Red - Industrial Cleaning Solutions"
+                          className="w-full h-full border-0 rounded-3xl"
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                          style={{
+                            scrollbarWidth: 'thin',
+                            scrollbarColor: '#F2611D #1b3764'
+                          }}
+                        />
+                      </div>
                     </div>
                   </section>
                 ) : (

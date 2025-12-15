@@ -40,7 +40,7 @@ export const getIndustryColor = (industry: string) => {
     case 'foam':
       return 'from-[#115B87] via-[#115B87] to-[#7a6fb0]'; // 70% blue, 30% Foam purple
     case 'composites':
-      return 'from-[#115B87] via-[#115B87] to-[#c7c8c9]'; // 70% blue, 30% Composites gray
+      return 'from-[#115B87] via-[#115B87] to-[#9a9b9c]'; // 70% blue, 30% Composites gray
     case 'insulation':
       return 'from-[#115B87] via-[#115B87] to-[#d0157d]'; // 70% blue, 30% Insulation pink
     default:

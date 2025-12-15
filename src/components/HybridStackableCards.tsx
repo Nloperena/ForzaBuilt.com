@@ -43,8 +43,8 @@ const cardStyleSheetOld = `
   .card-gradient-transportation-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(184, 61, 53)); }
   .card-gradient-construction { background: linear-gradient(to right, rgb(28, 58, 92), rgb(254, 199, 112)); }
   .card-gradient-construction-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(254, 199, 112)); }
-  .card-gradient-composites { background: linear-gradient(to right, rgb(28, 58, 92), rgb(199, 200, 201)); }
-  .card-gradient-composites-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(199, 200, 201)); }
+  .card-gradient-composites { background: linear-gradient(to right, rgb(28, 58, 92), rgb(154, 155, 156)); }
+  .card-gradient-composites-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(154, 155, 156)); }
   .card-gradient-insulation { background: linear-gradient(to right, rgb(28, 58, 92), rgb(208, 21, 125)); }
   .card-gradient-insulation-reverse { background: linear-gradient(to left, rgb(28, 58, 92), rgb(208, 21, 125)); }
   .card-gradient-foam { background: linear-gradient(to right, rgb(28, 58, 92), rgb(241, 106, 38)); }
@@ -61,8 +61,8 @@ const cardStyleSheetNew = `
   .card-gradient-transportation-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(184, 61, 53)); }
   .card-gradient-construction { background: linear-gradient(to right, rgb(51, 72, 108), rgb(254, 199, 112)); }
   .card-gradient-construction-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(254, 199, 112)); }
-  .card-gradient-composites { background: linear-gradient(to right, rgb(51, 72, 108), rgb(199, 200, 201)); }
-  .card-gradient-composites-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(199, 200, 201)); }
+  .card-gradient-composites { background: linear-gradient(to right, rgb(51, 72, 108), rgb(154, 155, 156)); }
+  .card-gradient-composites-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(154, 155, 156)); }
   .card-gradient-insulation { background: linear-gradient(to right, rgb(51, 72, 108), rgb(208, 21, 125)); }
   .card-gradient-insulation-reverse { background: linear-gradient(to left, rgb(51, 72, 108), rgb(208, 21, 125)); }
   .card-gradient-foam { background: linear-gradient(to right, rgb(51, 72, 108), rgb(241, 106, 38)); }
@@ -85,6 +85,9 @@ interface HybridStackableCardsProps {
   title?: string;
   subtitle?: string;
   maxCards?: number;
+  industryTitle?: string;
+  industryLogo?: string;
+  industryColor?: string;
 }
 
 const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({ 
@@ -92,7 +95,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
   industry = 'industrial',
   title,
   subtitle,
-  maxCards = 3 
+  maxCards = 3,
+  industryTitle,
+  industryLogo,
+  industryColor
 }) => {
   const [scrollY, setScrollY] = useState(0);
   const [containerTop, setContainerTop] = useState(0);
@@ -134,7 +140,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         case 'construction':
           return `from-[#fec770] to-[#fec770]`;
         case 'composites':
-          return `from-[#c7c8c9] to-[#c7c8c9]`;
+          return `from-[#9a9b9c] to-[#9a9b9c]`;
         case 'insulation':
           return `from-[#d0157d] to-[#d0157d]`;
         case 'foam':
@@ -682,6 +688,75 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           paddingBottom: '2rem'
         }}
       >
+      {/* Fixed Section Heading - stays in place when scrolling */}
+      {showHeading && (
+        <div className="fixed top-0 left-0 right-0 w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 z-50 pointer-events-none"
+          style={useOldColorScheme ? {
+            background: `linear-gradient(315deg, ${gradientColors})`
+          } : {
+            background: 'white'
+          }}
+        >
+          <div className="text-center max-w-5xl">
+            <h2 
+              className={`font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
+              style={useOldColorScheme ? { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' } : { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)', color: '#1c3a5c' }}
+            >
+              {formattedTitle}
+            </h2>
+            {headerSubtitle && (
+              <p 
+                className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light mt-2 ${useOldColorScheme ? 'text-white/90' : 'text-gray-700'}`}
+              >
+                {headerSubtitle}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+      
+      {/* Spacer for fixed heading when showHeading is true */}
+      {showHeading && (
+        <div className="w-full" style={{ height: '140px' }}></div>
+      )}
+      
+      {/* Industry Title & Icon Section - Sticky above cards, unsticks with them */}
+      {industryTitle && (
+        <div 
+          className="sticky w-full bg-white shadow-sm z-[55]"
+          style={{ 
+            top: Math.max(80, stickyTop - 120),
+            paddingTop: '1rem',
+            paddingBottom: '1rem',
+            marginBottom: '1rem'
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            <div className="flex items-center justify-center gap-4 md:gap-6 lg:gap-8">
+              {industryLogo && (
+                <div className="relative" style={{ width: 'clamp(4rem, 8vw, 10rem)', height: 'clamp(4rem, 8vw, 10rem)' }}>
+                  <img
+                    src={industryLogo}
+                    alt={`${industryTitle} icon`}
+                    className="w-auto h-full object-contain"
+                  />
+                </div>
+              )}
+              <h1
+                className="font-black mb-0 leading-none font-kallisto"
+                style={{ 
+                  fontSize: 'clamp(2rem, 4vw + 0.5rem, 5rem)',
+                  color: industryColor || '#1b3764',
+                  fontFamily: 'Kallisto, Poppins, sans-serif'
+                }}
+              >
+                {industryTitle.toUpperCase()}
+              </h1>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* Stacking Cards */}
       <div className="relative">
         {cardData.map((card, index) => {
@@ -715,47 +790,6 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                 minHeight: `${Math.max(cardDisplayHeight + 60, viewportHeight * 0.5)}px`
               }}
             >
-              {/* Section Heading - only visible on first card when showHeading is true */}
-              {showHeading && index === 0 && (
-                <div className="w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 relative z-50">
-                  <div className="text-center max-w-5xl">
-                    <h2 
-                      className={`font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
-                      style={useOldColorScheme ? { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' } : { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)', color: '#1c3a5c' }}
-                    >
-                      {formattedTitle}
-                    </h2>
-                    {headerSubtitle && (
-                      <p 
-                        className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light mt-2 ${useOldColorScheme ? 'text-white/90' : 'text-gray-700'}`}
-                      >
-                        {headerSubtitle}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Invisible spacer heading for cards 2+ to maintain alignment - only when showHeading is true */}
-              {showHeading && index > 0 && (
-                <div className="w-full flex justify-center pt-12 pb-8 sm:pb-10 md:pb-12 px-3 sm:px-4 invisible" style={{ height: 'auto' }}>
-                  <div className="text-center max-w-5xl">
-                    <h2 
-                      className={`font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
-                      style={useOldColorScheme ? { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' } : { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)', color: '#1c3a5c' }}
-                    >
-                      {formattedTitle}
-                    </h2>
-                    {headerSubtitle && (
-                      <p 
-                        className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-3xl mx-auto font-light mt-2"
-                      >
-                        {headerSubtitle}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              )}
               
               {/* Card container - fixed position at top of sticky area */}
               <div className="w-full flex items-center justify-center" style={{ height: `${cardDisplayHeight}px`, minHeight: `${Math.min(cardDisplayHeight, viewportHeight * 0.6)}px` }}>
@@ -842,7 +876,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                                 fontSize: `calc(clamp(0.9rem, 1.3vw, 1.2rem) * ${contentScale})`
                               }}
                             >
-                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1.5" style={{ width: `calc(clamp(0.5rem, 1vw, 0.8rem) * ${contentScale})`, height: `calc(clamp(0.5rem, 1vw, 0.8rem) * ${contentScale})` }}></div>
+                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1.5" style={{ width: `calc(clamp(0.4rem, 0.6vw, 0.5rem) * ${contentScale})`, height: `calc(clamp(0.4rem, 0.6vw, 0.5rem) * ${contentScale})` }}></div>
                               {item}
                             </li>
                           ))}

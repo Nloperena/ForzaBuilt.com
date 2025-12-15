@@ -101,8 +101,8 @@ export const industryColors = {
     accent: brandColors.primary.blazeOrange.hex
   },
   composites: {
-    primary: '#c7c8c9',
-    secondary: '#c7c8c9',
+    primary: '#9a9b9c',
+    secondary: '#9a9b9c',
     accent: brandColors.primary.blazeOrange.hex
   },
   // foam: {

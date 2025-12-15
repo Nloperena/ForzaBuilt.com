@@ -14,13 +14,13 @@ interface IndustryBrochureArticlesSectionProps {
 
 // Industry-specific brochure images
 const brochureImages = {
-  construction: 'https://images.ctfassets.net/hdznx4p7ef81/6jBEejAIdtJWPMDFa7ODTP/f0029a96cf46735546cb0b6beb014ae8/Screenshot_2025-07-10_164759.png',
-  transportation: 'https://images.ctfassets.net/hdznx4p7ef81/772ZlCwQ3zKrHEKNvPpDl5/fca49f6515208b5b9108e0f07d3652bb/Screenshot_2025-07-10_164841.png',
-  marine: 'https://images.ctfassets.net/hdznx4p7ef81/2fYEToT9dN8JbL3JVhzzgU/a667b7ce0d2970ebe7c3f4f09783730e/Screenshot_2025-07-10_165017.png',
-  industrial: 'https://images.ctfassets.net/hdznx4p7ef81/2FhgmLweRofhzps04eNz6Q/ad7f4fd7e6aa7079cb3f0f124d14bc2c/Screenshot_2025-07-10_165040.png',
-  composites: 'https://images.ctfassets.net/hdznx4p7ef81/XkATLSGsd1iJ1yxrEgyu9/09147b64d2a99153d9198d23170362a5/Screenshot_2025-07-10_165111.png',
-  insulation: 'https://images.ctfassets.net/hdznx4p7ef81/6Tu8ZRocj145EIVBFJFdcR/23a25fc03e1aa2722fb0fcb690f153a5/Screenshot_2025-07-10_165128.png',
-  foam: 'https://images.ctfassets.net/hdznx4p7ef81/4jxIKgkpgtrlvx5f2KjDF7/59fe168521bb160bf71c906caa33dbe4/Marine-PDF-Cover_sample.png'
+  construction: '/Final Resource Files/Construction Brochure Cover.png',
+  transportation: '/Final Resource Files/Transportation Brochure Cover.png',
+  marine: '/Final Resource Files/Marine Brochure Cover.png',
+  industrial: '/Final Resource Files/Industrial Brochure Cover.png',
+  composites: '/Final Resource Files/Composites Brochure Cover.png',
+  insulation: '/Final Resource Files/Insulation Brochure Cover.png',
+  foam: '/Final Resource Files/Marine Brochure Cover.png'
 };
 
 // Default titles and descriptions for each industry
@@ -63,7 +63,18 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
   
   // Get brochure content
   const content = defaultContent[industry.toLowerCase() as keyof typeof defaultContent] || defaultContent.industrial;
-  const pdfUrl = `/brochures/${industry.toLowerCase()}.pdf`;
+  
+  // Map industry to new brochure PDF filenames
+  const brochurePdfMap: { [key: string]: string } = {
+    industrial: '/documents/Forza_Industrial Brochure_V15.pdf',
+    transportation: '/documents/CompanyBrochure_Transportation_V37.pdf',
+    marine: '/documents/CompanyBrochure_Marine_V40.3.pdf',
+    composites: '/documents/Forza_Composites Brochure_V22.1.pdf',
+    construction: '/documents/Construction Brochure V31.2.pdf',
+    insulation: '/documents/CompanyBrochure_Insulation_V27.1.pdf'
+  };
+  
+  const pdfUrl = brochurePdfMap[industry.toLowerCase()] || `/documents/${industry.toLowerCase()}.pdf`;
   const brochureTitle = content.title;
   const imageToUse = brochureImages[industry.toLowerCase() as keyof typeof brochureImages] || brochureImages.construction;
 

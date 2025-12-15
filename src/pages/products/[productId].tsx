@@ -13,6 +13,7 @@ import { getProduct, getRelatedProducts, getProducts } from '@/utils/products';
 import HeaderV2 from '@/components/Header/HeaderV2';
 import FooterV2 from '@/components/FooterV2';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
+import ImageSkeleton from '@/components/common/ImageSkeleton';
 
 // Chemistry icon paths - updated to use organized chemistry icons
 const CHEMISTRY_ICONS = {
@@ -104,7 +105,7 @@ const industryColor = (industry: string | string[]) => {
     // case 'foam':
     //   return 'from-[#1b3764] via-[#1b3764] to-[#7a6fb0]'; // 70% blue, 30% Foam purple
     case 'composites':
-      return 'from-[#1b3764] via-[#1b3764] to-[#c7c8c9]'; // 70% blue, 30% Composites gray
+      return 'from-[#1b3764] via-[#1b3764] to-[#9a9b9c]'; // 70% blue, 30% Composites gray
     case 'insulation':
       return 'from-[#1b3764] via-[#1b3764] to-[#d0157d]'; // 70% blue, 30% Insulation pink
     default:
@@ -231,10 +232,24 @@ const ProductDetailPage: React.FC = () => {
   const [product, setProduct] = useState<any>(null);
   const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  // Image loading states
+  const [mainImageLoaded, setMainImageLoaded] = useState(false);
+  const [mobileHeroImageLoaded, setMobileHeroImageLoaded] = useState(false);
+  const [industryLogoLoaded, setIndustryLogoLoaded] = useState(false);
+  const [chemistryIconLoaded, setChemistryIconLoaded] = useState(false);
+  const [relatedProductImagesLoaded, setRelatedProductImagesLoaded] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const loadProduct = async () => {
       setLoading(true);
+      // Reset image loading states when product changes
+      setMainImageLoaded(false);
+      setMobileHeroImageLoaded(false);
+      setIndustryLogoLoaded(false);
+      setChemistryIconLoaded(false);
+      setRelatedProductImagesLoaded({});
+      
       try {
         const productData = await getProduct(productId);
         setProduct(productData);
@@ -441,30 +456,48 @@ const ProductDetailPage: React.FC = () => {
               {/* Product Image */}
               <div className="flex justify-center lg:justify-start relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[450px] xl:h-[500px] 2xl:h-[600px]">
                 {/* Mobile/Tablet Hero Image */}
-                <img 
-                  src={getMobileHeroImage(product.category)}
-                  alt={`${product.category} Hero`}
-                  className="lg:hidden w-full h-full object-cover rounded-lg"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = product.imageUrl || product.image || '/placeholder.svg';
-                  }}
-                />
+                <div className="lg:hidden w-full h-full relative">
+                  {!mobileHeroImageLoaded && (
+                    <ImageSkeleton className="w-full h-full rounded-lg" />
+                  )}
+                  <img 
+                    src={getMobileHeroImage(product.category)}
+                    alt={`${product.category} Hero`}
+                    className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${
+                      mobileHeroImageLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onLoad={() => setMobileHeroImageLoaded(true)}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = product.imageUrl || product.image || '/placeholder.svg';
+                      setMobileHeroImageLoaded(true);
+                    }}
+                  />
+                </div>
                 {/* Desktop Product Image */}
-                <img 
-                  src={product.imageUrl || product.image} 
-                  alt={product.name}
-                  className="hidden lg:block w-[450px] h-[450px] xl:w-[500px] xl:h-[500px] 2xl:w-[600px] 2xl:h-[600px] object-contain"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
-                      const filename = product.id.toLowerCase() + '.png';
-                      target.src = `/product-images/${filename}`;
-                    } else if (!target.src.includes('placeholder')) {
-                      target.src = '/placeholder.svg';
-                    }
-                  }}
-                />
+                <div className="hidden lg:block relative w-[450px] h-[450px] xl:w-[500px] xl:h-[500px] 2xl:w-[600px] 2xl:h-[600px]">
+                  {!mainImageLoaded && (
+                    <ImageSkeleton className="w-full h-full" />
+                  )}
+                  <img 
+                    src={product.imageUrl || product.image} 
+                    alt={product.name}
+                    className={`w-full h-full object-contain transition-opacity duration-500 ${
+                      mainImageLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onLoad={() => setMainImageLoaded(true)}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                        const filename = product.id.toLowerCase() + '.png';
+                        target.src = `/product-images/${filename}`;
+                      } else if (!target.src.includes('placeholder')) {
+                        target.src = '/placeholder.svg';
+                      }
+                      setMainImageLoaded(true);
+                    }}
+                  />
+                </div>
               </div>
               
               {/* Product Info */}
@@ -618,11 +651,20 @@ const ProductDetailPage: React.FC = () => {
                         <div>
                           <div className="flex items-center gap-6 mb-6">
                             {getIndustryLogo(product.industry) ? (
-                              <img 
-                                src={getIndustryLogo(product.industry)} 
-                                alt={`${Array.isArray(product.industry) ? product.industry[0] || '' : product.industry} icon`}
-                                className="h-24 w-24 md:h-32 md:w-32 object-contain"
-                              />
+                              <div className="relative h-24 w-24 md:h-32 md:w-32">
+                                {!industryLogoLoaded && (
+                                  <ImageSkeleton className="w-full h-full rounded-full" />
+                                )}
+                                <img 
+                                  src={getIndustryLogo(product.industry)} 
+                                  alt={`${Array.isArray(product.industry) ? product.industry[0] || '' : product.industry} icon`}
+                                  className={`h-24 w-24 md:h-32 md:w-32 object-contain transition-opacity duration-500 ${
+                                    industryLogoLoaded ? 'opacity-100' : 'opacity-0'
+                                  }`}
+                                  onLoad={() => setIndustryLogoLoaded(true)}
+                                  onError={() => setIndustryLogoLoaded(true)}
+                                />
+                              </div>
                             ) : (
                               <div className="w-24 h-24 md:w-32 md:h-32 bg-white/20 rounded-full flex items-center justify-center">
                                 <span className="text-white font-bold text-3xl md:text-4xl">{Array.isArray(product.industry) ? product.industry[0]?.charAt(0).toUpperCase() || '' : product.industry.charAt(0).toUpperCase()}</span>
@@ -788,11 +830,26 @@ const ProductDetailPage: React.FC = () => {
                           Chemistry
                         </h3>
                         <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 flex items-center">
-                          <div className="mr-4">
+                          <div className="mr-4 relative">
                             {(() => {
                               const chemIcon = getChemistryIcon(product.chemistry);
                               if (chemIcon) {
-                                return <img src={chemIcon} alt={`${product.chemistry} Chemistry`} className="w-24 h-24 md:w-28 md:h-28 chemistry-icon" />;
+                                return (
+                                  <>
+                                    {!chemistryIconLoaded && (
+                                      <ImageSkeleton className="w-24 h-24 md:w-28 md:h-28 rounded-full" />
+                                    )}
+                                    <img 
+                                      src={chemIcon} 
+                                      alt={`${product.chemistry} Chemistry`} 
+                                      className={`w-24 h-24 md:w-28 md:h-28 chemistry-icon transition-opacity duration-500 ${
+                                        chemistryIconLoaded ? 'opacity-100' : 'opacity-0'
+                                      }`}
+                                      onLoad={() => setChemistryIconLoaded(true)}
+                                      onError={() => setChemistryIconLoaded(true)}
+                                    />
+                                  </>
+                                );
                               } else {
                                 return (
                                   <div className="w-24 h-24 md:w-28 md:h-28 bg-white/20 rounded-full flex items-center justify-center">
@@ -935,8 +992,8 @@ const ProductDetailPage: React.FC = () => {
           <section className="bg-white py-12">
             <div className="max-w-[1200px] mx-auto px-4">
               <div className="mb-8">
-                <h2 className="text-3xl font-poppins font-regular text-gray-900 mb-2" 
-                    style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
+                <h2 className="font-poppins font-regular text-gray-900 mb-2" 
+                    style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                   Related Products
                 </h2>
                 <p className="text-gray-600">More {product.industry} solutions</p>
@@ -959,13 +1016,19 @@ const ProductDetailPage: React.FC = () => {
                       >
                         {/* Desktop: Product Image */}
                         <div 
-                          className="absolute inset-0 hidden md:block pb-24 cursor-pointer" 
+                          className="absolute inset-0 hidden md:block pb-24 cursor-pointer relative" 
                           style={{ transform: 'translateY(-3%) scale(0.85)' }}
                         >
+                          {!relatedProductImagesLoaded[relatedProduct.id] && (
+                            <ImageSkeleton />
+                          )}
                           <img 
                             src={relatedProduct.imageUrl || relatedProduct.image} 
                             alt={relatedProduct.name}
-                            className="w-full h-full object-contain transition-all duration-500 group-hover:scale-105 opacity-100"
+                            className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
+                              relatedProductImagesLoaded[relatedProduct.id] ? 'opacity-100' : 'opacity-0'
+                            }`}
+                            onLoad={() => setRelatedProductImagesLoaded(prev => ({ ...prev, [relatedProduct.id]: true }))}
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
                               if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
@@ -974,6 +1037,7 @@ const ProductDetailPage: React.FC = () => {
                               } else if (!target.src.includes('placeholder')) {
                                 target.src = '/placeholder.svg';
                               }
+                              setRelatedProductImagesLoaded(prev => ({ ...prev, [relatedProduct.id]: true }));
                             }}
                           />
                         </div>
@@ -982,10 +1046,16 @@ const ProductDetailPage: React.FC = () => {
                         <div className="flex md:hidden items-center gap-4 flex-1 p-4">
                           {/* Mobile: Product Image */}
                           <div className="w-[100px] h-[100px] rounded-xl overflow-hidden bg-transparent relative flex items-center justify-center">
+                            {!relatedProductImagesLoaded[relatedProduct.id] && (
+                              <ImageSkeleton className="rounded-xl" />
+                            )}
                             <img 
                               src={relatedProduct.imageUrl || relatedProduct.image} 
                               alt={relatedProduct.name}
-                              className="max-w-full max-h-full object-contain transition-opacity duration-500 opacity-100"
+                              className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
+                                relatedProductImagesLoaded[relatedProduct.id] ? 'opacity-100' : 'opacity-0'
+                              }`}
+                              onLoad={() => setRelatedProductImagesLoaded(prev => ({ ...prev, [relatedProduct.id]: true }))}
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement;
                                 if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
@@ -994,6 +1064,7 @@ const ProductDetailPage: React.FC = () => {
                                 } else if (!target.src.includes('placeholder')) {
                                   target.src = '/placeholder.svg';
                                 }
+                                setRelatedProductImagesLoaded(prev => ({ ...prev, [relatedProduct.id]: true }));
                               }}
                             />
                           </div>
@@ -1059,8 +1130,8 @@ const ProductDetailPage: React.FC = () => {
             <div className="text-center">
             <Card className="bg-gradient-to-r from-[#477197] to-[#2c476e] border border-gray-200 rounded-2xl p-8">
               <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
-                <h2 className="text-3xl font-poppins font-regular text-white" 
-                    style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
+                <h2 className="font-poppins font-regular text-white" 
+                    style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                   Ready to Get Started
                 </h2>
                 <p className="text-xl text-gray-300 max-w-2xl mx-auto" 
