@@ -720,15 +720,14 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         <div className="w-full" style={{ height: '140px' }}></div>
       )}
       
-      {/* Industry Title & Icon Section - Sticky above cards, unsticks with them */}
+      {/* Industry Title & Icon Section - Fixed sticky above cards, never unsticks */}
       {industryTitle && (
         <div 
-          className="sticky w-full bg-white shadow-sm z-[55]"
+          className="sticky w-full bg-white shadow-sm z-[40]"
           style={{ 
-            top: Math.max(80, stickyTop - 120),
-            paddingTop: '1rem',
-            paddingBottom: '1rem',
-            marginBottom: '1rem'
+            top: 'clamp(2rem, 3vw, 3rem)',
+            paddingTop: '0.5rem',
+            paddingBottom: '0.5rem'
           }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
@@ -757,8 +756,8 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
         </div>
       )}
       
-      {/* Stacking Cards */}
-      <div className="relative">
+      {/* Stacking Cards - positioned below title, scroll above title background */}
+      <div className="relative" style={{ marginTop: industryTitle ? '1rem' : '0' }}>
         {cardData.map((card, index) => {
           const { progress } = getCardProgress(index);
           
@@ -779,14 +778,23 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           const transformString = `translateY(${finalTranslateY}px)`;
           const blurAmount = 0; // No blur
           
+          // Calculate cards top position: title top + title height
+          // Title top: clamp(2rem, 3vw, 3rem) - positioned higher to allow cards to be centered
+          // Title height: padding (1rem) + logo/text content (clamp(5rem, 10vw, 8rem)) ≈ clamp(6rem, 11vw, 9rem)
+          const titleTopValue = 'clamp(2rem, 3vw, 3rem)';
+          const titleHeightValue = 'clamp(6rem, 11vw, 9rem)';
+          const cardsTopPosition = industryTitle 
+            ? `calc(${titleTopValue} + ${titleHeightValue})` 
+            : stickyTop;
+          
           return (
             <div
               key={card.id}
               className={`sticky w-full flex flex-col ${containerPadding}`}
               style={{
-                zIndex: 50 + index,
+                zIndex: 60 + index, // Higher z-index than title so cards scroll above title background
                 opacity: 1,
-                top: stickyTop,
+                top: cardsTopPosition,
                 minHeight: `${Math.max(cardDisplayHeight + 60, viewportHeight * 0.5)}px`
               }}
             >
