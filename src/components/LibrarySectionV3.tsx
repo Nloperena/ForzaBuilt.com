@@ -81,7 +81,7 @@ const LibrarySectionV3 = () => {
       id: 'industrial',
       title: 'INDUSTRIAL',
       label: 'Industrial Brochure',
-      coverImage: '/Final Resource Files/Industrial Brochure.png',
+      coverImage: '/documents/Industrial Brochure 2.png',
       pdfUrl: '/documents/Forza_Industrial Brochure_V15.pdf',
       shelf: 'top'
     },
@@ -89,7 +89,7 @@ const LibrarySectionV3 = () => {
       id: 'transportation',
       title: 'TRANSPORTATION',
       label: 'Transportation Brochure',
-      coverImage: '/Final Resource Files/Transportation Brochure.png',
+      coverImage: '/documents/Transportation Brochure 1.png',
       pdfUrl: '/documents/CompanyBrochure_Transportation_V37.pdf',
       shelf: 'top'
     },
@@ -97,7 +97,7 @@ const LibrarySectionV3 = () => {
       id: 'marine',
       title: 'MARINE',
       label: 'Marine Brochure',
-      coverImage: '/Final Resource Files/Marine Brochure.png',
+      coverImage: '/documents/Marine Brochure 2.png',
       pdfUrl: '/documents/CompanyBrochure_Marine_V40.3.pdf',
       shelf: 'top'
     },
@@ -105,7 +105,7 @@ const LibrarySectionV3 = () => {
       id: 'composites',
       title: 'COMPOSITES',
       label: 'Composites Brochure',
-      coverImage: '/Final Resource Files/Composites Brochure.png',
+      coverImage: '/documents/Composites Brochure 1.png',
       pdfUrl: '/documents/Forza_Composites Brochure_V22.1.pdf',
       shelf: 'top'
     },
@@ -114,7 +114,7 @@ const LibrarySectionV3 = () => {
       id: 'construction',
       title: 'CONSTRUCTION',
       label: 'Construction Brochure',
-      coverImage: '/Final Resource Files/Construction Brochure.png',
+      coverImage: '/documents/Construction Brochure 1.png',
       pdfUrl: '/documents/Construction Brochure V31.2.pdf',
       shelf: 'bottom'
     },
@@ -122,7 +122,7 @@ const LibrarySectionV3 = () => {
       id: 'insulation',
       title: 'INSULATION',
       label: 'Insulation Brochure',
-      coverImage: '/Final Resource Files/Insulation Brochure.png',
+      coverImage: '/documents/Insulation Brochure 1.png',
       pdfUrl: '/documents/CompanyBrochure_Insulation_V27.1.pdf',
       shelf: 'bottom'
     },
@@ -130,7 +130,7 @@ const LibrarySectionV3 = () => {
       id: 'spray-guide',
       title: 'CANISTER ADHESIVE SPRAY GUIDE',
       label: 'Canister Spray Guide',
-      coverImage: '/Final Resource Files/Spray Guide.png',
+      coverImage: '/documents/Spray Guide 1.png',
       pdfUrl: '/documents/spray-guide.pdf',
       shelf: 'bottom'
     }

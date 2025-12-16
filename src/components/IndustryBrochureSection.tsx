@@ -16,13 +16,13 @@ interface IndustryBrochureSectionProps {
 
 // Industry-specific brochure images
 const brochureImages = {
-  construction: '/Final Resource Files/Construction Brochure Cover.png',
-  transportation: '/Final Resource Files/Transportation Brochure Cover.png',
-  marine: '/Final Resource Files/Marine Brochure Cover.png',
-  industrial: '/Final Resource Files/Industrial Brochure Cover.png',
-  composites: '/Final Resource Files/Composites Brochure Cover.png',
-  insulation: '/Final Resource Files/Insulation Brochure Cover.png',
-  foam: '/Final Resource Files/Marine Brochure Cover.png' // Fallback for foam since no image was provided
+  construction: '/documents/Construction Brochure 1.png',
+  transportation: '/documents/Transportation Brochure 1.png',
+  marine: '/documents/Marine Brochure 2.png',
+  industrial: '/documents/Industrial Brochure 2.png',
+  composites: '/documents/Composites Brochure 1.png',
+  insulation: '/documents/Insulation Brochure 1.png',
+  foam: '/documents/Marine Brochure 2.png' // Fallback for foam since no image was provided
 };
 
 // Default titles and descriptions for each industry
@@ -128,7 +128,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
               <img
                 src={imageToUse}
                 alt={`Forza ${content.title} Cover`}
-                className={`w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+                className={`w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl ${
                   backgroundColor === 'white'
                     ? 'border-0 bg-white'
                     : 'border-white/20 bg-white/10 border-4'
@@ -136,7 +136,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
                 loading="lazy"
               />
               {/* Hover overlay effect */}
-              <div className={`absolute inset-0 rounded-2xl transition-all duration-300 ${
+              <div className={`absolute inset-0 transition-all duration-300 ${
                 backgroundColor === 'white'
                   ? 'bg-[#115B87]/0 group-hover:bg-[#115B87]/5'
                   : 'bg-black/0 group-hover:bg-black/10'

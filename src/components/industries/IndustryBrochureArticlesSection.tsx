@@ -14,13 +14,13 @@ interface IndustryBrochureArticlesSectionProps {
 
 // Industry-specific brochure images
 const brochureImages = {
-  construction: '/Final Resource Files/Construction Brochure Cover.png',
-  transportation: '/Final Resource Files/Transportation Brochure Cover.png',
-  marine: '/Final Resource Files/Marine Brochure Cover.png',
-  industrial: '/Final Resource Files/Industrial Brochure Cover.png',
-  composites: '/Final Resource Files/Composites Brochure Cover.png',
-  insulation: '/Final Resource Files/Insulation Brochure Cover.png',
-  foam: '/Final Resource Files/Marine Brochure Cover.png'
+  construction: '/documents/Construction Brochure 1.png',
+  transportation: '/documents/Transportation Brochure 1.png',
+  marine: '/documents/Marine Brochure 2.png',
+  industrial: '/documents/Industrial Brochure 2.png',
+  composites: '/documents/Composites Brochure 1.png',
+  insulation: '/documents/Insulation Brochure 1.png',
+  foam: '/documents/Marine Brochure 2.png'
 };
 
 // Default titles and descriptions for each industry
@@ -159,7 +159,7 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
               <img
                 src={imageToUse}
                 alt={`Forza ${content.title} Cover`}
-                className="w-48 sm:w-56 md:w-64 lg:w-72 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-0 bg-white"
+                className="w-48 sm:w-56 md:w-64 lg:w-72 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-0 bg-white"
                 loading="lazy"
               />
             </div>
