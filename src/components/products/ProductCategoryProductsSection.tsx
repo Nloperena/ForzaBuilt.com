@@ -242,9 +242,9 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
         {/* Main Content Area */}
         <div className="w-full">
             {/* Results Info with Icons */}
-            <div className="flex items-center gap-3 mb-6">
-              {/* Left: Search and Filter Icons - Only Icons */}
-              <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center mb-6 relative">
+              {/* Left: Search and Filter Icons - Paired closer together */}
+              <div className="flex items-center gap-1 absolute left-0">
                 <button
                   onClick={() => setIsSearchDrawerOpen(true)}
                   className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
@@ -261,8 +261,8 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                 </button>
               </div>
 
-              {/* Products Found Badge - To the right of icons */}
-              <div className="bg-[#1B3764] px-4 py-1.5 rounded-full">
+              {/* Center: Products Found Badge - Orange with white text, center-aligned */}
+              <div className="bg-[#F2611D] px-4 py-1.5 rounded-full">
                 <p className="text-sm text-white font-poppins font-medium">
                   <span className="font-semibold">{filteredProducts.length}</span> products found
                 </p>
