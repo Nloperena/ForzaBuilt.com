@@ -90,7 +90,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-white font-bold text-lg font-poppins">Follow Us</h3>
             <div className="flex space-x-3">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/20 rounded flex items-center justify-center hover:bg-white/30 transition-colors">
+              <a href="https://www.linkedin.com/company/forza-built/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/20 rounded flex items-center justify-center hover:bg-white/30 transition-colors">
                 <span className="text-white text-xs font-bold">in</span>
               </a>
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-white/20 rounded flex items-center justify-center hover:bg-white/30 transition-colors">

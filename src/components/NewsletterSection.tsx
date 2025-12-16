@@ -146,7 +146,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                   {/* Large CTA Button */}
                   <div className="flex justify-center mt-auto">
                     <a
-                      href="https://linkedin.com/company/forzabuilt"
+                      href="https://www.linkedin.com/company/forza-built/posts/?feedView=all"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="rounded-full bg-[#F2611D] text-white px-4 md:px-5 py-2 md:py-2.5 text-xs sm:text-sm font-normal hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
