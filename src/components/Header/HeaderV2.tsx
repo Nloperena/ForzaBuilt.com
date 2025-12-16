@@ -139,13 +139,15 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
   const positionClass = (isHome || isIndustry || isAbout || isBlog || isProduct) ? 'fixed' : 'sticky';
   
   // Desktop: hide navbar when scrolling down past 100px
-  const shouldHideOnDesktop = isScrollingUp && lastScrollY > 100;
+  // Don't hide if mobile menu is open
+  const shouldHideOnDesktop = isScrollingUp && lastScrollY > 100 && !mobileMenuOpen;
   
   // Hide navbar when PDF viewer is open
   const shouldHideForPDF = isBookOpen;
   
   // Hide navbar on mobile when drawer is open (hide on all screen sizes, but especially mobile)
-  const shouldHideForDrawer = isDrawerOpen;
+  // Don't hide if mobile menu is open
+  const shouldHideForDrawer = isDrawerOpen && !mobileMenuOpen;
 
   return (
     <header data-component="header" className={`${positionClass} top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${headerBg} ${headerShadow} ${shouldHideOnDesktop ? 'lg:-translate-y-full' : ''} ${shouldHideForPDF ? '-translate-y-full' : ''} ${shouldHideForDrawer ? '-translate-y-full' : ''}`}> 
