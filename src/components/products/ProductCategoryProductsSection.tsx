@@ -462,11 +462,11 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                       className="group"
                     >
                       <div 
-                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg"
+                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-[280px] md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg flex flex-col"
                       >
-                        {/* Desktop: Product Image */}
+                        {/* Product Image - Same layout for mobile and desktop */}
                         <div 
-                          className="absolute inset-0 hidden md:block pb-24 cursor-pointer" 
+                          className="flex-1 relative pb-16 md:pb-24 cursor-pointer" 
                           style={{ transform: 'translateY(-3%) scale(0.85)' }}
                           onClick={() => navigate(`/products/${productCategory}/${product.id}`)}
                         >
@@ -487,46 +487,8 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                           )}
                         </div>
 
-                        {/* Mobile: Left side with image and basic info */}
-                        <div 
-                          className="flex md:hidden items-center gap-4 flex-1 p-4 cursor-pointer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            navigate(`/products/${productCategory}/${product.id}`);
-                          }}
-                        >
-                          {/* Mobile: Product Image */}
-                          <div className="w-[100px] h-[100px] rounded-xl overflow-hidden bg-transparent relative flex items-center justify-center">
-                            {(!imageLoadedStates[product.id] || imageErrorStates[product.id]) && (
-                              <ImageSkeleton className="rounded-xl" />
-                            )}
-                            
-                            {!imageErrorStates[product.id] && (
-                              <img 
-                                src={product.imageUrl} 
-                                alt={product.name}
-                                className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
-                                  imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
-                                }`}
-                                onLoad={() => handleImageLoad(product.id)}
-                                onError={() => handleImageError(product.id)}
-                              />
-                            )}
-                          </div>
-                          
-                          {/* Mobile: Product Info */}
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-sm font-kallisto font-bold mb-1 leading-tight line-clamp-1 text-white">
-                              {product.name.split('–')[0].trim()}
-                            </h3>
-                            <p className="text-xs text-white line-clamp-2">
-                              {toTitleCase(product.name.split('–')[1]?.trim() || product.description || '')}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Desktop: Content Section with title and description */}
-                        <div className="hidden md:block p-2.5 absolute bottom-0 left-0 right-0">
+                        {/* Content Section with title and description - Same for mobile and desktop */}
+                        <div className="p-2.5 absolute bottom-0 left-0 right-0">
                           <div className="space-y-0.5">
                             <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
                               {product.name.split('–')[0].trim()}
@@ -547,18 +509,6 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                               </Link>
                             </div>
                           </div>
-                        </div>
-
-                        {/* Mobile: Right side with buttons */}
-                        <div className="flex md:hidden items-center gap-2 p-4">
-                          {/* Mobile: Product Details Button */}
-                          <Link
-                            to={`/products/${productCategory}/${product.id}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="flex items-center justify-center bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
-                          >
-                            Details
-                          </Link>
                         </div>
                       </div>
                     </motion.div>
