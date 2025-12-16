@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
 import NewsletterSection from '@/components/NewsletterSection';
 import { Search, Filter, X } from 'lucide-react';
+import { useDrawer } from '@/contexts/DrawerContext';
 
 const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
   <Link 
@@ -69,6 +70,12 @@ const Blog = () => {
   const [headerImageLoaded, setHeaderImageLoaded] = useState(false);
   const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+  const { setIsDrawerOpen } = useDrawer();
+
+  // Update drawer context when drawers open/close
+  useEffect(() => {
+    setIsDrawerOpen(isSearchDrawerOpen || isFilterDrawerOpen);
+  }, [isSearchDrawerOpen, isFilterDrawerOpen, setIsDrawerOpen]);
 
   useEffect(() => {
     const loadBlogData = async () => {

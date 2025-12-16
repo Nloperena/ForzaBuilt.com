@@ -6,6 +6,7 @@ import { byCategory } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
 import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase } from '../../utils/industryHelpers';
+import { useDrawer } from '@/contexts/DrawerContext';
 
 interface Product {
   id: string;
@@ -34,8 +35,14 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   const [selectedChemistries, setSelectedChemistries] = useState<string[]>([]);
   const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+  const { setIsDrawerOpen } = useDrawer();
   const [imageLoadedStates, setImageLoadedStates] = useState<Record<string, boolean>>({});
   const [imageErrorStates, setImageErrorStates] = useState<Record<string, boolean>>({});
+
+  // Update drawer context when drawers open/close
+  useEffect(() => {
+    setIsDrawerOpen(isSearchDrawerOpen || isFilterDrawerOpen);
+  }, [isSearchDrawerOpen, isFilterDrawerOpen, setIsDrawerOpen]);
 
   // Product loading states
   const [allProducts, setAllProducts] = useState<Product[]>([]);
