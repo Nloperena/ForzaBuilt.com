@@ -7,6 +7,7 @@ import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
 import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase } from '../../utils/industryHelpers';
 import { useDrawer } from '@/contexts/DrawerContext';
+import SlideInDrawer from '../common/SlideInDrawer';
 
 interface Product {
   id: string;
@@ -367,94 +368,41 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           </div>
         </div>
 
-        {/* Search Drawer - Slides from right */}
-        <AnimatePresence>
-          {isSearchDrawerOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
-                onClick={() => setIsSearchDrawerOpen(false)}
-              />
-              <motion.div
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-                className="fixed right-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
-                onClick={(e) => e.stopPropagation()}
+        {/* Search Drawer */}
+        <SlideInDrawer
+          isOpen={isSearchDrawerOpen}
+          onClose={() => setIsSearchDrawerOpen(false)}
+          title="Search"
+          side="right"
+        >
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search products…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 hover:bg-gray-200 rounded-full transition-colors"
               >
-                <div className="p-6 border-b border-gray-200">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-poppins font-bold text-[#1B3764]">Search</h3>
-                    <button
-                      onClick={() => setIsSearchDrawerOpen(false)}
-                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                      aria-label="Close"
-                    >
-                      <X className="w-5 h-5 text-gray-600" />
-                    </button>
-                  </div>
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input
-                      type="text"
-                      placeholder="Search products…"
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent"
-                    />
-                    {search && (
-                      <button
-                        onClick={() => setSearch('')}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 hover:bg-gray-200 rounded-full transition-colors"
-                      >
-                        <X className="w-4 h-4 text-gray-600" />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+                <X className="w-4 h-4 text-gray-600" />
+              </button>
+            )}
+          </div>
+        </SlideInDrawer>
 
-        {/* Filter Drawer - Slides from right */}
-        <AnimatePresence>
-          {isFilterDrawerOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
-                onClick={() => setIsFilterDrawerOpen(false)}
-              />
-              <motion.div
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-                className="fixed right-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="p-6 border-b border-gray-200">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-poppins font-bold text-[#1B3764]">Filter & Settings</h3>
-                    <button
-                      onClick={() => setIsFilterDrawerOpen(false)}
-                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                      aria-label="Close"
-                    >
-                      <X className="w-5 h-5 text-gray-600" />
-                    </button>
-                  </div>
-                </div>
-                <div className="p-6 space-y-6">
+        {/* Filter Drawer */}
+        <SlideInDrawer
+          isOpen={isFilterDrawerOpen}
+          onClose={() => setIsFilterDrawerOpen(false)}
+          title="Filter & Settings"
+          side="right"
+        >
+          <div className="space-y-6">
                   {/* Sort */}
                   <div>
                     <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-3">Sort By Name</h4>

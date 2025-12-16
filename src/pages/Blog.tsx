@@ -10,6 +10,7 @@ import ImageSkeleton from '@/components/common/ImageSkeleton';
 import NewsletterSection from '@/components/NewsletterSection';
 import { Search, Filter, X } from 'lucide-react';
 import { useDrawer } from '@/contexts/DrawerContext';
+import SlideInDrawer from '@/components/common/SlideInDrawer';
 
 const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
   <Link 
@@ -257,110 +258,54 @@ const Blog = () => {
 
       <FooterV2 />
 
-      {/* Search Drawer - Slides from right */}
-      <AnimatePresence>
-        {isSearchDrawerOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
-              onClick={() => setIsSearchDrawerOpen(false)}
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-              className="fixed right-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-6 border-b border-gray-200">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-poppins font-bold text-[#1B3764]">Search</h3>
-                  <button
-                    onClick={() => setIsSearchDrawerOpen(false)}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                    aria-label="Close"
-                  >
-                    <X className="w-5 h-5 text-gray-600" />
-                  </button>
-                </div>
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search articles..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Search Drawer */}
+      <SlideInDrawer
+        isOpen={isSearchDrawerOpen}
+        onClose={() => setIsSearchDrawerOpen(false)}
+        title="Search"
+        side="right"
+      >
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search articles..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent"
+          />
+        </div>
+      </SlideInDrawer>
 
-      {/* Filter Drawer - Slides from right */}
-      <AnimatePresence>
-        {isFilterDrawerOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
-              onClick={() => setIsFilterDrawerOpen(false)}
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-              className="fixed right-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-6 border-b border-gray-200">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-poppins font-bold text-[#1B3764]">Filter & Settings</h3>
-                  <button
-                    onClick={() => setIsFilterDrawerOpen(false)}
-                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                    aria-label="Close"
-                  >
-                    <X className="w-5 h-5 text-gray-600" />
-                  </button>
-                </div>
-              </div>
-              <div className="p-6">
-                <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-4">Categories</h4>
-                <div className="space-y-2">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => {
-                        setSelectedCategory(category);
-                        setIsFilterDrawerOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2 rounded-lg text-sm font-poppins transition-all duration-200 ${
-                        selectedCategory === category
-                          ? 'bg-[#1B3764] text-white'
-                          : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
-                      }`}
-                    >
-                      {category === 'all' ? 'All Posts' : category}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* Filter Drawer */}
+      <SlideInDrawer
+        isOpen={isFilterDrawerOpen}
+        onClose={() => setIsFilterDrawerOpen(false)}
+        title="Filter & Settings"
+        side="right"
+      >
+        <div>
+          <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-4">Categories</h4>
+          <div className="space-y-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setIsFilterDrawerOpen(false);
+                }}
+                className={`w-full text-left px-4 py-2 rounded-lg text-sm font-poppins transition-all duration-200 ${
+                  selectedCategory === category
+                    ? 'bg-[#1B3764] text-white'
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                {category === 'all' ? 'All Posts' : category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </SlideInDrawer>
     </div>
   );
 };
