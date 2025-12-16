@@ -243,7 +243,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
         <div className="w-full">
             {/* Results Info with Icons */}
             <div className="flex items-center gap-3 mb-6">
-              {/* Left: Search and Filter Icons */}
+              {/* Left: Search and Filter Icons - Only Icons */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsSearchDrawerOpen(true)}
@@ -261,7 +261,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                 </button>
               </div>
 
-              {/* Center: Products Found Badge */}
+              {/* Products Found Badge - To the right of icons */}
               <div className="bg-[#1B3764] px-4 py-1.5 rounded-full">
                 <p className="text-sm text-white font-poppins font-medium">
                   <span className="font-semibold">{filteredProducts.length}</span> products found
@@ -360,7 +360,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           </div>
         </div>
 
-        {/* Search Drawer - Slides from left */}
+      {/* Search Drawer - Slides from left */}
         <AnimatePresence>
           {isSearchDrawerOpen && (
             <>
@@ -569,7 +569,6 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
             </>
           )}
         </AnimatePresence>
-      </div>
     </section>
   );
 };
