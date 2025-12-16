@@ -519,11 +519,8 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                       </div>
                     </div>
                   )}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+          </div>
+        </SlideInDrawer>
     </section>
   );
 };
