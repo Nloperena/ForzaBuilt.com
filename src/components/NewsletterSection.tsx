@@ -190,7 +190,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                 <img
                   src="/logos/Forza-Eagle-Logo-White.svg"
                   alt="Forza Logo"
-                  className="h-10 md:h-12 w-auto"
+                  className="h-16 md:h-20 w-auto"
                 />
                 <button 
                   onClick={handleCloseModal}
@@ -205,7 +205,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
               </div>
               
               <div className="text-center">
-                <h2 className="text-2xl md:text-3xl font-poppins font-bold text-white mb-2">Join Our Newsletter</h2>
+                <h2 className="text-2xl md:text-3xl font-poppins font-normal text-white mb-2">Join Our Newsletter</h2>
                 <p className="text-white/90 text-sm md:text-base font-poppins">Stay connected with the latest industry insights and innovations</p>
               </div>
             </div>
@@ -269,7 +269,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#F2611D] hover:bg-[#E6540D] text-white rounded-full px-6 py-3 transition-all duration-300 text-sm md:text-base font-poppins font-medium shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-2"
+                  className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white rounded-full px-4 md:px-5 py-2 md:py-2.5 transition-all duration-300 text-xs sm:text-sm font-poppins font-normal shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-2"
                 >
                   {isSubmitting ? 'Subscribing...' : 'Subscribe Now'}
                 </button>
