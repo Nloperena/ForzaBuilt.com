@@ -222,7 +222,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[80] bg-black/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm lg:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
             
@@ -232,7 +232,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-              className="fixed right-0 top-0 bottom-0 z-[90] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto lg:hidden"
+              className="fixed right-0 top-0 bottom-0 z-[101] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto lg:hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
