@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { useHeaderState } from '@/hooks/useHeaderState';
 import Logo from './Header/Logo';
 import NavigationItem from './Header/NavigationItem';
-import FlowingMenu from './Header/FlowingMenu';
 import DrawerContentV2 from './Header/DrawerContentV2';
 import SearchBar from './Header/SearchBar';
 import { useGradientMode } from '@/contexts/GradientModeContext';
@@ -178,11 +177,7 @@ const Header = () => {
         )}
       </AnimatePresence>
 
-      {/* Flowing Mobile Menu */}
-      <FlowingMenu
-        isOpen={mobileMenuOpen}
-        onClose={closeMobileMenu}
-      />
+      {/* Mobile menu removed - using HeaderV2 instead */}
     </header>
   );
 };
