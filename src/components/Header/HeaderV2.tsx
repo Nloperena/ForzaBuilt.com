@@ -7,8 +7,8 @@ import { useBookViewer } from '@/contexts/BookViewerContext';
 import { useDrawer } from '@/contexts/DrawerContext';
 import Logo from '@/components/Header/Logo';
 import SearchBar from '@/components/Header/SearchBar';
-import FlowingMenu from '@/components/Header/FlowingMenu';
 import { industries as industriesData } from '@/data/industries';
+import { ChevronRight, X } from 'lucide-react';
 
 const toTitleCase = (text: string) => text
   ? text.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
