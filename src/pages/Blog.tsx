@@ -5,9 +5,10 @@ import FooterV2 from '../components/FooterV2';
 import blogPostsData from '../data/blogPosts.json';
 import { generateSlugFromTitle } from '@/lib/utils';
 import type { BlogPost, SortOrder } from '@/types/Blog';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
 import NewsletterSection from '@/components/NewsletterSection';
+import { Search, Filter, X } from 'lucide-react';
 
 const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
   <Link 
@@ -66,6 +67,8 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [visiblePosts, setVisiblePosts] = useState<number>(9);
   const [headerImageLoaded, setHeaderImageLoaded] = useState(false);
+  const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
   useEffect(() => {
     const loadBlogData = async () => {
@@ -187,21 +190,37 @@ const Blog = () => {
               Products, Tips, Tutorials<br/>and More
             </h2>
             
-            {/* Category Pills */}
-            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-              {categories.map((category) => (
+            {/* Controls Bar */}
+            <div className="flex items-center justify-between mb-8">
+              {/* Left: Search and Filter Icons */}
+              <div className="flex items-center gap-3">
                 <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 font-poppins ${
-                    selectedCategory === category
-                      ? 'bg-[#1B3764] text-white shadow-md'
-                      : 'bg-[#E5E7EB] text-gray-500 hover:bg-gray-200'
-                  }`}
+                  onClick={() => setIsSearchDrawerOpen(true)}
+                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="Search"
                 >
-                  {category === 'all' ? 'All Posts' : category}
+                  <Search className="w-5 h-5 text-[#1B3764]" />
                 </button>
-              ))}
+                <button
+                  onClick={() => setIsFilterDrawerOpen(true)}
+                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="Filter"
+                >
+                  <Filter className="w-5 h-5 text-[#1B3764]" />
+                </button>
+              </div>
+
+              {/* Center: Products Found Badge */}
+              <div className="flex-1 flex justify-center">
+                <div className="bg-gray-100 px-4 py-2 rounded-full border border-gray-300 shadow-sm">
+                  <p className="text-sm text-gray-700 font-poppins">
+                    <span className="font-semibold text-gray-900">{filteredPosts.length}</span> products found
+                  </p>
+                </div>
+              </div>
+
+              {/* Right: Spacer for balance */}
+              <div className="w-[73px]"></div>
             </div>
           </div>
 
@@ -230,6 +249,109 @@ const Blog = () => {
       <NewsletterSection />
 
       <FooterV2 />
+
+      {/* Search Drawer - Slides from left */}
+      <AnimatePresence>
+        {isSearchDrawerOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+              onClick={() => setIsSearchDrawerOpen(false)}
+            />
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="fixed left-0 top-0 bottom-0 z-50 w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-poppins font-bold text-[#1B3764]">Search</h3>
+                  <button
+                    onClick={() => setIsSearchDrawerOpen(false)}
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    aria-label="Close"
+                  >
+                    <X className="w-5 h-5 text-gray-600" />
+                  </button>
+                </div>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search articles..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Filter Drawer - Slides from left */}
+      <AnimatePresence>
+        {isFilterDrawerOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+              onClick={() => setIsFilterDrawerOpen(false)}
+            />
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="fixed left-0 top-0 bottom-0 z-50 w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-poppins font-bold text-[#1B3764]">Filter & Settings</h3>
+                  <button
+                    onClick={() => setIsFilterDrawerOpen(false)}
+                    className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                    aria-label="Close"
+                  >
+                    <X className="w-5 h-5 text-gray-600" />
+                  </button>
+                </div>
+              </div>
+              <div className="p-6">
+                <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-4">Categories</h4>
+                <div className="space-y-2">
+                  {categories.map((category) => (
+                    <button
+                      key={category}
+                      onClick={() => {
+                        setSelectedCategory(category);
+                        setIsFilterDrawerOpen(false);
+                      }}
+                      className={`w-full text-left px-4 py-2 rounded-lg text-sm font-poppins transition-all duration-200 ${
+                        selectedCategory === category
+                          ? 'bg-[#1B3764] text-white'
+                          : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {category === 'all' ? 'All Posts' : category}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
