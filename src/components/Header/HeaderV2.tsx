@@ -203,7 +203,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
 
           {/* Mobile */}
           <button 
-            className="lg:hidden p-2" 
+            className={`lg:hidden p-2 transition-colors ${baseNavText}`}
             aria-label="Open menu"
             onClick={() => setMobileMenuOpen(true)}
           >
@@ -212,11 +212,127 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
         </div>
       </nav>
 
-      {/* Flowing Mobile Menu */}
-      <FlowingMenu
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      />
+      {/* New Mobile Navigation Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[80] bg-black/60 backdrop-blur-sm lg:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            
+            {/* Mobile Menu Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
+              className="fixed right-0 top-0 bottom-0 z-[90] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto lg:hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10 flex items-center justify-between">
+                <Logo className="h-10 w-auto" isWhiteBackground={false} />
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5 text-gray-600" />
+                </button>
+              </div>
+
+              {/* Navigation Items */}
+              <div className="p-6 space-y-2">
+                {/* Products */}
+                <div className="space-y-1">
+                  <Link
+                    to="/products"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 transition-colors group"
+                  >
+                    <span className="font-poppins font-medium text-[#1B3764]">Products</span>
+                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
+                  </Link>
+                  <div className="ml-4 space-y-1 border-l-2 border-gray-100 pl-4">
+                    {productsItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <span className="font-poppins text-sm text-gray-700">{item.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Industries */}
+                <div className="space-y-1">
+                  <Link
+                    to="/industries"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 transition-colors group"
+                  >
+                    <span className="font-poppins font-medium text-[#1B3764]">Industries</span>
+                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
+                  </Link>
+                  <div className="ml-4 space-y-1 border-l-2 border-gray-100 pl-4">
+                    {industriesItems.slice(0, 6).map((item) => (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        {item.iconSrc && (
+                          <img src={item.iconSrc} alt="" className="w-6 h-6 object-contain" />
+                        )}
+                        <span className="font-poppins text-sm text-gray-700">{item.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* About */}
+                <Link
+                  to="/about"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <span className="font-poppins font-medium text-[#1B3764]">About</span>
+                </Link>
+
+                {/* Blog */}
+                <Link
+                  to="/blog"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <span className="font-poppins font-medium text-[#1B3764]">Blog</span>
+                </Link>
+
+                {/* Contact Button */}
+                <div className="pt-4 border-t border-gray-200">
+                  <Link
+                    to="/contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full text-center rounded-full bg-[#F2611D] text-white px-6 py-3 font-poppins font-medium hover:bg-[#F2611D]/90 transition-colors"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
