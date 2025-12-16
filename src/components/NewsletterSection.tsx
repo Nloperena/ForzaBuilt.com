@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 
 interface NewsletterSectionProps {
@@ -32,7 +33,6 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
       setShowNewsletterForm(false);
       setFormData({ email: '' });
       // Here you would typically send the data to your backend
-      alert('Thank you for subscribing to our newsletter!');
     }, 1000);
   };
 
@@ -162,45 +162,56 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
         </div>
       </section>
 
-      {/* Newsletter Signup Modal - Simple & Clean */}
-      {showNewsletterForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 ">
-          <div className={`relative rounded-xl lg:rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden bg-gradient-to-b ${getGradientClasses()} animate-in zoom-in-95 duration-300`}>
-            {/* Animated gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent z-10 pointer-events-none animate-pulse"></div>
-            
-            {/* Header with Logo */}
-            <div className="relative p-4 md:p-6 border-b border-white/20 text-center">
-              <div className="flex justify-end mb-3">
+      {/* Newsletter Signup Modal - Modern Design */}
+      <AnimatePresence>
+        {showNewsletterForm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+            onClick={handleCloseModal}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative rounded-2xl md:rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e]"
+              onClick={(e) => e.stopPropagation()}
+            >
+            {/* Header */}
+            <div className="relative p-6 md:p-8 border-b border-white/10">
+              <div className="flex items-center justify-between mb-6">
+                <img
+                  src="/logos/Forza-Eagle-Logo-White.svg"
+                  alt="Forza Logo"
+                  className="h-10 md:h-12 w-auto"
+                />
                 <button 
                   onClick={handleCloseModal}
-                  className="p-2 hover:bg-white/25 rounded-full transition-colors"
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors text-white hover:text-white/80"
+                  aria-label="Close modal"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
                     <path d="M18 6 6 18"></path>
                     <path d="m6 6 12 12"></path>
                   </svg>
                 </button>
               </div>
               
-              {/* Forza Lion Logo */}
-              <div className="flex justify-center mb-4">
-                <img
-                  src="/logos/Forza-lion-logo.png"
-                  alt="Forza Built Lion Logo"
-                  className="w-20 h-20 md:w-24 md:h-24 object-contain animate-in fade-in-50 duration-500 delay-200"
-                />
+              <div className="text-center">
+                <h2 className="text-2xl md:text-3xl font-poppins font-bold text-white mb-2">Join Our Newsletter</h2>
+                <p className="text-white/90 text-sm md:text-base font-poppins">Stay connected with the latest industry insights and innovations</p>
               </div>
-              
-              <h2 className="text-xl md:text-2xl font-kallisto font-black text-white mb-2">Join Our Newsletter</h2>
-              <p className="text-white text-sm">Stay connected with the latest industry insights and innovations</p>
             </div>
 
-            {/* Simple Form Content */}
-            <div className="p-4 md:p-6 bg-white/15 ">
-              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+            {/* Form Content */}
+            <div className="p-6 md:p-8 bg-white/5">
+              <form onSubmit={handleNewsletterSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="modalEmail" className="block text-sm font-medium text-white mb-2">Email Address *</label>
+                  <label htmlFor="modalEmail" className="block text-sm font-medium text-white mb-2 font-poppins">Email Address *</label>
                   <input
                     type="email"
                     id="modalEmail"
@@ -208,15 +219,15 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 py-2 bg-white/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F16022] focus:border-transparent transition-all duration-200"
-                    placeholder="Email Address"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins"
+                    placeholder="Enter your email address"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#F2611D] hover:bg-[#F2611D]/80 text-white rounded-full px-4 md:px-5 py-2 md:py-2.5 transition-all duration-300 text-xs sm:text-sm font-normal shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-4 border border-[#F2611D]"
+                  className="w-full bg-[#F2611D] hover:bg-[#E6540D] text-white rounded-full px-6 py-3 transition-all duration-300 text-sm md:text-base font-poppins font-medium shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {isSubmitting ? 'Subscribing...' : 'Subscribe Now'}
                 </button>
@@ -224,12 +235,13 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
             </div>
 
             {/* Footer */}
-            <div className="p-4 md:p-6 border-t border-white/20 bg-white/15  text-center">
-              <p className="text-white text-sm">We'll never share your information. Unsubscribe at any time.</p>
+            <div className="p-4 md:p-6 border-t border-white/10 bg-white/5 text-center">
+              <p className="text-white/70 text-xs md:text-sm font-poppins">We'll never share your information. Unsubscribe at any time.</p>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
