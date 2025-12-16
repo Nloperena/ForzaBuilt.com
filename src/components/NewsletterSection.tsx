@@ -9,7 +9,10 @@ interface NewsletterSectionProps {
 const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = true }) => {
   const [showNewsletterForm, setShowNewsletterForm] = useState(false);
   const [formData, setFormData] = useState({
-    email: ''
+    name: '',
+    email: '',
+    company: '',
+    phone: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { mode, getGradientClasses } = useGradientMode();
@@ -31,7 +34,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
     setTimeout(() => {
       setIsSubmitting(false);
       setShowNewsletterForm(false);
-      setFormData({ email: '' });
+      setFormData({ name: '', email: '', company: '', phone: '' });
       // Here you would typically send the data to your backend
     }, 1000);
   };
@@ -209,7 +212,20 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
 
             {/* Form Content */}
             <div className="p-6 md:p-8 bg-white/5">
-              <form onSubmit={handleNewsletterSubmit} className="space-y-5">
+              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="modalName" className="block text-sm font-medium text-white mb-2 font-poppins">Name (Optional)</label>
+                  <input
+                    type="text"
+                    id="modalName"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins"
+                    placeholder="Enter your name"
+                  />
+                </div>
+
                 <div>
                   <label htmlFor="modalEmail" className="block text-sm font-medium text-white mb-2 font-poppins">Email Address *</label>
                   <input
@@ -224,10 +240,36 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                   />
                 </div>
 
+                <div>
+                  <label htmlFor="modalCompany" className="block text-sm font-medium text-white mb-2 font-poppins">Company (Optional)</label>
+                  <input
+                    type="text"
+                    id="modalCompany"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins"
+                    placeholder="Enter your company name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="modalPhone" className="block text-sm font-medium text-white mb-2 font-poppins">Phone Number (Optional)</label>
+                  <input
+                    type="tel"
+                    id="modalPhone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent transition-all duration-200 font-poppins"
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#F2611D] hover:bg-[#E6540D] text-white rounded-full px-6 py-3 transition-all duration-300 text-sm md:text-base font-poppins font-medium shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full bg-[#F2611D] hover:bg-[#E6540D] text-white rounded-full px-6 py-3 transition-all duration-300 text-sm md:text-base font-poppins font-medium shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 mt-2"
                 >
                   {isSubmitting ? 'Subscribing...' : 'Subscribe Now'}
                 </button>
