@@ -7,6 +7,7 @@ import { useBookViewer } from '@/contexts/BookViewerContext';
 import { useDrawer } from '@/contexts/DrawerContext';
 import Logo from '@/components/Header/Logo';
 import SearchBar from '@/components/Header/SearchBar';
+import FlowingMenu from '@/components/Header/FlowingMenu';
 import { industries as industriesData } from '@/data/industries';
 
 const toTitleCase = (text: string) => text
@@ -91,6 +92,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
    const { isBookOpen } = useBookViewer();
    const { isDrawerOpen } = useDrawer();
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isHome = location.pathname === '/';
   const isIndustry = location.pathname.startsWith('/industries');
   const isAbout = location.pathname === '/about';
@@ -200,11 +202,21 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
           </div>
 
           {/* Mobile */}
-          <button className="lg:hidden p-2" aria-label="Open menu">
+          <button 
+            className="lg:hidden p-2" 
+            aria-label="Open menu"
+            onClick={() => setMobileMenuOpen(true)}
+          >
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" /></svg>
           </button>
         </div>
       </nav>
+
+      {/* Flowing Mobile Menu */}
+      <FlowingMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+      />
     </header>
   );
 };
