@@ -460,43 +460,43 @@ const ProductDetailPage: React.FC = () => {
                   {!mobileHeroImageLoaded && (
                     <ImageSkeleton className="w-full h-full rounded-lg" />
                   )}
-                  <img 
-                    src={getMobileHeroImage(product.category)}
-                    alt={`${product.category} Hero`}
+                <img 
+                  src={getMobileHeroImage(product.category)}
+                  alt={`${product.category} Hero`}
                     className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${
                       mobileHeroImageLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     onLoad={() => setMobileHeroImageLoaded(true)}
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = product.imageUrl || product.image || '/placeholder.svg';
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = product.imageUrl || product.image || '/placeholder.svg';
                       setMobileHeroImageLoaded(true);
-                    }}
-                  />
+                  }}
+                />
                 </div>
                 {/* Desktop Product Image */}
                 <div className="hidden lg:block relative w-[450px] h-[450px] xl:w-[500px] xl:h-[500px] 2xl:w-[600px] 2xl:h-[600px]">
                   {!mainImageLoaded && (
                     <ImageSkeleton className="w-full h-full" />
                   )}
-                  <img 
-                    src={product.imageUrl || product.image} 
-                    alt={product.name}
+                <img 
+                  src={product.imageUrl || product.image} 
+                  alt={product.name}
                     className={`w-full h-full object-contain transition-opacity duration-500 ${
                       mainImageLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     onLoad={() => setMainImageLoaded(true)}
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
-                        const filename = product.id.toLowerCase() + '.png';
-                        target.src = `/product-images/${filename}`;
-                      } else if (!target.src.includes('placeholder')) {
-                        target.src = '/placeholder.svg';
-                      }
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                      const filename = product.id.toLowerCase() + '.png';
+                      target.src = `/product-images/${filename}`;
+                    } else if (!target.src.includes('placeholder')) {
+                      target.src = '/placeholder.svg';
+                    }
                       setMainImageLoaded(true);
-                    }}
-                  />
+                  }}
+                />
                 </div>
               </div>
               
@@ -655,15 +655,15 @@ const ProductDetailPage: React.FC = () => {
                                 {!industryLogoLoaded && (
                                   <ImageSkeleton className="w-full h-full rounded-full" />
                                 )}
-                                <img 
-                                  src={getIndustryLogo(product.industry)} 
-                                  alt={`${Array.isArray(product.industry) ? product.industry[0] || '' : product.industry} icon`}
+                              <img 
+                                src={getIndustryLogo(product.industry)} 
+                                alt={`${Array.isArray(product.industry) ? product.industry[0] || '' : product.industry} icon`}
                                   className={`h-24 w-24 md:h-32 md:w-32 object-contain transition-opacity duration-500 ${
                                     industryLogoLoaded ? 'opacity-100' : 'opacity-0'
                                   }`}
                                   onLoad={() => setIndustryLogoLoaded(true)}
                                   onError={() => setIndustryLogoLoaded(true)}
-                                />
+                              />
                               </div>
                             ) : (
                               <div className="w-24 h-24 md:w-32 md:h-32 bg-white/20 rounded-full flex items-center justify-center">

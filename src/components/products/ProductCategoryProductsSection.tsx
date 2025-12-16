@@ -32,7 +32,8 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
   const [selectedIndustries, setSelectedIndustries] = useState<string[]>([]);
   const [nameSort, setNameSort] = useState<'asc' | 'desc'>('asc');
   const [selectedChemistries, setSelectedChemistries] = useState<string[]>([]);
-  const [isFilterDialogOpen, setIsFilterDialogOpen] = useState(false);
+  const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const [imageLoadedStates, setImageLoadedStates] = useState<Record<string, boolean>>({});
   const [imageErrorStates, setImageErrorStates] = useState<Record<string, boolean>>({});
 
@@ -238,211 +239,32 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           </h2>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
-          {/* Filter Sidebar */}
-          <aside className="flex-shrink-0 lg:sticky lg:top-24 lg:self-start" style={{ width: 'clamp(12rem, 15vw, 14rem)' }}>
-            {/* Search Bar */}
-            <div className="bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-lg shadow-lg border border-gray-300 p-2 mb-3">
-              <div className="relative">
-                <div className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 p-1 rounded-full">
-                  <Search className="text-white h-3 w-3" />
-                </div>
-                <input
-                  placeholder="Search products…"
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                  className="w-full bg-white/10 text-white placeholder-white/60 pl-8 py-2 text-xs border border-white/30 focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 rounded-lg"
-                />
-                {search && (
-                  <button
-                    onClick={() => setSearch('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 p-1.5 rounded-full transition-colors"
-                  >
-                    <X className="text-white h-3 w-3" />
-                  </button>
-                )}
-              </div>
-            </div>
-
-            {/* Filter Panel */}
-            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-lg border border-gray-300 overflow-hidden">
-              <div className="p-2.5 border-b border-white/20">
-                <h3 className="font-poppins font-regular text-sm text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
-                  Filter & Sort
-                </h3>
+        {/* Main Content Area */}
+        <div className="w-full">
+            {/* Results Info with Icons */}
+            <div className="flex items-center gap-3 mb-6">
+              {/* Left: Search and Filter Icons */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setIsSearchDrawerOpen(true)}
+                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="Search"
+                >
+                  <Search className="w-5 h-5 text-[#1B3764]" />
+                </button>
+                <button
+                  onClick={() => setIsFilterDrawerOpen(true)}
+                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="Filter"
+                >
+                  <Filter className="w-5 h-5 text-[#1B3764]" />
+                </button>
               </div>
 
-              <div className="p-2.5 space-y-3">
-                {/* Industry Filter */}
-                {availableIndustries.length > 0 && (
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-semibold text-white">Industry</h4>
-                      {selectedIndustries.length > 0 && (
-                        <button
-                          onClick={() => setSelectedIndustries([])}
-                          className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1.5 rounded-md"
-                        >
-                          Clear
-                        </button>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-1.5 max-h-48 overflow-y-auto">
-                      {availableIndustries.map(industry => {
-                        const isSelected = selectedIndustries.includes(industry);
-                        const count = allProducts.filter(p => {
-                          if (!p.industry) return false;
-                          const industries = Array.isArray(p.industry) ? p.industry : [p.industry];
-                          return industries.some(ind => 
-                            ind.toLowerCase() === industry.toLowerCase() ||
-                            ind.toLowerCase().includes(industry.toLowerCase()) ||
-                            industry.toLowerCase().includes(ind.toLowerCase())
-                          );
-                        }).length;
-                        return (
-                          <button
-                            key={industry}
-                            onClick={() => {
-                              if (isSelected) setSelectedIndustries(selectedIndustries.filter(i => i !== industry));
-                              else setSelectedIndustries([...selectedIndustries, industry]);
-                            }}
-                            className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden border ${
-                              isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-white/10 text-white hover:bg-white/20 hover:shadow-md border-white/20'
-                            }`}
-                          >
-                            <div className="flex items-center gap-2 min-w-0 flex-1 text-left">
-                              {getIndustryLogo(industry) && (
-                                <div className="w-5 h-5 flex-shrink-0">
-                                  <img 
-                                    src={getIndustryLogo(industry)} 
-                                    alt={`${industry} icon`}
-                                    className="w-5 h-5 object-contain"
-                                  />
-                                </div>
-                              )}
-                              <span className="text-xs font-medium break-words whitespace-normal leading-snug capitalize">
-                                {industry.replace(/_/g, ' ')}
-                              </span>
-                            </div>
-                            <span className="text-xs opacity-70">({count})</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* Name Sort */}
-                <div className="space-y-2">
-                  <div className="flex items-center">
-                    <ArrowUpDown className="text-white h-3 w-3 mr-1.5" />
-                    <h4 className="text-xs font-semibold text-white">Sort By Name</h4>
-                  </div>
-
-                  <div className="flex rounded-md overflow-hidden">
-                    <button
-                      onClick={() => setNameSort('asc')}
-                      className={`flex-1 flex items-center justify-center gap-1 py-1.5 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
-                    >
-                      <ChevronUp className="h-3 w-3" />
-                      <span className="text-xs font-medium">A-Z</span>
-                    </button>
-
-                    <button
-                      onClick={() => setNameSort('desc')}
-                      className={`flex-1 flex items-center justify-center gap-1 py-1.5 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
-                    >
-                      <ChevronDown className="h-3 w-3" />
-                      <span className="text-xs font-medium">Z-A</span>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Chemistry Filter */}
-                {chemistryTypes.length > 0 && (
-                  <div className="space-y-2 border-t border-white/20 pt-3">
-                    <div className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <FlaskConical className="text-white h-3 w-3 mr-1.5" />
-                        <h4 className="text-xs font-semibold text-white">Chemistry</h4>
-                      </div>
-                      {selectedChemistries.length > 0 && (
-                        <button
-                          onClick={() => setSelectedChemistries([])}
-                          className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1.5 rounded-md"
-                        >
-                          Clear
-                        </button>
-                      )}
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                      {chemistryTypes.map(chemistry => {
-                        const isSelected = selectedChemistries.includes(chemistry);
-                        const count = filteredProducts.filter(p => p.chemistry === chemistry).length;
-                        return (
-                          <button
-                            key={chemistry}
-                            onClick={() => {
-                              if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
-                              else setSelectedChemistries([...selectedChemistries, chemistry]);
-                            }}
-                            disabled={count === 0 && !isSelected}
-                            className={`w-full flex items-center justify-between p-2 rounded-md transition-all overflow-hidden border ${
-                              isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-white/10 text-white hover:bg-white/20 hover:shadow-md border-white/20'
-                            } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
-                          >
-                            <div className="flex items-center gap-2 min-w-0 flex-1 text-left">
-                              <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                                <img 
-                                  src={getChemistryIcon(chemistry)} 
-                                  alt={chemistry}
-                                  className="w-6 h-6 object-contain chemistry-icon"
-                                  onError={(e) => {
-                                    e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
-                                  }}
-                                />
-                              </div>
-                              <span className="text-xs font-medium break-words whitespace-normal leading-snug">
-                                {chemistry.replace(/_/g, ' ')}
-                              </span>
-                            </div>
-                            <span className="text-xs opacity-70">({count})</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Mobile Filter Button */}
-            <div className="lg:hidden sticky bottom-4 w-full flex justify-center z-30">
-              <button
-                className="bg-[#F2611D] hover:bg-[#E55B1C] rounded-full px-4 md:px-5 py-2 md:py-2.5 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
-                aria-label="Filter"
-                onClick={() => setIsFilterDialogOpen(true)}
-              >
-                <Filter className="text-white h-4 w-4" />
-                <span className="text-white font-bold text-xs sm:text-sm">Filter & Sort</span>
-              </button>
-            </div>
-          </aside>
-
-          {/* Main Content Area */}
-          <div className="flex-1">
-            {/* Results Info */}
-            <div className="flex justify-between items-center mb-6">
-              <div className="bg-gray-100 px-4 py-2 rounded-full border border-gray-300 shadow-sm">
-                <p className="text-sm text-gray-700">
-                  <span className="font-semibold text-gray-900">{filteredProducts.length}</span> products found
-                  {selectedIndustries.length > 0 && (
-                    <span className="hidden sm:inline"> • <span className="font-semibold text-gray-900">{selectedIndustries.length}</span> {selectedIndustries.length === 1 ? 'industry' : 'industries'}</span>
-                  )}
-                  {selectedChemistries.length > 0 && (
-                    <span className="hidden sm:inline"> • <span className="font-semibold text-gray-900">{selectedChemistries.length}</span> {selectedChemistries.length === 1 ? 'chemistry' : 'chemistries'}</span>
-                  )}
+              {/* Center: Products Found Badge */}
+              <div className="bg-[#1B3764] px-4 py-1.5 rounded-full">
+                <p className="text-sm text-white font-poppins font-medium">
+                  <span className="font-semibold">{filteredProducts.length}</span> products found
                 </p>
               </div>
             </div>
@@ -538,59 +360,132 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           </div>
         </div>
 
-        {/* Mobile Filter Dialog */}
+        {/* Search Drawer - Slides from left */}
         <AnimatePresence>
-          {isFilterDialogOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 z-50 flex items-end lg:hidden"
-              onClick={() => setIsFilterDialogOpen(false)}
-            >
-              <div className="bg-white w-full rounded-t-xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-                <div className="sticky top-0 bg-white pt-3 pb-2 px-4 flex justify-between items-center border-b border-gray-200">
-                  <h3 className="text-gray-900 text-lg font-bold">Filter & Sort</h3>
-                  <button onClick={() => setIsFilterDialogOpen(false)} className="p-2 rounded-full hover:bg-gray-100">
-                    <X className="text-gray-600 h-5 w-5" />
-                  </button>
-                </div>
-
-                <div className="p-4 space-y-6">
-                  {/* Search */}
-                  <div className="bg-white rounded-xl shadow-lg border border-gray-300 p-3">
-                    <div className="relative">
-                      <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-gray-100 p-1.5 rounded-full">
-                        <Search className="text-gray-600 h-4 w-4" />
-                      </div>
-                      <input
-                        placeholder="Search products…"
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        className="w-full bg-white text-gray-900 placeholder-gray-400 pl-12 py-3 text-sm border border-gray-300 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 rounded-xl"
-                      />
-                      {search && (
-                        <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 p-1.5 rounded-full transition-colors">
-                          <X className="text-gray-600 h-3 w-3" />
-                        </button>
-                      )}
-                    </div>
+          {isSearchDrawerOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
+                onClick={() => setIsSearchDrawerOpen(false)}
+              />
+              <motion.div
+                initial={{ x: '-100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '-100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
+                className="fixed left-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="p-6 border-b border-gray-200">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-poppins font-bold text-[#1B3764]">Search</h3>
+                    <button
+                      onClick={() => setIsSearchDrawerOpen(false)}
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                      aria-label="Close"
+                    >
+                      <X className="w-5 h-5 text-gray-600" />
+                    </button>
                   </div>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Search products…"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent"
+                    />
+                    {search && (
+                      <button
+                        onClick={() => setSearch('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 hover:bg-gray-200 rounded-full transition-colors"
+                      >
+                        <X className="w-4 h-4 text-gray-600" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
 
+        {/* Filter Drawer - Slides from left */}
+        <AnimatePresence>
+          {isFilterDrawerOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
+                onClick={() => setIsFilterDrawerOpen(false)}
+              />
+              <motion.div
+                initial={{ x: '-100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '-100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
+                className="fixed left-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="p-6 border-b border-gray-200">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-poppins font-bold text-[#1B3764]">Filter & Settings</h3>
+                    <button
+                      onClick={() => setIsFilterDrawerOpen(false)}
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                      aria-label="Close"
+                    >
+                      <X className="w-5 h-5 text-gray-600" />
+                    </button>
+                  </div>
+                </div>
+                <div className="p-6 space-y-6">
                   {/* Sort */}
-                  <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                    <h4 className="text-gray-900 font-bold text-sm uppercase mb-3">Sort By</h4>
+                  <div>
+                    <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-3">Sort By Name</h4>
                     <div className="flex gap-2">
-                      <button onClick={() => setNameSort('asc')} className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>A-Z</button>
-                      <button onClick={() => setNameSort('desc')} className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>Z-A</button>
+                      <button 
+                        onClick={() => setNameSort('asc')} 
+                        className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium transition-all ${
+                          nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        A-Z
+                      </button>
+                      <button 
+                        onClick={() => setNameSort('desc')} 
+                        className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium transition-all ${
+                          nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                      >
+                        Z-A
+                      </button>
                     </div>
                   </div>
 
                   {/* Industry Filter */}
                   {availableIndustries.length > 0 && (
-                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                      <h4 className="text-gray-900 font-bold text-sm uppercase mb-3">Industry</h4>
-                      <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-sm font-poppins font-semibold text-gray-700">Industry</h4>
+                        {selectedIndustries.length > 0 && (
+                          <button
+                            onClick={() => setSelectedIndustries([])}
+                            className="text-xs text-gray-600 hover:text-gray-800"
+                          >
+                            Clear
+                          </button>
+                        )}
+                      </div>
+                      <div className="space-y-2">
                         {availableIndustries.map(industry => {
                           const isSelected = selectedIndustries.includes(industry);
                           const count = allProducts.filter(p => {
@@ -609,10 +504,12 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                                 if (isSelected) setSelectedIndustries(selectedIndustries.filter(i => i !== industry));
                                 else setSelectedIndustries([...selectedIndustries, industry]);
                               }}
-                              className={`flex items-center justify-between p-2 rounded-lg overflow-hidden ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                              className={`w-full flex items-center justify-between p-2 rounded-lg transition-all ${
+                                isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                              }`}
                             >
-                              <span className="text-xs font-medium truncate capitalize">{industry.replace(/_/g, ' ')}</span>
-                              <span className="text-xs opacity-70 flex-shrink-0">({count})</span>
+                              <span className="text-xs font-medium capitalize">{industry.replace(/_/g, ' ')}</span>
+                              <span className="text-xs opacity-70">({count})</span>
                             </button>
                           );
                         })}
@@ -622,9 +519,19 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
 
                   {/* Chemistry Filter */}
                   {chemistryTypes.length > 0 && (
-                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                      <h4 className="text-gray-900 font-bold text-sm uppercase mb-3">Chemistry</h4>
-                      <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-sm font-poppins font-semibold text-gray-700">Chemistry</h4>
+                        {selectedChemistries.length > 0 && (
+                          <button
+                            onClick={() => setSelectedChemistries([])}
+                            className="text-xs text-gray-600 hover:text-gray-800"
+                          >
+                            Clear
+                          </button>
+                        )}
+                      </div>
+                      <div className="space-y-2">
                         {chemistryTypes.map(chemistry => {
                           const isSelected = selectedChemistries.includes(chemistry);
                           const count = filteredProducts.filter(p => p.chemistry === chemistry).length;
@@ -635,7 +542,10 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                                 if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
                                 else setSelectedChemistries([...selectedChemistries, chemistry]);
                               }}
-                              className={`flex items-center justify-between p-2 rounded-lg overflow-hidden ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                              disabled={count === 0 && !isSelected}
+                              className={`w-full flex items-center justify-between p-2 rounded-lg transition-all ${
+                                isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                              } ${count === 0 && !isSelected ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
                               <div className="flex items-center gap-2 min-w-0 flex-1">
                                 <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
@@ -654,16 +564,9 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                       </div>
                     </div>
                   )}
-
-                  {/* Apply Button */}
-                  <div className="pt-2 pb-6">
-                    <button onClick={() => setIsFilterDialogOpen(false)} className="w-full px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#E55B1C] text-white font-normal font-poppins rounded-full text-xs sm:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                      Apply Filters
-                    </button>
-                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

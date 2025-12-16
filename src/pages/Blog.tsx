@@ -13,14 +13,14 @@ import { Search, Filter, X } from 'lucide-react';
 const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
   <Link 
     to={`/blog/${generateSlugFromTitle(post.title)}`}
-    className="group relative w-full aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
+    className="group relative w-full aspect-[3/4] md:aspect-[3/4] lg:aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
   >
     {/* Background Image */}
     <div className="absolute inset-0 bg-gray-200">
       <img 
         src={post.image} 
         alt={post.title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        className="w-full h-full object-cover md:object-cover transition-transform duration-700 group-hover:scale-105"
         onError={(e) => {
           e.currentTarget.src = '/products/IC933-bundle-1024x1024.png';
         }}
@@ -212,9 +212,9 @@ const Blog = () => {
 
               {/* Center: Products Found Badge */}
               <div className="flex-1 flex justify-center">
-                <div className="bg-gray-100 px-4 py-2 rounded-full border border-gray-300 shadow-sm">
-                  <p className="text-sm text-gray-700 font-poppins">
-                    <span className="font-semibold text-gray-900">{filteredPosts.length}</span> products found
+                <div className="bg-[#1B3764] px-4 py-1.5 rounded-full">
+                  <p className="text-sm text-white font-poppins font-medium">
+                    <span className="font-semibold">{filteredPosts.length}</span> products found
                   </p>
                 </div>
               </div>
@@ -258,15 +258,16 @@ const Blog = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
               onClick={() => setIsSearchDrawerOpen(false)}
             />
             <motion.div
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed left-0 top-0 bottom-0 z-50 w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+              transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
+              className="fixed left-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6 border-b border-gray-200">
@@ -304,15 +305,16 @@ const Blog = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm"
               onClick={() => setIsFilterDrawerOpen(false)}
             />
             <motion.div
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed left-0 top-0 bottom-0 z-50 w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+              transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
+              className="fixed left-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6 border-b border-gray-200">
