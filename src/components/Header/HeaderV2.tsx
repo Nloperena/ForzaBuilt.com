@@ -164,17 +164,25 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
    }, [mobileMenuOpen]);
    const isLight = mode === 'light' || mode === 'light2';
 
-  const headerBg = (isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || isProduct) && !isScrolled
+  // On mobile, product and industry pages should always have white background
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+  const shouldForceWhiteOnMobile = isMobile && (isProduct || isIndustry);
+  
+  const headerBg = shouldForceWhiteOnMobile
+    ? 'bg-white'
+    : (isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || isProduct) && !isScrolled
     ? 'bg-transparent'
     : isBlogDetail || isLight
       ? 'bg-white/90 backdrop-blur-md'
       : 'bg-[#1b3764]/70 backdrop-blur-md';
-  const isTransparent = (isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || isProduct) && !isScrolled;
+  const isTransparent = !shouldForceWhiteOnMobile && (isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || isProduct) && !isScrolled;
   const baseNavText = isTransparent ? 'text-white' : 'text-[#1B3764]';
-   const headerShadow = isScrolled ? 'shadow-sm' : '';
+   const headerShadow = isScrolled || shouldForceWhiteOnMobile ? 'shadow-sm' : '';
 
-  // Keep header fixed on transparent routes to avoid layout jumps
-  const positionClass = (isHome || isIndustry || isAbout || isBlog || isProduct) ? 'fixed' : 'sticky';
+  // On mobile for product/industry pages, use sticky instead of fixed to take up space
+  const positionClass = shouldForceWhiteOnMobile 
+    ? 'sticky' 
+    : (isHome || isIndustry || isAbout || isBlog || isProduct) ? 'fixed' : 'sticky';
   
   // Desktop: hide navbar when scrolling down past 100px
   // Don't hide if mobile menu is open
