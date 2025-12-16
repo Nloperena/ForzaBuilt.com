@@ -367,7 +367,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           </div>
         </div>
 
-      {/* Search Drawer - Slides from left */}
+        {/* Search Drawer - Slides from right */}
         <AnimatePresence>
           {isSearchDrawerOpen && (
             <>
@@ -380,11 +380,11 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                 onClick={() => setIsSearchDrawerOpen(false)}
               />
               <motion.div
-                initial={{ x: '-100%' }}
+                initial={{ x: '100%' }}
                 animate={{ x: 0 }}
-                exit={{ x: '-100%' }}
+                exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-                className="fixed left-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+                className="fixed right-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="p-6 border-b border-gray-200">
@@ -422,7 +422,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           )}
         </AnimatePresence>
 
-        {/* Filter Drawer - Slides from left */}
+        {/* Filter Drawer - Slides from right */}
         <AnimatePresence>
           {isFilterDrawerOpen && (
             <>
@@ -435,11 +435,11 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                 onClick={() => setIsFilterDrawerOpen(false)}
               />
               <motion.div
-                initial={{ x: '-100%' }}
+                initial={{ x: '100%' }}
                 animate={{ x: 0 }}
-                exit={{ x: '-100%' }}
+                exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-                className="fixed left-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+                className="fixed right-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="p-6 border-b border-gray-200">

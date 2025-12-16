@@ -257,7 +257,7 @@ const Blog = () => {
 
       <FooterV2 />
 
-      {/* Search Drawer - Slides from left */}
+      {/* Search Drawer - Slides from right */}
       <AnimatePresence>
         {isSearchDrawerOpen && (
           <>
@@ -270,11 +270,11 @@ const Blog = () => {
               onClick={() => setIsSearchDrawerOpen(false)}
             />
             <motion.div
-              initial={{ x: '-100%' }}
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
+              exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-              className="fixed left-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+              className="fixed right-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6 border-b border-gray-200">
@@ -304,7 +304,7 @@ const Blog = () => {
         )}
       </AnimatePresence>
 
-      {/* Filter Drawer - Slides from left */}
+      {/* Filter Drawer - Slides from right */}
       <AnimatePresence>
         {isFilterDrawerOpen && (
           <>
@@ -317,11 +317,11 @@ const Blog = () => {
               onClick={() => setIsFilterDrawerOpen(false)}
             />
             <motion.div
-              initial={{ x: '-100%' }}
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
+              exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300, mass: 0.5 }}
-              className="fixed left-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
+              className="fixed right-0 top-0 bottom-0 z-[70] w-80 sm:w-96 bg-white shadow-2xl overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-6 border-b border-gray-200">
