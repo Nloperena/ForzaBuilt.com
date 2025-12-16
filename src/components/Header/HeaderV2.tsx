@@ -124,6 +124,44 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
      window.addEventListener('scroll', onScroll, { passive: true });
      return () => window.removeEventListener('scroll', onScroll);
    }, [lastScrollY]);
+
+   // Lock body scroll when mobile menu is open
+   React.useEffect(() => {
+     if (mobileMenuOpen) {
+       // Save current scroll position
+       const scrollY = window.scrollY;
+       // Lock scroll
+       document.body.style.position = 'fixed';
+       document.body.style.top = `-${scrollY}px`;
+       document.body.style.width = '100%';
+       document.body.style.overflow = 'hidden';
+     } else {
+       // Restore scroll
+       const scrollY = document.body.style.top;
+       document.body.style.position = '';
+       document.body.style.top = '';
+       document.body.style.width = '';
+       document.body.style.overflow = '';
+       // Restore scroll position
+       if (scrollY) {
+         window.scrollTo(0, parseInt(scrollY || '0') * -1);
+       }
+     }
+     
+     return () => {
+       // Cleanup: ensure scroll is restored if component unmounts
+       if (mobileMenuOpen) {
+         const scrollY = document.body.style.top;
+         document.body.style.position = '';
+         document.body.style.top = '';
+         document.body.style.width = '';
+         document.body.style.overflow = '';
+         if (scrollY) {
+           window.scrollTo(0, parseInt(scrollY || '0') * -1);
+         }
+       }
+     };
+   }, [mobileMenuOpen]);
    const isLight = mode === 'light' || mode === 'light2';
 
   const headerBg = (isHome || isIndustry || isAbout || (isBlog && !isBlogDetail) || isProduct) && !isScrolled
