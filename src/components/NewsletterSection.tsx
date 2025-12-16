@@ -18,17 +18,6 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleNewsletterSubmitInline = async () => {
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({ email: '' });
-      alert('Thank you for subscribing to our newsletter!');
-    }, 1000);
-  };
-
   const handleCloseModal = () => {
     setShowNewsletterForm(false);
   };
@@ -104,11 +93,10 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
 
                 <div className="mt-auto w-full flex justify-center">
                   <button
-                    onClick={handleNewsletterSubmitInline}
-                    disabled={isSubmitting}
-                    className="rounded-full bg-[#F2611D] text-white px-4 md:px-5 py-2 md:py-2.5 text-xs sm:text-sm font-normal hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
+                    onClick={() => setShowNewsletterForm(true)}
+                    className="rounded-full bg-[#F2611D] text-white px-4 md:px-5 py-2 md:py-2.5 text-xs sm:text-sm font-normal hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                   >
-                    {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                    Subscribe
                   </button>
                 </div>
               </div>
