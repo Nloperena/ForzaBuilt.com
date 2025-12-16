@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 
 interface StickyProductHeroImageSectionProps {
   imageUrl: string;
+  mobileImageUrl?: string;
   productCategory: string;
   children?: React.ReactNode;
 }
 
 const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps> = ({ 
-  imageUrl, 
+  imageUrl,
+  mobileImageUrl,
   productCategory,
   children 
 }) => {
@@ -47,12 +49,33 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
           <ImageSkeleton className="w-full h-full" />
         )}
         
-        {/* Background Hero Image */}
+        {/* Background Hero Image - Mobile */}
+        {(mobileImageUrl || imageUrl) && (
+          <motion.img
+            src={mobileImageUrl || imageUrl}
+            alt={`${productCategory} Category Hero`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 md:hidden ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            style={{ 
+              zIndex: 1,
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%',
+              minWidth: '100%',
+              minHeight: '100%'
+            }}
+          />
+        )}
+        
+        {/* Background Hero Image - Desktop */}
         {imageUrl && (
           <motion.img
             src={imageUrl}
             alt={`${productCategory} Category Hero`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 hidden md:block ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             onLoad={handleImageLoad}

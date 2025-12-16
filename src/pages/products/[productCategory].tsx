@@ -52,7 +52,7 @@ const getIndustryLogo = (industry: string | string[]) => {
   return industryData?.logo || null;
 };
 
-// Helper to get product category image from navbar data
+// Helper to get product category image from navbar data (desktop)
 const getProductCategoryImage = (category: string) => {
   const categoryLower = category.toLowerCase();
   switch (categoryLower) {
@@ -67,6 +67,24 @@ const getProductCategoryImage = (category: string) => {
       return '/images/product-heroes/Forza Cleaners Hero Shot Header.jpg';
     default:
       return null;
+  }
+};
+
+// Helper to get mobile hero image based on category
+const getMobileHeroImage = (category: string): string => {
+  const cat = (category || '').toLowerCase();
+  switch (cat) {
+    case 'bond':
+      return '/images/product-heroes/Forza Bond Mobile Header.jpg';
+    case 'seal':
+      return '/images/product-heroes/Forza Seal Mobile Header.jpg';
+    case 'tape':
+      return '/images/product-heroes/Forza Tape Mobile Header.jpg';
+    case 'ruggedred':
+    case 'cleaners':
+      return '/images/product-heroes/RuggedRed Mobile Header.jpg';
+    default:
+      return '/images/product-heroes/Forza Bond Mobile Header.jpg'; // Default fallback
   }
 };
 
@@ -559,6 +577,7 @@ const ProductCategoryPage: React.FC = () => {
             {/* Sticky Hero Image Section - image stays while content slides over */}
             <StickyProductHeroImageSection
               imageUrl={getProductCategoryImage(productCategory || '') || ''}
+              mobileImageUrl={getMobileHeroImage(productCategory || '')}
               productCategory={productCategory || ''}
             >
                 {/* All content that should slide over the hero image */}
