@@ -503,7 +503,7 @@ const ProductDetailPage: React.FC = () => {
               {/* Product Info */}
               <div>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-white mb-1 sm:mb-2 md:mb-4 leading-none font-poppins text-left">
-                  {product.id.toUpperCase()}
+                  {product.name.split('–')[0]?.trim() || product.name}
                 </h1>
                 <div className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed text-left">
                   {product.name.split('–')[1]?.trim() || product.description}
