@@ -80,11 +80,11 @@ const ProductQuickViewModal: React.FC<ProductQuickViewModalProps> = ({ isOpen, p
               {/* Product Info */}
               <div className="space-y-3">
                 <h3 className="text-xl font-poppins font-bold text-white">
-                  {product.name.split('–')[0].trim()}
+                  {product.name}
                 </h3>
                 
                 <p className="text-sm text-white">
-                  {toTitleCase(product.name.split('–')[1]?.trim() || product.description || '')}
+                  {toTitleCase(product.description || '')}
                 </p>
                 
                 {/* Action Buttons */}

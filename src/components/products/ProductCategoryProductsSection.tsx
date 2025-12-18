@@ -321,10 +321,10 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                         <div className="p-2.5 absolute bottom-0 left-0 right-0">
                           <div className="space-y-0.5">
                             <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
-                              {product.name.split('–')[0].trim()}
+                              {product.name}
                             </h3>
                             <p className="text-xs text-white line-clamp-2">
-                              {toTitleCase(product.name.split('–')[1]?.trim() || product.description || '')}
+                              {toTitleCase(product.description || '')}
                             </p>
                             
                             {/* Button Row */}

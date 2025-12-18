@@ -366,7 +366,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                     {/* Desktop: Product Title between image and content */}
                     <div className="hidden md:block px-4 py-3 absolute bottom-[8.5rem] left-0 right-0">
                       <h3 className="text-2xl font-kallisto font-black leading-tight line-clamp-1 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
-                        {product.name.split('–')[0].trim()}
+                        {product.name}
                       </h3>
                     </div>
 
@@ -390,10 +390,10 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                       {/* Mobile: Product Info */}
                       <div className="flex-1 min-w-0 space-y-0">
                         <h3 className="text-base font-kallisto font-black mb-1 leading-tight line-clamp-1 text-white" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
-                          {product.name.split('–')[0].trim()}
+                          {product.name}
                         </h3>
                         <p className="text-xs text-white/90 line-clamp-2">
-                          {product.name.split('–')[1]?.trim() || product.description}
+                          {product.description}
                         </p>
                         {/* Mobile: Industry Badge */}
                         <div 
@@ -422,7 +422,7 @@ export const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = (
                     <div className="hidden md:block p-4 absolute bottom-0 left-0 right-0">
                       <div className="space-y-0">
                         <p className="text-sm text-white/90 line-clamp-2 min-h-[3.75rem]">
-                          {product.name.split('–')[1]?.trim() || product.description}
+                          {product.description}
                         </p>
                         
                         {/* Button Row */}

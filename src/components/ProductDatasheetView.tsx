@@ -365,12 +365,12 @@ const ProductDatasheetView: React.FC = () => {
                 <div className="flex-1 flex flex-col justify-center">
                   {/* Product Name */}
                   <h3 className="text-2xl font-kallisto font-black mb-3 leading-tight" style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                    {prod.name.split('–')[0].trim()}
+                    {prod.name}
                   </h3>
                   
                   {/* Subtitle */}
                   <p className="text-base text-gray-300 mb-4 line-clamp-2" style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                    {prod.name.split('–')[1]?.trim() || prod.description}
+                    {prod.description}
                   </p>
                 </div>
 

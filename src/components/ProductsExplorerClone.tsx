@@ -424,10 +424,10 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
                     <div className="p-4 md:p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent relative z-10">
                       <div>
                         <h3 className="text-xl md:text-2xl font-kallisto font-black mb-2 leading-tight line-clamp-2 text-white" style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                          {product.name.split('–')[0]?.trim() || product.name}
+                          {product.name}
                         </h3>
                         <p className="text-sm md:text-base text-gray-200 line-clamp-3 mb-4" style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                          {product.name.split('–')[1]?.trim() || product.description}
+                          {product.description}
                         </p>
                       </div>
                       <div className="flex items-center justify-between">
@@ -451,10 +451,10 @@ const ProductsExplorerClone: React.FC<{ industryName?: string }> = ({ industryNa
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base md:text-lg font-kallisto font-black mb-1 leading-tight line-clamp-1 md:truncate" style={{ fontFamily: typography.products.fontFamily, fontWeight: typography.products.fontWeight }}>
-                          {product.name.split('–')[0]?.trim() || product.name}
+                          {product.name}
                         </h3>
                         <p className="text-xs md:text-sm text-gray-300 line-clamp-2" style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight }}>
-                          {product.name.split('–')[1]?.trim() || product.description}
+                          {product.description}
                         </p>
                       </div>
                     </div>

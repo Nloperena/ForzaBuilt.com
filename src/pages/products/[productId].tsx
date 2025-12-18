@@ -503,10 +503,10 @@ const ProductDetailPage: React.FC = () => {
               {/* Product Info */}
               <div>
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-white mb-1 sm:mb-2 md:mb-4 leading-none font-poppins text-left">
-                  {product.name.split('–')[0]?.trim() || product.name}
+                  {product.name}
                 </h1>
                 <div className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed text-left">
-                  {product.name.split('–')[1]?.trim() || product.description}
+                  {product.description}
                 </div>
               </div>
             </div>
@@ -1072,10 +1072,10 @@ const ProductDetailPage: React.FC = () => {
                           {/* Mobile: Product Info */}
                           <div className="flex-1 min-w-0">
                             <h3 className="text-sm font-kallisto font-bold mb-1 leading-tight line-clamp-1 text-white">
-                              {relatedProduct.name.split('–')[0].trim()}
+                              {relatedProduct.name}
                             </h3>
                             <p className="text-xs text-white line-clamp-2">
-                              {relatedProduct.name.split('–')[1]?.trim() || relatedProduct.description || ''}
+                              {relatedProduct.description || ''}
                             </p>
                           </div>
                         </div>
@@ -1084,10 +1084,10 @@ const ProductDetailPage: React.FC = () => {
                         <div className="hidden md:block p-2.5 absolute bottom-0 left-0 right-0">
                           <div className="space-y-0.5">
                             <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
-                              {relatedProduct.name.split('–')[0].trim()}
+                              {relatedProduct.name}
                             </h3>
                             <p className="text-xs text-white line-clamp-2">
-                              {relatedProduct.name.split('–')[1]?.trim() || relatedProduct.description || ''}
+                              {relatedProduct.description || ''}
                             </p>
                             
                             {/* Button Row */}
