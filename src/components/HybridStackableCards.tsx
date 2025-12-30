@@ -700,7 +700,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
           <div className="text-center max-w-5xl">
             <h2 
               className={`font-normal font-poppins leading-none ${useOldColorScheme ? 'text-white' : ''}`}
-              style={useOldColorScheme ? { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' } : { fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)', color: '#1c3a5c' }}
+              style={useOldColorScheme ? { fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' } : { fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)', color: '#1c3a5c' }}
             >
               {formattedTitle}
             </h2>

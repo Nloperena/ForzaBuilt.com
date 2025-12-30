@@ -152,7 +152,7 @@ const IndustryBrochureSection: React.FC<IndustryBrochureSectionProps> = ({
                   ? 'text-[#2c476e] font-poppins' 
                   : 'text-white font-poppins drop-shadow-lg'
               }`}
-              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}>
+              style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}>
                 {title || content.title}
               </h2>
               <p className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed ${

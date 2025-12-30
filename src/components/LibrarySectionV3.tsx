@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PDFViewerV2 from './PDFViewerV2';
 import { useBookViewer } from '@/contexts/BookViewerContext';
+import { getFontSize } from '@/styles/typography';
 
 interface Brochure {
   id: string;
@@ -223,7 +224,7 @@ const LibrarySectionV3 = () => {
         <div className="max-w-7xl mx-auto text-center pt-6 sm:pt-8 md:pt-10 lg:pt-12 mb-1 sm:mb-1.5 md:mb-2">
           <h2
             className="font-poppins font-normal text-[#2c476e] mb-0.5 sm:mb-1 font-poppins leading-tight"
-            style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+            style={getFontSize('sectionHeading')}
           >
             Resource Library
           </h2>

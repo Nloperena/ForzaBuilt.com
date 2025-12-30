@@ -11,6 +11,7 @@ import NewsletterSection from '@/components/NewsletterSection';
 import { Search, Filter, X } from 'lucide-react';
 import { useDrawer } from '@/contexts/DrawerContext';
 import SlideInDrawer from '@/components/common/SlideInDrawer';
+import { getFontSize } from '@/styles/typography';
 
 const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
   <Link 
@@ -178,7 +179,7 @@ const Blog = () => {
       {!loading && featuredPosts.length > 0 && (
         <section className="pt-4 pb-12 md:pb-20 relative z-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <h2 className="font-poppins font-normal text-[#1B3764] text-center mb-8 md:mb-16" style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 48px)' }}>
+            <h2 className="font-poppins font-normal text-[#1B3764] text-center mb-8 md:mb-16" style={getFontSize('pageHeading')}>
               Most Popular
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
@@ -194,7 +195,7 @@ const Blog = () => {
       <section className="pt-4 pb-12 md:pb-20 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="mb-8 md:mb-12 text-center">
-            <h2 className="font-poppins font-normal text-[#1B3764] mb-6 md:mb-10 text-center" style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 48px)' }}>
+            <h2 className="font-poppins font-normal text-[#1B3764] mb-6 md:mb-10 text-center" style={getFontSize('pageHeading')}>
               Products, Tips, Tutorials<br/>and More
             </h2>
             

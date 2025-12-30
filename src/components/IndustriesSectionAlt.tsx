@@ -5,6 +5,7 @@ import { industries } from '../data/industries';
 import type { Industry } from '../data/industries';
 import { useLandscapeValues } from '@/hooks/use-landscape';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import { getFontSize } from '@/styles/typography';
 
 import VideoSkeleton from './common/VideoSkeleton';
 import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
@@ -75,7 +76,7 @@ const IndustriesSectionAlt = () => {
           <div className="text-center relative z-10">
             <h2
               className="font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins"
-              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+              style={getFontSize('industriesHeading')}
             >
               Industries We Serve
             </h2>
@@ -90,7 +91,7 @@ const IndustriesSectionAlt = () => {
                   ? 'text-[#2c476e]'
                   : getTextClasses()
               } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-snug break-words block`}
-              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+              style={getFontSize('industriesHeading')}
             >
               Industries We Serve
             </h2>

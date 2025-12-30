@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getFontSizeValue } from '@/styles/typography';
 
 interface ExperienceBetterBannerProps {
   textColor?: string;
@@ -145,7 +146,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
               <span
                 className="font-poppins font-bold leading-[1]"
                 style={{
-                  fontSize: 'clamp(20px, 2.5vw + 0.5rem, 80px)',
+                  fontSize: getFontSizeValue('bannerText'),
                   fontWeight: 700,
                   letterSpacing: '-0.02em',
                   lineHeight: 1,
@@ -179,7 +180,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
                 <span
                   className="font-poppins font-bold leading-[1]"
                   style={{
-                    fontSize: 'clamp(20px, 2.5vw + 0.5rem, 80px)',
+                    fontSize: getFontSizeValue('bannerText'),
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
                     lineHeight: 1,
@@ -193,7 +194,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
                   <span
                     className="font-poppins font-bold leading-[1]"
                     style={{
-                      fontSize: 'clamp(20px, 2.5vw + 0.5rem, 80px)',
+                      fontSize: getFontSizeValue('bannerText'),
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
                       lineHeight: 1,

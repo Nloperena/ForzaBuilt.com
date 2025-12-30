@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import { getFontSize } from '@/styles/typography';
 
 const MadeInAmericaSection: React.FC = () => {
   const { mode } = useGradientMode();
@@ -39,7 +40,7 @@ const MadeInAmericaSection: React.FC = () => {
                       mode === 'light2' ? 'text-[#2c476e]' : 'text-[#2c476e]'
                     } font-poppins`}
                     style={{ 
-                      fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)',
+                      ...getFontSize('sectionHeading'),
                       lineHeight: '1.1'
                     }}
                   >

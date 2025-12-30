@@ -7,6 +7,7 @@ import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import VideoSkeleton from '@/components/common/VideoSkeleton';
 import WhyChooseForza from '@/components/WhyChooseForza';
+import { getFontSize } from '@/styles/typography';
 
 // Utility function to prevent orphaned words (single words on last line)
 // Processes each sentence separately to ensure no single-word orphans
@@ -189,7 +190,7 @@ const About = () => {
               {/* Why Forza Title */}
               <h2 
                 className="font-poppins leading-none text-[#1B3764] mb-3 md:mb-4 text-center" 
-                style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 56px)' }}
+                style={getFontSize('pageHeading')}
               >
                 Why Forza
               </h2>
@@ -282,7 +283,7 @@ const About = () => {
               <div>
                 <h2 
                   className="font-poppins leading-none text-[#1B3764] mb-3 md:mb-4" 
-                  style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 56px)' }}
+                  style={getFontSize('pageHeading')}
                 >
                   Our Mission
                 </h2>
@@ -308,7 +309,7 @@ const About = () => {
               <div className="mb-6 md:mb-8">
                 <h3 
                   className="font-poppins mb-3 md:mb-4" 
-                  style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 52px)' }}
+                  style={getFontSize('sectionHeading')}
                 >
                   What We Manufacture
                 </h3>

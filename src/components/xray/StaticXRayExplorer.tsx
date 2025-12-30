@@ -168,7 +168,7 @@ const StaticXRayExplorer: React.FC<StaticXRayExplorerProps> = ({
         >
           <h2 
             className="font-normal text-[#1B3764] mb-4 font-poppins leading-tight"
-            style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+            style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}
           >
             Product Application View
           </h2>

@@ -4,6 +4,7 @@ import HeaderV2 from '@/components/Header/HeaderV2';
 import FooterV2 from '@/components/FooterV2';
 import NewsletterSection from '@/components/NewsletterSection';
 import { motion } from 'framer-motion';
+import { getFontSize } from '@/styles/typography';
 
 const CanisterReturns = () => {
 
@@ -28,7 +29,7 @@ const CanisterReturns = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="font-poppins font-normal text-white mb-8"
-            style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}
+            style={getFontSize('pageHeading')}
           >
             Empty Canister Returns
           </motion.h1>
@@ -148,7 +149,7 @@ const CanisterReturns = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
                 className="font-poppins font-normal mb-4"
-                style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}
+                style={getFontSize('pageHeading')}
               >
                 Empty Canister Returns
               </motion.h2>

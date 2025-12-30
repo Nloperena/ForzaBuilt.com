@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { getFontSize } from '@/styles/typography';
 
 const WhyChooseForza = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,7 +45,7 @@ const WhyChooseForza = () => {
         <header className="text-center mb-14 md:mb-16">
           <motion.h2 
             className="text-fluid-heading font-normal font-poppins mb-4 tracking-tight"
-            style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+            style={getFontSize('sectionHeading')}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
@@ -83,7 +84,7 @@ const WhyChooseForza = () => {
                       >
                         <p 
                           className="text-white font-normal font-poppins mb-1 text-[#F2611D]"
-                          style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
+                          style={getFontSize('subsectionHeading')}
                         >
                           {stat.value}
                         </p>

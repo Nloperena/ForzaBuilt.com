@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import HeroVideoSectionV2 from './HeroVideoSectionV2';
+import { getFontSize, getFontSizeValue } from '@/styles/typography';
 
 interface ApproachItem {
   title: string;
@@ -244,7 +245,7 @@ const ApproachSectionUnified = () => {
               <h2 
                 className="font-normal font-poppins leading-tight text-[white]" 
                 style={{
-                  fontSize: 'clamp(28px, 3vw, 56px)',
+                  fontSize: getFontSizeValue('industryPageHeading'),
                   lineHeight: '1.1',
                   textAlign: 'center'
                 }}

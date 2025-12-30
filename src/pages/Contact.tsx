@@ -94,7 +94,7 @@ const Contact = () => {
   useEffect(() => {
     // Force video to load when component mounts or sources change
     if (videoRef.current) {
-      const video = videoRef.current;
+    const video = videoRef.current;
       // Reset video state
       video.load();
       
@@ -113,8 +113,8 @@ const Contact = () => {
 
   const handleVideoLoad = () => {
     console.log('Contact page video loaded successfully');
-    setIsVideoLoaded(true);
-  };
+      setIsVideoLoaded(true);
+    };
 
   const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
     const videoElement = e.currentTarget;
@@ -131,7 +131,7 @@ const Contact = () => {
     console.warn('Contact page video failed to load, showing fallback', e);
     setVideoError(true);
     setIsVideoLoaded(true);
-  };
+    };
 
   return (
     <div className="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
@@ -181,9 +181,9 @@ const Contact = () => {
 
           {/* Hero Content Overlay */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 10 }}>
-            <motion.div
+          <motion.div 
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
               className="max-w-4xl mx-auto"
             >
@@ -195,9 +195,9 @@ const Contact = () => {
                   margin: '0 auto'
                 }}
               >
-                Ready to discuss your project<br />Let's find the right solution together
-              </h3>
-            </motion.div>
+              Ready to discuss your project<br />Let's find the right solution together
+            </h3>
+          </motion.div>
           </div>
         </section>
 
@@ -327,97 +327,97 @@ const Contact = () => {
               </motion.div>
 
               {/* Contact Info */}
-              <motion.div 
+                <motion.div 
                 className="flex flex-col justify-center"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-              >
+                >
                 <div className="mb-6 md:mb-8">
                   <h2 
                     className="font-poppins text-[#1B3764] mb-3 md:mb-4 tracking-tight"
                     style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 40px)' }}
                   >
-                    Contact Information
-                  </h2>
+                      Contact Information
+                    </h2>
                   <p className="text-sm md:text-base lg:text-lg font-poppins text-[#1B3764]/70">
-                    Get in touch with our team for expert guidance and support.
-                  </p>
-                </div>
+                      Get in touch with our team for expert guidance and support.
+                    </p>
+                  </div>
 
                 <div className="space-y-4 md:space-y-5">
                   <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                      <MapPin className="w-6 h-6 text-[#F2611D]" />
-                    </div>
-                    <div>
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                        <MapPin className="w-6 h-6 text-[#F2611D]" />
+                      </div>
+                      <div>
                       <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">HQ Address</h4>
                       <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base leading-relaxed">
-                        <span className="font-bold text-[#1B3764]">Forza</span><br />
-                        3211 Nebraska Ave, Suite 300<br />
-                        Council Bluffs, Iowa 51501
-                      </p>
+                          <span className="font-bold text-[#1B3764]">Forza</span><br />
+                          3211 Nebraska Ave, Suite 300<br />
+                          Council Bluffs, Iowa 51501
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
+                    
                   <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                      <Phone className="w-6 h-6 text-[#F2611D]" />
-                    </div>
-                    <div>
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                        <Phone className="w-6 h-6 text-[#F2611D]" />
+                      </div>
+                      <div>
                       <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">Phone</h4>
                       <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base">
                         <a href="tel:4027319300" className="font-bold text-[#1B3764] hover:text-[#F2611D] transition-colors">
                           O. 402.731.9300
                         </a>
-                      </p>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
+                    
                   <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                      <Mail className="w-6 h-6 text-[#F2611D]" />
-                    </div>
-                    <div>
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                        <Mail className="w-6 h-6 text-[#F2611D]" />
+                      </div>
+                      <div>
                       <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">Email</h4>
                       <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base">
-                        <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
-                          support@forzabuilt.com
-                        </a>
-                      </p>
+                          <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
+                            support@forzabuilt.com
+                          </a>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
+                    
                   <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                      <Clock className="w-6 h-6 text-[#F2611D]" />
-                    </div>
-                    <div>
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                        <Clock className="w-6 h-6 text-[#F2611D]" />
+                      </div>
+                      <div>
                       <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">Business Hours</h4>
                       <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base leading-relaxed">
-                        <span className="font-bold">Mon – Fri | 8:00 AM – 4:30 PM CST</span><br />
-                        Saturday & Sunday: Closed
-                      </p>
+                          <span className="font-bold">Mon – Fri | 8:00 AM – 4:30 PM CST</span><br />
+                          Saturday & Sunday: Closed
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
                   <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                      <Mail className="w-6 h-6 text-[#F2611D]" />
-                    </div>
-                    <div>
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                        <Mail className="w-6 h-6 text-[#F2611D]" />
+                      </div>
+                      <div>
                       <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">Sales Inquiries</h4>
                       <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base leading-relaxed">
-                        <a href="mailto:sales@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
-                          sales@forzabuilt.com
-                        </a><br />
-                        <span className="text-xs text-[#1B3764]/50">For optimization inquiries and working with us</span>
-                      </p>
+                          <a href="mailto:sales@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
+                            sales@forzabuilt.com
+                          </a><br />
+                          <span className="text-xs text-[#1B3764]/50">For optimization inquiries and working with us</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
             </div>
           </div>
         </section>

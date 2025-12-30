@@ -241,7 +241,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
         >
           <h2 
             className="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" 
-            style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+            style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}
           >
             {formattedCategoryTitle} Products
           </h2>

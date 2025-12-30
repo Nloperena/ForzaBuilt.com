@@ -198,12 +198,12 @@ const InteractiveProductsSectionV6 = () => {
 
               {/* Label group - scaled down for mobile */}
               <div className="absolute top-[clamp(8px,1.3vw,40px)] left-[clamp(8px,1.3vw,40px)] text-left select-none [--lh-label:1.22] opacity-0 pointer-events-none z-20" aria-hidden="false">
-                <div className={`font-bold text-white text-[clamp(10px,1vw,24px)] md:text-[clamp(18px,1.6vw,24px)] ${
+                <div className={`font-bold text-white text-[clamp(16px,1.2vw,28px)] md:text-[clamp(18px,1.8vw,28px)] ${
                   mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                 }`}>
                   <span className="leading-[var(--lh-label)] tracking-[-0.01em]">Forza</span>
                 </div>
-                <div className={`font-bold text-[#F2611D] text-[clamp(9px,0.9vw,22px)] md:text-[clamp(16px,1.4vw,22px)] ${
+                <div className={`font-bold text-[#F2611D] text-[clamp(14px,1vw,24px)] md:text-[clamp(16px,1.6vw,24px)] ${
                   mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                 }`}>
                   <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{(() => {
@@ -211,7 +211,7 @@ const InteractiveProductsSectionV6 = () => {
                     return toTitleCase(title);
                   })()}</span>
                 </div>
-                <div className={`text-white text-[clamp(6px,0.6vw,14px)] md:text-[clamp(10px,0.95vw,14px)] ${
+                <div className={`text-white text-[clamp(10px,0.7vw,16px)] md:text-[clamp(10px,1vw,16px)] ${
                   mode === 'light2' ? 'font-poppins' : ''
                 }`}>
                   A FORCE TO BE RECKONED WITH
@@ -284,8 +284,8 @@ const InteractiveProductsSectionV6 = () => {
                           } ${!isActive ? 'hover:text-[#F2611D]' : ''}`}
                           style={{
                             fontSize: isActive 
-                              ? 'clamp(14px, 2vw, 128px)'
-                              : 'clamp(11px, 1.6vw, 48px)',
+                              ? 'clamp(28px, 3.5vw, 120px)' // Mobile: 28px, Desktop: 120px - optimized for this section
+                              : 'clamp(20px, 2.5vw, 56px)', // Mobile: 20px, Desktop: 56px - optimized for this section
                           }}>
                             {toTitleCase(product.title)}
                           </h3>
@@ -305,14 +305,14 @@ const InteractiveProductsSectionV6 = () => {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <p className={`text-white text-[clamp(8px,0.7vw,24px)] md:text-[clamp(14px,1.25vw,24px)] leading-relaxed mb-2 md:mb-4 ${
+                      <p className={`text-white text-[clamp(14px,1vw,28px)] md:text-[clamp(16px,1.5vw,28px)] leading-relaxed mb-2 md:mb-4 ${
                         mode === 'light2' ? 'font-poppins' : ''
                       }`}>
                         {products[activeIndex].description}
                       </p>
                       <Button
                         asChild
-                        className="gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-7 md:h-10 items-center justify-center rounded-full bg-[#F2611D] px-3 md:px-7 py-1.5 md:py-3.5 text-white text-[clamp(9px,0.7vw,18px)] md:text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                        className="gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-7 md:h-10 items-center justify-center rounded-full bg-[#F2611D] px-3 md:px-7 py-1.5 md:py-3.5 text-white text-[clamp(14px,0.9vw,20px)] md:text-[clamp(14px,1.2vw,20px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
                       >
                         <Link to={`/products/${products[activeIndex].slug}`}>
                           {getButtonText(products[activeIndex].title)}

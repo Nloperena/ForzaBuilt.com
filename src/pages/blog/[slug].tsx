@@ -8,6 +8,7 @@ import blogPostsData from '../../data/blogPosts.json';
 import { generateSlugFromTitle } from '@/lib/utils';
 import RecentNewsArticlesSection from '@/components/RecentNewsArticlesSection';
 import NewsletterSection from '@/components/NewsletterSection';
+import { getFontSize } from '@/styles/typography';
 
 interface BlogPost {
   id: string;
@@ -197,7 +198,7 @@ const BlogPostPage = () => {
 
           {/* Title and Date */}
           <div className="mb-8">
-            <h1 className="text-[#1B3764] font-poppins font-normal leading-tight break-words mb-4 tracking-tight" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}>
+            <h1 className="text-[#1B3764] font-poppins font-normal leading-tight break-words mb-4 tracking-tight" style={getFontSize('sectionHeading')}>
               {blogPost.title}
             </h1>
             <div className="flex items-center gap-4 text-gray-600 text-sm font-poppins">

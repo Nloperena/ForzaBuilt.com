@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card } from './ui/card';
 import { useLandscapeValues } from '@/hooks/use-landscape';
 import { useGradientMode } from '@/contexts/GradientModeContext';
+import { getFontSize } from '@/styles/typography';
 
 import ImageSkeleton from './common/ImageSkeleton';
 import EdgeTrianglesBackground from './common/EdgeTrianglesBackground';
@@ -100,7 +101,7 @@ const ProductsSectionAlt = () => {
           <div className="text-center relative z-10">
             <h2
               className="font-regular text-[#2c476e] mb-6 sm:mb-8 leading-tight font-poppins"
-              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+              style={getFontSize('sectionHeading')}
             >
               Choose a Product Category
             </h2>
@@ -115,7 +116,7 @@ const ProductsSectionAlt = () => {
                   ? 'text-[#2c476e]'
                   : getTextClasses()
               } mb-1 sm:mb-2 md:mb-4 font-kallisto leading-snug break-words block`}
-              style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+              style={getFontSize('sectionHeading')}
             >
               Choose a Product Category
             </h2>
@@ -131,39 +132,39 @@ const ProductsSectionAlt = () => {
             {productCategories.map((category: ProductCategory, index: number) => (
               <Link 
                 key={category.slug}
-                to={`/products/${category.slug}`}
+                  to={`/products/${category.slug}`}
                 className="block w-full h-full"
-              >
-                <Card
-                  className="aspect-[6/4] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
-                  style={{
-                    backgroundImage: 'none'
-                  }}
                 >
+                  <Card
+                  className="aspect-[6/4] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
+                    style={{
+                    backgroundImage: 'none'
+                    }}
+                  >
                   <div className="relative w-full h-full overflow-hidden">
-                    {/* Image Skeleton Loading State */}
-                    {!imageLoadedStates[index] && (
-                      <ImageSkeleton />
-                    )}
-                    
-                    <img
-                      src={category.image}
-                      alt={category.title}
-                      className={`w-full h-full object-cover transition-opacity duration-500 ${
-                        imageLoadedStates[index] ? 'opacity-100' : 'opacity-0'
-                      }`}
-                      onLoad={() => handleImageLoad(index)}
-                      onError={(e) => {
-                        console.error(`Failed to load image for ${category.title}:`, category.image);
-                        // Don't mark as loaded on error - keep showing skeleton or fallback
-                      }}
+                      {/* Image Skeleton Loading State */}
+                      {!imageLoadedStates[index] && (
+                        <ImageSkeleton />
+                      )}
+                      
+                      <img
+                        src={category.image}
+                        alt={category.title}
+                        className={`w-full h-full object-cover transition-opacity duration-500 ${
+                          imageLoadedStates[index] ? 'opacity-100' : 'opacity-0'
+                        }`}
+                        onLoad={() => handleImageLoad(index)}
+                        onError={(e) => {
+                          console.error(`Failed to load image for ${category.title}:`, category.image);
+                          // Don't mark as loaded on error - keep showing skeleton or fallback
+                        }}
                       style={{
                         objectPosition: 'center center'
                       }}
-                    />
-                  </div>
-                </Card>
-              </Link>
+                      />
+                    </div>
+                  </Card>
+                </Link>
             ))}
           </div>
         </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import blogPostsData from '@/data/blogPosts.json';
 import type { BlogPost } from '@/types/Blog';
+import { getFontSize } from '@/styles/typography';
 
 const RecentNewsArticlesSection = () => {
   // Get the 3 most recent blog posts, sorted by date (newest first)
@@ -44,7 +45,7 @@ const RecentNewsArticlesSection = () => {
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-white font-poppins font-normal text-center mb-6 md:mb-8 lg:mb-10" 
-          style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}
+          style={getFontSize('pageHeading')}
         >
           Recent News & Articles
         </motion.h2>

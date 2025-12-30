@@ -166,7 +166,7 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
 
             {/* Right: Text and Buttons */}
             <div className="flex-1 text-left flex flex-col items-start">
-              <h2 className="text-white font-poppins font-normal leading-tight mb-4" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}>
+              <h2 className="text-white font-poppins font-normal leading-tight mb-4" style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}>
                 {content.title}
               </h2>
               <p className="text-white/90 text-sm sm:text-base md:text-lg mb-6 leading-relaxed max-w-[500px]">

@@ -17,6 +17,7 @@ import ProductImageTicker from '@/components/ProductImageTicker';
 import StickyProductHeroImageSection from '@/components/products/StickyProductHeroImageSection';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import ProductCategoryProductsSection from '@/components/products/ProductCategoryProductsSection';
+import { getFontSize } from '@/styles/typography';
 
 // Chemistry icon paths - using organized chemistry icons
 const CHEMISTRY_ICONS = {
@@ -668,7 +669,7 @@ const ProductCategoryPage: React.FC = () => {
                       >
                         <h2 
                           className="font-normal font-poppins leading-tight text-[#1b3764] break-words normal-case" 
-                          style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+                          style={getFontSize('sectionHeading')}
                         >
                           Cleaning Products
                         </h2>

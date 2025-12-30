@@ -1,4 +1,5 @@
 import React from 'react';
+import { getFontSize } from '@/styles/typography';
 
 const ApproachHeading = () => {
   return (
@@ -8,7 +9,7 @@ const ApproachHeading = () => {
           <h2 
             className="font-normal font-poppins leading-tight" 
             style={{
-              fontSize: 'clamp(28px, 3vw, 56px)',
+              ...getFontSize('industryPageHeading'),
               lineHeight: '1.1',
               textAlign: 'center',
               color: '#2c476e'

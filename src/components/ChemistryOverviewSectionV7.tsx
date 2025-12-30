@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import ChemistryPopupV2 from '@/components/ChemistryPopupV2';
+import { getFontSize } from '@/styles/typography';
 
 interface ChemistryData {
   id: string;
@@ -227,7 +228,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
           className="font-poppins font-normal text-white text-center leading-tight
                      mb-2 sm:mb-3 md:mb-3 lg:mb-4
                      [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]"
-          style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 56px)' }}
+          style={getFontSize('sectionHeading')}
         >
           Product Chemistries
         </h2>
