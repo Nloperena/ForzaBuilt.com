@@ -22,7 +22,7 @@ const Products = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col relative">
+    <div className="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
       <HeaderV2 />
       
       <AnimatePresence mode="wait">

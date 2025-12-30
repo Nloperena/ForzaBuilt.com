@@ -15,7 +15,7 @@ import SlideInDrawer from '@/components/common/SlideInDrawer';
 const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
   <Link 
     to={`/blog/${generateSlugFromTitle(post.title)}`}
-    className="group relative w-full aspect-[3/4] md:aspect-[3/4] lg:aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
+    className="group relative w-full aspect-[3/4] md:aspect-[3/4] lg:aspect-[3/4] rounded-lg md:rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 block"
   >
     {/* Background Image */}
     <div className="absolute inset-0 bg-gray-200">
@@ -38,18 +38,18 @@ const BlogOverlayCard = ({ post }: { post: BlogPost }) => (
     />
 
     {/* Content Overlay */}
-    <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
-      <h3 className="text-xl md:text-2xl font-bold font-poppins mb-2 leading-tight group-hover:text-[#F2611D] transition-colors">
+    <div className="absolute inset-0 p-3 md:p-6 flex flex-col justify-end text-white">
+      <h3 className="text-xs md:text-lg lg:text-xl font-bold font-poppins mb-1 md:mb-2 leading-tight group-hover:text-[#F2611D] transition-colors line-clamp-2">
         {post.title}
       </h3>
       
       {/* Description and Arrow on same line */}
-      <div className="flex items-center justify-between gap-3 mt-2">
-        <p className="text-sm md:text-base text-white/80 font-poppins line-clamp-2 flex-1">
+      <div className="flex items-center justify-between gap-2 md:gap-3 mt-1 md:mt-2">
+        <p className="text-[9px] md:text-xs lg:text-sm text-white/80 font-poppins line-clamp-2 flex-1">
           {post.excerpt}
         </p>
         <svg 
-          className="w-6 h-6 text-[#F2611D] transform group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0" 
+          className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-[#F2611D] transform group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0" 
           fill="none" 
           stroke="currentColor" 
           strokeWidth={2.5}
@@ -94,15 +94,15 @@ const Blog = () => {
 
   const categories = [
     'all',
-    'Industrial',
-    'Transportation',
-    'Construction',
+    'Adhesives',
+    'Manufacturing',
+    'Innovation',
     'Marine',
     'Composites',
-    'Insulation',
-    'Seals',
+    'Building',
+    'HSE',
     'Bond',
-    'Tapes',
+    'Tools',
     'Cleaning'
   ];
 
@@ -176,13 +176,13 @@ const Blog = () => {
 
       {/* Most Popular Section */}
       {!loading && featuredPosts.length > 0 && (
-        <section className="pt-4 pb-20 relative z-20 bg-white">
+        <section className="pt-4 pb-12 md:pb-20 relative z-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <h2 className="font-poppins font-normal text-[#1B3764] text-center mb-16" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}>
+            <h2 className="font-poppins font-normal text-[#1B3764] text-center mb-8 md:mb-16" style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 48px)' }}>
               Most Popular
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featuredPosts.map((post) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+              {featuredPosts.slice(0, 2).map((post) => (
                 <BlogOverlayCard key={post.id} post={post} />
               ))}
             </div>
@@ -191,49 +191,33 @@ const Blog = () => {
       )}
 
       {/* Products, Tips, Tutorials Section */}
-      <section className="pt-4 pb-20 bg-white relative z-20">
+      <section className="pt-4 pb-12 md:pb-20 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="font-poppins font-normal text-[#1B3764] mb-10 text-center" style={{ fontSize: 'clamp(28px, 2.5vw + 0.5rem, 48px)' }}>
+          <div className="mb-8 md:mb-12 text-center">
+            <h2 className="font-poppins font-normal text-[#1B3764] mb-6 md:mb-10 text-center" style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 48px)' }}>
               Products, Tips, Tutorials<br/>and More
             </h2>
             
-            {/* Controls Bar */}
-            <div className="flex items-center justify-between mb-8">
-              {/* Left: Search and Filter Icons */}
-              <div className="flex items-center gap-3">
+            {/* Filter Buttons - Visible Tags */}
+            <div className="flex items-center justify-center gap-2 md:gap-3 flex-wrap mb-6 md:mb-8">
+              {categories.map((category) => (
                 <button
-                  onClick={() => setIsSearchDrawerOpen(true)}
-                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                  aria-label="Search"
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full text-sm md:text-base font-poppins font-medium transition-all duration-200 ${
+                    selectedCategory === category
+                      ? 'bg-[#1B3764] text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
                 >
-                  <Search className="w-5 h-5 text-[#1B3764]" />
+                  {category === 'all' ? 'All Posts' : category}
                 </button>
-                <button
-                  onClick={() => setIsFilterDrawerOpen(true)}
-                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                  aria-label="Filter"
-                >
-                  <Filter className="w-5 h-5 text-[#1B3764]" />
-                </button>
-              </div>
-
-              {/* Center: Products Found Badge */}
-              <div className="flex-1 flex justify-center">
-                <div className="bg-[#1B3764] px-4 py-1.5 rounded-full">
-                  <p className="text-sm text-white font-poppins font-medium">
-                    <span className="font-semibold">{filteredPosts.length}</span> products found
-                  </p>
-                </div>
-              </div>
-
-              {/* Right: Spacer for balance */}
-              <div className="w-[73px]"></div>
+              ))}
             </div>
           </div>
 
-          {/* Blog Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {/* Blog Grid - 2 columns on mobile */}
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-16">
             {displayedPosts.map((post) => (
               <BlogOverlayCard key={post.id} post={post} />
             ))}
@@ -244,7 +228,7 @@ const Blog = () => {
             <div className="flex justify-center">
               <button
                 onClick={handleLoadMore}
-                className="px-12 py-3 bg-white border border-gray-300 text-gray-500 rounded-full font-medium font-poppins hover:bg-gray-50 transition-colors duration-200"
+                className="px-8 md:px-12 py-2 md:py-3 bg-white border border-gray-300 text-gray-500 rounded-full text-sm md:text-base font-medium font-poppins hover:bg-gray-50 transition-colors duration-200"
               >
                 More
               </button>

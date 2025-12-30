@@ -56,48 +56,48 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
           </div>
           )}
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-stretch max-w-[1000px] mx-auto">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-6 lg:gap-12 items-stretch max-w-[1000px] mx-auto">
             {/* Newsletter Signup - Primary Focus */}
-            <div className="order-2 lg:order-1 h-full flex flex-col rounded-xl lg:rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
-              <div className="p-4 md:p-5 lg:p-6 flex-1 flex flex-col items-center text-center">
+            <div className="h-full flex flex-col rounded-xl lg:rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10">
+              <div className="p-2 sm:p-3 md:p-5 lg:p-6 flex-1 flex flex-col items-center text-center">
                 {/* Newsletter Icon */}
-                <div className="mb-3 flex justify-start">
+                <div className="mb-2 sm:mb-3 flex justify-start">
                   <img 
                     src="/images/Newspaper icon.svg" 
                     alt="Newsletter" 
-                    className="w-10 h-10 md:w-12 md:h-12 text-white"
+                    className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white"
                   />
                 </div>
 
-                <div className="mb-4">
-                  <h3 className="text-white font-poppins text-lg md:text-xl lg:text-xl font-bold">Join Our Newsletter</h3>
+                <div className="mb-2 sm:mb-3 md:mb-4">
+                  <h3 className="text-white font-poppins text-[10px] sm:text-xs md:text-lg lg:text-xl font-bold">Join Our Newsletter</h3>
                 </div>
 
-                <div className="space-y-2.5 md:space-y-3 mb-5 flex-1 w-full">
-                  <div className="flex items-start gap-2 justify-start">
-                    <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div className="space-y-1 sm:space-y-1.5 md:space-y-3 mb-3 sm:mb-4 md:mb-5 flex-1 w-full">
+                  <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2 justify-start">
+                    <svg className="mt-0.5 size-3 sm:size-3.5 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Early access to new product launches and innovations</p>
+                    <p className="text-white/90 text-[8px] sm:text-[9px] md:text-sm lg:text-sm font-medium text-left leading-tight">Early access to new product launches and innovations</p>
                   </div>
-                  <div className="flex items-start gap-2 justify-start">
-                    <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2 justify-start">
+                    <svg className="mt-0.5 size-3 sm:size-3.5 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Exclusive industry insights and technical solutions</p>
+                    <p className="text-white/90 text-[8px] sm:text-[9px] md:text-sm lg:text-sm font-medium text-left leading-tight">Exclusive industry insights and technical solutions</p>
                   </div>
-                  <div className="flex items-start gap-2 justify-start">
-                    <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2 justify-start">
+                    <svg className="mt-0.5 size-3 sm:size-3.5 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                    <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Expert tips and best practices for your applications</p>
+                    <p className="text-white/90 text-[8px] sm:text-[9px] md:text-sm lg:text-sm font-medium text-left leading-tight">Expert tips and best practices for your applications</p>
                   </div>
                 </div>
 
                 <div className="mt-auto w-full flex justify-center">
                   <button
                     onClick={() => setShowNewsletterForm(true)}
-                    className="rounded-full bg-[#F2611D] text-white px-4 md:px-5 py-2 md:py-2.5 text-xs sm:text-sm font-normal hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                    className="rounded-full bg-[#F2611D] text-white px-2 sm:px-3 md:px-5 py-1 sm:py-1.5 md:py-2.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-normal hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                   >
                     Subscribe
                   </button>
@@ -106,43 +106,43 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
             </div>
 
             {/* Follow Our LinkedIn Section - Secondary Focus */}
-            <div className="order-1 lg:order-2 h-full flex flex-col rounded-xl lg:rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10 relative">
+            <div className="h-full flex flex-col rounded-xl lg:rounded-xl shadow-xl overflow-hidden bg-gradient-to-br from-[#477197] to-[#2c476e] border border-white/10 relative">
               {/* Decorative background elements */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#F2611D] rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
               </div>
               
-              <div className="p-4 md:p-5 lg:p-6 flex-1 flex flex-col items-center text-center relative z-10">
+              <div className="p-2 sm:p-3 md:p-5 lg:p-6 flex-1 flex flex-col items-center text-center relative z-10">
                 <div className="w-full">
                   {/* Large LinkedIn Icon */}
-                  <div className="mb-3 flex justify-center">
-                      <svg className="w-10 h-10 md:w-12 md:h-12 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="mb-2 sm:mb-3 flex justify-center">
+                      <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                       </svg>
                   </div>
 
-                  <h3 className="text-white font-poppins text-lg md:text-xl lg:text-xl font-bold mb-4 text-center">Follow Our LinkedIn</h3>
+                  <h3 className="text-white font-poppins text-[10px] sm:text-xs md:text-lg lg:text-xl font-bold mb-2 sm:mb-3 md:mb-4 text-center">Follow Our LinkedIn</h3>
                   
                   {/* Benefits List */}
-                  <div className="mb-5 space-y-2.5 md:space-y-3 w-full">
-                    <div className="flex items-start gap-2 justify-start">
-                      <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <div className="mb-3 sm:mb-4 md:mb-5 space-y-1 sm:space-y-1.5 md:space-y-3 w-full">
+                    <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2 justify-start">
+                      <svg className="mt-0.5 size-3 sm:size-3.5 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Stay informed with the latest industry insights & trends</p>
+                      <p className="text-white/90 text-[8px] sm:text-[9px] md:text-sm lg:text-sm font-medium text-left leading-tight">Stay informed with the latest industry insights & trends</p>
                     </div>
-                    <div className="flex items-start gap-2 justify-start">
-                      <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2 justify-start">
+                      <svg className="mt-0.5 size-3 sm:size-3.5 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Discover our latest product launches and innovations</p>
+                      <p className="text-white/90 text-[8px] sm:text-[9px] md:text-sm lg:text-sm font-medium text-left leading-tight">Discover our latest product launches and innovations</p>
                     </div>
-                    <div className="flex items-start gap-2 justify-start">
-                      <svg className="mt-0.5 size-4 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <div className="flex items-start gap-1 sm:gap-1.5 md:gap-2 justify-start">
+                      <svg className="mt-0.5 size-3 sm:size-3.5 md:size-4.5 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                       </svg>
-                      <p className="text-white/90 text-xs md:text-sm lg:text-sm font-medium text-left">Get expert tips and best practices for your applications</p>
+                      <p className="text-white/90 text-[8px] sm:text-[9px] md:text-sm lg:text-sm font-medium text-left leading-tight">Get expert tips and best practices for your applications</p>
                     </div>
                   </div>
                   
@@ -152,7 +152,7 @@ const NewsletterSection: React.FC<NewsletterSectionProps> = ({ showHeading = tru
                       href="https://www.linkedin.com/company/forza-built/posts/?feedView=all"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-full bg-[#F2611D] text-white px-4 md:px-5 py-2 md:py-2.5 text-xs sm:text-sm font-normal hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                      className="rounded-full bg-[#F2611D] text-white px-2 sm:px-3 md:px-5 py-1 sm:py-1.5 md:py-2.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-normal hover:bg-[#F2611D]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                       aria-label="Follow ForzaBuilt on LinkedIn"
                     >
                       Follow Us

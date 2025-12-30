@@ -29,10 +29,10 @@ const HeroVideoSectionV2: React.FC = () => {
   };
 
   return (
-    <section className="relative h-[525px] md:h-[563px] lg:h-[600px] xl:h-[750px] 2xl:h-[525px] min-[1920px]:h-[750px] min-[2560px]:h-[825px] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl py-0">
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl py-0 md:h-[563px] lg:h-[600px] xl:h-[750px] 2xl:h-[525px] min-[1920px]:h-[750px] min-[2560px]:h-[825px]">
       {/* Video Skeleton Loading State */}
       {!isVideoLoaded && (
-        <VideoSkeleton />
+        <VideoSkeleton className="absolute inset-0 md:h-[563px] lg:h-[600px] xl:h-[750px] 2xl:h-[525px] min-[1920px]:h-[750px] min-[2560px]:h-[825px]" />
       )}
       
       {/* Background Video */}
@@ -46,16 +46,14 @@ const HeroVideoSectionV2: React.FC = () => {
         onCanPlay={handleVideoLoad}
         onError={handleVideoError}
         onLoadStart={() => console.log('Slogan Slam video loading started')}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+        className={`w-full transition-opacity duration-700 md:absolute md:inset-0 md:h-full md:object-cover ${
           isVideoLoaded ? 'opacity-100' : 'opacity-0'
         }`}
         style={{ 
           zIndex: 1,
-          objectFit: 'cover',
-          width: '100%',
-          height: '100%',
-          minWidth: '100%',
-          minHeight: '100%'
+          objectFit: 'contain',
+          height: 'auto',
+          display: 'block'
         }}
       >
         <source src="/videos/misc/Forza Slogan Slam Final 3.mp4" type="video/mp4" />
@@ -63,7 +61,7 @@ const HeroVideoSectionV2: React.FC = () => {
       </video>
 
       {/* Fallback background - always visible */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f] md:block hidden" style={{ zIndex: 0 }} />
     </section>
   );
 };

@@ -9,26 +9,26 @@ const WhyChooseForza = () => {
   const stats = [
     { 
       value: '1979', 
-      label: 'Established', 
+      label: 'ESTABLISHED', 
       description: 'Decades of expertise',
       height: 0.35 // Starts low
     },
     { 
       value: '100%', 
-      label: 'Made in USA*', 
+      label: 'MADE IN USA*', 
       description: 'Quality guaranteed',
       height: 0.55 // Goes up
     },
     { 
       value: '24hr', 
-      label: 'Support Response', 
+      label: 'SUPPORT RESPONSE', 
       description: 'Always here to help', 
       link: '/contact',
       height: 0.75 // Goes up further
     },
     { 
       value: '500+', 
-      label: 'Formulations', 
+      label: 'FORMULATIONS', 
       description: 'Custom solutions',
       height: 0.95 // Highest point - like a checkmark/Verizon logo sweep
     }
@@ -61,57 +61,108 @@ const WhyChooseForza = () => {
           </motion.p>
         </header>
 
-        {/* Stats Visualization */}
-        <div className="relative h-[350px] px-4 md:px-12 pb-0">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 h-full relative" style={{ transform: 'translateX(calc(-12.5% - 0.75rem))' }}>
+        {/* Stats Visualization - Vertical bars on mobile, horizontal on desktop */}
+        <div className="relative px-4 md:px-12 pb-8 md:pb-0">
+          <div className="flex flex-col md:grid md:grid-cols-4 gap-8 md:gap-8 md:h-[350px] md:relative md:translate-x-[-12.5%] md:translate-x-[-0.75rem]">
             {stats.map((stat, index) => {
               const StatWrapper = stat.link ? Link : 'div';
-              const wrapperProps = stat.link ? { to: stat.link, className: "relative h-full w-full group block" } : { className: "relative h-full w-full" };
+              const wrapperProps = stat.link ? { to: stat.link, className: "relative w-full md:h-full group block" } : { className: "relative w-full md:h-full" };
 
               return (
                 <StatWrapper key={index} {...wrapperProps}>
-                  
-                  {/* Line/Sceptre - Absolute positioned from bottom */}
-                  <motion.div 
-                    className="absolute bottom-0 left-1/2 w-1 bg-[#F2611D] origin-bottom"
-                    style={{ height: `${stat.height * 100}%`, x: "-50%" }}
-                    initial={{ scaleY: 0 }}
-                    animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 + (index * 1.2), ease: "circOut" }}
-                  />
-
-                  {/* Dot at top of line - Separated to prevent scaling distortion */}
-                  <motion.div 
-                    className="absolute left-1/2 w-4 h-4 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
-                    style={{ bottom: `calc(${stat.height * 100}% - 8px)`, x: "-50%" }} 
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : { scale: 0 }}
-                    transition={{ duration: 0.4, delay: 0.2 + (index * 1.2) + 0.8, type: "spring" }}
-                  />
-                  
-                  {/* Stat Content - Right aligned to the dot */}
-                  <motion.div 
-                    className="absolute left-[calc(50%+1rem)] w-full max-w-[220px] flex justify-start z-10 text-left"
-                    style={{ top: `calc(100% - ${stat.height * 100}% - 1.5rem)` }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ duration: 0.5, delay: 0.2 + (index * 1.2) + 0.8 }}
-                  >
-                    <div className="w-full">
-                      <p 
-                        className="text-white font-normal font-poppins mb-2 text-[#F2611D]"
-                        style={{ fontSize: 'clamp(2.625rem, 3.5vw + 0.7rem, 3.15rem)' }}
+                  {/* Mobile: Horizontal bars extending from left, text on top */}
+                  <div className="flex md:hidden flex-col relative min-h-[100px]">
+                    {/* Stat Content - sitting on top of horizontal bar */}
+                    <div className="relative">
+                      {/* Text content */}
+                      <motion.div 
+                        className="relative z-10 flex flex-col"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                        transition={{ duration: 0.5, delay: 0.2 + (index * 0.3) }}
                       >
-                        {stat.value}
-                      </p>
-                      <h4 className="text-white/80 text-xs md:text-sm font-bold uppercase tracking-wider mb-2 font-poppins">
-                        {stat.label}
-                      </h4>
-                      <p className="text-white/70 text-xs md:text-sm font-poppins font-light leading-relaxed">
-                        {stat.description}
-                      </p>
+                        <p 
+                          className="text-white font-normal font-poppins mb-1 text-[#F2611D]"
+                          style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
+                        >
+                          {stat.value}
+                        </p>
+                        <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-1 font-poppins">
+                          {stat.label}
+                        </h4>
+                        <div className="relative inline-block w-full">
+                          <p className="text-white/70 text-xs font-poppins font-light leading-relaxed mb-1">
+                            {stat.description}
+                          </p>
+                          {/* Horizontal bar UNDERLINING the description text */}
+                          <motion.div 
+                            className="absolute bottom-0 left-0 h-1 bg-[#F2611D] origin-left"
+                            style={{ width: `${stat.height * 100}%` }}
+                            initial={{ scaleX: 0 }}
+                            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 + (index * 0.3) + 0.3, ease: "circOut" }}
+                          />
+                          {/* Dot at the end of the underline - centered on the bar */}
+                          <motion.div
+                            className="absolute w-3 h-3 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
+                            style={{ 
+                              left: `${stat.height * 100}%`, 
+                              bottom: '-4px',
+                              transform: 'translateX(-50%)'
+                            }}
+                            initial={{ scale: 0 }}
+                            animate={isInView ? { scale: 1 } : { scale: 0 }}
+                            transition={{ duration: 0.4, delay: 0.2 + (index * 0.3) + 0.3 + 0.8, type: "spring" }}
+                          />
+                        </div>
+                      </motion.div>
                     </div>
-                  </motion.div>
+                  </div>
+
+                  {/* Desktop: Original horizontal animated layout */}
+                  <div className="hidden md:block relative h-full w-full">
+                    {/* Line/Sceptre - Absolute positioned from bottom */}
+                    <motion.div 
+                      className="absolute bottom-0 left-1/2 w-1 bg-[#F2611D] origin-bottom"
+                      style={{ height: `${stat.height * 100}%`, x: "-50%" }}
+                      initial={{ scaleY: 0 }}
+                      animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 + (index * 1.2), ease: "circOut" }}
+                    />
+
+                    {/* Dot at top of line - Separated to prevent scaling distortion */}
+                    <motion.div 
+                      className="absolute left-1/2 w-4 h-4 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
+                      style={{ bottom: `calc(${stat.height * 100}% - 8px)`, x: "-50%" }} 
+                      initial={{ scale: 0 }}
+                      animate={isInView ? { scale: 1 } : { scale: 0 }}
+                      transition={{ duration: 0.4, delay: 0.2 + (index * 1.2) + 0.8, type: "spring" }}
+                    />
+                    
+                    {/* Stat Content - Right aligned to the dot */}
+                    <motion.div 
+                      className="absolute left-[calc(50%+1rem)] w-full max-w-[220px] flex justify-start z-10 text-left"
+                      style={{ top: `calc(100% - ${stat.height * 100}% - 1.5rem)` }}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                      transition={{ duration: 0.5, delay: 0.2 + (index * 1.2) + 0.8 }}
+                    >
+                      <div className="w-full">
+                        <p 
+                          className="text-white font-normal font-poppins mb-2 text-[#F2611D]"
+                          style={{ fontSize: 'clamp(2.625rem, 3.5vw + 0.7rem, 3.15rem)' }}
+                        >
+                          {stat.value}
+                        </p>
+                        <h4 className="text-white/80 text-xs md:text-sm font-bold uppercase tracking-wider mb-2 font-poppins">
+                          {stat.label}
+                        </h4>
+                        <p className="text-white/70 text-xs md:text-sm font-poppins font-light leading-relaxed">
+                          {stat.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </div>
 
                 </StatWrapper>
               );

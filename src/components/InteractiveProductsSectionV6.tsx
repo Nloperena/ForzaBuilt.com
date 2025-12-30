@@ -183,27 +183,27 @@ const InteractiveProductsSectionV6 = () => {
         <div className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
         {/* Background color grid */}
-        <div className="pointer-events-none absolute inset-0 grid grid-cols-1 lg:grid-cols-2">
+        <div className="pointer-events-none absolute inset-0 grid grid-cols-2">
           <div className="bg-[#f3f5f7]"></div>
           <div className="bg-gradient-to-r from-[#477197] to-[#2c476e]"></div>
         </div>
 
         <div className="relative overflow-visible">
-          {/* Two column grid - responsive layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden">
+          {/* Two column grid - always 2 columns on mobile and desktop */}
+          <div className="grid grid-cols-2 gap-0 overflow-hidden">
             {/* LEFT SIDE - Images */}
-            <div className="relative min-h-[35svh] sm:min-h-[42svh] md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] flex items-center justify-center overflow-hidden">
+            <div className="relative aspect-square md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] flex items-center justify-center overflow-hidden">
               {/* Subtle radial depth */}
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_0%,transparent_70%)] z-20" />
 
-              {/* Label group */}
-              <div className="absolute top-[clamp(16px,2.6vw,40px)] left-[clamp(16px,2.6vw,40px)] text-left select-none [--lh-label:1.22] opacity-0 pointer-events-none z-20" aria-hidden="false">
-                <div className={`font-bold text-white text-[clamp(18px,1.6vw,24px)] ${
+              {/* Label group - scaled down for mobile */}
+              <div className="absolute top-[clamp(8px,1.3vw,40px)] left-[clamp(8px,1.3vw,40px)] text-left select-none [--lh-label:1.22] opacity-0 pointer-events-none z-20" aria-hidden="false">
+                <div className={`font-bold text-white text-[clamp(10px,1vw,24px)] md:text-[clamp(18px,1.6vw,24px)] ${
                   mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                 }`}>
                   <span className="leading-[var(--lh-label)] tracking-[-0.01em]">Forza</span>
                 </div>
-                <div className={`font-bold text-[#F2611D] text-[clamp(16px,1.4vw,22px)] ${
+                <div className={`font-bold text-[#F2611D] text-[clamp(9px,0.9vw,22px)] md:text-[clamp(16px,1.4vw,22px)] ${
                   mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                 }`}>
                   <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{(() => {
@@ -211,7 +211,7 @@ const InteractiveProductsSectionV6 = () => {
                     return toTitleCase(title);
                   })()}</span>
                 </div>
-                <div className={`text-white text-[clamp(10px,0.95vw,14px)] ${
+                <div className={`text-white text-[clamp(6px,0.6vw,14px)] md:text-[clamp(10px,0.95vw,14px)] ${
                   mode === 'light2' ? 'font-poppins' : ''
                 }`}>
                   A FORCE TO BE RECKONED WITH
@@ -249,7 +249,7 @@ const InteractiveProductsSectionV6 = () => {
             </div>
 
             {/* RIGHT SIDE - Titles, description, and button */}
-            <div className="relative min-h-[35svh] sm:min-h-[42svh] md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] px-[clamp(14px,4vw,32px)] py-[clamp(24px,4vw,48px)] flex items-center justify-center [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]">
+            <div className="relative aspect-square md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] px-[clamp(8px,2vw,32px)] py-[clamp(12px,2vw,48px)] flex items-center justify-center [--gap:clamp(6px,1.2vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]">
               <div className="w-full relative flex flex-col h-full">
                 {/* Product list */}
                 <div className="flex-1 flex flex-col">
@@ -284,8 +284,8 @@ const InteractiveProductsSectionV6 = () => {
                           } ${!isActive ? 'hover:text-[#F2611D]' : ''}`}
                           style={{
                             fontSize: isActive 
-                              ? 'clamp(28px, 4vw, 128px)'
-                              : 'clamp(22px, 3.2vw, 48px)',
+                              ? 'clamp(14px, 2vw, 128px)'
+                              : 'clamp(11px, 1.6vw, 48px)',
                           }}>
                             {toTitleCase(product.title)}
                           </h3>
@@ -296,7 +296,7 @@ const InteractiveProductsSectionV6 = () => {
                 </div>
 
                 {/* Button and description at bottom */}
-                <div className="mt-auto pt-4 flex-shrink-0 space-y-4">
+                <div className="mt-auto pt-2 md:pt-4 flex-shrink-0 space-y-2 md:space-y-4">
                   <AnimatePresence mode='wait'>
                     <motion.div
                       key={activeIndex}
@@ -305,14 +305,14 @@ const InteractiveProductsSectionV6 = () => {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <p className={`text-white text-[clamp(14px,1.25vw,24px)] leading-relaxed mb-4 ${
+                      <p className={`text-white text-[clamp(8px,0.7vw,24px)] md:text-[clamp(14px,1.25vw,24px)] leading-relaxed mb-2 md:mb-4 ${
                         mode === 'light2' ? 'font-poppins' : ''
                       }`}>
                         {products[activeIndex].description}
                       </p>
                       <Button
                         asChild
-                        className="gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-10 items-center justify-center rounded-full bg-[#F2611D] px-7 py-3.5 text-white text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                        className="gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-7 md:h-10 items-center justify-center rounded-full bg-[#F2611D] px-3 md:px-7 py-1.5 md:py-3.5 text-white text-[clamp(9px,0.7vw,18px)] md:text-[clamp(14px,1.1vw,18px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
                       >
                         <Link to={`/products/${products[activeIndex].slug}`}>
                           {getButtonText(products[activeIndex].title)}

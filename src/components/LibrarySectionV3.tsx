@@ -233,14 +233,14 @@ const LibrarySectionV3 = () => {
         <div className="max-w-7xl mx-auto pb-6 sm:pb-8 md:pb-10 lg:pb-12">
           {/* Top Shelf - 4 brochures */}
           <div className="flex justify-center">
-            <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ${gapClasses} mb-1 sm:mb-1.5 md:mb-2 px-2 sm:px-0`}>
+            <div className={`grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 ${gapClasses} mb-1 sm:mb-1.5 md:mb-2 px-2 sm:px-0`}>
               {topShelfBrochures.map((brochure, index) => renderBrochure(brochure, index))}
             </div>
           </div>
 
           {/* Bottom Shelf - 3 brochures, centered */}
           <div className="flex justify-center">
-            <div className={`grid grid-cols-2 sm:grid-cols-3 ${gapClasses} px-2 sm:px-0`}>
+            <div className={`grid grid-cols-3 sm:grid-cols-3 ${gapClasses} px-2 sm:px-0`}>
               {bottomShelfBrochures.map((brochure, index) => renderBrochure(brochure, index + topShelfBrochures.length))}
             </div>
           </div>

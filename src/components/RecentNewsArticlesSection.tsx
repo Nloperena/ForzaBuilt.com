@@ -49,23 +49,23 @@ const RecentNewsArticlesSection = () => {
           Recent News & Articles
         </motion.h2>
 
-        {/* Articles Grid - Centered with consistent spacing */}
+        {/* Articles Grid - 3 columns on mobile and desktop */}
         <div className="flex justify-center">
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-6 md:mb-8 w-full px-2 sm:px-0"
+            className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-5 lg:gap-6 mb-6 md:mb-8 w-full max-w-full px-2 sm:px-0"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
             {recentArticles.map((article: BlogPost) => (
-              <motion.div key={article.id} variants={itemVariants}>
+              <motion.div key={article.id} variants={itemVariants} className="w-full flex-shrink-0">
                 <Link
                   to={`/blog/${article.id}`}
-                  className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block h-full"
+                  className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block h-full w-full flex flex-col"
                 >
                   {/* Image Section */}
-                  <div className="bg-gray-200 h-40 md:h-44 flex items-center justify-center overflow-hidden">
+                  <div className="bg-gray-200 h-32 sm:h-36 md:h-44 flex items-center justify-center overflow-hidden flex-shrink-0">
                     {article.image ? (
                       <motion.img
                         src={article.image}
@@ -75,16 +75,16 @@ const RecentNewsArticlesSection = () => {
                         transition={{ duration: 0.3 }}
                       />
                     ) : (
-                      <span className="text-gray-400 text-sm">image here</span>
+                      <span className="text-gray-400 text-xs">image here</span>
                     )}
                   </div>
 
                   {/* Content Section - White background */}
-                  <div className="p-3 md:p-4">
-                    <h3 className="font-poppins font-bold text-[#2c476e] text-sm md:text-base mb-2 group-hover:text-[#F2611D] transition-colors duration-300 line-clamp-2">
+                  <div className="p-2 sm:p-3 md:p-4 flex-grow flex flex-col">
+                    <h3 className="font-poppins font-bold text-[#2c476e] text-[10px] sm:text-xs md:text-base mb-1 sm:mb-2 group-hover:text-[#F2611D] transition-colors duration-300 line-clamp-2 flex-shrink-0">
                       {article.title}
                     </h3>
-                    <p className="font-poppins text-gray-600 text-xs md:text-sm leading-relaxed line-clamp-2">
+                    <p className="font-poppins text-gray-600 text-[9px] sm:text-[10px] md:text-sm leading-relaxed line-clamp-2 flex-grow">
                       {article.excerpt}
                     </p>
                   </div>

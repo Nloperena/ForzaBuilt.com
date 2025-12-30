@@ -100,111 +100,122 @@ const IndustriesSectionAlt = () => {
 
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32">
         
-        {/* Mobile: Single column list layout */}
+        {/* Mobile & iPad: 2 column x 3 row grid with desktop-style cards */}
         <div className="block md:hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
-            {industriesArr.map((industry: Industry, index: number) => (
-              <div
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-lg mx-auto">
+            {industriesArr.slice(0, 6).map((industry: Industry, index: number) => (
+              <Link 
                 key={industry.title}
-                className="block"
-                style={{
-                  marginBottom: index === industriesArr.length - 1 ? '2rem' : '0'
-                }}
+                to={`/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`}
+                className="block w-full h-full"
               >
-                <Link 
-                  to={`/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`}
-                  className="block w-full"
+                <Card
+                  className="aspect-[6/4] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
+                  style={{
+                    backgroundImage: 'none'
+                  }}
+                  onMouseEnter={() => {
+                    videoRefs.current[index]?.play();
+                  }}
+                  onMouseLeave={() => {
+                    if (videoRefs.current[index]) {
+                      videoRefs.current[index].pause();
+                      videoRefs.current[index].currentTime = 0;
+                    }
+                  }}
+                  onTouchStart={() => {
+                    videoRefs.current[index]?.play();
+                  }}
                 >
-                  <Card
-                    className="shadow-lg rounded-xl lg:rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#2c476e] to-[#81899f]"
-                    style={{
-                      backgroundImage: 'none',
-                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
-                      backgroundColor: mode === 'light' || mode === 'light2' ? 'transparent' : 'transparent',
-                      background: 'linear-gradient(to bottom, #2c476e, #81899f)'
-                    }}
-                    onMouseEnter={() => {
-                      videoRefs.current[index]?.play();
-                    }}
-                    onMouseLeave={() => {
-                      if (videoRefs.current[index]) {
-                        videoRefs.current[index].pause();
-                        videoRefs.current[index].currentTime = 0;
-                      }
-                    }}
-                  >
-                    <div className="flex h-28 sm:h-32">
-                      {/* Video/Image Section */}
-                      <div className="relative w-28 sm:w-32 h-full flex-shrink-0">
-                        {/* Video Skeleton Loading State */}
-                        {!videoLoadedStates[index] && (
-                          <VideoSkeleton />
-                        )}
-                        
-                        <video
-                          ref={(el) => (videoRefs.current[index] = el)}
-                          loop
-                          muted
-                          playsInline
-                          className={`w-full h-full object-cover transition-opacity duration-500 ${
-                            videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
-                          }`}
-                          preload="metadata"
-                          onLoadedData={() => {
-                            handleVideoLoad(index);
-                            // Ensure video is ready to play on mobile
-                            if (videoRefs.current[index]) {
-                              videoRefs.current[index].load();
-                            }
+                  <div className="relative w-full h-full overflow-hidden">
+                    {/* Video Skeleton Loading State */}
+                    {!videoLoadedStates[index] && (
+                      <VideoSkeleton />
+                    )}
+                    
+                    <video
+                      ref={(el) => (videoRefs.current[index] = el)}
+                      loop
+                      muted
+                      playsInline
+                      className={`w-full h-full object-cover transition-opacity duration-500 ${
+                        videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      preload="metadata"
+                      onLoadedData={() => {
+                        handleVideoLoad(index);
+                        if (videoRefs.current[index]) {
+                          videoRefs.current[index].load();
+                        }
+                      }}
+                      onError={() => handleVideoLoad(index)}
+                    >
+                      <source src={industry.videoUrl} type="video/mp4" />
+                    </video>
+                    
+                    {/* Conditional overlay based on mode */}
+                    {mode !== 'light2' && (
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
+                    )}
+                    
+                    {/* Gradient overlay - transparent top, blue gradient bottom */}
+                    <div
+                      className="absolute inset-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
+                      style={{
+                        zIndex: 9,
+                        background: 'linear-gradient(to top, rgba(27, 55, 100, 0.85) 0%, rgba(27, 55, 100, 0.7) 10%, rgba(27, 55, 100, 0.5) 20%, rgba(27, 55, 100, 0.3) 30%, rgba(27, 55, 100, 0.15) 40%, transparent 50%)'
+                      }}
+                    />
+                    
+                    {/* Text and Icon container - bottom left */}
+                    <div
+                      className="absolute bottom-0 left-0 pt-2 pr-2 pb-2 pl-2"
+                      style={{
+                        zIndex: 10
+                      }}
+                    >
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <img
+                          src={industry.logo}
+                          alt={industry.title + ' logo'}
+                          className="w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-150"
+                          style={{
+                            filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))'
                           }}
-                          onError={(e) => {
-                            console.warn(`Video failed to load for ${industry.title}:`, e);
-                            // Mark as loaded even on error to hide skeleton
-                            handleVideoLoad(index);
+                        />
+                        <h3
+                          className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold"
+                          style={{
+                            color: '#ffffff',
+                            fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
+                            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
                           }}
                         >
-                          <source src={industry.videoUrl} type="video/mp4" />
-                        </video>
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
-                      </div>
-                      
-                      {/* Content Section */}
-                      <div className="flex-1 flex flex-col justify-center px-3 sm:px-4 md:px-5 py-3 sm:py-4">
-                        <div className="flex items-center gap-2">
-                          <img
-                            src={industry.logo}
-                            alt={industry.title + ' logo'}
-                            className="h-10 sm:h-12 w-auto transform transition-all duration-150"
-                            style={{ filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))' }}
-                          />
-                          <h3
-                            className="font-poppins text-base sm:text-lg lg:text-xl text-left cursor-pointer transition-all duration-300 group-hover:font-bold"
-                            style={{
-                              lineHeight: 1.1,
-                              textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)',
-                              color: '#ffffff'
-                            }}
-                          >
-                            {toTitleCase(industry.title)}
-                          </h3>
-                        </div>
-                        <p className="hidden sm:block text-xs sm:text-sm font-light text-white/90">
-                          Specialized solutions for {industry.title.toLowerCase()} applications
-                        </p>
-                        
-                      </div>
-                      
-                      {/* Arrow indicator */}
-                      <div className="flex items-center justify-center w-8 h-full transition-colors text-white/70 group-hover:text-white">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
+                          {toTitleCase(industry.title)}
+                        </h3>
                       </div>
                     </div>
-                  </Card>
-                </Link>
-              </div>
+                  </div>
+                </Card>
+              </Link>
             ))}
+          </div>
+          
+          {/* "Don't see your industry? Contact Us" text */}
+          <div className="text-center mt-6 mb-4">
+            <p className={`text-sm sm:text-base font-poppins ${
+              mode === 'light' || mode === 'light2' 
+                ? 'text-gray-600' 
+                : 'text-white/90'
+            }`}>
+              Don't see your industry?{' '}
+              <a
+                href="/contact"
+                className="text-[#F2611D] hover:text-[#F2611D]/80 font-medium transition-colors hover:underline underline-offset-4"
+              >
+                Contact Us
+              </a>
+            </p>
           </div>
         </div>
 
@@ -306,9 +317,9 @@ const IndustriesSectionAlt = () => {
           </div>
         </div>
 
-        {/* Subtle afterthought text */}
-        <div className="w-full text-center mt-4 md:mt-6 lg:mt-6 pb-8 md:pb-12 lg:pb-14">
-          <p className="text-base sm:text-lg lg:text-xl font-poppins text-gray-600 font-normal md:hidden">
+        {/* Subtle afterthought text - Desktop only */}
+        <div className="hidden md:block w-full text-center mt-4 md:mt-6 lg:mt-6 pb-8 md:pb-12 lg:pb-14">
+          <p className="font-poppins text-gray-600 font-normal" style={{ fontSize: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
             Don't see your industry?{' '}
             <a
               href="/contact"
@@ -316,17 +327,6 @@ const IndustriesSectionAlt = () => {
             >
               Contact us
             </a>
-            {''}
-          </p>
-          <p className="hidden md:block font-poppins text-gray-600 font-normal" style={{ fontSize: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
-            Don't see your industry?{' '}
-            <a
-              href="/contact"
-              className="text-[#F2611D] hover:text-[#F2611D]/80 font-medium transition-colors hover:underline underline-offset-4"
-            >
-              Contact us
-            </a>
-            {''}
           </p>
         </div>
       </div>

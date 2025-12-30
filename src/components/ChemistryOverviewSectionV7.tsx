@@ -201,7 +201,13 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
     setShouldStartTimer(false); // Don't auto-close on click
   };
 
-  // Split chemistry data: 6 on top, 5 on bottom
+  // Split chemistry data: 4 columns x 3 rows for mobile
+  // Row 1: 4 items, Row 2: 4 items, Row 3: 3 items (centered)
+  const row1Chemistries = chemistryData.slice(0, 4);
+  const row2Chemistries = chemistryData.slice(4, 8);
+  const row3Chemistries = chemistryData.slice(8, 11);
+  
+  // For desktop: keep original 6 on top, 5 on bottom
   const topRowChemistries = chemistryData.slice(0, 6);
   const bottomRowChemistries = chemistryData.slice(6, 11);
 
@@ -233,8 +239,122 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
           </p>
         </div>
         
-        {/* Top Row - 6 items */}
-        <div className="flex justify-center items-center
+        {/* Mobile: 4 columns x 3 rows grid */}
+        <div className="md:hidden">
+          {/* Row 1 - 4 items */}
+          <div className="grid grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-5 justify-items-center">
+            {row1Chemistries.map((chemistry) => (
+              <motion.div
+                key={chemistry.id}
+                className="group transition-transform duration-200 hover:-translate-y-1
+                           flex-shrink-0
+                           w-full max-w-[90px] sm:max-w-[100px]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                tabIndex={0}
+                onClick={() => handleChemistryClick(chemistry)}
+                onMouseEnter={() => handleChemistryHover(chemistry)}
+                onMouseLeave={() => handleChemistryHover(null)}
+              >
+                <div className="flex flex-col items-center cursor-pointer p-1.5 sm:p-2 gap-1.5 sm:gap-2">
+                  <div className="relative flex justify-center">
+                    <motion.img 
+                      src={chemistry.iconSrc} 
+                      alt={chemistry.name} 
+                      className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      animate={{
+                        filter: hoveredChemistry === chemistry.id 
+                          ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
+                          : 'drop-shadow(0 2px 6px rgba(0,0,0,0.2))'
+                      }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </div>
+                  <h3 className="font-poppins font-normal text-white text-center text-[10px] sm:text-xs leading-tight whitespace-normal min-h-[2em] px-0.5">
+                    {chemistry.name}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Row 2 - 4 items */}
+          <div className="grid grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-5 justify-items-center">
+            {row2Chemistries.map((chemistry) => (
+              <motion.div
+                key={chemistry.id}
+                className="group transition-transform duration-200 hover:-translate-y-1
+                           flex-shrink-0
+                           w-full max-w-[90px] sm:max-w-[100px]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                tabIndex={0}
+                onClick={() => handleChemistryClick(chemistry)}
+                onMouseEnter={() => handleChemistryHover(chemistry)}
+                onMouseLeave={() => handleChemistryHover(null)}
+              >
+                <div className="flex flex-col items-center cursor-pointer p-1.5 sm:p-2 gap-1.5 sm:gap-2">
+                  <div className="relative flex justify-center">
+                    <motion.img 
+                      src={chemistry.iconSrc} 
+                      alt={chemistry.name} 
+                      className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      animate={{
+                        filter: hoveredChemistry === chemistry.id 
+                          ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
+                          : 'drop-shadow(0 2px 6px rgba(0,0,0,0.2))'
+                      }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </div>
+                  <h3 className="font-poppins font-normal text-white text-center text-[10px] sm:text-xs leading-tight whitespace-normal min-h-[2em] px-0.5">
+                    {chemistry.name}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Row 3 - 3 items (centered) */}
+          <div className="flex justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+            {row3Chemistries.map((chemistry) => (
+              <motion.div
+                key={chemistry.id}
+                className="group transition-transform duration-200 hover:-translate-y-1
+                           flex-shrink-0
+                           w-full max-w-[90px] sm:max-w-[100px]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                tabIndex={0}
+                onClick={() => handleChemistryClick(chemistry)}
+                onMouseEnter={() => handleChemistryHover(chemistry)}
+                onMouseLeave={() => handleChemistryHover(null)}
+              >
+                <div className="flex flex-col items-center cursor-pointer p-1.5 sm:p-2 gap-1.5 sm:gap-2">
+                  <div className="relative flex justify-center">
+                    <motion.img 
+                      src={chemistry.iconSrc} 
+                      alt={chemistry.name} 
+                      className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      animate={{
+                        filter: hoveredChemistry === chemistry.id 
+                          ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
+                          : 'drop-shadow(0 2px 6px rgba(0,0,0,0.2))'
+                      }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </div>
+                  <h3 className="font-poppins font-normal text-white text-center text-[10px] sm:text-xs leading-tight whitespace-normal min-h-[2em] px-0.5">
+                    {chemistry.name}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: Top Row - 6 items */}
+        <div className="hidden md:flex justify-center items-center
                         gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
                         w-full mb-3 sm:mb-4 md:mb-5
                         flex-wrap">
@@ -292,8 +412,8 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
           ))}
         </div>
 
-        {/* Bottom Row - 5 items */}
-        <div className="flex justify-center items-center
+        {/* Desktop: Bottom Row - 5 items */}
+        <div className="hidden md:flex justify-center items-center
                         gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
                         w-full mb-3 sm:mb-4 md:mb-5
                         flex-wrap">

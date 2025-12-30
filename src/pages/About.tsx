@@ -72,6 +72,28 @@ const About = () => {
     return () => clearTimeout(timeout);
   }, [videoLoaded]);
 
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Force video to load when component mounts or sources change
+    if (videoRef.current) {
+      const video = videoRef.current;
+      // Reset video state
+      video.load();
+      
+      // Try to play after a short delay
+      const playTimeout = setTimeout(() => {
+        if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+          video.play().catch((err) => {
+            console.warn('Video autoplay failed:', err);
+          });
+        }
+      }, 100);
+      
+      return () => clearTimeout(playTimeout);
+    }
+  }, [heroVideoUrlMobile, heroVideoUrlDesktop]);
+
   const handleVideoLoad = () => {
     console.log('About page video loaded successfully');
     setVideoLoaded(true);
@@ -100,10 +122,11 @@ const About = () => {
       
       <div className="flex-1 relative">
         {/* Hero Video Section - Above the fold */}
-        <section className="relative h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
+        <section className="relative h-[50vh] sm:h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
           {!videoLoaded && <VideoSkeleton />}
           
           <video
+            ref={videoRef}
             key={`${heroVideoUrlMobile}-${heroVideoUrlDesktop}`}
             autoPlay
             loop
@@ -112,6 +135,7 @@ const About = () => {
             preload="auto"
             onLoadedData={handleVideoLoad}
             onCanPlay={handleVideoLoad}
+            onCanPlayThrough={handleVideoLoad}
             onError={handleVideoError}
             onLoadStart={() => console.log('About page video loading started')}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
@@ -152,11 +176,11 @@ const About = () => {
         </section>
 
         {/* Meet Forza Section - Story text first, then bullets, then video */}
-        <section className="relative z-20 pt-4 pb-16 md:pt-6 md:pb-24 px-4 bg-white">
-          <div className="max-w-[1400px] mx-auto space-y-12">
+        <section className="relative z-20 pt-4 pb-8 md:pt-6 md:pb-24 px-4 bg-white">
+          <div className="max-w-[1400px] mx-auto space-y-6 md:space-y-12">
             {/* Story Text Section */}
             <motion.div
-              className="max-w-4xl mx-auto space-y-6"
+              className="max-w-4xl mx-auto space-y-4 md:space-y-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -164,14 +188,14 @@ const About = () => {
             >
               {/* Why Forza Title */}
               <h2 
-                className="font-poppins leading-none text-[#1B3764] mb-4 text-center" 
-                style={{ fontSize: 'clamp(28px, 3vw, 56px)' }}
+                className="font-poppins leading-none text-[#1B3764] mb-3 md:mb-4 text-center" 
+                style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 56px)' }}
               >
                 Why Forza
               </h2>
               
               {/* Story paragraphs */}
-              <div className="space-y-6 text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
+              <div className="space-y-4 md:space-y-6 text-sm md:text-lg lg:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
                 <p>
                   {preventOrphans("Forza means force in Italian. It's also synonymous with Strength. And for us, strength is an all-encompassing commitment. Simply put, we do nothing for our customers half-hearted. Everything we do and every product solution we provide are full-strength, at all times.")}
                 </p>
@@ -186,25 +210,25 @@ const About = () => {
 
             {/* Bullet Points Section */}
             <motion.div
-              className="max-w-4xl mx-auto pb-10"
+              className="max-w-4xl mx-auto pb-6 md:pb-10"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <ul className="space-y-4">
+              <ul className="space-y-3 md:space-y-4">
                 {[
                   "Vertically Integrated USA Manufacturing",
                   "Custom Formulations & Quick Turnaround",
                   "Dedicated Engineering Support"
                 ].map((item, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-[#F2611D] rounded-full flex items-center justify-center">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <li key={index} className="flex items-center gap-2 md:gap-3">
+                    <span className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 bg-[#F2611D] rounded-full flex items-center justify-center">
+                      <svg className="w-3 h-3 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
-                    <span className="text-[#1B3764] font-bold font-poppins text-lg">{item}</span>
+                    <span className="text-[#1B3764] font-bold font-poppins text-sm md:text-lg">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -217,7 +241,7 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className="relative w-full aspect-video bg-gray-100 rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+              <div className="relative w-full aspect-video bg-gray-100 rounded-lg md:rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
                 {/* TODO: Update video URL or handle logo change */}
                 <iframe
                   src="https://www.youtube.com/embed/DjI8bEcu6FI?autoplay=1&mute=1&loop=1&playlist=DjI8bEcu6FI&cc_load_policy=1&rel=0&controls=1"
@@ -229,10 +253,10 @@ const About = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
-              <div className="mt-4 text-sm text-[#1B3764]/60 font-poppins">
+              <div className="mt-3 md:mt-4 text-xs md:text-sm text-[#1B3764]/60 font-poppins">
                 <details>
                   <summary className="cursor-pointer hover:text-[#F2611D] transition-colors font-medium">
-                    Video Transcript / Summary
+                    + video Transcript | Summary
                   </summary>
                   <p className="mt-2 pl-4 border-l-2 border-[#F2611D]/20">
                     {preventOrphans("Forza is a US-based manufacturer of high-performance adhesives, sealants, and tapes. We combine vertically integrated manufacturing with in-house R&D to deliver custom solutions for industrial applications. From transportation to marine, our products are engineered for durability and performance.")}
@@ -244,12 +268,12 @@ const About = () => {
         </section>
 
         {/* Mission & Manufacturing Section */}
-        <section className="relative w-full py-20 z-20 bg-[#f5f7fa]">
+        <section className="relative w-full py-12 md:py-20 z-20 bg-[#f5f7fa]">
           <div className="max-w-[1400px] xl:max-w-[1600px] mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
             {/* Our Mission */}
             <motion.div 
-              className="space-y-6 p-8 md:p-12 rounded-2xl"
+              className="space-y-4 md:space-y-6 p-6 md:p-8 lg:p-12 rounded-xl md:rounded-2xl"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -257,85 +281,85 @@ const About = () => {
             >
               <div>
                 <h2 
-                  className="font-poppins leading-none text-[#1B3764] mb-4" 
-                  style={{ fontSize: 'clamp(28px, 3vw, 56px)' }}
+                  className="font-poppins leading-none text-[#1B3764] mb-3 md:mb-4" 
+                  style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 56px)' }}
                 >
                   Our Mission
                 </h2>
                 {/* Orange line */}
-                <div className="w-40 h-1 bg-[#F2611D] mb-6" />
+                <div className="w-32 md:w-40 h-0.5 md:h-1 bg-[#F2611D] mb-4 md:mb-6" />
               </div>
-              <p className="text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
+              <p className="text-sm md:text-lg lg:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
                 {preventOrphans("To empower manufacturers with adhesive solutions that improve efficiency, reduce costs, and enhance product durability. We don't just sell glue; we solve bonding challenges.")}
               </p>
-              <p className="text-lg md:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
+              <p className="text-sm md:text-lg lg:text-xl font-poppins text-[#1B3764]/80 leading-relaxed">
                 {preventOrphans("With complete in-house R&D and manufacturing capabilities, we can develop, test, and produce custom formulations faster than anyone in the industry.")}
               </p>
             </motion.div>
             
             {/* What We Manufacture */}
             <motion.div
-              className="relative bg-gradient-to-bl from-[#477197] to-[#2c476e] rounded-2xl p-12 text-white"
+              className="relative bg-gradient-to-bl from-[#477197] to-[#2c476e] rounded-xl md:rounded-2xl p-6 md:p-8 lg:p-12 text-white"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <div className="mb-8">
+              <div className="mb-6 md:mb-8">
                 <h3 
-                  className="font-poppins mb-4" 
-                  style={{ fontSize: 'clamp(28px, 2.5vw + 0.3rem, 52px)' }}
+                  className="font-poppins mb-3 md:mb-4" 
+                  style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 52px)' }}
                 >
                   What We Manufacture
                 </h3>
                 {/* Orange line */}
-                <div className="w-80 h-1 bg-[#F2611D] mb-6" />
+                <div className="w-48 md:w-80 h-0.5 md:h-1 bg-[#F2611D] mb-4 md:mb-6" />
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
-                <Link to="/products/structural-adhesives" className="space-y-2 group cursor-pointer">
-                  <h4 className="text-white font-poppins text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8">
+                <Link to="/products/structural-adhesives" className="space-y-1 md:space-y-2 group cursor-pointer">
+                  <h4 className="text-white font-poppins text-sm md:text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
                     Structural Adhesives
-                    <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </h4>
-                  <p className="text-sm text-slate-300 font-poppins group-hover:text-white">High-strength bonding for metals, composites & plastics.</p>
+                  <p className="text-xs md:text-sm text-slate-300 font-poppins group-hover:text-white">High-strength bonding for metals, composites & plastics.</p>
                 </Link>
-                <Link to="/products/sealants" className="space-y-2 group cursor-pointer">
-                  <h4 className="text-white font-poppins text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
+                <Link to="/products/sealants" className="space-y-1 md:space-y-2 group cursor-pointer">
+                  <h4 className="text-white font-poppins text-sm md:text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
                     Sealants
-                    <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </h4>
-                  <p className="text-sm text-slate-300 font-poppins group-hover:text-white">Advanced MS Polymers, Silicones & Urethanes.</p>
+                  <p className="text-xs md:text-sm text-slate-300 font-poppins group-hover:text-white">Advanced MS Polymers, Silicones & Urethanes.</p>
                 </Link>
-                <Link to="/products/tapes" className="space-y-2 group cursor-pointer">
-                  <h4 className="text-white font-poppins text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
+                <Link to="/products/tapes" className="space-y-1 md:space-y-2 group cursor-pointer">
+                  <h4 className="text-white font-poppins text-sm md:text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
                     Industrial Tapes
-                    <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </h4>
-                  <p className="text-sm text-slate-300 font-poppins group-hover:text-white">VHB replacements, masking, & surface protection.</p>
+                  <p className="text-xs md:text-sm text-slate-300 font-poppins group-hover:text-white">VHB replacements, masking, & surface protection.</p>
                 </Link>
-                <Link to="/products/cleaning-solutions" className="space-y-2 group cursor-pointer">
-                  <h4 className="text-white font-poppins text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
+                <Link to="/products/cleaning-solutions" className="space-y-1 md:space-y-2 group cursor-pointer">
+                  <h4 className="text-white font-poppins text-sm md:text-lg group-hover:text-[#F2611D] transition-colors flex items-center gap-2">
                     Cleaning Solutions
-                    <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 md:w-4 md:h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </h4>
-                  <p className="text-sm text-slate-300 font-poppins group-hover:text-white">Industrial-grade surface prep & removers.</p>
+                  <p className="text-xs md:text-sm text-slate-300 font-poppins group-hover:text-white">Industrial-grade surface prep & removers.</p>
                 </Link>
               </div>
               
               {/* See Products Button */}
-              <div className="mt-8">
+              <div className="mt-6 md:mt-8">
                 <Link
                   to="/products"
-                  className="inline-flex items-center px-8 py-3 bg-[#F2611D] text-white font-normal rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-lg"
+                  className="inline-flex items-center px-6 md:px-8 py-2 md:py-3 bg-[#F2611D] text-white text-sm md:text-base font-normal rounded-full hover:bg-[#F2611D]/80 transition-colors font-poppins shadow-lg"
                 >
                   See Products
                 </Link>
@@ -354,7 +378,7 @@ const About = () => {
         </div>
 
         {/* Performance. Elevated. Animation Section */}
-        <section className="relative py-24 px-4 bg-[#f5f7fa] z-20">
+        <section className="relative py-8 md:py-24 px-4 bg-[#f5f7fa] z-20">
           <ExperienceBetterBanner textColor="#1B3764" highlightColor="#F2611D" />
         </section>
       </div>

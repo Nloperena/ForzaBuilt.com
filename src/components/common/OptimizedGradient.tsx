@@ -61,7 +61,7 @@ const OptimizedGradient: React.FC<OptimizedGradientProps> = ({
 
   return (
     <div 
-      className={`absolute inset-0 w-full h-full pointer-events-none z-0 ${className}`}
+      className={`absolute inset-0 w-full h-full pointer-events-none z-0 hidden md:block ${className}`}
       style={{
         ...getGradientStyle(),
         mixBlendMode: 'overlay'

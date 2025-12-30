@@ -193,7 +193,7 @@ export default function ProductImageTicker({
         >
           {loopItems.map((it, i) => (
             <figure key={`${it.src}-${i}`} className="shrink-0">
-              <div className="relative w-[clamp(4.5rem,14vw,18rem)] h-[clamp(4.5rem,28vw,18rem)] lg:w-[clamp(6.5rem,16vw,22rem)] lg:h-[clamp(6.5rem,20vw,22rem)] xl:w-[clamp(4.5rem,14vw,18rem)] xl:h-[clamp(4.5rem,18vw,18rem)]" style={{ 
+              <div className="relative w-[clamp(8rem,20vw,12rem)] h-[clamp(8rem,20vw,12rem)] md:w-[clamp(10rem,22vw,14rem)] md:h-[clamp(10rem,22vw,14rem)] lg:w-[clamp(6.5rem,16vw,22rem)] lg:h-[clamp(6.5rem,20vw,22rem)] xl:w-[clamp(4.5rem,14vw,18rem)] xl:h-[clamp(4.5rem,18vw,18rem)]" style={{ 
                 aspectRatio: '1 / 1'
               }}>
                 <img

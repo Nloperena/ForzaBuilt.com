@@ -372,8 +372,8 @@ const ProductsSectionRow = () => {
           })}
         </div>
 
-        {/* Mobile Grid Layout - hidden on desktop */}
-        <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 px-2 sm:px-4 relative z-10">
+        {/* Mobile Grid Layout - hidden on desktop - Always 2 columns side by side */}
+        <div className="md:hidden grid grid-cols-2 gap-2 sm:gap-3 px-2 sm:px-4 relative z-10">
           {products.map((product, index) => {
             const isHovered = hoveredIndex === index;
             const isTapes = product.title === 'TAPES';
@@ -399,90 +399,37 @@ const ProductsSectionRow = () => {
                       backgroundImage: 'none'
                     }}
                   >
-                    <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
+                    <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem] flex flex-row${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
                       <motion.div
-                        className={`absolute inset-0 ${isTopRow ? 'flex flex-row items-center' : 'flex flex-col justify-end items-center'}${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
+                        className={`absolute inset-0 flex flex-row items-center${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
                         style={{
                           opacity: isHovered ? 0 : 1,
                           zIndex: 1,
                           transition: 'all 0.3s ease-in-out'
                         }}
                       >
-                        {isTopRow || index === 2 || index === 3 ? (
-                          <>
-                            <div className="w-full h-full flex flex-row items-center justify-center overflow-hidden rounded-[2rem]">
-                              <div className="w-full h-full relative z-10 overflow-hidden rounded-[2rem]">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
-                                  style={{
-                                    pointerEvents: 'none',
-                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 2 ? { transform: 'scaleX(-1.4) scaleY(1.4) translateX(-5.6667%)' } : {}),
-                                    ...(index === 3 ? { transform: 'scaleX(1.2) scaleY(1.2) translateX(16.67%)' } : {})
-                                  }}
-                                />
-                              </div>
-                              <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
-                                  {product.fullTitle.split('\n').map((line, i) => (
-                                    <div key={i}>{line}</div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          </>
-                        ) : (
-                          // Bottom row: check for INDUSTRIAL CLEANING to swap image/text order
-                          product.title === "INDUSTRIAL CLEANING" ? (
-                            <div className="w-full h-full flex flex-row items-center justify-center overflow-hidden rounded-[2rem]">
-                              <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
-                                  {product.fullTitle.split('\n').map((line, i) => (
-                                    <div key={i}>{line}</div>
-                                  ))}
-                                </div>
-                              </div>
-                              <div className="w-full h-full relative z-10 overflow-hidden rounded-[2rem]">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
-                                  style={{
-                                    pointerEvents: 'none',
-                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 2 ? { transform: 'scaleX(-1.4) scaleY(1.4) translateX(-5.6667%)' } : {}),
-                                    ...(index === 3 ? { transform: 'scaleX(1.2) scaleY(1.2) translateX(16.67%)' } : {})
-                                  }}
-                                />
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="w-full h-full flex flex-row-reverse items-center justify-center overflow-hidden rounded-[2rem]">
-                              <div className="w-full h-full relative z-10 overflow-hidden rounded-[2rem]">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
-                                  style={{
-                                    pointerEvents: 'none',
-                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 2 ? { transform: 'scaleX(-1.4) scaleY(1.4) translateX(-5.6667%)' } : {}),
-                                    ...(index === 3 ? { transform: 'scaleX(1.2) scaleY(1.2) translateX(16.67%)' } : {})
-                                  }}
-                                />
-                              </div>
-                              <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
-                                  {product.fullTitle.split('\n').map((line, i) => (
-                                    <div key={i}>{line}</div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          )
-                        )}
+                        {/* Image section - takes up left half */}
+                        <div className="w-1/2 h-full relative z-10 overflow-hidden flex-shrink-0">
+                          <img
+                            src={product.image}
+                            alt={product.title}
+                            className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
+                            style={{
+                              pointerEvents: 'none',
+                              filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
+                              ...(index === 2 ? { transform: 'scaleX(-1.4) scaleY(1.4) translateX(-5.6667%)' } : {}),
+                              ...(index === 3 ? { transform: 'scaleX(1.2) scaleY(1.2) translateX(16.67%)' } : {})
+                            }}
+                          />
+                        </div>
+                        {/* Text section - takes up right half */}
+                        <div className="w-1/2 h-full flex items-center justify-center z-10 flex-shrink-0 px-1">
+                          <div className="text-[10px] sm:text-xs font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                            {product.fullTitle.split('\n').map((line, i) => (
+                              <div key={i}>{line}</div>
+                            ))}
+                          </div>
+                        </div>
                       </motion.div>
                       <motion.div
                         className={`absolute inset-0 flex flex-col items-center justify-center p-3 md:p-4 text-center gap-2${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
@@ -532,90 +479,37 @@ const ProductsSectionRow = () => {
                       backgroundImage: 'none'
                     }}
                   >
-                    <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem]${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
+                    <div className={`relative aspect-square w-full overflow-hidden rounded-[2rem] flex flex-row${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}>
                       <motion.div
-                        className={`absolute inset-0 ${isTopRow ? 'flex flex-row items-center' : 'flex flex-col justify-end items-center'}${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
+                        className={`absolute inset-0 flex flex-row items-center${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}
                         style={{
                           opacity: isHovered ? 0 : 1,
                           zIndex: 1,
                           transition: 'all 0.3s ease-in-out'
                         }}
                       >
-                        {isTopRow || index === 2 || index === 3 ? (
-                          <>
-                            <div className="w-full h-full flex flex-row items-center justify-center overflow-hidden rounded-[2rem]">
-                              <div className="w-full h-full relative z-10 overflow-hidden rounded-[2rem]">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
-                                  style={{
-                                    pointerEvents: 'none',
-                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 2 ? { transform: 'scaleX(-1.4) scaleY(1.4) translateX(-5.6667%)' } : {}),
-                                    ...(index === 3 ? { transform: 'scaleX(1.2) scaleY(1.2) translateX(16.67%)' } : {})
-                                  }}
-                                />
-                              </div>
-                              <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
-                                  {product.fullTitle.split('\n').map((line, i) => (
-                                    <div key={i}>{line}</div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          </>
-                        ) : (
-                          // Bottom row: check for INDUSTRIAL CLEANING to swap image/text order
-                          product.title === "INDUSTRIAL CLEANING" ? (
-                            <div className="w-full h-full flex flex-row items-center justify-center overflow-hidden rounded-[2rem]">
-                              <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
-                                  {product.fullTitle.split('\n').map((line, i) => (
-                                    <div key={i}>{line}</div>
-                                  ))}
-                                </div>
-                              </div>
-                              <div className="w-full h-full relative z-10 overflow-hidden rounded-[2rem]">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
-                                  style={{
-                                    pointerEvents: 'none',
-                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 2 ? { transform: 'scaleX(-1.4) scaleY(1.4) translateX(-5.6667%)' } : {}),
-                                    ...(index === 3 ? { transform: 'scaleX(1.2) scaleY(1.2) translateX(16.67%)' } : {})
-                                  }}
-                                />
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="w-full h-full flex flex-row-reverse items-center justify-center overflow-hidden rounded-[2rem]">
-                              <div className="w-full h-full relative z-10 overflow-hidden rounded-[2rem]">
-                                <img
-                                  src={product.image}
-                                  alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
-                                  style={{
-                                    pointerEvents: 'none',
-                                    filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
-                                    ...(index === 2 ? { transform: 'scaleX(-1.4) scaleY(1.4) translateX(-5.6667%)' } : {}),
-                                    ...(index === 3 ? { transform: 'scaleX(1.2) scaleY(1.2) translateX(16.67%)' } : {})
-                                  }}
-                                />
-                              </div>
-                              <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
-                                  {product.fullTitle.split('\n').map((line, i) => (
-                                    <div key={i}>{line}</div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          )
-                        )}
+                        {/* Image section - takes up left half */}
+                        <div className="w-1/2 h-full relative z-10 overflow-hidden flex-shrink-0">
+                          <img
+                            src={product.image}
+                            alt={product.title}
+                            className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
+                            style={{
+                              pointerEvents: 'none',
+                              filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
+                              ...(index === 2 ? { transform: 'scaleX(-1.4) scaleY(1.4) translateX(-5.6667%)' } : {}),
+                              ...(index === 3 ? { transform: 'scaleX(1.2) scaleY(1.2) translateX(16.67%)' } : {})
+                            }}
+                          />
+                        </div>
+                        {/* Text section - takes up right half */}
+                        <div className="w-1/2 h-full flex items-center justify-center z-10 flex-shrink-0 px-1">
+                          <div className="text-[10px] sm:text-xs font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                            {product.fullTitle.split('\n').map((line, i) => (
+                              <div key={i}>{line}</div>
+                            ))}
+                          </div>
+                        </div>
                       </motion.div>
                       <motion.div
                         className={`absolute inset-0 flex flex-col items-center justify-center p-3 md:p-4 text-center gap-2${isIndustrialCleaning ? ' scale-x-[-1]' : ''}`}

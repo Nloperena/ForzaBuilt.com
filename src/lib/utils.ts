@@ -100,3 +100,25 @@ export function generateSlugFromTitle(title: string): string {
     .replace(/-{2,}/g, "-")
     .replace(/^-+|-+$/g, "");
 }
+
+/**
+ * Splits a product name on any dash type (en dash, em dash, or regular hyphen)
+ * Returns the part before the dash, or the full name if no dash is found
+ */
+export function getProductNameTitle(name: string): string {
+  if (!name) return '';
+  // Split on en dash (–), em dash (—), or regular hyphen (-)
+  const parts = name.split(/[–—\-]/);
+  return parts[0]?.trim() || name;
+}
+
+/**
+ * Gets the subtitle/description part of a product name (after the dash)
+ * Returns the part after the dash, or empty string if no dash is found
+ */
+export function getProductNameSubtitle(name: string): string {
+  if (!name) return '';
+  // Split on en dash (–), em dash (—), or regular hyphen (-)
+  const parts = name.split(/[–—\-]/);
+  return parts[1]?.trim() || '';
+}

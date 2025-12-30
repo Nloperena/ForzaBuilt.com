@@ -7,10 +7,9 @@ import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import HeaderV2 from '@/components/Header/HeaderV2';
 import FooterV2 from '@/components/FooterV2';
-import VideoSkeleton from '@/components/common/VideoSkeleton';
-import { useGradientMode } from '@/contexts/GradientModeContext';
 import DynamicMetaTags from '@/components/DynamicMetaTags';
 import { motion } from 'framer-motion';
+import VideoSkeleton from '@/components/common/VideoSkeleton';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,10 +20,10 @@ const Contact = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-  const { mode } = useGradientMode();
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -93,25 +92,46 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleLoadedData = () => {
-      setIsVideoLoaded(true);
-    };
-
-    const handleError = () => {
-      console.error('Video failed to load');
-    };
-
-    video.addEventListener('loadeddata', handleLoadedData);
-    video.addEventListener('error', handleError);
-
-    return () => {
-      video.removeEventListener('loadeddata', handleLoadedData);
-      video.removeEventListener('error', handleError);
-    };
+    // Force video to load when component mounts or sources change
+    if (videoRef.current) {
+      const video = videoRef.current;
+      // Reset video state
+      video.load();
+      
+      // Try to play after a short delay
+      const playTimeout = setTimeout(() => {
+        if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+          video.play().catch((err) => {
+            console.warn('Video autoplay failed:', err);
+          });
+        }
+      }, 100);
+      
+      return () => clearTimeout(playTimeout);
+    }
   }, []);
+
+  const handleVideoLoad = () => {
+    console.log('Contact page video loaded successfully');
+    setIsVideoLoaded(true);
+  };
+
+  const handleVideoError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
+    const videoElement = e.currentTarget;
+    const error = videoElement.error;
+    if (error) {
+      console.error('Video error details:', {
+        code: error.code,
+        message: error.message,
+        networkState: videoElement.networkState,
+        readyState: videoElement.readyState,
+        currentSrc: videoElement.currentSrc
+      });
+    }
+    console.warn('Contact page video failed to load, showing fallback', e);
+    setVideoError(true);
+    setIsVideoLoaded(true);
+  };
 
   return (
     <div className="bg-white min-h-screen flex flex-col relative overflow-x-hidden">
@@ -123,46 +143,90 @@ const Contact = () => {
       />
       <HeaderV2 />
       
-      <div className="flex-1">
-        {/* Hero Section - Gradient Background */}
-        <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 px-4 text-center z-20 bg-gradient-to-bl from-[#477197] to-[#2c476e]">
-          <motion.div 
-            className="max-w-[1400px] mx-auto flex flex-col items-center justify-center gap-4 md:gap-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
+      <div className="flex-1 relative">
+        {/* Hero Section - Eagle Video */}
+        <section className="relative h-[50vh] sm:h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f]">
+          {!isVideoLoaded && <VideoSkeleton />}
+          
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            onLoadedData={handleVideoLoad}
+            onCanPlay={handleVideoLoad}
+            onCanPlayThrough={handleVideoLoad}
+            onError={handleVideoError}
+            onLoadStart={() => console.log('Contact page video loading started')}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+              isVideoLoaded && !videoError ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ 
+              zIndex: 1,
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%',
+              minWidth: '100%',
+              minHeight: '100%'
+            }}
           >
-            <h1 className="mb-0 font-poppins text-white text-2xl sm:text-4xl md:text-5xl lg:text-fluid-display leading-snug">
-              CONTACT US
-            </h1>
-            <h3 className="font-regular text-center leading-tight font-poppins text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl max-w-4xl mt-4">
-              Ready to discuss your project<br />Let's find the right solution together
-            </h3>
-          </motion.div>
+            <source src="/videos/backgrounds/Eagle Header Video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e] to-[#81899f]" style={{ zIndex: 0 }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#2c476e]/60 to-[#81899f]/60" style={{ zIndex: 2 }} />
+
+          {/* Hero Content Overlay */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none" style={{ zIndex: 10 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+              className="max-w-4xl mx-auto"
+            >
+              <h3 
+                className="font-regular text-center leading-tight font-poppins text-white"
+                style={{ 
+                  fontSize: 'clamp(1rem, 2vw + 0.5rem, 2.5rem)',
+                  maxWidth: '900px',
+                  margin: '0 auto'
+                }}
+              >
+                Ready to discuss your project<br />Let's find the right solution together
+              </h3>
+            </motion.div>
+          </div>
         </section>
 
         {/* Contact Section */}
-        <section className="relative py-16 md:py-24 px-4 bg-white z-20">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        <section className="relative py-12 md:py-20 lg:py-24 px-4 bg-white">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
               {/* Contact Form */}
               <motion.div 
-                className="bg-[#f5f7fa] rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-[#f5f7fa] rounded-xl md:rounded-2xl p-6 md:p-8 lg:p-10 shadow-xl border border-gray-100"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
               >
-                <div className="mb-8">
-                  <h2 className="text-3xl md:text-4xl font-poppins text-[#1B3764] mb-4 tracking-tight">
+                <div className="mb-6 md:mb-8">
+                  <h2 
+                    className="font-poppins text-[#1B3764] mb-3 md:mb-4 tracking-tight"
+                    style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 40px)' }}
+                  >
                     Get In Touch
                   </h2>
-                  <p className="text-lg font-poppins text-[#1B3764]/70">
+                  <p className="text-sm md:text-base lg:text-lg font-poppins text-[#1B3764]/70">
                     Fill out the form below and our team will get back to you within 24 hours.
                   </p>
                 </div>
 
-                <form className="space-y-6" onSubmit={handleSubmit}>
-                  <div className="grid md:grid-cols-2 gap-6">
+                <form className="space-y-5 md:space-y-6" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="firstName" className="text-sm font-bold text-[#1B3764] font-poppins">
                         First Name *
@@ -245,7 +309,7 @@ const Contact = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white py-6 px-6 rounded-xl font-bold transition-all duration-200 font-poppins text-lg shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                    className="w-full bg-[#F2611D] hover:bg-[#F2611D]/90 text-white py-4 px-6 rounded-xl font-bold transition-all duration-200 font-poppins text-base shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -263,93 +327,97 @@ const Contact = () => {
               </motion.div>
 
               {/* Contact Info */}
-              <div className="flex flex-col justify-center">
-                <motion.div 
-                  className="space-y-8"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  <div className="mb-8">
-                    <h2 className="text-3xl md:text-4xl font-poppins text-[#1B3764] mb-4 tracking-tight">
-                      Contact Information
-                    </h2>
-                    <p className="text-lg font-poppins text-[#1B3764]/70">
-                      Get in touch with our team for expert guidance and support.
-                    </p>
-                  </div>
+              <motion.div 
+                className="flex flex-col justify-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="mb-6 md:mb-8">
+                  <h2 
+                    className="font-poppins text-[#1B3764] mb-3 md:mb-4 tracking-tight"
+                    style={{ fontSize: 'clamp(24px, 2.5vw + 0.5rem, 40px)' }}
+                  >
+                    Contact Information
+                  </h2>
+                  <p className="text-sm md:text-base lg:text-lg font-poppins text-[#1B3764]/70">
+                    Get in touch with our team for expert guidance and support.
+                  </p>
+                </div>
 
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-5 p-6 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                        <MapPin className="w-6 h-6 text-[#F2611D]" />
-                      </div>
-                      <div>
-                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">HQ Address</h4>
-                        <p className="text-[#1B3764]/70 font-poppins text-base">
-                          <span className="font-bold text-[#1B3764]">Forza</span><br />
-                          3211 Nebraska Ave, Suite 300<br />
-                          Council Bluffs, Iowa 51501
-                        </p>
-                      </div>
+                <div className="space-y-4 md:space-y-5">
+                  <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                      <MapPin className="w-6 h-6 text-[#F2611D]" />
                     </div>
-                    
-                    <div className="flex items-start space-x-5 p-6 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                        <Phone className="w-6 h-6 text-[#F2611D]" />
-                      </div>
-                      <div>
-                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">Phone</h4>
-                        <p className="text-[#1B3764]/70 font-poppins text-base">
-                          <span className="font-bold">O. 402.731.9300</span>
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start space-x-5 p-6 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                        <Mail className="w-6 h-6 text-[#F2611D]" />
-                      </div>
-                      <div>
-                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">Email</h4>
-                        <p className="text-[#1B3764]/70 font-poppins text-base">
-                          <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
-                            support@forzabuilt.com
-                          </a>
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start space-x-5 p-6 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                        <Clock className="w-6 h-6 text-[#F2611D]" />
-                      </div>
-                      <div>
-                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">Business Hours</h4>
-                        <p className="text--[#1B3764]/70 font-poppins text-base">
-                          <span className="font-bold">Mon – Fri | 8:00 AM – 4:30 PM CST</span><br />
-                          Saturday & Sunday: Closed
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-5 p-6 bg-white rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
-                        <Mail className="w-6 h-6 text-[#F2611D]" />
-                      </div>
-                      <div>
-                        <h4 className="text-[#1B3764] font-poppins text-lg mb-1">Sales Inquiries</h4>
-                        <p className="text-[#1B3764]/70 font-poppins text-base">
-                          <a href="mailto:sales@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
-                            sales@forzabuilt.com
-                          </a><br />
-                          <span className="text-xs text-[#1B3764]/50">For optimization inquiries and working with us</span>
-                        </p>
-                      </div>
+                    <div>
+                      <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">HQ Address</h4>
+                      <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base leading-relaxed">
+                        <span className="font-bold text-[#1B3764]">Forza</span><br />
+                        3211 Nebraska Ave, Suite 300<br />
+                        Council Bluffs, Iowa 51501
+                      </p>
                     </div>
                   </div>
-                </motion.div>
-              </div>
+                  
+                  <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                      <Phone className="w-6 h-6 text-[#F2611D]" />
+                    </div>
+                    <div>
+                      <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">Phone</h4>
+                      <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base">
+                        <a href="tel:4027319300" className="font-bold text-[#1B3764] hover:text-[#F2611D] transition-colors">
+                          O. 402.731.9300
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                      <Mail className="w-6 h-6 text-[#F2611D]" />
+                    </div>
+                    <div>
+                      <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">Email</h4>
+                      <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base">
+                        <a href="mailto:support@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
+                          support@forzabuilt.com
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                      <Clock className="w-6 h-6 text-[#F2611D]" />
+                    </div>
+                    <div>
+                      <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">Business Hours</h4>
+                      <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base leading-relaxed">
+                        <span className="font-bold">Mon – Fri | 8:00 AM – 4:30 PM CST</span><br />
+                        Saturday & Sunday: Closed
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+                    <div className="flex-shrink-0 w-12 h-12 bg-[#1B3764]/5 rounded-full flex items-center justify-center group-hover:bg-[#1B3764]/10 transition-colors">
+                      <Mail className="w-6 h-6 text-[#F2611D]" />
+                    </div>
+                    <div>
+                      <h4 className="text-[#1B3764] font-poppins text-base md:text-lg mb-2 font-semibold">Sales Inquiries</h4>
+                      <p className="text-[#1B3764]/70 font-poppins text-sm md:text-base leading-relaxed">
+                        <a href="mailto:sales@forzabuilt.com" className="text-[#F2611D] hover:text-[#F2611D]/80 underline font-semibold">
+                          sales@forzabuilt.com
+                        </a><br />
+                        <span className="text-xs text-[#1B3764]/50">For optimization inquiries and working with us</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>

@@ -76,7 +76,7 @@ const ProductsSectionAlt = () => {
         : mode === 'light'
           ? 'bg-[#e8e8e8]'
           : `bg-gradient-to-b from-[#2c476e] to-[#81899f]`
-    } w-full relative z-20`}>
+    } w-full relative z-20 overflow-x-hidden`}>
 
       {/* Edge triangles positioned at left and right viewport edges */}
       {/* Hide triangles for light2 mode */}
@@ -123,54 +123,47 @@ const ProductsSectionAlt = () => {
         </div>
       )}
 
-      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 max-w-full overflow-x-hidden">
         
-        {/* Mobile: Single column list layout */}
+        {/* Mobile & iPad: 2 column grid with desktop-style cards */}
         <div className="block md:hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 max-w-lg mx-auto">
             {productCategories.map((category: ProductCategory, index: number) => (
-              <div
+              <Link 
                 key={category.slug}
-                className="block"
-                style={{
-                  marginBottom: index === productCategories.length - 1 ? '2rem' : '0'
-                }}
+                to={`/products/${category.slug}`}
+                className="block w-full h-full"
               >
-                <Link 
-                  to={`/products/${category.slug}`}
-                  className="block w-full"
+                <Card
+                  className="aspect-[6/4] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
+                  style={{
+                    backgroundImage: 'none'
+                  }}
                 >
-                  <Card
-                    className="shadow-lg rounded-xl lg:rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:shadow-xl group cursor-pointer w-full text-white relative z-10 backdrop-blur-xl bg-gradient-to-b from-[#2c476e] to-[#81899f]"
-                    style={{
-                      backgroundImage: 'none',
-                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.6)',
-                      backgroundColor: mode === 'light' || mode === 'light2' ? 'transparent' : 'transparent',
-                      background: 'linear-gradient(to bottom, #2c476e, #81899f)'
-                    }}
-                  >
-                    <div className="relative w-full h-28 sm:h-32">
-                      {/* Image Skeleton Loading State */}
-                      {!imageLoadedStates[index] && (
-                        <ImageSkeleton />
-                      )}
-                      
-                      <img
-                        src={category.image}
-                        alt={category.title}
-                        className={`w-full h-full object-cover transition-opacity duration-500 ${
-                          imageLoadedStates[index] ? 'opacity-100' : 'opacity-0'
-                        }`}
-                        onLoad={() => handleImageLoad(index)}
-                        onError={(e) => {
-                          console.error(`Failed to load image for ${category.title}:`, category.image);
-                          // Don't mark as loaded on error - keep showing skeleton or fallback
-                        }}
-                      />
-                    </div>
-                  </Card>
-                </Link>
-              </div>
+                  <div className="relative w-full h-full overflow-hidden">
+                    {/* Image Skeleton Loading State */}
+                    {!imageLoadedStates[index] && (
+                      <ImageSkeleton />
+                    )}
+                    
+                    <img
+                      src={category.image}
+                      alt={category.title}
+                      className={`w-full h-full object-cover transition-opacity duration-500 ${
+                        imageLoadedStates[index] ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      onLoad={() => handleImageLoad(index)}
+                      onError={(e) => {
+                        console.error(`Failed to load image for ${category.title}:`, category.image);
+                        // Don't mark as loaded on error - keep showing skeleton or fallback
+                      }}
+                      style={{
+                        objectPosition: 'center center'
+                      }}
+                    />
+                  </div>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>

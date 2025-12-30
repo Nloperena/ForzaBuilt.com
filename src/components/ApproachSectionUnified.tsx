@@ -262,38 +262,38 @@ const ApproachSectionUnified = () => {
 
           {/* Scrollable Content - transparent background */}
           <div className="relative">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-0 relative">
               {/* LEFT - Titles - transparent background */}
               <div 
                 ref={titlesContainerRef}
                 className="
                 relative
-                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
+                min-h-[auto] md:min-h-[36svh] lg:min-h-[55vh] xl:min-h-[65vh]
                 px-[clamp(14px,4vw,32px)] 
                 py-[clamp(12px,2vw,20px)]
-                flex items-center justify-center
+                flex items-start lg:items-center justify-start lg:justify-center
                 [--gap:clamp(12px,2.4vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]
               ">
                 <div className="w-full flex flex-col items-start h-full">
-                  <div className="space-y-[clamp(8px,1.5vw,16px)] w-full flex flex-col">
+                  <div className="space-y-[clamp(12px,2vw,20px)] w-full flex flex-col">
                     {approachItems.map((item, index) => (
                       <button
                         key={index}
                         onClick={() => handleItemChange(index)}
                         onMouseEnter={() => handleItemChange(index)}
                         className="w-full text-left transition-all duration-500 cursor-pointer"
-                        style={{ transform: 'none', width: 'fit-content' }}
+                        style={{ transform: 'none' }}
                       >
                         <h3 
                           ref={(el) => { titleRefs.current[index] = el; }}
-                          className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] whitespace-nowrap block transition-all duration-500 ease-out ${
+                          className={`font-poppins leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] lg:whitespace-nowrap block transition-all duration-500 ease-out ${
                             selectedItem === index
                               ? 'text-[#F2611D] font-bold'
                               : 'text-white font-normal'
                           }`}
                           style={{
                             fontSize: selectedItem === index
-                              ? 'clamp(20px, 2vw + 0.5rem, 56px)'
+                              ? 'clamp(18px, 2vw + 0.5rem, 56px)'
                               : 'clamp(14px, 1.5vw + 0.4rem, 48px)',
                             transform: 'none',
                             display: 'block'
@@ -310,7 +310,7 @@ const ApproachSectionUnified = () => {
               {/* RIGHT - Videos with description */}
               <div className="
                 relative
-                min-h-[36svh] md:min-h-[55vh] lg:min-h-[55vh] xl:min-h-[65vh]
+                min-h-[50vh] md:min-h-[36svh] lg:min-h-[55vh] xl:min-h-[65vh]
                 py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible

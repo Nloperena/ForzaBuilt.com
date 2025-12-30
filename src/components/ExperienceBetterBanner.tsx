@@ -112,7 +112,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
           opacity: 0;
         }
       `}</style>
-      <div className="bg-transparent py-10 md:py-16 lg:py-20 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
+      <div className="bg-transparent py-6 md:py-16 lg:py-20 relative w-full overflow-x-hidden" style={{ zIndex: 5, overflowX: 'hidden' }}>
         <div className="w-full h-full flex items-center justify-center overflow-x-hidden" style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
           <div
             ref={containerRef}
@@ -145,7 +145,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
               <span
                 className="font-poppins font-bold leading-[1]"
                 style={{
-                  fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
+                  fontSize: 'clamp(20px, 2.5vw + 0.5rem, 80px)',
                   fontWeight: 700,
                   letterSpacing: '-0.02em',
                   lineHeight: 1,
@@ -179,7 +179,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
                 <span
                   className="font-poppins font-bold leading-[1]"
                   style={{
-                    fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
+                    fontSize: 'clamp(20px, 2.5vw + 0.5rem, 80px)',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
                     lineHeight: 1,
@@ -193,7 +193,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
                   <span
                     className="font-poppins font-bold leading-[1]"
                     style={{
-                      fontSize: 'clamp(40px, 3.5vw + 0.7rem, 80px)',
+                      fontSize: 'clamp(20px, 2.5vw + 0.5rem, 80px)',
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
                       lineHeight: 1,

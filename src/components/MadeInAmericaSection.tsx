@@ -33,7 +33,7 @@ const MadeInAmericaSection: React.FC = () => {
             <div className="p-0 sm:p-1 lg:p-2 xl:p-3 flex flex-col h-full">
               <div className="flex flex-col h-full justify-between">
                 {/* Title aligned with top of video */}
-                <div>
+                <div className="text-center lg:text-left">
                   <h2
                     className={`font-normal max-w-none mb-2 sm:mb-3 md:mb-4 ${
                       mode === 'light2' ? 'text-[#2c476e]' : 'text-[#2c476e]'
@@ -55,7 +55,7 @@ const MadeInAmericaSection: React.FC = () => {
                 </div>
                 
                 {/* American Flag Icon with Asterisk - Aligned with bottom of video */}
-                <div className="flex justify-start mt-2 sm:mt-3 md:mt-4">
+                <div className="flex justify-center lg:justify-start mt-2 sm:mt-3 md:mt-4">
                   <img 
                     src="/images/misc/Flag Icon with asterisk 1.png" 
                     alt="PROUDLY MADE IN AMERICA" 
