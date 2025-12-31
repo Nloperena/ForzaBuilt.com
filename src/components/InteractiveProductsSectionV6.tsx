@@ -64,7 +64,6 @@ const InteractiveProductsSectionV6 = () => {
 
   const { mode } = useGradientMode();
   const [progress, setProgress] = useState(0);
-  const [parallaxOffset, setParallaxOffset] = useState(0);
   
   // Modal states
   const [showModal, setShowModal] = useState(false);
@@ -121,21 +120,6 @@ const InteractiveProductsSectionV6 = () => {
     };
   }, [hoveredIndex]);
 
-  // Parallax effect on scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
-        setParallaxOffset(scrollProgress * 15);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Modal helpers
   const loadModalProducts = async (category: 'bond' | 'seal' | 'tape' | 'ruggedred') => {
@@ -183,145 +167,111 @@ const InteractiveProductsSectionV6 = () => {
         <div className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#F2611D] to-orange-400 transition-all duration-100 z-50" style={{ width: `${progress}%` }} />
 
         {/* Background color grid */}
-        <div className="pointer-events-none absolute inset-0 grid grid-cols-2">
+        <div className="pointer-events-none absolute inset-0 md:grid md:grid-cols-2">
           <div className="bg-[#f3f5f7]"></div>
           <div className="bg-gradient-to-r from-[#477197] to-[#2c476e]"></div>
         </div>
 
         <div className="relative overflow-visible">
-          {/* Two column grid - always 2 columns on mobile and desktop */}
-          <div className="grid grid-cols-2 gap-0 overflow-hidden">
-            {/* LEFT SIDE - Images */}
-            <div className="relative aspect-square md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] flex items-center justify-center overflow-hidden">
-              {/* Subtle radial depth */}
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_0%,transparent_70%)] z-20" />
-
-              {/* Label group - scaled down for mobile */}
-              <div className="absolute top-[clamp(8px,1.3vw,40px)] left-[clamp(8px,1.3vw,40px)] text-left select-none [--lh-label:1.22] opacity-0 pointer-events-none z-20" aria-hidden="false">
-                <div className={`font-bold text-white text-[clamp(16px,1.2vw,28px)] md:text-[clamp(18px,1.8vw,28px)] ${
-                  mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-                }`}>
-                  <span className="leading-[var(--lh-label)] tracking-[-0.01em]">Forza</span>
-                </div>
-                <div className={`font-bold text-[#F2611D] text-[clamp(14px,1vw,24px)] md:text-[clamp(16px,1.6vw,24px)] ${
-                  mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-                }`}>
-                  <span className="leading-[var(--lh-label)] tracking-[-0.01em]">{(() => {
-                    const title = products[activeIndex].title === 'SEALANTS' ? 'SEAL' : products[activeIndex].title;
-                    return toTitleCase(title);
-                  })()}</span>
-                </div>
-                <div className={`text-white text-[clamp(10px,0.7vw,16px)] md:text-[clamp(10px,1vw,16px)] ${
-                  mode === 'light2' ? 'font-poppins' : ''
-                }`}>
-                  A FORCE TO BE RECKONED WITH
-                </div>
+          {/* Mobile: Stack vertically (product selections first, then image) | Desktop: 2 columns side-by-side */}
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-0 overflow-hidden -mb-px md:mb-0">
+            
+            {/* RIGHT SIDE - Product selections, description, and button (first on mobile, right on desktop) */}
+            <div className="relative bg-gradient-to-r from-[#477197] to-[#2c476e] px-4 py-6 pb-0 md:pb-12 md:px-8 md:py-12 flex flex-col order-1 md:order-2">
+              
+              {/* Product list - Compact on mobile, spaced on desktop */}
+              <div className="flex flex-col gap-3 md:gap-4 mb-4 md:mb-8">
+                {products.map((product, index) => {
+                  const isActive = activeIndex === index;
+                  
+                  return (
+                    <button
+                      key={index}
+                      onMouseEnter={() => {
+                        setHoveredIndex(index);
+                        resetTimer();
+                      }}
+                      onMouseLeave={() => {
+                        setHoveredIndex(null);
+                      }}
+                      onClick={() => {
+                        setLockedIndex(index);
+                        setHoveredIndex(null);
+                        resetTimer();
+                      }}
+                      className="w-full text-left transition-all duration-500 cursor-pointer"
+                    >
+                      <h3 className={`leading-tight tracking-[-0.01em] transition-all duration-500 ease-out ${
+                        mode === 'light2' ? 'font-poppins' : 'font-kallisto'
+                      } ${
+                        isActive
+                          ? 'text-[#F2611D] font-bold'
+                          : 'text-white font-normal'
+                      } ${!isActive ? 'hover:text-[#F2611D]' : ''}`}
+                      style={{
+                        fontSize: isActive 
+                          ? 'clamp(24px, 3vw, 120px)' // Mobile: 24px, Desktop: 120px
+                          : 'clamp(18px, 2vw, 56px)', // Mobile: 18px, Desktop: 56px
+                      }}>
+                        {toTitleCase(product.title)}
+                      </h3>
+                    </button>
+                  );
+                })}
               </div>
 
-              {/* Images with AnimatePresence for smooth transitions */}
-              <div className="absolute inset-0 w-full h-full">
-                <AnimatePresence initial={false}>
-                <motion.img
-                  key={activeIndex}
-                    src={products[activeIndex].image}
-                    alt={products[activeIndex].title}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                    style={{
-                      objectPosition: 'center 70%',
-                      transform: `translateZ(0px) scale(1.05) translateY(${parallaxOffset}px)`,
-                      zIndex: 1 // New image fades in on top? 
-                      // With AnimatePresence, the entering component is rendered alongside exiting.
-                      // Default z-index stacking order usually puts newer elements on top if they are siblings.
-                    }}
-                />
-              </AnimatePresence>
-                
-                {/* To avoid any white flashes if crossfade isn't perfect, 
-                    we could keep the previous image underneath, but AnimatePresence usually handles this well.
-                    If user wants "stacking", we can ensure exit is slower than enter or opacity stays 1 longer.
-                    But simple crossfade is usually what is meant by "fluid". 
-                */}
+              {/* Description and button */}
+              <div className="mt-auto space-y-3 md:space-y-4 pb-6 md:pb-0">
+                <AnimatePresence mode='wait'>
+                  <motion.div
+                    key={activeIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p className={`text-white text-sm md:text-lg leading-relaxed ${
+                      mode === 'light2' ? 'font-poppins' : ''
+                    }`}>
+                      {products[activeIndex].description}
+                    </p>
+                    <Button
+                      asChild
+                      className="mt-4 gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-9 md:h-10 items-center justify-center rounded-full bg-[#F2611D] px-5 md:px-7 py-2 md:py-3.5 text-white text-sm md:text-base font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                    >
+                      <Link to={`/products/${products[activeIndex].slug}`}>
+                        {getButtonText(products[activeIndex].title)}
+                      </Link>
+                    </Button>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
 
-            {/* RIGHT SIDE - Titles, description, and button */}
-            <div className="relative aspect-square md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[60svh] 2xl:min-h-[65svh] px-[clamp(8px,2vw,32px)] py-[clamp(12px,2vw,48px)] flex items-center justify-center [--gap:clamp(6px,1.2vw,24px)] [--lh-head:1.18] [--lh-head-sm:1.28] [--lh-body:1.7]">
-              <div className="w-full relative flex flex-col h-full">
-                {/* Product list */}
-                <div className="flex-1 flex flex-col">
-                  <div className="flex flex-col justify-evenly h-full flex-shrink-0">
-                    {products.map((product, index) => {
-                      const isActive = activeIndex === index;
-                      
-                      return (
-                        <div
-                          key={index}
-                          onMouseEnter={() => {
-                            setHoveredIndex(index);
-                            resetTimer();
-                          }}
-                          onMouseLeave={() => {
-                            setHoveredIndex(null);
-                          }}
-                          onClick={() => {
-                            setLockedIndex(index);
-                            setHoveredIndex(null); // Clear hover to "lock" visually? Or keep hover?
-                            // Usually click just sets the "base". Hover overrides it.
-                            resetTimer();
-                          }}
-                          className="w-full text-left transition-all duration-500 cursor-pointer"
-                        >
-                          <h3 className={`leading-[var(--lh-head-sm)] md:leading-[var(--lh-head)] tracking-[-0.01em] transition-all duration-500 ease-out ${
-                            mode === 'light2' ? 'font-poppins' : 'font-kallisto'
-                          } ${
-                            isActive
-                              ? 'text-[#F2611D] font-bold'
-                              : 'text-white font-normal'
-                          } ${!isActive ? 'hover:text-[#F2611D]' : ''}`}
-                          style={{
-                            fontSize: isActive 
-                              ? 'clamp(28px, 3.5vw, 120px)' // Mobile: 28px, Desktop: 120px - optimized for this section
-                              : 'clamp(20px, 2.5vw, 56px)', // Mobile: 20px, Desktop: 56px - optimized for this section
-                          }}>
-                            {toTitleCase(product.title)}
-                          </h3>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Button and description at bottom */}
-                <div className="mt-auto pt-2 md:pt-4 flex-shrink-0 space-y-2 md:space-y-4">
-                  <AnimatePresence mode='wait'>
-                    <motion.div
-                      key={activeIndex}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <p className={`text-white text-[clamp(14px,1vw,28px)] md:text-[clamp(16px,1.5vw,28px)] leading-relaxed mb-2 md:mb-4 ${
-                        mode === 'light2' ? 'font-poppins' : ''
-                      }`}>
-                        {products[activeIndex].description}
-                      </p>
-                      <Button
-                        asChild
-                        className="gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-7 md:h-10 items-center justify-center rounded-full bg-[#F2611D] px-3 md:px-7 py-1.5 md:py-3.5 text-white text-[clamp(14px,0.9vw,20px)] md:text-[clamp(14px,1.2vw,20px)] font-medium hover:bg-[#F2611D]/90 shadow-lg"
-                      >
-                        <Link to={`/products/${products[activeIndex].slug}`}>
-                          {getButtonText(products[activeIndex].title)}
-                        </Link>
-                      </Button>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
+            {/* LEFT SIDE - Images (second on mobile, left on desktop) */}
+            <div className="relative w-full aspect-square md:aspect-auto md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[50svh] 2xl:min-h-[55svh] flex items-center justify-center overflow-hidden bg-[#f3f5f7] order-2 md:order-1">
+              {/* Images with AnimatePresence for smooth transitions */}
+              <div className="absolute inset-0 w-full h-full z-10">
+                <AnimatePresence initial={false}>
+                  <motion.img
+                    key={activeIndex}
+                    src={products[activeIndex].image}
+                    alt={products[activeIndex].title}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{
+                      objectPosition: 'center 70%',
+                      transform: 'translateZ(0px) scale(1.05)',
+                    }}
+                  />
+                </AnimatePresence>
               </div>
+              
+              {/* Subtle radial depth - above images */}
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_0%,transparent_70%)] z-20" />
             </div>
           </div>
         </div>
@@ -349,3 +299,4 @@ const InteractiveProductsSectionV6 = () => {
 };
 
 export default InteractiveProductsSectionV6;
+

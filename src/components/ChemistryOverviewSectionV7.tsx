@@ -262,7 +262,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     <motion.img 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
-                      className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      className="w-[58px] h-[58px] sm:w-[67px] sm:h-[67px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
                           ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
@@ -299,7 +299,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     <motion.img 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
-                      className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      className="w-[58px] h-[58px] sm:w-[67px] sm:h-[67px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
                           ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
@@ -336,7 +336,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     <motion.img 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
-                      className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      className="w-[58px] h-[58px] sm:w-[67px] sm:h-[67px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
                           ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
@@ -379,7 +379,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
                     className="
-                      w-9 h-9 sm:w-11 sm:h-11 md:w-16 md:h-16 lg:w-24 lg:h-24 xl:w-32 xl:h-32
+                      w-[43px] h-[43px] sm:w-[53px] sm:h-[53px] md:w-[77px] md:h-[77px] lg:w-[115px] lg:h-[115px] xl:w-[154px] xl:h-[154px]
                       object-contain
                       drop-shadow-lg
                       group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)]
@@ -438,7 +438,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
                     className="
-                      w-9 h-9 sm:w-11 sm:h-11 md:w-16 md:h-16 lg:w-24 lg:h-24 xl:w-32 xl:h-32
+                      w-[43px] h-[43px] sm:w-[53px] sm:h-[53px] md:w-[77px] md:h-[77px] lg:w-[115px] lg:h-[115px] xl:w-[154px] xl:h-[154px]
                       object-contain
                       drop-shadow-lg
                       group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)]

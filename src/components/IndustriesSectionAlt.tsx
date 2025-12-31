@@ -107,58 +107,58 @@ const IndustriesSectionAlt = () => {
             {industriesArr.slice(0, 6).map((industry: Industry, index: number) => (
               <Link 
                 key={industry.title}
-                to={`/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`}
+                  to={`/industries/${industry.title.toLowerCase().replace(/ /g, '-')}`}
                 className="block w-full h-full"
-              >
-                <Card
+                >
+                  <Card
                   className="aspect-[6/4] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full backdrop-blur-xl bg-white border-0 shadow-lg text-white"
-                  style={{
+                    style={{
                     backgroundImage: 'none'
-                  }}
-                  onMouseEnter={() => {
-                    videoRefs.current[index]?.play();
-                  }}
-                  onMouseLeave={() => {
-                    if (videoRefs.current[index]) {
-                      videoRefs.current[index].pause();
-                      videoRefs.current[index].currentTime = 0;
-                    }
-                  }}
+                    }}
+                    onMouseEnter={() => {
+                      videoRefs.current[index]?.play();
+                    }}
+                    onMouseLeave={() => {
+                      if (videoRefs.current[index]) {
+                        videoRefs.current[index].pause();
+                        videoRefs.current[index].currentTime = 0;
+                      }
+                    }}
                   onTouchStart={() => {
                     videoRefs.current[index]?.play();
                   }}
-                >
+                  >
                   <div className="relative w-full h-full overflow-hidden">
-                    {/* Video Skeleton Loading State */}
-                    {!videoLoadedStates[index] && (
-                      <VideoSkeleton />
-                    )}
-                    
-                    <video
-                      ref={(el) => (videoRefs.current[index] = el)}
-                      loop
-                      muted
-                      playsInline
-                      className={`w-full h-full object-cover transition-opacity duration-500 ${
-                        videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
-                      }`}
-                      preload="metadata"
-                      onLoadedData={() => {
-                        handleVideoLoad(index);
-                        if (videoRefs.current[index]) {
-                          videoRefs.current[index].load();
-                        }
-                      }}
+                        {/* Video Skeleton Loading State */}
+                        {!videoLoadedStates[index] && (
+                          <VideoSkeleton />
+                        )}
+                        
+                        <video
+                          ref={(el) => (videoRefs.current[index] = el)}
+                          loop
+                          muted
+                          playsInline
+                          className={`w-full h-full object-cover transition-opacity duration-500 ${
+                            videoLoadedStates[index] ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          preload="metadata"
+                          onLoadedData={() => {
+                            handleVideoLoad(index);
+                            if (videoRefs.current[index]) {
+                              videoRefs.current[index].load();
+                            }
+                          }}
                       onError={() => handleVideoLoad(index)}
-                    >
-                      <source src={industry.videoUrl} type="video/mp4" />
-                    </video>
+                        >
+                          <source src={industry.videoUrl} type="video/mp4" />
+                        </video>
                     
                     {/* Conditional overlay based on mode */}
                     {mode !== 'light2' && (
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent pointer-events-none"></div>
                     )}
-                    
+                      
                     {/* Gradient overlay - transparent top, blue gradient bottom */}
                     <div
                       className="absolute inset-0 pointer-events-none transition-opacity duration-300 group-hover:opacity-0"
@@ -176,29 +176,29 @@ const IndustriesSectionAlt = () => {
                       }}
                     >
                       <div className="flex items-center gap-1.5 sm:gap-2">
-                        <img
-                          src={industry.logo}
-                          alt={industry.title + ' logo'}
+                          <img
+                            src={industry.logo}
+                            alt={industry.title + ' logo'}
                           className="w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-150"
                           style={{
                             filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8))'
                           }}
-                        />
-                        <h3
+                          />
+                          <h3
                           className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold"
-                          style={{
+                            style={{
                             color: '#ffffff',
-                            fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
+                            fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
-                          }}
-                        >
-                          {toTitleCase(industry.title)}
-                        </h3>
+                            }}
+                          >
+                            {toTitleCase(industry.title)}
+                          </h3>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
-              </Link>
+                  </Card>
+                </Link>
             ))}
           </div>
           

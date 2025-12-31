@@ -37,7 +37,8 @@ const Industries = () => {
           {/* Hero Video Section - Full screen with title and subtitle overlay */}
           <div className="relative">
             <IndustryHeroBanner 
-              videoUrl="/videos/backgrounds/Industry Summary Page Video.mp4" 
+              videoUrl="/videos/backgrounds/Industry Summary Page Video.mp4"
+              mobileVideoUrl="/videos/backgrounds/Industry Summary Video for Mobile.mp4"
               industryTitle="Industries We Serve"
               variant="simple"
               useTitleCase={true}

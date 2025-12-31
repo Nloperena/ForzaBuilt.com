@@ -160,7 +160,7 @@ const ProductsSectionAlt = () => {
                         }}
                       style={{
                         objectPosition: 'center center'
-                      }}
+                        }}
                       />
                     </div>
                   </Card>

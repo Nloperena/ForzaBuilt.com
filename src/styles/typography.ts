@@ -23,11 +23,11 @@ export const typography = {
   },
 
   /**
-   * Industries We Serve - Special larger mobile size
-   * Mobile: 36px (larger than standard), Desktop: 44px
+   * Industries We Serve - Matches section heading size
+   * Mobile: 22px, Desktop: 44px
    */
   industriesHeading: {
-    fontSize: 'clamp(36px, 2.5vw + 0.5rem, 44px)',
+    fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)',
   },
 
   /**

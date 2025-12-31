@@ -284,11 +284,11 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10 flex items-center justify-between">
-                <Logo className="h-10 w-auto" isWhiteBackground={true} />
+              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 z-10 flex items-center justify-between">
+                <Logo className="h-8 w-auto" isWhiteBackground={true} />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                  className="p-1.5 hover:bg-gray-100 rounded-full transition-colors"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5 text-gray-600" />
@@ -296,53 +296,53 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               </div>
 
               {/* Navigation Items */}
-              <div className="p-6 space-y-2">
+              <div className="p-4 space-y-1.5">
                 {/* Products */}
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   <Link
                     to="/products"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 transition-colors group"
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <span className="font-poppins font-medium text-[#1B3764]">Products</span>
-                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
+                    <span className="font-poppins font-medium text-[#1B3764] text-sm">Products</span>
+                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </Link>
-                  <div className="ml-4 space-y-1 border-l-2 border-gray-100 pl-4">
+                  <div className="ml-3 space-y-0.5 border-l-2 border-gray-100 pl-3">
                     {productsItems.map((item) => (
                       <Link
                         key={item.href}
                         to={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="block p-2 rounded-lg hover:bg-gray-50 transition-colors"
                       >
-                        <span className="font-poppins text-sm text-gray-700">{item.label}</span>
+                        <span className="font-poppins text-xs text-gray-700">{item.label}</span>
                       </Link>
                     ))}
                   </div>
                 </div>
 
                 {/* Industries */}
-                <div className="space-y-1">
+                <div className="space-y-0.5">
                   <Link
                     to="/industries"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-4 rounded-lg hover:bg-gray-50 transition-colors group"
+                    className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group"
                   >
-                    <span className="font-poppins font-medium text-[#1B3764]">Industries</span>
-                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
+                    <span className="font-poppins font-medium text-[#1B3764] text-sm">Industries</span>
+                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </Link>
-                  <div className="ml-4 space-y-1 border-l-2 border-gray-100 pl-4">
+                  <div className="ml-3 space-y-0.5 border-l-2 border-gray-100 pl-3">
                     {industriesItems.slice(0, 6).map((item) => (
                       <Link
                         key={item.href}
                         to={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         {item.iconSrc && (
-                          <img src={item.iconSrc} alt="" className="w-6 h-6 object-contain" />
+                          <img src={item.iconSrc} alt="" className="w-5 h-5 object-contain" />
                         )}
-                        <span className="font-poppins text-sm text-gray-700">{item.label}</span>
+                        <span className="font-poppins text-xs text-gray-700">{toTitleCase(item.label)}</span>
                       </Link>
                     ))}
                   </div>
@@ -352,26 +352,26 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
                 <Link
                   to="/about"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-poppins font-medium text-[#1B3764]">About</span>
+                  <span className="font-poppins font-medium text-[#1B3764] text-sm">About</span>
                 </Link>
 
                 {/* Blog */}
                 <Link
                   to="/blog"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="block p-3 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-poppins font-medium text-[#1B3764]">Blog</span>
+                  <span className="font-poppins font-medium text-[#1B3764] text-sm">Blog</span>
                 </Link>
 
                 {/* Contact Button */}
-                <div className="pt-4 border-t border-gray-200">
+                <div className="pt-3 border-t border-gray-200">
                   <Link
                     to="/contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block w-full text-center rounded-full bg-[#F2611D] text-white px-6 py-3 font-poppins font-medium hover:bg-[#F2611D]/90 transition-colors"
+                    className="block w-full text-center rounded-full bg-[#F2611D] text-white px-5 py-2.5 text-sm font-poppins font-medium hover:bg-[#F2611D]/90 transition-colors"
                   >
                     Contact Us
                   </Link>

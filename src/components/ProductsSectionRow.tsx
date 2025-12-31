@@ -143,7 +143,7 @@ const ProductsSectionRow = () => {
                                 />
                               </div>
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                                <div className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -156,7 +156,7 @@ const ProductsSectionRow = () => {
                           product.title === "INDUSTRIAL CLEANING" ? (
                             <div className="w-full h-full flex flex-row items-center justify-center overflow-hidden rounded-[2rem]">
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
+                                <div className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -192,7 +192,7 @@ const ProductsSectionRow = () => {
                                 />
                               </div>
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
+                                <div className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -276,7 +276,7 @@ const ProductsSectionRow = () => {
                                 />
                               </div>
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                                <div className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -289,7 +289,7 @@ const ProductsSectionRow = () => {
                           product.title === "INDUSTRIAL CLEANING" ? (
                             <div className="w-full h-full flex flex-row items-center justify-center overflow-hidden rounded-[2rem]">
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
+                                <div className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -325,7 +325,7 @@ const ProductsSectionRow = () => {
                                 />
                               </div>
                               <div className="absolute inset-0 z-10 flex items-center justify-center">
-                                <div className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
+                                <div className="text-base sm:text-2xl md:text-3xl lg:text-4xl font-black text-white font-kallisto text-center leading-tight" style={{ filter: "drop-shadow(2px 2px 0px rgba(0,0,0,0.3))" }}>
                                   {product.fullTitle.split('\n').map((line, i) => (
                                     <div key={i}>{line}</div>
                                   ))}
@@ -424,7 +424,7 @@ const ProductsSectionRow = () => {
                         </div>
                         {/* Text section - takes up right half */}
                         <div className="w-1/2 h-full flex items-center justify-center z-10 flex-shrink-0 px-1">
-                          <div className="text-[10px] sm:text-xs font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                          <div className="text-sm sm:text-base font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                             {product.fullTitle.split('\n').map((line, i) => (
                               <div key={i}>{line}</div>
                             ))}
@@ -504,7 +504,7 @@ const ProductsSectionRow = () => {
                         </div>
                         {/* Text section - takes up right half */}
                         <div className="w-1/2 h-full flex items-center justify-center z-10 flex-shrink-0 px-1">
-                          <div className="text-[10px] sm:text-xs font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
+                          <div className="text-sm sm:text-base font-black text-white font-kallisto text-center leading-tight" style={{ textShadow: '1px 1px 0 rgba(0, 0, 0, 0.5)' }}>
                             {product.fullTitle.split('\n').map((line, i) => (
                               <div key={i}>{line}</div>
                             ))}

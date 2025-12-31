@@ -79,19 +79,39 @@ const About = () => {
     // Force video to load when component mounts or sources change
     if (videoRef.current) {
       const video = videoRef.current;
-      // Reset video state
+      
+      // Set up event listeners for better loading detection
+      const handleCanPlay = () => {
+        console.log('About page video can play');
+        video.play().catch((err) => {
+          console.warn('Video autoplay failed:', err);
+        });
+      };
+      
+      const handleLoadedMetadata = () => {
+        console.log('About page video metadata loaded');
+      };
+      
+      video.addEventListener('canplay', handleCanPlay);
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+      
+      // Reset video state and load
       video.load();
       
-      // Try to play after a short delay
+      // Try to play after a short delay as fallback
       const playTimeout = setTimeout(() => {
         if (video.readyState >= 2) { // HAVE_CURRENT_DATA
           video.play().catch((err) => {
             console.warn('Video autoplay failed:', err);
           });
         }
-      }, 100);
+      }, 500);
       
-      return () => clearTimeout(playTimeout);
+      return () => {
+        clearTimeout(playTimeout);
+        video.removeEventListener('canplay', handleCanPlay);
+        video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      };
     }
   }, [heroVideoUrlMobile, heroVideoUrlDesktop]);
 

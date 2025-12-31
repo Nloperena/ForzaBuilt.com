@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import HeroVideoSectionV2 from './HeroVideoSectionV2';
 import { getFontSize, getFontSizeValue } from '@/styles/typography';
+import VideoSkeleton from './common/VideoSkeleton';
 
 interface ApproachItem {
   title: string;
@@ -65,7 +66,7 @@ const approachItems: ApproachItem[] = [
       "Our products deliver guaranteed performance"
     ],
     image: "/images/approach/Products Portfolio.jpg",
-    video: "/approach-videos/Product Performance-2.mp4"
+    video: "/videos/backgrounds/Purpose Built Products.mp4"
   },
   {
     title: "INDUSTRY FOCUSED",
@@ -134,7 +135,7 @@ const approachItems: ApproachItem[] = [
       "We're pushing for a cleaner, more sustainable future—but never at the cost of quality."
     ],
     image: "/images/approach/Sustainability Image for Web.jpg",
-    video: "/approach-videos/Sustainable Solutions.mp4"
+    video: "/videos/backgrounds/Sustainability That Works.mp4"
   },
   {
     title: "CUSTOMER OBSESSED",
@@ -166,9 +167,13 @@ const ApproachSectionUnified = () => {
   const handleItemChange = useCallback((index: number) => {
     if (index !== selectedItem) {
       setPreviousItem(selectedItem);
+      // Reset loading state for the new item to show skeleton
+      if (approachItems[index].video && !videoLoadedMap[index]) {
+        setVideoLoadedMap((prev) => ({ ...prev, [index]: false }));
+      }
       setSelectedItem(index);
     }
-  }, [selectedItem]);
+  }, [selectedItem, videoLoadedMap]);
 
   useEffect(() => {
     const updateTitleFontSizes = () => {
@@ -311,21 +316,24 @@ const ApproachSectionUnified = () => {
               {/* RIGHT - Videos with description */}
               <div className="
                 relative
-                min-h-[50vh] md:min-h-[36svh] lg:min-h-[55vh] xl:min-h-[65vh]
+                aspect-square md:aspect-auto md:min-h-[36svh] lg:min-h-[55vh] xl:min-h-[65vh]
                 py-[clamp(12px,2vw,20px)]
                 flex items-center justify-center
                 overflow-hidden lg:overflow-visible
               ">
                 {/* Inline image (all breakpoints) - relative z-20 to appear above gradient */}
                 <div className="absolute inset-0 overflow-hidden z-20">
-                  {/* Previous content (beneath) - image or video */}
-                  {approachItems[previousItem].video && !videoErrorMap[previousItem] && (
+                  {/* Show skeleton when switching videos and new video hasn't loaded yet */}
+                  {approachItems[selectedItem].video && !videoErrorMap[selectedItem] && !videoLoadedMap[selectedItem] && (
+                    <VideoSkeleton className="absolute inset-0 z-30" backgroundColor="blue" />
+                  )}
+                  
+                  {/* Previous content (beneath) - image or video - hidden when switching */}
+                  {selectedItem === previousItem && approachItems[previousItem].video && !videoErrorMap[previousItem] && (
                     <video
                       ref={previousVideoRef}
                       key="previous-video"
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                        videoLoadedMap[selectedItem] && selectedItem !== previousItem ? 'opacity-0' : 'opacity-100'
-                      }`}
+                      className="absolute inset-0 w-full h-full object-cover opacity-100"
                       muted
                       loop
                       playsInline
@@ -335,14 +343,12 @@ const ApproachSectionUnified = () => {
                       <source src={approachItems[previousItem].video} type="video/mp4" />
                     </video>
                   )}
-                  {/* Only show image if video failed or doesn't exist */}
-                  {(!approachItems[previousItem].video || videoErrorMap[previousItem]) && (
+                  {/* Only show image if video failed or doesn't exist, and we're still on previous item */}
+                  {selectedItem === previousItem && (!approachItems[previousItem].video || videoErrorMap[previousItem]) && (
                     <img
                       src={approachItems[previousItem].image}
                       alt={approachItems[previousItem].title}
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                        videoLoadedMap[selectedItem] && selectedItem !== previousItem ? 'opacity-0' : 'opacity-100'
-                      }`}
+                      className="absolute inset-0 w-full h-full object-cover opacity-100"
                     />
                   )}
                   
@@ -385,12 +391,12 @@ const ApproachSectionUnified = () => {
                   {/* Uniform dark blue overlay to darken image/video */}
                   <div className="absolute inset-0 z-10" style={{ backgroundColor: 'rgba(44, 71, 110, 0.6)' }}></div>
                   
-                  {/* Overlay content - flexbox layout with items at bottom */}
-                  <div className="absolute inset-0 z-20 flex flex-col justify-between p-6 md:p-8">
-                    {/* Top section - empty for spacing */}
-                    <div></div>
+                  {/* Overlay content - flexbox layout: top-aligned on mobile, bottom-aligned on desktop */}
+                  <div className="absolute inset-0 z-20 flex flex-col justify-start md:justify-between p-6 md:p-8">
+                    {/* Top section - empty for spacing on desktop */}
+                    <div className="hidden md:block"></div>
                     
-                    {/* Bottom section - bullet points and description */}
+                    {/* Content section - bullet points and description */}
                     <div className="space-y-3">
                       {/* Orange bar and title */}
                       <div className="space-y-1">

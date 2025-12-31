@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import VideoSkeleton from '../common/VideoSkeleton';
 import ImageSkeleton from '../common/ImageSkeleton';
 import { motion } from 'framer-motion';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface IndustryHeroBannerProps {
   videoUrl: string;
@@ -11,6 +12,7 @@ interface IndustryHeroBannerProps {
   variant?: 'simple' | 'overlay';
   subtitle?: string;
   useTitleCase?: boolean;
+  mobileVideoUrl?: string;
 }
 
 const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({ 
@@ -20,10 +22,20 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
   color = '#1B3764', 
   variant = 'simple',
   subtitle,
-  useTitleCase = false
+  useTitleCase = false,
+  mobileVideoUrl
 }) => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [iconLoaded, setIconLoaded] = useState(false);
+  const isMobile = useIsMobile();
+  
+  // Use mobile video URL if provided and on mobile, otherwise use desktop video URL
+  const currentVideoUrl = isMobile && mobileVideoUrl ? mobileVideoUrl : videoUrl;
+  
+  // Reset video loaded state when video URL changes
+  useEffect(() => {
+    setVideoLoaded(false);
+  }, [currentVideoUrl]);
 
   useEffect(() => {
     // Fallback timeout to prevent infinite loading on slow connections
@@ -68,7 +80,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
         
         {/* Background Video */}
         <video
-          key={videoUrl}
+          key={currentVideoUrl}
           autoPlay
           loop
           muted
@@ -90,7 +102,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
             minHeight: '100%'
           }}
         >
-          <source src={videoUrl} type="video/mp4" />
+          <source src={currentVideoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -164,7 +176,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
       
       {/* Background Video */}
       <video
-        key={videoUrl}
+        key={currentVideoUrl}
         autoPlay
         loop
         muted
@@ -185,7 +197,7 @@ const IndustryHeroBanner: React.FC<IndustryHeroBannerProps> = ({
           minHeight: '100%'
         }}
       >
-        <source src={videoUrl} type="video/mp4" />
+        <source src={currentVideoUrl} type="video/mp4" />
       </video>
 
       {/* Fallback background - always visible */}

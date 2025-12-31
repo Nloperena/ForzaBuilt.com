@@ -66,7 +66,7 @@ const RecentNewsArticlesSection = () => {
                   className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block h-full w-full flex flex-col"
                 >
                   {/* Image Section */}
-                  <div className="bg-gray-200 h-32 sm:h-36 md:h-44 flex items-center justify-center overflow-hidden flex-shrink-0">
+                  <div className="bg-gray-200 aspect-square flex items-center justify-center overflow-hidden flex-shrink-0">
                     {article.image ? (
                       <motion.img
                         src={article.image}

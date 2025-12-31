@@ -450,26 +450,31 @@ const ProductDetailPage: React.FC = () => {
       <HeaderV2 />
       <main className="flex-1 pb-10">
         {/* Product Image, Title and Description */}
-        <section className="bg-gradient-to-r from-[#477197] to-[#2c476e] pt-16 lg:pt-20 xl:pt-24">
-          <div className="max-w-[1200px] mx-auto px-4 py-12 md:py-16 lg:py-12 xl:py-20">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <section className="bg-gradient-to-r from-[#477197] to-[#2c476e] pt-12 md:pt-16 lg:pt-20 xl:pt-24">
+          <div className="max-w-[1200px] mx-auto px-4 py-6 md:py-12 lg:py-12 xl:py-20">
+            <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
               {/* Product Image */}
-              <div className="flex justify-center lg:justify-start relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[450px] xl:h-[500px] 2xl:h-[600px]">
-                {/* Mobile/Tablet Hero Image */}
+              <div className="flex justify-center lg:justify-start relative h-[200px] sm:h-[250px] md:h-[400px] lg:h-[450px] xl:h-[500px] 2xl:h-[600px]">
+                {/* Mobile/Tablet Product Image */}
                 <div className="lg:hidden w-full h-full relative">
                   {!mobileHeroImageLoaded && (
                     <ImageSkeleton className="w-full h-full rounded-lg" />
                   )}
                 <img 
-                  src={getMobileHeroImage(product.category)}
-                  alt={`${product.category} Hero`}
-                    className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ${
+                  src={product.imageUrl || product.image}
+                  alt={product.name}
+                    className={`w-full h-full object-contain rounded-lg transition-opacity duration-500 ${
                       mobileHeroImageLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     onLoad={() => setMobileHeroImageLoaded(true)}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.src = product.imageUrl || product.image || '/placeholder.svg';
+                    if (target.src.includes('vercel-storage') || target.src.includes('blob')) {
+                      const filename = product.id.toLowerCase() + '.png';
+                      target.src = `/product-images/${filename}`;
+                    } else if (!target.src.includes('placeholder')) {
+                      target.src = '/placeholder.svg';
+                    }
                       setMobileHeroImageLoaded(true);
                   }}
                 />
@@ -502,10 +507,10 @@ const ProductDetailPage: React.FC = () => {
               
               {/* Product Info */}
               <div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-white mb-1 sm:mb-2 md:mb-4 leading-none font-poppins text-left">
+                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-white mb-2 md:mb-4 leading-none font-poppins text-left">
                   {product.name}
                 </h1>
-                <div className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed text-left">
+                <div className="text-base sm:text-lg md:text-2xl text-white/90 mb-4 md:mb-8 leading-relaxed text-left">
                   {product.description}
                 </div>
               </div>
@@ -514,10 +519,10 @@ const ProductDetailPage: React.FC = () => {
         </section>
 
         {/* Product Details Section - Grey Background */}
-        <section className="bg-gray-100 pb-12">
-        <div className="max-w-[1200px] mx-auto px-4 pt-8">
+        <section className="bg-gray-100 pb-8 md:pb-12">
+        <div className="max-w-[1200px] mx-auto px-4 pt-4 md:pt-8">
           {/* Breadcrumb */}
-          <nav className="mb-8">
+          <nav className="mb-4 md:mb-8">
             <div className="flex items-center gap-2 text-gray-600 text-sm">
               <Link to="/products" className="hover:text-gray-900 transition-colors">
                 Products
@@ -534,29 +539,29 @@ const ProductDetailPage: React.FC = () => {
           {/* Product Details Tabs */}
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               {/* Tabs Selector - Above Content Container */}
-              <div className="flex justify-center mb-6">
-                <TabsList className="inline-flex bg-transparent rounded-full p-1 gap-3">
+              <div className="flex justify-center mb-4 md:mb-6">
+                <TabsList className="inline-flex bg-transparent rounded-full p-1 gap-1.5 md:gap-3">
                     <TabsTrigger 
                       value="applications" 
-                    className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
+                    className="px-3 py-1.5 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
                     >
                     Applications
                     </TabsTrigger>
                     <TabsTrigger 
                       value="benefits" 
-                    className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
+                    className="px-3 py-1.5 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
                     >
                     Benefits
                     </TabsTrigger>
                     <TabsTrigger 
                       value="technical" 
-                    className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
+                    className="px-3 py-1.5 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
                     >
                     Technical
                     </TabsTrigger>
                     <TabsTrigger 
                       value="sizing" 
-                    className="px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
+                    className="px-3 py-1.5 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
                     >
                     Sizing
                     </TabsTrigger>
@@ -565,7 +570,7 @@ const ProductDetailPage: React.FC = () => {
 
               {/* Product Details Tabs Content Container */}
               <motion.section 
-                className="mb-12 bg-gradient-to-b from-[#477197] to-[#2c476e] rounded-2xl p-6 md:p-8"
+                className="mb-6 md:mb-12 bg-gradient-to-b from-[#477197] to-[#2c476e] rounded-2xl p-4 md:p-8"
                 layout
                 transition={{ duration: 0.4, ease: "easeInOut" }}
               >
@@ -579,14 +584,14 @@ const ProductDetailPage: React.FC = () => {
 
 
 
-                <TabsContent value="applications" className="space-y-6">
+                <TabsContent value="applications" className="space-y-4 md:space-y-6">
                   {loading ? (
                     <Card className="bg-transparent border-0 rounded-2xl">
-                      <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
+                      <CardHeader className="px-2 md:px-6 pt-2 pb-2 md:pt-2 md:pb-4">
                         <Skeleton className="h-8 w-40 bg-white/20" />
                       </CardHeader>
-                      <CardContent className="px-4 md:px-6 py-3 md:py-4">
-                        <div className="grid md:grid-cols-2 gap-6">
+                      <CardContent className="px-2 md:px-6 py-2 md:py-4">
+                        <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                           <div className="space-y-3">
                             <Skeleton className="h-4 w-full bg-white/20" />
                             <Skeleton className="h-4 w-full bg-white/20" />
@@ -609,17 +614,17 @@ const ProductDetailPage: React.FC = () => {
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
                   <Card className="bg-transparent border-0 rounded-2xl">
-                    <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
+                    <CardHeader className="px-2 md:px-6 pt-2 pb-2 md:pt-2 md:pb-4">
                       <CardTitle className="text-white font-poppins font-regular" 
-                                 style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
+                                 style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.125rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                         Applications
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="px-4 md:px-6 py-3 md:py-4">
-                      <div className="grid md:grid-cols-2 gap-6">
+                    <CardContent className="px-2 md:px-6 py-2 md:py-4">
+                      <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                         <div>
                           {product.applications && product.applications.length > 0 ? (
-                            <ul className="space-y-2 text-white/80">
+                            <ul className="space-y-1.5 md:space-y-2 text-white/80 text-sm md:text-base">
                               {product.applications.map((app, index) => (
                                 <li key={index} className="flex items-start gap-2">
                                   <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
@@ -628,7 +633,7 @@ const ProductDetailPage: React.FC = () => {
                               ))}
                             </ul>
                           ) : (
-                            <ul className="space-y-2 text-white/80">
+                            <ul className="space-y-1.5 md:space-y-2 text-white/80 text-sm md:text-base">
                               <li className="flex items-start gap-2">
                                 <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
                                 <span>Industrial bonding and assembly</span>
@@ -707,7 +712,7 @@ const ProductDetailPage: React.FC = () => {
                       <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
                         <Skeleton className="h-8 w-32 bg-white/20" />
                       </CardHeader>
-                      <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
+                      <CardContent className="space-y-4 md:space-y-6 px-2 md:px-6 py-2 md:py-4">
                         <div className="space-y-3">
                           <Skeleton className="h-4 w-full bg-white/20" />
                           <Skeleton className="h-4 w-full bg-white/20" />
@@ -726,13 +731,13 @@ const ProductDetailPage: React.FC = () => {
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
                   <Card className="bg-transparent border-0 rounded-2xl">
-                    <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
-                      <CardTitle className="text-white font-poppins font-regular" 
+                    <CardHeader className="px-2 md:px-6 pt-2 pb-2 md:pt-2 md:pb-4">
+                    <CardTitle className="text-white font-poppins font-regular"
                                  style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                         Benefits
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
+                    <CardContent className="space-y-4 md:space-y-6 px-2 md:px-6 py-2 md:py-4">
                       {/* Benefits */}
                       {product.benefits && product.benefits.length > 0 && (
                         <ul className="space-y-2 text-white/80">
@@ -816,8 +821,8 @@ const ProductDetailPage: React.FC = () => {
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
                   <Card className="bg-transparent border-0 rounded-2xl">
-                    <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
-                      <CardTitle className="text-white font-poppins font-regular" 
+                    <CardHeader className="px-2 md:px-6 pt-2 pb-2 md:pt-2 md:pb-4">
+                    <CardTitle className="text-white font-poppins font-regular"
                                  style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                         Technical Data
                       </CardTitle>
@@ -933,7 +938,7 @@ const ProductDetailPage: React.FC = () => {
                       <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
                         <Skeleton className="h-8 w-36 bg-white/20" />
                       </CardHeader>
-                      <CardContent className="space-y-6 px-4 md:px-6 py-3 md:py-4">
+                      <CardContent className="space-y-4 md:space-y-6 px-2 md:px-6 py-2 md:py-4">
                         <div className="space-y-3">
                           <Skeleton className="h-4 w-full bg-white/20" />
                           <Skeleton className="h-4 w-full bg-white/20" />
@@ -951,13 +956,13 @@ const ProductDetailPage: React.FC = () => {
                   >
                   <motion.div layout transition={{ duration: 0.5 }}>
                   <Card className="bg-transparent border-0 rounded-2xl">
-                    <CardHeader className="px-4 md:px-6 pt-2 pb-3 md:pt-2 md:pb-4">
-                      <CardTitle className="text-white font-poppins font-regular" 
+                    <CardHeader className="px-2 md:px-6 pt-2 pb-2 md:pt-2 md:pb-4">
+                    <CardTitle className="text-white font-poppins font-regular"
                                  style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                         Available Sizes
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-6 px-4 md:px-6 py-3 md:py-4">
+                    <CardContent className="space-y-4 md:space-y-6 px-2 md:px-6 py-2 md:py-4">
                       {/* Sizes (includes packaging data under same label) */}
                       {sizesAndPackaging.length > 0 ? (
                         <ul className="space-y-2 text-white/80">
@@ -1129,7 +1134,7 @@ const ProductDetailPage: React.FC = () => {
           <div className="max-w-[1200px] mx-auto px-4">
             <div className="text-center">
             <Card className="bg-gradient-to-r from-[#477197] to-[#2c476e] border border-gray-200 rounded-2xl p-8">
-              <CardContent className="space-y-4 md:space-y-6 px-4 md:px-6 py-3 md:py-4">
+              <CardContent className="space-y-4 md:space-y-6 px-2 md:px-6 py-2 md:py-4">
                 <h2 className="font-poppins font-regular text-white" 
                     style={{ fontFamily: typography.body.fontFamily, fontWeight: typography.body.fontWeight, fontSize: 'clamp(1.25rem, 2.5vw + 0.5rem, 2.5rem)' }}>
                   Ready to Get Started
