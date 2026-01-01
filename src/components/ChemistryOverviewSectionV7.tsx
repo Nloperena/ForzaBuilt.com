@@ -379,7 +379,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
                     className="
-                      w-[43px] h-[43px] sm:w-[53px] sm:h-[53px] md:w-[77px] md:h-[77px] lg:w-[115px] lg:h-[115px] xl:w-[154px] xl:h-[154px]
+                      w-[54px] h-[54px] sm:w-[66px] sm:h-[66px] md:w-[96px] md:h-[96px] lg:w-[144px] lg:h-[144px] xl:w-[193px] xl:h-[193px]
                       object-contain
                       drop-shadow-lg
                       group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)]
@@ -438,7 +438,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
                     className="
-                      w-[43px] h-[43px] sm:w-[53px] sm:h-[53px] md:w-[77px] md:h-[77px] lg:w-[115px] lg:h-[115px] xl:w-[154px] xl:h-[154px]
+                      w-[54px] h-[54px] sm:w-[66px] sm:h-[66px] md:w-[96px] md:h-[96px] lg:w-[144px] lg:h-[144px] xl:w-[193px] xl:h-[193px]
                       object-contain
                       drop-shadow-lg
                       group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)]

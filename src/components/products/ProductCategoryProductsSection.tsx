@@ -200,6 +200,21 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
     return Array.from(unique).sort();
   }, [filteredProducts]);
 
+  // Get industry counts for all products (for filter sidebar counts)
+  const industryCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    allProducts.forEach(product => {
+      if (product.industry) {
+        const industries = Array.isArray(product.industry) ? product.industry : [product.industry];
+        industries.forEach(ind => {
+          const industryLower = ind.toLowerCase();
+          counts[industryLower] = (counts[industryLower] || 0) + 1;
+        });
+      }
+    });
+    return counts;
+  }, [allProducts]);
+
   // Image loading handlers
   const handleImageLoad = (productId: string) => {
     setImageLoadedStates(prev => ({ ...prev, [productId]: true }));
@@ -247,10 +262,174 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           </h2>
         </motion.div>
 
-        {/* Main Content Area */}
-        <div className="w-full">
-            {/* Results Info with Icons */}
-            <div className="flex items-center justify-center mb-6 relative">
+        <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
+          {/* Filter Sidebar - Desktop Only */}
+          <aside className="flex-shrink-0 lg:sticky lg:top-24 lg:self-start" style={{ width: 'clamp(12rem, 15vw, 14rem)' }}>
+            {/* Search Bar */}
+            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-lg shadow-lg border border-gray-300 p-1.5 mb-2">
+              <div className="relative">
+                <div className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/20 p-0.5 rounded-full">
+                  <Search className="text-white h-3 w-3" />
+                </div>
+                <input
+                  placeholder="Search products…"
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  className="w-full bg-white/10 text-white placeholder-white/60 pl-7 py-1.5 text-xs border border-white/30 focus:border-white/50 focus:outline-none focus:ring-1 focus:ring-white/30 rounded-lg"
+                />
+                {search && (
+                  <button
+                    onClick={() => setSearch('')}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 p-1 rounded-full transition-colors"
+                  >
+                    <X className="text-white h-3 w-3" />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Filter Panel - Desktop Only */}
+            <div className="hidden lg:block bg-gradient-to-r from-[#477197] to-[#2c476e] shadow-lg rounded-lg border border-gray-300 overflow-hidden">
+              <div className="p-2 border-b border-white/20">
+                <h3 className="font-poppins font-regular text-xs text-white" style={{ fontFamily: typography.headings.fontFamily, fontWeight: typography.headings.fontWeight }}>
+                  Filter & Sort
+                </h3>
+              </div>
+
+              <div className="p-2 space-y-2">
+                {/* Industry Filter */}
+                {availableIndustries.length > 0 && (
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-xs font-semibold text-white">Industry</h4>
+                      {selectedIndustries.length > 0 && (
+                        <button
+                          onClick={() => setSelectedIndustries([])}
+                          className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1 rounded-md"
+                        >
+                          Clear
+                        </button>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 gap-1">
+                      {availableIndustries.map(industry => {
+                        const isSelected = selectedIndustries.includes(industry);
+                        const industryLower = industry.toLowerCase();
+                        const count = industryCounts[industryLower] || 0;
+                        return (
+                          <button
+                            key={industry}
+                            onClick={() => {
+                              if (isSelected) {
+                                setSelectedIndustries(selectedIndustries.filter(i => i !== industry));
+                              } else {
+                                setSelectedIndustries([...selectedIndustries, industry]);
+                              }
+                            }}
+                            className={`w-full flex items-center justify-between p-1 rounded-md transition-all overflow-hidden ${
+                              isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            }`}
+                          >
+                            <span className="text-xs font-medium capitalize">{industry.replace(/_/g, ' ')}</span>
+                            <span className="text-xs opacity-70">({count})</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Name Sort */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center">
+                    <ArrowUpDown className="text-white h-3 w-3 mr-1" />
+                    <h4 className="text-xs font-semibold text-white">Sort By Name</h4>
+                  </div>
+
+                  <div className="flex rounded-md overflow-hidden">
+                    <button
+                      onClick={() => setNameSort('asc')}
+                      className={`flex-1 flex items-center justify-center gap-1 py-1 transition-all ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                    >
+                      <ChevronUp className="h-3 w-3" />
+                      <span className="text-xs font-medium">A-Z</span>
+                    </button>
+
+                    <button
+                      onClick={() => setNameSort('desc')}
+                      className={`flex-1 flex items-center justify-center gap-1 py-1 transition-all ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                    >
+                      <ChevronDown className="h-3 w-3" />
+                      <span className="text-xs font-medium">Z-A</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Chemistry Filter */}
+                {chemistryTypes.length > 0 && (
+                  <div className="space-y-1.5 border-t border-white/20 pt-2">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <FlaskConical className="text-white h-3 w-3 mr-1" />
+                        <h4 className="text-xs font-semibold text-white">Chemistry</h4>
+                      </div>
+                      {selectedChemistries.length > 0 && (
+                        <button
+                          onClick={() => setSelectedChemistries([])}
+                          className="text-xs text-white hover:text-white/80 bg-white/10 hover:bg-white/20 py-0.5 px-1 rounded-md"
+                        >
+                          Clear
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col gap-1.5">
+                      {chemistryTypes.map(chemistry => {
+                        const isSelected = selectedChemistries.includes(chemistry);
+                        const count = filteredProducts.filter(p => p.chemistry === chemistry).length;
+                        return (
+                          <button
+                            key={chemistry}
+                            onClick={() => {
+                              if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
+                              else setSelectedChemistries([...selectedChemistries, chemistry]);
+                            }}
+                            disabled={count === 0 && !isSelected}
+                            className={`w-full flex items-center justify-between p-1.5 rounded-md transition-all overflow-hidden border ${
+                              isSelected ? 'bg-[#F2611D] text-white shadow-lg border-[#F2611D]' : 'bg-white/10 text-white hover:bg-white/20 hover:shadow-md border-white/20'
+                            } ${count === 0 && !isSelected ? 'opacity-50' : ''}`}
+                          >
+                            <div className="flex items-center gap-1.5 min-w-0 flex-1 text-left">
+                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
+                                <img 
+                                  src={getChemistryIcon(chemistry)} 
+                                  alt={chemistry}
+                                  className="w-5 h-5 object-contain chemistry-icon"
+                                  onError={(e) => {
+                                    // Fallback to MS icon if image fails to load
+                                    e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
+                                  }}
+                                />
+                              </div>
+                              <span className="text-xs font-medium break-words whitespace-normal leading-tight">
+                                {chemistry.replace(/_/g, ' ')}
+                              </span>
+                            </div>
+                            <span className="text-xs opacity-70">({count})</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </aside>
+
+          {/* Main Content Area */}
+          <div className="flex-1">
+            {/* Results Info with Icons - Mobile Only */}
+            <div className="flex items-center justify-center mb-6 relative lg:hidden">
               {/* Left: Search and Filter Icons - Paired closer together */}
               <div className="flex items-center gap-1 absolute left-0 z-10">
                 <button
@@ -273,6 +452,18 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
               <div className="bg-[#F2611D] px-4 py-1.5 rounded-full relative z-20">
                 <p className="text-sm text-white font-poppins font-medium">
                   <span className="font-semibold">{filteredProducts.length}</span> products found
+                </p>
+              </div>
+            </div>
+
+            {/* Results Info - Desktop Only */}
+            <div className="hidden lg:flex justify-between items-center mb-6">
+              <div className="bg-gray-100 px-4 py-2 rounded-full border border-gray-300 shadow-sm">
+                <p className="text-sm text-gray-700">
+                  <span className="font-semibold text-gray-900">{filteredProducts.length}</span> products found
+                  {selectedChemistries.length > 0 && (
+                    <span className="hidden sm:inline"> • <span className="font-semibold text-gray-900">{selectedChemistries.length}</span> {selectedChemistries.length === 1 ? 'chemistry' : 'chemistries'}</span>
+                  )}
                 </p>
               </div>
             </div>
@@ -402,14 +593,14 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
           title="Filter & Settings"
           side="right"
         >
-          <div className="space-y-6">
+          <div className="space-y-4">
                   {/* Sort */}
                   <div>
-                    <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-3">Sort By Name</h4>
+                    <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-2">Sort By Name</h4>
                     <div className="flex gap-2">
                       <button 
                         onClick={() => setNameSort('asc')} 
-                        className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium transition-all ${
+                        className={`flex-1 py-1.5 px-2.5 rounded-lg text-center text-sm font-medium transition-all ${
                           nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
@@ -417,7 +608,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                       </button>
                       <button 
                         onClick={() => setNameSort('desc')} 
-                        className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium transition-all ${
+                        className={`flex-1 py-1.5 px-2.5 rounded-lg text-center text-sm font-medium transition-all ${
                           nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                       >
@@ -429,7 +620,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                   {/* Industry Filter */}
                   {availableIndustries.length > 0 && (
                     <div>
-                      <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center justify-between mb-2">
                         <h4 className="text-sm font-poppins font-semibold text-gray-700">Industry</h4>
                         {selectedIndustries.length > 0 && (
                           <button
@@ -440,7 +631,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                           </button>
                         )}
                       </div>
-                      <div className="space-y-2">
+                      <div className="space-y-1.5">
                         {availableIndustries.map(industry => {
                           const isSelected = selectedIndustries.includes(industry);
                           const count = allProducts.filter(p => {
@@ -459,7 +650,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                                 if (isSelected) setSelectedIndustries(selectedIndustries.filter(i => i !== industry));
                                 else setSelectedIndustries([...selectedIndustries, industry]);
                               }}
-                              className={`w-full flex items-center justify-between p-2 rounded-lg transition-all ${
+                              className={`w-full flex items-center justify-between p-1.5 rounded-lg transition-all ${
                                 isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
                               }`}
                             >
@@ -475,7 +666,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                   {/* Chemistry Filter */}
                   {chemistryTypes.length > 0 && (
                     <div>
-                      <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center justify-between mb-2">
                         <h4 className="text-sm font-poppins font-semibold text-gray-700">Chemistry</h4>
                         {selectedChemistries.length > 0 && (
                           <button
@@ -486,7 +677,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                           </button>
                         )}
                       </div>
-                      <div className="space-y-2">
+                      <div className="space-y-1.5">
                         {chemistryTypes.map(chemistry => {
                           const isSelected = selectedChemistries.includes(chemistry);
                           const count = filteredProducts.filter(p => p.chemistry === chemistry).length;
@@ -498,7 +689,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                                 else setSelectedChemistries([...selectedChemistries, chemistry]);
                               }}
                               disabled={count === 0 && !isSelected}
-                              className={`w-full flex items-center justify-between p-2 rounded-lg transition-all ${
+                              className={`w-full flex items-center justify-between p-1.5 rounded-lg transition-all ${
                                 isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
                               } ${count === 0 && !isSelected ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
@@ -521,6 +712,7 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                   )}
           </div>
         </SlideInDrawer>
+      </div>
     </section>
   );
 };

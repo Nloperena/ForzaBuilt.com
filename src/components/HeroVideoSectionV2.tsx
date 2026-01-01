@@ -58,8 +58,8 @@ const HeroVideoSectionV2: React.FC = () => {
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl">
-      {/* Mobile: Shorter height, Desktop: Fixed height */}
-      <div className="relative w-full min-h-[35vh] md:h-[563px] lg:h-[600px] xl:h-[750px] 2xl:h-[525px] min-[1920px]:h-[750px] min-[2560px]:h-[825px]">
+      {/* Uniform height matching About page */}
+      <div className="relative w-full h-[60vh] md:h-screen">
         {/* Video Skeleton Loading State */}
         {!isVideoLoaded && (
           <VideoSkeleton className="absolute inset-0 w-full h-full" />

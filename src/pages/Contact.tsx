@@ -145,7 +145,7 @@ const Contact = () => {
       
       <div className="flex-1 relative">
         {/* Hero Section - Eagle Video */}
-        <section className="relative h-[50vh] sm:h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f]">
+        <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
           {!isVideoLoaded && <VideoSkeleton />}
           
           <video

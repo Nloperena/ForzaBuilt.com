@@ -176,10 +176,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="space-y-2"
+                    className="space-y-1"
                   >
                     <h2 className="text-xl font-semibold text-[#1B3764] mb-6">{activeSubmenu}</h2>
-                    <nav className="space-y-2">
+                    <nav className="space-y-1">
                       {getSubmenuItems(activeSubmenu).map((subItem, index) => (
                         <motion.div
                           key={subItem.name}

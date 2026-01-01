@@ -13,6 +13,20 @@ interface ApproachItem {
   video?: string;
 }
 
+// Utility function to prevent orphaned words (keeps last 2 words together on mobile)
+const preventOrphans = (text: string): string => {
+  const words = text.split(/\s+/);
+  if (words.length < 3) {
+    return text;
+  }
+  // Keep the last 2 words together with non-breaking space
+  const lastTwoWords = words.slice(-2).join('\u00A0');
+  const remainingWords = words.slice(0, -2);
+  return remainingWords.length > 0 
+    ? [...remainingWords, lastTwoWords].join(' ')
+    : lastTwoWords;
+};
+
 // Function to convert ALL CAPS titles to proper Title Case
 const toTitleCase = (str: string): string => {
   // Handle special cases first
@@ -414,7 +428,8 @@ const ApproachSectionUnified = () => {
                         fontSize: 'clamp(12px, 0.9vw + 0.3rem, 16px)',
                         lineHeight: '1.5'
                       }}>
-                        {approachItems[selectedItem].description}
+                        <span className="hidden md:inline">{approachItems[selectedItem].description}</span>
+                        <span className="md:hidden">{preventOrphans(approachItems[selectedItem].description)}</span>
                       </p>
                       
                       {/* Bullet Points */}

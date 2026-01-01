@@ -43,7 +43,7 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
   return (
     <>
       {/* Sticky Hero Image Background Section */}
-      <section className="sticky top-0 h-[60vh] md:h-[88vh] overflow-hidden bg-black/5" style={{ zIndex: 1 }}>
+      <section className="sticky top-0 h-[60vh] md:h-screen overflow-hidden bg-black/5 md:pt-12 2xl:pt-0" style={{ zIndex: 1 }}>
         {/* Image Skeleton Loading State */}
         {!imageLoaded && (
           <ImageSkeleton className="w-full h-full" />

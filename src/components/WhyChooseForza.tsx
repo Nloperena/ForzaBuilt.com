@@ -44,8 +44,8 @@ const WhyChooseForza = () => {
         {/* Header */}
         <header className="text-center mb-6 md:mb-10">
           <motion.h2 
-            className="text-fluid-heading font-normal font-poppins mb-4 tracking-tight"
-            style={getFontSize('sectionHeading')}
+            className="font-normal font-poppins mb-4 tracking-tight"
+            style={getFontSize('pageHeading')}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}

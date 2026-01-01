@@ -296,7 +296,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
               </div>
 
               {/* Navigation Items */}
-              <div className="p-4 space-y-1.5">
+              <div className="p-4 space-y-1">
                 {/* Products */}
                 <div className="space-y-0.5">
                   <Link

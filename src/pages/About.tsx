@@ -60,7 +60,6 @@ const RaisingBarsStats = () => {
 const About = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const heroVideoUrlMobile = '/videos/backgrounds/Forza Building Video for Mobile.mp4';
   const heroVideoUrlDesktop = '/videos/backgrounds/Forza Building Video for Desktop.mp4';
 
   useEffect(() => {
@@ -113,7 +112,7 @@ const About = () => {
         video.removeEventListener('loadedmetadata', handleLoadedMetadata);
       };
     }
-  }, [heroVideoUrlMobile, heroVideoUrlDesktop]);
+  }, [heroVideoUrlDesktop]);
 
   const handleVideoLoad = () => {
     console.log('About page video loaded successfully');
@@ -143,12 +142,12 @@ const About = () => {
       
       <div className="flex-1 relative">
         {/* Hero Video Section - Above the fold */}
-        <section className="relative h-[50vh] sm:h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
+        <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
           {!videoLoaded && <VideoSkeleton />}
           
           <video
             ref={videoRef}
-            key={`${heroVideoUrlMobile}-${heroVideoUrlDesktop}`}
+            key={heroVideoUrlDesktop}
             autoPlay
             loop
             muted
@@ -171,8 +170,7 @@ const About = () => {
               minHeight: '100%'
             }}
           >
-            <source src={heroVideoUrlDesktop} type="video/mp4" media="(min-width: 768px)" />
-            <source src={heroVideoUrlMobile} type="video/mp4" />
+            <source src={heroVideoUrlDesktop} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 
