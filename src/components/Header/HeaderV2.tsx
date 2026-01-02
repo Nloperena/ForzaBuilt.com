@@ -315,7 +315,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
                         onClick={() => setMobileMenuOpen(false)}
                         className="block p-2 rounded-lg hover:bg-gray-50 transition-colors"
                       >
-                        <span className="font-poppins text-xs text-gray-700">{item.label}</span>
+                        <span className="font-poppins text-xs text-gray-700 leading-[0.5] lg:leading-normal">{item.label}</span>
                       </Link>
                     ))}
                   </div>
@@ -342,7 +342,7 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
                         {item.iconSrc && (
                           <img src={item.iconSrc} alt="" className="w-5 h-5 object-contain" />
                         )}
-                        <span className="font-poppins text-xs text-gray-700">{toTitleCase(item.label)}</span>
+                        <span className="font-poppins text-xs text-gray-700 leading-[0.5] lg:leading-normal">{toTitleCase(item.label)}</span>
                       </Link>
                     ))}
                   </div>

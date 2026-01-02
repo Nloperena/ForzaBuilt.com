@@ -57,3 +57,30 @@ export const toTitleCase = (str: string) => {
   return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
+// Helper to format product names: product code in ALL CAPS, rest in title case
+export const formatProductName = (str: string) => {
+  if (!str) return '';
+  
+  // Match product code pattern at the start (e.g., "IC932", "CA1000", "FRP", etc.)
+  // Product codes are typically alphanumeric, may include dashes, and are followed by a dash or space
+  const productCodeMatch = str.match(/^([A-Z0-9]+(?:-[A-Z0-9]+)*)\s*[-–—]\s*(.+)$/i);
+  
+  if (productCodeMatch) {
+    // If we have a product code followed by a dash and description
+    const productCode = productCodeMatch[1].toUpperCase();
+    const description = toTitleCase(productCodeMatch[2]);
+    return `${productCode} - ${description}`;
+  }
+  
+  // Check if it starts with a product code pattern without a dash (e.g., "IC932 Non Flammable")
+  const codeOnlyMatch = str.match(/^([A-Z0-9]+(?:-[A-Z0-9]+)*)\s+(.+)$/i);
+  if (codeOnlyMatch) {
+    const productCode = codeOnlyMatch[1].toUpperCase();
+    const description = toTitleCase(codeOnlyMatch[2]);
+    return `${productCode} ${description}`;
+  }
+  
+  // If no product code pattern found, just apply title case to the whole string
+  return toTitleCase(str);
+};
+

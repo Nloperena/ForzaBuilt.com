@@ -142,7 +142,7 @@ const About = () => {
       
       <div className="flex-1 relative">
         {/* Hero Video Section - Above the fold */}
-        <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
+        <section className="relative h-[50vh] sm:h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0">
           {!videoLoaded && <VideoSkeleton />}
           
           <video
@@ -207,8 +207,7 @@ const About = () => {
             >
               {/* Why Forza Title */}
               <h2 
-                className="font-poppins leading-none text-[#1B3764] mb-3 md:mb-4 text-center" 
-                style={getFontSize('pageHeading')}
+                className="font-normal font-poppins leading-tight text-[#1b3764] mb-3 md:mb-4 text-center break-words normal-case text-[22px] md:text-[44px]" 
               >
                 Why Forza
               </h2>
@@ -326,8 +325,8 @@ const About = () => {
             >
               <div className="mb-6 md:mb-8">
                 <h3 
-                  className="font-poppins mb-3 md:mb-4" 
-                  style={getFontSize('sectionHeading')}
+                  className="font-poppins leading-none mb-3 md:mb-4" 
+                  style={getFontSize('pageHeading')}
                 >
                   What We Manufacture
                 </h3>

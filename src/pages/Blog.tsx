@@ -136,7 +136,7 @@ const Blog = () => {
       <HeaderV2 />
       
       {/* Hero Section - Header Image */}
-      <section className="relative h-[60vh] md:h-screen overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0 z-20">
+      <section className="relative h-[60vh] md:h-[88vh] overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] md:pt-12 2xl:pt-0 z-20">
         {!headerImageLoaded && (
           <ImageSkeleton className="w-full h-full" />
         )}
@@ -179,7 +179,7 @@ const Blog = () => {
       {!loading && featuredPosts.length > 0 && (
         <section className="pt-4 pb-12 md:pb-20 relative z-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <h2 className="font-poppins font-normal text-[#1B3764] text-center mb-8 md:mb-16" style={getFontSize('pageHeading')}>
+            <h2 className="font-normal font-poppins leading-tight text-[#1b3764] text-center mb-8 md:mb-16 break-words normal-case text-[22px] md:text-[44px]">
               Most Popular
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
@@ -195,7 +195,7 @@ const Blog = () => {
       <section className="pt-4 pb-12 md:pb-20 bg-white relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
           <div className="mb-8 md:mb-12 text-center">
-            <h2 className="font-poppins font-normal text-[#1B3764] mb-6 md:mb-10 text-center" style={getFontSize('pageHeading')}>
+            <h2 className="font-normal font-poppins leading-tight text-[#1b3764] mb-6 md:mb-10 text-center break-words normal-case text-[22px] md:text-[44px]">
               Products, Tips, Tutorials<br/>and More
             </h2>
             

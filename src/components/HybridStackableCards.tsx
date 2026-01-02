@@ -706,7 +706,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
             </h2>
             {headerSubtitle && (
               <p 
-                className={`text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto font-light mt-2 ${useOldColorScheme ? 'text-white/90' : 'text-gray-700'}`}
+                className={`text-sm md:text-base lg:text-lg max-w-3xl mx-auto font-light mt-2 ${useOldColorScheme ? 'text-white/90' : 'text-gray-700'}`}
               >
                 {headerSubtitle}
               </p>

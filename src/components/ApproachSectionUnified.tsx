@@ -269,7 +269,7 @@ const ApproachSectionUnified = () => {
                   textAlign: 'center'
                 }}
               >
-                Powerful Approach To Customer Success
+                Powerful Approach To Customer{'\u00A0'}Success
               </h2>
             </div>
           </div>

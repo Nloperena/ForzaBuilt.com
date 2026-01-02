@@ -5,7 +5,7 @@ import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } 
 import { byCategory } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
-import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase } from '../../utils/industryHelpers';
+import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '../../utils/industryHelpers';
 import { useDrawer } from '@/contexts/DrawerContext';
 import SlideInDrawer from '../common/SlideInDrawer';
 
@@ -512,11 +512,8 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
                         <div className="p-2.5 absolute bottom-0 left-0 right-0">
                           <div className="space-y-0.5">
                             <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
-                              {product.name}
+                              {formatProductName(product.name || '')}
                             </h3>
-                            <p className="text-xs text-white line-clamp-2">
-                              {toTitleCase(product.description || '')}
-                            </p>
                             
                             {/* Button Row */}
                             <div className="flex gap-1.5 mt-2 pt-2">

@@ -38,13 +38,13 @@ const WhyChooseForza = () => {
   return (
     <section 
       ref={containerRef} 
-      className="relative pt-16 pb-0 pl-0 pr-4 md:px-4 bg-gradient-to-bl from-[#477197] to-[#2c476e] overflow-hidden text-white isolation-auto border-b-2 border-[#F2611D] border-l-4 md:border-l-0 border-l-[#F2611D]"
+      className="relative pt-8 md:pt-16 pb-0 pl-0 pr-4 md:px-4 bg-gradient-to-bl from-[#477197] to-[#2c476e] overflow-hidden text-white isolation-auto border-b-2 border-[#F2611D] border-l-4 md:border-l-0 border-l-[#F2611D]"
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <header className="text-center mb-6 md:mb-10">
           <motion.h2 
-            className="font-normal font-poppins mb-4 tracking-tight"
+            className="font-normal font-poppins mb-2 md:mb-4 tracking-tight"
             style={getFontSize('pageHeading')}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -53,7 +53,7 @@ const WhyChooseForza = () => {
             Why Choose Forza?
           </motion.h2>
           <motion.p 
-            className="text-xl md:text-2xl text-white/90 font-poppins font-light"
+            className="text-lg md:text-xl lg:text-2xl text-white/90 font-poppins font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -64,59 +64,64 @@ const WhyChooseForza = () => {
 
         {/* Stats Visualization - Vertical bars on mobile, horizontal on desktop */}
         <div className="relative pl-0 md:pl-12 pr-4 md:pr-12 pb-4 md:pb-0">
-          <div className="flex flex-col md:grid md:grid-cols-4 gap-3 md:gap-6 md:h-[350px] md:relative md:translate-x-[-12.5%] md:translate-x-[-0.75rem]">
+          <div className="flex flex-col md:grid md:grid-cols-4 gap-6 md:gap-6 md:h-[350px] md:relative md:translate-x-[-12.5%] md:translate-x-[-0.75rem]">
             {stats.map((stat, index) => {
               const StatWrapper = stat.link ? Link : 'div';
               const wrapperProps = stat.link ? { to: stat.link, className: "relative w-full md:h-full group block" } : { className: "relative w-full md:h-full" };
 
               return (
                 <StatWrapper key={index} {...wrapperProps}>
-                  {/* Mobile: Horizontal bars extending from left border, text on top */}
-                  <div className="flex md:hidden flex-col relative min-h-[70px] pl-6">
-                    {/* Horizontal bar extending from left border - starts exactly at border with no gap */}
+                  {/* Mobile: Stacked layout with text above dot */}
+                  <div className="flex md:hidden flex-col relative min-h-[100px] pl-8">
+                    {/* Text content - above the dot */}
                     <motion.div 
-                      className="absolute bottom-0 left-[-1.5rem] h-1 bg-[#F2611D] origin-left"
-                      style={{ width: `calc(${stat.height * 100}% + 1.5rem)` }}
-                      initial={{ scaleX: 0 }}
-                      animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                      transition={{ duration: 0.8, delay: 0.2 + (index * 0.3) + 0.3, ease: "circOut" }}
-                    />
-                    {/* Dot at the end of the underline - positioned at the omega (end) of the bar */}
-                    <motion.div
-                      className="absolute w-3 h-3 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
-                      style={{ 
-                        left: `${stat.height * 100}%`, 
-                        bottom: '-4px',
-                        transform: 'translateX(-50%)'
-                      }}
-                      initial={{ scale: 0 }}
-                      animate={isInView ? { scale: 1 } : { scale: 0 }}
-                      transition={{ duration: 0.4, delay: 0.2 + (index * 0.3) + 0.3 + 0.8, type: "spring" }}
-                    />
-                    
-                    {/* Stat Content - sitting on top of horizontal bar */}
-                    <div className="relative">
-                      {/* Text content */}
-                      <motion.div 
-                        className="relative z-10 flex flex-col"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                        transition={{ duration: 0.5, delay: 0.2 + (index * 0.3) }}
+                      className="relative z-10 flex flex-col mb-4"
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5, delay: 0.2 + (index * 0.3) }}
+                    >
+                      <p 
+                        className="text-white font-normal font-poppins mb-1 text-[#F2611D]"
+                        style={getFontSize('subsectionHeading')}
                       >
-                        <p 
-                          className="text-white font-normal font-poppins mb-0.5 md:mb-1 text-[#F2611D]"
-                          style={getFontSize('subsectionHeading')}
-                        >
-                          {stat.value}
-                        </p>
-                        <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-0.5 md:mb-1 font-poppins">
-                          {stat.label}
-                        </h4>
-                        <p className="text-white/70 text-xs font-poppins font-light leading-relaxed mb-0.5 md:mb-1">
-                          {stat.description}
-                        </p>
-                      </motion.div>
-                    </div>
+                        {stat.value}
+                      </p>
+                      <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-1 font-poppins">
+                        {stat.label}
+                      </h4>
+                      <p className="text-white/70 text-xs font-poppins font-light leading-relaxed">
+                        {stat.description}
+                      </p>
+                    </motion.div>
+                    
+                    {/* Horizontal bar extending from left border - ascending lengths */}
+                    {/* Bar lengths: 50%, 60%, 65%, 70% - ascending effect */}
+                    {(() => {
+                      const barWidth = 50 + ((stat.height - 0.35) / 0.6 * 20);
+                      return (
+                        <>
+                          <motion.div 
+                            className="absolute bottom-0 left-0 h-1 bg-[#F2611D] origin-left"
+                            style={{ width: `${barWidth}%` }}
+                            initial={{ scaleX: 0 }}
+                            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 + (index * 0.3) + 0.3, ease: "circOut" }}
+                          />
+                          {/* Dot positioned at the end of the bar (omega point) */}
+                          <motion.div
+                            className="absolute w-3 h-3 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
+                            style={{ 
+                              left: `${barWidth}%`, 
+                              bottom: '-4px',
+                              transform: 'translateX(-50%)'
+                            }}
+                            initial={{ scale: 0 }}
+                            animate={isInView ? { scale: 1 } : { scale: 0 }}
+                            transition={{ duration: 0.4, delay: 0.2 + (index * 0.3) + 0.3 + 0.8, type: "spring" }}
+                          />
+                        </>
+                      );
+                    })()}
                   </div>
 
                   {/* Desktop: Original horizontal animated layout */}

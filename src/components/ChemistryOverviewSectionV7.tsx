@@ -216,8 +216,8 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
     <>
       {showBanner && <ExperienceBetterBanner />}
       <section className="w-full relative overflow-hidden
-                        pt-5 sm:pt-6 md:pt-8 lg:pt-10
-                        pb-3 sm:pb-4 md:pb-5 lg:pb-6
+                        pt-3 sm:pt-4 md:pt-6 lg:pt-8
+                        pb-2 sm:pb-3 md:pb-4 lg:pb-5
                         px-2 sm:px-4 md:px-6 lg:px-8
                         bg-gradient-to-bl from-[#477197] to-[#2c476e]">
       
@@ -226,7 +226,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
         
         <h2
           className="font-poppins font-normal text-white text-center leading-tight
-                     mb-2 sm:mb-3 md:mb-3 lg:mb-4
+                     mb-1 sm:mb-2 md:mb-2 lg:mb-3
                      [text-shadow:0_2px_8px_rgba(0,0,0,0.35)]"
           style={getFontSize('sectionHeading')}
         >
@@ -234,8 +234,8 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
         </h2>
 
         {/* Callout/Subtitle */}
-        <div className="text-center mb-3 sm:mb-4 md:mb-5">
-          <p className="text-white/80 text-xs sm:text-sm md:text-base font-poppins font-normal tracking-wider">
+        <div className="text-center mb-2 sm:mb-3 md:mb-4">
+          <p className="text-white/80 text-sm sm:text-base md:text-lg font-poppins font-normal tracking-wider">
             Click on a Chemistry to learn more.
           </p>
         </div>
@@ -243,7 +243,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
         {/* Mobile: 4 columns x 3 rows grid */}
         <div className="md:hidden">
           {/* Row 1 - 4 items */}
-          <div className="grid grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-5 justify-items-center">
+          <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-3 sm:mb-4 justify-items-center">
             {row1Chemistries.map((chemistry) => (
               <motion.div
                 key={chemistry.id}
@@ -257,7 +257,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                 onMouseEnter={() => handleChemistryHover(chemistry)}
                 onMouseLeave={() => handleChemistryHover(null)}
               >
-                <div className="flex flex-col items-center cursor-pointer p-1.5 sm:p-2 gap-1.5 sm:gap-2">
+                <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 gap-1 sm:gap-1.5">
                   <div className="relative flex justify-center">
                     <motion.img 
                       src={chemistry.iconSrc} 
@@ -280,7 +280,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
           </div>
           
           {/* Row 2 - 4 items */}
-          <div className="grid grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-5 justify-items-center">
+          <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-3 sm:mb-4 justify-items-center">
             {row2Chemistries.map((chemistry) => (
               <motion.div
                 key={chemistry.id}
@@ -294,7 +294,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                 onMouseEnter={() => handleChemistryHover(chemistry)}
                 onMouseLeave={() => handleChemistryHover(null)}
               >
-                <div className="flex flex-col items-center cursor-pointer p-1.5 sm:p-2 gap-1.5 sm:gap-2">
+                <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 gap-1 sm:gap-1.5">
                   <div className="relative flex justify-center">
                     <motion.img 
                       src={chemistry.iconSrc} 
@@ -317,7 +317,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
           </div>
           
           {/* Row 3 - 3 items (centered) */}
-          <div className="flex justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+          <div className="flex justify-center items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
             {row3Chemistries.map((chemistry) => (
               <motion.div
                 key={chemistry.id}
@@ -331,7 +331,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                 onMouseEnter={() => handleChemistryHover(chemistry)}
                 onMouseLeave={() => handleChemistryHover(null)}
               >
-                <div className="flex flex-col items-center cursor-pointer p-1.5 sm:p-2 gap-1.5 sm:gap-2">
+                <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 gap-1 sm:gap-1.5">
                   <div className="relative flex justify-center">
                     <motion.img 
                       src={chemistry.iconSrc} 
@@ -356,8 +356,8 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
 
         {/* Desktop: Top Row - 6 items */}
         <div className="hidden md:flex justify-center items-center
-                        gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
-                        w-full mb-3 sm:mb-4 md:mb-5
+                        gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5
+                        w-full mb-2 sm:mb-3 md:mb-4
                         flex-wrap">
           {topRowChemistries.map((chemistry) => (
             <motion.div
@@ -372,14 +372,14 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
               onMouseEnter={() => handleChemistryHover(chemistry)}
               onMouseLeave={() => handleChemistryHover(null)}
             >
-              <div className="flex flex-col items-center cursor-pointer p-1.5 sm:p-2 md:p-3
-                              gap-1 sm:gap-1.5 md:gap-2">
+              <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 md:p-2
+                              gap-0.5 sm:gap-1 md:gap-1.5">
                 <div className="relative flex justify-center">
                   <motion.img 
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
                     className="
-                      w-[54px] h-[54px] sm:w-[66px] sm:h-[66px] md:w-[96px] md:h-[96px] lg:w-[144px] lg:h-[144px] xl:w-[193px] xl:h-[193px]
+                      w-[43px] h-[43px] sm:w-[53px] sm:h-[53px] md:w-[77px] md:h-[77px] lg:w-[115px] lg:h-[115px] xl:w-[154px] xl:h-[154px]
                       object-contain
                       drop-shadow-lg
                       group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)]
@@ -415,8 +415,8 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
 
         {/* Desktop: Bottom Row - 5 items */}
         <div className="hidden md:flex justify-center items-center
-                        gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6
-                        w-full mb-3 sm:mb-4 md:mb-5
+                        gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5
+                        w-full mb-2 sm:mb-3 md:mb-4
                         flex-wrap">
           {bottomRowChemistries.map((chemistry) => (
             <motion.div
@@ -431,14 +431,14 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
               onMouseEnter={() => handleChemistryHover(chemistry)}
               onMouseLeave={() => handleChemistryHover(null)}
             >
-              <div className="flex flex-col items-center cursor-pointer p-1.5 sm:p-2 md:p-3
-                              gap-1 sm:gap-1.5 md:gap-2">
+              <div className="flex flex-col items-center cursor-pointer p-1 sm:p-1.5 md:p-2
+                              gap-0.5 sm:gap-1 md:gap-1.5">
                 <div className="relative flex justify-center">
                   <motion.img 
                     src={chemistry.iconSrc} 
                     alt={chemistry.name} 
                     className="
-                      w-[54px] h-[54px] sm:w-[66px] sm:h-[66px] md:w-[96px] md:h-[96px] lg:w-[144px] lg:h-[144px] xl:w-[193px] xl:h-[193px]
+                      w-[43px] h-[43px] sm:w-[53px] sm:h-[53px] md:w-[77px] md:h-[77px] lg:w-[115px] lg:h-[115px] xl:w-[154px] xl:h-[154px]
                       object-contain
                       drop-shadow-lg
                       group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)]

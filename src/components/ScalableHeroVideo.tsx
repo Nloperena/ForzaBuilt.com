@@ -28,7 +28,7 @@ const ScalableHeroVideo: React.FC = () => {
 
   return (
     <section className="relative w-full overflow-hidden bg-gradient-to-b from-[#2c476e] to-[#81899f] shadow-2xl py-0
-                        h-[60vh] md:h-screen">
+                        h-[100vh] md:h-[100vh] lg:h-[75vh] xl:h-[70vh] 2xl:h-[70vh]">
       {/* Video Skeleton Loading State */}
       {!isVideoLoaded && (
         <VideoSkeleton />

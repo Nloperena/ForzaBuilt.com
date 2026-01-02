@@ -168,7 +168,7 @@ const MSPageV2 = () => {
       <HeaderV2 />
       
       {/* Hero Section */}
-      <section className="relative w-full h-[60vh] md:h-screen overflow-hidden">
+      <section className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="/images/product-heroes/Forza Seal Hero Shot Header.jpg"

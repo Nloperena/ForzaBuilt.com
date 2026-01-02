@@ -5,7 +5,9 @@ import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } 
 import { byProductLine } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
-import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase } from '../../utils/industryHelpers';
+import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName, getChemistryIcon } from '../../utils/industryHelpers';
+import { useDrawer } from '@/contexts/DrawerContext';
+import SlideInDrawer from '../common/SlideInDrawer';
 
 interface Industry {
   title: string;
@@ -37,9 +39,16 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]); // Empty array = show all
   const [nameSort, setNameSort] = useState<'asc' | 'desc'>('asc');
   const [selectedChemistries, setSelectedChemistries] = useState<string[]>([]);
-  const [isFilterDialogOpen, setIsFilterDialogOpen] = useState(false);
+  const [isSearchDrawerOpen, setIsSearchDrawerOpen] = useState(false);
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+  const { setIsDrawerOpen } = useDrawer();
   const [imageLoadedStates, setImageLoadedStates] = useState<Record<string, boolean>>({});
   const [imageErrorStates, setImageErrorStates] = useState<Record<string, boolean>>({});
+
+  // Update drawer context when drawers open/close
+  useEffect(() => {
+    setIsDrawerOpen(isSearchDrawerOpen || isFilterDrawerOpen);
+  }, [isSearchDrawerOpen, isFilterDrawerOpen, setIsDrawerOpen]);
 
   // Product loading states - load ALL products by default
   const [allLineProducts, setAllLineProducts] = useState<Product[]>([]);
@@ -381,23 +390,40 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
               </div>
             </div>
 
-            {/* Mobile Filter Button */}
-            <div className="lg:hidden sticky bottom-4 w-full flex justify-center z-30">
-              <button
-                className="bg-[#F2611D] hover:bg-[#E55B1C] rounded-full px-4 md:px-5 py-2 md:py-2.5 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
-                aria-label="Filter"
-                onClick={() => setIsFilterDialogOpen(true)}
-              >
-                <Filter className="text-white h-4 w-4" />
-                <span className="text-white font-bold text-xs sm:text-sm">Filter & Sort</span>
-              </button>
-            </div>
           </aside>
 
           {/* Main Content Area */}
           <div className="flex-1">
-            {/* Results Info */}
-            <div className="flex justify-between items-center mb-6">
+            {/* Results Info with Icons - Mobile Only */}
+            <div className="flex items-center justify-center mb-6 relative lg:hidden">
+              {/* Left: Search and Filter Icons - Paired closer together */}
+              <div className="flex items-center gap-1 absolute left-0 z-10">
+                <button
+                  onClick={() => setIsSearchDrawerOpen(true)}
+                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="Search"
+                >
+                  <Search className="w-5 h-5 text-[#1B3764]" />
+                </button>
+                <button
+                  onClick={() => setIsFilterDrawerOpen(true)}
+                  className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="Filter"
+                >
+                  <Filter className="w-5 h-5 text-[#1B3764]" />
+                </button>
+              </div>
+
+              {/* Center: Products Found Badge - Orange with white text, center-aligned */}
+              <div className="bg-[#F2611D] px-4 py-1.5 rounded-full relative z-20">
+                <p className="text-sm text-white font-poppins font-medium">
+                  <span className="font-semibold">{industryProducts.length}</span> products found
+                </p>
+              </div>
+            </div>
+
+            {/* Results Info - Desktop Only */}
+            <div className="hidden lg:flex justify-between items-center mb-6">
               <div className="bg-gray-100 px-4 py-2 rounded-full border border-gray-300 shadow-sm">
                 <p className="text-sm text-gray-700">
                   <span className="font-semibold text-gray-900">{industryProducts.length}</span> products found
@@ -423,81 +449,37 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                       className="group"
                     >
                       <div 
-                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-32 md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg"
+                        className="relative overflow-hidden transition-all duration-500 hover:scale-[1.02] h-[280px] md:h-[340px] rounded-xl md:rounded-2xl bg-gradient-to-b from-[#477197] to-[#2c476e] border border-gray-200 hover:border-gray-300 shadow-lg flex flex-col"
                       >
-
-                        {/* Desktop: Product Image - Larger and zoomed in with space for text */}
+                        {/* Product Image - Same layout for mobile and desktop */}
                         <div 
-                          className="absolute inset-0 hidden md:block pb-24 cursor-pointer" 
+                          className="flex-1 relative pb-16 md:pb-24 cursor-pointer" 
                           style={{ transform: 'translateY(-3%) scale(0.85)' }}
                           onClick={() => navigate(`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`)}
                         >
-                          {/* Image Skeleton Loading State - show when loading or on error */}
                           {(!imageLoadedStates[product.id] || imageErrorStates[product.id]) && (
                             <ImageSkeleton />
                           )}
                           
                           {!imageErrorStates[product.id] && (
-                          <img 
-                            src={product.imageUrl} 
-                            alt={product.name}
-                            className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
-                              imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
-                            }`}
-                            onLoad={() => handleImageLoad(product.id)}
-                            onError={() => handleImageError(product.id)}
-                          />
-                          )}
-                        </div>
-
-                        {/* Mobile: Left side with image and basic info */}
-                        <div 
-                          className="flex md:hidden items-center gap-4 flex-1 p-4 cursor-pointer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            navigate(`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`);
-                          }}
-                        >
-                          {/* Mobile: Product Image */}
-                          <div className="w-[100px] h-[100px] rounded-xl overflow-hidden bg-transparent relative flex items-center justify-center">
-                            {/* Image Skeleton Loading State - show when loading or on error */}
-                            {(!imageLoadedStates[product.id] || imageErrorStates[product.id]) && (
-                              <ImageSkeleton className="rounded-xl" />
-                            )}
-                            
-                            {!imageErrorStates[product.id] && (
                             <img 
                               src={product.imageUrl} 
                               alt={product.name}
-                              className={`max-w-full max-h-full object-contain transition-opacity duration-500 ${
+                              className={`w-full h-full object-contain transition-all duration-500 group-hover:scale-105 ${
                                 imageLoadedStates[product.id] ? 'opacity-100' : 'opacity-0'
                               }`}
                               onLoad={() => handleImageLoad(product.id)}
                               onError={() => handleImageError(product.id)}
                             />
-                            )}
-                          </div>
-                          
-                          {/* Mobile: Product Info */}
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-sm font-kallisto font-bold mb-1 leading-tight line-clamp-1 text-white">
-                              {product.name}
-                            </h3>
-                            <p className="text-xs text-white line-clamp-2">
-                              {toTitleCase(product.description || '')}
-                            </p>
-                          </div>
+                          )}
                         </div>
 
-                        {/* Desktop: Content Section with title and description */}
-                        <div className="hidden md:block p-2.5 absolute bottom-0 left-0 right-0">
+                        {/* Content Section with title and description - Same for mobile and desktop */}
+                        <div className="p-2.5 absolute bottom-0 left-0 right-0">
                           <div className="space-y-0.5">
                             <h3 className="text-sm font-poppins font-bold leading-tight line-clamp-2 text-white">
-                              {product.name}
+                              {formatProductName(product.name || '')}
                             </h3>
-                            <p className="text-xs text-white line-clamp-2">
-                              {toTitleCase(product.description || '')}
-                            </p>
                             
                             {/* Button Row */}
                             <div className="flex gap-1.5 mt-2 pt-2">
@@ -511,19 +493,6 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                               </Link>
                             </div>
                           </div>
-                        </div>
-
-                        {/* Mobile: Right side with buttons */}
-                        <div className="flex md:hidden items-center gap-2 p-4">
-                          
-                          {/* Mobile: Product Details Button */}
-                          <Link
-                            to={`/products/${product.category?.toLowerCase() || 'bond'}/${product.id}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="flex items-center justify-center bg-white/20 backdrop-blur-md hover:bg-white/30 text-white rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300 border border-white/30"
-                          >
-                            Details
-                          </Link>
                         </div>
                       </div>
                     </motion.div>
@@ -544,7 +513,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
                     setSelectedChemistries([]);
                     setSelectedCategories([]);
                   }}
-                  className="px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-xs sm:text-sm font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                  className="px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full text-xs sm:text-sm font-normal font-poppins transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                 >
                   Clear All Filters
                 </button>
@@ -553,139 +522,159 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
           </div>
         </div>
 
-        {/* Mobile Filter Dialog */}
-        <AnimatePresence>
-          {isFilterDialogOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 z-50 flex items-end lg:hidden"
-              onClick={() => setIsFilterDialogOpen(false)}
-            >
-              <div className="bg-white w-full rounded-t-xl max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-                <div className="sticky top-0 bg-white pt-3 pb-2 px-4 flex justify-between items-center border-b border-gray-200">
-                  <h3 className="text-gray-900 text-lg font-bold">Filter & Sort</h3>
-                  <button onClick={() => setIsFilterDialogOpen(false)} className="p-2 rounded-full hover:bg-gray-100">
-                    <X className="text-gray-600 h-5 w-5" />
+        {/* Search Drawer */}
+        <SlideInDrawer
+          isOpen={isSearchDrawerOpen}
+          onClose={() => setIsSearchDrawerOpen(false)}
+          title="Search"
+          side="right"
+        >
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search products…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-gray-50 border border-gray-300 text-[#1B3764] px-10 py-3 rounded-lg text-sm font-poppins focus:outline-none focus:ring-2 focus:ring-[#F2611D] focus:border-transparent"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 hover:bg-gray-200 rounded-full transition-colors"
+              >
+                <X className="w-4 h-4 text-gray-600" />
+              </button>
+            )}
+          </div>
+        </SlideInDrawer>
+
+        {/* Filter Drawer */}
+        <SlideInDrawer
+          isOpen={isFilterDrawerOpen}
+          onClose={() => setIsFilterDrawerOpen(false)}
+          title="Filter & Settings"
+          side="right"
+        >
+          <div className="space-y-4">
+            {/* Sort */}
+            <div>
+              <h4 className="text-sm font-poppins font-semibold text-gray-700 mb-2">Sort By Name</h4>
+              <div className="flex gap-2">
+                <button 
+                  onClick={() => setNameSort('asc')} 
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg text-center text-sm font-medium transition-all ${
+                    nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  A-Z
+                </button>
+                <button 
+                  onClick={() => setNameSort('desc')} 
+                  className={`flex-1 py-1.5 px-2.5 rounded-lg text-center text-sm font-medium transition-all ${
+                    nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  Z-A
+                </button>
+              </div>
+            </div>
+
+            {/* Product Category */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="text-sm font-poppins font-semibold text-gray-700">Product Category</h4>
+                {selectedCategories.length > 0 && (
+                  <button
+                    onClick={() => setSelectedCategories([])}
+                    className="text-xs text-gray-600 hover:text-gray-800"
+                  >
+                    Clear
                   </button>
-                </div>
-
-                <div className="p-4 space-y-6">
-                  {/* Search */}
-                  <div className="bg-white rounded-xl shadow-lg border border-gray-300 p-3">
-                    <div className="relative">
-                      <div className="absolute left-3 top-1/2 -translate-y-1/2 bg-gray-100 p-1.5 rounded-full">
-                        <Search className="text-gray-600 h-4 w-4" />
-                      </div>
-                      <input
-                        placeholder="Search products…"
-                        value={search}
-                        onChange={e => setSearch(e.target.value)}
-                        className="w-full bg-white text-gray-900 placeholder-gray-400 pl-12 py-3 text-sm border border-gray-300 focus:border-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 rounded-xl"
-                      />
-                      {search && (
-                        <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 bg-gray-200 hover:bg-gray-300 p-1.5 rounded-full transition-colors">
-                          <X className="text-gray-600 h-3 w-3" />
-                        </button>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Sort */}
-                  <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                    <h4 className="text-gray-900 font-bold text-sm uppercase mb-3">Sort By</h4>
-                    <div className="flex gap-2">
-                      <button onClick={() => setNameSort('asc')} className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium ${nameSort === 'asc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>A-Z</button>
-                      <button onClick={() => setNameSort('desc')} className={`flex-1 py-2 px-3 rounded-lg text-center text-sm font-medium ${nameSort === 'desc' ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>Z-A</button>
-                    </div>
-                  </div>
-
-                  {/* Product Category */}
-                  <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                    <div className="flex items-center justify-between mb-3">
-                      <h4 className="text-gray-900 font-bold text-sm uppercase">Product Category</h4>
-                      {selectedCategories.length > 0 && (
-                        <button
-                          onClick={() => setSelectedCategories([])}
-                          className="text-xs text-gray-600 hover:text-gray-900 bg-gray-200 hover:bg-gray-300 py-0.5 px-2 rounded-md"
-                        >
-                          Clear
-                        </button>
-                      )}
-                    </div>
-                    <div className="grid grid-cols-3 gap-2">
-                      {([
-                        { key: 'bond', label: 'Adhesives' },
-                        { key: 'seal', label: 'Sealants' },
-                        { key: 'tape', label: 'Tapes' }
-                      ] as const).map(({ key, label }) => {
-                        const isSelected = selectedCategories.includes(key);
-                        return (
-                          <button
-                            key={key}
-                            onClick={() => {
-                              if (isSelected) {
-                                setSelectedCategories(selectedCategories.filter(cat => cat !== key));
-                              } else {
-                                setSelectedCategories([...selectedCategories, key]);
-                              }
-                            }}
-                            className={`py-2 px-3 rounded-lg text-center text-sm font-medium ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-                          >
-                            {label}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Chemistry Filter */}
-                  {chemistryTypes.length > 0 && (
-                    <div className="bg-gray-50 rounded-xl p-4 border border-gray-200">
-                      <h4 className="text-gray-900 font-bold text-sm uppercase mb-3">Chemistry</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {chemistryTypes.map(chemistry => {
-                          const isSelected = selectedChemistries.includes(chemistry);
-                          const count = industryProducts.filter(p => p.chemistry === chemistry).length;
-                          return (
-                            <button
-                              key={chemistry}
-                              onClick={() => {
-                                if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
-                                else setSelectedChemistries([...selectedChemistries, chemistry]);
-                              }}
-                              className={`flex items-center justify-between p-2 rounded-lg overflow-hidden ${isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
-                            >
-                              <div className="flex items-center gap-2 min-w-0 flex-1">
-                                <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                                  <img 
-                                    src={CHEMISTRY_ICONS[chemistry as keyof typeof CHEMISTRY_ICONS]} 
-                                    alt={chemistry}
-                                    className="w-5 h-5 object-contain chemistry-icon"
-                                  />
-                                </div>
-                                <span className="text-xs font-medium truncate">{chemistry}</span>
-                              </div>
-                              <span className="text-xs opacity-70 flex-shrink-0">({count})</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Apply Button */}
-                  <div className="pt-2 pb-6">
-                    <button onClick={() => setIsFilterDialogOpen(false)} className="w-full px-4 md:px-5 py-2 md:py-2.5 bg-[#F2611D] hover:bg-[#E55B1C] text-white font-bold rounded-full text-xs sm:text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
-                      Apply Filters
+                )}
+              </div>
+              <div className="space-y-1.5">
+                {([
+                  { key: 'bond', label: 'Adhesives' },
+                  { key: 'seal', label: 'Sealants' },
+                  { key: 'tape', label: 'Tapes' }
+                ] as const).map(({ key, label }) => {
+                  const isSelected = selectedCategories.includes(key);
+                  const count = categoryCounts[key] || 0;
+                  return (
+                    <button
+                      key={key}
+                      onClick={() => {
+                        if (isSelected) {
+                          setSelectedCategories(selectedCategories.filter(cat => cat !== key));
+                        } else {
+                          setSelectedCategories([...selectedCategories, key]);
+                        }
+                      }}
+                      className={`w-full flex items-center justify-between p-1.5 rounded-lg transition-all ${
+                        isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      <span className="text-xs font-medium">{label}</span>
+                      <span className="text-xs opacity-70">({count})</span>
                     </button>
-                  </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Chemistry Filter */}
+            {chemistryTypes.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-sm font-poppins font-semibold text-gray-700">Chemistry</h4>
+                  {selectedChemistries.length > 0 && (
+                    <button
+                      onClick={() => setSelectedChemistries([])}
+                      className="text-xs text-gray-600 hover:text-gray-800"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                <div className="space-y-1.5">
+                  {chemistryTypes.map(chemistry => {
+                    const isSelected = selectedChemistries.includes(chemistry);
+                    const count = industryProducts.filter(p => p.chemistry === chemistry).length;
+                    return (
+                      <button
+                        key={chemistry}
+                        onClick={() => {
+                          if (isSelected) setSelectedChemistries(selectedChemistries.filter(c => c !== chemistry));
+                          else setSelectedChemistries([...selectedChemistries, chemistry]);
+                        }}
+                        disabled={count === 0 && !isSelected}
+                        className={`w-full flex items-center justify-between p-1.5 rounded-lg transition-all ${
+                          isSelected ? 'bg-[#F2611D] text-white' : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                        } ${count === 0 && !isSelected ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
+                        <div className="flex items-center gap-2 min-w-0 flex-1">
+                          <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center">
+                            <img 
+                              src={getChemistryIcon(chemistry)} 
+                              alt={chemistry}
+                              className="w-5 h-5 object-contain chemistry-icon"
+                              onError={(e) => {
+                                e.currentTarget.src = CHEMISTRY_ICONS['MS'] || '/images/icons/chemistry/MS icon.svg';
+                              }}
+                            />
+                          </div>
+                          <span className="text-xs font-medium truncate">{chemistry.replace(/_/g, ' ')}</span>
+                        </div>
+                        <span className="text-xs opacity-70 flex-shrink-0">({count})</span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            )}
+          </div>
+        </SlideInDrawer>
       </div>
     </section>
   );

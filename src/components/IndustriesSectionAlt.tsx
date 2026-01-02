@@ -185,10 +185,9 @@ const IndustriesSectionAlt = () => {
                           }}
                           />
                           <h3
-                          className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold"
+                          className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold text-base sm:text-lg"
                             style={{
                             color: '#ffffff',
-                            fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
                             }}
                           >
@@ -299,10 +298,9 @@ const IndustriesSectionAlt = () => {
                             }}
                           />
                           <h3
-                            className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold"
+                            className="font-poppins font-normal text-left leading-none cursor-pointer transition-all duration-300 group-hover:font-bold text-base md:text-lg lg:text-xl"
                             style={{
                               color: '#ffffff',
-                              fontSize: 'clamp(0.75rem, 1.5vw, 1.25rem)',
                               textShadow: '1px 1px 2px rgba(0, 0, 0, 0.8)'
                             }}
                           >
@@ -320,7 +318,7 @@ const IndustriesSectionAlt = () => {
 
         {/* Subtle afterthought text - Desktop only */}
         <div className="hidden md:block w-full text-center mt-4 md:mt-6 lg:mt-6 pb-8 md:pb-12 lg:pb-14">
-          <p className="font-poppins text-gray-600 font-normal" style={{ fontSize: 'clamp(0.75rem, 1.5vw, 1.25rem)' }}>
+          <p className="font-poppins text-gray-600 font-normal text-sm md:text-base">
             Don't see your industry?{' '}
             <a
               href="/contact"
