@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import { byProductLine } from '@/utils/products';
 import ProductModalV3 from '@/components/ProductModal/ProductModalV3';
@@ -179,8 +178,8 @@ const InteractiveProductsSectionV6 = () => {
             {/* RIGHT SIDE - Product selections, description, and button (first on mobile, right on desktop) */}
             <div className="relative bg-gradient-to-r from-[#477197] to-[#2c476e] px-3 py-3 md:px-5 md:py-5 flex flex-col justify-between order-1 md:order-2 md:aspect-[5/4]">
               
-              {/* Product list - Optimized spacing */}
-              <div className="flex flex-col justify-center flex-1" style={{ gap: 'clamp(6px, 1.2vw, 12px)' }}>
+              {/* Product list - Balanced spacing with top margin */}
+              <div className="flex flex-col justify-center flex-1" style={{ gap: 'clamp(10px, 1.8vw, 18px)', paddingTop: 'clamp(12px, 2.5vw, 24px)' }}>
                 {products.map((product, index) => {
                   const isActive = activeIndex === index;
                   
@@ -210,8 +209,8 @@ const InteractiveProductsSectionV6 = () => {
                       } ${!isActive ? 'hover:text-[#F2611D]' : ''}`}
                       style={{
                         fontSize: isActive 
-                          ? 'clamp(18px, 3.5vw, 56px)' 
-                          : 'clamp(14px, 2vw, 32px)',
+                          ? 'clamp(20px, 3.8vw, 60px)' 
+                          : 'clamp(15px, 2.2vw, 34px)',
                       }}>
                         {toTitleCase(product.title)}
                       </h3>
@@ -221,7 +220,7 @@ const InteractiveProductsSectionV6 = () => {
               </div>
 
               {/* Description and button */}
-              <div className="mt-auto pb-3 md:pb-0" style={{ gap: 'clamp(8px, 1.2vw, 12px)', display: 'flex', flexDirection: 'column' }}>
+              <div className="mt-auto" style={{ paddingBottom: 'clamp(16px, 3vw, 32px)', display: 'flex', flexDirection: 'column' }}>
                 <AnimatePresence mode='wait'>
                   <motion.div
                     key={activeIndex}
@@ -229,30 +228,29 @@ const InteractiveProductsSectionV6 = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
+                    style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px, 2vw, 20px)', alignItems: 'flex-start' }}
                   >
                     <p className={`text-white ${
                       mode === 'light2' ? 'font-poppins' : ''
                     }`}
                     style={{
-                      fontSize: 'clamp(11px, 1.3vw, 15px)',
+                      fontSize: 'clamp(12px, 1.5vw, 18px)',
                       lineHeight: '1.5'
                     }}>
                       {products[activeIndex].description}
                     </p>
-                    <Button
-                      asChild
-                      className="mt-2 gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex items-center justify-center rounded-full bg-[#F2611D] text-white font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                    <Link 
+                      to={`/products/${products[activeIndex].slug}`}
+                      className="whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 inline-flex items-center justify-center rounded-full bg-[#F2611D] text-white font-medium hover:bg-[#F2611D]/90 shadow-lg"
                       style={{
-                        height: 'clamp(28px, 2.5vw, 36px)',
-                        paddingLeft: 'clamp(12px, 1.8vw, 20px)',
-                        paddingRight: 'clamp(12px, 1.8vw, 20px)',
-                        fontSize: 'clamp(11px, 1.2vw, 14px)'
+                        height: 'clamp(32px, 3vw, 44px)',
+                        paddingLeft: 'clamp(16px, 2.2vw, 24px)',
+                        paddingRight: 'clamp(16px, 2.2vw, 24px)',
+                        fontSize: 'clamp(12px, 1.4vw, 16px)'
                       }}
                     >
-                      <Link to={`/products/${products[activeIndex].slug}`}>
-                        {getButtonText(products[activeIndex].title)}
-                      </Link>
-                    </Button>
+                      {getButtonText(products[activeIndex].title)}
+                    </Link>
                   </motion.div>
                 </AnimatePresence>
               </div>
