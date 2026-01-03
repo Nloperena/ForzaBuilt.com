@@ -843,7 +843,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                           className="font-normal font-poppins text-white leading-tight mb-2 sm:mb-3 lg:mb-4"
                           style={{ 
                             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-                            fontSize: `calc(clamp(2rem, 4vw, 3.5rem) * ${contentScale})`
+                            fontSize: `calc(clamp(1.375rem, 4vw, 3.5rem) * ${contentScale})`
                           }}
                         >
                           {card.title}
@@ -855,7 +855,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                           className="font-normal text-white/90 mb-2"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
-                            fontSize: `calc(clamp(0.9rem, 1.3vw, 1.25rem) * ${contentScale})`
+                            fontSize: `calc(clamp(0.875rem, 1.3vw, 1.25rem) * ${contentScale})`
                           }}
                         >
                           {card.subheading}
@@ -867,7 +867,7 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                           className="font-normal text-white/80 leading-relaxed mb-3 sm:mb-4"
                           style={{ 
                             textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                            fontSize: `calc(clamp(1rem, 1.5vw, 1.35rem) * ${contentScale})`
+                            fontSize: `calc(clamp(0.875rem, 1.5vw, 1.35rem) * ${contentScale})`
                           }}
                         >
                           {card.description}
@@ -881,10 +881,10 @@ const HybridStackableCards: React.FC<HybridStackableCardsProps> = ({
                               className="flex items-start text-white/90"
                               style={{ 
                                 textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                                fontSize: `calc(clamp(0.9rem, 1.3vw, 1.2rem) * ${contentScale})`
+                                fontSize: `calc(clamp(0.75rem, 1.1vw, 1.1rem) * ${contentScale})`
                               }}
                             >
-                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1.5" style={{ width: `calc(clamp(0.4rem, 0.6vw, 0.5rem) * ${contentScale})`, height: `calc(clamp(0.4rem, 0.6vw, 0.5rem) * ${contentScale})` }}></div>
+                              <div className="rounded-full bg-white/80 mr-2 sm:mr-3 flex-shrink-0 shadow-lg mt-1.5" style={{ width: `calc(clamp(0.3rem, 0.5vw, 0.4rem) * ${contentScale})`, height: `calc(clamp(0.3rem, 0.5vw, 0.4rem) * ${contentScale})` }}></div>
                               {item}
                             </li>
                           ))}

@@ -159,26 +159,26 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
               <img
                 src={imageToUse}
                 alt={`Forza ${content.title} Cover`}
-                className="w-48 sm:w-56 md:w-64 lg:w-72 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-0 bg-white"
+                className="w-32 sm:w-40 md:w-56 lg:w-72 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl border-0 bg-white"
                 loading="lazy"
               />
             </div>
 
             {/* Right: Text and Buttons */}
             <div className="flex-1 text-left flex flex-col items-start">
-              <h2 className="text-white font-poppins font-normal leading-tight mb-4" style={{ fontSize: 'clamp(22px, 2vw + 0.5rem, 44px)' }}>
+              <h2 className="text-white font-poppins font-normal leading-tight mb-2 sm:mb-3 md:mb-4" style={{ fontSize: 'clamp(18px, 2vw + 0.5rem, 44px)' }}>
                 {content.title}
               </h2>
-              <p className="text-white/90 text-sm sm:text-base md:text-lg mb-6 leading-relaxed max-w-[500px]">
+              <p className="text-white/90 text-xs sm:text-sm md:text-base lg:text-lg mb-4 sm:mb-5 md:mb-6 leading-relaxed max-w-[500px]">
                 {content.description}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4">
                 <a
                   href={pdfUrl}
                   download
-                  className="group inline-flex items-center justify-center gap-2 font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-white/50 hover:bg-white/30 backdrop-blur-sm text-white hover:border-white/70"
+                  className="group inline-flex items-center justify-center gap-1.5 sm:gap-2 font-bold text-xs sm:text-sm px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 border-2 border-white/50 hover:bg-white/30 backdrop-blur-sm text-white hover:border-white/70"
                 >
                   <svg 
                     className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-[-2px]" 
@@ -197,7 +197,7 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
                 </a>
                 <button
                   onClick={handleView}
-                  className="inline-flex items-center justify-center gap-2 bg-[#F2611D] hover:bg-[#d94e0c] text-white font-bold text-xs sm:text-sm px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-[#F2611D] hover:bg-[#d94e0c] text-white font-bold text-xs sm:text-sm px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
                 >
                   <svg 
                     className="w-4 h-4" 
@@ -246,7 +246,7 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
             {/* Articles Grid - Centered with consistent spacing */}
             <div className="flex justify-center">
               <motion.div 
-                className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-6 md:mb-8 w-full px-2 sm:px-0"
+                className="grid grid-cols-3 md:grid-cols-3 gap-2 sm:gap-3 md:gap-5 lg:gap-6 mb-6 md:mb-8 w-full px-2 sm:px-0"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -259,7 +259,7 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
                       className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block h-full"
                     >
                       {/* Image Section */}
-                      <div className="bg-gray-200 h-40 md:h-44 flex items-center justify-center overflow-hidden">
+                      <div className="bg-gray-200 h-32 sm:h-36 md:h-44 flex items-center justify-center overflow-hidden">
                         {article.image ? (
                           <motion.img
                             src={article.image}
@@ -274,11 +274,11 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
                       </div>
 
                       {/* Content Section - White background */}
-                      <div className="p-3 md:p-4">
-                        <h3 className="font-poppins font-bold text-[#2c476e] text-sm md:text-base mb-2 group-hover:text-[#F2611D] transition-colors duration-300 line-clamp-2">
+                      <div className="p-2 sm:p-3 md:p-4">
+                        <h3 className="font-poppins font-bold text-[#2c476e] text-xs sm:text-sm md:text-base mb-1 sm:mb-2 group-hover:text-[#F2611D] transition-colors duration-300 line-clamp-2">
                           {article.title}
                         </h3>
-                        <p className="font-poppins text-gray-600 text-xs md:text-sm leading-relaxed line-clamp-2">
+                        <p className="font-poppins text-gray-600 text-[10px] sm:text-xs md:text-sm leading-relaxed line-clamp-2">
                           {article.excerpt}
                         </p>
                       </div>

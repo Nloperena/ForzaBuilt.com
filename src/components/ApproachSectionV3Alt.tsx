@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 import ExperienceBetterBanner from '@/components/ExperienceBetterBanner';
 import MSHeroBanner from '@/components/MSHeroBanner';
-import HeroVideoSectionV2 from './HeroVideoSectionV2';
+import ScalableHeroVideoSection from './ScalableHeroVideoSection';
 import ApproachHeading from './ApproachHeading';
 
 interface ApproachItem {
@@ -471,7 +471,7 @@ const ApproachSectionV3Alt = () => {
   return (
     <>
       <div className="relative z-20">
-        <HeroVideoSectionV2 />
+        <ScalableHeroVideoSection />
       </div>
       {/* Approach Heading */}
       <ApproachHeading />

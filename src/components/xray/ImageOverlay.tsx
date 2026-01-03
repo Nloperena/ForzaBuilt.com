@@ -206,7 +206,7 @@ function ImageOverlay({
       {/* SVG Container */}
       <div 
         ref={svgContainerRef}
-        className="relative h-full w-full max-w-[1920px] mx-auto flex items-center justify-center p-4 sm:p-8 lg:p-12"
+        className="relative h-full w-full max-w-[1920px] mx-auto flex items-center justify-center p-4 sm:p-6 md:p-4 lg:p-6"
       >
         {svgContent && (
           <div

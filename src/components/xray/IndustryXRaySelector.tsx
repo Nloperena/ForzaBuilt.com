@@ -31,6 +31,8 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
   const [hoveredProduct, setHoveredProduct] = useState<Product | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
+  const thumbnailScrollRef = useRef<HTMLDivElement>(null);
+  const thumbnailRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
 
   // Helper function to get industry gradient
   const getIndustryGradient = (industryName: string) => {
@@ -108,13 +110,48 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
     setHoveredProduct(null);
   };
 
+  // Scroll thumbnail to center when variant changes
+  const scrollThumbnailToCenter = (variantId: string) => {
+    const thumbnailElement = thumbnailRefs.current.get(variantId);
+    if (thumbnailElement && thumbnailScrollRef.current) {
+      const container = thumbnailScrollRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const elementRect = thumbnailElement.getBoundingClientRect();
+      
+      const scrollLeft = container.scrollLeft + (elementRect.left - containerRect.left) - (containerRect.width / 2) + (elementRect.width / 2);
+      
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Scroll to center when selectedVariant changes
+  useEffect(() => {
+    if (selectedVariant) {
+      // Small delay to ensure DOM is updated
+      setTimeout(() => {
+        scrollThumbnailToCenter(selectedVariant);
+      }, 50);
+    }
+  }, [selectedVariant]);
+
+  const handleVariantChange = (variantId: string) => {
+    setSelectedVariant(variantId);
+    handleCloseModal();
+    setTimeout(() => {
+      scrollThumbnailToCenter(variantId);
+    }, 50);
+  };
+
   const displayProduct = selectedProduct || hoveredProduct;
 
   return (
     <section className="relative w-full bg-white overflow-visible">
       <div className="relative w-full">
-        {/* Left: Thumbnails - centered to full section height */}
-        <div className="absolute left-4 md:left-6 lg:left-8 2xl:left-12 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2 md:gap-3 lg:gap-4">
+        {/* Left: Thumbnails - centered to full section height - Desktop only */}
+        <div className="hidden md:flex absolute left-4 md:left-6 lg:left-8 2xl:left-12 top-1/2 -translate-y-1/2 z-40 flex-col gap-2 md:gap-3 lg:gap-4">
           {options.map((option) => {
             const isSelected = selectedVariant === option.id;
             return (
@@ -158,7 +195,7 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
           })}
         </div>
 
-        {/* Right: Product Modal - centered to full section height, aligned with thumbnails */}
+        {/* Right: Product Modal - centered to full section height, aligned with thumbnails - Desktop only */}
         <AnimatePresence>
           {displayProduct && (
             <motion.div
@@ -167,7 +204,7 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="group absolute right-4 md:right-6 lg:right-8 2xl:right-12 
+              className="hidden md:block group absolute right-4 md:right-6 lg:right-8 2xl:right-12 
                          top-1/2 -translate-y-1/2 lg:-mt-[8rem] 2xl:-mt-[12rem] z-50
                          w-44 md:w-52 lg:w-60 2xl:w-72
                          h-32 md:h-[340px]
@@ -276,8 +313,81 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
           </div>
         </div>
 
+        {/* Mobile: Thumbnail Selector - Below header, above SVG */}
+        <div className="md:hidden relative z-30 w-full px-4 pb-4">
+          <div 
+            ref={thumbnailScrollRef}
+            className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory"
+          >
+            {options.map((option) => {
+              const isSelected = selectedVariant === option.id;
+              return (
+                <motion.button
+                  key={option.id}
+                  ref={(el) => {
+                    if (el) {
+                      thumbnailRefs.current.set(option.id, el);
+                    } else {
+                      thumbnailRefs.current.delete(option.id);
+                    }
+                  }}
+                  onClick={() => handleVariantChange(option.id)}
+                  whileTap={{ scale: 0.98 }}
+                  className={`
+                    flex-shrink-0 flex items-center gap-2 px-3 py-2 rounded-lg border transition-all duration-300 shadow-md snap-center
+                    ${isSelected 
+                      ? 'bg-[#33486c] border-[#33486c] text-white ring-2 ring-[#33486c]/20' 
+                      : 'bg-gray-200/80 border-gray-300 text-[#1B3764] active:bg-gray-100'
+                    }
+                  `}
+                >
+                  <div className={`
+                    w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 border
+                    ${isSelected ? 'border-white/20' : 'border-gray-300'}
+                  `}>
+                    <img 
+                      src={option.previewImage} 
+                      alt={option.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <p className={`font-semibold text-xs leading-tight ${isSelected ? 'text-white' : 'text-[#1B3764]'}`}>
+                      {option.title}
+                    </p>
+                  </div>
+                </motion.button>
+              );
+            })}
+          </div>
+          
+          {/* Pagination Dots */}
+          {options.length > 2 && (
+            <div className="flex justify-center gap-2 mt-3">
+              {options.map((option, index) => {
+                const isSelected = selectedVariant === option.id;
+                return (
+                  <motion.button
+                    key={option.id}
+                    onClick={() => handleVariantChange(option.id)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      isSelected ? 'bg-[#33486c] scale-125' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Select ${option.title}`}
+                    animate={{ 
+                      scale: isSelected ? 1.25 : 1,
+                      backgroundColor: isSelected ? '#33486c' : '#d1d5db'
+                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  />
+                );
+              })}
+            </div>
+          )}
+        </div>
+
         {/* X-Ray Display Area */}
-        <div className="relative w-full aspect-[16/9] min-h-[600px]">
+        <div className="relative w-full aspect-[16/9] min-h-[400px] md:min-h-[500px]">
           <div className="absolute inset-0 w-full h-full z-0">
             {options.map((option) => (
               <div
@@ -298,6 +408,55 @@ const IndustryXRaySelector: React.FC<IndustryXRaySelectorProps> = ({ industry, o
             ))}
           </div>
         </div>
+
+        {/* Mobile: Product Card - Below SVG, overlapping slightly */}
+        <AnimatePresence mode="wait">
+          {selectedProduct && (
+            <motion.div
+              key={selectedProduct.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="md:hidden relative z-30 w-full px-4 -mt-20"
+            >
+              <div className="bg-gradient-to-b from-[#477197] to-[#2c476e] rounded-xl border border-gray-200 shadow-lg overflow-hidden">
+                <div className="p-4">
+                  <div className="flex items-start gap-4">
+                    {selectedProduct.thumb || selectedProduct.imageUrl ? (
+                      <div className="w-48 h-48 rounded-lg overflow-hidden bg-white/10 flex-shrink-0 flex items-center justify-center">
+                        <img
+                          src={selectedProduct.thumb || selectedProduct.imageUrl}
+                          alt={selectedProduct.name}
+                          className="max-w-full max-h-full object-contain"
+                        />
+                      </div>
+                    ) : null}
+                    <div className="flex-1 min-w-0 pt-2">
+                      {selectedProduct.sku && (
+                        <h3 className="text-sm font-poppins font-bold mb-2 leading-tight text-white">
+                          {selectedProduct.sku}
+                        </h3>
+                      )}
+                      {selectedProduct.description && (
+                        <p className="text-xs text-white/90 leading-relaxed mb-4">
+                          {selectedProduct.description}
+                        </p>
+                      )}
+                      <a
+                        href={`/products/${selectedProduct.category?.toLowerCase() || 'bond'}/${selectedProduct.id}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center justify-center bg-[#F2611D] hover:bg-[#d9551a] text-white rounded-full px-6 py-2 text-sm font-medium transition-all duration-300"
+                      >
+                        View Details
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -14,7 +14,7 @@ import ApproachHeading from '@/components/ApproachHeading';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
-import HeroVideoSectionV2 from '@/components/HeroVideoSectionV2';
+import ScalableHeroVideoSection from '@/components/ScalableHeroVideoSection';
 import LibrarySection from '@/components/LibrarySection';
 import { useGradientMode } from '@/contexts/GradientModeContext';
 

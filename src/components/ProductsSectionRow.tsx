@@ -91,7 +91,7 @@ const ProductsSectionRow = () => {
         </div>
         
         {/* Desktop Row Layout - hidden on mobile */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:flex 2xl:flex-row gap-4 md:gap-5 lg:gap-6 xl:gap-8 justify-center items-start relative z-10 max-w-6xl mx-auto lg:h-[40vh]">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-4 md:gap-5 lg:gap-6 xl:gap-8 justify-center items-start relative z-10 max-w-6xl mx-auto">
           {products.map((product, index) => {
             const isHovered = hoveredIndex === index;
             const isTapes = product.title === 'TAPES';
@@ -133,7 +133,7 @@ const ProductsSectionRow = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
+                                  className={`w-full h-full object-contain${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
@@ -166,7 +166,7 @@ const ProductsSectionRow = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
+                                  className={`w-full h-full object-contain${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
@@ -182,7 +182,7 @@ const ProductsSectionRow = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
+                                  className={`w-full h-full object-contain${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
@@ -266,7 +266,7 @@ const ProductsSectionRow = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
+                                  className={`w-full h-full object-contain${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
@@ -299,7 +299,7 @@ const ProductsSectionRow = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
+                                  className={`w-full h-full object-contain${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',
@@ -315,7 +315,7 @@ const ProductsSectionRow = () => {
                                 <img
                                   src={product.image}
                                   alt={product.title}
-                                  className={`w-full h-full object-cover${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
+                                  className={`w-full h-full object-contain${index === 0 ? ' transform scale-[1.2] -translate-x-1/3' : ''}${index === 1 ? ' transform scale-[1.8] -translate-x-0 -translate-y-1/3' : ''}${index !== 1 && index !== 2 && index !== 0 ? ' transform scale-[1.2] -translate-x-2/3' : ''}${index === 3 ? ' scale-x-[-1]' : ''}`}
                                   style={{
                                     pointerEvents: 'none',
                                     filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.7))',

@@ -240,16 +240,16 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
           </p>
         </div>
         
-        {/* Mobile: 4 columns x 3 rows grid */}
-        <div className="md:hidden">
+        {/* Mobile & Tablet: 4 columns x 3 rows grid */}
+        <div className="lg:hidden">
           {/* Row 1 - 4 items */}
-          <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-3 sm:mb-4 justify-items-center">
+          <div className="grid grid-cols-4 gap-1 mb-3 sm:mb-4 justify-items-center">
             {row1Chemistries.map((chemistry) => (
               <motion.div
                 key={chemistry.id}
                 className="group transition-transform duration-200 hover:-translate-y-1
                            flex-shrink-0
-                           w-full max-w-[90px] sm:max-w-[100px]"
+                           w-full max-w-[100px] sm:max-w-[110px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 tabIndex={0}
@@ -262,7 +262,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     <motion.img 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
-                      className="w-[58px] h-[58px] sm:w-[67px] sm:h-[67px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      className="w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
                           ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
@@ -280,13 +280,13 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
           </div>
           
           {/* Row 2 - 4 items */}
-          <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-3 sm:mb-4 justify-items-center">
+          <div className="grid grid-cols-4 gap-1 mb-3 sm:mb-4 justify-items-center">
             {row2Chemistries.map((chemistry) => (
               <motion.div
                 key={chemistry.id}
                 className="group transition-transform duration-200 hover:-translate-y-1
                            flex-shrink-0
-                           w-full max-w-[90px] sm:max-w-[100px]"
+                           w-full max-w-[100px] sm:max-w-[110px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 tabIndex={0}
@@ -299,7 +299,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     <motion.img 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
-                      className="w-[58px] h-[58px] sm:w-[67px] sm:h-[67px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      className="w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
                           ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
@@ -317,13 +317,13 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
           </div>
           
           {/* Row 3 - 3 items (centered) */}
-          <div className="flex justify-center items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+          <div className="flex justify-center items-center gap-1 mb-3 sm:mb-4">
             {row3Chemistries.map((chemistry) => (
               <motion.div
                 key={chemistry.id}
                 className="group transition-transform duration-200 hover:-translate-y-1
                            flex-shrink-0
-                           w-full max-w-[90px] sm:max-w-[100px]"
+                           w-full max-w-[100px] sm:max-w-[110px]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 tabIndex={0}
@@ -336,7 +336,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
                     <motion.img 
                       src={chemistry.iconSrc} 
                       alt={chemistry.name} 
-                      className="w-[58px] h-[58px] sm:w-[67px] sm:h-[67px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
+                      className="w-[70px] h-[70px] sm:w-[80px] sm:h-[80px] object-contain drop-shadow-lg group-hover:drop-shadow-[0_4px_12px_rgba(242,97,29,0.4)] transition-shadow duration-300"
                       animate={{
                         filter: hoveredChemistry === chemistry.id 
                           ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) brightness(1.1)' 
@@ -355,7 +355,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
         </div>
 
         {/* Desktop: Top Row - 6 items */}
-        <div className="hidden md:flex justify-center items-center
+        <div className="hidden lg:flex justify-center items-center
                         gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5
                         w-full mb-2 sm:mb-3 md:mb-4
                         flex-wrap">
@@ -414,7 +414,7 @@ const ChemistryOverviewSectionV7: React.FC<ChemistryOverviewSectionV7Props> = ({
         </div>
 
         {/* Desktop: Bottom Row - 5 items */}
-        <div className="hidden md:flex justify-center items-center
+        <div className="hidden lg:flex justify-center items-center
                         gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5
                         w-full mb-2 sm:mb-3 md:mb-4
                         flex-wrap">

@@ -5,7 +5,7 @@ import { X, Search, Filter, ArrowUpDown, ChevronDown, ChevronUp, FlaskConical } 
 import { byProductLine } from '@/utils/products';
 import { typography } from '@/styles/brandStandards';
 import ImageSkeleton from '../common/ImageSkeleton';
-import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName, getChemistryIcon } from '../../utils/industryHelpers';
+import { CHEMISTRY_ICONS, getIndustryLogo, toTitleCase, formatProductName } from '../../utils/industryHelpers';
 import { useDrawer } from '@/contexts/DrawerContext';
 import SlideInDrawer from '../common/SlideInDrawer';
 
@@ -227,7 +227,7 @@ const IndustryProductsSection: React.FC<IndustryProductsSectionProps> = ({
 
         <div className="flex flex-col lg:flex-row" style={{ gap: 'clamp(1rem, 2vw, 1.5rem)', marginTop: '0.5rem' }}>
           {/* Filter Sidebar */}
-          <aside className="flex-shrink-0 lg:sticky lg:top-24 lg:self-start" style={{ width: 'clamp(12rem, 15vw, 14rem)' }}>
+          <aside className="hidden lg:block flex-shrink-0 lg:sticky lg:top-24 lg:self-start" style={{ width: 'clamp(12rem, 15vw, 14rem)' }}>
             {/* Search Bar */}
             <div className="bg-gradient-to-r from-[#477197] to-[#2c476e] rounded-lg shadow-lg border border-gray-300 p-2 mb-3">
               <div className="relative">

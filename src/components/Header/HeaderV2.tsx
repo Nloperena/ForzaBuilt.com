@@ -307,13 +307,13 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
                     <span className="font-poppins font-medium text-[#1B3764] text-sm">Products</span>
                     <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </Link>
-                  <div className="ml-3 space-y-0.5 border-l-2 border-gray-100 pl-3">
+                  <div className="ml-3 border-l-2 border-gray-100 pl-3">
                     {productsItems.map((item) => (
                       <Link
                         key={item.href}
                         to={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="block py-0.5 px-2 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         <span className="font-poppins text-xs text-gray-700 leading-[0.5] lg:leading-normal">{item.label}</span>
                       </Link>
@@ -331,13 +331,13 @@ const HoverDropdown: React.FC<{ items: MenuItem[]; widthClass?: string; variant?
                     <span className="font-poppins font-medium text-[#1B3764] text-sm">Industries</span>
                     <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#F2611D] transition-colors" />
                   </Link>
-                  <div className="ml-3 space-y-0.5 border-l-2 border-gray-100 pl-3">
+                  <div className="ml-3 border-l-2 border-gray-100 pl-3">
                     {industriesItems.slice(0, 6).map((item) => (
                       <Link
                         key={item.href}
                         to={item.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="flex items-center gap-2.5 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="flex items-center gap-2.5 py-0.5 px-2 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         {item.iconSrc && (
                           <img src={item.iconSrc} alt="" className="w-5 h-5 object-contain" />

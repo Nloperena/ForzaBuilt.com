@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useGradientMode } from '@/contexts/GradientModeContext';
-import HeroVideoSectionV2 from './HeroVideoSectionV2';
+import ScalableHeroVideoSection from './ScalableHeroVideoSection';
 import { getFontSize, getFontSizeValue } from '@/styles/typography';
 import VideoSkeleton from './common/VideoSkeleton';
 
@@ -251,7 +251,7 @@ const ApproachSectionUnified = () => {
   return (
     <>
       <div className="relative z-20">
-        <HeroVideoSectionV2 />
+        <ScalableHeroVideoSection />
       </div>
 
       {/* UNIFIED WRAPPER - Base gradient background with everything layered on top */}

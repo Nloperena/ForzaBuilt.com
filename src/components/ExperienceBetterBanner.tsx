@@ -146,7 +146,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
               <span
                 className="font-poppins font-bold leading-[1]"
                 style={{
-                  fontSize: getFontSizeValue('sectionHeading'),
+                  fontSize: 'clamp(26.4px, calc((2vw + 0.5rem) * 1.2), 52.8px)',
                   fontWeight: 700,
                   letterSpacing: '-0.02em',
                   lineHeight: 1,
@@ -180,7 +180,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
                 <span
                   className="font-poppins font-bold leading-[1]"
                   style={{
-                    fontSize: getFontSizeValue('sectionHeading'),
+                    fontSize: 'clamp(26.4px, calc((2vw + 0.5rem) * 1.2), 52.8px)',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',
                     lineHeight: 1,
@@ -194,7 +194,7 @@ const ExperienceBetterBanner = ({ textColor = '#1B3764', highlightColor = '#F261
                   <span
                     className="font-poppins font-bold leading-[1]"
                     style={{
-                      fontSize: getFontSizeValue('sectionHeading'),
+                      fontSize: 'clamp(26.4px, calc((2vw + 0.5rem) * 1.2), 52.8px)',
                       fontWeight: 700,
                       letterSpacing: '-0.02em',
                       lineHeight: 1,

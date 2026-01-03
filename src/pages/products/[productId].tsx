@@ -450,8 +450,8 @@ const ProductDetailPage: React.FC = () => {
       <HeaderV2 />
       <main className="flex-1 pb-10">
         {/* Product Image, Title and Description */}
-        <section className="bg-gradient-to-r from-[#477197] to-[#2c476e] pt-12 md:pt-16 lg:pt-20 xl:pt-24">
-          <div className="max-w-[1200px] mx-auto px-4 py-6 md:py-12 lg:py-12 xl:py-20">
+        <section className="bg-gradient-to-r from-[#477197] to-[#2c476e] h-[60vh] md:h-[88vh] flex items-center">
+          <div className="max-w-[1200px] mx-auto px-4 w-full">
             <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
               {/* Product Image */}
               <div className="flex justify-center lg:justify-start relative h-[200px] sm:h-[250px] md:h-[400px] lg:h-[450px] xl:h-[500px] 2xl:h-[600px]">
@@ -507,10 +507,10 @@ const ProductDetailPage: React.FC = () => {
               
               {/* Product Info */}
               <div>
-                <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-regular text-white mb-2 md:mb-4 leading-none font-poppins text-left">
+                <h1 className="text-[22px] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-regular text-white mb-3 md:mb-4 leading-tight font-poppins text-left">
                   {product.name}
                 </h1>
-                <div className="text-base sm:text-lg md:text-2xl text-white/90 mb-4 md:mb-8 leading-relaxed text-left">
+                <div className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-4 md:mb-8 leading-relaxed text-left">
                   {product.description}
                 </div>
               </div>
@@ -521,21 +521,6 @@ const ProductDetailPage: React.FC = () => {
         {/* Product Details Section - Grey Background */}
         <section className="bg-gray-100 pb-8 md:pb-12">
         <div className="max-w-[1200px] mx-auto px-4 pt-4 md:pt-8">
-          {/* Breadcrumb */}
-          <nav className="mb-4 md:mb-8">
-            <div className="flex items-center gap-2 text-gray-600 text-sm">
-              <Link to="/products" className="hover:text-gray-900 transition-colors">
-                Products
-              </Link>
-              <span>/</span>
-              <Link to={`/products/${product.category.toLowerCase()}`} className="hover:text-gray-900 transition-colors">
-                {product.category}
-              </Link>
-              <span>/</span>
-              <span className="text-gray-900 font-semibold">{product.name}</span>
-            </div>
-          </nav>
-
           {/* Product Details Tabs */}
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               {/* Tabs Selector - Above Content Container */}
@@ -543,25 +528,25 @@ const ProductDetailPage: React.FC = () => {
                 <TabsList className="inline-flex bg-transparent rounded-full p-1 gap-1.5 md:gap-3">
                     <TabsTrigger 
                       value="applications" 
-                    className="px-3 py-1.5 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
+                    className="px-3 py-1.5 md:px-8 md:py-3 rounded-full text-xs md:text-base font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
                     >
                     Applications
                     </TabsTrigger>
                     <TabsTrigger 
                       value="benefits" 
-                    className="px-3 py-1.5 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
+                    className="px-3 py-1.5 md:px-8 md:py-3 rounded-full text-xs md:text-base font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
                     >
                     Benefits
                     </TabsTrigger>
                     <TabsTrigger 
                       value="technical" 
-                    className="px-3 py-1.5 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
+                    className="px-3 py-1.5 md:px-8 md:py-3 rounded-full text-xs md:text-base font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
                     >
                     Technical
                     </TabsTrigger>
                     <TabsTrigger 
                       value="sizing" 
-                    className="px-3 py-1.5 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
+                    className="px-3 py-1.5 md:px-8 md:py-3 rounded-full text-xs md:text-base font-medium transition-all duration-200 data-[state=active]:bg-[#477197] data-[state=active]:text-white data-[state=inactive]:bg-gray-200 data-[state=inactive]:text-gray-700 data-[state=inactive]:hover:bg-gray-300"
                     >
                     Sizing
                     </TabsTrigger>

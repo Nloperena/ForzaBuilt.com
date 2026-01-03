@@ -197,7 +197,9 @@ const ProductCategoryProductsSection: React.FC<ProductCategoryProductsSectionPro
         .filter(p => p.chemistry)
         .map(p => p.chemistry!)
     );
-    return Array.from(unique).sort();
+    return Array.from(unique)
+      .filter(chem => chem !== 'composite_adhesive')
+      .sort();
   }, [filteredProducts]);
 
   // Get industry counts for all products (for filter sidebar counts)
