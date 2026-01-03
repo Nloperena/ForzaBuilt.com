@@ -110,7 +110,7 @@ const ProductsSectionRow = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="shadow-xl sm:shadow-2xl rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-square group cursor-pointer w-full h-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10"
+                    className="shadow-xl sm:shadow-2xl rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full h-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
                       boxShadow: 'rgba(0, 0, 0, 0.6) 0px 4px 8px',
@@ -243,7 +243,7 @@ const ProductsSectionRow = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   <Card
-                    className="shadow-xl sm:shadow-2xl rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 aspect-square group cursor-pointer w-full h-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10"
+                    className="shadow-xl sm:shadow-2xl rounded-xl sm:rounded-xl md:rounded-[1rem] lg:rounded-[1.25rem] border border-white/20 overflow-hidden transition-all duration-300 hover:scale-105 group cursor-pointer w-full h-full text-white backdrop-blur-xl bg-gradient-to-b from-[#1B3764] to-[#115B87] relative z-10"
                     style={{
                       backgroundColor: isHovered ? 'transparent' : product.color,
                       boxShadow: 'rgba(0, 0, 0, 0.6) 0px 4px 8px',

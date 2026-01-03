@@ -103,22 +103,22 @@ const WhyChooseForza = () => {
                           <motion.div 
                             className="absolute bottom-0 left-0 h-1 bg-[#F2611D] origin-left"
                             style={{ width: `${barWidth}%` }}
-                            initial={{ scaleX: 0 }}
-                            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2 + (index * 0.3) + 0.3, ease: "circOut" }}
-                          />
+                      initial={{ scaleX: 0 }}
+                      animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                      transition={{ duration: 0.8, delay: 0.2 + (index * 0.3) + 0.3, ease: "circOut" }}
+                    />
                           {/* Dot positioned at the end of the bar (omega point) */}
-                          <motion.div
-                            className="absolute w-3 h-3 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
-                            style={{ 
+                    <motion.div
+                      className="absolute w-3 h-3 bg-[#F2611D] rounded-full shadow-[0_0_15px_rgba(242,97,29,0.6)]"
+                      style={{ 
                               left: `${barWidth}%`, 
-                              bottom: '-4px',
-                              transform: 'translateX(-50%)'
-                            }}
-                            initial={{ scale: 0 }}
-                            animate={isInView ? { scale: 1 } : { scale: 0 }}
-                            transition={{ duration: 0.4, delay: 0.2 + (index * 0.3) + 0.3 + 0.8, type: "spring" }}
-                          />
+                        bottom: '-4px',
+                        transform: 'translateX(-50%)'
+                      }}
+                      initial={{ scale: 0 }}
+                      animate={isInView ? { scale: 1 } : { scale: 0 }}
+                      transition={{ duration: 0.4, delay: 0.2 + (index * 0.3) + 0.3 + 0.8, type: "spring" }}
+                    />
                         </>
                       );
                     })()}

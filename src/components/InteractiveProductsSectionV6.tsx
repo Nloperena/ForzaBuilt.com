@@ -174,13 +174,13 @@ const InteractiveProductsSectionV6 = () => {
 
         <div className="relative overflow-visible">
           {/* Mobile: Stack vertically (product selections first, then image) | Desktop: 2 columns side-by-side */}
-          <div className="flex flex-col md:grid md:grid-cols-2 gap-0 overflow-hidden -mb-px md:mb-0">
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-0 overflow-hidden">
             
             {/* RIGHT SIDE - Product selections, description, and button (first on mobile, right on desktop) */}
-            <div className="relative bg-gradient-to-r from-[#477197] to-[#2c476e] px-4 py-6 pb-0 md:pb-12 md:px-8 md:py-12 flex flex-col order-1 md:order-2">
+            <div className="relative bg-gradient-to-r from-[#477197] to-[#2c476e] px-3 py-3 md:px-5 md:py-5 flex flex-col justify-between order-1 md:order-2 md:aspect-[5/4]">
               
-              {/* Product list - Compact on mobile, spaced on desktop */}
-              <div className="flex flex-col gap-3 md:gap-4 mb-4 md:mb-8">
+              {/* Product list - Optimized spacing */}
+              <div className="flex flex-col justify-center flex-1" style={{ gap: 'clamp(6px, 1.2vw, 12px)' }}>
                 {products.map((product, index) => {
                   const isActive = activeIndex === index;
                   
@@ -201,7 +201,7 @@ const InteractiveProductsSectionV6 = () => {
                       }}
                       className="w-full text-left transition-all duration-500 cursor-pointer"
                     >
-                      <h3 className={`leading-tight tracking-[-0.01em] transition-all duration-500 ease-out ${
+                      <h3 className={`leading-[1.1] tracking-[-0.01em] transition-all duration-500 ease-out ${
                         mode === 'light2' ? 'font-poppins' : 'font-kallisto'
                       } ${
                         isActive
@@ -210,8 +210,8 @@ const InteractiveProductsSectionV6 = () => {
                       } ${!isActive ? 'hover:text-[#F2611D]' : ''}`}
                       style={{
                         fontSize: isActive 
-                          ? 'clamp(24px, 3vw, 120px)' // Mobile: 24px, Desktop: 120px
-                          : 'clamp(18px, 2vw, 56px)', // Mobile: 18px, Desktop: 56px
+                          ? 'clamp(18px, 3.5vw, 56px)' 
+                          : 'clamp(14px, 2vw, 32px)',
                       }}>
                         {toTitleCase(product.title)}
                       </h3>
@@ -221,7 +221,7 @@ const InteractiveProductsSectionV6 = () => {
               </div>
 
               {/* Description and button */}
-              <div className="mt-auto space-y-3 md:space-y-4 pb-6 md:pb-0">
+              <div className="mt-auto pb-3 md:pb-0" style={{ gap: 'clamp(8px, 1.2vw, 12px)', display: 'flex', flexDirection: 'column' }}>
                 <AnimatePresence mode='wait'>
                   <motion.div
                     key={activeIndex}
@@ -230,14 +230,24 @@ const InteractiveProductsSectionV6 = () => {
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <p className={`text-white text-sm md:text-lg leading-relaxed ${
+                    <p className={`text-white ${
                       mode === 'light2' ? 'font-poppins' : ''
-                    }`}>
+                    }`}
+                    style={{
+                      fontSize: 'clamp(11px, 1.3vw, 15px)',
+                      lineHeight: '1.5'
+                    }}>
                       {products[activeIndex].description}
                     </p>
                     <Button
                       asChild
-                      className="mt-4 gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex h-9 md:h-10 items-center justify-center rounded-full bg-[#F2611D] px-5 md:px-7 py-2 md:py-3.5 text-white text-sm md:text-base font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                      className="mt-2 gap-1 md:gap-2 whitespace-nowrap ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inline-flex items-center justify-center rounded-full bg-[#F2611D] text-white font-medium hover:bg-[#F2611D]/90 shadow-lg"
+                      style={{
+                        height: 'clamp(28px, 2.5vw, 36px)',
+                        paddingLeft: 'clamp(12px, 1.8vw, 20px)',
+                        paddingRight: 'clamp(12px, 1.8vw, 20px)',
+                        fontSize: 'clamp(11px, 1.2vw, 14px)'
+                      }}
                     >
                       <Link to={`/products/${products[activeIndex].slug}`}>
                         {getButtonText(products[activeIndex].title)}
@@ -249,7 +259,7 @@ const InteractiveProductsSectionV6 = () => {
             </div>
 
             {/* LEFT SIDE - Images (second on mobile, left on desktop) */}
-            <div className="relative w-full aspect-square md:aspect-auto md:min-h-[45svh] lg:min-h-[43svh] xl:min-h-[50svh] 2xl:min-h-[55svh] flex items-center justify-center overflow-hidden bg-[#f3f5f7] order-2 md:order-1">
+            <div className="relative w-full aspect-square md:aspect-[5/4] flex items-center justify-center overflow-hidden bg-[#f3f5f7] order-2 md:order-1">
               {/* Images with AnimatePresence for smooth transitions */}
               <div className="absolute inset-0 w-full h-full z-10">
                 <AnimatePresence initial={false}>

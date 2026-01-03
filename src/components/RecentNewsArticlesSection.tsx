@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import blogPostsData from '@/data/blogPosts.json';
 import type { BlogPost } from '@/types/Blog';
 import { getFontSize } from '@/styles/typography';
+import { generateSlugFromTitle } from '@/lib/utils';
 
 const RecentNewsArticlesSection = () => {
   // Get the 3 most recent blog posts, sorted by date (newest first)
@@ -62,7 +63,7 @@ const RecentNewsArticlesSection = () => {
             {recentArticles.map((article: BlogPost) => (
               <motion.div key={article.id} variants={itemVariants} className="w-full flex-shrink-0">
                 <Link
-                  to={`/blog/${article.id}`}
+                  to={`/blog/${generateSlugFromTitle(article.title)}`}
                   className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block h-full w-full flex flex-col"
                 >
                   {/* Image Section */}

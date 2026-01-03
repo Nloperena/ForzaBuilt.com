@@ -6,6 +6,7 @@ import PDFViewerV2 from '../PDFViewerV2/PDFViewerV2';
 import blogPostsData from '@/data/blogPosts.json';
 import type { BlogPost } from '@/types/Blog';
 import { toTitleCase } from '../../utils/industryHelpers';
+import { generateSlugFromTitle } from '@/lib/utils';
 
 interface IndustryBrochureArticlesSectionProps {
   industry: string;
@@ -255,7 +256,7 @@ const IndustryBrochureArticlesSection: React.FC<IndustryBrochureArticlesSectionP
                 {recentArticles.map((article: BlogPost) => (
                   <motion.div key={article.id} variants={itemVariants}>
                     <Link
-                      to={`/blog/${article.id}`}
+                      to={`/blog/${generateSlugFromTitle(article.title)}`}
                       className="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 block h-full"
                     >
                       {/* Image Section */}
