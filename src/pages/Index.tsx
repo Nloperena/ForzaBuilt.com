@@ -54,7 +54,7 @@ const Index = () => {
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/OS2%20Cartridge.webp', alt: 'ForzaSEAL® OS2' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/C130%20Drum.webp', alt: 'ForzaBOND® C130' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/OS20%20Sausage.webp', alt: 'ForzaSEAL® OS20' },
-    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Transportation/T600%20Foam%20Gasketing%20Tape.webp', alt: 'ForzaTAPE® R-T600' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/T900%20Butyl%20Tape.webp', alt: 'T900 (Butyl Tape)' },
     // Cycle 7
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/C150%201%20gal%20pail.webp', alt: 'ForzaBOND® C150' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/OS31%20Cartridge.webp', alt: 'ForzaSEAL® OS31' },
