@@ -124,9 +124,23 @@ export async function getAllProducts(): Promise<Product[]> {
         benefits: apiProduct.benefits || [],
         sizes: sizes,
         imageUrl: apiProduct.image ? (
-          // If API returns a full URL, use it directly (but fix common typos)
+          // If API returns a full URL, use it exactly as provided (API has correct blob storage paths)
+          // Encode the URL to handle spaces and special characters properly
           apiProduct.image.startsWith('http://') || apiProduct.image.startsWith('https://')
-            ? apiProduct.image.replace('product-images-web-optmized', 'product-images-web-optimized') // Fix typo: optmized -> optimized
+            ? (() => {
+                try {
+                  // Parse and reconstruct URL to properly encode path components
+                  const url = new URL(apiProduct.image);
+                  // Encode the pathname to handle spaces (e.g., "T-T1200 Tape.webp" -> "T-T1200%20Tape.webp")
+                  url.pathname = url.pathname.split('/').map(segment => 
+                    segment ? encodeURIComponent(decodeURIComponent(segment)) : ''
+                  ).join('/');
+                  return url.toString();
+                } catch {
+                  // If URL parsing fails, return as-is (browser will handle encoding)
+                  return apiProduct.image;
+                }
+              })()
             : getBlobImageUrl(
                 apiProduct.image,
                 apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
@@ -240,9 +254,23 @@ export async function getProductById(id: string): Promise<Product | null> {
       benefits: apiProduct.benefits || [],
       sizes: sizes,
       imageUrl: apiProduct.image ? (
-        // If API returns a full URL, use it directly (but fix common typos)
+        // If API returns a full URL, use it exactly as provided (API has correct blob storage paths)
+        // Encode the URL to handle spaces and special characters properly
         apiProduct.image.startsWith('http://') || apiProduct.image.startsWith('https://')
-          ? apiProduct.image.replace('product-images-web-optmized', 'product-images-web-optimized') // Fix typo: optmized -> optimized
+          ? (() => {
+              try {
+                // Parse and reconstruct URL to properly encode path components
+                const url = new URL(apiProduct.image);
+                // Encode the pathname to handle spaces (e.g., "T-T1200 Tape.webp" -> "T-T1200%20Tape.webp")
+                url.pathname = url.pathname.split('/').map(segment => 
+                  segment ? encodeURIComponent(decodeURIComponent(segment)) : ''
+                ).join('/');
+                return url.toString();
+              } catch {
+                // If URL parsing fails, return as-is (browser will handle encoding)
+                return apiProduct.image;
+              }
+            })()
           : getBlobImageUrl(
               apiProduct.image,
               apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
