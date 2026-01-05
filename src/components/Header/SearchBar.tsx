@@ -1,16 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGradientMode } from '@/contexts/GradientModeContext';
-import productsData from '@/data/productsSimplified.json';
+import { getAllProducts, type Product } from '@/services/productService';
 import blogPostsData from '@/data/blogPosts.json';
-
-interface Product {
-  id: string;
-  name: string;
-  category: string;
-  imageUrl: string;
-  description: string;
-}
 
 interface BlogPost {
   id: string;
@@ -42,7 +34,26 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  // Load products from API on component mount
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        setIsLoadingProducts(true);
+        const fetchedProducts = await getAllProducts();
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error('Failed to load products for search:', error);
+      } finally {
+        setIsLoadingProducts(false);
+      }
+    };
+    
+    loadProducts();
+  }, []);
 
   // Click outside to close
   useEffect(() => {
@@ -58,8 +69,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
   }, []);
 
   useEffect(() => {
-    if (searchTerm.length > 1) {
-      const products = productsData.products as Product[];
+    if (searchTerm.length > 1 && !isLoadingProducts) {
       const blogPosts = blogPostsData as BlogPost[];
       
       // Search products
@@ -67,10 +77,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
         .filter(p => 
           p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           p.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          p.category.toLowerCase().includes(searchTerm.toLowerCase())
+          p.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          p.industry?.some(ind => ind.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          p.searchKeywords?.some(keyword => keyword.toLowerCase().includes(searchTerm.toLowerCase()))
         )
         .slice(0, 8) // Limit to 8 products
-        .map(p => ({ 
+        .map(p => ({
           id: p.id,
           name: p.name, 
           href: `/products/${p.category.toLowerCase()}/${p.id}`, 
@@ -104,7 +116,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ className = '', mobile = false })
       setSearchResults([]);
       setShowSearchResults(false);
     }
-  }, [searchTerm]);
+  }, [searchTerm, products, isLoadingProducts]);
 
   const handleResultClick = (href: string) => {
     navigate(href);
