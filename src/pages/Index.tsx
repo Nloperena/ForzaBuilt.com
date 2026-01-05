@@ -73,7 +73,7 @@ const Index = () => {
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/os24.webp', alt: 'ForzaSEAL® OS24' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/t950.webp', alt: 'T950' },
     // Cycle 10
-    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/mc739.webp', alt: 'MC739' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Insulation/rc826.webp', alt: 'RC826' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Construction/c-os9.webp', alt: 'ForzaSEAL® C-OS9' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/oa13.webp', alt: 'ForzaBOND® OA13' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/os2.webp', alt: 'ForzaSEAL® OS2' },
