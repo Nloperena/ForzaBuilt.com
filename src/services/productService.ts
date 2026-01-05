@@ -124,9 +124,9 @@ export async function getAllProducts(): Promise<Product[]> {
         benefits: apiProduct.benefits || [],
         sizes: sizes,
         imageUrl: apiProduct.image ? (
-          // If API returns a full URL, use it directly
+          // If API returns a full URL, use it directly (but fix common typos)
           apiProduct.image.startsWith('http://') || apiProduct.image.startsWith('https://')
-            ? apiProduct.image
+            ? apiProduct.image.replace('product-images-web-optmized', 'product-images-web-optimized') // Fix typo: optmized -> optimized
             : getBlobImageUrl(
                 apiProduct.image,
                 apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
@@ -239,9 +239,14 @@ export async function getProductById(id: string): Promise<Product | null> {
         : apiProduct.applications ? [apiProduct.applications] : [],
       benefits: apiProduct.benefits || [],
       sizes: sizes,
-      imageUrl: apiProduct.image ? getBlobImageUrl(
-        apiProduct.image,
-        apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
+      imageUrl: apiProduct.image ? (
+        // If API returns a full URL, use it directly (but fix common typos)
+        apiProduct.image.startsWith('http://') || apiProduct.image.startsWith('https://')
+          ? apiProduct.image.replace('product-images-web-optmized', 'product-images-web-optimized') // Fix typo: optmized -> optimized
+          : getBlobImageUrl(
+              apiProduct.image,
+              apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
+            )
       ) : undefined,
       pdfLinks: [], // Not in API response
       standardTdsLink: '', // Not in API response

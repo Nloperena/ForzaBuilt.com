@@ -9,7 +9,6 @@ import ChemistryOverviewSectionV7 from '@/components/ChemistryOverviewSectionV7'
 import ProductsSectionRow from '@/components/ProductsSectionRow';
 import InteractiveProductsSectionV6 from '@/components/InteractiveProductsSectionV6';
 import ApproachSectionUnified from '@/components/ApproachSectionUnified';
-import ApproachSectionV3 from '@/components/ApproachSectionV3';
 import ProductImageTicker from '@/components/ProductImageTicker';
 import MadeInAmericaSection from '@/components/MadeInAmericaSection';
 import MadeInAmericaSectionV2 from '@/components/MadeInAmericaSectionV2';
@@ -74,7 +73,7 @@ const Index = () => {
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS24 Cartridge.png', alt: 'ForzaSEAL® OS24' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/T950 FSK Bonding Tape.png', alt: 'T950' },
     // Cycle 10
-    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/r529.png', alt: 'R529' },
+    { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images-web-optimized/Industrial/mc739.webp', alt: 'MC739' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Construction/C-OS9 Sausage.png', alt: 'ForzaSEAL® C-OS9' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OA13 Cartridge.png', alt: 'ForzaBOND® OA13' },
     { src: 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com/product-images/Industrial/OS2 Cartridge.png', alt: 'ForzaSEAL® OS2' },

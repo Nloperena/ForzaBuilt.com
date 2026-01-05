@@ -22,7 +22,7 @@ export function getBlobBaseUrl(): string {
 /**
  * Normalize industry name for blob storage paths
  * Converts to Capitalized format to match production blob storage structure
- * Production uses: product-images/{CapitalizedIndustry}/filename.png
+ * Production uses: product-images-web-optimized/{CapitalizedIndustry}/filename.webp
  * Examples: "industrial_industry" -> "Industrial", "construction_industry" -> "Construction"
  */
 function normalizeIndustryName(industry: string | string[] | undefined): string | undefined {
@@ -95,18 +95,18 @@ export function getBlobImageUrl(imagePath: string, industry?: string | string[])
   }
   
   // When blob storage is configured, use the production structure
-  // Production uses: product-images/{CapitalizedIndustry}/filename.png (plural "product-images" with capitalized industry subfolder)
-  // Example: product-images/Industrial/FRP 3.5 gal pail.png
+  // Production uses: product-images-web-optimized/{CapitalizedIndustry}/filename.webp (optimized WebP images)
+  // Example: product-images-web-optimized/Industrial/FRP 3.5 gal pail.webp
   // Local uses: /product-images/filename.png (plural "product-images" flat)
   const normalizedIndustry = normalizeIndustryName(industry);
   
   let blobPath: string;
   if (normalizedIndustry) {
-    // Production blob storage structure: product-images/{CapitalizedIndustry}/filename.png
-    blobPath = `product-images/${normalizedIndustry}/${filename}`;
+    // Production blob storage structure: product-images-web-optimized/{CapitalizedIndustry}/filename.webp
+    blobPath = `product-images-web-optimized/${normalizedIndustry}/${filename}`;
   } else {
     // Fallback to flat structure if no industry provided
-    blobPath = `product-images/${filename}`;
+    blobPath = `product-images-web-optimized/${filename}`;
   }
   
   return `${baseUrl}/${blobPath}`;
