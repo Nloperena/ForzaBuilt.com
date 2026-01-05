@@ -55,8 +55,19 @@ const PRODUCTS_DATA_URL = import.meta.env.DEV
   ? '/api/products'  // Uses Vite proxy in development
   : 'https://forza-product-managementsystem-b7c3ff8d3d2d.herokuapp.com/api/products';  // Direct URL in production
 
+// Simple in-memory cache
+let productsCache: Product[] | null = null;
+let cacheTimestamp: number = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 // Service functions
 export async function getAllProducts(): Promise<Product[]> {
+  // Return cached data if available and fresh
+  if (productsCache && (Date.now() - cacheTimestamp < CACHE_DURATION)) {
+    console.log('🟢 Returning products from cache');
+    return productsCache;
+  }
+
   try {
     console.log('🔵 Fetching products from Heroku API...');
     const response = await fetch(PRODUCTS_DATA_URL, {
@@ -132,9 +143,11 @@ export async function getAllProducts(): Promise<Product[]> {
       };
       
       // Debug first few products with images
-      if (index < 3) {
-        console.log(`🖼️ Product ${product.id}: imageUrl = ${product.imageUrl}, industry = ${product.industry.join(', ')}`);
+      if (index < 5) {
+        console.log(`🖼️ Product ${product.id}:`);
         console.log(`   API image field: ${apiProduct.image}`);
+        console.log(`   Final imageUrl: ${product.imageUrl}`);
+        console.log(`   Industry: ${product.industry.join(', ')}`);
       }
       
       return product;
@@ -143,6 +156,11 @@ export async function getAllProducts(): Promise<Product[]> {
     // Filter to only show published products
     const publishedProducts = products.filter(product => product.isActive === true);
     console.log(`✅ Returning ${publishedProducts.length} published products`);
+    
+    // Update cache
+    productsCache = publishedProducts;
+    cacheTimestamp = Date.now();
+    
     return publishedProducts;
   } catch (error) {
     console.error('Failed to fetch products from Heroku API:', error);

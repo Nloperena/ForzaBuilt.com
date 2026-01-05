@@ -15,9 +15,8 @@ export function getBlobBaseUrl(): string {
     return envUrl.replace(/\/$/, '');
   }
   
-  // Default fallback - user should set VITE_BLOB_STORAGE_URL in their .env
-  // This will fall back to local paths if not configured
-  return '';
+  // Default fallback - known production URL
+  return 'https://jw4to4yw6mmciodr.public.blob.vercel-storage.com';
 }
 
 /**
@@ -59,7 +58,7 @@ function normalizeIndustryName(industry: string | string[] | undefined): string 
 
 /**
  * Get a Vercel Blob Storage URL for a product image
- * @param imagePath - The path to the image (e.g., "ic932.png", "/product-images/ic932.png", or a full blob URL)
+ * @param imagePath - The path to the image (e.g., "ic932.png", "/product-images/ic932.webp", or a full blob URL)
  * @param industry - Optional industry name or array for blob storage path organization (e.g., "marine", "construction")
  * @returns The full blob URL - always uses blob storage if configured, otherwise falls back to local path
  */

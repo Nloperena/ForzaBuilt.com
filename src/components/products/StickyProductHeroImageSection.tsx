@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ImageSkeleton from '../common/ImageSkeleton';
 import { motion } from 'framer-motion';
 
@@ -16,28 +16,45 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
   children 
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentImageUrl, setCurrentImageUrl] = useState(imageUrl);
 
+  // Refs for image elements to check if already loaded (cached)
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Determine correct image URL on mount/resize
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!imageLoaded) {
-        console.warn('Product hero image took too long to load, showing fallback');
-        setImageLoaded(true);
+    const updateImage = () => {
+      if (typeof window !== 'undefined' && window.innerWidth < 768 && mobileImageUrl) {
+        setCurrentImageUrl(mobileImageUrl);
+      } else {
+        setCurrentImageUrl(imageUrl);
       }
-    }, 5000);
-
-    return () => {
-      clearTimeout(timeout);
     };
-  }, [imageLoaded]);
+
+    updateImage();
+    window.addEventListener('resize', updateImage);
+    return () => window.removeEventListener('resize', updateImage);
+  }, [imageUrl, mobileImageUrl]);
+
+  // Check if image is already cached
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+      setImageLoaded(true);
+    }
+  }, [currentImageUrl]);
 
   const handleImageLoad = () => {
-    console.log('Product hero image loaded successfully');
     setImageLoaded(true);
   };
 
-  const handleImageError = () => {
-    console.warn('Product hero image failed to load, showing fallback');
-    setImageLoaded(true);
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.warn('⚠️ Image failed to load, trying fallback');
+    const target = e.currentTarget;
+    if (target.src.includes('.webp')) {
+      target.src = target.src.replace('.webp', '.jpg');
+    } else {
+      setImageLoaded(true);
+    }
   };
 
   return (
@@ -49,47 +66,27 @@ const StickyProductHeroImageSection: React.FC<StickyProductHeroImageSectionProps
           <ImageSkeleton className="w-full h-full" />
         )}
         
-        {/* Background Hero Image - Mobile */}
-        {(mobileImageUrl || imageUrl) && (
-          <motion.img
-            src={mobileImageUrl || imageUrl}
-            alt={`${productCategory} Category Hero`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 md:hidden ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            style={{ 
-              zIndex: 1,
-              objectFit: 'cover',
-              width: '100%',
-              height: '100%',
-              minWidth: '100%',
-              minHeight: '100%'
-            }}
-          />
-        )}
-        
-        {/* Background Hero Image - Desktop */}
-        {imageUrl && (
-          <motion.img
-            src={imageUrl}
-            alt={`${productCategory} Category Hero`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 hidden md:block ${
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            style={{ 
-              zIndex: 1,
-              objectFit: 'cover',
-              width: '100%',
-              height: '100%',
-              minWidth: '100%',
-              minHeight: '100%'
-            }}
-          />
-        )}
+        <motion.img
+          ref={imgRef}
+          key={currentImageUrl}
+          src={currentImageUrl}
+          alt={`${productCategory} Category Hero`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            imageLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          loading="eager"
+          fetchPriority="high"
+          style={{ 
+            zIndex: 1,
+            objectFit: 'cover',
+            width: '100%',
+            height: '100%',
+            minWidth: '100%',
+            minHeight: '100%'
+          }}
+        />
 
         {/* Fallback background - always visible */}
         <div className="absolute inset-0 bg-black/5" style={{ zIndex: 0 }} />
