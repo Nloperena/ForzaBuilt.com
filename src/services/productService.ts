@@ -124,9 +124,9 @@ export async function getAllProducts(): Promise<Product[]> {
         benefits: apiProduct.benefits || [],
         sizes: sizes,
         imageUrl: apiProduct.image ? (
-          // If API returns a full URL, use it exactly as provided (browser will handle encoding automatically)
+          // If API returns a full URL, fix the typo in the path and use it
           apiProduct.image.startsWith('http://') || apiProduct.image.startsWith('https://')
-            ? apiProduct.image
+            ? apiProduct.image.replace('product-images-web-optmized', 'product-images-web-optimized')
             : getBlobImageUrl(
                 apiProduct.image,
                 apiProduct.industry ? [apiProduct.industry.replace('_industry', '').replace('_', ' ')] : undefined
